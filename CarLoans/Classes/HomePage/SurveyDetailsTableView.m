@@ -141,11 +141,12 @@
             _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
             kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
 
-            [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+            [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
             [cell addSubview:_photoBtn];
 
             UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
             [photoImage sd_setImageWithURL:[NSURL URLWithString:[_surveyDetailsModel.secondCarReport convertImageUrl]]];
+            self.photoImage = photoImage;
             [_photoBtn addSubview:photoImage];
 
             return cell;
@@ -177,10 +178,20 @@
 
 }
 
--(void)appraisalReportBtnClick
+-(void)appraisalReportBtnClick:(UIButton*)sender
 {
-
+    if ([_surveyDetailsModel.secondCarReport isEqualToString:@""] || !_surveyDetailsModel.secondCarReport) {
+        return;
+    }
+    NSMutableArray *imageArray = [NSMutableArray array];
+        [imageArray addObject:[_surveyDetailsModel.secondCarReport convertImageUrl]];
+    
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+        return imageArray;
+    }];
 }
+
 
 -(void)CreditReportingPersonInformationButton:(UIButton *)sender
 {

@@ -67,8 +67,8 @@
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
 
-    NSArray *array = @[@"002_09",@"002_10",@"002_12"];
-    helper.parameters[@"curNodeCodeList"] = array;
+    NSArray *array = @[@"002_09",@"002_10",@"002_12",@"002_32"];
+    helper.parameters[@"advanfCurNodeCodeList"] = array;
     
     helper.parameters[@"isGpsAz"] = @"1";
 
@@ -104,7 +104,7 @@
         helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
         helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
         
-        NSArray *array = @[@"002_09",@"002_10",@"002_12"];
+        NSArray *array = @[@"002_09",@"002_10",@"002_12",@"002_32"];
         helper.parameters[@"curNodeCodeList"] = array;
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);

@@ -96,6 +96,7 @@
 {
     if ([state isEqualToString:@"add"])
     {
+      
         self.selectInt = index;
         [self.imagePicker picker];
     }else if([state isEqualToString:@"DeletePhotos1"])
@@ -115,23 +116,12 @@
 -(void)confirmButtonClick
 {
     
-    UITextField *textField1 = [self.view viewWithTag:100];
-    UITextField *textField2 = [self.view viewWithTag:101];
+    UITextField *textField2 = [self.view viewWithTag:100];
     
-    if ([date isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请选择抵押日期"];
-        return;
-    }
-    if (_GreenBigBenArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传绿大本扫描件图片"];
-        return;
-    }
-    if ([textField1.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入代理人"];
-        return;
-    }
+   
+    
     if ([textField2.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入抵押地点"];
+        [TLAlert alertWithInfo:@"请输入补充说明"];
         return;
     }
     
@@ -140,15 +130,14 @@
     
     
     TLNetworking *http = [TLNetworking new];
-    http.code = @"632131";
+    http.code = @"632144";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
+   
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"approveUser"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"pledgeDatetime"] = date;
-    http.parameters[@"pledgeAddress"] = textField2.text;
-    http.parameters[@"pledgeUser"] = textField1.text;
+    http.parameters[@"supplementNote"] = textField2.text;
     http.parameters[@"greenBigSmj"] = GreenBigBen;
     
     

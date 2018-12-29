@@ -15,14 +15,14 @@
 + (void)alertWithInfo:(NSString *)msg {
     
     [SVProgressHUD showInfoWithStatus:msg];
-    [SVProgressHUD setMinimumDismissTimeInterval:2];
+    [SVProgressHUD setMinimumDismissTimeInterval:1];
 }
 
 //error
 + (void)alertWithError:(NSString *)msg {
     
     [SVProgressHUD showErrorWithStatus:msg];
-    [SVProgressHUD setMinimumDismissTimeInterval:2];
+    [SVProgressHUD setMinimumDismissTimeInterval:1];
     
 }
 
@@ -30,7 +30,7 @@
 + (void)alertWithSucces:(NSString *)msg {
     
     [SVProgressHUD showSuccessWithStatus:msg];
-    [SVProgressHUD setMinimumDismissTimeInterval:2];
+    [SVProgressHUD setMinimumDismissTimeInterval:1];
     
 }
 

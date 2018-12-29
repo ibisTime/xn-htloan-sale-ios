@@ -57,16 +57,30 @@
     AccessSingleModel *model = self.model[indexPath.row];
     cell.accessSingleModel = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if ([model.curNodeCode isEqualToString:@"002_18"]) {
-        cell.button.hidden = NO;
-        [cell.button setTitle:@"录入" forState:(UIControlStateNormal)];
-        cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 290, 100, 30);
-
+    if ([model.curNodeCode isEqualToString:@"002_31"]) {
+       
+        cell.button.hidden = YES;
+        if (self.isShowBtn == YES) {
+            cell.button.hidden = YES;
+            
+        }else{
+            cell.button.hidden = NO;
+            
+        }
     }
     else
     {
-        cell.button.hidden = YES;
+        if (self.isShowBtn == YES) {
+             cell.button.hidden = YES;
+
+        }else{
+             cell.button.hidden = NO;
+
+        }
     }
+    cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 290, 100, 30);
+
+    [cell.button setTitle:[[BaseModel user]note:model.curNodeCode] forState:(UIControlStateNormal)];
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.button.tag = indexPath.row;
 
@@ -93,11 +107,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AccessSingleModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"002_18"]) {
-        return 330;
+    if ([model.curNodeCode isEqualToString:@"002_31"]) {
+        return 300;
+
     }else
     {
-        return 280;
+        return 330;
+
     }
 
 }

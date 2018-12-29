@@ -9,6 +9,7 @@
 #import "BaseModel.h"
 #import "SelectedListView.h"
 #import "LEEAlert.h"
+#import "NewSelectedListView.h"
 @implementation BaseModel
 
 + (instancetype)user{
@@ -142,6 +143,44 @@
     .LeeShow();
 }
 
+-(void)CustomBounced:(NSMutableArray *)nameArray setState:(NSString *)state isSign:(BOOL)sign
+{
+    
+    NSMutableArray *dvalueArray = [NSMutableArray array];
+    if ([state isEqualToString:@"100"]) {
+        dvalueArray = nameArray;
+    }else
+    {
+        for (int i = 0; i < nameArray.count ; i ++) {
+            [dvalueArray addObject:nameArray[i][@"dvalue"]];
+        }
+    }
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0;  i < dvalueArray.count; i ++) {
+        [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",dvalueArray[i]]]];
+    }
+    NewSelectedListView *view = [[NewSelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+    view.isSingle = NO;
+    view.array = array;
+    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+        [LEEAlert closeWithCompletionBlock:^{
+            NSLog(@"选中的%@" , array);
+            SelectedListModel *model = array[0];
+            [self.ModelDelegate TheReturnValueStr:model.title selectDic:nameArray[model.sid] selectSid:model.sid];
+        }];
+    };
+    view.changedBlock = ^(NSArray<SelectedListModel *> *array) {
+        [self.ModelDelegate TheReturnValuearr:array];
+    };
+    [LEEAlert alert].config
+    .LeeTitle(@"选择")
+    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+    .LeeCustomView(view)
+    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+    .LeeClickBackgroundClose(YES)
+    .LeeShow();
+}
 
 
 -(NSString *)setParentKey:(NSString *)parentKey setDkey:(NSString *)dkey

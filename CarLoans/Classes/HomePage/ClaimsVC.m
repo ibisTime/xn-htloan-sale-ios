@@ -9,9 +9,12 @@
 #import "ClaimsVC.h"
 #import "ClaimsTableView.h"
 #import "AccessSingleVC.h"
-@interface ClaimsVC ()<RefreshDelegate>
+#import "GPSTeamModel.h"
+@interface ClaimsVC ()<RefreshDelegate,BaseModelDelegate>
 @property (nonatomic , strong)ClaimsTableView *tableView;
 @property (nonatomic ,strong) AccessSingleModel *model;
+@property (nonatomic ,strong) NSMutableArray <GPSTeamModel *>*teamArray;
+@property (nonatomic ,copy) NSString *teamCode;
 
 @end
 
@@ -22,6 +25,7 @@
     // Do any additional setup after loading the view.
     self.title = @"申领";
     [self initTableView];
+    self.teamArray = [NSMutableArray array];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ApplyForCancellation object:nil];
 }
 #pragma mark -- 接收到通知
@@ -42,14 +46,67 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSLog(@"%ld",indexPath.row);
-    if (indexPath.row == 0) {
-        AccessSingleVC *vc = [[AccessSingleVC alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.section == 0) {
+        //选择
+        BaseModel *model = [BaseModel new];
+        model.ModelDelegate = self;
+        NSMutableArray *array = [NSMutableArray array];
+        [array addObject:@"本部"];
+        [array addObject:@"分部"];
+
+        [model CustomBouncedView:array setState:@"100"];
+        return;
     }
+    if (indexPath.section == 1) {
+        if ([self.tableView.teamStr isEqualToString:@"本部"]) {
+            if (indexPath.row == 0) {
+                AccessSingleVC *vc = [[AccessSingleVC alloc]init];
+                vc.isHidden = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }else{
+            if (indexPath.row == 0) {
+              //获取团队 code
+                [self loadTeamData];
+            }
+        }
+    }
+  
     //
     
+}
+
+-(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
+{
+    WGLog(@"%@",dic);
+    if (self.tableView.teamStr) {
+        
+        if ([self.tableView.teamStr isEqualToString:@"本部"]) {
+            _tableView.teamname = Str;
+            if ([Str isEqualToString:@"本部"] || [Str isEqualToString:@"分部"]) {
+                _tableView.teamStr = Str;
+
+            }
+           
+
+        }else{
+            _tableView.teamname = Str;
+            if ([Str isEqualToString:@"本部"] || [Str isEqualToString:@"分部"]) {
+                _tableView.teamStr = Str;
+                
+            }
+            
+        }
+    }else{
+        _tableView.teamStr = Str;
+
+    }
+    
+    if (self.teamArray.count >0) {
+        self.teamCode = self.teamArray[sid].code;
+    }
+   
+    [self.tableView reloadData];
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
@@ -70,14 +127,18 @@
     http.parameters[@"applyWiredCount"] = textFid1.text;
     http.parameters[@"applyWirelessCount"] = textFid2.text;
     http.parameters[@"customerName"] =self.model.applyUserName;
-
-    if (self.model) {
+    if ([self.tableView.teamStr isEqualToString:@"本部"]) {
         http.parameters[@"applyUsername"] = self.model.applyUserName;
 
+        http.parameters[@"applyType"] =@"1";
+
+    }else{
+        http.parameters[@"applyType"] =@"2";
+        http.parameters[@"teamCode"] =self.teamCode;
+
     }
+
     http.parameters[@"budgetOrderCode"] = self.model.code;
-
-
     http.parameters[@"applyReason"] = textFid3.text;
     http.parameters[@"applyUser"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"type"] = @"1";
@@ -91,6 +152,28 @@
         WGLog(@"%@",error);
     }];
 }
-
+- (void)loadTeamData
+{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"630197";
+    http.showView = self.view;
+    [http postWithSuccess:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        self.teamArray =  [GPSTeamModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        NSLog(@"%@",self.teamArray);
+        BaseModel *model = [BaseModel new];
+        model.ModelDelegate = self;
+        NSMutableArray *array = [NSMutableArray array];
+        for (GPSTeamModel*model in self.teamArray) {
+            [array addObject:model.name];
+        }
+        
+        [model CustomBouncedView:array setState:@"100"];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
 
 @end

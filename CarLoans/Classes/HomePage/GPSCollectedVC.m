@@ -65,6 +65,8 @@
     NSMutableArray <DataTransferModel *>*models = [NSMutableArray array];
     [models addObject:self.model[indexPath.row]];
     vc.isDetail = YES;
+    vc.tableView.isDetail = YES;
+
     vc.model = models;
     vc.tableView.model = models;
     [vc.tableView reloadData];
@@ -98,7 +100,7 @@
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632155";
     helper.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];;
-    NSArray *array = @[@"1",@"2",@"3"];
+    NSArray *array = @[@"1",@"2"];
     helper.parameters[@"statusList"] = array;
     helper.parameters[@"type"] = @"2";
 

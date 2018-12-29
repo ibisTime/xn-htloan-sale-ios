@@ -8,6 +8,7 @@
 
 #import "FaceSignHomeVC.h"
 #import "FaceSignVC.h"
+#import "FaceSignVC2.h"
 @interface FaceSignHomeVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong)UIScrollView *scroll;
 @property (nonatomic, strong)UIButton *selectBtn;
@@ -16,7 +17,7 @@
 
 @property (nonatomic, strong)UILabel *WeiGreLabel;
 @property (nonatomic, strong)FaceSignVC *vc1;
-@property (nonatomic, strong)FaceSignVC *vc2;
+@property (nonatomic, strong)FaceSignVC2 *vc2;
 
 #define kPageCount 2
 #define kButton_H 50
@@ -84,7 +85,7 @@
 - (void)setupChildViewControll{
     self.vc1 = [[FaceSignVC alloc]init];
     self.vc1.isSign = YES;
-    self.vc2 = [[FaceSignVC alloc]init];
+    self.vc2 = [[FaceSignVC2 alloc]init];
     //指定该控制器为其子控制器
     self.vc2.isSign = NO;
 
@@ -105,8 +106,8 @@
 - (void)setupPageButton{
     //button的index值应当从0开始
     
-    UIButton *btn = [self setupButtonWithTitle:@"已面签" Index:0];
-    [self setupButtonWithTitle:@"未面签" Index:1];
+    UIButton *btn = [self setupButtonWithTitle:@"已录入" Index:0];
+    [self setupButtonWithTitle:@"未录入" Index:1];
     
     [btn setTitleColor:MainColor forState:(UIControlStateNormal)];
     self.selectBtn = btn;

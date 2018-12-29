@@ -78,7 +78,7 @@
             UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 279+70+90, SCREEN_WIDTH, 1)];
             lineView2.backgroundColor = LineBackColor;
             [self addSubview:lineView2];
-            _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+            _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:14];
             _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290+60+90, 100, 30);
             kViewBorderRadius(_button, 5, 1, MainColor);
             [self addSubview:_button];

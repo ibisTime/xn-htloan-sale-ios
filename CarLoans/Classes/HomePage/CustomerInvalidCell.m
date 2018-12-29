@@ -54,20 +54,17 @@
 
 
 
-        for (int i = 0; i < 5; i ++) {
-            _nameLabel = [UILabel labelWithFrame:CGRectMake(15 , 70 + i % 6 * 35, 100, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:GaryTextColor];
+        for (int i = 0; i < 6; i ++) {
+            _nameLabel = [UILabel labelWithFrame:CGRectMake(15 , 70 + i % 7 * 35, 100, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:GaryTextColor];
             //            _nameLabel.text = nameArray[i];
             _nameLabel.tag = 100000 + i;
             [self addSubview:_nameLabel];
 
-            _InformationLabel = [UILabel labelWithFrame:CGRectMake(115 , 70 + i % 6 * 35, SCREEN_WIDTH - 130, 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
+            _InformationLabel = [UILabel labelWithFrame:CGRectMake(115 , 70 + i % 7 * 35, SCREEN_WIDTH - 130, 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
             _InformationLabel.tag = 1000000 + i;
             [self addSubview:_InformationLabel];
         }
 
-        UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 244, SCREEN_WIDTH, 1)];
-        lineView2.backgroundColor = LineBackColor;
-        [self addSubview:lineView2];
 
     }
     return self;
@@ -82,7 +79,9 @@
                            @"客户姓名",
                            @"贷款金额",
                            @"贷款银行",
-                           @"申请时间"];
+                           @"申请时间",
+                           @"作废原因"
+                           ];
     NSString *bizType;
     if ([model.bizType integerValue] == 0) {
         bizType = @"新车";
@@ -97,7 +96,11 @@
                                   [NSString stringWithFormat:@"%@",model.applyUserName],
                                   [NSString stringWithFormat:@"%.2f",[model.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",model.repayBankName],
-                                  [NSString stringWithFormat:@"%@",[model.applyDatetime convertToDetailDate]]];
+                                  [NSString stringWithFormat:@"%@",[model.applyDatetime convertToDetailDate]],
+                                  [NSString stringWithFormat:@"%@",model.remark]
+
+                                  ];
+    
 
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];

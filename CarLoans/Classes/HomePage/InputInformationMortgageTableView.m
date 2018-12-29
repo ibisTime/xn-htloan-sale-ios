@@ -11,8 +11,12 @@
 #define ChooseC @"ChooseCell"
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
+#define TextField1 @"TextFieldCell1"
+
 #import "CollectionViewCell.h"
 #define CollectionView @"CollectionViewCell"
+#import "SurverCertificateCell.h"
+#define SurverCertificate1 @"SurverCertificateCell"
 
 @interface InputInformationMortgageTableView ()<UITableViewDataSource,UITableViewDelegate,CustomCollectionDelegate>
 
@@ -26,7 +30,11 @@
         self.delegate = self;
         [self registerClass:[ChooseCell class] forCellReuseIdentifier:ChooseC];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
+        [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField1];
+
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CollectionView];
+        [self registerClass:[SurverCertificateCell class] forCellReuseIdentifier:SurverCertificate1];
+
     }
     return self;
 }
@@ -42,11 +50,12 @@
 {
 
     if (section == 0) {
-        return 4;
+        return 12;
     }
-    if (section == 3) {
-        return 2;
+    if (section == 1) {
+        return 6;
     }
+    
     return 1;
 }
 
@@ -57,38 +66,81 @@
 
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"客户姓名",@"业务编号",@"贷款银行",@"贷款金额"];
+        NSArray *nameArray = @[@"客户姓名",@"业务编号",@"贷款银行",@"贷款金额",@"业务团队",@"区域经理",@"信贷专员",@"内勤专员",@"抵押代理人",@"补充说明",@"审核说明",@"车牌号"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSArray *detailsArray = @[
                                   [NSString stringWithFormat:@"%@",_model.applyUserName],
                                   [NSString stringWithFormat:@"%@",_model.code],
                                   [NSString stringWithFormat:@"%@",_model.loanBankName],
-                                  [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000]
-                                  ];
+                                  [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@",_model.teamName],
+                                  [NSString stringWithFormat:@"%@",_model.areaName],
+                                  [NSString stringWithFormat:@"%@",_model.saleUserName],
+                                  [NSString stringWithFormat:@"%@",_model.insideJobName],
+                                  [NSString stringWithFormat:@"%@",_model.pledgeUser],
+                                  [NSString stringWithFormat:@"%@",_model.supplementNote],
+                                  [NSString stringWithFormat:@"%@",_model.approveNote],
+                                  [NSString stringWithFormat:@"%@",_model.carNumber]
+
+                                ];
         cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
     }
     if (indexPath.section == 1) {
-        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
+        SurverCertificateCell *cell = [tableView dequeueReusableCellWithIdentifier:SurverCertificate1 forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"抵押日期";
-        cell.details = _date;
+        NSArray *array = @[@"机动车登记证书",@"批单",@"车钥匙",@"大本扫描件",@"车辆驾驶证扫描件",@"完税证明扫描件"];
+        cell.name = array[indexPath.row];
+        switch (indexPath.row) {
+            case 0:
+            {
+                cell.picArray = _model.Newpics2;
+            }
+                break;
+            case 1:
+            {
+                cell.picArray = _model.Newpics3;
+            }
+                break;
+            case 2:
+            {
+                cell.picArray = _model.Newpics4;
+            }
+                break;
+            case 3:
+            {
+                cell.picArray = _model.Newpics5;
+            }
+                break;
+            case 4:
+            {
+                cell.picArray = _model.Newpics6;
+            }
+                break;
+            case 5:
+            {
+                cell.picArray = _model.Newpics7;
+            }
+                break;
+                
+            default:
+                break;
+        }
         return cell;
     }
     if (indexPath.section == 2) {
-        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.delegate = self;
-
-        cell.collectDataArray = self.GreenBigBenArray;
-        cell.selectStr = @"1";
-
+        cell.name = @"提交时间";
+        cell.details = _date;
         return cell;
     }
-    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+    
+    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"代理人",@"抵押地点"];
+    NSArray *nameArray = @[@"提交说明"];
+    cell.nameTextField.placeholder = @"请输入提交说明";
     cell.name = nameArray[indexPath.row];
     cell.nameTextField.tag = 100 + indexPath.row;
     return cell;
@@ -127,41 +179,66 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    switch (indexPath.section) {
-        case 0:
-        {
-            return 50;
+    float numberToRound;
+    int result;
+    if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0:
+            {
+                numberToRound = (_model.Newpics2.count)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
+            }
+                break;
+            case 1:
+            {
+                numberToRound = (_model.Newpics3.count)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
+            }
+                break;
+            case 2:
+            {
+                numberToRound = (_model.Newpics4.count)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
+            }
+                break;
+            case 3:
+            {
+                numberToRound = (_model.Newpics5.count)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
+            }
+                break;
+            case 4:
+            {
+                numberToRound = (_model.Newpics6.count)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
+            }
+                break;
+            case 5:
+            {
+                numberToRound = (_model.Newpics7.count)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
+            }
+                break;
+            default:
+                break;
         }
-            break;
-        case 1:
-        {
-            return 50;
-        }
-            break;
-        case 2:
-        {
-            float numberToRound;
-            int result;
-            numberToRound = (_GreenBigBenArray.count + 1.0)/3.0;
-            result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
-        }
-            break;
-
-
-        default:
-            break;
+    }else{
+        return 50;
     }
     return 50;
+
 }
 
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 2) {
-        return 50;
-    }
+    
     return 0.01;
 }
 
@@ -176,23 +253,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 2) {
-        UIView *headView = [[UIView alloc]init];
-
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-        backView.backgroundColor = [UIColor whiteColor];
-        [headView addSubview:backView];
-
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        lineView.backgroundColor = LineBackColor;
-        [headView addSubview:lineView];
-
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        nameLabel.text = @"绿大本扫描件";
-        [headView addSubview:nameLabel];
-
-        return headView;
-    }
+    
     return nil;
 }
 

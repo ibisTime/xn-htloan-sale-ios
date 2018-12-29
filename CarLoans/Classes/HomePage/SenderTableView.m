@@ -7,8 +7,11 @@
 //
 
 #import "SenderTableView.h"
+#import "CLTextFiled.h"
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
+#define TextField1 @"TextFieldCell"
+
 #import "ChooseCell.h"
 #define Choose @"ChooseCell"
 
@@ -26,6 +29,11 @@
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [self registerClass:[ChooseCell class] forCellReuseIdentifier:Choose];
+        [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField1];
+        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell1"];
+        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell2"];
+        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell3"];
+
         self.distributionStr = @"";
         self.date = @"";
         self.CourierCompanyStr = @"";
@@ -76,6 +84,7 @@
         if ([cell.name isEqualToString:@"参考材料清单"]) {
             self.distributionStr = @"参考材料清单";
         }
+        
         cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
     }
@@ -88,11 +97,22 @@
         kViewRadius(nameLabel, 5);
         nameLabel.text = @"请选择材料清单";
         
-        if (self.cardStr.length > 0) {
-            nameLabel.text = self.cardStr;
-
-        }
+       
         [cell addSubview:nameLabel];
+        if (self.cardList.count>0) {
+            
+            for (int i = 0; i < self.cardList.count; i++) {
+                CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
+                fild.backgroundColor = kLineColor;
+                fild.font = [UIFont systemFontOfSize:13];
+                fild.text = self.cardList[i];
+                
+                [cell addSubview:fild];
+                fild.enabled = NO;
+                
+            }
+            
+        }
         
         return cell;
     }
@@ -108,25 +128,79 @@
             return cell;
         }
         if (indexPath.section == 3) {
-            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+            NSString *temp3 = self.remarkField.text;
+            if (self.kuaidField.text.length > 0) {
+                temp3  = self.kuaidField.text;
+            }
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.name = @"快递单号";
-            cell.nameText = @"请输入快递单号";
-            cell.nameTextField.tag = 100;
+            TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"快递单号" titleWidth:80 placeholder:@"请输入快递单号"];
+            fild.textAlignment = NSTextAlignmentRight;
+            fild.backgroundColor = kWhiteColor;
+            fild.font = [UIFont systemFontOfSize:14];
+            fild.tag = 10005;
+            [cell addSubview:fild];
+            self.kuaidField = fild;
+            if (self.tempdan) {
+                fild.text= self.tempdan;
+                
+            }else{
+                fild.text = temp3;
+            }
+//            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.name = @"快递单号";
+//            cell.nameText = @"请输入快递单号";
+//            cell.nameTextField.tag = 100;
             return cell;
         }
         if (indexPath.section == 4) {
             ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.name = @"发货时间";
-            cell.details = self.date;
+            if (self.tempDate) {
+                cell.details= self.tempDate;
+                self.date = self.tempDate;
+            }else{
+                cell.details = self.date;
+            }
             return cell;
         }
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"备注";
-        cell.nameText = @"选填";
-        cell.nameTextField.tag = 101;
+        NSString *temp1 = self.remarkField.text;
+        if (self.remarkKuaiField.text.length > 0) {
+            temp1  = self.remarkKuaiField.text;
+        }
+        TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"备注" titleWidth:80 placeholder:@"选填"];
+        fild.textAlignment = NSTextAlignmentRight;
+        fild.backgroundColor = kWhiteColor;
+        fild.font = [UIFont systemFontOfSize:14];
+        fild.tag = 10001;
+        [cell addSubview:fild];
+        self.remarkKuaiField = fild;
+
+        if (self.tempRemark) {
+            fild.text = self.tempRemark;
+
+        }else{
+            fild.text = temp1;
+        }
+       
+       
+//        fild.enabled = NO;
+//        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
+//        nameLabel.text = @"备注";
+//        kViewRadius(nameLabel, 5);
+//        UILabel *contentLabel = [UILabel labelWithFrame:CGRectMake( SCREEN_WIDTH-130, 10, SCREEN_WIDTH-130-20, 40) textAligment:(NSTextAlignmentRight) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
+//        contentLabel.text = @"备注";
+//        kViewRadius(contentLabel, 5);
+//        [cell addSubview:contentLabel];
+//        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.name = @"备注";
+//        cell.nameText = @"选填";
+//        cell.nameTextField.tag = 1001;
         return cell;
     }else
     {
@@ -139,11 +213,27 @@
             cell.details = detailsArray[indexPath.row];
             return cell;
         }
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        NSString *temp2 = self.remarkField.text;
+        if (self.remarkField.text.length > 0) {
+            temp2  = self.remarkField.text;
+        }
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"备注";
-        cell.nameText = @"选填";
-        cell.nameTextField.tag = 101;
+        TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"备注" titleWidth:80 placeholder:@"选填"];
+        fild.textAlignment = NSTextAlignmentRight;
+
+        fild.backgroundColor = kWhiteColor;
+        fild.font = [UIFont systemFontOfSize:14];
+        [cell addSubview:fild];
+        fild.tag = 10002;
+        self.remarkField = fild;
+        fild.text = temp2;
+//        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.isInput = @"1";
+//        cell.name = @"备注";
+//        cell.nameText = @"选填";
+//        cell.nameTextField.tag = 1001;
         return cell;
     }
 
@@ -162,7 +252,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        return 60;
+//        return 60;
+            return self.cardList .count *40+50;
+        
     }
     return 50;
 

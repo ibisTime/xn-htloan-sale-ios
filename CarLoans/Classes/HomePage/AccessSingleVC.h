@@ -9,5 +9,6 @@
 #import "BaseViewController.h"
 
 @interface AccessSingleVC : BaseViewController
+@property (nonatomic , assign) BOOL isHidden;
 
 @end

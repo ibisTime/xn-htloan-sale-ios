@@ -79,7 +79,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FaceSignModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"002_05"] || [model.curNodeCode isEqualToString:@"002_08"])
+    if ([model.intevCurNodeCode isEqualToString:@"002_05"] || [model.intevCurNodeCode isEqualToString:@"002_08"])
     {
         return 295;
     }

@@ -8,6 +8,8 @@
 
 #import "HomeCarVC.h"
 #import "CarMortgageVC.h"
+#import "CarMortgageVC2.h"
+
 @interface HomeCarVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong)UIScrollView *scroll;
 @property (nonatomic, strong)UIButton *selectBtn;
@@ -16,7 +18,7 @@
 
 @property (nonatomic, strong)UILabel *WeiGreLabel;
 @property (nonatomic, strong)CarMortgageVC *vc1;
-@property (nonatomic, strong)CarMortgageVC *vc2;
+@property (nonatomic, strong)CarMortgageVC2 *vc2;
 
 #define kPageCount 2
 #define kButton_H 50
@@ -69,9 +71,9 @@
 #pragma mark - 设置控制的每一个子控制器
 - (void)setupChildViewControll{
     self.vc1 = [[CarMortgageVC alloc]init];
-    self.vc2 = [[CarMortgageVC alloc]init];
+    self.vc2 = [[CarMortgageVC2 alloc]init];
     self.vc1.isMortgage = YES;
-    self.vc2.isMortgage = YES;
+    self.vc2.isMortgage = NO;
 
     //指定该控制器为其子控制器
     [self addChildViewController:_vc1];

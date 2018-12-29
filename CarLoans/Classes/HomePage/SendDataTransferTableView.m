@@ -1,29 +1,28 @@
 //
-//  DataTransferTableView.m
+//  SendDataTransferTableView.m
 //  CarLoans
 //
-//  Created by QinBao Zheng on 2018/7/30.
+//  Created by shaojianfei on 2018/12/21.
 //  Copyright © 2018年 QinBao Zheng. All rights reserved.
 //
 
-#import "DataTransferTableView.h"
+#import "SendDataTransferTableView.h"
 #import "InformationCell.h"
 #import "GPSInfomationCell.h"
 #import "GPSDetailaCell.h"
 #import "CLTextFiled.h"
+
 #define GPSDetail @"GPSDetailaCell"
 
 #define Information @"InformationCell"
 #define GPSInformation @"GPSInfomationCell"
 
-@interface DataTransferTableView ()<UITableViewDataSource,UITableViewDelegate>
+@interface SendDataTransferTableView()<UITableViewDataSource,UITableViewDelegate>
 
 @end
-
-@implementation DataTransferTableView
-
+@implementation SendDataTransferTableView
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-
+    
     if (self = [super initWithFrame:frame style:style]) {
         self.dataSource = self;
         self.delegate = self;
@@ -43,8 +42,9 @@
         return 2;
     }else{
         return 1;
-
+        
     }
+    
 }
 
 #pragma mark -- 行数
@@ -52,10 +52,11 @@
 {
     if (section == 0) {
         return self.model.count;
-
+        
     }else{
         return 1;
     }
+    
 }
 
 #pragma mark -- tableView
@@ -64,60 +65,61 @@
     static NSString *CellIdentifier = @"Cell";
     
     if (self.isGps == YES) {
-       
+        
         if (self.isDetail == YES) {
             
-                
-                GPSDetailaCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-                if (cell == nil) {
-                    cell = [[GPSDetailaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPSDetail];
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                }
-                DataTransferModel *model = self.model[indexPath.row];
-                cell.dataTransferModel = model;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
-                if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
-                    cell.button.hidden = YES;
-                }else if ([model.status  isEqualToString:@"1"]|| [model.status  isEqualToString:@"2"])
-                {
-                    
-                    cell.button.hidden = YES;
-//                    [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
-                }
-                else
-                {
-                    
-                    
-                    cell.button.hidden = YES;
-                }
-                [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-                cell.button.tag = indexPath.row;
-                return cell;
-           
-        }
-        
-            GPSInfomationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+            
+            GPSDetailaCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
             if (cell == nil) {
-                cell = [[GPSInfomationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPSInformation];
+                cell = [[GPSDetailaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPSDetail];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             DataTransferModel *model = self.model[indexPath.row];
             cell.dataTransferModel = model;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
+            if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
+                cell.button.hidden = YES;
+            }else if ([model.status  isEqualToString:@"1"])
+            {
+                
+                cell.button.hidden = YES;
+                //                    [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
+            }
+            else
+            {
+                
+                
+                cell.button.hidden = YES;
+            }
+            [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            cell.button.tag = indexPath.row;
+            return cell;
+            
+        }
+        
+        GPSInfomationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+        if (cell == nil) {
+            cell = [[GPSInfomationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPSInformation];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        DataTransferModel *model = self.model[indexPath.row];
+        cell.dataTransferModel = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
-            cell.button.hidden = YES;
-//            [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
-        }else if ([model.status  isEqualToString:@"1"])
-        {
             if (self.isDetail == YES) {
                 cell.button.hidden = YES;
             }else{
                 cell.button.hidden = NO;
-                [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
+                [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
             }
-          
+       
+        }else if ([model.status  isEqualToString:@"1"])
+        {
+            
+            cell.button.hidden = YES;
+//            [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
         }
         else
         {
@@ -129,6 +131,7 @@
         cell.button.tag = indexPath.row;
         return cell;
     }else{
+        
         if (self.isRecview == YES) {
             if (indexPath.section == 0) {
                 InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
@@ -164,88 +167,95 @@
                 cell.button.tag = indexPath.row;
                 return cell;
             }else{
-                    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH-30, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
+                kViewRadius(nameLabel, 5);
+                nameLabel.text = @"材料清单";
+                
+                
+                [cell addSubview:nameLabel];
+                NSArray *idArr = [self.model[0].filelist componentsSeparatedByString:@","];
+                NSMutableArray *cadArray = [NSMutableArray array];
+                if (idArr.count > 0  && self.models.count > 0) {
                     
-                    UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH-30, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
-                    kViewRadius(nameLabel, 5);
-                    nameLabel.text = @"材料清单";
-                    
-                    
-                    [cell addSubview:nameLabel];
-                    NSArray *idArr = [self.model[0].filelist componentsSeparatedByString:@","];
-                    NSMutableArray *cadArray = [NSMutableArray array];
-                    if (idArr.count > 0  && self.models.count > 0) {
-                        
-                        for (int i = 0; i <idArr.count; i++) {
-                            for (CadListModel*mode in self.models) {
-                                if ([idArr[i] isEqualToString:mode.id]) {
-                                    [cadArray addObject:[NSString stringWithFormat:@"%@-%@份",mode.name,mode.number]];
-                                }
+                    for (int i = 0; i <idArr.count; i++) {
+                        for (CadListModel*mode in self.models) {
+                            if ([idArr[i] isEqualToString:mode.id]) {
+                                [cadArray addObject:[NSString stringWithFormat:@"%@-%@份",mode.name,mode.number]];
                             }
                         }
-                        
                     }
-                    if (cadArray.count>0) {
+                    
+                }else{
+                    nameLabel.text = @"";
+
+                }
+                if (cadArray.count>0) {
+                    
+                    for (int i = 0; i < cadArray.count; i++) {
+                        CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
+                        fild.backgroundColor = kLineColor;
+                        fild.font = [UIFont systemFontOfSize:13];
+                        fild.contentLab.text = cadArray[i];
                         
-                        for (int i = 0; i < cadArray.count; i++) {
-                            CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
-                            fild.backgroundColor = kLineColor;
-                            fild.font = [UIFont systemFontOfSize:13];
-                            fild.contentLab.text = cadArray[i];
-                            
-                            [cell addSubview:fild];
-                            fild.enabled = NO;
-                            
-                        }
+                        [cell addSubview:fild];
+                        fild.enabled = NO;
                         
                     }
                     
-                    return cell;
+                }
+                
+                return cell;
             }
-        }else{
-        InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-        if (cell == nil) {
-            cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }else
+        {
+            InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+            if (cell == nil) {
+                cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            DataTransferModel *model = self.model[indexPath.row];
+            cell.dataTransferModel = model;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        DataTransferModel *model = self.model[indexPath.row];
-        cell.dataTransferModel = model;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"] ||[model.status  isEqualToString:@"2"]) {
-            cell.button.hidden = YES;
-//            [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
-        }else if ([model.status  isEqualToString:@"1"])
-        {
-            if (self.isDetail == YES) {
+            if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
+                if (self.isDetail == YES) {
+                    cell.button.hidden = YES;
+                }else{
+                    cell.button.hidden = NO;
+                    [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
+                }
+                
+            }else if ([model.status  isEqualToString:@"1"]||[model.status  isEqualToString:@"2"])
+            {
                 cell.button.hidden = YES;
-
-            }else{
-                cell.button.hidden = NO;
-                [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
+                //            [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
+                
             }
-           
+            else
+            {
+                
+                
+                cell.button.hidden = YES;
+            }
+            [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            cell.button.tag = indexPath.row;
+            return cell;
             
         }
-        else
-        {
-          
-            
-            cell.button.hidden = YES;
-        }
-        [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        cell.button.tag = indexPath.row;
-        return cell;
+        
+       
     }
-    }
-
+    
+    
 }
 
 //发件
 -(void)buttonClick:(UIButton *)sender
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
-
+        
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
 }
@@ -260,37 +270,36 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DataTransferModel *model = self.model[indexPath.row];
     if (self.isGps == YES) {
         if (self.isDetail == YES) {
             return 330+60+60+60+60+30;
             
         }
-        DataTransferModel *model = self.model[indexPath.row];
-
-        if ([model.status  isEqualToString:@"1"] || [model.status  isEqualToString:@"2"]) {
+        if ([model.status  isEqualToString:@"0"] ||  [model.status  isEqualToString:@"3"]) {
             return 330+60+90+30;
         }else
         {
             return 280+60+90+60;
         }
-       
+        
     }else{
         if (self.isRecview == YES) {
             if (indexPath.section == 0) {
                 return 330+60+90;
-
+                
             }else{
-                return [self.model[0].filelist componentsSeparatedByString:@","].count *45;
-
+                return [self.model[0].filelist componentsSeparatedByString:@","].count *45+50;
+                
             }
         }else{
             return 330+60+90;
-
+            
         }
-
+        
     }
     
-
+    
 }
 
 #pragma mark -- 区头高度
@@ -314,6 +323,7 @@
 {
     return nil;
 }
+
 
 
 @end

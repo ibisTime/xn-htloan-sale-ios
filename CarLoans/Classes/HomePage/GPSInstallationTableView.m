@@ -61,7 +61,7 @@
     cell.gpsInstallationModel = model;
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
 
-    if ([model.curNodeCode isEqualToString:@"002_09"] || [model.curNodeCode isEqualToString:@"002_12"]) {
+    if ([model.advanfCurNodeCode isEqualToString:@"002_09"] || [model.advanfCurNodeCode isEqualToString:@"002_12"]) {
         cell.button.hidden = NO;
     }else
     {
@@ -94,7 +94,7 @@
 {
     GPSInstallationModel *model = [GPSInstallationModel new];
     model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"002_09"] || [model.curNodeCode isEqualToString:@"002_12"]) {
+    if ([model.advanfCurNodeCode isEqualToString:@"002_09"] || [model.advanfCurNodeCode isEqualToString:@"002_12"]) {
         return 225;
     }
     return 175;

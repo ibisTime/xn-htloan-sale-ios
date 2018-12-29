@@ -56,7 +56,7 @@
     }
 
     SurveyModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"001_05"] || [model.curNodeCode isEqualToString:@"001_01"] || [model.curNodeCode isEqualToString:@"001_07"]) {
+    if ([model.curNodeCode isEqualToString:@"001_05"] || [model.curNodeCode isEqualToString:@"001_01"] || [model.curNodeCode isEqualToString:@"001_07"]|| [model.curNodeCode isEqualToString:@"001_08"]) {
         cell.isXin = YES;
         [cell.button setTitle:@"修改征信信息" forState:(UIControlStateNormal)];
         cell.button.hidden = NO;
@@ -95,7 +95,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SurveyModel *model = self.model[indexPath.row];
-    if (([model.curNodeCode isEqualToString:@"001_05"]  || [model.curNodeCode isEqualToString:@"001_01"] || [model.curNodeCode isEqualToString:@"001_07"] || [model.curNodeCode isEqualToString:@"001_02"])) {
+    if (([model.curNodeCode isEqualToString:@"001_05"]  || [model.curNodeCode isEqualToString:@"001_01"] || [model.curNodeCode isEqualToString:@"001_07"] || [model.curNodeCode isEqualToString:@"001_02"]|| [model.curNodeCode isEqualToString:@"001_08"])) {
         return 330;
     }
     return 280;

@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"面签";
+    self.title = @"面签系统";
     [self initTableView];
     [self LoadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
@@ -62,16 +62,19 @@
     helper.code = @"632148";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
+//    helper.parameters[@"isInterview"] = [NSString stringWithFormat:@"%d",self.isSign];
+
+    
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
-    if (self.isSign == YES) {
-        helper.parameters[@"isInterview"] = @"1";
-
-    }else{
-        helper.parameters[@"isInterview"] = @"0";
-
-    }
+//    if (self.isSign == YES) {
+//        helper.parameters[@"isInterview"] = @"1";
+//
+//    }else{
+//        helper.parameters[@"isInterview"] = @"0";
+//
+//    }
     NSArray *array = @[@"002_05",@"002_06",@"002_08"];
-    helper.parameters[@"curNodeCodeList"] = array;
+    helper.parameters[@"intevCurNodeCodeList"] = array;
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
@@ -106,7 +109,9 @@
         helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
         helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
         NSArray *array = @[@"002_05",@"002_06",@"002_08"];
-        helper.parameters[@"curNodeCodeList"] = array;
+        helper.parameters[@"isInterview"] = [NSString stringWithFormat:@"%d",weakSelf.isSign];
+
+        helper.parameters[@"intevCurNodeCodeList"] = array;
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             //去除没有的币种

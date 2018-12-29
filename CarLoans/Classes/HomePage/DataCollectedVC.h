@@ -7,8 +7,9 @@
 //
 
 #import "BaseViewController.h"
-
+#import "DataTransferModel.h"
 @interface DataCollectedVC : BaseViewController
 @property (nonatomic , assign)BOOL  isDetail;
+@property (nonatomic , strong) DataTransferModel *mode;
 
 @end

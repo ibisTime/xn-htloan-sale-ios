@@ -37,7 +37,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 3;
+        return 7;
     }
     return 1;
 }
@@ -47,7 +47,7 @@
 {
     TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"状态",@"申请个数",@"申请说明"];
+    NSArray *nameArray = @[@"状态",@"客户姓名",@"手机号",@"申请个数",@"有线个数",@"无线个数",@"申请说明"];
     cell.name = nameArray[indexPath.row];
     cell.isInput = @"0";
     NSString *state;
@@ -70,7 +70,11 @@
     }
     NSArray *textFidArray = @[
              state,
+             [NSString stringWithFormat:@"%@",_model.customerName],
+             [NSString stringWithFormat:@"%@",_model.mobile],
              [NSString stringWithFormat:@"%@个",_model.applyCount],
+             [NSString stringWithFormat:@"%@个",_model.applyWiredCount],
+             [NSString stringWithFormat:@"%@个",_model.applyWirelessCount],
              [NSString stringWithFormat:@"%@",_model.applyReason]
                               ];
     cell.TextFidStr = textFidArray[indexPath.row];

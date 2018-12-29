@@ -24,4 +24,6 @@
 
 @property (nonatomic , copy)NSString *applyDatetime;
 
+@property (nonatomic , copy)NSString *intevCurNodeCode;
+
 @end

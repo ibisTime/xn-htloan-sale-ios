@@ -7,7 +7,7 @@
 //
 
 #import "ReceivesAuditTableView.h"
-
+#import "CLTextFiled.h"
 
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
@@ -91,10 +91,14 @@
                                   [NSString stringWithFormat:@"%@",[[BaseModel user] setParentKey:@"kd_company" setDkey:_model.logisticsCompany]],
                                   [NSString stringWithFormat:@"%@",_model.logisticsCode],
                                   [NSString stringWithFormat:@"%@",[_model.sendDatetime convertToDetailDate]],
-                                  [NSString stringWithFormat:@"%@",_model.remark]
+                                  [NSString stringWithFormat:@"%@",_model.sendNote]
                                   
                                   ];
         cell.TextFidStr = detailsArray[indexPath.row];
+        if (indexPath.row == 6) {
+            cell.isInput = @"1";
+
+        }
         return cell;
     }else{
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
@@ -103,6 +107,13 @@
         NSArray *nameArray = @[@"客户姓名",@"业务编号",@"发件节点",@"收件节点",@"参考材料清单",@"寄送方式",@"快递公司",@"快递单号",@"发货时间",@"备注"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
+        if (indexPath.row == 4 || indexPath.row == 9) {
+            cell.isInput = @"1";
+
+        }else{
+            cell.isInput = @"0";
+
+        }
         NSString *kuaidi = [_model.sendType isEqualToString:@"2"] ? @"快递":@"线下";
         
         NSArray *idArr = [_model.filelist componentsSeparatedByString:@","];
@@ -112,7 +123,7 @@
             for (int i = 0; i <idArr.count; i++) {
                 for (CadListModel*mode in self.models) {
                     if ([idArr[i] isEqualToString:mode.id]) {
-                        [cadArray addObject:mode.name];
+                        [cadArray addObject:[NSString stringWithFormat:@"%@-%@份",mode.name,mode.number]];
                     }
                 }
                 
@@ -140,10 +151,13 @@
             if (cadArray.count>1) {
                 
                 for (int i = 0; i < cadArray.count; i++) {
-                    TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-60, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
+                    CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
                     fild.backgroundColor = kLineColor;
-                    fild.text = cadArray[i];
+                    fild.font = [UIFont systemFontOfSize:13];
+                    
+                    fild.contentLab.text = cadArray[i];
                     [cell addSubview:fild];
+                    fild.enabled = NO;
                     
                 }
                 

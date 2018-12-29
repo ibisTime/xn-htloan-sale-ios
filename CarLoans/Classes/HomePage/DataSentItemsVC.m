@@ -7,13 +7,15 @@
 //
 
 #import "DataSentItemsVC.h"
-#import "DataTransferTableView.h"
+#import "SendDataTransferTableView.h"
 #import "DataTransferModel.h"
 #import "SenderVC.h"
 #import "ReceivesAuditVC.h"
+#import "CadListModel.h"
 @interface DataSentItemsVC ()<RefreshDelegate>
-@property (nonatomic , strong)DataTransferTableView *tableView;
+@property (nonatomic , strong)SendDataTransferTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
+@property (nonatomic , strong)NSMutableArray <CadListModel *>*models;
 
 @end
 
@@ -28,6 +30,8 @@
         [self LoadData];
 
     }
+    [self loadCadList];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
 }
 #pragma mark -- 接收到通知
@@ -36,6 +40,21 @@
     [self LoadData];
 
 }
+- (void)loadCadList
+{
+    
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"632217";
+    http.showView = self.view;
+    
+    [http postWithSuccess:^(id responseObject) {
+        self.models = [CadListModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        self.tableView.models = self.models;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 #pragma mark -- 删除通知
 - (void)dealloc
 {
@@ -43,13 +62,14 @@
 }
 
 - (void)initTableView {
-    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStyleGrouped)];
+    self.tableView = [[SendDataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];
     if (self.isDetail == YES) {
-        self.title = @"GPS发件详情";
-
+        self.title = @"发件详情";
+        self.tableView.isDetail = YES;
+        self.tableView.isRecview = YES;
         self.tableView.model = self.model;
         [self.tableView reloadData];
     }
@@ -66,6 +86,9 @@
     [models addObject:self.model[indexPath.row]];
     vc.title = @"资料发件";
     vc.isDetail = YES;
+    vc.tableView.isDetail = YES;
+    vc.tableView.isRecview = YES;
+
     vc.model = models;
     vc.tableView.model = models;
     [vc.tableView reloadData];
@@ -97,10 +120,10 @@
     helper.code = @"632155";
 //    NSArray *array = @[@"0",@"3"];
 //    helper.parameters[@"statusList"] = array;
-    NSArray *array1 = @[@"1",@"3"];
+//    NSArray *array1 = @[@"0",@"3"];
     helper.parameters[@"type"] = @"1";
 
-    helper.parameters[@"typeList"] = array1;
+//    helper.parameters[@"typeList"] = array1;
 
 
 //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];

@@ -59,7 +59,7 @@
     [cell.button setTitle:@"录入" forState:(UIControlStateNormal)];
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.button.tag = indexPath.row;
-    if ([model.curNodeCode isEqualToString:@"002_11"]) {
+    if ([model.advanfCurNodeCode isEqualToString:@"002_18"]) {
         cell.button.hidden = NO;
     }else
     {
@@ -90,7 +90,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AccessSingleModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"002_11"]) {
+    if ([model.advanfCurNodeCode isEqualToString:@"002_18"]) {
         return 330;
     }else
     {

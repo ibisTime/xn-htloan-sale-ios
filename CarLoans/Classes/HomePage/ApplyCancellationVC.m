@@ -52,6 +52,7 @@
 {
     if (indexPath.section == 0) {
         AccessSingleVC *vc = [[AccessSingleVC alloc]init];
+        vc.isHidden = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

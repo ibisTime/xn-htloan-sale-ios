@@ -20,6 +20,13 @@
 @property (nonatomic , strong)NSString *type;
 @property (nonatomic , strong)NSString *companyName;
 @property (nonatomic , strong)NSString *applyDatetime;
+@property (nonatomic , strong)NSString *customerName;
+@property (nonatomic , strong)NSString *applyWiredCount;
+@property (nonatomic , strong)NSString *applyWirelessCount;
+@property (nonatomic , strong)NSString *mobile;
+
+
+
 //"status" : "0",
 //"applyUserName" : "郑",
 //"applyReason" : "tyhhgg",

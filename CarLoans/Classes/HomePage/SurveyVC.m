@@ -36,12 +36,13 @@
     // Do any additional setup after loading the view.
 
 //     if (![[USERDEFAULTS objectForKey:USERDATA][@"loginName"] isEqualToString:@"ios"]) {
-//         [self navigativeView];
+         [self navigativeView];
 //         self.title = @"资信调查";
 //     }else
 //     {
          self.title = @"业务发起";
 //     }
+    [self navigativeView];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];

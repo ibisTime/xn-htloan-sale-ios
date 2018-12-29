@@ -12,6 +12,8 @@
 
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid;
 
+-(void)TheReturnValuearr:(NSArray *)arr ;
+
 @end
 
 @interface BaseModel : NSObject
@@ -86,6 +88,8 @@
 - (void)updateUserInfoWithNotification;
 //
 - (void)CustomBouncedView:(NSMutableArray *)nameArray setState:(NSString *)state;
+
+- (void)CustomBounced:(NSMutableArray *)nameArray setState:(NSString *)state isSign:(BOOL)sign;
 
 
 //选择框数据

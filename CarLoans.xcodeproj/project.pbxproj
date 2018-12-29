@@ -372,7 +372,11 @@
 		7AB29EAA20FDB9750014FCB3 /* HomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29EA920FDB9750014FCB3 /* HomeHeadView.m */; };
 		B800F4742179744B00C358F0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B800F4732179744B00C358F0 /* NSString+MD5.m */; };
 		B81D3CF8216B5CE400170BC4 /* GPSInfomationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81D3CF7216B5CE300170BC4 /* GPSInfomationCell.m */; };
+		B820200D21CBADC700237E01 /* FaceSignVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = B820200C21CBADC700237E01 /* FaceSignVC2.m */; };
+		B820201021CBB00500237E01 /* CarMortgageVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = B820200F21CBB00500237E01 /* CarMortgageVC2.m */; };
 		B82C71052195AF1700742EE8 /* TLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C71042195AF1600742EE8 /* TLTextField.m */; };
+		B82ED84821D248960019AAE0 /* CLTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B82ED84721D248950019AAE0 /* CLTextFiled.m */; };
+		B834137D21D0786100A63D3B /* SelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B834137C21D0786100A63D3B /* SelectedCell.m */; };
 		B84E200121875DE000D1E0DC /* CarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B84E200021875DE000D1E0DC /* CarTableViewCell.m */; };
 		B84F22C4219BC8BD00886ADF /* BankRequestTB.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F22C3219BC8BD00886ADF /* BankRequestTB.m */; };
 		B84F22C7219C17D500886ADF /* InsideSureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F22C6219C17D500886ADF /* InsideSureVC.m */; };
@@ -382,10 +386,15 @@
 		B869A28C21831AF800AF97B9 /* GPSDetailaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B869A28B21831AF700AF97B9 /* GPSDetailaCell.m */; };
 		B86DE43921B6702900F76091 /* JoinLiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86DE43821B6702900F76091 /* JoinLiveController.m */; };
 		B86DE43C21B6755200F76091 /* FaceToFaceSignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B86DE43A21B6753C00F76091 /* FaceToFaceSignVC.m */; };
+		B89ACB8321C88DBC00186F58 /* InputInformationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B89ACB8221C88DBC00186F58 /* InputInformationDetailVC.m */; };
+		B89ACB8621C8910A00186F58 /* CarDetailTb.m in Sources */ = {isa = PBXBuildFile; fileRef = B89ACB8521C8910A00186F58 /* CarDetailTb.m */; };
+		B89ACB8921C8DB0200186F58 /* GPSTeamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B89ACB8821C8DB0200186F58 /* GPSTeamModel.m */; };
 		B8B001C6219A65DA00BDE019 /* InsideMortgageTB.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B001C5219A65D900BDE019 /* InsideMortgageTB.m */; };
 		B8C1740B215F1C7700B10E44 /* GPSHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C1740A215F1C7700B10E44 /* GPSHomeVC.m */; };
 		B8C1740E215F499F00B10E44 /* GPSNotInstallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C1740D215F499F00B10E44 /* GPSNotInstallVC.m */; };
 		B8CD1CF7216EEF4100969A77 /* CarGounpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CD1CF6216EEF4100969A77 /* CarGounpCell.m */; };
+		B8E1A72421CCC0F00022AB29 /* SendDataTransferTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E1A72321CCC0F00022AB29 /* SendDataTransferTableView.m */; };
+		B8E1A72721CCEE690022AB29 /* NewSelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E1A72621CCEE690022AB29 /* NewSelectedListView.m */; };
 		B8F5C1A9219929AB002A00B6 /* HomeCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C1A8219929AB002A00B6 /* HomeCarVC.m */; };
 		B8F5C1AC2199640C002A00B6 /* insideMortgatee.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C1AB2199640B002A00B6 /* insideMortgatee.m */; };
 		B8F5C1AF21996421002A00B6 /* BankMortgatee.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C1AE21996421002A00B6 /* BankMortgatee.m */; };
@@ -1036,8 +1045,16 @@
 		B800F4732179744B00C358F0 /* NSString+MD5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		B81D3CF6216B5CE300170BC4 /* GPSInfomationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSInfomationCell.h; sourceTree = "<group>"; };
 		B81D3CF7216B5CE300170BC4 /* GPSInfomationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSInfomationCell.m; sourceTree = "<group>"; };
+		B820200B21CBADC700237E01 /* FaceSignVC2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceSignVC2.h; sourceTree = "<group>"; };
+		B820200C21CBADC700237E01 /* FaceSignVC2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceSignVC2.m; sourceTree = "<group>"; };
+		B820200E21CBB00500237E01 /* CarMortgageVC2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarMortgageVC2.h; sourceTree = "<group>"; };
+		B820200F21CBB00500237E01 /* CarMortgageVC2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarMortgageVC2.m; sourceTree = "<group>"; };
 		B82C71032195AF1500742EE8 /* TLTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLTextField.h; path = Category/TLTextField.h; sourceTree = "<group>"; };
 		B82C71042195AF1600742EE8 /* TLTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLTextField.m; path = Category/TLTextField.m; sourceTree = "<group>"; };
+		B82ED84621D248950019AAE0 /* CLTextFiled.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLTextFiled.h; sourceTree = "<group>"; };
+		B82ED84721D248950019AAE0 /* CLTextFiled.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLTextFiled.m; sourceTree = "<group>"; };
+		B834137B21D0786100A63D3B /* SelectedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectedCell.h; sourceTree = "<group>"; };
+		B834137C21D0786100A63D3B /* SelectedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectedCell.m; sourceTree = "<group>"; };
 		B84E1FFF21875DE000D1E0DC /* CarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarTableViewCell.h; sourceTree = "<group>"; };
 		B84E200021875DE000D1E0DC /* CarTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarTableViewCell.m; sourceTree = "<group>"; };
 		B84F22C2219BC8BD00886ADF /* BankRequestTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankRequestTB.h; sourceTree = "<group>"; };
@@ -1057,6 +1074,12 @@
 		B86DE43821B6702900F76091 /* JoinLiveController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoinLiveController.m; sourceTree = "<group>"; };
 		B86DE43A21B6753C00F76091 /* FaceToFaceSignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceToFaceSignVC.m; sourceTree = "<group>"; };
 		B86DE43B21B6755100F76091 /* FaceToFaceSignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceToFaceSignVC.h; sourceTree = "<group>"; };
+		B89ACB8121C88DBC00186F58 /* InputInformationDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputInformationDetailVC.h; sourceTree = "<group>"; };
+		B89ACB8221C88DBC00186F58 /* InputInformationDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputInformationDetailVC.m; sourceTree = "<group>"; };
+		B89ACB8421C8910A00186F58 /* CarDetailTb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarDetailTb.h; sourceTree = "<group>"; };
+		B89ACB8521C8910A00186F58 /* CarDetailTb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarDetailTb.m; sourceTree = "<group>"; };
+		B89ACB8721C8DB0200186F58 /* GPSTeamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSTeamModel.h; sourceTree = "<group>"; };
+		B89ACB8821C8DB0200186F58 /* GPSTeamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSTeamModel.m; sourceTree = "<group>"; };
 		B8B001C4219A65D900BDE019 /* InsideMortgageTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsideMortgageTB.h; sourceTree = "<group>"; };
 		B8B001C5219A65D900BDE019 /* InsideMortgageTB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsideMortgageTB.m; sourceTree = "<group>"; };
 		B8C17409215F1C7700B10E44 /* GPSHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSHomeVC.h; sourceTree = "<group>"; };
@@ -1065,6 +1088,10 @@
 		B8C1740D215F499F00B10E44 /* GPSNotInstallVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSNotInstallVC.m; sourceTree = "<group>"; };
 		B8CD1CF5216EEF4100969A77 /* CarGounpCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarGounpCell.h; sourceTree = "<group>"; };
 		B8CD1CF6216EEF4100969A77 /* CarGounpCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarGounpCell.m; sourceTree = "<group>"; };
+		B8E1A72221CCC0F00022AB29 /* SendDataTransferTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendDataTransferTableView.h; sourceTree = "<group>"; };
+		B8E1A72321CCC0F00022AB29 /* SendDataTransferTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendDataTransferTableView.m; sourceTree = "<group>"; };
+		B8E1A72521CCEE690022AB29 /* NewSelectedListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewSelectedListView.h; sourceTree = "<group>"; };
+		B8E1A72621CCEE690022AB29 /* NewSelectedListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewSelectedListView.m; sourceTree = "<group>"; };
 		B8F5C1A7219929AB002A00B6 /* HomeCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCarVC.h; sourceTree = "<group>"; };
 		B8F5C1A8219929AB002A00B6 /* HomeCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCarVC.m; sourceTree = "<group>"; };
 		B8F5C1AA2199640B002A00B6 /* insideMortgatee.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = insideMortgatee.h; sourceTree = "<group>"; };
@@ -1204,6 +1231,8 @@
 				7A0592DF20FF391400075FE8 /* CarMortgageVC.m */,
 				B8F5C1A7219929AB002A00B6 /* HomeCarVC.h */,
 				B8F5C1A8219929AB002A00B6 /* HomeCarVC.m */,
+				B820200E21CBB00500237E01 /* CarMortgageVC2.h */,
+				B820200F21CBB00500237E01 /* CarMortgageVC2.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1449,6 +1478,8 @@
 				B8F5C1B121997809002A00B6 /* FaceSignHomeVC.m */,
 				B86DE43721B6702900F76091 /* JoinLiveController.h */,
 				B86DE43821B6702900F76091 /* JoinLiveController.m */,
+				B820200B21CBADC700237E01 /* FaceSignVC2.h */,
+				B820200C21CBADC700237E01 /* FaceSignVC2.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -2284,6 +2315,8 @@
 			children = (
 				7A13ADDD210F131C00B8F785 /* GPSClaimsModel.h */,
 				7A13ADDE210F131C00B8F785 /* GPSClaimsModel.m */,
+				B89ACB8721C8DB0200186F58 /* GPSTeamModel.h */,
+				B89ACB8821C8DB0200186F58 /* GPSTeamModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2359,6 +2392,8 @@
 			children = (
 				7A13ADD1210F102800B8F785 /* DataTransferTableView.h */,
 				7A13ADD2210F102800B8F785 /* DataTransferTableView.m */,
+				B8E1A72221CCC0F00022AB29 /* SendDataTransferTableView.h */,
+				B8E1A72321CCC0F00022AB29 /* SendDataTransferTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2405,6 +2440,8 @@
 				B84F22C3219BC8BD00886ADF /* BankRequestTB.m */,
 				B84F22C8219C193000886ADF /* InsideSureTB.h */,
 				B84F22C9219C193000886ADF /* InsideSureTB.m */,
+				B89ACB8421C8910A00186F58 /* CarDetailTb.h */,
+				B89ACB8521C8910A00186F58 /* CarDetailTb.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2422,6 +2459,8 @@
 				B84F22C6219C17D500886ADF /* InsideSureVC.m */,
 				B84F22CB219C24C600886ADF /* InsideSureHomeVC.h */,
 				B84F22CC219C24C600886ADF /* InsideSureHomeVC.m */,
+				B89ACB8121C88DBC00186F58 /* InputInformationDetailVC.h */,
+				B89ACB8221C88DBC00186F58 /* InputInformationDetailVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -2561,6 +2600,8 @@
 				7AB29E3320FD8EB20014FCB3 /* NetworkingTool */,
 				7AB29E3E20FD8EB30014FCB3 /* Category */,
 				7AB29DF820FD8EB00014FCB3 /* TFHpple */,
+				B82ED84621D248950019AAE0 /* CLTextFiled.h */,
+				B82ED84721D248950019AAE0 /* CLTextFiled.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2802,6 +2843,10 @@
 				7AB29E1A20FD8EB10014FCB3 /* SelectedListModel.m */,
 				7AB29E1B20FD8EB10014FCB3 /* SelectedListView.h */,
 				7AB29E1C20FD8EB10014FCB3 /* SelectedListView.m */,
+				B8E1A72521CCEE690022AB29 /* NewSelectedListView.h */,
+				B8E1A72621CCEE690022AB29 /* NewSelectedListView.m */,
+				B834137B21D0786100A63D3B /* SelectedCell.h */,
+				B834137C21D0786100A63D3B /* SelectedCell.m */,
 			);
 			path = SelectedListView;
 			sourceTree = "<group>";
@@ -3404,6 +3449,7 @@
 				7AB29E7720FD8EB30014FCB3 /* UIView+SDAutoLayout.m in Sources */,
 				B82C71052195AF1700742EE8 /* TLTextField.m in Sources */,
 				7A13AEC521104E4400B8F785 /* QNEtag.m in Sources */,
+				B82ED84821D248960019AAE0 /* CLTextFiled.m in Sources */,
 				7AB29E8E20FD8EB30014FCB3 /* ImageUtil.m in Sources */,
 				7A0F8E7F2119BA9F00BA8358 /* SettlementAuditModel.m in Sources */,
 				7AB29E8720FD8EB30014FCB3 /* TLPageDataHelper.m in Sources */,
@@ -3416,6 +3462,7 @@
 				7A945550210EFDB600BDFD33 /* FaceSignVC.m in Sources */,
 				7A13AEBE21104E4400B8F785 /* QNIP.m in Sources */,
 				7A3582962113FA14006FB5B5 /* GPSInstallationDetailsVC.m in Sources */,
+				B820201021CBB00500237E01 /* CarMortgageVC2.m in Sources */,
 				7A13AEC921104E4400B8F785 /* QNSystem.m in Sources */,
 				7A13AE1D210F26A100B8F785 /* IQUIView+Hierarchy.m in Sources */,
 				7AB29E9620FD8EB30014FCB3 /* UILable+convience.m in Sources */,
@@ -3443,6 +3490,7 @@
 				7A0592BB20FDEAAB00075FE8 /* SurveyPeopleTableViewCell.m in Sources */,
 				7A13AE1A210F26A100B8F785 /* IQNSArray+Sort.m in Sources */,
 				7A0F8E8C211A91BB00BA8358 /* ReceivesAuditVC.m in Sources */,
+				B8E1A72721CCEE690022AB29 /* NewSelectedListView.m in Sources */,
 				B84F22CA219C193000886ADF /* InsideSureTB.m in Sources */,
 				7A0592C820FDF44600075FE8 /* UploadIdCardCell.m in Sources */,
 				7A0F8E72211983E800BA8358 /* LiveRoomViewController.m in Sources */,
@@ -3456,6 +3504,7 @@
 				7A35826A2112AA73006FB5B5 /* UploadVideoCell.m in Sources */,
 				7AB29EA120FD935C0014FCB3 /* HomeTbView.m in Sources */,
 				7A13AED421104E4400B8F785 /* QNUpToken.m in Sources */,
+				B820200D21CBADC700237E01 /* FaceSignVC2.m in Sources */,
 				7A13ADDC210F129A00B8F785 /* GPSClaimsCell.m in Sources */,
 				7A0F8E92211ABC9E00BA8358 /* HistoryUserTableView.m in Sources */,
 				B8F5C1B221997809002A00B6 /* FaceSignHomeVC.m in Sources */,
@@ -3511,6 +3560,7 @@
 				7A0592B520FDE64200075FE8 /* InputBoxCell.m in Sources */,
 				7A13AE1E210F26A100B8F785 /* IQUIViewController+Additions.m in Sources */,
 				7AB29E7420FD8EB30014FCB3 /* TLAlert.m in Sources */,
+				B834137D21D0786100A63D3B /* SelectedCell.m in Sources */,
 				7AB29E6F20FD8EB30014FCB3 /* NSString+MJExtension.m in Sources */,
 				7AB29E8B20FD8EB30014FCB3 /* CDCommon.m in Sources */,
 				7A13AEC021104E4400B8F785 /* QNPipeline.m in Sources */,
@@ -3521,6 +3571,7 @@
 				7A13AE30210FF9C700B8F785 /* SurveyDetailsTableView.m in Sources */,
 				7AB29DDD20FD8D580014FCB3 /* BaseModel.m in Sources */,
 				7AB29E8220FD8EB30014FCB3 /* TLTableView.m in Sources */,
+				B89ACB8921C8DB0200186F58 /* GPSTeamModel.m in Sources */,
 				7AB29E9420FD8EB30014FCB3 /* UIColor+Extension.m in Sources */,
 				7A13AEAF21104E4300B8F785 /* QNLruCache.m in Sources */,
 				7A0F8EA3211B0D3800BA8358 /* SelVideoSlider.m in Sources */,
@@ -3540,6 +3591,7 @@
 				7A13ADD9210F126F00B8F785 /* GPSClaimsTableView.m in Sources */,
 				7A13AECC21104E4400B8F785 /* QNSessionManager.m in Sources */,
 				B8F735DE21607A0A00AAC90C /* CadListModel.m in Sources */,
+				B8E1A72421CCC0F00022AB29 /* SendDataTransferTableView.m in Sources */,
 				7AB29E9520FD8EB30014FCB3 /* UIColor+theme.m in Sources */,
 				7A13ADD3210F102800B8F785 /* DataTransferTableView.m in Sources */,
 				7A0592CE20FED23900075FE8 /* InformationCell.m in Sources */,
@@ -3565,6 +3617,7 @@
 				B8B001C6219A65DA00BDE019 /* InsideMortgageTB.m in Sources */,
 				7A13AE27210F26A200B8F785 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				7A13AEB621104E4300B8F785 /* QNHosts.m in Sources */,
+				B89ACB8321C88DBC00186F58 /* InputInformationDetailVC.m in Sources */,
 				7A13AEB221104E4300B8F785 /* QNDnspodEnterprise.m in Sources */,
 				7A13ADDF210F131C00B8F785 /* GPSClaimsModel.m in Sources */,
 				7A3582A221143CF2006FB5B5 /* CarSettledInDetailsVC.m in Sources */,
@@ -3623,6 +3676,7 @@
 				7A13AEB721104E4300B8F785 /* QNResolver.m in Sources */,
 				7A0F8EA2211B0D3800BA8358 /* SelVideoPlayer.m in Sources */,
 				7A35825221119AB7006FB5B5 /* CustomerInvalidModel.m in Sources */,
+				B89ACB8621C8910A00186F58 /* CarDetailTb.m in Sources */,
 				7A3582742112FAF5006FB5B5 /* SenderVC.m in Sources */,
 				7A13AE1F210F26A100B8F785 /* IQUIWindow+Hierarchy.m in Sources */,
 				7A13AE26210F26A200B8F785 /* IQToolbar.m in Sources */,
@@ -3840,7 +3894,7 @@
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK/BeautySDK",
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK/BeautySDK/Pitu",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.CarLoan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.CarLoans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3889,7 +3943,7 @@
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK/BeautySDK",
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK/BeautySDK/Pitu",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.CarLoan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.CarLoans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

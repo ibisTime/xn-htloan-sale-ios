@@ -140,9 +140,9 @@
 -(void)setAccessSingleModel:(AccessSingleModel *)accessSingleModel
 {
     _codeLabel.text = [NSString stringWithFormat:@"%@",accessSingleModel.code];
-    _stateLabel.text = [[BaseModel user]note:accessSingleModel.curNodeCode];
+    _stateLabel.text = [[BaseModel user]note:accessSingleModel.advanfCurNodeCode];
     
-    NSLog(@"%@",[[BaseModel user]note:accessSingleModel.curNodeCode]);
+    NSLog(@"%@",[[BaseModel user]note:accessSingleModel.advanfCurNodeCode]);
     NSArray *nameArray = @[
                            @"业务种类",
                            @"客户姓名",

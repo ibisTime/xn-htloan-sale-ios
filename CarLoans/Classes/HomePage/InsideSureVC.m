@@ -60,6 +60,8 @@
     
     [self.GreenBigBenArray addObject:data];
     self.tableView.GreenBigBenArray = self.GreenBigBenArray;
+    self.model.pledgeUserIdCardCopy = data;
+    self.tableView.model = self.model;
     [self.tableView reloadData];
     
 }
@@ -111,35 +113,32 @@
 -(void)confirmButtonClick
 {
     
-    UITextField *textField1 = [self.view viewWithTag:100];
+//    UITextField *textField1 = [self.view viewWithTag:100];
     UITextField *textField2 = [self.view viewWithTag:101];
-    
-   
-    if (_GreenBigBenArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传身份证复印件照片"];
-        return;
-    }
-    if ([textField1.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入代理人"];
-        return;
-    }
+//    UITextField *textField3 = [self.view viewWithTag:102];
+
    
     
-    //
-    NSString *GreenBigBen = [_GreenBigBenArray componentsJoinedByString:@"||"];
-    
-    
+    if ([textField2.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入审核说明"];
+        return;
+    }
+    NSString *putUrl = [self.GreenBigBenArray componentsJoinedByString:@"||"];
     TLNetworking *http = [TLNetworking new];
-    http.code = @"632131";
+    http.code = @"632124";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"approveUser"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"pledgeDatetime"] = date;
-    http.parameters[@"pledgeAddress"] = textField2.text;
-    http.parameters[@"pledgeUser"] = textField1.text;
-    http.parameters[@"greenBigSmj"] = GreenBigBen;
+    http.parameters[@"approveNote"] = textField2.text;
+    http.parameters[@"pledgeUser"] = self.model.pledgeUser;
+    if (![self.model.pledgeUserIdCardCopy isEqualToString:@""]) {
+        http.parameters[@"pledgeUserIdCardCopy"] = self.model.pledgeUserIdCardCopy;
+
+    }else{
+        http.parameters[@"pledgeUserIdCardCopy"] = putUrl;
+
+    }
 
     
     

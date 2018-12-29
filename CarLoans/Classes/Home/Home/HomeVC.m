@@ -11,10 +11,11 @@
 //资信调查
 #import "SurveyVC.h"
 //车辆落户
+#import "InsideSureHomeVC.h"
 #import "CarSettledInVC.h"
 //车辆抵押
 #import "CarMortgageVC.h"
-//#import "HomeCarVC.h"
+#import "HomeCarVC.h"
 //面签
 #import "FaceSignVC.h"
 #import "FaceSignHomeVC.h"

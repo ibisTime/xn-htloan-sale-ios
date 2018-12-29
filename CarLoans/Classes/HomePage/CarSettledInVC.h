@@ -9,6 +9,6 @@
 #import "BaseViewController.h"
 
 @interface CarSettledInVC : BaseViewController
-//@property (nonatomic , assign) BOOL isEntryMortgage;
+@property (nonatomic , assign) BOOL isEntryMortgage;
 
 @end

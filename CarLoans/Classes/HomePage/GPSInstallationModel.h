@@ -28,4 +28,6 @@
 
 @property (nonatomic , copy)NSString *carBrand;
 
+@property (nonatomic , copy)NSString *advanfCurNodeCode;
+
 @end

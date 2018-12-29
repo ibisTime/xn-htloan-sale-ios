@@ -14,5 +14,6 @@
 @property (nonatomic , strong)NSMutableArray <AccessSingleModel *>*model;
 
 @property (nonatomic , assign)BOOL isCar;
+@property (nonatomic , assign) BOOL isShowBtn;
 
 @end

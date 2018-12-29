@@ -52,7 +52,8 @@
     [self.view addSubview:self.tableView];
     if (self.isDetail == YES) {
         self.title = @"资料收件详情";
-
+        self.tableView.isDetail = YES;
+        self.tableView.isRecview = YES;
         self.tableView.model = self.model;
         [self.tableView reloadData];
     }
@@ -61,15 +62,16 @@
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
     DataTransferModel *model = self.model[index];
-    if ([model.status isEqualToString:@"3"] || [model.status isEqualToString:@"0"]) {
-        SenderVC *vc = [[SenderVC alloc]init];
-        vc.model = self.model[index];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else
-    {
+    if ([model.status isEqualToString:@"1"] || [model.status isEqualToString:@"2"]) {
+       
         ReceivesAuditVC *vc = [[ReceivesAuditVC alloc]init];
         vc.model = self.model[index];
         vc.models = self.models;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else
+    {
+        SenderVC *vc = [[SenderVC alloc]init];
+        vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }
 
@@ -89,8 +91,12 @@
     [models addObject:self.model[indexPath.row]];
     vc.isDetail = YES;
     vc.model = models;
+    
     vc.title = @"资料收件";
     vc.tableView.model = models;
+    vc.tableView.isDetail = YES;
+    vc.tableView.models = self.models;
+
     [vc.tableView reloadData];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -118,10 +124,10 @@
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632155";
 //    helper.parameters[@"receiver"] = @"0";
-    NSArray *array = @[@"1",@"2",@"3"];
+//    NSArray *array = @[@"1",@"2"];
     helper.parameters[@"type"] = @"1";
 
-    helper.parameters[@"statusList"] = array;
+//    helper.parameters[@"statusList"] = array;
 //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.isList = NO;
     helper.isCurrency = YES;

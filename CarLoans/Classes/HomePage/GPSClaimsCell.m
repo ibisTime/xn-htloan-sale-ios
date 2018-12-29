@@ -120,7 +120,7 @@
 
 -(void)setGpsInstallationModel:(GPSInstallationModel *)gpsInstallationModel{
     _codeLabel.text = [NSString stringWithFormat:@"%@",gpsInstallationModel.code];
-    _stateLabel.text = [[BaseModel user]note:gpsInstallationModel.curNodeCode];
+    _stateLabel.text = [[BaseModel user]note:gpsInstallationModel.advanfCurNodeCode];
     NSArray *nameArray = @[
                            @"客户姓名",
                            @"业务公司",

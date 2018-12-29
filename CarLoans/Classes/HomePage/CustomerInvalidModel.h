@@ -60,4 +60,7 @@
 
 @property (nonatomic , copy)NSString *applyDatetime;
 @property (nonatomic , copy)NSString *curNodeCode;
+@property (nonatomic , copy)NSString *remark;
+
+
 @end

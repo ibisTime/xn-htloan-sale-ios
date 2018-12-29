@@ -206,7 +206,8 @@
                                       [NSString stringWithFormat:@"%@",dataTransferModel.gpsApply[@"customerName"]],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.code],
                                       
-                                      [NSString stringWithFormat:@"%@",[[BaseModel user] setParentKey:@"kd_company" setDkey:dataTransferModel.logisticsCompany]],
+                                      [NSString stringWithFormat:@"%@",dataTransferModel.teamName],
+
                                       [NSString stringWithFormat:@"%@",dataTransferModel.senderName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.receiverName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.saleUserName],
@@ -266,7 +267,7 @@
                                       [NSString stringWithFormat:@"%@",dataTransferModel.gpsApply[@"customerName"]],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.code],
                                       
-                                      [NSString stringWithFormat:@"%@",[[BaseModel user] setParentKey:@"kd_company" setDkey:dataTransferModel.logisticsCompany]],
+                                      [NSString stringWithFormat:@"%@",dataTransferModel.teamName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.senderName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.receiverName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.saleUserName],

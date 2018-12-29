@@ -11,7 +11,7 @@
 #import "AccessSingleModel.h"
 #import "CarSettledInDetailsVC.h"
 #import "VehiclesInDetailsVC.h"
-
+#import "BankMortgatee.h"
 @interface CarSettledInVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)CarSettledInTableView *tableView;
@@ -52,16 +52,21 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AccessSingleModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"002_11"]) {
-        CarSettledInDetailsVC *vc = [[CarSettledInDetailsVC alloc]init];
-        vc.model = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    }else
-    {
-        VehiclesInDetailsVC *vc = [[VehiclesInDetailsVC alloc]init];
-        vc.model = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    VehiclesInDetailsVC *vc = [[VehiclesInDetailsVC alloc]init];
+    vc.model = model;
+    [self.navigationController pushViewController:vc animated:YES];
+//    if ([model.advanfCurNodeCode isEqualToString:@"002_18"]) {
+//        CarSettledInDetailsVC *vc = [[CarSettledInDetailsVC alloc]init];
+//
+////        BankMortgatee *vc = [[BankMortgatee alloc]init];
+//        vc.model = model;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }else
+//    {
+//        VehiclesInDetailsVC *vc = [[VehiclesInDetailsVC alloc]init];
+//        vc.model = model;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
@@ -78,10 +83,12 @@
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632148";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-    NSArray *curNodeCodeList = @[@"002_11"];
-    helper.parameters[@"curNodeCodeList"] = curNodeCodeList;
+    NSArray *curNodeCodeList = @[@"002_18"];
+    helper.parameters[@"advanfCurNodeCodeList"] = curNodeCodeList;
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+    helper.parameters[@"isEntryMortgage"] = [NSString stringWithFormat:@"%d",self.isEntryMortgage];
+
 
     helper.isList = NO;
     helper.isCurrency = YES;
@@ -118,8 +125,8 @@
     [self.tableView addLoadMoreAction:^{
 
         helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-        NSArray *curNodeCodeList = @[@"002_11",@"002_13",@"002_14",@"002_15",@"002_16",@"002_17"];
-        helper.parameters[@"curNodeCodeList"] = curNodeCodeList;
+        NSArray *curNodeCodeList = @[@"002_18"];
+        helper.parameters[@"advanfCurNodeCodeList"] = curNodeCodeList;
         helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);

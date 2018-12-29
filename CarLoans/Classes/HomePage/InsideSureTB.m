@@ -13,6 +13,9 @@
 #define TextField @"TextFieldCell"
 #import "CollectionViewCell.h"
 #define CollectionView @"CollectionViewCell"
+#import "NSString+Date.h"
+#import "SurverCertificateCell.h"
+#define SurverCertificate @"SurverCertificateCell"
 
 @interface InsideSureTB()<UITableViewDataSource,UITableViewDelegate,CustomCollectionDelegate>
 
@@ -29,6 +32,7 @@
         [self registerClass:[ChooseCell class] forCellReuseIdentifier:ChooseC];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CollectionView];
+        [self registerClass:[SurverCertificateCell class] forCellReuseIdentifier:SurverCertificate];
     }
     return self;
 }
@@ -36,41 +40,76 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 10;
+    }else{
+        return 1;
+
+    }
    
-    return 1;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"代理人"];
+        NSArray *nameArray = @[@"客户姓名",@"业务编号",@"贷款银行",@"贷款金额",@"申请时间",@"信贷专员",@"内勤专员",@"抵押代理人",@"抵押地点",@"补充说明"];
         cell.name = nameArray[indexPath.row];
-//        NSArray *detailsArray = @[
-//                                  [NSString stringWithFormat:@"%@",_model.applyUserName]
-//                                  ];
-//        cell.TextFidStr = detailsArray[indexPath.row];
+        cell.isInput = @"0";
+        NSString *isAdvanceFund;
+        
+        NSArray *detailsArray = @[
+                                  [NSString stringWithFormat:@"%@",_model.applyUserName],
+                                  [NSString stringWithFormat:@"%@",_model.code],
+                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
+                                  [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@" ,[_model.applyDatetime convertToDetailDate]
+                                   ],
+                                  [NSString stringWithFormat:@"%@",_model.saleUserName],
+                                  [NSString stringWithFormat:@"%@",_model.insideJobName]
+                                  , [NSString stringWithFormat:@"%@",_model.pledgeUser]
+                                  , [NSString stringWithFormat:@"%@",_model.pledgeAddress]
+                                  , [NSString stringWithFormat:@"%@",_model.supplementNote]
+
+                                  ];
+        cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
-    }else {
+
+    }else if (indexPath.section == 1)
+    {
+        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.isInput = @"1";
+        cell.name = @"审核说明";
+//        cell.TextFidStr = _model.pledgeAddress;
+        cell.isInput = @"1";
+        cell.nameTextField.placeholder = @"请输入审核说明";
+        cell.nameTextField.tag = 100+indexPath.section;
+        return cell;
+
+    }
+//    else if (indexPath.section == 2){
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        
-        cell.collectDataArray = self.GreenBigBenArray;
+        NSArray *idCard = [_model.pledgeUserIdCardCopy componentsSeparatedByString:@"||"];
+        if (![_model.pledgeUserIdCardCopy isEqualToString:@""]) {
+            cell.collectDataArray =idCard;
+
+        }
         cell.selectStr = @"1";
         
         return cell;
-    }
-   
+//    }
+
 }
 
 -(void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString *)str
@@ -113,11 +152,11 @@
             return 50;
         }
             break;
-        case 1:
+        case 2:
         {
             float numberToRound;
             int result;
-            numberToRound = (_GreenBigBenArray.count + 1.0)/3.0;
+            numberToRound = (_model.pics8.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;        }
             break;
@@ -132,7 +171,7 @@
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 2 ) {
         return 50;
     }
     return 0.01;
@@ -141,7 +180,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 2) {
         return 100;
     }
     return 0.01;
@@ -149,7 +188,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 2) {
         UIView *headView = [[UIView alloc]init];
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
@@ -160,19 +199,21 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
+//        NSArray *array = @[@"抵押代理人身份证复印件"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        nameLabel.text = @"身份证复印件";
+        nameLabel.text = @"抵押代理人身份证复印件";
         [headView addSubview:nameLabel];
         
         return headView;
     }
+    return nil;
     return nil;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     
-    if (section == 1) {
+    if (section == 2) {
         UIView *headView = [[UIView alloc]init];
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];

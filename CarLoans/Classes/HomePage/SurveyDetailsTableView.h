@@ -13,4 +13,7 @@
 
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic , strong)SurveyDetailsModel *surveyDetailsModel;
+@property (nonatomic , strong) UIImageView *photoImage;
+@property (nonatomic , strong)NSArray *photoArray;
+
 @end

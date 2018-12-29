@@ -14,6 +14,8 @@
 {
     if (!_headImage) {
         _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(15, 30, 70, 70)];
+        
+        
         _headImage.image = HGImage(@"默认头像");
     }
     return _headImage;
@@ -95,12 +97,20 @@
             remark = [NSString stringWithFormat:@"[%@]",dic[@"postName"]];
             
         }
+        if (dic[@"photo"]) {
+            [_headImage sd_setImageWithURL:[NSURL URLWithString:[dic[@"photo"] convertImageUrl]]];
+
+        }
         NSString *needText = [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:dic[@"loginName"]],remark];
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:needText];
         [attrString addAttribute:NSFontAttributeName value:HGfont(11) range:NSMakeRange(needText.length - remark.length,remark.length)];
         _nameLabel.attributedText = attrString;
         _introduceLabel.text = [BaseModel convertNull:dic[@"companyName"]];
     }else{
+        if (dic[@"photo"]) {
+            [_headImage sd_setImageWithURL:[NSURL URLWithString:[dic[@"photo"] convertImageUrl]]];
+            
+        }
         long  text1 = [dic[@"creditTodo"] integerValue] ;
         long  text2 = [dic[@"interviewTodo"] integerValue];
         long  text3 = [dic[@"gpsInstallTodo"] integerValue];

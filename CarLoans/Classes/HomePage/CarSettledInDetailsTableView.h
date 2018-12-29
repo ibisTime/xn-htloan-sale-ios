@@ -16,6 +16,7 @@
 @property (nonatomic , copy)NSString *date;
 @property (nonatomic , copy)NSString *date1;
 @property (nonatomic , copy)NSString *date2;
+@property (nonatomic , copy)NSString *date3;
 
 //发票
 @property (nonatomic , strong)NSArray *invoiceArray;
@@ -25,5 +26,7 @@
 @property (nonatomic , strong)NSArray *BusinessRisksArray;
 //其他
 @property (nonatomic , strong)NSArray *otherArray;
+//绿大本
+@property (nonatomic , strong)NSMutableArray *greenDataArray;
 
 @end

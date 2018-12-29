@@ -306,7 +306,7 @@
     model.ModelDelegate = self;
     NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i < self.bankArray.count; i ++) {
-        [array addObject:self.bankArray[i][@"bankName"]];
+        [array addObject:[NSString stringWithFormat:@"%@%@",self.bankArray[i][@"bankName"],self.bankArray[i][@"subbranch"]]];
     }
     [model CustomBouncedView:array setState:@"100"];
 }

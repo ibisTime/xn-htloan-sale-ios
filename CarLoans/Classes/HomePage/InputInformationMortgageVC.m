@@ -71,7 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"录入";
+    self.title = @"抵押提交银行";
     date = @"";
     //    _invoiceArray = [NSMutableArray array];
     //    _CertificateArray  = [NSMutableArray array];
@@ -116,44 +116,32 @@
 
     UITextField *textField1 = [self.view viewWithTag:100];
     UITextField *textField2 = [self.view viewWithTag:101];
+    UITextField *textField3 = [self.view viewWithTag:102];
 
     if ([date isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请选择抵押日期"];
         return;
     }
-    if (_GreenBigBenArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传绿大本扫描件图片"];
-        return;
-    }
-    if ([textField1.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入代理人"];
-        return;
-    }
-    if ([textField2.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入抵押地点"];
-        return;
-    }
+   
 
     //
     NSString *GreenBigBen = [_GreenBigBenArray componentsJoinedByString:@"||"];
 
 
     TLNetworking *http = [TLNetworking new];
-    http.code = @"632131";
+    http.code = @"632132";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"approveUser"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"pledgeDatetime"] = date;
-    http.parameters[@"pledgeAddress"] = textField2.text;
-    http.parameters[@"pledgeUser"] = textField1.text;
-    http.parameters[@"greenBigSmj"] = GreenBigBen;
-
+    http.parameters[@"pledgeBankCommitDatetime"] = date;
+    http.parameters[@"pledgeBankCommitNot"] = textField2.text;
+  
 
 
     [http postWithSuccess:^(id responseObject) {
-        [TLAlert alertWithSucces:@"录入成功"];
+        [TLAlert alertWithSucces:@"提交成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
         [self.navigationController popViewControllerAnimated:YES];
@@ -166,7 +154,7 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
             date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
             self.tableView.date = date;

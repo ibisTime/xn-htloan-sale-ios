@@ -33,14 +33,14 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 8;
+    return 7;
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section ==0) {
-        return 7;
+        return 8;
     }
     return 1;
 }
@@ -53,9 +53,16 @@
         
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"业务编号",@"业务团队",@"区域经理",@"贷款金额",@"信贷专员",@"内勤专员",@"客户姓名"];
+        NSArray *nameArray = @[@"业务编号",@"业务团队",@"区域经理",@"贷款金额",@"信贷专员",@"内勤专员",@"客户姓名",@"车牌号"];
         cell.name = nameArray[indexPath.row];
-        cell.isInput = @"0";
+        if (indexPath.row == 7) {
+            cell.isInput = @"1";
+            cell.nameText = @"请输入车牌号";
+            cell.nameTextField.tag = 100 +indexPath.row;
+        }else{
+            cell.isInput = @"0";
+
+        }
         NSString *isAdvanceFund;
         if ([_model.isAdvanceFund isEqualToString:@"1"]) {
             isAdvanceFund = @"已垫资";
@@ -67,15 +74,19 @@
                                   [NSString stringWithFormat:@"%@",_model.code],
 
                                   [NSString stringWithFormat:@"%@",_model.teamName],
-                                  [NSString stringWithFormat:@"%@" ,[_model.applyDatetime convertToDetailDate]
-                                   ],
+                                  [NSString stringWithFormat:@"%@",_model.areaName],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",_model.saleUserName],
                                   [NSString stringWithFormat:@"%@",_model.insideJobName],
                                   [NSString stringWithFormat:@"%@",_model.applyUserName]
-
+                                  ,@""
                                   ];
-        cell.TextFidStr = detailsArray[indexPath.row];
+        if (indexPath.row == 7) {
+
+        }else{
+            cell.TextFidStr = detailsArray[indexPath.row];
+
+        }
         return cell;
     }else{
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CarSettledUpdataPhoto forIndexPath:indexPath];
@@ -122,12 +133,7 @@
                 
                 
             }
-            case 7:
-            {
-                cell.collectDataArray = self.MoneyArray;
-                break;
-                
-            }
+            
                 
                 
             default:
@@ -251,7 +257,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 7) {
+    if (section == 6) {
         return 100;
     }
     return 0.01;
@@ -270,7 +276,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
-        NSArray *array = @[@"大本扫描件",@"车钥匙",@"车牌号",@"车辆批单",@"登记证书",@"车辆行驶证扫描件",@"完税证明扫描件"];
+        NSArray *array = @[@"大本扫描件",@"车钥匙",@"车辆批单",@"登记证书",@"车辆行驶证扫描件",@"完税证明扫描件"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section-1];
         [headView addSubview:nameLabel];
@@ -285,11 +291,11 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 7) {
+    if (section == 6) {
         UIView *headView = [[UIView alloc]init];
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        confirmButton.frame = CGRectMake(20, 30, (SCREEN_WIDTH-60)/2, 50);
+        confirmButton.frame = CGRectMake(20, 30, (SCREEN_WIDTH-60), 50);
         confirmButton.tag = 10000;
         
         [confirmButton setTitle:@"确认" forState:(UIControlStateNormal)];
@@ -298,15 +304,7 @@
         confirmButton.titleLabel.font = HGfont(18);
         [confirmButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [headView addSubview:confirmButton];
-        UIButton *saveButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        saveButton.frame = CGRectMake((SCREEN_WIDTH-60)/2+30, 30, (SCREEN_WIDTH-60)/2, 50);
-        [saveButton setTitle:@"保存" forState:(UIControlStateNormal)];
-        saveButton.backgroundColor = MainColor;
-        kViewRadius(saveButton, 5);
-        saveButton.titleLabel.font = HGfont(18);
-        saveButton.tag = 10001;
-        [saveButton addTarget:self action:@selector(saveButtonButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        [headView addSubview:saveButton];
+       
         
         return headView;
     }

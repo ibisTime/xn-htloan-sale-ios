@@ -44,7 +44,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer.timeoutInterval = 15.0;
+    manager.requestSerializer.timeoutInterval = 30.0;
     //去除返回的null的value
     AFJSONResponseSerializer *response = [AFJSONResponseSerializer serializer];
     response.removesKeysWithNullValues = YES;
@@ -158,8 +158,8 @@
 //        return nil;
 //    }
 //
-//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:APPURL]];
-//    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:self.parameters httpMethod:@"POST"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:APPURL]];
+    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:self.parameters httpMethod:@"POST"];
 
     return [self.manager POST:APPURL parameters:self.parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
       
@@ -202,13 +202,11 @@
               //token错误  4
               
               [TLAlert alertWithTitle:@"提示" message:@"为了您的账户安全,请重新登录" confirmAction:^{
-//                  LoginViewController *vc = [[LoginViewController alloc]init];
-//                  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-////                  vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-////                  vc.modalPresentationStyle = UIModalTransitionStyleFlipHorizontal;
-//                  vc.state = @"100";
-//                  UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-//                  [rootViewController presentViewController:nav animated:YES completion:nil];
+                  LoginVC *vc = [[LoginVC alloc]init];
+                  UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                  [USERDEFAULTS removeObjectForKey:USER_ID];
+                  [USERDEFAULTS removeObjectForKey:TOKEN_ID];
+                  window.rootViewController = vc;
               }];
               return;
           }

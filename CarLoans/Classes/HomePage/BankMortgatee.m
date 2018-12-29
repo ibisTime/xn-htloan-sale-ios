@@ -212,16 +212,7 @@
             
         }
             break;
-        case 7:
-        {
-            if (self.MoneyArray.count == 0) {
-                self.MoneyArray = [NSMutableArray array];
-            }
-            [self.MoneyArray addObject:data];
-            self.tableView.MoneyArray = self.MoneyArray;
-            
-        }
-            break;
+       
             
         default:
             break;
@@ -232,7 +223,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"内勤录入抵押";
+    self.title = @"录入抵押信息";
     // Do any additional setup after loading the view.
     _BankVideoArray = [NSMutableArray array];
     _CompanyVideoArray = [NSMutableArray array];
@@ -387,14 +378,7 @@
                 
             }
         }
-        else if (index == 7)
-        {
-            
-            if (self.MoneyArray.count > 0) {
-                [self.MoneyArray removeObjectAtIndex:sender.tag - 1000];
-                
-            }
-        }
+       
        
         
         self.tableView.BankVideoArray = self.BankVideoArray;
@@ -403,7 +387,6 @@
         self.tableView.BankSignArray = self.BankSignArray;
         self.tableView.BankContractArray = self.BankContractArray;
         self.tableView.CompanyContractArray = self.CompanyContractArray;
-        self.tableView.MoneyArray = self.MoneyArray;
         self.tableView.otherArray = self.otherArray;
         [self.tableView reloadData];
     }
@@ -413,24 +396,10 @@
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
     if (sender.tag == 10001) {
-        
+        return;
     }else{
-        if (_BankVideoDataArray.count == 0) {
-            [TLAlert alertWithInfo:@"请上传银行视频"];
-            return;
-        }
-        if (_CompanyVideoDataArray.count == 0) {
-            [TLAlert alertWithInfo:@"请上传公司视频"];
-            return;
-        }
-        if (_BankSignArray.count == 0) {
-            [TLAlert alertWithInfo:@"请上传银行面签照片"];
-            return;
-        }
-        if (_MoneyArray.count == 0) {
-            [TLAlert alertWithInfo:@"请上传资金划转授权书"];
-            return;
-        }
+        [self confirmButtonClick];
+        return;
     }
     
     
@@ -439,6 +408,8 @@
     http.showView = self.view;
     //    [_interviewPicArray componentsJoinedByString:@"||"]
     http.parameters[@"code"] = _model.code;
+    // http.parameters[@"code"] = _model.code; 车牌号
+
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"bankVideo"] = [_BankVideoDataArray componentsJoinedByString:@"||"];
     http.parameters[@"companyVideo"] = [_CompanyVideoDataArray componentsJoinedByString:@"||"];
@@ -500,9 +471,10 @@
 -(void)confirmButtonClick
 {
     
-    UITextField *textField1 = [self.view viewWithTag:100];
-    UITextField *textField2 = [self.view viewWithTag:101];
-    
+    UITextField *textField1 = [self.view viewWithTag:106];
+    UITextField *textField2 = [self.view viewWithTag:107];
+    UITextField *textField3 = [self.view viewWithTag:108];
+
    
     if (self.BankVideoArray.count == 0) {
         [TLAlert alertWithInfo:@"请上传绿大本扫描件图片"];
@@ -513,29 +485,26 @@
         return;
     }
     if (self.OtherVideoArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传车牌号图片"];
+        [TLAlert alertWithInfo:@"请上传车辆批单图片"];
+
         return;
     }
     if (self.BankSignArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传车辆批单图片"];
+        [TLAlert alertWithInfo:@"请上传登记证书"];
+
         return;
     }
     if (self.BankContractArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传登记证书"];
+        [TLAlert alertWithInfo:@"请上传车辆行驶证扫描件"];
+
         return;
     }
     if (self.CompanyContractArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传车辆行驶证扫描件"];
+          [TLAlert alertWithInfo:@"请上传完税证明扫描件"];
         return;
     }
-    if (self.MoneyArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传完税证明扫描件"];
-        return;
-    }
-    if ([textField1.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入代理人"];
-        return;
-    }
+    
+   
     if ([textField2.text isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请输入抵押地点"];
         return;
@@ -546,17 +515,17 @@
     
     
     TLNetworking *http = [TLNetworking new];
-    http.code = @"632131";
+    http.code = @"632133";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"carBigSmj"] = [self.BankVideoArray componentsJoinedByString:@"||"];
     http.parameters[@"carKey"] = [self.CompanyVideoArray componentsJoinedByString:@"||"];
-    http.parameters[@"carNumber"] = [self.OtherVideoArray componentsJoinedByString:@"||"];
-    http.parameters[@"carPd"] = [self.BankSignArray componentsJoinedByString:@"||"];
-    http.parameters[@"carRegcerti"] = [self.BankContractArray componentsJoinedByString:@"||"];
-    http.parameters[@"carXszSmj"] = [self.CompanyContractArray componentsJoinedByString:@"||"];
-    http.parameters[@"dutyPaidProveSmj"] = [self.MoneyArray componentsJoinedByString:@"||"];
+    http.parameters[@"carNumber"] = textField2.text;
+    http.parameters[@"carPd"] = [self.OtherVideoArray componentsJoinedByString:@"||"];
+    http.parameters[@"carRegcerti"] = [self.BankSignArray componentsJoinedByString:@"||"];
+    http.parameters[@"carXszSmj"] = [self.BankContractArray componentsJoinedByString:@"||"];
+    http.parameters[@"dutyPaidProveSmj"] = [self.CompanyContractArray componentsJoinedByString:@"||"];
 
 
     

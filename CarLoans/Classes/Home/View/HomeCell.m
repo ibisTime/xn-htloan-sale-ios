@@ -42,7 +42,7 @@
 //        }else
 //        {
             NSArray *imageArray = @[HGImage(@"咨信调查"),HGImage(@"面签"),HGImage(@"GPS安装"),HGImage(@"车辆落户"),HGImage(@"车辆抵押")];
-            NSArray *nameArray = @[@"业务发起",@"面签",@"GPS安装",@"发保合",@"车辆抵押"];
+            NSArray *nameArray = @[@"业务发起",@"面签系统",@"GPS安装",@"发保合",@"车辆抵押"];
             for (int i = 0; i < 5; i ++) {
                 IconView *iconView = [[IconView alloc]initWithFrame:CGRectMake(i % 3 * SCREEN_WIDTH/3, i / 3 * (SCREEN_WIDTH/3), SCREEN_WIDTH/3, SCREEN_WIDTH/3 )];
                 [iconView.backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -110,7 +110,7 @@
     }else if (sectionNum == 100)
     {
         NSArray *imageArray = @[HGImage(@"咨信调查"),HGImage(@"面签"),HGImage(@"银行放款"),HGImage(@"车辆抵押"),HGImage(@"结清审核")];
-        NSArray *nameArray = @[@"资信调查",@"面签",@"银行放款",@"车辆抵押",@"结清审核"];
+        NSArray *nameArray = @[@"资信调查",@"面签系统",@"银行放款",@"车辆抵押",@"结清审核"];
         for (int i = 0; i < imageArray.count; i ++) {
             IconView *iconView = [[IconView alloc]initWithFrame:CGRectMake(i % 3 * SCREEN_WIDTH/3, i / 3 * (SCREEN_WIDTH/3), SCREEN_WIDTH/3, SCREEN_WIDTH/3 )];
             [iconView.backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];

@@ -9,8 +9,6 @@
 #import "TLTableView.h"
 #import "AccessSingleModel.h"
 @interface VehiclesInDetailsTableView : TLTableView
-
-
 @property (nonatomic , strong)AccessSingleModel *model;
 
 @end

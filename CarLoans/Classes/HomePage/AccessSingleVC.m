@@ -30,6 +30,7 @@
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
+    self.tableView.isShowBtn = self.isHidden;
     [self.view addSubview:self.tableView];
 }
 
@@ -47,12 +48,10 @@
     CarLoansWeakSelf;
 
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632145";
+    helper.code = @"632148";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
 //    NSArray *array = @[@"001_01",@"001_02",@"001_03",@"001_04",@"001_05",@"001_06",@"001_07"];
 //    helper.parameters[@"curNodeCodeList"] = array;
-    helper.parameters[@"key"] = @"1";
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

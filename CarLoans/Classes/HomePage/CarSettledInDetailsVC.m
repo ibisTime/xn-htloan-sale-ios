@@ -16,6 +16,8 @@
     NSString *date;
     NSString *date1;
     NSString *date2;
+    NSString *date3;
+
 }
 
 //发票
@@ -38,6 +40,8 @@
 @property (nonatomic , strong)NSMutableArray *BusinessRisksDataArray;
 //其他
 @property (nonatomic , strong)NSMutableArray *otherDataArray;
+//绿大本
+@property (nonatomic , strong)NSMutableArray *greenDataArray;
 
 
 @property (nonatomic , assign)NSInteger selectInt;
@@ -118,6 +122,14 @@
             [self.tableView reloadData];
         }
             break;
+        case 5:
+        {
+            //            [self.otherArray addObject:image];
+            [self.greenDataArray addObject:data];
+            self.tableView.greenDataArray = self.greenDataArray;
+            [self.tableView reloadData];
+        }
+            break;
 
         default:
             break;
@@ -137,6 +149,8 @@
     _insuranceDataArray  = [NSMutableArray array];
     _BusinessRisksDataArray  = [NSMutableArray array];
     _otherDataArray = [NSMutableArray array];
+    _greenDataArray = [NSMutableArray array];
+
     [self initTableView];
 }
 
@@ -187,6 +201,13 @@
         _tableView.otherArray = _otherDataArray;
 
         [self.tableView reloadData];
+    }else if([state isEqualToString:@"DeletePhotos5"])
+    {
+        
+        [_greenDataArray removeObjectAtIndex:index - 1000];
+        _tableView.greenDataArray = _greenDataArray;
+        
+        [self.tableView reloadData];
     }else if([state isEqualToString:@"confirm"])
     {
         [self confirmButtonClick];
@@ -205,7 +226,11 @@
         return;
     }
     if ([date2 isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"落户日期"];
+        [TLAlert alertWithInfo:@"请选择落户日期"];
+        return;
+    }
+    if ([date3 isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请选择抵押日期"];
         return;
     }
     if (_invoiceDataArray.count == 0) {
@@ -225,14 +250,20 @@
         [TLAlert alertWithInfo:@"请上传其他资料图片"];
         return;
     }
+    if (_greenDataArray.count == 0) {
+        [TLAlert alertWithInfo:@"请上传绿大本扫描件图片"];
+        return;
+    }
 //
     NSString *invoiceData = [_invoiceDataArray componentsJoinedByString:@"||"];
     NSString *insuranceData = [_insuranceDataArray componentsJoinedByString:@"||"];
     NSString *BusinessRisksData = [_BusinessRisksDataArray componentsJoinedByString:@"||"];
     NSString *otherData = [_otherDataArray componentsJoinedByString:@"||"];
+    NSString *carBigSmj = [_greenDataArray componentsJoinedByString:@"||"];
+
 
     TLNetworking *http = [TLNetworking new];
-    http.code = @"632128";
+    http.code = @"632131";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
@@ -243,7 +274,10 @@
     http.parameters[@"carHgz"] = @"";
     http.parameters[@"carJqx"] = insuranceData;
     http.parameters[@"carSyx"] = BusinessRisksData;
+    http.parameters[@"carBigSmj"] = carBigSmj;
     http.parameters[@"carSettleOtherPdf"] = otherData;
+    http.parameters[@"pledgeDatetime"] = date3;
+
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"录入成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
@@ -271,10 +305,15 @@
                 date1 = [selectDate stringWithFormat:@"yyyy-MM-dd"];
                 self.tableView.date1 = date1;
 
-            }else
+            }else if (indexPath.row == 2)
             {
                 date2 = [selectDate stringWithFormat:@"yyyy-MM-dd"];
                 self.tableView.date2 = date2;
+                
+            }else
+            {
+                date3 = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+                self.tableView.date3 = date3;
 
             }
             [self.tableView reloadData];

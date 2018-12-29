@@ -11,6 +11,8 @@
 #import "SelectedListView.h"
 #import "WSDatePickerView.h"
 #import "CadListModel.h"
+#import "SelectedListModel.h"
+#import "TLTextField.h"
 @interface SenderVC ()<RefreshDelegate,BaseModelDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSString *select;
@@ -85,6 +87,32 @@
 
     if ([self.tableView.distributionStr isEqualToString:@"快递"]) {
 
+        if (indexPath.section == 1) {
+            self.tableView.cardList = [NSMutableArray array];
+            NSString *data1 = self.tableView.distributionStr;
+            NSString *data2 = self.tableView.CourierCompanyStr;
+            NSString *data3 = self.tableView.kuaidField.text;
+            NSString *data4 = self.tableView.remarkKuaiField.text;
+            NSString *data5 = self.tableView.date;
+
+            [self initTableView];
+            
+            self.tableView.distributionStr = data1;
+            self.tableView.CourierCompanyStr = data2;
+            self.tableView.tempdan = data3;
+            self.tableView.tempRemark = data4;
+            self.tableView.tempDate = data5;
+            [self.tableView reloadData];
+            BaseModel *model = [BaseModel new];
+            model.ModelDelegate = self;
+            NSMutableArray *array = [NSMutableArray array];
+            for (CadListModel *model in self.models) {
+                [array addObject:[NSString stringWithFormat:@"%@-%@份",model.name,model.number]];
+            }
+            [model CustomBounced:array setState:@"100" isSign:NO];
+
+            return;
+        }
         if (indexPath.section == 2) {
 
             if (indexPath.row == 0) {
@@ -126,6 +154,18 @@
         }else{
             
             if (indexPath.section == 1) {
+                self.tableView.cardList = [NSMutableArray array];
+                [self initTableView];
+                BaseModel *model = [BaseModel new];
+                model.ModelDelegate = self;
+                NSMutableArray *array = [NSMutableArray array];
+                for (CadListModel *model in self.models) {
+                    [array addObject:[NSString stringWithFormat:@"%@-%@份",model.name,model.number]];
+                }
+//                [NSThread sleepForTimeInterval:1];
+                [model CustomBounced:array setState:@"100" isSign:NO];
+//                [model CustomBouncedView:array setState:@"100"];
+                return;
                 UIView *mengView = [UIView new];
                 self.mengView = mengView;
                 mengView.backgroundColor = [UIColor blackColor];
@@ -201,6 +241,28 @@
 }
 
 
+-(void)TheReturnValuearr:(NSArray *)arr
+{
+    
+    
+    
+    
+    self.fileIdList = [NSMutableArray array];
+    NSMutableArray *arr1 = [NSMutableArray array];
+    for (SelectedListModel *model in arr) {
+        for (CadListModel *m in self.models) {
+            if ([model.title isEqualToString:[NSString stringWithFormat:@"%@-%@份",m.name,m.number]]) {
+                [self.fileIdList addObject:m.id];
+                [arr1 addObject:[NSString stringWithFormat:@"%@-%@份",m.name,m.number]];
+
+            }
+        }
+    }
+    self.cadList = arr1;
+    self.tableView.cardList = arr1;
+    self.tableView.cardStr = [NSString stringWithFormat:@"%@",[self.cadList componentsJoinedByString:@","]];
+    [self.tableView reloadData];
+}
 - (void)chooseCad: (UITapGestureRecognizer *)ge
 {
     
@@ -266,9 +328,10 @@
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
     UITextField *textFid1 = [self.view viewWithTag:100];
-    UITextField *textFid2 = [self.view viewWithTag:101];
-    UITextField *textFid3 = [self.view viewWithTag:101];
-
+    UITextField *textFid2 = [self.view viewWithTag:1001];
+    TLTextField *textFid3 = [self.tableView viewWithTag:10001];
+    TLTextField *textFid4 = [self.tableView viewWithTag:10002];
+    
     if ([self.tableView.date isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请选择发货时间"];
         return;
@@ -289,7 +352,11 @@
             return;
         }
     }
+    if (self.cadList.count == 0) {
+        [TLAlert alertWithInfo:@"请选择材料清单"];
+        return;
 
+    }
 
     TLNetworking *http = [TLNetworking new];
     http.code = @"632150";
@@ -299,10 +366,10 @@
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"sendDatetime"] = self.tableView.date;
     if (self.cadList.count >1) {
-        http.parameters[@"filelist"] = [NSString stringWithFormat:@"%@",[self.fileIdList componentsJoinedByString:@","]];
+        http.parameters[@"filelist"] = [self.fileIdList componentsJoinedByString:@","];
 
     }else{
-        http.parameters[@"filelist"] = [NSString stringWithFormat:@"%@",self.fileIdList];
+        http.parameters[@"filelist"] = [self.fileIdList componentsJoinedByString:@","];
 
     }
     http.parameters[@"sendFileList"] = @"0";
@@ -316,18 +383,35 @@
     {
         http.parameters[@"sendType"] = @"1";
     }
-    if (![textFid2.text isEqualToString:@""]) {
-        http.parameters[@"sendNote"] = textFid2.text;
-        http.parameters[@"remark"] = textFid2.text;
+     if ([self.tableView.distributionStr isEqualToString:@"快递"])
+     {
+         if (![self.tableView.remarkKuaiField.text isEqualToString:@""]) {
+             http.parameters[@"sendNote"] = self.tableView.remarkKuaiField.text;
+             http.parameters[@"remark"] = self.tableView.remarkKuaiField.text;
+             
+         }
+         if (textFid3.text.length>0) {
+             http.parameters[@"remark"] = self.tableView.remarkKuaiField.text;
+             http.parameters[@"sendNote"] = self.tableView.remarkKuaiField.text;
 
-    }
-    if (textFid2.text) {
-        http.parameters[@"remark"] = textFid2.text;
+         }
+     }else{
+         
+         if (![self.tableView.remarkField.text isEqualToString:@""]) {
+             http.parameters[@"sendNote"] = self.tableView.remarkField.text;
+             http.parameters[@"remark"] = self.tableView.remarkField.text;
+             
+         }
+         if (textFid4.text.length>0) {
+             http.parameters[@"remark"] = self.tableView.remarkField.text;
+             http.parameters[@"remark"] = self.tableView.remarkField.text;
 
-    }
+         }
+     }
+    
     if ([self.tableView.distributionStr isEqualToString:@"快递"]) {
         http.parameters[@"logisticsCompany"] = dkey;
-        http.parameters[@"logisticsCode"] = textFid1.text;
+        http.parameters[@"logisticsCode"] = self.tableView.kuaidField.text;
     }
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"发件成功"];

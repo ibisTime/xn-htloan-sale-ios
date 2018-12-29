@@ -74,7 +74,7 @@
 -(void)setModel:(FaceSignModel *)model
 {
     _codeLabel.text = [NSString stringWithFormat:@"%@",model.code];
-    _stateLabel.text = [[BaseModel user]note:model.curNodeCode];
+    _stateLabel.text = [[BaseModel user]note:model.intevCurNodeCode];
 
     NSLog(@"%@",[[BaseModel user]note:model.curNodeCode]);
     NSArray *nameArray = @[
@@ -105,7 +105,7 @@
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
         InformationLabel.text =[BaseModel convertNull:InformationArray[i]];
     }
-    if ([model.curNodeCode isEqualToString:@"002_05"] || [model.curNodeCode isEqualToString:@"002_08"]) {
+    if ([model.intevCurNodeCode isEqualToString:@"002_05"] || [model.intevCurNodeCode isEqualToString:@"002_08"]) {
         _button.hidden= NO;
     }else
     {

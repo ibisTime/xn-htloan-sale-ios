@@ -13,4 +13,7 @@
 
 @property (nonatomic ,assign) BOOL  isList;
 
+@property (nonatomic ,copy) NSString *teamStr;
+@property (nonatomic ,copy) NSString *teamname;
+
 @end

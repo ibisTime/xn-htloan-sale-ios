@@ -71,7 +71,10 @@
 #pragma mark - 设置控制的每一个子控制器
 - (void)setupChildViewControll{
     self.vc1 = [[CarSettledInVC alloc]init];
+    self.vc1.isEntryMortgage = YES;
     self.vc2 = [[CarSettledInVC alloc] init];
+    self.vc2.isEntryMortgage = NO;
+
     //指定该控制器为其子控制器
     [self addChildViewController:_vc1];
     [self addChildViewController:_vc2];

@@ -13,6 +13,8 @@
 #import "insideMortgatee.h"
 #import "BankMortgatee.h"
 #import "InsideSureVC.h"
+#import "InputInformationDetailVC.h"
+#import "VehiclesInDetailsVC.h"
 @interface CarMortgageVC ()<RefreshDelegate>
 @property (nonatomic , strong)AccessSingleTableView *tableView;
 
@@ -57,53 +59,49 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    InputInformationMortgageVC *vc = [[InputInformationMortgageVC alloc]init];
-//    vc.model = self.model[indexPath.row];
-//    [self.navigationController pushViewController:vc animated:YES];
+    InputInformationDetailVC *vc = [[InputInformationDetailVC alloc]init];
+    vc.model = self.model[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
     AccessSingleModel *model = self.model[index];
-//    if ([model.curNodeCode isEqualToString:@"002_18"]) {
-//        InputInformationMortgageVC *vc = [[InputInformationMortgageVC alloc]init];
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else if ( [model.curNodeCode isEqualToString:@"002_20"])
-//    {
-//        BankMortgatee *vc = [[BankMortgatee alloc]init];
-////        insideMortgatee *vc = [[insideMortgatee alloc]init];
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
-//
-//    }else if ( [model.curNodeCode isEqualToString:@"002_21"]){
-////        InsideSureVC *vc = [[InsideSureVC alloc] init];
-//
+    if ( [model.curNodeCode isEqualToString:@"002_20"])
+    {
+        //抵押提交银行
+        InputInformationMortgageVC *vc = [[InputInformationMortgageVC alloc]init];
+     //        insideMortgatee *vc = [[insideMortgatee alloc]init];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }else if ( [model.curNodeCode isEqualToString:@"002_21"]){
+        //内勤录入抵押信息
+
+        BankMortgatee *vc = [[BankMortgatee alloc]init];
+
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ( [model.curNodeCode isEqualToString:@"002_33"]){
+        //        InsideSureVC *vc = [[InsideSureVC alloc] init];
+        //驻行抵押申请
+        insideMortgatee *vc = [[insideMortgatee alloc]init];
+
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ( [model.curNodeCode isEqualToString:@"002_34"]){
+        InsideSureVC *vc = [[InsideSureVC alloc] init];
+        //内勤确认
 //        insideMortgatee *vc = [[insideMortgatee alloc]init];
-//
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else if ( [model.curNodeCode isEqualToString:@"002_33"]){
-//        //        InsideSureVC *vc = [[InsideSureVC alloc] init];
-//
-//        insideMortgatee *vc = [[insideMortgatee alloc]init];
-//
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else if ( [model.curNodeCode isEqualToString:@"002_34"]){
-//        //        InsideSureVC *vc = [[InsideSureVC alloc] init];
-//
-//        insideMortgatee *vc = [[insideMortgatee alloc]init];
-//
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-//    else{
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
         InputInformationMortgageVC *vc = [[InputInformationMortgageVC alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
         
-//    }
+    }
   
 }
 
@@ -117,8 +115,9 @@
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
-    NSArray *array = @[@"002_18",@"002_19",@"002_20",@"002_21"];
+    NSArray *array = @[@"002_20",@"002_21",@"002_33",@"002_34"];
     helper.parameters[@"curNodeCodeList"] = array;
+//    helper.parameters[@"isMortgage"] = [NSString stringWithFormat:@"%d",self.isMortgage];
 
     helper.isList = NO;
     helper.isCurrency = YES;
@@ -154,7 +153,9 @@
     [self.tableView addLoadMoreAction:^{
         helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
         helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-        NSArray *array = @[@"002_18",@"002_19",@"002_20",@"002_21"];
+//        helper.parameters[@"isMortgage"] = [NSString stringWithFormat:@"%d",weakSelf.isMortgage];
+
+        NSArray *array = @[@"002_20",@"002_21",@"002_33",@"002_34"];
 
         helper.parameters[@"curNodeCodeList"] = array;
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {

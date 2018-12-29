@@ -32,6 +32,8 @@
         _date = @"";
         _date1 = @"";
         _date2 = @"";
+        _date3 = @"";
+
     }
     return self;
 }
@@ -39,7 +41,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return 7;
 }
 
 #pragma mark -- 行数
@@ -50,7 +52,7 @@
         return 4;
     }
     if (section == 1) {
-        return 3;
+        return 4;
     }
     return 1;
 }
@@ -77,9 +79,9 @@
     if (indexPath.section == 1) {
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *array = @[@"保单日期",@"保单到期日",@"落户日期"];
+        NSArray *array = @[@"保单日期",@"保单到期日",@"落户日期",@"抵押日期"];
         cell.name = array[indexPath.row];
-        NSArray *datArray = @[_date,_date1,_date2];
+        NSArray *datArray = @[_date,_date1,_date2,_date3];
         cell.details = datArray[indexPath.row];
         return cell;
     }
@@ -111,7 +113,12 @@
             cell.selectStr = @"4";
         }
             break;
-            
+        case 6:
+        {
+            cell.collectDataArray = self.greenDataArray;
+            cell.selectStr = @"5";
+        }
+            break;
 
         default:
             break;
@@ -147,6 +154,13 @@
             [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:4 selectRowState:@"add"];
 
         }
+        
+    }else if([str isEqualToString:@"5"])
+    {
+        if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+            [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:5 selectRowState:@"add"];
+            
+        }
     }
 
 }
@@ -180,6 +194,13 @@
 
             [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos4"];
 
+        }
+    }else if ([str isEqualToString:@"5"])
+    {
+        if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+            
+            [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos5"];
+            
         }
     }
 
@@ -246,6 +267,15 @@
             return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
         }
             break;
+        case 6:
+        {
+            float numberToRound;
+            int result;
+            numberToRound = (_greenDataArray.count + 1.0)/3.0;
+            result = (int)ceilf(numberToRound);
+            return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
+        }
+            break;
 
         default:
             break;
@@ -256,7 +286,7 @@
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 2 || section == 3 || section == 4 || section == 5) {
+    if (section == 2 || section == 3 || section == 4 || section == 5|| section == 6) {
         return 50;
     }
     return 0.01;
@@ -265,7 +295,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 5) {
+    if (section == 6) {
         return 100;
     }
     return 0.01;
@@ -273,7 +303,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 2 || section == 3 || section == 4 || section == 5) {
+    if (section == 2 || section == 3 || section == 4 || section == 5|| section == 6) {
         UIView *headView = [[UIView alloc]init];
 
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
@@ -284,7 +314,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
 
-        NSArray *array = @[@"发票",@"交强险",@"商业险",@"其他资料"];
+        NSArray *array = @[@"发票",@"交强险",@"商业险",@"其他资料",@"绿大本扫描件"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];
@@ -297,7 +327,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
 
-    if (section == 5) {
+    if (section == 6) {
         UIView *headView = [[UIView alloc]init];
 
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];

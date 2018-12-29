@@ -14,6 +14,9 @@
 #import "CollectionViewCell.h"
 #define CollectionView @"CollectionViewCell"
 #import "NSString+Date.h"
+#import "SurverCertificateCell.h"
+#define SurverCertificate @"SurverCertificateCell"
+
 @interface BankRequestTB ()<UITableViewDataSource,UITableViewDelegate,CustomCollectionDelegate>
 
 @end
@@ -27,6 +30,8 @@
         [self registerClass:[ChooseCell class] forCellReuseIdentifier:ChooseC];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CollectionView];
+        [self registerClass:[SurverCertificateCell class] forCellReuseIdentifier:SurverCertificate];
+
     }
     return self;
 }
@@ -83,25 +88,29 @@
     if (indexPath.section == 1) {
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"补充说明"];
-        cell.name = nameArray[indexPath.row];
+        cell.name = @"抵押代理人";
+        cell.TextFidStr = _model.pledgeUser;
+
         cell.nameTextField.tag = 100 + indexPath.row;
         return cell;
     }
     if (indexPath.section == 2) {
-        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+        
+       
+        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.delegate = self;
-        
-        cell.collectDataArray = self.GreenBigBenArray;
-        cell.selectStr = @"1";
-        
+        NSArray *nameArray = @[@"补充说明"];
+        cell.nameTextField.placeholder = @"请输入补充说明";
+        cell.name = nameArray[indexPath.row];
+        cell.nameTextField.tag = 100 + indexPath.row;
         return cell;
     }
-    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+    SurverCertificateCell *cell = [tableView dequeueReusableCellWithIdentifier:SurverCertificate forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"代理人";
-    cell.nameTextField.tag = 100 + indexPath.row;
+    cell.name = @"身份证附件";
+    cell.picArray = _model.pics8;
+
+    
     return cell;
 }
 
@@ -152,6 +161,14 @@
             break;
         case 2:
         {
+            return 50;
+
+         
+        }
+            break;
+        case 3:
+        {
+            
             float numberToRound;
             int result;
             numberToRound = (_GreenBigBenArray.count + 1.0)/3.0;
@@ -159,7 +176,6 @@
             return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
         }
             break;
-            
             
         default:
             break;
@@ -170,9 +186,6 @@
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 2) {
-        return 50;
-    }
     return 0.01;
 }
 
@@ -187,24 +200,24 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 2) {
-        UIView *headView = [[UIView alloc]init];
-        
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-        backView.backgroundColor = [UIColor whiteColor];
-        [headView addSubview:backView];
-        
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        lineView.backgroundColor = LineBackColor;
-        [headView addSubview:lineView];
-        
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        nameLabel.text = @"身份证附件";
-        [headView addSubview:nameLabel];
-        
-        return headView;
-    }
-    return nil;
+//    if (section == 3) {
+//        UIView *headView = [[UIView alloc]init];
+//
+//        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+//        backView.backgroundColor = [UIColor whiteColor];
+//        [headView addSubview:backView];
+//
+//        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+//        lineView.backgroundColor = LineBackColor;
+//        [headView addSubview:lineView];
+//
+//        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+//        nameLabel.text = @"身份证附件";
+//        [headView addSubview:nameLabel];
+//
+//        return headView;
+//    }
+    return [UIView new];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
