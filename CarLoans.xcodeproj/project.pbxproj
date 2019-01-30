@@ -3808,7 +3808,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VQPS9BLJYN;
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3829,7 +3829,7 @@
 					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				INFOPLIST_FILE = CarLoans/Resource/Info.plist;
+				INFOPLIST_FILE = "/Users/zqb/xn-htloan-sale-ios/CarLoans/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3857,7 +3857,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VQPS9BLJYN;
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3878,7 +3878,7 @@
 					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				INFOPLIST_FILE = CarLoans/Resource/Info.plist;
+				INFOPLIST_FILE = "/Users/zqb/xn-htloan-sale-ios/CarLoans/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
