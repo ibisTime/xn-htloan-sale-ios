@@ -25,7 +25,6 @@
 		1F19AA76220193030090BF84 /* weimei.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA05220193020090BF84 /* weimei.png */; };
 		1F19AA77220193030090BF84 /* landiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA06220193020090BF84 /* landiao.png */; };
 		1F19AA78220193030090BF84 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA07220193020090BF84 /* white.png */; };
-		1F19AA79220193030090BF84 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA08220193020090BF84 /* Info.plist */; };
 		1F19AA7A220193030090BF84 /* fennen.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA09220193020090BF84 /* fennen.png */; };
 		1F19AA7B220193030090BF84 /* tooth_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA0D220193020090BF84 /* tooth_4.png */; };
 		1F19AA7C220193030090BF84 /* tooth_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA0E220193020090BF84 /* tooth_5.png */; };
@@ -95,7 +94,6 @@
 		1F19AABC220193030090BF84 /* head.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA54220193020090BF84 /* head.mp4 */; };
 		1F19AABD220193030090BF84 /* cloth_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA56220193020090BF84 /* cloth_0.png */; };
 		1F19AABE220193030090BF84 /* eyes.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA58220193020090BF84 /* eyes.mp4 */; };
-		1F19AABF220193030090BF84 /* params.wmc in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA59220193020090BF84 /* params.wmc */; };
 		1F19AAC0220193030090BF84 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19AA5B220193020090BF84 /* libcrypto.a */; };
 		1F19AAC1220193030090BF84 /* ufa.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA5D220193020090BF84 /* ufa.bundle */; };
 		1F19AAC2220193030090BF84 /* youtubeauty.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA5E220193020090BF84 /* youtubeauty.bundle */; };
@@ -314,7 +312,6 @@
 		7AB29DB820FD85710014FCB3 /* CarLoansUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29DB720FD85710014FCB3 /* CarLoansUITests.m */; };
 		7AB29DD620FD8D220014FCB3 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29DD420FD8D220014FCB3 /* BaseViewController.m */; };
 		7AB29DDD20FD8D580014FCB3 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29DDC20FD8D580014FCB3 /* BaseModel.m */; };
-		7AB29E6520FD8EB30014FCB3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB29DE220FD8EAF0014FCB3 /* Info.plist */; };
 		7AB29E6620FD8EB30014FCB3 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29DE520FD8EAF0014FCB3 /* MJExtensionConst.m */; };
 		7AB29E6720FD8EB30014FCB3 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29DE720FD8EAF0014FCB3 /* MJFoundation.m */; };
 		7AB29E6820FD8EB30014FCB3 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29DE920FD8EAF0014FCB3 /* MJProperty.m */; };
@@ -2610,7 +2607,6 @@
 			isa = PBXGroup;
 			children = (
 				7AB29DCF20FD8B6B0014FCB3 /* Controller */,
-				7AB29DCE20FD8B680014FCB3 /* Model */,
 				7AB29DCD20FD8B640014FCB3 /* View */,
 			);
 			path = Home;
@@ -2629,13 +2625,6 @@
 				7AB29EA620FD97E20014FCB3 /* IconView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7AB29DCE20FD8B680014FCB3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		7AB29DCF20FD8B6B0014FCB3 /* Controller */ = {
@@ -3289,7 +3278,6 @@
 				1F19AA96220193030090BF84 /* ear_11.png in Resources */,
 				1F19AA8B220193030090BF84 /* tooth_14.png in Resources */,
 				1F19AAB0220193030090BF84 /* huzi_7.png in Resources */,
-				7AB29E6520FD8EB30014FCB3 /* Info.plist in Resources */,
 				1F19AABD220193030090BF84 /* cloth_0.png in Resources */,
 				1F19AAC1220193030090BF84 /* ufa.bundle in Resources */,
 				1F19AA7D220193030090BF84 /* tooth_7.png in Resources */,
@@ -3338,7 +3326,6 @@
 				1F19AAB7220193030090BF84 /* huzi_9.png in Resources */,
 				7AB29DA020FD85710014FCB3 /* LaunchScreen.storyboard in Resources */,
 				1F19AABA220193030090BF84 /* apple.mp4 in Resources */,
-				1F19AA79220193030090BF84 /* Info.plist in Resources */,
 				1F19AA72220193030090BF84 /* qingliang.png in Resources */,
 				1F19AA91220193030090BF84 /* tooth_8.png in Resources */,
 				1F19AA89220193030090BF84 /* tooth_17.png in Resources */,
@@ -3348,7 +3335,6 @@
 				1F19AABE220193030090BF84 /* eyes.mp4 in Resources */,
 				1F19AAA3220193030090BF84 /* ear_15.png in Resources */,
 				1F19AAAE220193030090BF84 /* huzi_4.png in Resources */,
-				1F19AABF220193030090BF84 /* params.wmc in Resources */,
 				1F19AA95220193030090BF84 /* ear_0.png in Resources */,
 				1F19AAA8220193030090BF84 /* ear_8.png in Resources */,
 				1F19AA99220193030090BF84 /* ear_3.png in Resources */,
