@@ -10,6 +10,7 @@
 #import "HomeVC.h"
 #import "LoginVC.h"
 #import <ILiveSDK/ILiveSDK.h>
+#import "TLTabBarController.h"
 @interface AppDelegate ()
 
 @end
@@ -25,12 +26,12 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     if([BaseModel user].isLogin == NO) {
         LoginVC *VC = [[LoginVC alloc]init];
-        self.window.rootViewController = VC;
-    }else
-    {
-        HomeVC *VC = [[HomeVC alloc]init];
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
         self.window.rootViewController = nav;
+    }else
+    {
+        TLTabBarController *TabBarVC = [[TLTabBarController alloc]init];
+        self.window.rootViewController = TabBarVC;
     }
     [self.window makeKeyAndVisible];
     return YES;

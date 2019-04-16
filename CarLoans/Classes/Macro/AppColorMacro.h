@@ -17,7 +17,7 @@
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
 // 主色
-#define kAppCustomMainColor [UIColor colorWithHexString:@"#f15353"]
+#define kAppCustomMainColor [UIColor colorWithHexString:@"#028EFF"]
 
 // 颜色配置
 #define kNavBarMainColor  [UIColor appNavBarMainColor]
@@ -33,17 +33,16 @@
 
 #define ButtonTextColor RGB(2, 142, 255)
 #define TextColor RGB(51, 51, 51)
-#define MainColor RGB(0, 145, 247)
+#define MainColor [UIColor colorWithHexString:@"#028EFF"]
 #define GaryTextColor RGB(153, 153, 153)
 #define LineBackColor RGB(247.0, 247.0, 247.0)
 #define BackColor RGB(247.0, 247.0, 247.0)
 #define PriceColor RGB(255.0, 133.0, 42.0)
 
 
-//151, 215, 76 RGB(195, 207, 72)
-#define kNavBarBackgroundColor  RGB(25, 25, 25)
+#define kNavBarBackgroundColor  [UIColor colorWithHexString:@"#028EFF"]
 
-
+#define kHexColor(color) [UIColor colorWithHexString:color]
 #define MoneyColor        [UIColor colorWithHexString:@"#ff5000"]
 
 #define kBackgroundColor  RGB(247.0, 247.0, 247.0)   //背景色
@@ -81,12 +80,16 @@
 #define kWidth(x) (x)*(kScreenWidth)/375.0
 #define kHeight(y) (y)*(kScreenHeight)/667.0
 
-#define kDevice_Is_iPhoneX (SCREEN_HEIGHT == 812 ? YES : NO)
+#define Height_StatusBar [[UIApplication sharedApplication] statusBarFrame].size.height
+
+#define kDevice_Is_iPhoneX (Height_StatusBar == 44 ? YES : NO)
 #define kNavigationBarHeight  (kDevice_Is_iPhoneX == YES ? 88: 64)
 #define kStatusBarHeight (kDevice_Is_iPhoneX == YES ? 44: 20)
 
 #define kTabBarHeight  (49 + kBottomInsetHeight)
 #define kBottomInsetHeight  (kDevice_Is_iPhoneX == YES ? 34: 0)
+
+#define GlobalRevenueListBottomHeight  (kDevice_Is_iPhoneX == YES ? 34: 20)
 #define kSuperViewHeight    kScreenHeight - kNavigationBarHeight
 
 #define kLeftMargin 15

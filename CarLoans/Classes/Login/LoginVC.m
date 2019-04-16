@@ -9,6 +9,7 @@
 #import "LoginVC.h"
 #import "HomeVC.h"
 #import "ChangePasswordVC.h"
+#import "TLTabBarController.h"
 @interface LoginVC ()<UITextFieldDelegate>
 
 @property (nonatomic , strong)UITextField *mobileTextFd;
@@ -29,9 +30,10 @@
 {
     if (!_ForgotPasswordButton) {
         _ForgotPasswordButton = [UIButton buttonWithTitle:@"忘记密码?" titleColor:GaryTextColor backgroundColor:kClearColor titleFont:12 cornerRadius:0];
-        _ForgotPasswordButton.frame = CGRectMake(SCREEN_WIDTH - 95, 310, 80, 20);
+        _ForgotPasswordButton.frame = CGRectMake(SCREEN_WIDTH - 95, 130, 80, 20);
         [_ForgotPasswordButton addTarget:self action:@selector(buttonMethodClick:) forControlEvents:(UIControlEventTouchUpInside)];
         _ForgotPasswordButton.tag = 100;
+        _ForgotPasswordButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }
     return _ForgotPasswordButton;
 }
@@ -39,11 +41,11 @@
 -(UIButton *)loginButton
 {
     if (!_loginButton) {
-        _loginButton = [UIButton buttonWithTitle:@"登录" titleColor:kTextColor backgroundColor:kBackgroundColor titleFont:5];
+        _loginButton = [UIButton buttonWithTitle:@"登录" titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:5];
 
         _loginButton.titleLabel.font = [UIFont systemFontOfSize:18];
-
-        _loginButton.frame = CGRectMake(20, 380, SCREEN_WIDTH - 40, 50);
+        
+        _loginButton.frame = CGRectMake(20, 205, SCREEN_WIDTH - 40, 50);
 
         [_loginButton addTarget:self action:@selector(buttonMethodClick:) forControlEvents:(UIControlEventTouchUpInside)];
         _loginButton.tag = 101;
@@ -59,8 +61,7 @@
         vc.state = @"100";
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:nil];
-//        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-//        window.rootViewController = nav;
+
     }
     else
     {
@@ -109,7 +110,7 @@
     http.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
     
     [http postWithSuccess:^(id responseObject) {
-        HomeVC *vc = [HomeVC new];
+        TLTabBarController *vc = [TLTabBarController new];
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
@@ -141,35 +142,33 @@
 
 -(void)customTypeSetUp
 {
-    UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(0, 80, SCREEN_WIDTH , 40) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:HGfont(32) textColor:[UIColor blackColor]];
-    nameLabel.text = @"登 录";
-    [self.view addSubview:nameLabel];
+    self.title = @"登录";
 
-    _mobileTextFd = [[UITextField alloc]initWithFrame:CGRectMake(15, 170, SCREEN_WIDTH - 30, 40)];
+    _mobileTextFd = [[UITextField alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55)];
     _mobileTextFd.font = HGfont(18);
     _mobileTextFd.delegate = self;
     _mobileTextFd.placeholder = @"请输入账号";
-    [_mobileTextFd setValue:HGfont(18) forKeyPath:@"_placeholderLabel.font"];
-    [_mobileTextFd setValue:GaryTextColor forKeyPath:@"_placeholderLabel.color"];
+    [_mobileTextFd setValue:HGfont(16) forKeyPath:@"_placeholderLabel.font"];
+//    [_mobileTextFd setValue:GaryTextColor forKeyPath:@"_placeholderLabel.color"];
     [self.view addSubview:_mobileTextFd];
 
-    _passWordTextFd = [[UITextField alloc]initWithFrame:CGRectMake(15, 250, SCREEN_WIDTH - 30, 40)];
-    _passWordTextFd.font = HGfont(18);
+    _passWordTextFd = [[UITextField alloc]initWithFrame:CGRectMake(15, 55, SCREEN_WIDTH - 30, 55)];
+    _passWordTextFd.font = HGfont(16);
     _passWordTextFd.delegate = self;
 
     _passWordTextFd.placeholder = @"请输入密码";
     _passWordTextFd.secureTextEntry = YES;
     [_passWordTextFd setValue:HGfont(18) forKeyPath:@"_placeholderLabel.font"];
-    [_passWordTextFd setValue:GaryTextColor forKeyPath:@"_placeholderLabel.color"];
+//    [_passWordTextFd setValue:GaryTextColor forKeyPath:@"_placeholderLabel.color"];
     [self.view addSubview:_passWordTextFd];
 
 
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(15, 219, SCREEN_WIDTH - 30, 1)];
-    lineView.backgroundColor = RGB(237.0, 237.0, 237.0);
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(15, 55, SCREEN_WIDTH - 30, 1)];
+    lineView.backgroundColor = kLineColor;
     [self.view addSubview:lineView];
 
-    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(15, 299, SCREEN_WIDTH - 30, 1)];
-    lineView1.backgroundColor = RGB(237.0, 237.0, 237.0);
+    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(15, 110, SCREEN_WIDTH - 30, 1)];
+    lineView1.backgroundColor = kLineColor;
     [self.view addSubview:lineView1];
 
 }
@@ -188,7 +187,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 -(void)viewWillDisappear:(BOOL)animated

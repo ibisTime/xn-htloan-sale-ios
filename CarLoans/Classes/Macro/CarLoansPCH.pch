@@ -30,6 +30,7 @@
 #import "AccessCameraPhotoAlbum.h"
 #import "IQKeyboardManager.h"
 
+#import "UIView+Frame.h"
 #define TOKEN_ID @"token_id"
 #define USER_ID @"user_id"
 #define USERDATA @"USERDATA"
@@ -61,12 +62,12 @@
 //设置颜色
 #define HGColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
-#define kWidth(x) (x)*(SCREEN_WIDTH)/375.0
-#define kHeight(y) (y)*(SCREEN_HEIGHT)/667.0
+//#define kWidth(x) (x)*(SCREEN_WIDTH)/375.0
+//#define kHeight(y) (y)*(SCREEN_HEIGHT)/667.0
 
 #define Height_StatusBar [[UIApplication sharedApplication] statusBarFrame].size.height
 
-#define kDevice_Is_iPhoneX (Height_StatusBar == 44 ? YES : NO)
+//#define kDevice_Is_iPhoneX (Height_StatusBar == 44 ? YES : NO)
 #define kNavigationBarHeight  (kDevice_Is_iPhoneX == YES ? 88: 64)
 #define kStatusBarHeight (kDevice_Is_iPhoneX == YES ? 44: 20)
 
