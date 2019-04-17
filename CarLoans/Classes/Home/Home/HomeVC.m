@@ -34,8 +34,11 @@
 #import "BankLendingVC.h"
 //结清审核
 #import "SettlementAuditVC.h"
-
+//发保合
+#import "ProtectUsVC.h"
 #import "HomeCollectionViewCell.h"
+//附件池
+#import "AttachmentPoolVC.h"
 @interface HomeVC ()<RefreshDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSDictionary *dataDic;
@@ -169,8 +172,146 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if (indexPath.section == 0) {
+        
+        switch (indexPath.row) {
+            case 0:
+            {
+                SurveyVC *vc = [SurveyVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 1:
+            {
+                
+            }
+                break;
+            case 2:
+            {
+                
+            }
+                break;
+            case 3:
+            {
+                FaceSignVC *vc = [FaceSignVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 4:
+            {
+                
+            }
+                break;
+            case 5:
+            {
+                
+            }
+                break;
+            case 6:
+            {
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    
+    if (indexPath.section == 1) {
+        
+        switch (indexPath.row) {
+            case 0:
+            {
+                DataTransferVC *vc = [DataTransferVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 1:
+            {
+                ProtectUsVC *vc = [ProtectUsVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 2:
+            {
+                GPSInstallationVC *vc = [GPSInstallationVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 3:
+            {
+                BankLendingVC *vc = [BankLendingVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 4:
+            {
+                CarMortgageVC *vc = [CarMortgageVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+                
+                
+            default:
+                break;
+        }
+        
+    }
+    
+    
+    if (indexPath.section == 2) {
+        SettlementAuditVC *vc = [SettlementAuditVC new];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    
+    
+    if (indexPath.section == 3) {
+        switch (indexPath.row) {
+            case 0:
+            {
+                AttachmentPoolVC *vc = [AttachmentPoolVC  new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 1:
+            {
+                CustomerInvalidVC *vc = [CustomerInvalidVC  new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 2:
+            {
+                GPSClaimsVC *vc = [GPSClaimsVC  new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 3:
+            {
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
+
+
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {

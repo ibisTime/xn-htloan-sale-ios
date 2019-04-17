@@ -8,6 +8,7 @@
 
 #import "AllMessageVC.h"
 #import "MessageTableView.h"
+#import "MessageDetailsVC.h"
 @interface AllMessageVC ()<RefreshDelegate>
 @property (nonatomic , strong)MessageTableView *tableView;
 @end
@@ -26,6 +27,13 @@
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];
+}
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MessageDetailsVC *vc = [MessageDetailsVC new];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

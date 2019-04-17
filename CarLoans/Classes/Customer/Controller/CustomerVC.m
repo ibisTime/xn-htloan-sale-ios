@@ -8,6 +8,7 @@
 
 #import "CustomerVC.h"
 #import "CustomerTableView.h"
+#import "CustomerDetailsVC.h"
 @interface CustomerVC ()<RefreshDelegate>
 @property (nonatomic , strong)CustomerTableView *tableView;
 
@@ -33,5 +34,11 @@
     [self.view addSubview:self.tableView];
 }
 
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CustomerDetailsVC *vc = [CustomerDetailsVC new];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

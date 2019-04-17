@@ -98,6 +98,6 @@
 -(NSString *)note:(NSString *)curNodeCode;
 //查找角色............
 -(NSString *)setParentKey:(NSString *)parentKey setDkey:(NSString *)dkey;
-
+-(void)phoneCode:(UIButton *)sender;
 
 @end

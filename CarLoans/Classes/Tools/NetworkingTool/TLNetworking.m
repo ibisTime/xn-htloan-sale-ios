@@ -149,7 +149,8 @@
     
 
     self.parameters[@"code"] = self.code;
-    NSLog(@"%@",self.parameters);
+//    NSLog(@"%@",self.parameters);
+    [HttpLogger logJSONStringWithResponseObject:self.parameters];
 //    if (!self.url || !self.url.length) {
 //        NSLog(@"url 不存在啊");
 ////        if (hud || self.showView) {
@@ -211,24 +212,14 @@
               return;
           }
           
-          if(self.isShowMsg) { //异常也是失败
-              
-              [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
-
-          }
+          [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
       }
       
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        
-       if(self.showView) {
-           
-           [TLProgressHUD dismiss];
-       }
        
-       if (self.isShowMsg) {
-
-           [TLAlert alertWithInfo:@"网络异常"];
-       }
+       
+       [TLAlert alertWithInfo:@"网络异常"];
 
        if(failure) {
            //在主线程中加载UI

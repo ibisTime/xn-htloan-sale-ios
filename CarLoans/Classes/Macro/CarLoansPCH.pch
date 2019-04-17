@@ -29,7 +29,9 @@
 #import "LoginVC.h"
 #import "AccessCameraPhotoAlbum.h"
 #import "IQKeyboardManager.h"
-
+#import "PhotoCell.h"
+#import "AdmissionInformationCell.h"
+#import "VideoCell.h"
 #import "UIView+Frame.h"
 #define TOKEN_ID @"token_id"
 #define USER_ID @"user_id"
