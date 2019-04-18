@@ -92,7 +92,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 5) {
-        return (SCREEN_WIDTH - 107 - 40)/2/210*133 + 47;
+        float numberToRound;
+        int result;
+        numberToRound = (4.0)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
     if (indexPath.row == 6) {
         float numberToRound;

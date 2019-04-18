@@ -20,7 +20,6 @@
 @property (nonatomic , strong)UILabel *nameLbl2;
 @property (nonatomic , strong)UILabel *companyLbl;
 
-
 @end
 @implementation MyVC
 
@@ -92,10 +91,10 @@
     _companyLbl.text = dataDic[@"companyName"];
     UILabel *label1 = [self.view viewWithTag:100];
     UILabel *label2 = [self.view viewWithTag:101];
-    label1.text = dataDic[@"loginName"];
     
+    label1.text = dataDic[@"loginName"];
+    label2.text = dataDic[@"mobile"];
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -190,10 +189,11 @@
 {
     [TLAlert alertWithTitle:@"提示" msg:@"是否退出登录" confirmMsg:@"取消" cancleMsg:@"确认" cancle:^(UIAlertAction *action) {
         LoginVC *vc = [[LoginVC alloc]init];
+        UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
         [USERDEFAULTS removeObjectForKey:USER_ID];
         [USERDEFAULTS removeObjectForKey:TOKEN_ID];
-        window.rootViewController = vc;
+        window.rootViewController = nvc;
     } confirm:^(UIAlertAction *action) {
         
     }];

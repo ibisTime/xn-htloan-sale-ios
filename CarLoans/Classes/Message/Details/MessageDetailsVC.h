@@ -7,11 +7,11 @@
 //
 
 #import "BaseViewController.h"
-
+#import "TodoModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageDetailsVC : BaseViewController
-
+@property (nonatomic , strong)TodoModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

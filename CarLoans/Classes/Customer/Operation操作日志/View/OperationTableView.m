@@ -34,7 +34,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 6;
+    return self.bizLogs.count;
 }
 
 #pragma mark -- tableView
@@ -44,7 +44,7 @@
     OperationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OperationCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-
+    cell.dataDic = self.bizLogs[indexPath.row];
     
     return cell;
     

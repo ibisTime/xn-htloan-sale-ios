@@ -159,6 +159,10 @@
 		1F1EF2EF2266D71300EADA25 /* AdmissionDetailsTableView13.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF2EE2266D71300EADA25 /* AdmissionDetailsTableView13.m */; };
 		1F1EF2F22266D71A00EADA25 /* AdmissionDetailsTableView14.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF2F12266D71A00EADA25 /* AdmissionDetailsTableView14.m */; };
 		1F1EF2F52266F63900EADA25 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF2F42266F63900EADA25 /* VideoCell.m */; };
+		1F1EF2FA22670B1B00EADA25 /* AddingAssociatedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF2F922670B1B00EADA25 /* AddingAssociatedVC.m */; };
+		1F1EF2FD22670B2C00EADA25 /* LocalUploadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF2FC22670B2C00EADA25 /* LocalUploadVC.m */; };
+		1F1EF301226719C500EADA25 /* TodoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF300226719C500EADA25 /* TodoModel.m */; };
+		1F1EF305226743C100EADA25 /* CustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF304226743C100EADA25 /* CustomerModel.m */; };
 		5F4B98A33D181725064D3D42 /* libPods-CarLoans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB36E56BF8F7E87912612D2 /* libPods-CarLoans.a */; };
 		7A0592A520FDCBD100075FE8 /* SurveyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592A420FDCBD100075FE8 /* SurveyVC.m */; };
 		7A0592AC20FDCD0E00075FE8 /* SurveyACreditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592AB20FDCD0E00075FE8 /* SurveyACreditVC.m */; };
@@ -687,6 +691,14 @@
 		1F1EF2F12266D71A00EADA25 /* AdmissionDetailsTableView14.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdmissionDetailsTableView14.m; sourceTree = "<group>"; };
 		1F1EF2F32266F63900EADA25 /* VideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
 		1F1EF2F42266F63900EADA25 /* VideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
+		1F1EF2F822670B1B00EADA25 /* AddingAssociatedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddingAssociatedVC.h; sourceTree = "<group>"; };
+		1F1EF2F922670B1B00EADA25 /* AddingAssociatedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddingAssociatedVC.m; sourceTree = "<group>"; };
+		1F1EF2FB22670B2C00EADA25 /* LocalUploadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalUploadVC.h; sourceTree = "<group>"; };
+		1F1EF2FC22670B2C00EADA25 /* LocalUploadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalUploadVC.m; sourceTree = "<group>"; };
+		1F1EF2FF226719C500EADA25 /* TodoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoModel.h; sourceTree = "<group>"; };
+		1F1EF300226719C500EADA25 /* TodoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoModel.m; sourceTree = "<group>"; };
+		1F1EF303226743C100EADA25 /* CustomerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerModel.h; sourceTree = "<group>"; };
+		1F1EF304226743C100EADA25 /* CustomerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerModel.m; sourceTree = "<group>"; };
 		7A0592A320FDCBD100075FE8 /* SurveyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyVC.h; sourceTree = "<group>"; };
 		7A0592A420FDCBD100075FE8 /* SurveyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurveyVC.m; sourceTree = "<group>"; };
 		7A0592AA20FDCD0E00075FE8 /* SurveyACreditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyACreditVC.h; sourceTree = "<group>"; };
@@ -1609,6 +1621,7 @@
 			isa = PBXGroup;
 			children = (
 				1F1EF1CC2264546F00EADA25 /* Controller */,
+				1F1EF2FE226719AB00EADA25 /* Model */,
 				1F1EF1CB2264546D00EADA25 /* View */,
 				1F1EF21D2265B24500EADA25 /* Details */,
 			);
@@ -1619,6 +1632,7 @@
 			isa = PBXGroup;
 			children = (
 				1F1EF1CA2264546A00EADA25 /* Controller */,
+				1F1EF302226743B100EADA25 /* Model */,
 				1F1EF1C92264546800EADA25 /* View */,
 				1F1EF1F922657EBC00EADA25 /* Details业务详情 */,
 				1F1EF2082265A91500EADA25 /* Operation操作日志 */,
@@ -1860,6 +1874,8 @@
 		1F1EF2A42265CFD300EADA25 /* AttachmentPool附件池 */ = {
 			isa = PBXGroup;
 			children = (
+				1F1EF2F722670AFA00EADA25 /* LocalUpload本地上传 */,
+				1F1EF2F622670AE600EADA25 /* AddingAssociated关联 */,
 				1F1EF2A62265D00400EADA25 /* Controller */,
 				1F1EF2A52265D00200EADA25 /* View */,
 			);
@@ -1930,6 +1946,42 @@
 				1F1EF2CD2266C91D00EADA25 /* PhotoCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		1F1EF2F622670AE600EADA25 /* AddingAssociated关联 */ = {
+			isa = PBXGroup;
+			children = (
+				1F1EF2F822670B1B00EADA25 /* AddingAssociatedVC.h */,
+				1F1EF2F922670B1B00EADA25 /* AddingAssociatedVC.m */,
+			);
+			name = "AddingAssociated关联";
+			sourceTree = "<group>";
+		};
+		1F1EF2F722670AFA00EADA25 /* LocalUpload本地上传 */ = {
+			isa = PBXGroup;
+			children = (
+				1F1EF2FB22670B2C00EADA25 /* LocalUploadVC.h */,
+				1F1EF2FC22670B2C00EADA25 /* LocalUploadVC.m */,
+			);
+			name = "LocalUpload本地上传";
+			sourceTree = "<group>";
+		};
+		1F1EF2FE226719AB00EADA25 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F1EF2FF226719C500EADA25 /* TodoModel.h */,
+				1F1EF300226719C500EADA25 /* TodoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F1EF302226743B100EADA25 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F1EF303226743C100EADA25 /* CustomerModel.h */,
+				1F1EF304226743C100EADA25 /* CustomerModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7A05929A20FDCB1700075FE8 /* View */ = {
@@ -3980,6 +4032,7 @@
 				7A3582902113F668006FB5B5 /* GPSInstallationModel.m in Sources */,
 				7A13AEAD21104E4300B8F785 /* QNDnsManager.m in Sources */,
 				B8547BA52181F56300EC5092 /* CustomTableViewCell.m in Sources */,
+				1F1EF305226743C100EADA25 /* CustomerModel.m in Sources */,
 				7AB29E7A20FD8EB30014FCB3 /* SelectedListModel.m in Sources */,
 				B84F22C7219C17D500886ADF /* InsideSureVC.m in Sources */,
 				B81D3CF8216B5CE400170BC4 /* GPSInfomationCell.m in Sources */,
@@ -4002,6 +4055,7 @@
 				7A35826121129D68006FB5B5 /* GPSClaimsDetailsTableView.m in Sources */,
 				B8F5C1A9219929AB002A00B6 /* HomeCarVC.m in Sources */,
 				1F1EF1E022646D4F00EADA25 /* CustomerCell.m in Sources */,
+				1F1EF2FD22670B2C00EADA25 /* LocalUploadVC.m in Sources */,
 				7AB29E6A20FD8EB30014FCB3 /* MJPropertyType.m in Sources */,
 				1F1EF1EC22647A6600EADA25 /* BaseViewController.m in Sources */,
 				7A35826A2112AA73006FB5B5 /* UploadVideoCell.m in Sources */,
@@ -4095,6 +4149,7 @@
 				7AB29E9420FD8EB30014FCB3 /* UIColor+Extension.m in Sources */,
 				1F1EF1D4226454A900EADA25 /* MessageVC.m in Sources */,
 				7A13AEAF21104E4300B8F785 /* QNLruCache.m in Sources */,
+				1F1EF301226719C500EADA25 /* TodoModel.m in Sources */,
 				7A0F8EA3211B0D3800BA8358 /* SelVideoSlider.m in Sources */,
 				7A35825521119AC8006FB5B5 /* CustomerInvalidTabelView.m in Sources */,
 				7A0592E620FF3A8600075FE8 /* CarSettledInVC.m in Sources */,
@@ -4146,6 +4201,7 @@
 				1F1EF2EC2266D70D00EADA25 /* AdmissionDetailsTableView12.m in Sources */,
 				1F1EF2F22266D71A00EADA25 /* AdmissionDetailsTableView14.m in Sources */,
 				1F1EF1DA226462FD00EADA25 /* HomeCollectionViewCell.m in Sources */,
+				1F1EF2FA22670B1B00EADA25 /* AddingAssociatedVC.m in Sources */,
 				1F1EF2072265A72F00EADA25 /* CustomerDetailsChooseCell.m in Sources */,
 				7A3582A221143CF2006FB5B5 /* CarSettledInDetailsVC.m in Sources */,
 				7A945561210EFF5000BDFD33 /* GPSClaimsVC.m in Sources */,

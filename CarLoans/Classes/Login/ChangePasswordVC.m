@@ -110,9 +110,9 @@
     }
 
     TLNetworking *http = [TLNetworking new];
-    http.code = @"805063";
+    http.code = @"630053";
     http.showView = self.view;
-    http.parameters[@"kind"] = @"C";
+    http.parameters[@"kind"] = @"B";
     http.parameters[@"mobile"] = tfView1.nameTextField.text;
     http.parameters[@"smsCaptcha"] = codeView.nameTextField.text;
     http.parameters[@"newLoginPwd"] = tfView2.nameTextField.text;

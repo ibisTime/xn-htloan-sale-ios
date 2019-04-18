@@ -7,11 +7,12 @@
 //
 
 #import "TLTableView.h"
-
+#import "TodoModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageTableView : TLTableView
 
+@property (nonatomic , strong)NSMutableArray <TodoModel *>*models;
 @end
 
 NS_ASSUME_NONNULL_END

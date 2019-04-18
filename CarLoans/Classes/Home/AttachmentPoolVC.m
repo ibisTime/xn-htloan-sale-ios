@@ -8,6 +8,8 @@
 
 #import "AttachmentPoolVC.h"
 #import "AttachmentPoolTableView.h"
+#import "AddingAssociatedVC.h"
+#import "LocalUploadVC.h"
 @interface AttachmentPoolVC ()<RefreshDelegate>
 @property (nonatomic , strong)AttachmentPoolTableView *tableView;
 
@@ -27,9 +29,23 @@
         UIButton *bottomBtn = [UIButton buttonWithTitle:array[i] titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16];
         bottomBtn.frame = CGRectMake(15 + i % 2 * ((SCREEN_WIDTH - 45)/2 + 15), SCREEN_HEIGHT - kNavigationBarHeight - 80 + 17.5, (SCREEN_WIDTH - 45)/2, 45);
         kViewRadius(bottomBtn, 2);
+        bottomBtn.tag = 100 + i;
+        [bottomBtn addTarget:self action:@selector(bottomBtnClcik:) forControlEvents:(UIControlEventTouchUpInside)];
         [self.view addSubview:bottomBtn];
     }
     
+}
+
+-(void)bottomBtnClcik:(UIButton *)sender
+{
+    if (sender.tag == 100) {
+        AddingAssociatedVC *vc = [AddingAssociatedVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else
+    {
+        LocalUploadVC *vc = [LocalUploadVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)initTableView
@@ -45,14 +61,6 @@
     
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

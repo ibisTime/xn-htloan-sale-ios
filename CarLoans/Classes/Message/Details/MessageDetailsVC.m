@@ -20,11 +20,11 @@
     self.title = @"车贷详情";
     
     UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(15, 15, SCREEN_WIDTH - 30, 33.5) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(24) textColor:kBlackColor];
-    nameLbl.text = @"车贷B端系统正式上线";
+    nameLbl.text = self.model.title;
     [self.view addSubview:nameLbl];
     
     UILabel *timeLbl = [UILabel labelWithFrame:CGRectMake(15, 64, 200, 16.5) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#999999")];
-    timeLbl.text = @"2019-10-10 20:00:00";
+    timeLbl.text = [self.model.createDatetime convertToDetailDate];
     [self.view addSubview:timeLbl];
     
     UILabel *typeLbl = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 165, 64, 150, 16.5) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#999999")];
@@ -42,7 +42,16 @@
     [detailsLbl sizeToFit];
     [self.view addSubview:detailsLbl];
     
-    
+    if ([self.model.content hasPrefix:@"<p>"]) {
+        NSRange startRange = [self.model.content rangeOfString:@"<p>"];
+        NSRange endRange = [self.model.content rangeOfString:@"</p>"];
+        NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
+        NSString * con = [self.model.content substringWithRange:range];
+        detailsLbl.text = con;
+    }else
+    {
+        detailsLbl.text = self.model.content;
+    }
 }
 
 /*

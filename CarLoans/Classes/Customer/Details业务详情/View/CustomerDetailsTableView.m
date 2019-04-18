@@ -49,7 +49,23 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         NSArray *leftAry = @[@"业务编号",@"主贷人",@"经办银行",@"业务种类",@"贷款金额",@"当前节点",@"对应业务员",@"对应内勤"];
-        NSArray *rightAry = @[@"689035602",@"张三",@"中国工商银行",@"新车/二手车",@"100，000元",@"100，000元",@"张三（xx团队）",@"李四"];
+        NSString *bizType;
+        if ([self.model.credit[@"bizType"] integerValue] == 0) {
+            bizType = @"新车";
+        }
+        else
+        {
+            bizType = @"二手车";
+        }
+
+        NSArray *rightAry = @[[BaseModel convertNull:self.model.code],
+                              [BaseModel convertNull:self.model.credit[@"creditUser"][@"userName"]],
+                              [BaseModel convertNull:self.model.credit[@"loanBankName"]],
+                              bizType,
+                              [NSString stringWithFormat:@"%.2f万",[self.model.dkAmount floatValue]/10000],
+                              [BaseModel convertNull:self.state],
+                              [NSString stringWithFormat:@"%@(%@)",[BaseModel convertNull:self.model.credit[@"saleUserName"]],[BaseModel convertNull:self.model.credit[@"teamName"]]],
+                              [BaseModel convertNull:self.model.credit[@"insideJobName"]]];
         cell.leftLbl.text = leftAry[indexPath.row];
         cell.rightLbl.text = rightAry[indexPath.row];
         
@@ -58,7 +74,12 @@
     CustomerDetailsChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomerDetailsChooseCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    NSArray *leftAry = @[@"代办事项（4个）",@"操作日志（10条）",@"征询单详情",@"准入单详情",@"附件详情（10个）",@"还款计划表"];
+    NSArray *leftAry = @[[NSString stringWithFormat:@"代办事项（%ld个）",self.model.bizTasks.count],
+                         [NSString stringWithFormat:@"操作日志（%ld条）",self.model.bizLogs.count],
+                         @"征询单详情",
+                         @"准入单详情",
+                         [NSString stringWithFormat:@"附件详情（%ld个）",self.model.attachments.count],
+                         @"还款计划表"];
     
     cell.leftLbl.text = leftAry[indexPath.row];
     

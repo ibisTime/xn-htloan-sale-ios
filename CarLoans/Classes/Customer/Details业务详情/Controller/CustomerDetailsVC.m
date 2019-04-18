@@ -12,6 +12,7 @@
 #import "AdmissionDetailsVC.h"
 #import "AttachmentPoolVC.h"
 #import "RepaymentPlanVC.h"
+#import "TodoViewController.h"
 @interface CustomerDetailsVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)CustomerDetailsTableView *tableView;
@@ -32,6 +33,13 @@
     self.tableView = [[CustomerDetailsTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.dataArray = self.dataArray;
+    self.tableView.model = self.model;
+    for (int i = 0; i < self.dataArray.count; i ++) {
+        if ([self.dataArray[i][@"dkey"] isEqualToString:_model.status]) {
+            self.tableView.state = self.dataArray[i][@"dvalue"];
+        }
+    }
     [self.view addSubview:self.tableView];
 }
 
@@ -39,10 +47,18 @@
 {
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            
+            if (self.model.bizTasks.count == 0) {
+                [TLAlert alertWithInfo:@"无代办事项"];
+                return;
+                
+            }
+            TodoViewController *vc = [TodoViewController new];
+            vc.bizTasks = self.model.bizTasks;
+            [self.navigationController pushViewController:vc animated:YES];
         }
         if (indexPath.row == 1) {
             OperationVC *vc = [OperationVC new];
+            vc.bizLogs = self.model.bizLogs;
             [self.navigationController pushViewController:vc animated:YES];
         }
         if (indexPath.row == 3) {

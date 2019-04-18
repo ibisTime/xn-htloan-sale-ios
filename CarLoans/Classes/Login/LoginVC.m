@@ -112,9 +112,9 @@
     [http postWithSuccess:^(id responseObject) {
         TLTabBarController *vc = [TLTabBarController new];
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-        window.rootViewController = nav;
+        window.rootViewController = vc;
         [self setUserInfoWithDict:responseObject[@"data"]];
 
     } failure:^(NSError *error) {

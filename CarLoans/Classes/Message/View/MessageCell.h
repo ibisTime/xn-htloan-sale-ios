@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TodoModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageCell : UITableViewCell
-
+@property (nonatomic , strong)TodoModel *models;
 @end
 
 NS_ASSUME_NONNULL_END

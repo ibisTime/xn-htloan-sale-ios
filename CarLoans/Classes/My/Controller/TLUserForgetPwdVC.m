@@ -66,7 +66,7 @@
         switch (i) {
             case 0:
             {
-                ;
+                
                 self.phoneTf = textField;
                 if ([BaseModel isBlankString:dataDic[@"mobile"]] == NO) {
                     self.phoneTf.text = dataDic[@"mobile"];
@@ -133,28 +133,16 @@
 
 #pragma mark - Events
 - (void)sendCaptcha:(UIButton *)sender {
-    if (![self.phoneTf.text isEqualToString:@""]) {
+    if ([self.phoneTf.text isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请输入正确的手机号"];
         return;
     }
     TLNetworking *http = [TLNetworking new];
+    http.code = VERIFICATION_CODE_CODE;
     http.showView = self.view;
-    
-    if ([self.phoneTf.text hasPrefix:@"@"]) {
-        http.code = @"630093";
-        http.parameters[@"email"] = self.phoneTf.text;
-        
-    }else
-    {
-        http.code = CAPTCHA_CODE;
-        http.parameters[@"mobile"] = self.phoneTf.text;
-    }
-    
-    http.parameters[@"client"] = @"ios";
-//    http.parameters[@"sessionId"] = sessionId;
-    http.parameters[@"bizType"] = @"805063";
-    
-    
+    http.parameters[@"kind"] = @"B";
+    http.parameters[@"mobile"] = self.phoneTf.text;
+    http.parameters[@"bizType"] = @"630053";
     
 //    http.parameters[@"interCode"] = [NSString stringWithFormat:@"00%@",[self.PhoneCode.text substringFromIndex:1]];
     
@@ -197,16 +185,17 @@
         [TLAlert alertWithInfo:@"密码必须为6~16个字符或数字组成"];
         return;
     }
-    
-    http.code = @"805063";
+
+    http.code = @"630053";
+    http.showView = self.view;
+    http.parameters[@"kind"] = @"B";
     http.parameters[@"mobile"] = self.phoneTf.text;
     http.parameters[@"smsCaptcha"] = self.codeTf.text;
     http.parameters[@"newLoginPwd"] = self.pwdTf.text;
-    
     [http postWithSuccess:^(id responseObject) {
         
         [self requesUserInfoWithResponseObject];
-        
+    
         
     } failure:^(NSError *error) {
 

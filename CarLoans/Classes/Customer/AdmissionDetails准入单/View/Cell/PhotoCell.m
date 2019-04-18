@@ -35,6 +35,7 @@
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 32, SCREEN_WIDTH - 107, 0) collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor redColor];
         _collectionView.delegate = self;
+        _collectionView.bounces = NO;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;

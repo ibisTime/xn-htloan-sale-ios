@@ -48,6 +48,7 @@
 
 - (void)initSubviews {
     NSArray *array;
+    NSDictionary *dataDic = [[NSUserDefaults standardUserDefaults]objectForKey:USERDATA];
     array = @[@"请输入手机号",@"请输入验证码",@"新手机号",@"请输入验证码"];
     for (int i = 0 ; i < 4; i ++) {
         UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(15, 20 + i% 4 * 60, SCREEN_WIDTH - 30, 50)];
@@ -66,6 +67,10 @@
             case 0:
             {
                 self.phoneTf = textField;
+                if ([BaseModel isBlankString:dataDic[@"mobile"]] == NO) {
+                    self.phoneTf.text = dataDic[@"mobile"];
+                    self.phoneTf.enabled = YES;
+                }
                 
             }
                 break;
@@ -88,7 +93,6 @@
             case 2:
             {
                 self.pwdTf = textField;
-//                textField.secureTextEntry = YES;
             }
                 break;
             case 3:
@@ -122,27 +126,32 @@
 #pragma mark - Events
 - (void)sendCaptcha:(UIButton *)sender {
     
-    if (sender.tag != 100) {
-        if (![self.pwdTf.text isEqualToString:@""]) {
+    if (sender.tag == 100) {
+        if ([self.phoneTf.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入正确的手机号"];
+            return;
+        }
+    }else
+    {
+        if ([self.pwdTf.text isEqualToString:@""]) {
             [TLAlert alertWithInfo:@"请输入正确的手机号"];
             return;
         }
     }
     
     TLNetworking *http = [TLNetworking new];
-    
+
+    http.code = VERIFICATION_CODE_CODE;
     http.showView = self.view;
-    http.code = CAPTCHA_CODE;
-    http.parameters[@"client"] = @"ios";
-    http.parameters[@"bizType"] = @"805061";
+    http.parameters[@"kind"] = @"B";
+    http.parameters[@"bizType"] = @"630052";
     if (sender.tag == 100) {
         http.parameters[@"mobile"] = self.phoneTf.text;
-    }else
+    }
+    else
     {
         http.parameters[@"mobile"] = self.pwdTf.text;
     }
-    
-    
     [http postWithSuccess:^(id responseObject) {
         
         [TLAlert alertWithSucces:@"验证码已发送,请注意查收"];
@@ -181,11 +190,11 @@
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
     
-    http.code = @"805061";
+    http.code = @"630052";
     http.parameters[@"oldMobile"] = self.phoneTf.text;
-    http.parameters[@"oldSmsCaptcha"] = self.codeTf.text;
+    http.parameters[@"oldCaptcha"] = self.codeTf.text;
     http.parameters[@"newMobile"] = self.pwdTf.text;
-    http.parameters[@"newSmsCaptcha"] = self.rePwdTf.text;
+    http.parameters[@"newCaptcha"] = self.rePwdTf.text;
     
     http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
 

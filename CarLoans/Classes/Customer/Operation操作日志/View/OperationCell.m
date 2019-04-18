@@ -18,6 +18,7 @@
         for (int i = 0; i < 4; i ++) {
             UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(15, 12.5 + i % 4 * 35, SCREEN_WIDTH - 30, 20) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kHexColor(@"#333333")];
             nameLbl.text = array[i];
+            nameLbl.tag = 100 + i;
             [self addSubview:nameLbl];
         }
         
@@ -26,6 +27,18 @@
         [self addSubview:lineView];
     }
     return self;
+}
+
+-(void)setDataDic:(NSDictionary *)dataDic
+{
+    UILabel *label1 = [self viewWithTag:100];
+    UILabel *label2 = [self viewWithTag:101];
+    UILabel *label3 = [self viewWithTag:102];
+    UILabel *label4 = [self viewWithTag:103];
+    label1.text = dataDic[@"dealNode"];
+    label2.text = dataDic[@"dealNote"];
+    label3.text = [NSString stringWithFormat:@"操作人：%@",dataDic[@"operatorName"]];
+    label4.text = [dataDic[@"startDatetime"] convertToDetailDate];
 }
 
 - (void)awakeFromNib {

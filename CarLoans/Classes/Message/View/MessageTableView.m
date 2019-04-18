@@ -34,7 +34,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 10;
+    return self.models.count;
 }
 
 #pragma mark -- tableView
@@ -42,7 +42,7 @@
 {
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomerCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    cell.models = self.models[indexPath.row];
     return cell;
 }
 

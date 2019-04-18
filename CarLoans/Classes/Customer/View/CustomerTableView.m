@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 10;
+    return self.models.count;
 }
 
 #pragma mark -- tableView
@@ -44,7 +44,8 @@
     CustomerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomerCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    
+    cell.model = self.models[indexPath.row];
+    cell.dataArray = self.dataArray;
     return cell;
     
     

@@ -129,11 +129,6 @@
     [btn addTarget:self action:@selector(pageClick:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:btn];
     
-    //    if (index!=0) {
-    //        UIView * buttonline = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 , y+10, 1, h-20)];
-    //        buttonline.backgroundColor=[UIColor lightGrayColor];
-    //        [self.view addSubview:buttonline];
-    //    }
     
     return btn;
 }
