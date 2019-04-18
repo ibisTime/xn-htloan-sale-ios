@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , strong)UILabel *rightLbl;
 
+@property (nonatomic , strong)UIImageView *youImg;
+
 @end
 
 NS_ASSUME_NONNULL_END

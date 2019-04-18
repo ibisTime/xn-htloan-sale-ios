@@ -1,21 +1,21 @@
 //
-//  PhotoCell.m
+//  CreditDetailsPeoplePhotoCell.m
 //  CarLoans
 //
-//  Created by 郑勤宝 on 2019/4/17.
+//  Created by 郑勤宝 on 2019/4/18.
 //  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "PhotoCell.h"
+#import "CreditDetailsPeoplePhotoCell.h"
 
-
-@interface PhotoCell () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface CreditDetailsPeoplePhotoCell () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 {
     UIButton *photoBtn;
     NSArray *array;
+    UIView *lineView;
 }
 @end
-@implementation PhotoCell
+@implementation CreditDetailsPeoplePhotoCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -23,16 +23,16 @@
         self.backgroundColor = [UIColor whiteColor];
         
         
-        UILabel *topLbl = [UILabel labelWithFrame:CGRectMake(15, 23, SCREEN_WIDTH - 107 - 30, 14) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(11) textColor:kHexColor(@"#999999")];
+        UILabel *topLbl = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH  - 30, 45) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kHexColor(@"#999999")];
         self.topLbl = topLbl;
         
         [self addSubview:topLbl];
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 107 - 45)/3  , (SCREEN_WIDTH - 107 - 45)/3);
+        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 45)/3  , (SCREEN_WIDTH - 45)/3);
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 32, SCREEN_WIDTH - 107, 0) collectionViewLayout:layout];
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 35, SCREEN_WIDTH , 0) collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor redColor];
         _collectionView.delegate = self;
         _collectionView.scrollEnabled = NO;
@@ -43,6 +43,11 @@
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         [self.contentView addSubview:self.collectionView];
         NSLog(@"%@",self.collectDataArray);
+        
+        lineView = [[UIView alloc]initWithFrame:CGRectMake(15, 45 + (SCREEN_WIDTH - 45)/2/300*200 + 26.5 + 14, SCREEN_WIDTH - 30, 1)];
+        lineView.backgroundColor = kLineColor;
+        [self addSubview:lineView];
+        
     }
     return self;
 }
@@ -54,7 +59,8 @@
     int result;
     numberToRound = (array.count + 0.0)/3.0;
     result = (int)ceilf(numberToRound);
-    _collectionView.frame = CGRectMake(0, 32, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
+    _collectionView.frame = CGRectMake(0, 35, SCREEN_WIDTH, result * ((SCREEN_WIDTH - 45)/3 + 15 ));
+    lineView.frame = CGRectMake(15, _collectionView.yy + 10, SCREEN_WIDTH - 30, 1);
     [self.collectionView reloadData];
 }
 
@@ -71,14 +77,14 @@
     cell.backgroundColor = [UIColor clearColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame: cell.bounds];
     kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
-    image.image = kImage(@"默认");
-    
-//    if ([array[indexPath.row] hasPrefix:@"http"]) {
-//        [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",array[indexPath.row]]]];
-//    }else
-//    {
-//        [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[array[indexPath.row] convertImageUrl]]]];
-//    }
+//    image.image = kImage(@"默认");
+    if ([array[indexPath.row] hasPrefix:@"http"]) {
+        [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",array[indexPath.row]]] placeholderImage:kImage(@"默认")];
+    }
+    else
+    {
+        [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[array[indexPath.row] convertImageUrl]]] placeholderImage:kImage(@"默认")];
+    }
     [cell addSubview:image];
     return cell;
 }
@@ -105,9 +111,6 @@
     }];
 }
 
--(void)selectButtonClick:(UIButton *)sender
-{
-    [_delegate UploadImagesBtn:sender str:_selectStr];
-}
+
 
 @end

@@ -42,6 +42,8 @@
     _collectionView.frame = CGRectMake(10, 5, SCREEN_WIDTH - 20, result * ((SCREEN_WIDTH - 50)/3 + 10));
     [self.collectionView reloadData];
 }
+
+
 #pragma mark -- Collection delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return array.count;
@@ -60,10 +62,14 @@
     [cell addSubview:image];
     return cell;
 }
+
+
 -(void)setSelectStr:(NSString *)selectStr
 {
     _selectStr = selectStr;
 }
+
+
 #pragma mark -- Collection delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了 %ld ", indexPath.row);
@@ -77,6 +83,8 @@
         return seleteArray;
     }];
 }
+
+
 -(void)selectButtonClick:(UIButton *)sender
 {
     [_delegate UploadImagesBtn:sender str:_selectStr];

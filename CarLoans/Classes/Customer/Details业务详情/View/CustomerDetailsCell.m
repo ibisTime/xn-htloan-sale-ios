@@ -23,6 +23,11 @@
         self.rightLbl = rightLbl;
         [self addSubview:rightLbl];
         
+        UIImageView *youImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 24.5,  16.5, 7, 12)];
+        youImg.image = kImage(@"跳转");
+        self.youImg = youImg;
+        youImg.hidden = YES;
+        [self addSubview:youImg];
         
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(15, 44, SCREEN_WIDTH - 30, 1)];
         lineView.backgroundColor= kLineColor;

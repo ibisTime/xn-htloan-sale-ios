@@ -13,6 +13,7 @@
 #import "AttachmentPoolVC.h"
 #import "RepaymentPlanVC.h"
 #import "TodoViewController.h"
+#import "CreditDetailsVC.h"
 @interface CustomerDetailsVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)CustomerDetailsTableView *tableView;
@@ -61,9 +62,27 @@
             vc.bizLogs = self.model.bizLogs;
             [self.navigationController pushViewController:vc animated:YES];
         }
+        if (indexPath.row == 2) {
+            CreditDetailsVC *vc = [CreditDetailsVC new];
+            vc.model = self.model;
+            vc.dataArray = self.dataArray;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
         if (indexPath.row == 3) {
             AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
             [self.navigationController pushViewController:vc animated:YES];
+            
+            
+//            NSMutableArray *muArray = [NSMutableArray array];
+//            for (int i = 0; i < self.model.attachments.count; i++) {
+//                [muArray addObject:[self.model.attachments[i][@"url"] convertImageUrl]];
+//            }
+//            NSArray *seleteArray = muArray;
+//            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+//            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+//                return seleteArray;
+//            }];
+            
         }
         if (indexPath.row == 4) {
             AttachmentPoolVC *vc = [AttachmentPoolVC  new];

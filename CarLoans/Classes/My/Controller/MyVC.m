@@ -88,10 +88,13 @@
     [_headImg sd_setImageWithURL:[NSURL URLWithString:[dataDic[@"photo"] convertImageUrl]] placeholderImage:kImage(@"默认头像")];
     _nameLbl1.text = [NSString stringWithFormat:@"真实姓名：%@",dataDic[@"realName"]];
     _nameLbl2.text = [NSString stringWithFormat:@"角色名称：%@",dataDic[@"loginName"]];
-    _companyLbl.text = dataDic[@"companyName"];
+    _companyLbl.numberOfLines = 2;
+    _companyLbl.frame = CGRectMake(_headImg.xx + 13.5, 86.5, SCREEN_WIDTH - 13.5 - 30 - _headImg.xx , 16.5);
+    _companyLbl.text = [NSString stringWithFormat:@"%@-%@-%@",dataDic[@"companyName"],dataDic[@"departmentName"],dataDic[@"postName"]];
+    [_companyLbl sizeToFit];
+    
     UILabel *label1 = [self.view viewWithTag:100];
     UILabel *label2 = [self.view viewWithTag:101];
-    
     label1.text = dataDic[@"loginName"];
     label2.text = dataDic[@"mobile"];
 }
