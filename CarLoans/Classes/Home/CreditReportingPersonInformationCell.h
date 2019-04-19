@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SurveyDetailsModel.h"
+#import "SurveyModel.h"
 @protocol CreditReportingPersonInformationDelegate <NSObject>
 
 -(void)CreditReportingPersonInformationButton:(UIButton *)sender;
+
+-(void)ReferenceInputButton:(UIButton *)sender;
 
 @end
 
@@ -19,5 +22,5 @@
 @property (nonatomic, assign) id <CreditReportingPersonInformationDelegate> Delegate;
 
 @property (nonatomic , strong)SurveyDetailsModel *model;
-
+@property (nonatomic , strong)SurveyModel *model1;
 @end

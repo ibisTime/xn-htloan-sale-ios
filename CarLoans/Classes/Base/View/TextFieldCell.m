@@ -37,15 +37,9 @@
         [self addSubview:self.nameLabel];
         [self addSubview:self.nameTextField];
 
-        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        lineView1.backgroundColor = LineBackColor;
-        [self addSubview:lineView1];
-
-
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
         lineView.backgroundColor = LineBackColor;
         [self addSubview:lineView];
-       
     }
     return self;
 }

@@ -1,38 +1,41 @@
 //
-//  ADPeopleTableView.m
+//  ReferenceInputDetailsTableView.m
 //  CarLoans
 //
-//  Created by QinBao Zheng on 2018/7/17.
-//  Copyright © 2018年 QinBao Zheng. All rights reserved.
+//  Created by 郑勤宝 on 2019/4/19.
+//  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "ADPeopleTableView.h"
-#import "ChooseCell.h"
-#define ChooseC @"ChooseCell"
+#import "ReferenceInputDetailsTableView.h"
 
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
-
-#import "UploadIdCardCell.h"
-#define UploadIdCard @"UploadIdCardCell"
-
+#import "CreditReportingPersonInformationCell.h"
+#define CreditReportingPersonInformation @"CreditReportingPersonInformationCell"
+#import "SurverCertificateCell.h"
+#define SurverCertificate @"SurverCertificateCell"
+#import "UsedCarInformationCell.h"
+#define UsedCarInformation @"UsedCarInformationCell"
+#import "ChooseCell.h"
 #import "CollectionViewCell.h"
 #define CollectionView @"CollectionViewCell"
-
-@interface ADPeopleTableView ()<UITableViewDataSource,UITableViewDelegate,UploadIdCardDelegate,CustomCollectionDelegate>
-
+@interface ReferenceInputDetailsTableView ()<UITableViewDataSource,UITableViewDelegate,CreditReportingPersonInformationDelegate,CustomCollectionDelegate>
 
 @end
-@implementation ADPeopleTableView
+@implementation ReferenceInputDetailsTableView
+
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-
+    
     if (self = [super initWithFrame:frame style:style]) {
         self.dataSource = self;
         self.delegate = self;
-        [self registerClass:[ChooseCell class] forCellReuseIdentifier:ChooseC];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
-        [self registerClass:[UploadIdCardCell class] forCellReuseIdentifier:UploadIdCard];
+        [self registerClass:[CreditReportingPersonInformationCell class] forCellReuseIdentifier:CreditReportingPersonInformation];
+        [self registerClass:[SurverCertificateCell class] forCellReuseIdentifier:SurverCertificate];
+        [self registerClass:[UsedCarInformationCell class] forCellReuseIdentifier:UsedCarInformation];
+        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [self registerClass:[ChooseCell class] forCellReuseIdentifier:@"ChooseCell"];
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CollectionView];
     }
     return self;
@@ -41,15 +44,15 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return 5;
+    
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    if (section == 0 || section == 1 ) {
-        return 2;
+    if (section == 0) {
+        return 5;
     }
     return 1;
 }
@@ -58,125 +61,96 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"姓名",@"手机号"];
-        NSArray *placeholderArray = @[@"请输入姓名",@"请输入手机号"];
+        NSArray *nameArray = @[@"姓名",@"与借款人关系",@"贷款角色",@"手机号",@"身份证号"];
         cell.name = nameArray[indexPath.row];
-        cell.nameText = placeholderArray[indexPath.row];
-        cell.nameTextField.tag = 20000 + indexPath.row;
-
-        if (self.selectRow > 1000) {
-            NSArray *Array = @[_dataDic[@"userName"],_dataDic[@"mobile"]];
-            cell.TextFidStr = Array[indexPath.row];
-        }
+        cell.isInput = @"0";
+        
+//        NSArray *detailsArray = @[
+//                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
+//                                  [NSString stringWithFormat:@"%@",bizType],
+//                                  [NSString stringWithFormat:@"%.2f   ¥",[_model.loanAmount floatValue]/1000]
+//                                  ];
         return cell;
     }
     if (indexPath.section == 1) {
-        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
+        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChooseCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"贷款角色",@"与借款人关系"];
-        cell.name = nameArray[indexPath.row];
-        if (indexPath.row == 0) {
-            if ([BaseModel isBlankString:self.loanRole] == NO) {
-                cell.details = [[BaseModel user] setParentKey:@"credit_user_loan_role" setDkey:self.loanRole];
-            }
-        }else
-        {
-            if ([BaseModel isBlankString:self.relation] == NO) {
-                cell.details = [[BaseModel user] setParentKey:@"credit_user_relation" setDkey:self.relation];
-            }
-        }
+        cell.name = @"银行征信结果(是否通过)";
+        cell.detailsLabel.text = @"";
         return cell;
     }
     if (indexPath.section == 2) {
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"身份证号";
-        cell.nameText = @"请输入身份证号";
-        cell.nameTextField.tag = 20002;
-
-        if (self.selectRow > 1000) {
-            cell.TextFidStr = _dataDic[@"idNo"];
-        }
-        return cell;
-    }
-    if (indexPath.section == 3) {
-        UploadIdCardCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.IdCardDelegate = self;
-        cell.idNoFront = self.idNoFront;
-        cell.idNoReverse = self.idNoReverse;
-        return cell;
-    }
-    if (indexPath.section == 4) {
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        cell.selectStr = @"证书";
-        cell.collectDataArray = self.certificateArray;
+        cell.selectStr = @"银行征信报告(单)";
+        cell.collectDataArray = self.bankCreditReport;
         return cell;
     }
-    CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+    if (indexPath.section == 3) {
+        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+        cell.selectStr = @"大数据征信报告(多张)";
+        cell.collectDataArray = self.dataCreditReport;
+        return cell;
+    }
+    
+   
+    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.delegate = self;
-    cell.selectStr = @"面签";
-    cell.collectDataArray = self.faceToFaceArray;
+    cell.name = @"征信结果说明";
+    cell.nameText = @"请输入说明";
+    cell.nameTextField.tag = 3000;
     return cell;
-
-}
-
--(void)SelectButtonClick:(UIButton *)sender
-{
-    [_ButtonDelegate selectButtonClick:sender];
 }
 
 -(void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString *)str
 {
-    if ([str isEqualToString:@"证书"]) {
+    if ([str isEqualToString:@"银行征信报告(单)"]) {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-            [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:104 selectRowState:@"add"];
-
+            [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:100 selectRowState:@"add"];
+            
         }
     }else
     {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-            [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:105 selectRowState:@"add"];
-
+            [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:101 selectRowState:@"add"];
+            
         }
     }
-
+    
 }
 
 //删除
 -(void)UploadImagesBtn:(UIButton *)sender str:(NSString *)str
 {
-    if ([str isEqualToString:@"证书"]) {
+    if ([str isEqualToString:@"银行征信报告(单)"]) {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-
+            
             [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos1"];
         }
     }else
     {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-
+            
             [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos2"];
-
+            
         }
     }
-
+    
 }
 
-//身份证
--(void)UploadIdCardBtn:(UIButton *)sender
+
+-(void)CreditReportingPersonInformationButton:(UIButton *)sender
 {
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
-
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -185,26 +159,20 @@
     }
 }
 
-
-
-
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3) {
-        return SCREEN_WIDTH/3 + 70;
-    }
-    if (indexPath.section == 4) {
+    if (indexPath.section == 2) {
         float numberToRound;
         int result;
-        numberToRound = (self.certificateArray.count + 1.0)/3.0;
+        numberToRound = (self.bankCreditReport.count + 1.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
     }
-    if (indexPath.section == 5) {
+    if (indexPath.section == 3) {
         float numberToRound;
         int result;
-        numberToRound = (self.faceToFaceArray.count + 1.0)/3.0;
+        numberToRound = (self.dataCreditReport.count + 1.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
     }
@@ -214,7 +182,8 @@
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 4 || section == 5) {
+
+    if (section == 2 || section == 3) {
         return 50;
     }
     return 0.01;
@@ -223,7 +192,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 5) {
+    if (section == 4) {
         return 100;
     }
     return 0.01;
@@ -231,22 +200,22 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 4 || section == 5) {
+    if (section == 2 || section == 3) {
         UIView *headView = [[UIView alloc]init];
-
+        
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
         backView.backgroundColor = [UIColor whiteColor];
         [headView addSubview:backView];
-
+        
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
-
-        NSArray *array = @[@"征信查询授权书",@"面签照片"];
+        
+        NSArray *array = @[@"银行征信报告(单)",@"大数据征信报告(多张)"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        nameLabel.text = array[section - 4];
+        nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];
-
+        
         return headView;
     }
     return nil;
@@ -254,10 +223,9 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-
-    if (section == 5) {
+    if (section == 4) {
         UIView *headView = [[UIView alloc]init];
-
+        
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
         confirmButton.frame = CGRectMake(20, 30, SCREEN_WIDTH - 40, 50);
         [confirmButton setTitle:@"确认" forState:(UIControlStateNormal)];
@@ -266,21 +234,19 @@
         confirmButton.titleLabel.font = HGfont(18);
         [confirmButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [headView addSubview:confirmButton];
-
+        
         return headView;
     }
-
     return nil;
 }
 
 -(void)confirmButtonClick:(UIButton *)sender
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-
+        
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"confirm"];
-
+        
     }
 }
-
 
 @end

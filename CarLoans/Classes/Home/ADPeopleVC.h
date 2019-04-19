@@ -14,5 +14,6 @@
 
 @property (nonatomic , assign)NSInteger selectRow;
 
+@property (nonatomic , assign)BOOL isFirstEntry;
 
 @end

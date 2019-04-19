@@ -38,4 +38,15 @@
 @property (nonatomic , strong)NSDictionary *creditUser;
 @property (nonatomic , strong)NSArray *creditUserList;
 
+@property (nonatomic , copy)NSString *bankCode;
+
+@property (nonatomic , copy)NSString *dkAmount;
+@property (nonatomic , copy)NSString *status;
+@property (nonatomic , copy)NSString *zfStatus;
+@property (nonatomic , copy)NSString *ywyUser;
+
+@property (nonatomic , strong)NSDictionary *credit;
+@property (nonatomic , strong)NSArray *attachments;
+@property (nonatomic , strong)NSArray *bizTasks;
+@property (nonatomic , strong)NSArray *bizLogs;
 @end

@@ -21,7 +21,7 @@
 -(UIImageView *)xiaImage
 {
     if (!_xiaImage) {
-        _xiaImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 15 - 10, 22, 10, 6)];
+        _xiaImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 15 - 7, 19, 7, 12)];
         _xiaImage.image = HGImage(@"下拉");
     }
     return _xiaImage;
@@ -53,6 +53,10 @@
 -(void)setName:(NSString *)name
 {
     _nameLabel.text = name;
+    _nameLabel.frame = CGRectMake(15, 0, 100, 50);
+    [_nameLabel sizeToFit];
+    _nameLabel.frame = CGRectMake(15, 0, _nameLabel.width, 50);
+    _detailsLabel.frame = CGRectMake(_nameLabel.xx, 0, SCREEN_WIDTH - 55 - _nameLabel.width, 50);
 }
 
 -(void)setDetails:(NSString *)details

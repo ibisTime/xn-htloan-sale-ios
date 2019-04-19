@@ -21,7 +21,7 @@
     [logString appendString:[self appendURLRequest:request]];
     
     [logString appendFormat:@"\n\n**************************************************************\n*                         Request End                        *\n**************************************************************\n\n\n\n"];
-    NSLog(@"%@", logString);
+    NSLog(@"请求 ======= %@", logString);
     
 #endif
 }

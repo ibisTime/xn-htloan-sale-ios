@@ -160,8 +160,8 @@
 //    }
 //
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:APPURL]];
-    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:self.parameters httpMethod:@"POST"];
-
+//    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:self.parameters httpMethod:@"POST"];
+    NSLog(@"code==%@\n%@\n%@",self.code,self.parameters,APPURL);
     return [self.manager POST:APPURL parameters:self.parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
       
       [HttpLogger logDebugInfoWithResponse:task.response apiName:self.code resposeString:responseObject request:task.originalRequest error:nil];

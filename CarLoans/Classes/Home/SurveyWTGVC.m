@@ -98,11 +98,12 @@
     helper.code = @"632115";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-    NSArray *array = @[@"001_01",@"001_02",@"001_03",@"001_04",@"001_05",@"001_06",@"001_07",@"001_08"];
+    NSArray *array = @[@"a1",@"a2",@"a3",@"ax1"];
     helper.parameters[@"curNodeCodeList"] = array;
     helper.parameters[@"isPass"] = @"0";
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
-
+//    helper.parameters[@"isPass"] = @"0";
+//    helper.parameters[@"saleUserId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

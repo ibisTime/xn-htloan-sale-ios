@@ -9,7 +9,7 @@
 #import "HomeVC.h"
 #import "HomeTbView.h"
 //资信调查
-#import "SurveyVC.h"
+#import "SurveyTGVC.h"
 //车辆落户
 #import "InsideSureHomeVC.h"
 #import "CarSettledInVC.h"
@@ -177,19 +177,29 @@
         switch (indexPath.row) {
             case 0:
             {
-                SurveyVC *vc = [SurveyVC new];
+                SurveyTGVC *vc = [SurveyTGVC new];
                 vc.hidesBottomBarWhenPushed = YES;
+                vc.curNodeCodeList = @[@"a1",@"ax1"];
+                vc.title = @"征信发起";
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 1:
             {
-                
+                SurveyTGVC *vc = [SurveyTGVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.curNodeCodeList = @[@"a2"];
+                vc.title = @"录入征信结果";
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 2:
             {
-                
+                SurveyTGVC *vc = [SurveyTGVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.curNodeCodeList = @[@"a3"];
+                vc.title = @"征信审核";
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 3:

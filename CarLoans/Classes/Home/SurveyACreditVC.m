@@ -193,6 +193,12 @@
     {
 //        添加征信人
         ADPeopleVC *vc = [ADPeopleVC new];
+        if (peopleArray.count > 0) {
+            vc.isFirstEntry = NO;
+        }else
+        {
+            vc.isFirstEntry = YES;
+        }
         [self.navigationController pushViewController:vc animated:YES];
         selectRow = 0;
     }
@@ -202,6 +208,9 @@
         ADPeopleVC *vc = [[ADPeopleVC alloc]init];
         vc.dataDic = self.tableView.peopleAray[index - 1234];
         vc.selectRow = index;
+        if (index == 1234) {
+            vc.isFirstEntry = YES;
+        }
         [self.navigationController pushViewController:vc animated:YES];
 
     }

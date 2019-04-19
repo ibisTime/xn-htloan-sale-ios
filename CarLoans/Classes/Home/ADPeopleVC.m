@@ -171,6 +171,12 @@
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.ButtonDelegate = self;
+    if (self.isFirstEntry == YES) {
+        _loanRole = @"1";
+        _tableView.loanRole = @"1";
+        _relation = @"1";
+        self.tableView.relation = @"1";
+    }
     [self.view addSubview:self.tableView];
 }
 
@@ -193,7 +199,6 @@
     {
         [_interviewPicArray removeObjectAtIndex:index - 1000];
         _tableView.faceToFaceArray = _interviewPicArray;
-
     }
     else if([state isEqualToString:@"confirm"])
     {
@@ -209,9 +214,9 @@
 
 -(void)confirmButtonClick
 {
-    UITextField *textField1 = [self.view viewWithTag:200];
-    UITextField *textField2 = [self.view viewWithTag:201];
-    UITextField *textField3 = [self.view viewWithTag:202];
+    UITextField *textField1 = [self.view viewWithTag:20000];
+    UITextField *textField2 = [self.view viewWithTag:20001];
+    UITextField *textField3 = [self.view viewWithTag:20002];
     if ([textField1.text isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请输入姓名"];
         return;
@@ -252,11 +257,11 @@
     NSString *authPdf = [_authPdfArray componentsJoinedByString:@"||"];
     NSString *interviewPic = [_interviewPicArray componentsJoinedByString:@"||"];
     NSDictionary *dataDic = @{
-        @"userName":textField1.text,
-        @"mobile":textField2.text,
+        @"userName":[BaseModel convertNull:textField1.text],
+        @"mobile":[BaseModel convertNull:textField2.text],
         @"loanRole":_loanRole,
         @"relation":_relation,
-        @"idNo":textField3.text,
+        @"idNo":[BaseModel convertNull:textField3.text],
         @"idNoFront":_idNoFront,
         @"idNoReverse":_idNoReverse,
         @"authPdf":authPdf,
@@ -276,9 +281,15 @@
         BaseModel *model = [BaseModel new];
         model.ModelDelegate = self;
         if (indexPath.row == 0) {
+            if (self.isFirstEntry == YES) {
+                return;
+            }
             [model ReturnsParentKeyAnArray:@"credit_user_loan_role"];
         }else
         {
+            if (self.isFirstEntry == YES) {
+                return;
+            }
             [model ReturnsParentKeyAnArray:@"credit_user_relation"];
         }
     }

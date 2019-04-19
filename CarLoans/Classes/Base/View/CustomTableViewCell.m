@@ -36,7 +36,6 @@
         UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
         lineView1.backgroundColor = LineBackColor;
         [self addSubview:lineView1];
-        
         [self addSubview:self.codeLabel];
         [self addSubview:self.stateLabel];
         

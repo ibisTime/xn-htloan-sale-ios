@@ -10,4 +10,6 @@
 
 @interface SurveyTGVC : BaseViewController
 
+@property (nonatomic , strong)NSArray *curNodeCodeList;
+
 @end
