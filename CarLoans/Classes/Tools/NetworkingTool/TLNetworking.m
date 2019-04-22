@@ -144,11 +144,12 @@
 
     self.parameters[@"companyCode"] = @"CD-HTWT000020";
     self.parameters[@"systemCode"] = @"CD-HTWT000020";
-
+    self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
     self.parameters[@"json"] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
 
     self.parameters[@"code"] = self.code;
+    
 //    NSLog(@"%@",self.parameters);
     [HttpLogger logJSONStringWithResponseObject:self.parameters];
 //    if (!self.url || !self.url.length) {

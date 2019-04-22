@@ -63,8 +63,6 @@
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
 //    helper.parameters[@"isInterview"] = [NSString stringWithFormat:@"%d",self.isSign];
-
-    
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
 //    if (self.isSign == YES) {
 //        helper.parameters[@"isInterview"] = @"1";

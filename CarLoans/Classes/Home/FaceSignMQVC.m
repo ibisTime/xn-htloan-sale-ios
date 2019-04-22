@@ -324,7 +324,7 @@
     [self initTableView];
     [self loadHistoryList];
     faceStr = @"";
-    self.strid = @"546547";
+//    self.strid = @"546547";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadEndMovieUrlOut) name:@"KsingOut" object:nil];
 }
 
@@ -544,17 +544,14 @@
     http.parameters[@"companyContract"] = [self.CompanyContractArray componentsJoinedByString:@"||"];;
     http.parameters[@"advanceFundAmountPdf"] = [self.MoneyArray componentsJoinedByString:@"||"];;
     http.parameters[@"interviewOtherPdf"] = [self.otherArray componentsJoinedByString:@"||"];;
-
     [http postWithSuccess:^(id responseObject) {
         if (sender.tag == 10001) {
             [TLAlert alertWithSucces:@"保存成功"];
-
         }else{
             [TLAlert alertWithSucces:@"面签成功"];
             NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] postNotification:notification];
         }
-      
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         WGLog(@"%@",error);
@@ -745,7 +742,6 @@
             [http postWithSuccess:^(id responseObject) {
                 
                 [SVProgressHUD showWithStatus:@""];
-//
                 NSString *str =  [[ILiveLoginManager getInstance] getLoginId];
                 if (!str) {
                 
@@ -779,9 +775,7 @@
                     [[ILiveRoomManager getInstance] createRoom:[self.strid intValue] option:option succ:^{
                         // 创建房间成功，跳转到房间页
                         [SVProgressHUD dismiss];
-
                         liveRoomVC.roomId = self.strid;
-
                         [self.navigationController pushViewController:liveRoomVC animated:YES];
                         
                     } failed:^(NSString *module, int errId, NSString *errMsg) {

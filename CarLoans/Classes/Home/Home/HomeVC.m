@@ -349,7 +349,7 @@
 //    self.tableView.refreshDelegate = self;
 //    self.tableView.backgroundColor = kBackgroundColor;
 //    [self.view addSubview:self.tableView];
-//    [self loadData];
+    [self loadData];
 
 }
 

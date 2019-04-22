@@ -31,16 +31,16 @@
 
 -(UILabel *)nameTextLabel
 {
-    if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 120, 50)];
-        _nameLabel.font = HGfont(14);
-        _nameLabel.textAlignment = NSTextAlignmentRight;
-        _nameLabel.numberOfLines = 2;
-        _nameLabel.hidden = YES;
+    if (!_nameTextLabel) {
+        _nameTextLabel = [[UILabel alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 120, 50)];
+        _nameTextLabel.font = HGfont(14);
+        _nameTextLabel.textAlignment = NSTextAlignmentRight;
+        _nameTextLabel.numberOfLines = 2;
+        _nameTextLabel.hidden = YES;
 //        _nameLabel.font = Font(14);
 //        [_nameLabel setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
     }
-    return _nameLabel;
+    return _nameTextLabel;
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

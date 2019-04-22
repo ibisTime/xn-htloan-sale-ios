@@ -158,7 +158,7 @@
 
     _passWordTextFd.placeholder = @"请输入密码";
     _passWordTextFd.secureTextEntry = YES;
-    [_passWordTextFd setValue:HGfont(18) forKeyPath:@"_placeholderLabel.font"];
+    [_passWordTextFd setValue:HGfont(16) forKeyPath:@"_placeholderLabel.font"];
 //    [_passWordTextFd setValue:GaryTextColor forKeyPath:@"_placeholderLabel.color"];
     [self.view addSubview:_passWordTextFd];
 
