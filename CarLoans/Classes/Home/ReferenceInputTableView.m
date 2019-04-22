@@ -74,10 +74,13 @@
                               [BaseModel convertNull:self.model.loanBankName],
                               bizType,
                               [NSString stringWithFormat:@"%.2f万",[self.model.loanAmount floatValue]/10000],
-                              self.model.teamName,
-                              self.model.companyName,
+                              [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
+                              [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
                               [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
+        
         cell.TextFidStr = rightAry[indexPath.row];
+        cell.nameTextField.hidden = YES;
+        cell.nameTextLabel.hidden = NO;
         return cell;
     }
     if (indexPath.section == 1) {
@@ -147,19 +150,44 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if (section == 3) {
+        return 100;
+    }
     return 0.01;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     return nil;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    if (section == 3) {
+        UIView *headView = [[UIView alloc]init];
+        
+        UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        confirmButton.frame = CGRectMake(20, 30, SCREEN_WIDTH - 40, 50);
+        [confirmButton setTitle:@"确认" forState:(UIControlStateNormal)];
+        confirmButton.backgroundColor = MainColor;
+        kViewRadius(confirmButton, 5);
+        confirmButton.titleLabel.font = HGfont(18);
+        [confirmButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [headView addSubview:confirmButton];
+        
+        return headView;
+    }
     return nil;
 }
 
-
+-(void)confirmButtonClick:(UIButton *)sender
+{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"confirm"];
+        
+    }
+}
 
 @end

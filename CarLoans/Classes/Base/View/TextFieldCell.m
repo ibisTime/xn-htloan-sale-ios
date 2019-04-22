@@ -29,6 +29,19 @@
     return _nameTextField;
 }
 
+-(UILabel *)nameTextLabel
+{
+    if (!_nameLabel) {
+        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 120, 50)];
+        _nameLabel.font = HGfont(14);
+        _nameLabel.textAlignment = NSTextAlignmentRight;
+        _nameLabel.numberOfLines = 2;
+        _nameLabel.hidden = YES;
+//        _nameLabel.font = Font(14);
+//        [_nameLabel setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
+    }
+    return _nameLabel;
+}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -36,7 +49,7 @@
     if (self) {
         [self addSubview:self.nameLabel];
         [self addSubview:self.nameTextField];
-
+        [self addSubview:self.nameTextLabel];
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
         lineView.backgroundColor = LineBackColor;
         [self addSubview:lineView];
@@ -64,13 +77,10 @@
         UISwitch *switchButton = (UISwitch*)sender;
         BOOL isButtonOn = [switchButton isOn];
         if (isButtonOn) {
-//            showSwitchValue.text = @"是";
-            
+ 
         }else {
-//            showSwitchValue.text = @"否";
-            
+  
         }
-    
 }
 
 
@@ -81,6 +91,7 @@
     _nameLabel.frame = CGRectMake(15, 18, 0, 14);
     [_nameLabel sizeToFit];
     _nameTextField.frame = CGRectMake(_nameLabel.frame.size.width + 25, 0, SCREEN_WIDTH - _nameLabel.frame.size.width - 40, 50);
+    _nameTextLabel.frame = CGRectMake(_nameLabel.frame.size.width + 25, 0, SCREEN_WIDTH - _nameLabel.frame.size.width - 40, 50);
 }
 
 -(void)setNameText:(NSString *)nameText
@@ -98,6 +109,7 @@
 -(void)setTextFidStr:(NSString *)TextFidStr
 {
     _nameTextField.text = [BaseModel convertNull:TextFidStr];
+    _nameTextLabel.text = [BaseModel convertNull:TextFidStr];
 }
 
 @end

@@ -73,7 +73,7 @@
 //        helper.parameters[@"isInterview"] = @"0";
 //
 //    }
-    NSArray *array = @[@"002_05",@"002_06",@"002_08"];
+    NSArray *array = @[@"b01",@"b02",@"b03",@"b01x"];
     helper.parameters[@"intevCurNodeCodeList"] = array;
     helper.isList = NO;
     helper.isCurrency = YES;
@@ -106,12 +106,7 @@
     }];
 
     [self.tableView addLoadMoreAction:^{
-        helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-        NSArray *array = @[@"002_05",@"002_06",@"002_08"];
-        helper.parameters[@"isInterview"] = [NSString stringWithFormat:@"%d",weakSelf.isSign];
 
-        helper.parameters[@"intevCurNodeCodeList"] = array;
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             //去除没有的币种

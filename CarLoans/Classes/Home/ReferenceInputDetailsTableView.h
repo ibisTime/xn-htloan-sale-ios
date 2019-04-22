@@ -7,12 +7,17 @@
 //
 
 #import "TLTableView.h"
-
+#import "TextFieldCell.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ReferenceInputDetailsTableView : TLTableView
+
 @property (nonatomic , strong)NSArray *bankCreditReport;
 @property (nonatomic , strong)NSArray *dataCreditReport;
+@property (nonatomic , strong)NSDictionary *dataDic;
+@property (nonatomic , copy)NSString *bankResult;
+@property (nonatomic , copy)NSString *creditNote;
+@property (nonatomic , strong)TextFieldCell *cell;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -110,6 +110,28 @@
 }
 
 
++ (BOOL)isBlankDictionary:(NSDictionary *)dic {
+    
+    if (!dic) {
+       return YES;
+    }
+    if ([dic isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    if (![dic isKindOfClass:[NSDictionary class]]) {
+        return YES;
+    }
+    if (!dic.count) {
+        return YES;
+    }
+    if (dic == nil) {
+        return YES;
+    }
+    if (dic == NULL) {
+        return YES;
+    }
+    return NO;
+}
 
 
 

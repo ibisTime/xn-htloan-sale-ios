@@ -9,9 +9,17 @@
 #import "BaseViewController.h"
 #import "SurveyModel.h"
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^CreditListBlock)(NSDictionary *creditListDic, NSInteger row);
 
 @interface ReferenceInputDetailsVC : BaseViewController
+
 @property (nonatomic , strong)NSDictionary *dataDic;
+
+@property (nonatomic,copy) CreditListBlock creditListBlock;
+
+@property (nonatomic , assign)NSInteger row;
+
+@property (nonatomic , strong)NSDictionary *creditListDic;
 
 @end
 

@@ -22,6 +22,8 @@
 
 @property (nonatomic , strong)UITextField *nameTextField;
 
+@property (nonatomic , strong)UILabel *nameTextLabel;
+
 @property (nonatomic , assign)BOOL isSwitchOn;
 
 @property (nonatomic , strong)UISwitch *switchUser;

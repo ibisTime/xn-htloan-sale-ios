@@ -35,8 +35,8 @@
     UILabel *label2 = [self viewWithTag:101];
     UILabel *label3 = [self viewWithTag:102];
     UILabel *label4 = [self viewWithTag:103];
-    label1.text = dataDic[@"dealNode"];
-    label2.text = dataDic[@"dealNote"];
+    label1.text = @"发起征信";;
+    label2.text = [[BaseModel user]note:dataDic[@"dealNode"]];
     label3.text = [NSString stringWithFormat:@"操作人：%@",dataDic[@"operatorName"]];
     label4.text = [dataDic[@"startDatetime"] convertToDetailDate];
 }

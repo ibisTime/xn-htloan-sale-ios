@@ -67,18 +67,22 @@
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         
-//        NSArray *detailsArray = @[
-//                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
-//                                  [NSString stringWithFormat:@"%@",bizType],
-//                                  [NSString stringWithFormat:@"%.2f   ¥",[_model.loanAmount floatValue]/1000]
-//                                  ];
+        NSArray *detailsArray = @[
+                                  [NSString stringWithFormat:@"%@",self.dataDic[@"userName"]],
+                                  [[BaseModel user] setParentKey:@"credit_user_relation" setDkey:self.dataDic[@"relation"]],
+                                  [[BaseModel user] setParentKey:@"credit_user_loan_role" setDkey:self.dataDic[@"loanRole"]],
+                                  [NSString stringWithFormat:@"%@",self.dataDic[@"mobile"]],
+                                  [NSString stringWithFormat:@"%@",self.dataDic[@"idNo"]]
+                                  ];
+        cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
     }
     if (indexPath.section == 1) {
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChooseCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"银行征信结果(是否通过)";
-        cell.detailsLabel.text = @"";
+        cell.detailsLabel.text = self.bankResult;
+        
         return cell;
     }
     if (indexPath.section == 2) {
@@ -102,7 +106,9 @@
     TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name = @"征信结果说明";
+    self.cell = cell;
     cell.nameText = @"请输入说明";
+    cell.TextFidStr = self.creditNote;
     cell.nameTextField.tag = 3000;
     return cell;
 }

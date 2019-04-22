@@ -80,6 +80,7 @@
 - (BOOL)isLogin;
 //字符串是否为空
 + (BOOL) isBlankString:(NSString *)string;
++ (BOOL)isBlankDictionary:(NSDictionary *)dic;
 + (NSString*)convertNull:(id)object;
 
 //存储用户信息

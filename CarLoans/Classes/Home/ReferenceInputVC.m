@@ -13,7 +13,8 @@
 @interface ReferenceInputVC ()<RefreshDelegate>
 @property (nonatomic , strong)ReferenceInputTableView *tableView;
 @property (nonatomic , strong)NSArray *dataArray;
-//@property (nonatomic , strong)SurveyDetailsModel *surveyDetailsModel;
+
+@property (nonatomic , strong)NSMutableArray *creditList;
 
 @end
 
@@ -25,6 +26,11 @@
     self.title = @"录入征信结果";
     [self initTableView];
     [self cdbiz_statusLoadData];
+    _creditList = [NSMutableArray array];
+    for (int i = 0; i < self.surveyModel.creditUserList.count; i ++) {
+        [_creditList addObject:@""];
+    }
+    
 //    [self loadData];
 }
 
@@ -61,7 +67,42 @@
     if ([state isEqualToString:@"录入"]) {
         ReferenceInputDetailsVC *vc = [ReferenceInputDetailsVC new];
         vc.dataDic = self.surveyModel.creditUserList[index];
+        vc.creditListDic = _creditList[index];
+        vc.row = index;
+        vc.creditListBlock = ^(NSDictionary * _Nonnull creditListDic, NSInteger row) {
+            [_creditList replaceObjectAtIndex:row withObject:creditListDic];
+        };
         [self.navigationController pushViewController:vc animated:YES];
+    }else
+    {
+        for (int i = 0; i < _creditList.count; i ++) {
+            if ([BaseModel isBlankDictionary:_creditList[i]] == YES) {
+                [TLAlert alertWithInfo:[NSString stringWithFormat:@"请录入%@的征信结果",self.surveyModel.creditUserList[i][@"userName"]]];
+                return;
+            }
+        }
+        
+        UITextField *textField = [self.view viewWithTag:3000];
+        if ([textField.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入说明"];
+            return;
+        }
+        
+        TLNetworking *http = [TLNetworking new];
+        http.code = @"632111";
+        http.showView = self.view;
+        http.parameters[@"creditList"] = _creditList;
+        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+        http.parameters[@"creditCode"] = _surveyModel.code;
+        
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:@"录入成功"];
+            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError *error) {
+            WGLog(@"%@",error);
+        }];
     }
 }
 
@@ -76,6 +117,8 @@
     vc.dataDic = self.surveyModel.creditUserList[index - 123];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+
 
 
 
