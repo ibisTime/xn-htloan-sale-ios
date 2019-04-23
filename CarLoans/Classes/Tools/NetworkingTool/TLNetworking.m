@@ -11,7 +11,7 @@
 //#import "AppConfig.h"
 //#import "TLUser.h"
 //Category
-#import "TLProgressHUD.h"
+
 #import "TLAlert.h"
 #import "HttpLogger.h"
 //#import "UIViewController+Extension.h"
@@ -111,7 +111,7 @@
     
     if(self.showView){
     
-        [TLProgressHUD show];
+        [SVProgressHUD show];
     }
     if (self.isShowMsg) {
 //        [TLProgressHUD dismiss];
@@ -138,20 +138,22 @@
 
 
     }
+    self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
     NSData *data = [NSJSONSerialization dataWithJSONObject:self.parameters options:NSJSONWritingPrettyPrinted error:nil];
     self.parameters = [NSMutableDictionary dictionaryWithCapacity:2];
 
-
+    
     self.parameters[@"companyCode"] = @"CD-HTWT000020";
     self.parameters[@"systemCode"] = @"CD-HTWT000020";
-    self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
+    
+    self.parameters[@"code"] = self.code;
     self.parameters[@"json"] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
 
-    self.parameters[@"code"] = self.code;
+    
     
 //    NSLog(@"%@",self.parameters);
-    [HttpLogger logJSONStringWithResponseObject:self.parameters];
+//    [HttpLogger logJSONStringWithResponseObject:self.parameters];
 //    if (!self.url || !self.url.length) {
 //        NSLog(@"url 不存在啊");
 ////        if (hud || self.showView) {
@@ -161,8 +163,8 @@
 //    }
 //
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:APPURL]];
-//    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:self.parameters httpMethod:@"POST"];
-    NSLog(@"code==%@\n%@\n%@",self.code,self.parameters,APPURL);
+    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:self.parameters httpMethod:@"POST"];
+//    NSLog(@"code==%@ %@ %@",self.code,self.parameters,APPURL);
     return [self.manager POST:APPURL parameters:self.parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
       
       [HttpLogger logDebugInfoWithResponse:task.response apiName:self.code resposeString:responseObject request:task.originalRequest error:nil];
@@ -172,7 +174,7 @@
 
       if(self.showView){
           
-          [TLProgressHUD dismiss];
+          [SVProgressHUD dismiss];
       }
       
       if([responseObject[@"errorCode"] isEqual:@"0"]){ //成功
@@ -203,12 +205,13 @@
           if ([responseObject[@"errorCode"] isEqual:@"4"]) {
               //token错误  4
               
-              [TLAlert alertWithTitle:@"提示" message:@"为了您的账户安全,请重新登录" confirmAction:^{
+              [TLAlert alertWithTitle:@"提示" message:@"登录失效,请重新登录" confirmAction:^{
                   LoginVC *vc = [[LoginVC alloc]init];
                   UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                  UINavigationController *vcC = [[UINavigationController alloc]initWithRootViewController:vc];
                   [USERDEFAULTS removeObjectForKey:USER_ID];
                   [USERDEFAULTS removeObjectForKey:TOKEN_ID];
-                  window.rootViewController = vc;
+                  window.rootViewController = vcC;
               }];
               return;
           }

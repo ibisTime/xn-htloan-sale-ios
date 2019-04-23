@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F00AE6F226EBB9600A8E15D /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE6D226EBB9600A8E15D /* NSDictionary+Extension.m */; };
 		1F19AA67220193030090BF84 /* LoadSDK.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1F19A9EB220193020090BF84 /* LoadSDK.sh */; };
 		1F19AA68220193030090BF84 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19A9ED220193020090BF84 /* ImSDK.framework */; };
 		1F19AA69220193030090BF84 /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19A9EE220193020090BF84 /* TLSSDK.framework */; };
@@ -416,7 +417,6 @@
 		7AB29E8520FD8EB30014FCB3 /* HttpLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29E3520FD8EB20014FCB3 /* HttpLogger.m */; };
 		7AB29E8620FD8EB30014FCB3 /* TLNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29E3720FD8EB20014FCB3 /* TLNetworking.m */; };
 		7AB29E8720FD8EB30014FCB3 /* TLPageDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29E3920FD8EB20014FCB3 /* TLPageDataHelper.m */; };
-		7AB29E8820FD8EB30014FCB3 /* TLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29E3B20FD8EB20014FCB3 /* TLProgressHUD.m */; };
 		7AB29E8920FD8EB30014FCB3 /* TLUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29E3D20FD8EB20014FCB3 /* TLUploadManager.m */; };
 		7AB29E8A20FD8EB30014FCB3 /* UIScrollView+TLAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29E4520FD8EB30014FCB3 /* UIScrollView+TLAdd.m */; };
 		7AB29E8B20FD8EB30014FCB3 /* CDCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB29E4720FD8EB30014FCB3 /* CDCommon.m */; };
@@ -488,6 +488,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F00AE6D226EBB9600A8E15D /* NSDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
+		1F00AE6E226EBB9600A8E15D /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
 		1F19A9EB220193020090BF84 /* LoadSDK.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = LoadSDK.sh; sourceTree = "<group>"; };
 		1F19A9ED220193020090BF84 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
 		1F19A9EE220193020090BF84 /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TLSSDK.framework; sourceTree = "<group>"; };
@@ -1204,8 +1206,6 @@
 		7AB29E3720FD8EB20014FCB3 /* TLNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLNetworking.m; sourceTree = "<group>"; };
 		7AB29E3820FD8EB20014FCB3 /* TLPageDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLPageDataHelper.h; sourceTree = "<group>"; };
 		7AB29E3920FD8EB20014FCB3 /* TLPageDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLPageDataHelper.m; sourceTree = "<group>"; };
-		7AB29E3A20FD8EB20014FCB3 /* TLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLProgressHUD.h; sourceTree = "<group>"; };
-		7AB29E3B20FD8EB20014FCB3 /* TLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLProgressHUD.m; sourceTree = "<group>"; };
 		7AB29E3C20FD8EB20014FCB3 /* TLUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLUploadManager.h; sourceTree = "<group>"; };
 		7AB29E3D20FD8EB20014FCB3 /* TLUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLUploadManager.m; sourceTree = "<group>"; };
 		7AB29E3F20FD8EB30014FCB3 /* CategoryPCH.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryPCH.pch; sourceTree = "<group>"; };
@@ -1672,7 +1672,7 @@
 				1F1EF1C92264546800EADA25 /* View */,
 				1F1EF1F922657EBC00EADA25 /* Details业务详情 */,
 				1F1EF2082265A91500EADA25 /* Operation操作日志 */,
-				1F1EF2212265BFF200EADA25 /* AdmissionDetails准入单 */,
+				1F1EF2212265BFF200EADA25 /* AdmissionDetails客户详情 */,
 				1F1EF2B02265D32700EADA25 /* RepaymentPlan还款计划 */,
 				1F1EF306226823CD00EADA25 /* CreditDetails征信单详情 */,
 			);
@@ -1814,13 +1814,13 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
-		1F1EF2212265BFF200EADA25 /* AdmissionDetails准入单 */ = {
+		1F1EF2212265BFF200EADA25 /* AdmissionDetails客户详情 */ = {
 			isa = PBXGroup;
 			children = (
 				1F1EF2232265C01900EADA25 /* Controller */,
 				1F1EF2222265C01700EADA25 /* View */,
 			);
-			path = "AdmissionDetails准入单";
+			path = "AdmissionDetails客户详情";
 			sourceTree = "<group>";
 		};
 		1F1EF2222265C01700EADA25 /* View */ = {
@@ -3610,8 +3610,6 @@
 				7AB29E3720FD8EB20014FCB3 /* TLNetworking.m */,
 				7AB29E3820FD8EB20014FCB3 /* TLPageDataHelper.h */,
 				7AB29E3920FD8EB20014FCB3 /* TLPageDataHelper.m */,
-				7AB29E3A20FD8EB20014FCB3 /* TLProgressHUD.h */,
-				7AB29E3B20FD8EB20014FCB3 /* TLProgressHUD.m */,
 				7AB29E3C20FD8EB20014FCB3 /* TLUploadManager.h */,
 				7AB29E3D20FD8EB20014FCB3 /* TLUploadManager.m */,
 			);
@@ -3694,6 +3692,8 @@
 		7AB29E5020FD8EB30014FCB3 /* NSDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				1F00AE6E226EBB9600A8E15D /* NSDictionary+Extension.h */,
+				1F00AE6D226EBB9600A8E15D /* NSDictionary+Extension.m */,
 				7AB29E5120FD8EB30014FCB3 /* NSDictionary+SetNullWithStr.h */,
 				7AB29E5220FD8EB30014FCB3 /* NSDictionary+SetNullWithStr.m */,
 			);
@@ -4384,6 +4384,7 @@
 				1F1EF30E2268293D00EADA25 /* CreditDetailsTableView.m in Sources */,
 				7AB29E8020FD8EB30014FCB3 /* HW3DBannerView.m in Sources */,
 				7A3582872113EF3D006FB5B5 /* FaceSignTableView.m in Sources */,
+				1F00AE6F226EBB9600A8E15D /* NSDictionary+Extension.m in Sources */,
 				7A0592B820FDE99B00075FE8 /* TextFieldCell.m in Sources */,
 				1F1EF2C42265D99B00EADA25 /* AdmissionInformationCell.m in Sources */,
 				7A0592EC2100618E00075FE8 /* AccessCameraPhotoAlbum.m in Sources */,
@@ -4404,7 +4405,6 @@
 				7AB29E7220FD8EB30014FCB3 /* XPathQuery.m in Sources */,
 				7AB29E6920FD8EB30014FCB3 /* MJPropertyKey.m in Sources */,
 				1F1EF2E92266D70700EADA25 /* AdmissionDetailsTableView11.m in Sources */,
-				7AB29E8820FD8EB30014FCB3 /* TLProgressHUD.m in Sources */,
 				1F1EF20122657F1C00EADA25 /* CustomerDetailsTableView.m in Sources */,
 				7AB29E6D20FD8EB30014FCB3 /* NSObject+MJKeyValue.m in Sources */,
 				7A13ADC3210F09F400B8F785 /* AccessSingleTableView.m in Sources */,

@@ -10,6 +10,7 @@
 #import "CustomerTableView.h"
 #import "CustomerDetailsVC.h"
 #import "CustomerModel.h"
+#import "AdmissionDetailsVC.h"
 @interface CustomerVC ()<RefreshDelegate>
 @property (nonatomic , strong)CustomerTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <CustomerModel *>*models;
@@ -55,9 +56,9 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomerDetailsVC *vc = [CustomerDetailsVC new];
+    AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
     vc.hidesBottomBarWhenPushed = YES;
-    vc.model = self.models[indexPath.row];
+//    vc.model = self.models[indexPath.row];
     vc.dataArray = self.tableView.dataArray;
     [self.navigationController pushViewController:vc animated:YES];
 }

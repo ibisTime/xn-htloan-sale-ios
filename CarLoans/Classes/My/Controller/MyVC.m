@@ -34,7 +34,6 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
-
 - (void)updateUserInfoWithNotification
 {
     TLNetworking *http = [TLNetworking new];
@@ -201,8 +200,6 @@
         
     }];
 }
-
-
 
 -(void)backBtnClick:(UIButton *)sender
 {
