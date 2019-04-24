@@ -15,7 +15,7 @@
 @property (nonatomic , copy)void (^curreryBlock)(NSString* roomID);
 @property (nonatomic, copy) NSString* roomId;
 @property (nonatomic , strong) NSNumber *num;
-
+@property (nonatomic, copy) NSString* faceStr;
 @property (nonatomic, assign) BOOL isjoin;
 
 

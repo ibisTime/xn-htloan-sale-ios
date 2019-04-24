@@ -64,13 +64,7 @@
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
 //    helper.parameters[@"isInterview"] = [NSString stringWithFormat:@"%d",self.isSign];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
-//    if (self.isSign == YES) {
-//        helper.parameters[@"isInterview"] = @"1";
-//
-//    }else{
-//        helper.parameters[@"isInterview"] = @"0";
-//
-//    }
+
     NSArray *array = @[@"b01",@"b02",@"b03",@"b01x"];
     helper.parameters[@"intevCurNodeCodeList"] = array;
     helper.isList = NO;

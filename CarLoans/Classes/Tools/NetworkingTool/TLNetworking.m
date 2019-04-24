@@ -138,11 +138,11 @@
 
 
     }
-    self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
+    
     NSData *data = [NSJSONSerialization dataWithJSONObject:self.parameters options:NSJSONWritingPrettyPrinted error:nil];
     self.parameters = [NSMutableDictionary dictionaryWithCapacity:2];
 
-    
+//    self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
     self.parameters[@"companyCode"] = @"CD-HTWT000020";
     self.parameters[@"systemCode"] = @"CD-HTWT000020";
     
@@ -227,13 +227,13 @@
 
        if(failure) {
            //在主线程中加载UI
-           dispatch_async(dispatch_get_main_queue(), ^{
-               
-               if (self.baseVC) {
-                   
-//                   [self.baseVC addPlaceholderView];
-               }
-           });
+//           dispatch_async(dispatch_get_main_queue(), ^{
+//
+//               if (self.baseVC) {
+//
+////                   [self.baseVC addPlaceholderView];
+//               }
+//           });
         
            failure(error);
        }

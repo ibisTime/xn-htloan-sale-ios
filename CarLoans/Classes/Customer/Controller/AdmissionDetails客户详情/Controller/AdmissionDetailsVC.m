@@ -23,6 +23,8 @@
 #import "AdmissionDetailsTableView12.h"
 #import "AdmissionDetailsTableView13.h"
 #import "AdmissionDetailsTableView14.h"
+#import "AdmissionDetailsTableView15.h"
+#import "AdmissionDetailsTableView16.h"
 @interface AdmissionDetailsVC ()<RefreshDelegate>
 @property (nonatomic , strong)AdmissionDetailsTableView *tableView;
 
@@ -40,6 +42,8 @@
 @property (nonatomic , strong)AdmissionDetailsTableView12 *tableView12;
 @property (nonatomic , strong)AdmissionDetailsTableView13 *tableView13;
 @property (nonatomic , strong)AdmissionDetailsTableView14 *tableView14;
+@property (nonatomic , strong)AdmissionDetailsTableView15 *tableView15;
+@property (nonatomic , strong)AdmissionDetailsTableView16 *tableView16;
 @end
 @implementation AdmissionDetailsVC
 
@@ -142,6 +146,37 @@
     self.tableView14.tag = 114;
     [self.view addSubview:self.tableView14];
     
+    self.tableView15 = [[AdmissionDetailsTableView15 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView15.refreshDelegate = self;
+    self.tableView15.backgroundColor = kWhiteColor;
+    self.tableView15.tag = 115;
+    [self.view addSubview:self.tableView15];
+    
+    self.tableView16 = [[AdmissionDetailsTableView16 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView16.refreshDelegate = self;
+    self.tableView16.backgroundColor = kWhiteColor;
+    self.tableView16.tag = 116;
+    
+    [self.view addSubview:self.tableView16];
+    
+    self.tableView1.model = self.model;
+    self.tableView2.model = self.model;
+    self.tableView3.model = self.model;
+    self.tableView4.model = self.model;
+    self.tableView5.model = self.model;
+    self.tableView6.model = self.model;
+    self.tableView7.model = self.model;
+    self.tableView8.model = self.model;
+    self.tableView9.model = self.model;
+    self.tableView10.model = self.model;
+    self.tableView11.model = self.model;
+    self.tableView12.model = self.model;
+    self.tableView13.model = self.model;
+    self.tableView14.model = self.model;
+    self.tableView15.model = self.model;
+    self.tableView16.model = self.model;
+
+    
     [self.view bringSubviewToFront:self.tableView1];
     
 }
@@ -150,6 +185,7 @@
 {
     if (refreshTableview.tag == 100) {
         UITableView *tableView = [self.view viewWithTag:indexPath.row + 101];
+        
         [self.view bringSubviewToFront:tableView];
     }
 }

@@ -58,7 +58,7 @@
 {
     AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
     vc.hidesBottomBarWhenPushed = YES;
-//    vc.model = self.models[indexPath.row];
+    vc.model = self.models[indexPath.row];
     vc.dataArray = self.tableView.dataArray;
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F00AE6F226EBB9600A8E15D /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE6D226EBB9600A8E15D /* NSDictionary+Extension.m */; };
+		1F00AE72226F2C1F00A8E15D /* AdmissionDetailsTableView15.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE71226F2C1F00A8E15D /* AdmissionDetailsTableView15.m */; };
+		1F00AE75226F2EC300A8E15D /* AdmissionDetailsTableView16.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE74226F2EC300A8E15D /* AdmissionDetailsTableView16.m */; };
 		1F19AA67220193030090BF84 /* LoadSDK.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1F19A9EB220193020090BF84 /* LoadSDK.sh */; };
 		1F19AA68220193030090BF84 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19A9ED220193020090BF84 /* ImSDK.framework */; };
 		1F19AA69220193030090BF84 /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19A9EE220193020090BF84 /* TLSSDK.framework */; };
@@ -490,6 +492,10 @@
 /* Begin PBXFileReference section */
 		1F00AE6D226EBB9600A8E15D /* NSDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
 		1F00AE6E226EBB9600A8E15D /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
+		1F00AE70226F2C1F00A8E15D /* AdmissionDetailsTableView15.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdmissionDetailsTableView15.h; sourceTree = "<group>"; };
+		1F00AE71226F2C1F00A8E15D /* AdmissionDetailsTableView15.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdmissionDetailsTableView15.m; sourceTree = "<group>"; };
+		1F00AE73226F2EC200A8E15D /* AdmissionDetailsTableView16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdmissionDetailsTableView16.h; sourceTree = "<group>"; };
+		1F00AE74226F2EC300A8E15D /* AdmissionDetailsTableView16.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdmissionDetailsTableView16.m; sourceTree = "<group>"; };
 		1F19A9EB220193020090BF84 /* LoadSDK.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = LoadSDK.sh; sourceTree = "<group>"; };
 		1F19A9ED220193020090BF84 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
 		1F19A9EE220193020090BF84 /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TLSSDK.framework; sourceTree = "<group>"; };
@@ -1672,7 +1678,6 @@
 				1F1EF1C92264546800EADA25 /* View */,
 				1F1EF1F922657EBC00EADA25 /* Details业务详情 */,
 				1F1EF2082265A91500EADA25 /* Operation操作日志 */,
-				1F1EF2212265BFF200EADA25 /* AdmissionDetails客户详情 */,
 				1F1EF2B02265D32700EADA25 /* RepaymentPlan还款计划 */,
 				1F1EF306226823CD00EADA25 /* CreditDetails征信单详情 */,
 			);
@@ -1693,6 +1698,7 @@
 		1F1EF1CA2264546A00EADA25 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1F1EF2212265BFF200EADA25 /* AdmissionDetails客户详情 */,
 				1F1EF1CF2264549D00EADA25 /* CustomerVC.h */,
 				1F1EF1D02264549D00EADA25 /* CustomerVC.m */,
 			);
@@ -1859,6 +1865,10 @@
 				1F1EF2EE2266D71300EADA25 /* AdmissionDetailsTableView13.m */,
 				1F1EF2F02266D71A00EADA25 /* AdmissionDetailsTableView14.h */,
 				1F1EF2F12266D71A00EADA25 /* AdmissionDetailsTableView14.m */,
+				1F00AE70226F2C1F00A8E15D /* AdmissionDetailsTableView15.h */,
+				1F00AE71226F2C1F00A8E15D /* AdmissionDetailsTableView15.m */,
+				1F00AE73226F2EC200A8E15D /* AdmissionDetailsTableView16.h */,
+				1F00AE74226F2EC300A8E15D /* AdmissionDetailsTableView16.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1953,10 +1963,6 @@
 			children = (
 				1F1EF2B62265D37300EADA25 /* RepaymentPlanTableView.h */,
 				1F1EF2B72265D37300EADA25 /* RepaymentPlanTableView.m */,
-				1F1EF2B92265D38300EADA25 /* RepaymentPlanHeadView.h */,
-				1F1EF2BA2265D38300EADA25 /* RepaymentPlanHeadView.m */,
-				1F1EF2BC2265D39000EADA25 /* AdmissionDetailsRepaymentPlanCell.h */,
-				1F1EF2BD2265D39000EADA25 /* AdmissionDetailsRepaymentPlanCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1981,6 +1987,10 @@
 				1F1EF2C92265E45700EADA25 /* AdmiissionDetailsIDCardCellCell.m */,
 				1F1EF2CC2266C91D00EADA25 /* PhotoCell.h */,
 				1F1EF2CD2266C91D00EADA25 /* PhotoCell.m */,
+				1F1EF2B92265D38300EADA25 /* RepaymentPlanHeadView.h */,
+				1F1EF2BA2265D38300EADA25 /* RepaymentPlanHeadView.m */,
+				1F1EF2BC2265D39000EADA25 /* AdmissionDetailsRepaymentPlanCell.h */,
+				1F1EF2BD2265D39000EADA25 /* AdmissionDetailsRepaymentPlanCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -4234,6 +4244,7 @@
 				B820200D21CBADC700237E01 /* FaceSignVC2.m in Sources */,
 				1F1EF1D12264549E00EADA25 /* CustomerVC.m in Sources */,
 				1F1EF2CE2266C91D00EADA25 /* PhotoCell.m in Sources */,
+				1F00AE72226F2C1F00A8E15D /* AdmissionDetailsTableView15.m in Sources */,
 				7A13ADDC210F129A00B8F785 /* GPSClaimsCell.m in Sources */,
 				7A0F8E92211ABC9E00BA8358 /* HistoryUserTableView.m in Sources */,
 				B8F5C1B221997809002A00B6 /* FaceSignHomeVC.m in Sources */,
@@ -4383,6 +4394,7 @@
 				7AB29E7F20FD8EB30014FCB3 /* SignFinishView.m in Sources */,
 				1F1EF30E2268293D00EADA25 /* CreditDetailsTableView.m in Sources */,
 				7AB29E8020FD8EB30014FCB3 /* HW3DBannerView.m in Sources */,
+				1F00AE75226F2EC300A8E15D /* AdmissionDetailsTableView16.m in Sources */,
 				7A3582872113EF3D006FB5B5 /* FaceSignTableView.m in Sources */,
 				1F00AE6F226EBB9600A8E15D /* NSDictionary+Extension.m in Sources */,
 				7A0592B820FDE99B00075FE8 /* TextFieldCell.m in Sources */,

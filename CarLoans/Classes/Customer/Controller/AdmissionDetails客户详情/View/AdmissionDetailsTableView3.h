@@ -1,5 +1,5 @@
 //
-//  AdmissionDetailsTableView14.h
+//  AdmissionDetailsTableView3.h
 //  CarLoans
 //
 //  Created by 郑勤宝 on 2019/4/17.
@@ -7,11 +7,11 @@
 //
 
 #import "TLTableView.h"
-
+#import "CustomerModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AdmissionDetailsTableView14 : TLTableView
-
+@interface AdmissionDetailsTableView3 : TLTableView
+@property (nonatomic , strong)CustomerModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

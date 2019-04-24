@@ -25,5 +25,5 @@
 @property (nonatomic , copy)NSString *applyDatetime;
 
 @property (nonatomic , copy)NSString *intevCurNodeCode;
-
+@property (nonatomic , strong)NSDictionary *creditUser;
 @end

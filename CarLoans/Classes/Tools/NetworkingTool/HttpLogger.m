@@ -21,7 +21,7 @@
     [logString appendString:[self appendURLRequest:request]];
     
     [logString appendFormat:@"\n\n**************************************************************\n*                         Request End                        *\n**************************************************************\n\n\n\n"];
-    NSLog(@"请求 ======= %@", logString);
+    NSLog(@"%@", logString);
     
 #endif
 }
@@ -51,7 +51,7 @@
 }
 
 + (void)logJSONStringWithResponseObject:(id)responseObject {
-
+    
 #ifdef DEBUG
     NSData *data = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
     

@@ -76,11 +76,11 @@
     _model = model;
     codeLbl.text = model.code;
     
-    nameLbl.text = model.credit[@"creditUser"][@"userName"];
+    nameLbl.text = model.creditUser[@"userName"];
     nameLbl.frame = CGRectMake(15, 50, 0, 20);
     [nameLbl sizeToFit];
     nameLbl.frame = CGRectMake(15, 50, nameLbl.width, 20);
-    bankLbl.text = model.credit[@"loanBankName"];
+    bankLbl.text = model.loanBankName;
     NSString *bizType;
     if ([model.credit[@"bizType"] integerValue] == 0) {
         bizType = @"新车";
@@ -93,8 +93,8 @@
     carNameLbl.text = bizType;
     [carNameLbl sizeToFit];
     carNameLbl.frame = CGRectMake(nameLbl.xx + 5, 52.5, carNameLbl.width + 9, 15);
-    timeLbl.text = [model.credit[@"applyDatetime"] convertToDetailDate];
-    priceLbl.text = [NSString stringWithFormat:@"%.2f万",[model.dkAmount floatValue]/10000];
+    timeLbl.text = [model.applyDatetime convertToDetailDate];
+    priceLbl.text = [NSString stringWithFormat:@"%.2f万",[model.loanAmount floatValue]/10000];
 }
 
 -(void)setDataArray:(NSArray *)dataArray

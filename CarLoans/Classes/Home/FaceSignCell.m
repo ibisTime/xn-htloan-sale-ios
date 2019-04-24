@@ -94,7 +94,7 @@
 
     NSArray *InformationArray = @[
                                   [NSString stringWithFormat:@"%@",bizType],
-                                  [NSString stringWithFormat:@"%@",model.applyUserName],
+                                  [NSString stringWithFormat:@"%@",model.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",model.loanAmount/1000],
                                   [NSString stringWithFormat:@"%@",model.loanBankName],
                                   [NSString stringWithFormat:@"%@",[model.applyDatetime convertToDetailDate]]];

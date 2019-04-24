@@ -342,6 +342,7 @@
     // Do any additional setup after loading the view.
     [self navigativeView];
     [self.view addSubview:self.collectionView];
+    [self loadData];
 }
 
 - (void)initTableView {
@@ -349,7 +350,7 @@
 //    self.tableView.refreshDelegate = self;
 //    self.tableView.backgroundColor = kBackgroundColor;
 //    [self.view addSubview:self.tableView];
-    [self loadData];
+    
 
 }
 

@@ -10,7 +10,7 @@
 #import "HomeVC.h"
 #import "ChangePasswordVC.h"
 #import "TLTabBarController.h"
-@interface LoginVC ()<UITextFieldDelegate>
+@interface LoginVC ()
 
 @property (nonatomic , strong)UITextField *mobileTextFd;
 
@@ -145,8 +145,8 @@
     self.title = @"登录";
 
     _mobileTextFd = [[UITextField alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55)];
-    _mobileTextFd.font = HGfont(18);
-    _mobileTextFd.delegate = self;
+    _mobileTextFd.font = HGfont(16);
+//    _mobileTextFd.delegate = self;
     _mobileTextFd.placeholder = @"请输入账号";
     [_mobileTextFd setValue:HGfont(16) forKeyPath:@"_placeholderLabel.font"];
 //    [_mobileTextFd setValue:GaryTextColor forKeyPath:@"_placeholderLabel.color"];
@@ -173,16 +173,8 @@
 
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    
-    
-    
-}
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-}
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {

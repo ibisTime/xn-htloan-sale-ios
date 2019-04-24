@@ -20,10 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *zfStatus;
 @property (nonatomic , copy)NSString *ywyUser;
 @property (nonatomic , copy)NSString *teamCode;
+@property (nonatomic , copy)NSString *applyDatetime;
+@property (nonatomic , copy)NSString *loanBankName;
+@property (nonatomic , copy)NSString *loanAmount;
 @property (nonatomic , strong)NSDictionary *credit;
 @property (nonatomic , strong)NSArray *attachments;
 @property (nonatomic , strong)NSArray *bizTasks;
 @property (nonatomic , strong)NSArray *bizLogs;
+@property (nonatomic , strong)NSDictionary *creditUser;
 //"code":"cb201904121733567164846",
 //"bankCode":"BA201811051330406186135",
 //"bizType":"1",

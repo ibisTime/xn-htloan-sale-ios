@@ -16,6 +16,7 @@
     
     [SVProgressHUD showInfoWithStatus:msg];
 //    [SVProgressHUD dismissWithDelay:2.0];
+    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
 //    [self performSelector:@selector(dismiss1) withObject:nil afterDelay:2];
 }
 
@@ -28,6 +29,7 @@
 + (void)alertWithError:(NSString *)msg {
     
     [SVProgressHUD showErrorWithStatus:msg];
+    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
 //    [self performSelector:@selector(dismiss1) withObject:nil afterDelay:2];
     
 }
@@ -36,6 +38,7 @@
 + (void)alertWithSucces:(NSString *)msg {
     
     [SVProgressHUD showSuccessWithStatus:msg];
+    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
 //    [self performSelector:@selector(dismiss1) withObject:nil afterDelay:2];
     
 }

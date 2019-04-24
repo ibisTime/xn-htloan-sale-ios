@@ -37,7 +37,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 14;
+    return 16;
 }
 
 #pragma mark -- tableView
@@ -59,7 +59,7 @@
 //        cell.backgroundColor = kBackgroundColor;
 //        cell.nameLbl.textColor = kHexColor(@"#666666");
 //    }
-    NSArray *array = @[@"基本信息",@"征信列表",@"贷款车辆信息",@"申请人基本信息",@"工作情况",@"其他基本信息",@"配偶信息",@"面签",@"财务垫资",@"银行放款",@"车辆抵押",@"发保合",@"GPS安装列表",@"流转日志"];
+    NSArray *array = @[@"基本信息",@"征信列表",@"贷款车辆信息",@"申请人基本信息",@"工作情况",@"其他基本信息",@"配偶信息",@"面签",@"财务垫资",@"银行放款",@"车辆抵押",@"发保合",@"GPS安装列表",@"流转日志",@"还款计划",@"附件池"];
     cell.nameLbl.text = array[indexPath.row];
     return cell;
     
