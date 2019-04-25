@@ -140,17 +140,24 @@
     }
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:self.parameters options:NSJSONWritingPrettyPrinted error:nil];
-    self.parameters = [NSMutableDictionary dictionaryWithCapacity:2];
+//    self.parameters = [NSMutableDictionary dictionaryWithCapacity:2];
 
 //    self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
-    self.parameters[@"companyCode"] = @"CD-HTWT000020";
-    self.parameters[@"systemCode"] = @"CD-HTWT000020";
-    
-    self.parameters[@"code"] = self.code;
-    self.parameters[@"json"] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    self.parameters[@"companyCode"] = @"CD-HTWT000020";
+//    self.parameters[@"systemCode"] = @"CD-HTWT000020";
+//
+//    self.parameters[@"code"] = self.code;
+//
+//
+//
+//    self.parameters[@"json"] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
 
-    
+    NSDictionary *paraDic = @{@"json":[TLNetworking dictionaryToJson:self.parameters],
+                              @"companyCode":@"CD-HTWT000020",
+                              @"systemCode":@"CD-HTWT000020",
+                              @"code":self.code
+                              };
     
 //    NSLog(@"%@",self.parameters);
 //    [HttpLogger logJSONStringWithResponseObject:self.parameters];
@@ -163,9 +170,9 @@
 //    }
 //
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:APPURL]];
-    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:self.parameters httpMethod:@"POST"];
+    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:paraDic httpMethod:@"POST"];
 //    NSLog(@"code==%@ %@ %@",self.code,self.parameters,APPURL);
-    return [self.manager POST:APPURL parameters:self.parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    return [self.manager POST:APPURL parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
       
       [HttpLogger logDebugInfoWithResponse:task.response apiName:self.code resposeString:responseObject request:task.originalRequest error:nil];
 
@@ -241,6 +248,15 @@
    }];
 
 }
+
++(NSString*)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&parseError];
+    NSString *str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return str;
+}
+
 
 - (void)hundleSuccess:(id)responseObj {
 

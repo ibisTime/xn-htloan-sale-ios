@@ -14,7 +14,7 @@
 #import "SurveyACreditVC.h"
 
 #import "ReferenceInputVC.h"
-
+#import "CreditReviewVC.h"
 @interface SurveyTGVC ()<RefreshDelegate,SurveyDelegate>
 @property (nonatomic , strong)SurveyTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
@@ -67,16 +67,14 @@
     SurveyDetailsVC *vc = [SurveyDetailsVC new];
     vc.code = _model[indexPath.row].code;
     vc.surveyModel = _model[indexPath.row];
+    if ([_model[indexPath.row].curNodeCode isEqualToString:@"a3"]) {
+        vc.note = @"征信审核";
+    }
     [self.navigationController pushViewController:vc animated:YES];
-    
-    
-    
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-
-    
     if ([_model[index].curNodeCode isEqualToString:@"a1"] || [_model[index].curNodeCode isEqualToString:@"ax1"])
     {
         SurveyACreditVC *vc = [SurveyACreditVC new];
@@ -93,11 +91,13 @@
     }
     else if ([_model[index].curNodeCode isEqualToString:@"a3"])
     {
+        CreditReviewVC *vc = [CreditReviewVC new];
+        vc.code = _model[index].code;
+        vc.surveyModel = _model[index];
         
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
-
 
 -(void)LoadData
 {

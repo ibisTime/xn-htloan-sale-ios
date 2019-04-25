@@ -13,6 +13,8 @@
 #define SurveyIdCardTableView @"SurveyIdCardTableViewCell"
 #import "SurverCertificateCell.h"
 #define SurverCertificate @"SurverCertificateCell"
+#import "ChooseCell.h"
+#define ChooseC @"ChooseCell"
 @interface SurveyInformationTableView ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -27,7 +29,7 @@
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[SurveyIdCardTableViewCell class] forCellReuseIdentifier:SurveyIdCardTableView];
         [self registerClass:[SurverCertificateCell class] forCellReuseIdentifier:SurverCertificate];
-
+        [self registerClass:[ChooseCell class] forCellReuseIdentifier:ChooseC];
     }
     return self;
 }
@@ -35,7 +37,10 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    if ([self.node isEqualToString:@"征信审核"]) {
+        return 4;
+    }
+    return 3;
 }
 
 #pragma mark -- 行数
@@ -85,27 +90,9 @@
         cell.picArray = array[indexPath.row];
         return cell;
     }
-    if (indexPath.section == 3) {
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"信用卡使用占比";
-        cell.isInput = @"0";
-        NSString *str = @"%";
-        cell.TextFidStr = [NSString stringWithFormat:@"%@%@",[BaseModel convertNull:_model.creditCardOccupation],str];
-        return cell;
-    }
-    if (indexPath.section == 4) {
-        SurverCertificateCell *cell = [tableView dequeueReusableCellWithIdentifier:SurverCertificate forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name=@"征信报告";
-        cell.picArray = _model.pics3;
-        return cell;
-    }
-    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+    ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"征信结果说明";
-    cell.isInput = @"0";
-    cell.TextFidStr = [NSString stringWithFormat:@"%@",_model.bankCreditResultRemark];
+    cell.name = @"征信报告";
     return cell;
 
 }
@@ -117,7 +104,6 @@
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
 }
-
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -151,16 +137,6 @@
                 return button.frame.origin.y + 10 + button.frame.size.height + 15;
             }
         }
-    }
-    if (indexPath.section == 4) {
-        if (_model.pics3.count == 0) {
-            return 50;
-        }else
-        {
-            UIButton *button = [self viewWithTag:_model.pics3.count - 1 + 10000];
-            return button.frame.origin.y + 10 + button.frame.size.height + 15;
-        }
-
     }
     return 50;
 }

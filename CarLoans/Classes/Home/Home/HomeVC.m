@@ -206,12 +206,18 @@
             {
                 FaceSignVC *vc = [FaceSignVC new];
                 vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"面签系统";
+                vc.intevCurNodeCodeList = @[@"b01",@"b01x"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 4:
             {
-                
+                FaceSignVC *vc = [FaceSignVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"面签审核";
+                vc.intevCurNodeCodeList = @[@"b02"];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 5:

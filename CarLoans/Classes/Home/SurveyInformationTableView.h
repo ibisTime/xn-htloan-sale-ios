@@ -11,5 +11,5 @@
 @interface SurveyInformationTableView : TLTableView
 
 @property (nonatomic , strong)SurvuyPeopleModel *model;
-
+@property (nonatomic , copy)NSString *node;
 @end

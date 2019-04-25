@@ -14,8 +14,8 @@
 @property (nonatomic , copy)NSString *creditCode;
 @property (nonatomic , copy)NSString *mobile;
 //身份证
-@property (nonatomic , copy)NSString *idNoFront;
-@property (nonatomic , copy)NSString *idNoReverse;
+@property (nonatomic , copy)NSString *idFront;
+@property (nonatomic , copy)NSString *idReverse;
 
 
 @property (nonatomic , copy)NSString *loanRole;

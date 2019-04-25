@@ -7,9 +7,9 @@
 //
 
 #import "BaseViewController.h"
-#import "FaceSignModel.h"
+#import "SurveyModel.h"
 @interface FaceSignMQVC : BaseViewController
 
-@property (nonatomic , strong)FaceSignModel *model;
+@property (nonatomic , strong)SurveyModel *model;
 
 @end

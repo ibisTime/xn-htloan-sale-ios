@@ -66,10 +66,17 @@
 
 -(void)setCollectDataArray:(NSArray *)collectDataArray
 {
+    
     array = collectDataArray;
     float numberToRound;
     int result;
-    numberToRound = (array.count + 1.0)/4.0;
+    if (self.isEditor == NO) {
+        numberToRound = (array.count )/4.0;
+    }else
+    {
+        numberToRound = (array.count + 1.0)/4.0;
+    }
+    
     result = (int)ceilf(numberToRound);
     _collectionView.frame = CGRectMake(10, 0, SCREEN_WIDTH - 20, result * ((SCREEN_WIDTH - 20)/4 + 10));
     [self.collectionView reloadData];
@@ -80,11 +87,26 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
+    if (self.isEditor == NO) {
+        return array.count;
+    }
     return array.count + 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
+    
+    if (self.isEditor == NO) {
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"cell" forIndexPath:indexPath];
+        
+        cell.backgroundColor = [UIColor clearColor];
+        UIImageView *image = [[UIImageView alloc]initWithFrame: CGRectMake(2.5, 2.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5)];
+        kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
+        image.image = [self firstFrameWithVideoURL:array[indexPath.row] size:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [cell addSubview:image];
+        return cell;
+    }
+    
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"cell" forIndexPath:indexPath];
 
     cell.backgroundColor = [UIColor clearColor];
@@ -125,10 +147,6 @@
 // http://1257046543.vod2.myqcloud.com/c78eb187vodcq1257046543/ec8e93cb5285890782858050060/f0.mp4
      NSURL *url;
     if ([urlStr containsString:@"myqcloud.com"]) {
-       
-        
-       
-            
             url = [NSURL URLWithString:urlStr];
         
     }else{
@@ -162,6 +180,11 @@
     return nil;
 }
 
+-(void)setIsEditor:(BOOL)isEditor
+{
+    _isEditor = isEditor;
+}
+
 -(void)setSelectStr:(NSString *)selectStr
 {
     _selectStr = selectStr;
@@ -170,9 +193,49 @@
 #pragma mark -- Collection delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了 %ld ", indexPath.row);
-    if (indexPath.row == 0) {
-        if([self.delegate respondsToSelector:@selector(CustomCollection:didSelectRowAtIndexPath:str:)]){
-            [self.delegate CustomCollection:collectionView didSelectRowAtIndexPath:indexPath str:_selectStr];
+    
+    if (_isEditor == YES) {
+        if (indexPath.row == 0) {
+            if([self.delegate respondsToSelector:@selector(CustomCollection:didSelectRowAtIndexPath:str:)]){
+                [self.delegate CustomCollection:collectionView didSelectRowAtIndexPath:indexPath str:_selectStr];
+            }
+        }else
+        {
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            // 3、配置媒体播放控制器
+            AVPlayerViewController *_playerViewController = [[AVPlayerViewController alloc]  init];
+            // 设置媒体源数据
+            NSString*  urlStr = [NSString stringWithFormat:@"%@",array[indexPath.row-1]];
+            NSString* Str = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
+            NSURL *url;
+            if ([urlStr containsString:@"myqcloud.com"]) {
+                url = [NSURL URLWithString:urlStr];
+                
+            }else{
+                
+                NSString* Str = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
+                
+                
+                if ([[NSFileManager defaultManager] fileExistsAtPath:Str]) {
+                    urlStr = Str;
+                    url = [NSURL fileURLWithPath:urlStr];
+                }else{
+                    
+                    urlStr = [urlStr convertImageUrl];
+                    url = [NSURL URLWithString:urlStr];
+                }
+            }
+            _playerViewController.player = [AVPlayer playerWithURL:url];
+            // 设置拉伸模式
+            _playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
+            // 设置是否显示媒体播放组件
+            _playerViewController.showsPlaybackControls = YES;
+            // 播放视频
+            [_playerViewController.player play];
+            // 设置媒体播放器视图大小
+            _playerViewController.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            [window.rootViewController presentViewController:_playerViewController animated:YES completion:nil];
+            
         }
     }else
     {
@@ -180,14 +243,10 @@
         // 3、配置媒体播放控制器
         AVPlayerViewController *_playerViewController = [[AVPlayerViewController alloc]  init];
         // 设置媒体源数据
-       NSString*  urlStr = [NSString stringWithFormat:@"%@",array[indexPath.row-1]];
+        NSString*  urlStr = [NSString stringWithFormat:@"%@",array[indexPath.row]];
         NSString* Str = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
         NSURL *url;
         if ([urlStr containsString:@"myqcloud.com"]) {
-            
-            
-            
-            
             url = [NSURL URLWithString:urlStr];
             
         }else{
@@ -214,8 +273,11 @@
         // 设置媒体播放器视图大小
         _playerViewController.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         [window.rootViewController presentViewController:_playerViewController animated:YES completion:nil];
-
+        
     }
+    
+    
+    
 }
 
 -(void)selectButtonClick:(UIButton *)sender

@@ -7,9 +7,9 @@
 //
 
 #import "TLTableView.h"
-#import "FaceSignModel.h"
+#import "SurveyModel.h"
 @interface FaceSignTableView : TLTableView
 
-@property (nonatomic , strong)NSMutableArray <FaceSignModel *>*model;
+@property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
 
 @end

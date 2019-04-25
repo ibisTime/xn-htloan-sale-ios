@@ -13,5 +13,5 @@
 @property (nonatomic , copy)NSString *code;
 
 @property (nonatomic , strong)SurveyModel *surveyModel;
-
+@property (nonatomic , copy)NSString *note;
 @end

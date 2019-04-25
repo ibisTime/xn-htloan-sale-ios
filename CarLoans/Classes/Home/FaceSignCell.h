@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FaceSignModel.h"
+#import "SurveyModel.h"
 @interface FaceSignCell : UITableViewCell
 
-@property (nonatomic , strong)FaceSignModel *model;
+@property (nonatomic , strong)SurveyModel *model;
 
 @property (nonatomic , strong)UIButton *button;
 

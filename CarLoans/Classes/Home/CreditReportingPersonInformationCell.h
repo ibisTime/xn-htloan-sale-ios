@@ -23,4 +23,5 @@
 
 @property (nonatomic , strong)SurveyDetailsModel *model;
 @property (nonatomic , strong)SurveyModel *model1;
+@property (nonatomic , strong)SurveyModel *model2;
 @end

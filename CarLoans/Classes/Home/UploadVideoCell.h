@@ -23,6 +23,7 @@
 @property (nonatomic,strong)UICollectionView *collectionView;
 @property (nonatomic,strong)NSArray *collectDataArray;
 @property (nonatomic , copy)NSString *selectStr;
-
+//是否允许编辑
+@property (nonatomic , assign)BOOL isEditor;
 
 @end

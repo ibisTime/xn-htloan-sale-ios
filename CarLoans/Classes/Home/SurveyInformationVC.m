@@ -8,6 +8,7 @@
 
 #import "SurveyInformationVC.h"
 #import "SurveyInformationTableView.h"
+#import "CreditResultsVC.h"
 @interface SurveyInformationVC ()<RefreshDelegate>
 @property (nonatomic , strong)SurveyInformationTableView *tableView;
 @end
@@ -27,12 +28,17 @@
     self.tableView.backgroundColor = kBackgroundColor;
 //    vc.model = [SurvuyPeopleModel mj_objectWithKeyValues:self.model.creditUserList[index - 1000]]
     self.tableView.model = [SurvuyPeopleModel mj_objectWithKeyValues:_dataDic];
+    self.tableView.node = self.node;
     [self.view addSubview:self.tableView];
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if (indexPath.section == 3) {
+        CreditResultsVC *vc = [CreditResultsVC new];
+        vc.dataDic = self.dataDic;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index

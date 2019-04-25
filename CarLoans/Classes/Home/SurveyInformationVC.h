@@ -11,6 +11,8 @@
 @interface SurveyInformationVC : BaseViewController
 
 @property (nonatomic , strong)NSDictionary *dataDic;
+
+@property (nonatomic , copy)NSString *node;
 //@property (nonatomic , strong)SurvuyPeopleModel *model;
 
 @end

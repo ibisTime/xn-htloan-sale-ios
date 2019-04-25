@@ -10,7 +10,7 @@
 
 @interface SurveyModel : NSObject
 
-
+@property (nonatomic , copy)NSString *loanBank;
 @property (nonatomic , copy)NSString *curNodeCode;
 @property (nonatomic , copy)NSString *teamName;
 @property (nonatomic , copy)NSString *opera;
@@ -37,16 +37,26 @@
 @property (nonatomic , copy)NSString *loanBankName;
 @property (nonatomic , strong)NSDictionary *creditUser;
 @property (nonatomic , strong)NSArray *creditUserList;
-
+//@property (nonatomic , assign)CGFloat loanAmount;
 @property (nonatomic , copy)NSString *bankCode;
 
 @property (nonatomic , copy)NSString *dkAmount;
 @property (nonatomic , copy)NSString *status;
 @property (nonatomic , copy)NSString *zfStatus;
 @property (nonatomic , copy)NSString *ywyUser;
-
+//@property (nonatomic , strong) NSDictionary *creditUser;
 @property (nonatomic , strong)NSDictionary *credit;
 @property (nonatomic , strong)NSArray *attachments;
 @property (nonatomic , strong)NSArray *bizTasks;
 @property (nonatomic , strong)NSArray *bizLogs;
+
+
+
+@property (nonatomic , copy)NSString *applyUserName;
+
+
+
+@property (nonatomic , copy)NSString *intevCurNodeCode;
+
+
 @end

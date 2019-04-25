@@ -14,7 +14,7 @@
 {
 #ifdef DEBUG
     NSMutableString *logString = [NSMutableString stringWithString:@"\n\n**************************************************************\n*                       Request Start                        *\n**************************************************************\n\n"];
-    
+
     [logString appendFormat:@"API Name:\t\t%@\n", apiName];
     [logString appendFormat:@"Method:\t\t\t%@\n", httpMethod];
     [logString appendFormat:@"Params:\n%@", requestParams];
@@ -25,6 +25,8 @@
     
 #endif
 }
+
+
 
 + (void)logDebugInfoWithResponse:(NSURLResponse *)response apiName:(NSString *)apiName resposeString:(NSString *)responseString request:(NSURLRequest *)request error:(NSError *)error
 {

@@ -10,4 +10,5 @@
 
 @interface FaceSignVC : BaseViewController
 @property (nonatomic ,assign) BOOL isSign;
+@property (nonatomic , strong)NSArray *intevCurNodeCodeList;
 @end

@@ -53,14 +53,6 @@
 @property (nonatomic , strong)NSMutableArray *CompanyVideoArray;
 //其他视频
 @property (nonatomic , strong)NSMutableArray *OtherVideoArray;
-
-//银行视频
-@property (nonatomic , strong)NSMutableArray *BankVideoDataArray;
-//公司视频
-@property (nonatomic , strong)NSMutableArray *CompanyVideoDataArray;
-//其他视频
-@property (nonatomic , strong)NSMutableArray *OtherVideoDataArray;
-
 //银行面签照片
 @property (nonatomic , strong)NSMutableArray *BankSignArray;
 //银行合同照片
@@ -201,11 +193,8 @@
             if (self.BankVideoArray.count == 0) {
                 self.BankVideoArray = [NSMutableArray array];
             }
-            if (self.BankVideoDataArray.count == 0) {
-                self.BankVideoDataArray = [NSMutableArray array];
-            }
             [self.BankVideoArray addObject:data];
-            [self.BankVideoDataArray addObject:data];
+
             self.tableView.BankVideoArray = self.BankVideoArray;
         }
             break;
@@ -214,11 +203,9 @@
             if (self.CompanyVideoArray.count ==0) {
                 self.CompanyVideoArray = [NSMutableArray array];
             }
-            if (self.CompanyVideoDataArray.count ==0) {
-                self.CompanyVideoDataArray = [NSMutableArray array];
-            }
+
             [self.CompanyVideoArray addObject:data];
-            [self.CompanyVideoDataArray addObject:data];
+
             self.tableView.CompanyVideoArray = self.CompanyVideoArray;
         }
             break;
@@ -227,12 +214,10 @@
             if (self.OtherVideoArray.count ==0) {
                 self.OtherVideoArray = [NSMutableArray array];
             }
-            if (self.OtherVideoDataArray.count ==0) {
-                self.OtherVideoDataArray = [NSMutableArray array];
-            }
+
             [self.OtherVideoArray addObject:data];
             self.tableView.OtherVideoArray = self.OtherVideoArray;
-            [self.OtherVideoDataArray addObject:data];
+
 
         }
             break;
@@ -311,9 +296,7 @@
     _BankVideoArray = [NSMutableArray array];
     _CompanyVideoArray = [NSMutableArray array];
     _OtherVideoArray = [NSMutableArray array];
-    _BankVideoDataArray = [NSMutableArray array];
-    _CompanyVideoDataArray = [NSMutableArray array];
-    _OtherVideoDataArray = [NSMutableArray array];
+
     _BankSignArray = [NSMutableArray array];
     _BankContractArray = [NSMutableArray array];
     _CompanyContractArray = [NSMutableArray array];
@@ -322,92 +305,59 @@
 
     [self navigativeView];
     [self initTableView];
-    [self loadHistoryList];
-//    self.isJoin = YES;
-//    self.strid = @"546547";
+    [self FaceToFaceContent];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadEndMovieUrlOut) name:@"KsingOut" object:nil];
 }
 
-
-//
-- (void)loadHistoryList
+-(void)FaceToFaceContent
 {
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"632146";
-    http.parameters[@"code"] = _model.code;
-
-    http.showView = self.view;
-    //    [_interviewPicArray componentsJoinedByString:@"||"]
-    [http postWithSuccess:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-        http.parameters[@"bankVideo"] = [_BankVideoDataArray componentsJoinedByString:@"||"];
-        http.parameters[@"companyVideo"] = [_CompanyVideoDataArray componentsJoinedByString:@"||"];
-        
-        http.parameters[@"otherVideo"] = [_OtherVideoDataArray componentsJoinedByString:@"||"];
-        http.parameters[@"bankPhoto"] = Str1;
-        http.parameters[@"bankContract"] = Str2;
-        http.parameters[@"companyContract"] = Str3;
-        http.parameters[@"advanceFundAmountPdf"] = Str4;
-        http.parameters[@"interviewOtherPdf"] = Str5;
-        self.BankVideoDataArray = [responseObject[@"data"][@"bankVideo"] componentsSeparatedByString:@"||"].mutableCopy;
-        self.CompanyVideoDataArray = [responseObject[@"data"][@"companyVideo"] componentsSeparatedByString:@"||"].mutableCopy;
-         self.OtherVideoDataArray = [responseObject[@"data"][@"otherVideo"] componentsSeparatedByString:@"||"].mutableCopy;
-        self.BankSignArray = [responseObject[@"data"][@"bankPhoto"] componentsSeparatedByString:@"||"].mutableCopy;
-        self.BankContractArray = [responseObject[@"data"][@"bankContract"] componentsSeparatedByString:@"||"].mutableCopy;
-        self.CompanyContractArray = [responseObject[@"data"][@"companyContract"] componentsSeparatedByString:@"||"].mutableCopy;
-        self.MoneyArray = [responseObject[@"data"][@"advanceFundAmountPdf"] componentsSeparatedByString:@"||"].mutableCopy;
-        self.otherArray = [responseObject[@"data"][@"interviewOtherPdf"] componentsSeparatedByString:@"||"].mutableCopy;
-        NSString *str = self.BankSignArray[0];
-        if ([str isEqualToString:@""]) {
-            self.BankSignArray = [NSMutableArray array];
+    for (int i = 0; i < self.model.attachments.count; i ++) {
+        NSDictionary *dic = self.model.attachments[i];
+//        银行视频
+        if ([dic[@"kname"] isEqualToString:@"bank_video"]) {
+            
+            self.BankVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
-        NSString *str1 = self.BankContractArray[0];
-        if ([str1 isEqualToString:@""]) {
-            self.BankContractArray = [NSMutableArray array];
+//        公司视频
+        if ([dic[@"kname"] isEqualToString:@"company_video"]) {
+            self.CompanyVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
-        NSString *str2 = self.CompanyContractArray[0];
-        if ([str2 isEqualToString:@""]) {
-            self.CompanyContractArray = [NSMutableArray array];
+//        其他视频
+        if ([dic[@"kname"] isEqualToString:@"other_video"]) {
+            self.OtherVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
-        NSString *str3 = self.otherArray[0];
-        if ([str3 isEqualToString:@""]) {
-            self.otherArray = [NSMutableArray array];
+//        银行面签图片
+        if ([dic[@"kname"] isEqualToString:@"bank_photo"]) {
+            self.BankSignArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
         }
-        NSString *str4 = self.MoneyArray[0];
-        if ([str4 isEqualToString:@""]) {
-            self.MoneyArray = [NSMutableArray array];
+//        银行合同
+        if ([dic[@"kname"] isEqualToString:@"bank_contract"]) {
+            self.BankContractArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
         }
-        
-        NSString *str5 = self.BankVideoDataArray[0];
-        if ([str5 isEqualToString:@""]) {
-            self.BankVideoDataArray = [NSMutableArray array];
+//        公司合同
+        if ([dic[@"kname"] isEqualToString:@"company_contract"]) {
+            self.CompanyContractArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
         }
-        NSString *str6 = self.CompanyVideoDataArray[0];
-        if ([str6 isEqualToString:@""]) {
-            self.CompanyVideoDataArray = [NSMutableArray array];
+//        资金划转授权书
+        if ([dic[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
+            self.MoneyArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
         }
-        NSString *str7 = self.OtherVideoDataArray[0];
-        if ([str7 isEqualToString:@""]) {
-            self.OtherVideoDataArray = [NSMutableArray array];
+//        面签其他资料
+        if ([dic[@"kname"] isEqualToString:@"interview_other_pdf"]) {
+            self.otherArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
         }
-        self.BankVideoArray = self.BankVideoDataArray.mutableCopy;
-        self.CompanyVideoArray = self.CompanyVideoDataArray.mutableCopy;
-        self.OtherVideoArray = self.OtherVideoDataArray.mutableCopy;
-
-        self.tableView.BankVideoArray = self.BankVideoDataArray;
-        self.tableView.CompanyVideoArray = self.CompanyVideoDataArray;
-        self.tableView.OtherVideoArray = self.OtherVideoDataArray;
+        self.tableView.BankVideoArray = self.BankVideoArray;
+        self.tableView.CompanyVideoArray = self.CompanyVideoArray;
+        self.tableView.OtherVideoArray = self.OtherVideoArray;
         self.tableView.BankSignArray = self.BankSignArray;
         self.tableView.BankContractArray = self.BankContractArray;
         self.tableView.CompanyContractArray = self.CompanyContractArray;
         self.tableView.MoneyArray = self.MoneyArray;
         self.tableView.otherArray = self.otherArray;
         [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
-    
+    }
 }
+
 
 //上传图片   视频
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
@@ -426,16 +376,16 @@
         if (index == 0)
         {
             [self.BankVideoArray removeObjectAtIndex:sender.tag - 1000];
-            if (self.BankVideoDataArray.count > 0) {
-                [self.BankVideoDataArray removeObjectAtIndex:sender.tag - 1000];
+            if (self.BankVideoArray.count > 0) {
+                [self.BankVideoArray removeObjectAtIndex:sender.tag - 1000];
 
             }
         }
         else if (index == 1)
         {
             [self.CompanyVideoArray removeObjectAtIndex:sender.tag - 1000];
-            if (self.CompanyVideoDataArray.count > 0) {
-                [self.CompanyVideoDataArray removeObjectAtIndex:sender.tag - 1000];
+            if (self.CompanyVideoArray.count > 0) {
+                [self.CompanyVideoArray removeObjectAtIndex:sender.tag - 1000];
 
             }
         }
@@ -443,8 +393,8 @@
         {
 
             [self.OtherVideoArray removeObjectAtIndex:sender.tag - 1000];
-            if (self.OtherVideoDataArray.count > 0) {
-                [self.OtherVideoDataArray removeObjectAtIndex:sender.tag - 1000];
+            if (self.OtherVideoArray.count > 0) {
+                [self.OtherVideoArray removeObjectAtIndex:sender.tag - 1000];
 
             }
         }
@@ -507,11 +457,11 @@
     if (sender.tag == 10001) {
         
     }else{
-        if (_BankVideoDataArray.count == 0) {
+        if (_BankVideoArray.count == 0) {
             [TLAlert alertWithInfo:@"请上传银行视频"];
             return;
         }
-        if (_CompanyVideoDataArray.count == 0) {
+        if (_CompanyVideoArray.count == 0) {
             [TLAlert alertWithInfo:@"请上传公司视频"];
             return;
         }
@@ -532,8 +482,8 @@
     //    [_interviewPicArray componentsJoinedByString:@"||"]
     http.parameters[@"code"] = _model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"bankVideo"] = [_BankVideoDataArray componentsJoinedByString:@"||"];
-    http.parameters[@"companyVideo"] = [_CompanyVideoDataArray componentsJoinedByString:@"||"];
+    http.parameters[@"bankVideo"] = [_BankVideoArray componentsJoinedByString:@"||"];
+    http.parameters[@"companyVideo"] = [_CompanyVideoArray componentsJoinedByString:@"||"];
     if (sender.tag == 10001) {
         http.parameters[@"isSend"] = @"0";
 
@@ -542,7 +492,7 @@
 
     }
 
-    http.parameters[@"otherVideo"] = [_OtherVideoDataArray componentsJoinedByString:@"||"];
+    http.parameters[@"otherVideo"] = [_OtherVideoArray componentsJoinedByString:@"||"];
     http.parameters[@"bankPhoto"] = [self.BankSignArray componentsJoinedByString:@"||"];
     http.parameters[@"bankContract"] = [self.BankContractArray componentsJoinedByString:@"||"];;
     http.parameters[@"companyContract"] = [self.CompanyContractArray componentsJoinedByString:@"||"];;
@@ -831,11 +781,11 @@
                 if (self.BankVideoArray.count == 0) {
                     self.BankVideoArray = [NSMutableArray array];
                 }
-                if (self.BankVideoDataArray.count == 0) {
-                    self.BankVideoDataArray = [NSMutableArray array];
+                if (self.BankVideoArray.count == 0) {
+                    self.BankVideoArray = [NSMutableArray array];
                 }
                 [self.BankVideoArray addObject:self.signPlayUrl];
-                [self.BankVideoDataArray addObject:self.signPlayUrl];
+                [self.BankVideoArray addObject:self.signPlayUrl];
                 self.tableView.BankVideoArray = self.BankVideoArray;
                 [self.tableView reloadData];
                 self.isroomManger = NO;

@@ -8,13 +8,15 @@
 
 #import "FaceSignVC.h"
 #import "FaceSignTableView.h"
-#import "FaceSignModel.h"
+//#import "FaceSignModel.h"
 #import "FaceSignMQVC.h"
+#import "SurveyDetailsVC.h"
+#import "FaceSignAuditVC.h"
 @interface FaceSignVC ()<RefreshDelegate>
 
 @property (nonatomic,  strong)FaceSignTableView *tableView;
 
-@property (nonatomic , strong)NSMutableArray <FaceSignModel *>*model;
+@property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
 
 @end
 
@@ -49,8 +51,29 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-    FaceSignMQVC *vc = [[FaceSignMQVC alloc]init];
-    vc.model = self.model[index];
+    
+    if ([_model[index].curNodeCode isEqualToString:@"a3"]) {
+        FaceSignAuditVC *vc = [FaceSignAuditVC new];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        FaceSignMQVC *vc = [[FaceSignMQVC alloc]init];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
+}
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SurveyDetailsVC *vc = [SurveyDetailsVC new];
+    vc.code = _model[indexPath.row].code;
+    vc.surveyModel = _model[indexPath.row];
+    
+    if ([_model[indexPath.row].curNodeCode isEqualToString:@"a3"]) {
+        vc.note = @"征信审核";
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -62,15 +85,12 @@
     helper.code = @"632148";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-//    helper.parameters[@"isInterview"] = [NSString stringWithFormat:@"%d",self.isSign];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
-
-    NSArray *array = @[@"b01",@"b02",@"b03",@"b01x"];
-    helper.parameters[@"intevCurNodeCodeList"] = array;
+    helper.parameters[@"intevCurNodeCodeList"] = self.intevCurNodeCodeList;
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
-    [helper modelClass:[FaceSignModel class]];
+    [helper modelClass:[SurveyModel class]];
 
     [self.tableView addRefreshAction:^{
         [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
@@ -78,10 +98,10 @@
             //去除没有的币种
             NSLog(@" ==== %@",objs);
 
-            NSMutableArray <FaceSignModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
+            NSMutableArray <SurveyModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
             [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 
-                FaceSignModel *model = (FaceSignModel *)obj;
+                SurveyModel *model = (SurveyModel *)obj;
                 [shouldDisplayCoins addObject:model];
 
             }];
@@ -102,10 +122,10 @@
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             //去除没有的币种
-            NSMutableArray <FaceSignModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
+            NSMutableArray <SurveyModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
             [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 
-                FaceSignModel *model = (FaceSignModel *)obj;
+                SurveyModel *model = (SurveyModel *)obj;
                 //                if ([[CoinUtil shouldDisplayCoinArray] indexOfObject:currencyModel.currency ] != NSNotFound ) {
 
                 [shouldDisplayCoins addObject:model];

@@ -95,7 +95,7 @@
 @property (nonatomic , copy)NSString *approveNote; //抵押地点
 @property (nonatomic , copy)NSString *carNumber; //车牌号
 @property (nonatomic , copy)NSString *areaName; //区域经理
-
+//@property (nonatomic , strong) NSDictionary *creditUser;
 @property (nonatomic , strong) NSDictionary *gpsApply;
 
 @end

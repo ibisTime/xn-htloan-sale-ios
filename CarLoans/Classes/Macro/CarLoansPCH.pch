@@ -44,7 +44,7 @@
 #define NODE @"node"
 #import "TLUploadManager.h"
 #define BOUNCEDDATA @"BouncedData"
-
+#import "NSString+Check.h"
 
 #define ADDADPEOPLENOTICE @"ADDADPEOPLENOTICE"
 #define ApplyForCancellation @"ApplyForCancellation"

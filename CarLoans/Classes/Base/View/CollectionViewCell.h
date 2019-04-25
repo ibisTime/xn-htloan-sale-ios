@@ -20,7 +20,12 @@
 
 @property (nonatomic, assign) id<CustomCollectionDelegate> delegate;
 @property (nonatomic,strong)UICollectionView *collectionView;
+//图片数组
 @property (nonatomic,strong)NSArray *collectDataArray;
+//标题
 @property (nonatomic , copy)NSString *selectStr;
+//是否允许编辑
+@property (nonatomic , assign)BOOL isEditor;
+
 
 @end

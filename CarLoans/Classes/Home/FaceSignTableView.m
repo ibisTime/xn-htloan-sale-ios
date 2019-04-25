@@ -51,6 +51,13 @@
     if (self.model.count > 0) {
         cell.model = self.model[indexPath.row];
     }
+    SurveyModel *model = self.model[indexPath.row];
+    if ([model.intevCurNodeCode isEqualToString:@"b02"]) {
+        [cell.button setTitle:@"面签审核" forState:(UIControlStateNormal)];
+    }else
+    {
+        [cell.button setTitle:@"面签" forState:(UIControlStateNormal)];
+    }
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.button.tag = indexPath.row;
     
@@ -78,7 +85,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FaceSignModel *model = self.model[indexPath.row];
+    SurveyModel *model = self.model[indexPath.row];
     if ([model.intevCurNodeCode isEqualToString:@"b01"] ||[model.intevCurNodeCode isEqualToString:@"b02"] ||[model.intevCurNodeCode isEqualToString:@"b03"] || [model.intevCurNodeCode isEqualToString:@"b01x"])
     {
         return 295;

@@ -82,18 +82,19 @@
             }
         }
         
-        UITextField *textField = [self.view viewWithTag:3000];
-        if ([textField.text isEqualToString:@""]) {
-            [TLAlert alertWithInfo:@"请输入说明"];
-            return;
-        }
+//        UITextField *textField = [self.view viewWithTag:3000];
+//        if ([textField.text isEqualToString:@""]) {
+//            [TLAlert alertWithInfo:@"请输入说明"];
+//            return;
+//        }
         
         TLNetworking *http = [TLNetworking new];
         http.code = @"632111";
         http.showView = self.view;
+//        http.parameters[@"approveNote"] = textField.text;
         http.parameters[@"creditList"] = _creditList;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-        http.parameters[@"creditCode"] = _surveyModel.code;
+        http.parameters[@"bizCode"] = _surveyModel.code;
         
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"录入成功"];
@@ -115,6 +116,7 @@
 {
     SurveyInformationVC *vc = [SurveyInformationVC new];
     vc.dataDic = self.surveyModel.creditUserList[index - 123];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

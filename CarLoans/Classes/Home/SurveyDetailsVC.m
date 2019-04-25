@@ -46,6 +46,7 @@
 {
     SurveyInformationVC *vc = [SurveyInformationVC new];
     vc.dataDic = self.model.creditUserList[index - 123];
+    vc.node = self.note;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -10,6 +10,13 @@
 		1F00AE6F226EBB9600A8E15D /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE6D226EBB9600A8E15D /* NSDictionary+Extension.m */; };
 		1F00AE72226F2C1F00A8E15D /* AdmissionDetailsTableView15.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE71226F2C1F00A8E15D /* AdmissionDetailsTableView15.m */; };
 		1F00AE75226F2EC300A8E15D /* AdmissionDetailsTableView16.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE74226F2EC300A8E15D /* AdmissionDetailsTableView16.m */; };
+		1F00AE782270045A00A8E15D /* NSString+Check.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE762270045A00A8E15D /* NSString+Check.m */; };
+		1F00AE7E22718A2A00A8E15D /* CreditReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE7D22718A2A00A8E15D /* CreditReviewVC.m */; };
+		1F00AE8122718A3F00A8E15D /* CreditReviewTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE8022718A3F00A8E15D /* CreditReviewTableView.m */; };
+		1F00AE842271976600A8E15D /* CreditResultsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE832271976600A8E15D /* CreditResultsVC.m */; };
+		1F00AE872271978200A8E15D /* CreditResultsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE862271978200A8E15D /* CreditResultsTableView.m */; };
+		1F00AE8B2271BD9B00A8E15D /* FaceSignAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE8A2271BD9B00A8E15D /* FaceSignAuditVC.m */; };
+		1F00AE8E2271BDAC00A8E15D /* FaceSignAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE8D2271BDAC00A8E15D /* FaceSignAuditTableView.m */; };
 		1F19AA67220193030090BF84 /* LoadSDK.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1F19A9EB220193020090BF84 /* LoadSDK.sh */; };
 		1F19AA68220193030090BF84 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19A9ED220193020090BF84 /* ImSDK.framework */; };
 		1F19AA69220193030090BF84 /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19A9EE220193020090BF84 /* TLSSDK.framework */; };
@@ -177,7 +184,6 @@
 		1F1EF32A2269ACD800EADA25 /* ReferenceInputTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF3292269ACD800EADA25 /* ReferenceInputTableView.m */; };
 		1F1EF3332269BC0700EADA25 /* ReferenceInputDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF3322269BC0700EADA25 /* ReferenceInputDetailsVC.m */; };
 		1F1EF3362269BC1C00EADA25 /* ReferenceInputDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF3352269BC1C00EADA25 /* ReferenceInputDetailsTableView.m */; };
-		1F1EF3392269BC3200EADA25 /* ReferenceInputDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF3382269BC3200EADA25 /* ReferenceInputDetailsCell.m */; };
 		5F4B98A33D181725064D3D42 /* libPods-CarLoans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB36E56BF8F7E87912612D2 /* libPods-CarLoans.a */; };
 		7A0592A520FDCBD100075FE8 /* SurveyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592A420FDCBD100075FE8 /* SurveyVC.m */; };
 		7A0592AC20FDCD0E00075FE8 /* SurveyACreditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592AB20FDCD0E00075FE8 /* SurveyACreditVC.m */; };
@@ -496,6 +502,20 @@
 		1F00AE71226F2C1F00A8E15D /* AdmissionDetailsTableView15.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdmissionDetailsTableView15.m; sourceTree = "<group>"; };
 		1F00AE73226F2EC200A8E15D /* AdmissionDetailsTableView16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdmissionDetailsTableView16.h; sourceTree = "<group>"; };
 		1F00AE74226F2EC300A8E15D /* AdmissionDetailsTableView16.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdmissionDetailsTableView16.m; sourceTree = "<group>"; };
+		1F00AE762270045A00A8E15D /* NSString+Check.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Check.m"; sourceTree = "<group>"; };
+		1F00AE772270045A00A8E15D /* NSString+Check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Check.h"; sourceTree = "<group>"; };
+		1F00AE7C22718A2A00A8E15D /* CreditReviewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditReviewVC.h; sourceTree = "<group>"; };
+		1F00AE7D22718A2A00A8E15D /* CreditReviewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditReviewVC.m; sourceTree = "<group>"; };
+		1F00AE7F22718A3F00A8E15D /* CreditReviewTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditReviewTableView.h; sourceTree = "<group>"; };
+		1F00AE8022718A3F00A8E15D /* CreditReviewTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditReviewTableView.m; sourceTree = "<group>"; };
+		1F00AE822271976600A8E15D /* CreditResultsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditResultsVC.h; sourceTree = "<group>"; };
+		1F00AE832271976600A8E15D /* CreditResultsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditResultsVC.m; sourceTree = "<group>"; };
+		1F00AE852271978200A8E15D /* CreditResultsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditResultsTableView.h; sourceTree = "<group>"; };
+		1F00AE862271978200A8E15D /* CreditResultsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditResultsTableView.m; sourceTree = "<group>"; };
+		1F00AE892271BD9B00A8E15D /* FaceSignAuditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceSignAuditVC.h; sourceTree = "<group>"; };
+		1F00AE8A2271BD9B00A8E15D /* FaceSignAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceSignAuditVC.m; sourceTree = "<group>"; };
+		1F00AE8C2271BDAC00A8E15D /* FaceSignAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceSignAuditTableView.h; sourceTree = "<group>"; };
+		1F00AE8D2271BDAC00A8E15D /* FaceSignAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceSignAuditTableView.m; sourceTree = "<group>"; };
 		1F19A9EB220193020090BF84 /* LoadSDK.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = LoadSDK.sh; sourceTree = "<group>"; };
 		1F19A9ED220193020090BF84 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
 		1F19A9EE220193020090BF84 /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TLSSDK.framework; sourceTree = "<group>"; };
@@ -741,8 +761,6 @@
 		1F1EF3322269BC0700EADA25 /* ReferenceInputDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReferenceInputDetailsVC.m; sourceTree = "<group>"; };
 		1F1EF3342269BC1C00EADA25 /* ReferenceInputDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReferenceInputDetailsTableView.h; sourceTree = "<group>"; };
 		1F1EF3352269BC1C00EADA25 /* ReferenceInputDetailsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReferenceInputDetailsTableView.m; sourceTree = "<group>"; };
-		1F1EF3372269BC3200EADA25 /* ReferenceInputDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReferenceInputDetailsCell.h; sourceTree = "<group>"; };
-		1F1EF3382269BC3200EADA25 /* ReferenceInputDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReferenceInputDetailsCell.m; sourceTree = "<group>"; };
 		7A0592A320FDCBD100075FE8 /* SurveyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyVC.h; sourceTree = "<group>"; };
 		7A0592A420FDCBD100075FE8 /* SurveyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurveyVC.m; sourceTree = "<group>"; };
 		7A0592AA20FDCD0E00075FE8 /* SurveyACreditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyACreditVC.h; sourceTree = "<group>"; };
@@ -1386,6 +1404,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F00AE79227189EC00A8E15D /* CreditReview征信审核 */ = {
+			isa = PBXGroup;
+			children = (
+				1F00AE7B22718A1000A8E15D /* Controller */,
+				1F00AE7A22718A0D00A8E15D /* View */,
+			);
+			name = "CreditReview征信审核";
+			sourceTree = "<group>";
+		};
+		1F00AE7A22718A0D00A8E15D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F00AE7F22718A3F00A8E15D /* CreditReviewTableView.h */,
+				1F00AE8022718A3F00A8E15D /* CreditReviewTableView.m */,
+				1F00AE852271978200A8E15D /* CreditResultsTableView.h */,
+				1F00AE862271978200A8E15D /* CreditResultsTableView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1F00AE7B22718A1000A8E15D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F00AE7C22718A2A00A8E15D /* CreditReviewVC.h */,
+				1F00AE7D22718A2A00A8E15D /* CreditReviewVC.m */,
+				1F00AE822271976600A8E15D /* CreditResultsVC.h */,
+				1F00AE832271976600A8E15D /* CreditResultsVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1F00AE882271B10600A8E15D /* FaceSignAudit面签审核 */ = {
+			isa = PBXGroup;
+			children = (
+				1F00AE892271BD9B00A8E15D /* FaceSignAuditVC.h */,
+				1F00AE8A2271BD9B00A8E15D /* FaceSignAuditVC.m */,
+				1F00AE8C2271BDAC00A8E15D /* FaceSignAuditTableView.h */,
+				1F00AE8D2271BDAC00A8E15D /* FaceSignAuditTableView.m */,
+			);
+			name = "FaceSignAudit面签审核";
+			sourceTree = "<group>";
+		};
 		1F19A9EA220193020090BF84 /* ILiveSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2145,8 +2205,6 @@
 			children = (
 				1F1EF3342269BC1C00EADA25 /* ReferenceInputDetailsTableView.h */,
 				1F1EF3352269BC1C00EADA25 /* ReferenceInputDetailsTableView.m */,
-				1F1EF3372269BC3200EADA25 /* ReferenceInputDetailsCell.h */,
-				1F1EF3382269BC3200EADA25 /* ReferenceInputDetailsCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3713,6 +3771,8 @@
 		7AB29E5320FD8EB30014FCB3 /* Nsstring */ = {
 			isa = PBXGroup;
 			children = (
+				1F00AE772270045A00A8E15D /* NSString+Check.h */,
+				1F00AE762270045A00A8E15D /* NSString+Check.m */,
 				7AB29E5420FD8EB30014FCB3 /* NSString+Date.h */,
 				7AB29E5520FD8EB30014FCB3 /* NSString+Date.m */,
 				7AB29E5620FD8EB30014FCB3 /* NSString+Extension.h */,
@@ -3778,6 +3838,7 @@
 		7AB29EAF20FDC88A0014FCB3 /* Survey征信 */ = {
 			isa = PBXGroup;
 			children = (
+				1F00AE79227189EC00A8E15D /* CreditReview征信审核 */,
 				1F1EF3222269AC6E00EADA25 /* ReferenceInput征信录入 */,
 				1F1EF3212269A71C00EADA25 /* 废弃 */,
 				7A0592A620FDCCC300075FE8 /* ACredit发起征信 */,
@@ -3836,6 +3897,7 @@
 		7AB29EB320FDC8DB0014FCB3 /* FaceSign面签 */ = {
 			isa = PBXGroup;
 			children = (
+				1F00AE882271B10600A8E15D /* FaceSignAudit面签审核 */,
 				7A10E62D20FDCA3E00676F8E /* Controller */,
 				7A10E62C20FDCA3C00676F8E /* Model */,
 				7A10E62B20FDCA3A00676F8E /* View */,
@@ -4175,7 +4237,6 @@
 				1F1EF1F222647AC900EADA25 /* AnnouncementVC.m in Sources */,
 				B82ED84821D248960019AAE0 /* CLTextFiled.m in Sources */,
 				7AB29E8E20FD8EB30014FCB3 /* ImageUtil.m in Sources */,
-				1F1EF3392269BC3200EADA25 /* ReferenceInputDetailsCell.m in Sources */,
 				1F1EF2A22265CE5900EADA25 /* AccessApplyModel.m in Sources */,
 				7A0F8E7F2119BA9F00BA8358 /* SettlementAuditModel.m in Sources */,
 				7AB29E8720FD8EB30014FCB3 /* TLPageDataHelper.m in Sources */,
@@ -4187,6 +4248,7 @@
 				7AB29E9220FD8EB30014FCB3 /* UIButton+Custom.m in Sources */,
 				7A945550210EFDB600BDFD33 /* FaceSignVC.m in Sources */,
 				7A13AEBE21104E4400B8F785 /* QNIP.m in Sources */,
+				1F00AE8B2271BD9B00A8E15D /* FaceSignAuditVC.m in Sources */,
 				1F1EF31A2268717E00EADA25 /* CreditDetailsPeopleTableView.m in Sources */,
 				7A3582962113FA14006FB5B5 /* GPSInstallationDetailsVC.m in Sources */,
 				B820201021CBB00500237E01 /* CarMortgageVC2.m in Sources */,
@@ -4198,6 +4260,7 @@
 				7A0592C520FDF10E00075FE8 /* ADPeopleTableView.m in Sources */,
 				7AB29E6620FD8EB30014FCB3 /* MJExtensionConst.m in Sources */,
 				7A945545210EB14F00BDFD33 /* ImageBrowserViewController.m in Sources */,
+				1F00AE842271976600A8E15D /* CreditResultsVC.m in Sources */,
 				7A13AEDC21107F3100B8F785 /* UsedCarInformationCell.m in Sources */,
 				7AB29DA320FD85710014FCB3 /* main.m in Sources */,
 				B84E200121875DE000D1E0DC /* CarTableViewCell.m in Sources */,
@@ -4205,6 +4268,7 @@
 				7A13AE25210F26A200B8F785 /* IQTitleBarButtonItem.m in Sources */,
 				7A0F8E9F211B0D3800BA8358 /* SelPlayerConfiguration.m in Sources */,
 				1F1EF2202265B26000EADA25 /* MessageDetailsVC.m in Sources */,
+				1F00AE8E2271BDAC00A8E15D /* FaceSignAuditTableView.m in Sources */,
 				7A94556F210EFFFE00BDFD33 /* DataTransferVC.m in Sources */,
 				7AB29E6820FD8EB30014FCB3 /* MJProperty.m in Sources */,
 				7A3582902113F668006FB5B5 /* GPSInstallationModel.m in Sources */,
@@ -4308,6 +4372,7 @@
 				7AB29E6E20FD8EB30014FCB3 /* NSObject+MJProperty.m in Sources */,
 				1F1EF22C2265C08B00EADA25 /* AdmissionDetailsCell.m in Sources */,
 				B84F22C4219BC8BD00886ADF /* BankRequestTB.m in Sources */,
+				1F00AE782270045A00A8E15D /* NSString+Check.m in Sources */,
 				1F1EF2DA2266D6E300EADA25 /* AdmissionDetailsTableView6.m in Sources */,
 				7A13AECB21104E4400B8F785 /* QNResponseInfo.m in Sources */,
 				1F1EF3332269BC0700EADA25 /* ReferenceInputDetailsVC.m in Sources */,
@@ -4359,6 +4424,7 @@
 				7AB29E7B20FD8EB30014FCB3 /* SelectedListView.m in Sources */,
 				7A94554A210EC18C00BDFD33 /* TLImagePicker.m in Sources */,
 				7A0F8E852119C33400BA8358 /* SettlementAuditDetailsTableView.m in Sources */,
+				1F00AE872271978200A8E15D /* CreditResultsTableView.m in Sources */,
 				7AACF31921018B0C0066D36B /* SurveyModel.m in Sources */,
 				7AB29E7620FD8EB30014FCB3 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				7A13AE36211002A400B8F785 /* SurveyInformationVC.m in Sources */,
@@ -4408,6 +4474,7 @@
 				7A13AECA21104E4400B8F785 /* QNUrlSafeBase64.m in Sources */,
 				7A13AED121104E4400B8F785 /* QNResumeUpload.m in Sources */,
 				7A3582BF2117EB50006FB5B5 /* BankLendingVC.m in Sources */,
+				1F00AE8122718A3F00A8E15D /* CreditReviewTableView.m in Sources */,
 				7A3582642112A8D8006FB5B5 /* FaceSignMQVC.m in Sources */,
 				7A13AEB421104E4300B8F785 /* QNNiuDns.m in Sources */,
 				7A13ADE5210F159800B8F785 /* ClaimsVC.m in Sources */,
@@ -4429,6 +4496,7 @@
 				7A3582C82117F040006FB5B5 /* BankLendingDetailsTableView.m in Sources */,
 				7A35828021130625006FB5B5 /* NSDate+Extension.m in Sources */,
 				B84F22CD219C24C600886ADF /* InsideSureHomeVC.m in Sources */,
+				1F00AE7E22718A2A00A8E15D /* CreditReviewVC.m in Sources */,
 				1F1EF32A2269ACD800EADA25 /* ReferenceInputTableView.m in Sources */,
 				1F1EF2E32266D6FA00EADA25 /* AdmissionDetailsTableView9.m in Sources */,
 				7A13AEBC21104E4300B8F785 /* QNGetAddrInfo.m in Sources */,

@@ -149,7 +149,7 @@
         [http postWithSuccess:^(id responseObject) {
             self.bankArray = responseObject[@"data"];
             for (int i = 0; i < _bankArray.count; i ++) {
-                if ([_DetailsModel.loanBankCode isEqualToString:_bankArray[i][@"code"]]) {
+                if ([_DetailsModel.loanBank isEqualToString:_bankArray[i][@"code"]]) {
                     _tableView.bankStr = _bankArray[i][@"bankName"];
                 }
             }
@@ -161,6 +161,9 @@
     } failure:^(NSError *error) {
         WGLog(@"%@",error);
     }];
+    
+    
+    
 }
 
 - (void)initTableView {
@@ -237,11 +240,13 @@
     TLNetworking *http = [TLNetworking new];
     if ([_state isEqualToString:@"1"]) {
 
+//        修改
         http.code = @"632112";
         http.parameters[@"code"] = self.model.code;
-        http.parameters[@"creditCode"] = self.model.code;
+        http.parameters[@"bizCode"] = self.model.code;
     }else
     {
+//        发起
         http.code = @"632110";
     }
 
@@ -257,6 +262,7 @@
     http.parameters[@"creditUserList"] = peopleArray;
     http.parameters[@"note"] = textField2.text;
     if (bizType == 1) {
+//        二手车
         http.parameters[@"secondCarReport"] = secondCarReport;
     }
 
@@ -315,7 +321,7 @@
     model.ModelDelegate = self;
     NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i < self.bankArray.count; i ++) {
-        [array addObject:[NSString stringWithFormat:@"%@%@",self.bankArray[i][@"bankName"],self.bankArray[i][@"subbranch"]]];
+        [array addObject:[NSString stringWithFormat:@"%@-%@",self.bankArray[i][@"bankName"],self.bankArray[i][@"subbranch"]]];
     }
     [model CustomBouncedView:array setState:@"100"];
 }

@@ -71,7 +71,7 @@
     return self;
 }
 
--(void)setModel:(FaceSignModel *)model
+-(void)setModel:(SurveyModel *)model
 {
     _codeLabel.text = [NSString stringWithFormat:@"%@",model.code];
     _stateLabel.text = [[BaseModel user]note:model.intevCurNodeCode];
@@ -95,7 +95,7 @@
     NSArray *InformationArray = @[
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",model.creditUser[@"userName"]],
-                                  [NSString stringWithFormat:@"%.2f",model.loanAmount/1000],
+                                  [NSString stringWithFormat:@"%.2f",[model.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",model.loanBankName],
                                   [NSString stringWithFormat:@"%@",[model.applyDatetime convertToDetailDate]]];
 

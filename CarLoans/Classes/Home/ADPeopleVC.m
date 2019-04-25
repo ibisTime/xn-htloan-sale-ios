@@ -158,9 +158,9 @@
     for (int j = 0; j < interviewPic.count ; j ++) {
         [self.interviewPicArray addObject:interviewPic[j]];
     }
-    self.idNoFront = _dataDic[@"idNoFront"];
+    self.idNoFront = _dataDic[@"idFront"];
     self.tableView.idNoFront = self.idNoFront;
-    self.idNoReverse = _dataDic[@"idNoReverse"];
+    self.idNoReverse = _dataDic[@"idReverse"];
     self.tableView.idNoReverse = self.idNoReverse;
 
     [self.tableView reloadData];

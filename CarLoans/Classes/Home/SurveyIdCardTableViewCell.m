@@ -71,7 +71,9 @@
 
 - (void)buttonClick:(UIButton *)sender
 {
-    NSArray *array = @[[photoModel.idNoFront convertImageUrl],[photoModel.idNoReverse convertImageUrl]];
+    
+    
+    NSArray *array = @[[BaseModel convertNull:[photoModel.idFront convertImageUrl]],[BaseModel convertNull:[photoModel.idReverse convertImageUrl]]];
 
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
 
@@ -84,8 +86,8 @@
 -(void)setModel:(SurvuyPeopleModel *)model
 {
     photoModel = model;
-    [imageView1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.idNoFront convertImageUrl]]]];
-    [imageView2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.idNoReverse convertImageUrl]]]];
+    [imageView1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.idFront convertImageUrl]]]];
+    [imageView2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.idReverse convertImageUrl]]]];
 }
 
 @end
