@@ -27,7 +27,7 @@
     InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:Information forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.model.count > 0) {
-//        cell.accessApplyModel = self.model[indexPath.row];
+        cell.surveyModel = self.model[indexPath.row];
     }
     return cell;
 }

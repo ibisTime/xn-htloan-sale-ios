@@ -7,11 +7,11 @@
 //
 
 #import "BaseViewController.h"
-#import "CustomerModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CreditDetailsVC : BaseViewController
-@property (nonatomic , strong)CustomerModel *model;
+@property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic , strong)NSArray *dataArray;
 @end
 

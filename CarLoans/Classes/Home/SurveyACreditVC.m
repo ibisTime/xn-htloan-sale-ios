@@ -214,6 +214,7 @@
         if (index == 1234) {
             vc.isFirstEntry = YES;
         }
+        vc.state = self.state;
         [self.navigationController pushViewController:vc animated:YES];
 
     }

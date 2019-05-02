@@ -82,7 +82,7 @@
 + (BOOL) isBlankString:(NSString *)string;
 + (BOOL)isBlankDictionary:(NSDictionary *)dic;
 + (NSString*)convertNull:(id)object;
-
++ (NSString*)convertNullReturnStr:(id)object;
 //存储用户信息
 - (void)saveUserInfo:(NSDictionary *)userInfo;
 
@@ -99,6 +99,7 @@
 -(NSString *)note:(NSString *)curNodeCode;
 //查找角色............
 -(NSString *)setParentKey:(NSString *)parentKey setDkey:(NSString *)dkey;
+-(NSString *)setParentKey:(NSString *)parentKey setDvalue:(NSString *)dvalue;
 -(void)phoneCode:(UIButton *)sender;
 
 @end

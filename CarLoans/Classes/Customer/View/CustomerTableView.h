@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomerModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CustomerTableView : TLTableView
-@property (nonatomic , strong)NSMutableArray <CustomerModel *>*models;
+@property (nonatomic , strong)NSMutableArray <SurveyModel *>*models;
 @property (nonatomic , strong)NSArray *dataArray;
 @end
 

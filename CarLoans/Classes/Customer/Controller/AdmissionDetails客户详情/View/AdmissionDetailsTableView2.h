@@ -7,11 +7,10 @@
 //
 
 #import "TLTableView.h"
-#import "CustomerModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdmissionDetailsTableView2 : TLTableView
-@property (nonatomic , strong)CustomerModel *model;
+@property (nonatomic , strong)SurveyModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

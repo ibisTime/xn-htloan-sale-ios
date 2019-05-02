@@ -12,7 +12,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor whiteColor];
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 50)/3  , (SCREEN_WIDTH - 50)/3);
+        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 50 - 107)/3  , (SCREEN_WIDTH - 50 - 107)/3);
         layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
         float numberToRound;
         int result;
@@ -55,7 +55,8 @@
     kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
     if ([array[indexPath.row] hasPrefix:@"http"]) {
         [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",array[indexPath.row]]]];
-    }else
+    }
+    else
     {
         [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[array[indexPath.row] convertImageUrl]]]];
     }

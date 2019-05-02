@@ -9,11 +9,11 @@
 #import "CustomerVC.h"
 #import "CustomerTableView.h"
 #import "CustomerDetailsVC.h"
-#import "CustomerModel.h"
+
 #import "AdmissionDetailsVC.h"
 @interface CustomerVC ()<RefreshDelegate>
 @property (nonatomic , strong)CustomerTableView *tableView;
-@property (nonatomic , strong)NSMutableArray <CustomerModel *>*models;
+@property (nonatomic , strong)NSMutableArray <SurveyModel *>*models;
 
 
 
@@ -67,18 +67,18 @@
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632515";
-//    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-//    helper.parameters[@"ywyUser"] = [USERDEFAULTS objectForKey:USER_ID];
+    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
+    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
-    [helper modelClass:[CustomerModel class]];
+    [helper modelClass:[SurveyModel class]];
     [self.tableView addRefreshAction:^{
         [weakSelf cdbiz_statusLoadData];
         [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
-            NSMutableArray <CustomerModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
+            NSMutableArray <SurveyModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
             [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                CustomerModel *model = (CustomerModel *)obj;
+                SurveyModel *model = (SurveyModel *)obj;
                 [shouldDisplayCoins addObject:model];
             }];
             weakSelf.models = shouldDisplayCoins;
@@ -92,10 +92,10 @@
         
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
-            NSMutableArray <CustomerModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
+            NSMutableArray <SurveyModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
             [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                CustomerModel *model = (CustomerModel *)obj;
+                SurveyModel *model = (SurveyModel *)obj;
                 [shouldDisplayCoins addObject:model];
             }];
             weakSelf.models = shouldDisplayCoins;

@@ -43,6 +43,8 @@
         float numberToRound;
         int result;
 
+        _isEditor = YES;
+        
         numberToRound = (array.count + 1.0)/4.0;
         result = (int)ceilf(numberToRound);
         NSLog(@"roundf(%.2f) = %d", numberToRound, result);
@@ -150,10 +152,8 @@
             url = [NSURL URLWithString:urlStr];
         
     }else{
-        
+    
         NSString* Str = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
-       
-        
         if ([[NSFileManager defaultManager] fileExistsAtPath:Str]) {
             urlStr = Str;
             url = [NSURL fileURLWithPath:urlStr];
@@ -163,21 +163,29 @@
             url = [NSURL URLWithString:urlStr];
         }
     }
-    
-//    urlStr = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
-    
     // 获取视频第一帧
     NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:opts];
-    AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:urlAsset];
-    generator.appliesPreferredTrackTransform = YES;
-    generator.maximumSize = CGSizeMake(size.width, size.height);
+    
+    
+    
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:opts];\
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:urlAsset];
+    
+    gen.appliesPreferredTrackTransform = YES;
+    
+    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+    
     NSError *error = nil;
-    CGImageRef img = [generator copyCGImageAtTime:CMTimeMake(0, 10) actualTime:NULL error:&error];
-    {
-        return [UIImage imageWithCGImage:img];
-    }
-    return nil;
+    
+    CMTime actualTime;
+    
+    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    
+    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
+    
+    CGImageRelease(image);
+    
+    return thumb;
 }
 
 -(void)setIsEditor:(BOOL)isEditor

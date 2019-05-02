@@ -256,17 +256,17 @@
 
     NSString *authPdf = [_authPdfArray componentsJoinedByString:@"||"];
     NSString *interviewPic = [_interviewPicArray componentsJoinedByString:@"||"];
-    NSDictionary *dataDic = @{
-        @"userName":[BaseModel convertNull:textField1.text],
-        @"mobile":[BaseModel convertNull:textField2.text],
-        @"loanRole":_loanRole,
-        @"relation":_relation,
-        @"idNo":[BaseModel convertNull:textField3.text],
-        @"idNoFront":_idNoFront,
-        @"idNoReverse":_idNoReverse,
-        @"authPdf":authPdf,
-        @"interviewPic":interviewPic
-        };
+    NSDictionary *dataDic  = @{
+                                      @"userName":[BaseModel convertNull:textField1.text],
+                                      @"mobile":[BaseModel convertNull:textField2.text],
+                                      @"loanRole":_loanRole,
+                                      @"relation":_relation,
+                                      @"idNo":[BaseModel convertNull:textField3.text],
+                                      @"idFront":_idNoFront,
+                                      @"idReverse":_idNoReverse,
+                                      @"authPdf":authPdf,
+                                      @"interviewPic":interviewPic
+                                      };
 
     NSNotification *notification =[NSNotification notificationWithName:ADDADPEOPLENOTICE object:nil userInfo:dataDic];
     [[NSNotificationCenter defaultCenter] postNotification:notification];

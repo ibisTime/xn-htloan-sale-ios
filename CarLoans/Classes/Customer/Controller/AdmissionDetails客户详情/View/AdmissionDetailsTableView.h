@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdmissionDetailsTableView : TLTableView
-
+@property (nonatomic , strong)SurveyModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

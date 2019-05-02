@@ -16,6 +16,7 @@
 @property (nonatomic , strong)NSArray *CompanyVideoArray;
 //其他视频
 @property (nonatomic , strong)NSArray *OtherVideoArray;
+
 //银行面签照片
 @property (nonatomic , strong)NSArray *BankSignArray;
 //银行合同照片

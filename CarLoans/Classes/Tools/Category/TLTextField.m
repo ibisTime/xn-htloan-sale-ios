@@ -30,7 +30,6 @@
         [leftBgView addSubview:leftLbl];
         
         self.leftLbl = leftLbl;
-        
         self.leftView = leftBgView;
 
         

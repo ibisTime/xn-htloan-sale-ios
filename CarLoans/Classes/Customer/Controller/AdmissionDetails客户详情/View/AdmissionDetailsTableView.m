@@ -59,8 +59,16 @@
 //        cell.backgroundColor = kBackgroundColor;
 //        cell.nameLbl.textColor = kHexColor(@"#666666");
 //    }
-    NSArray *array = @[@"基本信息",@"征信列表",@"贷款车辆信息",@"申请人基本信息",@"工作情况",@"其他基本信息",@"配偶信息",@"面签",@"财务垫资",@"银行放款",@"车辆抵押",@"发保合",@"GPS安装列表",@"流转日志",@"还款计划",@"附件池"];
+    NSArray *array = @[@"基本信息",@"征信列表",@"面签",@"贷款车辆信息",@"申请人基本信息",@"工作情况",@"其他基本信息",@"配偶信息",@"财务垫资",@"银行放款",@"车辆抵押",@"发保合",@"GPS安装列表",@"流转日志",@"还款计划",@"附件池"];
     cell.nameLbl.text = array[indexPath.row];
+    
+    if (cell.height < 40) {
+        cell.nameLbl.hidden = YES;
+    }else
+    {
+        cell.nameLbl.hidden = NO;
+    }
+    
     return cell;
     
     
@@ -78,6 +86,67 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    NSString *code;
+//    if (![self.model.intevCurNodeCode hasPrefix:@"b0"] ) {
+//        code = self.model.curNodeCode;
+//    }else
+//    {
+//        if ([self.model.intevCurNodeCode isEqualToString:@"b03"]) {
+//            code = self.model.curNodeCode;
+//        }else
+//        {
+//            code = self.model.intevCurNodeCode;
+//        }
+//
+//    }
+//
+//
+//    if ([code isEqualToString:@"a1"] || [code isEqualToString:@"a2"] || [code isEqualToString:@"a3"] || [code isEqualToString:@"a1x"] || [code isEqualToString:@"b01"]) {
+//        if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 13 || indexPath.row == 15) {
+//            return 40;
+//        }
+//        else
+//        {
+//            return 0;
+//        }
+//    }
+//    if ([code isEqualToString:@"b01x"] || [code isEqualToString:@"b02"] || [code isEqualToString:@"b03"]  || [code isEqualToString:@"b1"]) {
+//        if (indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 2 || indexPath.row == 13 || indexPath.row == 15)
+//        {
+//            return 40;
+//        }else
+//        {
+//            return 0;
+//        }
+//    }
+//    if ([code isEqualToString:@"b1x"] || [code isEqualToString:@"b2"]|| [code isEqualToString:@"b3"]|| [code isEqualToString:@"b4"] || [code isEqualToString:@"b5"]|| [code isEqualToString:@"b6"]|| [code isEqualToString:@"b7"]) {
+//        if (indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 2 ||indexPath.row == 3 || indexPath.row == 4 ||indexPath.row == 5 || indexPath.row == 6|| indexPath.row == 7 || indexPath.row == 13 || indexPath.row == 15) {
+//            return 40;
+//        }else
+//        {
+//            return 0;
+//        }
+//    }
+//    if ([code isEqualToString:@"c1"]) {
+//        if (indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 2 ||indexPath.row == 3 || indexPath.row == 4 ||indexPath.row == 5 || indexPath.row == 6|| indexPath.row == 7 ||indexPath.row == 8 || indexPath.row == 9|| indexPath.row == 10 || indexPath.row == 13 || indexPath.row == 15) {
+//            return 40;
+//        }else
+//        {
+//            return 0;
+//        }
+//    }
+//    if ([code isEqualToString:@"d1"]) {
+//        if (indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 2 ||indexPath.row == 3 || indexPath.row == 4 ||indexPath.row == 5 || indexPath.row == 6|| indexPath.row == 7 ||indexPath.row == 8 || indexPath.row == 9|| indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 13 || indexPath.row == 15) {
+//            return 40;
+//        }else
+//        {
+//            return 0;
+//        }
+//    }
+    
+    
+    
+    
     return 40;
 }
 

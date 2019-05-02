@@ -154,7 +154,7 @@
 
     _passWordTextFd = [[UITextField alloc]initWithFrame:CGRectMake(15, 55, SCREEN_WIDTH - 30, 55)];
     _passWordTextFd.font = HGfont(16);
-    _passWordTextFd.delegate = self;
+//    _passWordTextFd.delegate = self;
 
     _passWordTextFd.placeholder = @"请输入密码";
     _passWordTextFd.secureTextEntry = YES;

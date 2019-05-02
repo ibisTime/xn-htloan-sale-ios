@@ -18,6 +18,9 @@
         UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, 107 - 15, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(11) textColor:kHexColor(@"#666666")];
         self.nameLbl = nameLbl;
         [self addSubview:nameLbl];
+        
+        
+        
     }
     return self;
 }

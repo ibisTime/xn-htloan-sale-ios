@@ -19,6 +19,9 @@
 //面签
 #import "FaceSignVC.h"
 #import "FaceSignHomeVC.h"
+
+#import "AccessApplyVC.h"
+
 //GPS安装
 #import "GPSInstallationVC.h"
 #import "GPSHomeVC.h"
@@ -78,7 +81,7 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 7;
+        return 9;
     }
     if (section == 1) {
         return 5;
@@ -94,7 +97,7 @@
 
     HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCollectionViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        NSArray *array = @[@"征信发起",@"征信录入",@"征信审核",@"面签录入",@"面签审核",@"准入申请",@"审核岗"];
+        NSArray *array = @[@"征信发起",@"征信派单",@"征信录入",@"征信审核",@"面签录入",@"面签审核",@"准入申请",@"审核岗",@"制卡"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
@@ -189,11 +192,20 @@
                 SurveyTGVC *vc = [SurveyTGVC new];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.curNodeCodeList = @[@"a2"];
-                vc.title = @"录入征信结果";
+                vc.title = @"征信派单";
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 2:
+            {
+                SurveyTGVC *vc = [SurveyTGVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.curNodeCodeList = @[@"a2"];
+                vc.title = @"录入征信结果";
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 3:
             {
                 SurveyTGVC *vc = [SurveyTGVC new];
                 vc.hidesBottomBarWhenPushed = YES;
@@ -202,7 +214,7 @@
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
-            case 3:
+            case 4:
             {
                 FaceSignVC *vc = [FaceSignVC new];
                 vc.hidesBottomBarWhenPushed = YES;
@@ -211,7 +223,7 @@
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
-            case 4:
+            case 5:
             {
                 FaceSignVC *vc = [FaceSignVC new];
                 vc.hidesBottomBarWhenPushed = YES;
@@ -220,14 +232,31 @@
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
-            case 5:
-            {
-                
-            }
-                break;
             case 6:
             {
-                
+                AccessApplyVC *vc = [AccessApplyVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"准入申请";
+                vc.curNodeCodeList = @[@"b1",@"b1x"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 7:
+            {
+                AccessApplyVC *vc = [AccessApplyVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"准入审核";
+                vc.curNodeCodeList = @[@"b2",@"b3",@"b4",@"b5",@"b6",@"b7"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 8:
+            {
+                AccessApplyVC *vc = [AccessApplyVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"制卡";
+                vc.curNodeCodeList = @[];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
                 
@@ -251,6 +280,7 @@
             {
                 ProtectUsVC *vc = [ProtectUsVC new];
                 vc.hidesBottomBarWhenPushed = YES;
+                vc.curNodeCodeList = @[@"c1"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
@@ -527,19 +557,7 @@
 
 -(void)RedDotPromptDic:(NSDictionary *)dict
 {
-    TLNetworking *http = [TLNetworking new];
 
-    http.isShowMsg = NO;
-    http.code = @"632912";
-    http.parameters[@"roleCode"] = dict[@"roleCode"];
-    http.parameters[@"teamCode"] = dict[@"teamCode"];
-    [http postWithSuccess:^(id responseObject) {
-
-//        self.tableView.RedDotDic = responseObject[@"data"];
-//        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-
-    }];
 }
 
 - (void)setUserInfoWithDict:(NSDictionary *)dict

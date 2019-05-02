@@ -20,7 +20,7 @@
 @property (nonatomic,strong) AllMessageVC * vc1;
 @property (nonatomic,strong) TodoViewController * vc2;
 @property (nonatomic,strong) AnnouncementVC * vc3;
-#define kPageCount 3
+#define kPageCount 2
 #define kButton_H 50
 #define kMrg 10
 #define kTag 1000
@@ -82,34 +82,34 @@
 
 #pragma mark - 设置控制的每一个子控制器
 - (void)setupChildViewControll{
-    self.vc1 = [[AllMessageVC alloc]init];
+//    self.vc1 = [[AllMessageVC alloc]init];
     self.vc2 = [[TodoViewController alloc]init];
     self.vc3 = [[AnnouncementVC alloc]init];
     
     //指定该控制器为其子控制器
-    [self addChildViewController:_vc1];
+//    [self addChildViewController:_vc1];
     [self addChildViewController:_vc2];
     [self addChildViewController:_vc3];
     
     
     //将视图加入ScrollView上
-    [_scroll addSubview:_vc1.view];
+//    [_scroll addSubview:_vc1.view];
     [_scroll addSubview:_vc2.view];
     [_scroll addSubview:_vc3.view];
     
     //设置两个控制器的尺寸
-    _vc1.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    _vc2.view.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    _vc3.view.frame = CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    _vc1.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _vc2.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _vc3.view.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
 }
 #pragma mark - 设置分页按钮
 - (void)setupPageButton{
     //button的index值应当从0开始
     
-    UIButton *btn = [self setupButtonWithTitle:@"全部" Index:0];
-    [self setupButtonWithTitle:@"待办事项" Index:1];
-    [self setupButtonWithTitle:@"系统公告" Index:2];
+    UIButton *btn = [self setupButtonWithTitle:@"待办事项" Index:0];
+    [self setupButtonWithTitle:@"系统公告" Index:1];
+//    [self setupButtonWithTitle:@"系统公告" Index:2];
     
     [btn setTitleColor:MainColor forState:(UIControlStateNormal)];
     self.selectBtn = btn;

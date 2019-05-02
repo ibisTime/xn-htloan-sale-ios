@@ -71,7 +71,7 @@
     return self;
 }
 
--(void)setModel:(CustomerModel *)model
+-(void)setModel:(SurveyModel *)model
 {
     _model = model;
     codeLbl.text = model.code;

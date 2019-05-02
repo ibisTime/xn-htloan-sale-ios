@@ -18,12 +18,19 @@
 #import "AppMacro.h"
 #import "TLNetworking.h"
 #import <SVProgressHUD.h>
+#import <SDWebImage/UIButton+WebCache.h>
 #import "BaseModel.h"
 #import "CKAlertViewController.h"
 #import "MJExtension.h"
+#import "TopModel.h"
+#import "ToApplyForEncapsulationCell.h"
+#define ToApplyForEncapsulation @"ToApplyForEncapsulationCell"
+#import "ToApplyForUpdateImgCell.h"
+#define ToApplyForUpdateImg @"ToApplyForUpdateImgCell"
 #import "TLPageDataHelper.h"
 #import <MJRefresh.h>
 #import "LEEAlert.h"
+#import "WSDatePickerView.h"
 #import <UIImageView+WebCache.h>
 #import "NSString+Extension.h"
 #import "LoginVC.h"
@@ -34,6 +41,7 @@
 #import "VideoCell.h"
 #import "UIView+Frame.h"
 #import "NSDictionary+Extension.h"
+#import "AdmissionDetailsVC.h"
 #define TOKEN_ID @"token_id"
 #define USER_ID @"user_id"
 #define USERDATA @"USERDATA"
@@ -45,7 +53,7 @@
 #import "TLUploadManager.h"
 #define BOUNCEDDATA @"BouncedData"
 #import "NSString+Check.h"
-
+#import "SurveyModel.h"
 #define ADDADPEOPLENOTICE @"ADDADPEOPLENOTICE"
 #define ApplyForCancellation @"ApplyForCancellation"
 #define LOADDATAPAGE @"LOADDATAPAGE"
@@ -95,6 +103,7 @@
 #define LoadingString @"加载中"
 
 #define CarLoansWeakSelf  __weak typeof(self) weakSelf = self;
+#define ProjectWeakSelf  __weak typeof(self) weakSelf = self;
 //自定义高效率的 NSLog
 #ifdef DEBUG
 #define WGLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])

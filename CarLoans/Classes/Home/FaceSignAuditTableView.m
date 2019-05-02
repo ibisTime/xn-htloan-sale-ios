@@ -26,7 +26,7 @@
     if (self = [super initWithFrame:frame style:style]) {
         self.dataSource = self;
         self.delegate = self;
-        [self registerClass:[UploadVideoCell class] forCellReuseIdentifier:UploadVideo];
+//        [self registerClass:[UploadVideoCell class] forCellReuseIdentifier:UploadVideo];
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CarSettledUpdataPhoto];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         
@@ -50,20 +50,39 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section < 3) {
-        UploadVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadVideo forIndexPath:indexPath];
+        
+        // 定义cell标识  每个cell对应一个自己的标识
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+        // 通过不同标识创建cell实例
+        UploadVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
+        if (!cell) {
+            cell = [[UploadVideoCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (indexPath.section == 0) {
+                cell.collectDataArray = self.BankVideoArray;
+            }else if (indexPath.section == 1)
+            {
+                cell.collectDataArray = self.CompanyVideoArray;
+            }else
+            {
+                cell.collectDataArray = self.OtherVideoArray;
+            }
+        }
+        
+//        UploadVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadVideo forIndexPath:indexPath];
+//        static NSString *CellIdentifier = @"Cell";
+//        UploadVideoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//        if (cell == nil) {
+//            cell = [[UploadVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//
+//        }
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         cell.isEditor = NO;
         cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
-        if (indexPath.section == 0) {
-            cell.collectDataArray = self.BankVideoArray;
-        }else if (indexPath.section == 1)
-        {
-            cell.collectDataArray = self.CompanyVideoArray;
-        }else
-        {
-            cell.collectDataArray = self.OtherVideoArray;
-        }
+        
         return cell;
     }
     
@@ -75,9 +94,6 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.delegate = self;
-        NSArray *array = @[@"请上传银行面签照片",@"请上传银行合同",@"请上传公司合同",@"请上传资金转账授权书",@"请上传其他资料"];
-        //    cell.photoStr = array[indexPath.section - 3];
-        //    cell.photoBtn.tag = indexPath.section;
         cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
         cell.isEditor = NO;
         switch (indexPath.section) {

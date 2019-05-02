@@ -71,14 +71,14 @@
     cell.backgroundColor = [UIColor clearColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame: cell.bounds];
     kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
-    image.image = kImage(@"默认");
+//    image.image = ;
     
-//    if ([array[indexPath.row] hasPrefix:@"http"]) {
-//        [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",array[indexPath.row]]]];
-//    }else
-//    {
-//        [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[array[indexPath.row] convertImageUrl]]]];
-//    }
+    if ([array[indexPath.row] hasPrefix:@"http"]) {
+        [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",array[indexPath.row]]] placeholderImage:kImage(@"默认")];
+    }else
+    {
+        [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[array[indexPath.row] convertImageUrl]]] placeholderImage:kImage(@"默认")];
+    }
     [cell addSubview:image];
     return cell;
 }

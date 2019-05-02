@@ -23,7 +23,6 @@
         self.delegate = self;
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[ChooseCell class] forCellReuseIdentifier:Choose];
-        [self registerClass:[UploadVideoCell class] forCellReuseIdentifier:UploadVideo];
         [self registerClass:[CarSettledUpdataPhotoCell class] forCellReuseIdentifier:CellIdentifier];
         [self registerClass:[CarGounpCell class] forCellReuseIdentifier:CarGounp];
 

@@ -15,5 +15,5 @@
 @property (nonatomic , assign)NSInteger selectRow;
 
 @property (nonatomic , assign)BOOL isFirstEntry;
-
+@property (nonatomic , copy)NSString *state;
 @end

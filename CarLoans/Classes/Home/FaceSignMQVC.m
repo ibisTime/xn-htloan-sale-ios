@@ -190,9 +190,9 @@
     switch (self.selectInt) {
         case 0:
         {
-            if (self.BankVideoArray.count == 0) {
-                self.BankVideoArray = [NSMutableArray array];
-            }
+//            if (self.BankVideoArray.count == 0) {
+//                self.BankVideoArray = [NSMutableArray array];
+//            }
             [self.BankVideoArray addObject:data];
 
             self.tableView.BankVideoArray = self.BankVideoArray;
@@ -200,9 +200,9 @@
             break;
         case 1:
         {
-            if (self.CompanyVideoArray.count ==0) {
-                self.CompanyVideoArray = [NSMutableArray array];
-            }
+//            if (self.CompanyVideoArray.count ==0) {
+//                self.CompanyVideoArray = [NSMutableArray array];
+//            }
 
             [self.CompanyVideoArray addObject:data];
 
@@ -211,9 +211,9 @@
             break;
         case 2:
         {
-            if (self.OtherVideoArray.count ==0) {
-                self.OtherVideoArray = [NSMutableArray array];
-            }
+//            if (self.OtherVideoArray.count ==0) {
+//                self.OtherVideoArray = [NSMutableArray array];
+//            }
 
             [self.OtherVideoArray addObject:data];
             self.tableView.OtherVideoArray = self.OtherVideoArray;
@@ -235,18 +235,18 @@
     switch (_selectInt) {
         case 3:
         {
-            if (self.BankSignArray.count == 0) {
-                self.BankSignArray = [NSMutableArray array];
-            }
+//            if (self.BankSignArray.count == 0) {
+//                self.BankSignArray = [NSMutableArray array];
+//            }
             [self.BankSignArray addObject:data];
             self.tableView.BankSignArray = self.BankSignArray;
         }
             break;
         case 4:
         {
-            if (self.BankContractArray.count == 0) {
-                self.BankContractArray = [NSMutableArray array];
-            }
+//            if (self.BankContractArray.count == 0) {
+//                self.BankContractArray = [NSMutableArray array];
+//            }
             [self.BankContractArray addObject:data];
             self.tableView.BankContractArray = self.BankContractArray;
 
@@ -254,9 +254,9 @@
             break;
         case 5:
         {
-            if (self.CompanyContractArray.count == 0) {
-                self.CompanyContractArray = [NSMutableArray array];
-            }
+//            if (self.CompanyContractArray.count == 0) {
+//                self.CompanyContractArray = [NSMutableArray array];
+//            }
             [self.CompanyContractArray addObject:data];
             self.tableView.CompanyContractArray = self.CompanyContractArray;
 
@@ -264,9 +264,9 @@
             break;
         case 6:
         {
-            if (self.MoneyArray.count == 0) {
-                self.MoneyArray = [NSMutableArray array];
-            }
+//            if (self.MoneyArray.count == 0) {
+//                self.MoneyArray = [NSMutableArray array];
+//            }
             [self.MoneyArray addObject:data];
             self.tableView.MoneyArray = self.MoneyArray;
 
@@ -274,9 +274,9 @@
             break;
         case 7:
         {
-            if (self.otherArray.count == 0) {
-                self.otherArray = [NSMutableArray array];
-            }
+//            if (self.otherArray.count == 0) {
+//                self.otherArray = [NSMutableArray array];
+//            }
             [self.otherArray addObject:data];
             self.tableView.otherArray = self.otherArray;
 
@@ -315,7 +315,6 @@
         NSDictionary *dic = self.model.attachments[i];
 //        银行视频
         if ([dic[@"kname"] isEqualToString:@"bank_video"]) {
-            
             self.BankVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
 //        公司视频
@@ -375,7 +374,7 @@
         NSLog(@"删除 %ld",index);
         if (index == 0)
         {
-            [self.BankVideoArray removeObjectAtIndex:sender.tag - 1000];
+//            [self.BankVideoArray removeObjectAtIndex:sender.tag - 1000];
             if (self.BankVideoArray.count > 0) {
                 [self.BankVideoArray removeObjectAtIndex:sender.tag - 1000];
 
@@ -383,7 +382,7 @@
         }
         else if (index == 1)
         {
-            [self.CompanyVideoArray removeObjectAtIndex:sender.tag - 1000];
+//            [self.CompanyVideoArray removeObjectAtIndex:sender.tag - 1000];
             if (self.CompanyVideoArray.count > 0) {
                 [self.CompanyVideoArray removeObjectAtIndex:sender.tag - 1000];
 
@@ -392,7 +391,7 @@
         else if (index == 2)
         {
 
-            [self.OtherVideoArray removeObjectAtIndex:sender.tag - 1000];
+//            [self.OtherVideoArray removeObjectAtIndex:sender.tag - 1000];
             if (self.OtherVideoArray.count > 0) {
                 [self.OtherVideoArray removeObjectAtIndex:sender.tag - 1000];
 

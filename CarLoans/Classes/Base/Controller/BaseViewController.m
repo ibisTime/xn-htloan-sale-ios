@@ -18,8 +18,9 @@
 {
     if (!_LeftBackbButton) {
         _LeftBackbButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _LeftBackbButton.frame = CGRectMake(0, 0, 44, 44);
+        _LeftBackbButton.frame = CGRectMake(0, 0, 44, 100);
         [_LeftBackbButton setImage:HGImage(@"返回") forState:(UIControlStateNormal)];
+        _LeftBackbButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     return _LeftBackbButton;
 }

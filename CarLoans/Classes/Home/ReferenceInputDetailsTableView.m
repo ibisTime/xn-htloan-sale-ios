@@ -103,12 +103,23 @@
     }
     
    
-    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+//    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+    // 定义cell标识  每个cell对应一个自己的标识
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+    // 通过不同标识创建cell实例
+    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
+    if (!cell) {
+        cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name = @"征信结果说明";
     self.cell = cell;
     cell.nameText = @"请输入说明";
-    cell.TextFidStr = self.creditNote;
+    if ([BaseModel isBlankString:cell.nameTextField.text] == YES) {
+        cell.TextFidStr = self.creditNote;
+    }
+    
     cell.nameTextField.tag = 3000;
     return cell;
 }

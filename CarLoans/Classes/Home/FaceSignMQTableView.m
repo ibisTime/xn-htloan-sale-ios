@@ -46,10 +46,17 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section < 3) {
-        UploadVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadVideo forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.delegate = self;
-        cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
+//        static NSString *CellIdentifier = @"Cell";
+        // 定义cell标识  每个cell对应一个自己的标识
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+        // 通过不同标识创建cell实例
+        UploadVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
+        if (!cell) {
+            cell = [[UploadVideoCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
         if (indexPath.section == 0) {
             cell.collectDataArray = self.BankVideoArray;
         }else if (indexPath.section == 1)
@@ -59,6 +66,10 @@
         {
             cell.collectDataArray = self.OtherVideoArray;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+        cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
+        
         return cell;
     }
 
@@ -78,7 +89,7 @@
         case 3:
         {
             cell.collectDataArray = self.BankSignArray;
-
+            
         }
             break;
         case 4:

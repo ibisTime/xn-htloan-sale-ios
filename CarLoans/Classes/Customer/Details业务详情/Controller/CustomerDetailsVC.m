@@ -71,18 +71,7 @@
         if (indexPath.row == 3) {
             AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
             [self.navigationController pushViewController:vc animated:YES];
-            
-            
-//            NSMutableArray *muArray = [NSMutableArray array];
-//            for (int i = 0; i < self.model.attachments.count; i++) {
-//                [muArray addObject:[self.model.attachments[i][@"url"] convertImageUrl]];
-//            }
-//            NSArray *seleteArray = muArray;
-//            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-//            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
-//                return seleteArray;
-//            }];
-            
+
         }
         if (indexPath.row == 4) {
             AttachmentPoolVC *vc = [AttachmentPoolVC  new];

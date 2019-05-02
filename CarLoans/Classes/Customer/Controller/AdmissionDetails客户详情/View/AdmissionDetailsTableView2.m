@@ -30,7 +30,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return self.model.creditUserList.count;
 }
 
 #pragma mark -- 行数
@@ -43,7 +43,7 @@
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSDictionary *dataDic = self.model.creditUserList[indexPath.section];
     if (indexPath.row == 5) {
         static NSString *CellIdentifier = @"AdmiissionDetailsIDCardCellCell";
         AdmiissionDetailsIDCardCellCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
@@ -51,6 +51,7 @@
             cell = [[AdmiissionDetailsIDCardCellCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.creditUser = dataDic;
         return cell;
     }
     if (indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 9) {
@@ -61,15 +62,16 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         if (indexPath.row == 6) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
+            cell.collectDataArray = [dataDic[@"authPdf"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"征信查询授权书";
         }
         if (indexPath.row == 7) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
+            cell.collectDataArray = [dataDic[@"interviewPic"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"面签照片";
         }
         if (indexPath.row == 9) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
+            NSString *str = [NSString stringWithFormat:@"%@||%@",dataDic[@"dataCreditReport"],dataDic[@"BankCreditReport"]];
+            cell.collectDataArray = [str componentsSeparatedByString:@"||"];
             cell.selectStr = @"征信报告";
         }
         
@@ -84,10 +86,21 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
+
     NSArray *topArray = @[@"姓名",@"于借贷人关系",@"贷款人角色",@"手机号",@"身份证号",@"",@"",@"",@"信用卡使用占比",@"",@"征信结果说明"];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[@"姓名",@"于借贷人关系",@"贷款人角色",@"手机号",@"身份证号",@"",@"",@"",@"0",@"",@"王壮壮，已婚，2018年3月20日，个人消费贷款，期限1年，贷款余额3300元，月供660元；卡授信总额为3000元，已用0元，近半年使用0元"];
+    NSArray *bottomArray = @[[BaseModel convertNullReturnStr:dataDic[@"userName"]],
+                             [[BaseModel user] setParentKey:@"credit_user_relation" setDkey:dataDic[@"relation"]],
+                             [[BaseModel user] setParentKey:@"credit_user_loan_role" setDkey:dataDic[@"loanRole"]],
+                             [BaseModel convertNullReturnStr:dataDic[@"mobile"]],
+                             [BaseModel convertNullReturnStr:dataDic[@"idNo"]],
+                             @"",
+                             @"",
+                             @"",
+                             @"0",
+                             @"",
+                             [BaseModel convertNullReturnStr:dataDic[@"bankCreditResultRemark"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];
@@ -107,27 +120,32 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *dataDic = self.model.creditUserList[indexPath.section];
     if (indexPath.row == 5) {
         return (SCREEN_WIDTH - 107 - 40)/2/210*133 + 47;
     }
     if (indexPath.row == 6) {
+        NSArray *array = [dataDic[@"authPdf"] componentsSeparatedByString:@"||"];
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = (array.count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
     if (indexPath.row == 7) {
+        NSArray *array = [dataDic[@"interviewPic"] componentsSeparatedByString:@"||"];
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = (array.count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }
     if (indexPath.row == 9) {
+        NSString *str = [NSString stringWithFormat:@"%@||%@",dataDic[@"dataCreditReport"],dataDic[@"BankCreditReport"]];
+        NSArray *array = [str componentsSeparatedByString:@"||"];
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = (array.count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }

@@ -10,4 +10,18 @@
 
 @implementation SurveyModel
 
+-(NSString *)bizTypeStr
+{
+    if (!_bizTypeStr) {
+        if ([_bizType integerValue] == 0) {
+            _bizTypeStr = @"新车";
+        }
+        else
+        {
+            _bizTypeStr = @"二手车";
+        }
+    }
+    return _bizTypeStr;
+}
+
 @end

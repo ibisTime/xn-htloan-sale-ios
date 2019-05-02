@@ -52,7 +52,7 @@
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
     
-    if ([_model[index].curNodeCode isEqualToString:@"a3"]) {
+    if ([_model[index].intevCurNodeCode isEqualToString:@"b02"]) {
         FaceSignAuditVC *vc = [FaceSignAuditVC new];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
@@ -67,13 +67,8 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SurveyDetailsVC *vc = [SurveyDetailsVC new];
-    vc.code = _model[indexPath.row].code;
-    vc.surveyModel = _model[indexPath.row];
-    
-    if ([_model[indexPath.row].curNodeCode isEqualToString:@"a3"]) {
-        vc.note = @"征信审核";
-    }
+    AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
+    vc.model = _model[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

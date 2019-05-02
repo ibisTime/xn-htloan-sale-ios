@@ -1,8 +1,8 @@
 #import "ProtectUsVC.h"
 #import "ProtectUsTableView.h"
-#import "AccessApplyModel.h"
+
 @interface ProtectUsVC ()<RefreshDelegate>
-@property (nonatomic , strong)NSMutableArray <AccessApplyModel *>*model;
+@property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
 @property (nonatomic , strong)ProtectUsTableView *tableView;
 @end
 @implementation ProtectUsVC
@@ -39,47 +39,72 @@
 }
 -(void)LoadData
 {
-    MJWeakSelf;
+    
+    CarLoansWeakSelf;
+    
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632145";
+    helper.code = @"632115";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-    helper.parameters[@"fbhPage"] = @"1";
+    helper.parameters[@"curNodeCodeList"] = self.curNodeCodeList;
+    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
-    [helper modelClass:[AccessApplyModel class]];
+    [helper modelClass:[SurveyModel class]];
+    
     [self.tableView addRefreshAction:^{
+        
         [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            
+            //去除没有的币种
             NSLog(@" ==== %@",objs);
-            NSMutableArray <AccessApplyModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
+            
+            NSMutableArray <SurveyModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
             [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                AccessApplyModel *model = (AccessApplyModel *)obj;
+                
+                SurveyModel *model = (SurveyModel *)obj;
                 [shouldDisplayCoins addObject:model];
+                
             }];
+            
+            //
             weakSelf.model = shouldDisplayCoins;
             weakSelf.tableView.model = shouldDisplayCoins;
             [weakSelf.tableView reloadData_tl];
+            
         } failure:^(NSError *error) {
+            
+            
         }];
+        
+        
     }];
+    
     [self.tableView addLoadMoreAction:^{
-        helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-        helper.parameters[@"fbhPage"] = @"1";
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
-            NSMutableArray <AccessApplyModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
+            //去除没有的币种
+            NSMutableArray <SurveyModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
             [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                AccessApplyModel *model = (AccessApplyModel *)obj;
+                
+                SurveyModel *model = (SurveyModel *)obj;
+                //                if ([[CoinUtil shouldDisplayCoinArray] indexOfObject:currencyModel.currency ] != NSNotFound ) {
+                
                 [shouldDisplayCoins addObject:model];
+                //                }
+                
             }];
+            
+            //
             weakSelf.model = shouldDisplayCoins;
             weakSelf.tableView.model = shouldDisplayCoins;
             [weakSelf.tableView reloadData_tl];
+            
         } failure:^(NSError *error) {
         }];
     }];
     [self.tableView beginRefreshing];
 }
+
 @end

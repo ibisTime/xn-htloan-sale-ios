@@ -109,6 +109,32 @@
 
 }
 
++ (NSString*)convertNullReturnStr:(id)object{
+    
+    // 转换空串
+    
+    if ([object isEqual:[NSNull null]]) {
+        return @"暂无";
+    }
+    else if ([object isEqualToString:@""])
+    {
+        return @"暂无";
+    }
+    else if ([object isKindOfClass:[NSNull class]])
+    {
+        return @"暂无";
+    }
+    else if ([object isEqualToString:@"(null)"])
+    {
+        return @"暂无";
+    }
+    else if (object==nil){
+        return @"暂无";
+    }
+    return object;
+    
+}
+
 
 + (BOOL)isBlankDictionary:(NSDictionary *)dic {
     
@@ -256,6 +282,24 @@
         }
     }
     return dvalue;
+}
+
+-(NSString *)setParentKey:(NSString *)parentKey setDvalue:(NSString *)dvalue
+{
+    NSString *dkey;
+    NSMutableArray *dataArray = [NSMutableArray array];
+    NSArray *array = [USERDEFAULTS objectForKey:BOUNCEDDATA];
+    for (int i = 0; i < array.count; i ++) {
+        if ([array[i][@"parentKey"] isEqualToString:parentKey]) {
+            [dataArray addObject:array[i]];
+        }
+    }
+    for (int i = 0; i < dataArray.count; i ++) {
+        if ([dataArray[i][@"dvalue"] isEqualToString:dvalue]) {
+            dkey = dataArray[i][@"dkey"];
+        }
+    }
+    return dkey;
 }
 
 @end

@@ -49,7 +49,7 @@
 
 
 - (void)viewDidLoad {
-    self.title = @"准入单详情";
+    self.title = @"征信详情";
     [self initTableView];
     [self initNavigationController];
 }
@@ -60,6 +60,7 @@
     self.tableView.tag = 100;
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
     
     self.tableView1 = [[AdmissionDetailsTableView1 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
@@ -74,41 +75,44 @@
     self.tableView2.tag = 102;
     [self.view addSubview:self.tableView2];
     
+    
+    self.tableView8 = [[AdmissionDetailsTableView8 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView8.refreshDelegate = self;
+    self.tableView8.backgroundColor = kWhiteColor;
+    self.tableView8.tag = 103;
+    [self.view addSubview:self.tableView8];
+    
     self.tableView3 = [[AdmissionDetailsTableView3 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView3.refreshDelegate = self;
     self.tableView3.backgroundColor = kWhiteColor;
-    self.tableView3.tag = 103;
+    self.tableView3.tag = 104;
     [self.view addSubview:self.tableView3];
     
     self.tableView4 = [[AdmissionDetailsTableView4 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView4.refreshDelegate = self;
     self.tableView4.backgroundColor = kWhiteColor;
-    self.tableView4.tag = 104;
+    self.tableView4.tag = 105;
     [self.view addSubview:self.tableView4];
     
     self.tableView5 = [[AdmissionDetailsTableView5 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView5.refreshDelegate = self;
     self.tableView5.backgroundColor = kWhiteColor;
-    self.tableView5.tag = 105;
+    self.tableView5.tag = 106;
     [self.view addSubview:self.tableView5];
     
     self.tableView6 = [[AdmissionDetailsTableView6 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView6.refreshDelegate = self;
     self.tableView6.backgroundColor = kWhiteColor;
-    self.tableView6.tag = 106;
+    self.tableView6.tag = 107;
     [self.view addSubview:self.tableView6];
     
     self.tableView7 = [[AdmissionDetailsTableView7 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView7.refreshDelegate = self;
     self.tableView7.backgroundColor = kWhiteColor;
-    self.tableView7.tag = 107;
+    self.tableView7.tag = 108;
     [self.view addSubview:self.tableView7];
     
-    self.tableView8 = [[AdmissionDetailsTableView8 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
-    self.tableView8.refreshDelegate = self;
-    self.tableView8.backgroundColor = kWhiteColor;
-    self.tableView8.tag = 108;
-    [self.view addSubview:self.tableView8];
+    
     
     self.tableView9 = [[AdmissionDetailsTableView9 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView9.refreshDelegate = self;

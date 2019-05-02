@@ -16,7 +16,9 @@
     
     [SVProgressHUD showInfoWithStatus:msg];
 //    [SVProgressHUD dismissWithDelay:2.0];
-    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });;
 //    [self performSelector:@selector(dismiss1) withObject:nil afterDelay:2];
 }
 
@@ -29,7 +31,9 @@
 + (void)alertWithError:(NSString *)msg {
     
     [SVProgressHUD showErrorWithStatus:msg];
-    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });;
 //    [self performSelector:@selector(dismiss1) withObject:nil afterDelay:2];
     
 }
@@ -38,7 +42,9 @@
 + (void)alertWithSucces:(NSString *)msg {
     
     [SVProgressHUD showSuccessWithStatus:msg];
-    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
 //    [self performSelector:@selector(dismiss1) withObject:nil afterDelay:2];
     
 }

@@ -15,6 +15,8 @@
 
 #import "ReferenceInputVC.h"
 #import "CreditReviewVC.h"
+
+#import "CreditSingleVC.h"
 @interface SurveyTGVC ()<RefreshDelegate,SurveyDelegate>
 @property (nonatomic , strong)SurveyTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
@@ -41,6 +43,7 @@
 -(void)rightButtonClick
 {
     SurveyACreditVC *vc = [SurveyACreditVC new];
+    vc.state = @"101";
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark -- 接收到通知
@@ -58,45 +61,49 @@
     self.tableView = [[SurveyTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.title = self.title;
     [self.view addSubview:self.tableView];
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    SurveyDetailsVC *vc = [SurveyDetailsVC new];
-    vc.code = _model[indexPath.row].code;
-    vc.surveyModel = _model[indexPath.row];
-    if ([_model[indexPath.row].curNodeCode isEqualToString:@"a3"]) {
-        vc.note = @"征信审核";
-    }
+    AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
+    vc.model = _model[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-    if ([_model[index].curNodeCode isEqualToString:@"a1"] || [_model[index].curNodeCode isEqualToString:@"ax1"])
-    {
-        SurveyACreditVC *vc = [SurveyACreditVC new];
+    if ([self.title isEqualToString:@"征信派单"]) {
+        CreditSingleVC *vc = [CreditSingleVC new];
         vc.model = self.model[index];
-        vc.state = @"1";
         [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if ([_model[index].curNodeCode isEqualToString:@"a2"])
+    }else
     {
-        ReferenceInputVC *vc = [ReferenceInputVC new];
-        vc.code = _model[index].code;
-        vc.surveyModel = _model[index];
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([_model[index].curNodeCode isEqualToString:@"a1"] || [_model[index].curNodeCode isEqualToString:@"a1x"])
+        {
+            SurveyACreditVC *vc = [SurveyACreditVC new];
+            vc.model = self.model[index];
+            vc.state = @"1";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if ([_model[index].curNodeCode isEqualToString:@"a2"])
+        {
+            ReferenceInputVC *vc = [ReferenceInputVC new];
+            vc.code = _model[index].code;
+            vc.surveyModel = _model[index];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if ([_model[index].curNodeCode isEqualToString:@"a3"])
+        {
+            CreditReviewVC *vc = [CreditReviewVC new];
+            vc.code = _model[index].code;
+            vc.surveyModel = _model[index];
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
-    else if ([_model[index].curNodeCode isEqualToString:@"a3"])
-    {
-        CreditReviewVC *vc = [CreditReviewVC new];
-        vc.code = _model[index].code;
-        vc.surveyModel = _model[index];
-        
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    
 }
 
 -(void)LoadData

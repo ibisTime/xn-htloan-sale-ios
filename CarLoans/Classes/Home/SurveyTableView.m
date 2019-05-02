@@ -56,22 +56,9 @@
     }
 
     SurveyModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"a1"] || [model.curNodeCode isEqualToString:@"ax1"]) {
-        cell.isXin = YES;
-        [cell.button setTitle:@"修改征信信息" forState:(UIControlStateNormal)];
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"a2"]) {
-        [cell.button setTitle:@"录入征信结果" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"a3"]) {
-        [cell.button setTitle:@"审核征信" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else
-    {
-        cell.button.hidden = YES;
-    }
+    [cell.button setTitle:self.title forState:(UIControlStateNormal)];
+    cell.isXin = YES;
+    cell.button.hidden = NO;
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.button.tag = indexPath.row;
     return cell;

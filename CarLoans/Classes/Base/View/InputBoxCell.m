@@ -13,7 +13,7 @@
 -(UILabel *)nameLabel
 {
     if (!_nameLabel) {
-        _nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, 90, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+        _nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, 120, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
     }
     return _nameLabel;
 }
@@ -21,7 +21,7 @@
 -(UITextField *)nameTextField
 {
     if (!_nameTextField) {
-        _nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 140, 50)];
+        _nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(145, 0, SCREEN_WIDTH - 180, 50)];
         _nameTextField.font = HGfont(14);
         _nameTextField.textAlignment = NSTextAlignmentRight;
         [_nameTextField setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
@@ -59,8 +59,22 @@
 
 -(void)setNameText:(NSString *)nameText
 {
-    
     _nameTextField.placeholder = nameText;
+}
+
+-(void)setDetailsStr:(NSString *)detailsStr
+{
+    if ([detailsStr floatValue] == 0) {
+        return;
+    }
+    _nameTextField.text = detailsStr;
+}
+
+-(void)setIsInput:(NSString *)isInput
+{
+    if ([isInput isEqualToString:@"0"]) {
+        _nameTextField.enabled = NO;
+    }
 }
 
 @end

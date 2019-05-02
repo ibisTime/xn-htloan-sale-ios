@@ -51,7 +51,17 @@
     NSArray *topArray = @[@"业务编号",@"客户姓名",@"业务公司",@"区域经理",@"业务团队",@"信贷专员",@"业务内勤",@"贷款金额",@"贷款银行",@"档案存放位置",@"档案目录"];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[@"BO201811301836510872191",@"王壮壮",@"乌鲁木齐华途威通汽车销售有限公司",@"区域经理",@"乌鲁木齐业务二部",@"信贷专员",@"业务内勤",@"800000",@"贷款银行",@"档案存放位置",@"档案目录1-申请人及相关人员身份证件-2份、4-申请人婚姻状况证明-1份、9-保单（交强险、商业险）-1份、14-担保承诺函-1份、18-信用卡汽车分期付款业务客户告知书-1份、22-公司合同-2份、23-抵押合同-3份、15-中国工商银行信用卡汽车专项分期付款/ 担保（抵押、质押及保证）合同-3份、10-车辆完税证-1份、5-征信查询授扠书及个人信用报告査询结杲-1份、2-中国工商银行信用卡汽车专项分期付款业 务申请表-1份、19-收费告知书-1份、11-机动车登记证-1份、20-委托书-1份、12-车辆行驶证-1份、6-首付款收据-1份、3-申请人及其相关人员收入证明/收入声明-1份、7-车辆合格证-1份、13-业务核准通知书-1份、8-购车发票-1份、17-续保承诺书-1份、16-购车合同-1份、21-持卡人提供的其他资料（户口本、房产、流水、驾照）-1份"];
+    NSArray *bottomArray = @[[BaseModel convertNullReturnStr:self.model.code],
+                             [BaseModel convertNullReturnStr:self.model.creditUser[@"userName"]],
+                             [BaseModel convertNullReturnStr:self.model.companyName],
+                             [BaseModel convertNullReturnStr:_model.saleUserName],
+                             [BaseModel convertNullReturnStr:_model.teamName],
+                             @"",
+                             @"",
+                             [NSString stringWithFormat:@"%.2f万",[_model.loanAmount floatValue]/10000],
+                             [BaseModel convertNullReturnStr:_model.loanBankName],
+                             @"",
+                             @""];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];
