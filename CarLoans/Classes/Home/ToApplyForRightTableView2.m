@@ -89,12 +89,27 @@
     NSArray *topArray = @[@"合格证",@"车辆照片"];
     cell.name = topArray[indexPath.row];
     
+    if (indexPath.row == 0) {
+        cell.muArray = [NSMutableArray array];
+        cell.muArray = [NSMutableArray arrayWithArray:self.carHgzPic];
+    }
+    else
+    {
+        cell.muArray = [NSMutableArray array];
+        cell.muArray = [NSMutableArray arrayWithArray:self.carPic];
+    }
     
     MJWeakSelf;
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
 
         weakSelf.returnAryBlock(imgAry, name);
-        
+        if ([name isEqualToString:@"合格证"]) {
+            weakSelf.carHgzPic = imgAry;
+        }else
+        {
+            weakSelf.carPic = imgAry;
+        }
+        [self reloadData];
     };
     return cell;
 }
@@ -117,13 +132,13 @@
     if (indexPath.row == 0) {
         float numberToRound;
         int result;
-        numberToRound = (1.0)/3.0;
+        numberToRound = (self.carHgzPic.count + 1.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
     float numberToRound;
     int result;
-    numberToRound = (1.0)/3.0;
+    numberToRound = (self.carPic.count + 1.0)/3.0;
     result = (int)ceilf(numberToRound);
     return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
 }

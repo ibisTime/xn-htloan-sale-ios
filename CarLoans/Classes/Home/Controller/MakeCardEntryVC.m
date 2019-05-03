@@ -1,52 +1,29 @@
 //
-//  CreditSingleVC.m
+//  MakeCardEntryVC.m
 //  CarLoans
 //
 //  Created by 郑勤宝 on 2019/5/2.
 //  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "CreditSingleVC.h"
-#import "CreditSingleTableView.h"
-#import "AdmissionDetailsVC.h"
-@interface CreditSingleVC ()<RefreshDelegate,BaseModelDelegate>
-{
-    NSArray *dataArray;
-    NSDictionary *dataDic;
-}
-@property (nonatomic , strong)CreditSingleTableView *tableView;
-
+#import "MakeCardEntryVC.h"
+#import "MakeCardEntryTableView.h"
+@interface MakeCardEntryVC ()<RefreshDelegate>
+@property (nonatomic , strong)MakeCardEntryTableView *tableView;
 @end
 
-@implementation CreditSingleVC
+@implementation MakeCardEntryVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initTableView];
-    self.title = @"派单";
-    [self loadData];
+
 }
 
--(void)loadData
-{
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"630066";
-    http.showView = self.view;
-    http.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-
-    [http postWithSuccess:^(id responseObject) {
-        
-        dataArray = responseObject[@"data"];
-        
-        
-    } failure:^(NSError *error) {
-        WGLog(@"%@",error);
-    }];
-}
 
 - (void)initTableView {
-    self.tableView = [[CreditSingleTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView = [[MakeCardEntryTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
@@ -67,48 +44,43 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
-        NSMutableArray *array = [NSMutableArray array];
-        for (int i = 0; i < dataArray.count; i ++) {
-            [array addObject:dataArray[i][@"realName"]];
-        }
-        BaseModel *baseModel = [BaseModel new];
-        baseModel.ModelDelegate = self;
-        [baseModel CustomBouncedView:array setState:@"100"];
-        
-    }
- 
     
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"632119";
-    http.showView = self.view;
     
+    UITextField *textField = [self.view viewWithTag:10000];
+    
+    if ([textField.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入卡号"];
+        return;
+    }
+    
+    
+    TLNetworking *http = [TLNetworking new];
+    
+    http.isShowMsg = NO;
+    http.showView = self.view;
+    http.code = @"632511";
+    http.parameters[@"code"] = self.model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"bizCode"] = self.model.code;
-    http.parameters[@"insideJob"] = dataDic[@"userId"];
+    http.parameters[@"repayCardNumber"] = textField.text;
     [http postWithSuccess:^(id responseObject) {
         
-        [TLAlert alertWithSucces:@"派单成功"];
+        [TLAlert alertWithSucces:@"录入成功"];
+        
+        
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
         [self.navigationController popViewControllerAnimated:YES];
         
-        
     } failure:^(NSError *error) {
-        WGLog(@"%@",error);
+        
     }];
 }
 
--(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
-{
-    dataDic = dataArray[sid];
-    UILabel *label = [self.view viewWithTag:10000];
-    label.text = Str;
-}
+
 
 /*
 #pragma mark - Navigation

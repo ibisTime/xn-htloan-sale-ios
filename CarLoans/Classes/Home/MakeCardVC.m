@@ -1,25 +1,26 @@
 //
-//  AccessApplyVC.m
+//  MakeCardVC.m
 //  CarLoans
 //
-//  Created by 郑勤宝 on 2019/4/26.
+//  Created by 郑勤宝 on 2019/5/2.
 //  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "AccessApplyVC.h"
-#import "AccessApplyTableView.h"
-#import "AccessApplyApplyVC.h"
-#import "ToApplyForVC.h"
-@interface AccessApplyVC ()<RefreshDelegate>
+#import "MakeCardVC.h"
+#import "MakeCardTableView.h"
+#import "MakeCardApplyVC.h"
+#import "MakeCardEntryVC.h"
+@interface MakeCardVC ()<RefreshDelegate>
+@property (nonatomic , strong)MakeCardTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
-@property (nonatomic , strong)AccessApplyTableView *tableView;
 @end
 
-@implementation AccessApplyVC
+@implementation MakeCardVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"制卡";
     [self initTableView];
     [self LoadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
@@ -36,44 +37,35 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LOADDATAPAGE object:nil];
 }
 
-
--(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
-{
-//    if ([_model[index].curNodeCode isEqualToString:@"b1"] || [_model[index].curNodeCode isEqualToString:@"b1x"])
-//    {
-    
-    TLNetworking *http = [TLNetworking new];
-    http.isShowMsg = NO;
-    http.showView = self.view;
-    http.code = @"632516";
-    http.parameters[@"code"] = self.model[index].code;
-    
-    [http postWithSuccess:^(id responseObject) {
-//        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
-        ToApplyForVC *vc = [ToApplyForVC new];
-        vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    } failure:^(NSError *error) {
-        
-    }];
-    
-    
-//    }
-
-}
-
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
     vc.model = _model[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
+{
+    if ([self.model[index].makeCardNode isEqualToString:@"h1"]) {
+        MakeCardApplyVC *vc = [MakeCardApplyVC new];
+        vc.model = self.model[index];
+        vc.title = @"申请制卡";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([self.model[index].makeCardNode isEqualToString:@"h2"])
+    {
+        MakeCardEntryVC *vc = [MakeCardEntryVC new];
+        vc.model = self.model[index];
+        vc.title = @"录入";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 - (void)initTableView {
-    self.tableView = [[AccessApplyTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView = [[MakeCardTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.title = self.title;
     [self.view addSubview:self.tableView];
 }
 
@@ -86,7 +78,7 @@
     helper.code = @"632115";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-    helper.parameters[@"curNodeCodeList"] = self.curNodeCodeList;
+    helper.parameters[@"makeCardNodeList"] = self.makeCardNodeList;
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.isList = NO;
     helper.isCurrency = YES;
@@ -147,5 +139,15 @@
     [self.tableView beginRefreshing];
 }
 
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

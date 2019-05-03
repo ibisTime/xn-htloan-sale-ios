@@ -71,7 +71,7 @@
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 32, SCREEN_WIDTH - 107, (SCREEN_WIDTH - 107 - 45)/3 + 15) collectionViewLayout:layout];
-        _collectionView.backgroundColor = [UIColor redColor];
+//        _collectionView.backgroundColor = [UIColor redColor];
         _collectionView.delegate = self;
         _collectionView.scrollEnabled = NO;
         _collectionView.dataSource = self;
@@ -97,7 +97,7 @@
     result = (int)ceilf(numberToRound);
     _collectionView.frame = CGRectMake(0, 32, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
     
-    [_muArray addObjectsFromArray:_muArray];
+//    [_muArray addObjectsFromArray:_muArray];
     [self.collectionView reloadData];
 }
 
@@ -133,7 +133,7 @@
         [cell addSubview:image];
         
         UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        selectButton.frame = CGRectMake((SCREEN_WIDTH - 107 - 45)/3 - 40, 0, 30, 30);
+        selectButton.frame = CGRectMake((SCREEN_WIDTH - 107 - 45)/3 - 30, 0, 30, 30);
         [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
         [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         selectButton.tag = indexPath.row - 1 + 1000;
@@ -159,6 +159,14 @@
 {
     NSArray *array = _muArray;
     self.returnAryBlock(array, _name);
+    
+    
+    float numberToRound;
+    int result;
+    numberToRound = (_muArray.count + 1.0)/3.0;
+    result = (int)ceilf(numberToRound);
+    _collectionView.frame = CGRectMake(0, 32, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
+    [self.collectionView reloadData];
 }
 
 

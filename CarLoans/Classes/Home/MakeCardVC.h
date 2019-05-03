@@ -1,5 +1,5 @@
 //
-//  NewWaterVC.h
+//  MakeCardVC.h
 //  CarLoans
 //
 //  Created by 郑勤宝 on 2019/5/2.
@@ -10,9 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NewWaterVC : BaseViewController
-@property (nonatomic , strong)SurveyModel *model;
-@property (nonatomic , strong)NSDictionary *waterDic;
+@interface MakeCardVC : BaseViewController
+@property (nonatomic , strong)NSArray *makeCardNodeList;
 @end
 
 NS_ASSUME_NONNULL_END

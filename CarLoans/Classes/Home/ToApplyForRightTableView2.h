@@ -15,8 +15,8 @@ typedef void (^ReturnAryBlock)(NSArray *imgAry,NSString *name);
 @interface ToApplyForRightTableView2 : TLTableView
 
 @property (nonatomic, copy) ReturnAryBlock returnAryBlock;
-@property (nonatomic , strong)NSArray *approvalCertificate;
-@property (nonatomic , strong)NSArray *carPhoto;
+@property (nonatomic , strong)NSArray *carHgzPic;
+@property (nonatomic , strong)NSArray *carPic;
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic, assign) UIType type;
 

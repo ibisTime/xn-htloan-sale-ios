@@ -33,7 +33,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 10;
+        return [TopModel user].ary5.count;
     }
     return 4;
 }
@@ -55,7 +55,7 @@
 //        NSArray *topArray = @[@"*是否自己单位",@"所属行业",@"*单位经济性质",@"*工作单位名称",@"*工作单位地址",@"工作单位电话",@"何时进入该单位",@"职务",@"*月收入",@"工作描述及还款来源分析"];
         cell.topLbl.text = [TopModel user].ary5[indexPath.row];
         
-        if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 6) {
+        if (indexPath.row == 1 || indexPath.row == 5) {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 50000 + indexPath.row;
             
@@ -78,13 +78,36 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *topArray = @[@"收入证明",@"单位前台照片",@"办公场地照片",@"签约员与客户合影"];
+    cell.muArray = [NSMutableArray array];
     cell.name = topArray[indexPath.row];
-    
+    if (indexPath.row == 0) {
+        cell.muArray = [NSMutableArray arrayWithArray:self.improvePdf];
+    }else if (indexPath.row == 1)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.frontTablePic];
+    }else if (indexPath.row == 2)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.workPlacePic];
+    }else if (indexPath.row == 3)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.salerAndcustomer];
+    }
     MJWeakSelf;
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
         
         weakSelf.returnAryBlock(imgAry, name);
-        
+        if ([name isEqualToString:@"收入证明"]) {
+            weakSelf.improvePdf = imgAry;
+        }
+        if ([name isEqualToString:@"单位前台照片"]) {
+            weakSelf.frontTablePic = imgAry;
+        }
+        if ([name isEqualToString:@"办公场地照片"]) {
+            weakSelf.workPlacePic = imgAry;
+        }
+        if ([name isEqualToString:@"签约员与客户合影"]) {
+            weakSelf.salerAndcustomer = imgAry;
+        }
     };
     return cell;
 }
@@ -104,10 +127,31 @@
     if (indexPath.section == 0) {
         return 53;
     }
+    if (indexPath.row == 0) {
+        float numberToRound;
+        int result;
+        numberToRound = (self.improvePdf.count + 1.0)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+    }
+    if (indexPath.row == 1) {
+        float numberToRound;
+        int result;
+        numberToRound = (self.frontTablePic.count + 1.0)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+    }
+    if (indexPath.row == 2) {
+        float numberToRound;
+        int result;
+        numberToRound = (self.workPlacePic.count + 1.0)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+    }
     
     float numberToRound;
     int result;
-    numberToRound = (1.0)/3.0;
+    numberToRound = (self.salerAndcustomer.count + 1.0)/3.0;
     result = (int)ceilf(numberToRound);
     return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
 }

@@ -31,5 +31,8 @@
 @property (nonatomic , strong)SurveyModel *surveyModel;
 @property (nonatomic , strong)AccessSingleModel *accessSingleModel;
 @property (nonatomic , strong)DataTransferModel *dataTransferModel;
+//制卡
+@property (nonatomic , strong)SurveyModel *makeCardModel;
+
 
 @end

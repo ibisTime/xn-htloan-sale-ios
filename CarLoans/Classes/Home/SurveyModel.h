@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface SurveyModel : NSObject
-
+@property (nonatomic , copy)NSDictionary *carInfoRes;
+@property (nonatomic , copy)NSDictionary *loanInfo;
+@property (nonatomic , copy)NSDictionary *carInfo;
+@property (nonatomic , copy)NSString *isGpsAz;
+@property (nonatomic , strong)NSDictionary *repayBiz;
+@property (nonatomic , copy)NSString *isFinacing;
 @property (nonatomic , copy)NSString *loanBank;
+@property (nonatomic , copy)NSString *makeCardNode;
 @property (nonatomic , copy)NSString *curNodeCode;
 @property (nonatomic , copy)NSString *teamName;
 @property (nonatomic , copy)NSString *opera;

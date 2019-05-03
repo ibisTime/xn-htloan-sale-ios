@@ -57,6 +57,7 @@
         
         if (indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 11 || indexPath.row == 12) {
             cell.type = InputType;
+            cell.inputTextField.tag = 30000 + indexPath.row;
         }else if (indexPath.row >= 0 && indexPath.row <= 2)
         {
             cell.type = ShowType;

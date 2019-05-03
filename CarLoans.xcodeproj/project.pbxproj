@@ -234,6 +234,13 @@
 		1F651A8E227AC14000EFB78B /* NewWaterPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651A8D227AC14000EFB78B /* NewWaterPhotoCell.m */; };
 		1F651A94227AD27A00EFB78B /* CreditSingleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651A93227AD27A00EFB78B /* CreditSingleVC.m */; };
 		1F651A97227AD28800EFB78B /* CreditSingleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651A96227AD28800EFB78B /* CreditSingleTableView.m */; };
+		1F651A9B227B2F1700EFB78B /* MakeCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651A9A227B2F1600EFB78B /* MakeCardVC.m */; };
+		1F651AA0227B2F4E00EFB78B /* MakeCardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651A9F227B2F4E00EFB78B /* MakeCardTableView.m */; };
+		1F651AA3227B36FD00EFB78B /* MakeCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AA2227B36FD00EFB78B /* MakeCardCell.m */; };
+		1F651AA9227B392300EFB78B /* MakeCardApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AA8227B392300EFB78B /* MakeCardApplyVC.m */; };
+		1F651AAC227B393100EFB78B /* MakeCardApplyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AAB227B393100EFB78B /* MakeCardApplyTableView.m */; };
+		1F651AB2227B419600EFB78B /* MakeCardEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AB1227B419600EFB78B /* MakeCardEntryVC.m */; };
+		1F651AB5227B41B800EFB78B /* MakeCardEntryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */; };
 		5F4B98A33D181725064D3D42 /* libPods-CarLoans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB36E56BF8F7E87912612D2 /* libPods-CarLoans.a */; };
 		7A0592A520FDCBD100075FE8 /* SurveyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592A420FDCBD100075FE8 /* SurveyVC.m */; };
 		7A0592AC20FDCD0E00075FE8 /* SurveyACreditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592AB20FDCD0E00075FE8 /* SurveyACreditVC.m */; };
@@ -910,6 +917,20 @@
 		1F651A93227AD27A00EFB78B /* CreditSingleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditSingleVC.m; sourceTree = "<group>"; };
 		1F651A95227AD28800EFB78B /* CreditSingleTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditSingleTableView.h; sourceTree = "<group>"; };
 		1F651A96227AD28800EFB78B /* CreditSingleTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditSingleTableView.m; sourceTree = "<group>"; };
+		1F651A99227B2F1600EFB78B /* MakeCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeCardVC.h; sourceTree = "<group>"; };
+		1F651A9A227B2F1600EFB78B /* MakeCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardVC.m; sourceTree = "<group>"; };
+		1F651A9E227B2F4E00EFB78B /* MakeCardTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeCardTableView.h; sourceTree = "<group>"; };
+		1F651A9F227B2F4E00EFB78B /* MakeCardTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardTableView.m; sourceTree = "<group>"; };
+		1F651AA1227B36FD00EFB78B /* MakeCardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeCardCell.h; sourceTree = "<group>"; };
+		1F651AA2227B36FD00EFB78B /* MakeCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardCell.m; sourceTree = "<group>"; };
+		1F651AA7227B392300EFB78B /* MakeCardApplyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeCardApplyVC.h; sourceTree = "<group>"; };
+		1F651AA8227B392300EFB78B /* MakeCardApplyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardApplyVC.m; sourceTree = "<group>"; };
+		1F651AAA227B393100EFB78B /* MakeCardApplyTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeCardApplyTableView.h; sourceTree = "<group>"; };
+		1F651AAB227B393100EFB78B /* MakeCardApplyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardApplyTableView.m; sourceTree = "<group>"; };
+		1F651AB0227B419600EFB78B /* MakeCardEntryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeCardEntryVC.h; sourceTree = "<group>"; };
+		1F651AB1227B419600EFB78B /* MakeCardEntryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardEntryVC.m; sourceTree = "<group>"; };
+		1F651AB3227B41B800EFB78B /* MakeCardEntryTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeCardEntryTableView.h; sourceTree = "<group>"; };
+		1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardEntryTableView.m; sourceTree = "<group>"; };
 		7A0592A320FDCBD100075FE8 /* SurveyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyVC.h; sourceTree = "<group>"; };
 		7A0592A420FDCBD100075FE8 /* SurveyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurveyVC.m; sourceTree = "<group>"; };
 		7A0592AA20FDCD0E00075FE8 /* SurveyACreditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyACreditVC.h; sourceTree = "<group>"; };
@@ -2666,6 +2687,92 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		1F651A98227B2EEE00EFB78B /* MakeCard制卡 */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AAD227B415C00EFB78B /* MakeCardEntry录入 */,
+				1F651AA4227B38E300EFB78B /* MakeCardApply申请 */,
+				1F651A9D227B2F3700EFB78B /* Controller */,
+				1F651A9C227B2F3500EFB78B /* View */,
+			);
+			name = "MakeCard制卡";
+			sourceTree = "<group>";
+		};
+		1F651A9C227B2F3500EFB78B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F651A9E227B2F4E00EFB78B /* MakeCardTableView.h */,
+				1F651A9F227B2F4E00EFB78B /* MakeCardTableView.m */,
+				1F651AA1227B36FD00EFB78B /* MakeCardCell.h */,
+				1F651AA2227B36FD00EFB78B /* MakeCardCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1F651A9D227B2F3700EFB78B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F651A99227B2F1600EFB78B /* MakeCardVC.h */,
+				1F651A9A227B2F1600EFB78B /* MakeCardVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1F651AA4227B38E300EFB78B /* MakeCardApply申请 */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AA6227B390D00EFB78B /* Controller */,
+				1F651AA5227B390B00EFB78B /* View */,
+			);
+			name = "MakeCardApply申请";
+			sourceTree = "<group>";
+		};
+		1F651AA5227B390B00EFB78B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AAA227B393100EFB78B /* MakeCardApplyTableView.h */,
+				1F651AAB227B393100EFB78B /* MakeCardApplyTableView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1F651AA6227B390D00EFB78B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AA7227B392300EFB78B /* MakeCardApplyVC.h */,
+				1F651AA8227B392300EFB78B /* MakeCardApplyVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1F651AAD227B415C00EFB78B /* MakeCardEntry录入 */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AAF227B417D00EFB78B /* Controller */,
+				1F651AAE227B417B00EFB78B /* View */,
+			);
+			name = "MakeCardEntry录入";
+			sourceTree = "<group>";
+		};
+		1F651AAE227B417B00EFB78B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AB3227B41B800EFB78B /* MakeCardEntryTableView.h */,
+				1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */,
+			);
+			name = View;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		1F651AAF227B417D00EFB78B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AB0227B419600EFB78B /* MakeCardEntryVC.h */,
+				1F651AB1227B419600EFB78B /* MakeCardEntryVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		7A05929A20FDCB1700075FE8 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -4269,6 +4376,7 @@
 				7AB29EAF20FDC88A0014FCB3 /* Survey征信 */,
 				7AB29EB320FDC8DB0014FCB3 /* FaceSign面签 */,
 				1F151A3D2272A4CA002B7EDA /* AccessApply准入申请 */,
+				1F651A98227B2EEE00EFB78B /* MakeCard制卡 */,
 				7A0F8E732119B9C100BA8358 /* SettlementAudit结清审核 */,
 				7A3582B92117EB0D006FB5B5 /* BankLending银行放款 */,
 				7A945569210EFFCD00BDFD33 /* DataTransfer资料传递 */,
@@ -4704,8 +4812,10 @@
 				1F00AE8B2271BD9B00A8E15D /* FaceSignAuditVC.m in Sources */,
 				1F1EF31A2268717E00EADA25 /* CreditDetailsPeopleTableView.m in Sources */,
 				7A3582962113FA14006FB5B5 /* GPSInstallationDetailsVC.m in Sources */,
+				1F651AB5227B41B800EFB78B /* MakeCardEntryTableView.m in Sources */,
 				B820201021CBB00500237E01 /* CarMortgageVC2.m in Sources */,
 				1F651A6B22784B7200EFB78B /* JHAddressToolBar.m in Sources */,
+				1F651AAC227B393100EFB78B /* MakeCardApplyTableView.m in Sources */,
 				1F151A852272AB14002B7EDA /* DetailsTableView10.m in Sources */,
 				7A13AEC921104E4400B8F785 /* QNSystem.m in Sources */,
 				7A13AE1D210F26A100B8F785 /* IQUIView+Hierarchy.m in Sources */,
@@ -4717,6 +4827,7 @@
 				7A945545210EB14F00BDFD33 /* ImageBrowserViewController.m in Sources */,
 				1F00AE842271976600A8E15D /* CreditResultsVC.m in Sources */,
 				7A13AEDC21107F3100B8F785 /* UsedCarInformationCell.m in Sources */,
+				1F651AA3227B36FD00EFB78B /* MakeCardCell.m in Sources */,
 				1F651A422275B15700EFB78B /* ToApplyForRightTableView4.m in Sources */,
 				7AB29DA320FD85710014FCB3 /* main.m in Sources */,
 				B84E200121875DE000D1E0DC /* CarTableViewCell.m in Sources */,
@@ -4840,6 +4951,7 @@
 				7A13AEB921104E4300B8F785 /* QNTxtResolver.m in Sources */,
 				7A0592D720FED83100075FE8 /* SurveyTableView.m in Sources */,
 				7A13AEAB21104E4300B8F785 /* QNAssessment.m in Sources */,
+				1F651AA9227B392300EFB78B /* MakeCardApplyVC.m in Sources */,
 				7AB29E9320FD8EB30014FCB3 /* UIButton+SGImagePosition.m in Sources */,
 				7AB29E6E20FD8EB30014FCB3 /* NSObject+MJProperty.m in Sources */,
 				1F1EF22C2265C08B00EADA25 /* AdmissionDetailsCell.m in Sources */,
@@ -4868,6 +4980,7 @@
 				7AB29E8220FD8EB30014FCB3 /* TLTableView.m in Sources */,
 				1F1EF3362269BC1C00EADA25 /* ReferenceInputDetailsTableView.m in Sources */,
 				B89ACB8921C8DB0200186F58 /* GPSTeamModel.m in Sources */,
+				1F651AA0227B2F4E00EFB78B /* MakeCardTableView.m in Sources */,
 				7AB29E9420FD8EB30014FCB3 /* UIColor+Extension.m in Sources */,
 				1F1EF1D4226454A900EADA25 /* MessageVC.m in Sources */,
 				1F151A992272AB14002B7EDA /* ADDGPSCell.m in Sources */,
@@ -4985,6 +5098,7 @@
 				1F651A552276A43D00EFB78B /* ToApplyForUpdateImgCell.m in Sources */,
 				7A35828021130625006FB5B5 /* NSDate+Extension.m in Sources */,
 				B84F22CD219C24C600886ADF /* InsideSureHomeVC.m in Sources */,
+				1F651AB2227B419600EFB78B /* MakeCardEntryVC.m in Sources */,
 				1F151A9C2272AB14002B7EDA /* AccessApplyAddGPSVC.m in Sources */,
 				1F00AE7E22718A2A00A8E15D /* CreditReviewVC.m in Sources */,
 				1F1EF32A2269ACD800EADA25 /* ReferenceInputTableView.m in Sources */,
@@ -4994,6 +5108,7 @@
 				7A13AED221104E4400B8F785 /* QNUploadManager.m in Sources */,
 				1F151A8F2272AB14002B7EDA /* AccessApplyApplyVC.m in Sources */,
 				7A13AEC621104E4400B8F785 /* QNFile.m in Sources */,
+				1F651A9B227B2F1700EFB78B /* MakeCardVC.m in Sources */,
 				7A3582AE211452D9006FB5B5 /* VehiclesInDetailsVC.m in Sources */,
 				7A13AE33210FFC8C00B8F785 /* CreditReportingPersonInformationCell.m in Sources */,
 				7A13AEAC21104E4300B8F785 /* QNIpModel.m in Sources */,

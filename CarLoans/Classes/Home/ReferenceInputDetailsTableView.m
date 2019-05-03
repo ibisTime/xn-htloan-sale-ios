@@ -54,6 +54,9 @@
     if (section == 0) {
         return 5;
     }
+    if (section == 4) {
+        return 2;
+    }
     return 1;
 }
 
@@ -113,14 +116,14 @@
         cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"征信结果说明";
+    NSArray *nameArray = @[@"信用卡使用占比（%）",@"征信结果说明"];
+    cell.name = nameArray[indexPath.row];
     self.cell = cell;
-    cell.nameText = @"请输入说明";
-    if ([BaseModel isBlankString:cell.nameTextField.text] == YES) {
-        cell.TextFidStr = self.creditNote;
-    }
+    NSArray *placArray = @[@"请输入使用占比",@"请输入说明"];
+    cell.nameText = placArray[indexPath.row];
     
-    cell.nameTextField.tag = 3000;
+    
+    cell.nameTextField.tag = 3000 + indexPath.row;
     return cell;
 }
 

@@ -83,22 +83,39 @@
     _dataCreditReport = [NSMutableArray array];
 
     if ([BaseModel isBlankDictionary:self.creditListDic] == NO) {
-        if ([self.creditListDic[@"bankResult"] isEqualToString:@"1"])
-        {
-            _bankResult = @"通过";
-        }
-        else
-        {
-            _bankResult = @"不通过";
-        }
-        self.tableView.bankResult = _bankResult;
-        self.tableView.creditNote = self.creditListDic[@"creditNote"];
-        self.bankCreditReport = [NSMutableArray arrayWithArray:[self.creditListDic[@"bankCreditReport"] componentsSeparatedByString:@"||"]];
-        self.tableView.bankCreditReport = self.bankCreditReport;
-        self.dataCreditReport = [NSMutableArray arrayWithArray:[self.creditListDic[@"dataCreditReport"] componentsSeparatedByString:@"||"]];
-        self.tableView.dataCreditReport = self.dataCreditReport;
-        [self.tableView reloadData];
+        [SVProgressHUD show];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self TheAssignment];
+            [SVProgressHUD dismiss];
+        });
+        
     }
+}
+
+-(void)TheAssignment
+{
+    if ([self.creditListDic[@"bankResult"] isEqualToString:@"1"])
+    {
+        _bankResult = @"通过";
+    }
+    else
+    {
+        _bankResult = @"不通过";
+    }
+    self.tableView.bankResult = _bankResult;
+    self.tableView.creditNote = self.creditListDic[@"creditNote"];
+    self.bankCreditReport = [NSMutableArray arrayWithArray:[self.creditListDic[@"bankCreditReport"] componentsSeparatedByString:@"||"]];
+    self.tableView.bankCreditReport = self.bankCreditReport;
+    self.dataCreditReport = [NSMutableArray arrayWithArray:[self.creditListDic[@"dataCreditReport"] componentsSeparatedByString:@"||"]];
+    self.tableView.dataCreditReport = self.dataCreditReport;
+    UITextField *textField1 = [self.view viewWithTag:3000];
+    UITextField *textField2 = [self.view viewWithTag:3001];
+    textField1.text = [NSString stringWithFormat:@"%.2f",[self.creditListDic[@"creditCardOccupation"] floatValue]*100];
+    textField2.text = self.creditListDic[@"creditNote"];
+    
+    
+    
+    [self.tableView reloadData];
 }
 
 - (void)initTableView {
@@ -165,8 +182,14 @@
             [TLAlert alertWithInfo:@"请上传大数据征信报告"];
             return;
         }
-        UITextField *textField = [self.view viewWithTag:3000];
-        if ([textField.text isEqualToString:@""]) {
+        
+        UITextField *textField1 = [self.view viewWithTag:3000];
+        UITextField *textField2 = [self.view viewWithTag:3001];
+        if ([textField1.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入信用卡使用占比"];
+            return;
+        }
+        if ([textField2.text isEqualToString:@""]) {
             [TLAlert alertWithInfo:@"请输入说明"];
             return;
         }
@@ -180,7 +203,8 @@
         }
         
         NSDictionary *dic = @{@"bankCreditReport":[_bankCreditReport componentsJoinedByString:@"||"],
-                              @"creditNote":textField.text,
+                              @"creditCardOccupation":[NSString stringWithFormat:@"%.2f",[textField1.text floatValue]/100],
+                              @"creditNote":textField2.text,
                               @"bankResult":bankResult,
                               @"creditUserCode":_dataDic[@"code"],
                               @"dataCreditReport":[_dataCreditReport componentsJoinedByString:@"||"]

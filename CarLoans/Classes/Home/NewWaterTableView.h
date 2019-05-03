@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NewWaterTableView : TLTableView
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic , strong)NSArray *picArray;
+@property (nonatomic , strong)NSDictionary *waterDic;
+
 @end
 
 NS_ASSUME_NONNULL_END

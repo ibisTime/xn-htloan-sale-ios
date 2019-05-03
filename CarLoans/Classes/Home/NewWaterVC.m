@@ -69,12 +69,29 @@
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.model = self.model;
+    self.tableView.waterDic = self.waterDic;
     [self.view addSubview:self.tableView];
+    
+    [SVProgressHUD show];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self TheAssignment];
+        [SVProgressHUD dismiss];
+    });
+}
+
+-(void)TheAssignment
+{
+    if ([BaseModel isBlankString:self.waterDic[@"code"]] == NO) {
+        
+        _tableView.picArray = [self.waterDic[@"pic"] componentsSeparatedByString:@"||"];
+        self.picArray = [NSMutableArray arrayWithArray:[self.waterDic[@"pic"] componentsSeparatedByString:@"||"]];
+    }
+    [self.tableView reloadData];
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _SelectTag = indexPath.row + 1000;
+    _SelectTag = indexPath.row + 10000;
     if (indexPath.row == 1) {
         BaseModel *baseModel = [BaseModel user];
         baseModel.ModelDelegate = self;
@@ -98,7 +115,7 @@
     if (indexPath.row == 4 || indexPath.row == 5) {
         BaseModel *baseModel = [BaseModel user];
         baseModel.ModelDelegate = self;
-        [baseModel CustomBouncedView:[NSMutableArray arrayWithArray:@[@"3月",@"6月",@"9月",@"12月"]] setState:@"100"];
+        [baseModel ReturnsParentKeyAnArray:@"interest"];
     }
  
 }
@@ -108,22 +125,24 @@
     if ([state isEqualToString:@"confirm"])
     {
         
-        UITextField *textField1 = [self.view viewWithTag:1001];
-        UITextField *textField2 = [self.view viewWithTag:1002];
-        UITextField *textField3 = [self.view viewWithTag:1003];
-        UITextField *textField4 = [self.view viewWithTag:1004];
-        UITextField *textField5 = [self.view viewWithTag:1005];
-        UITextField *textField6 = [self.view viewWithTag:1006];
-        UITextField *textField7 = [self.view viewWithTag:1007];
-        UITextField *textField8 = [self.view viewWithTag:1008];
-        UITextField *textField9 = [self.view viewWithTag:1009];
-        UITextField *textField10 = [self.view viewWithTag:1010];
-        UITextField *textField11 = [self.view viewWithTag:1011];
-        UITextField *textField12 = [self.view viewWithTag:1012];
-        UITextField *textField13 = [self.view viewWithTag:1013];
+        UITextField *textField1 = [self.view viewWithTag:10001];
+        UITextField *textField2 = [self.view viewWithTag:10002];
+        UITextField *textField3 = [self.view viewWithTag:10003];
+        UITextField *textField4 = [self.view viewWithTag:10004];
+        UITextField *textField5 = [self.view viewWithTag:10005];
+        UITextField *textField6 = [self.view viewWithTag:10006];
+        UITextField *textField7 = [self.view viewWithTag:10007];
+        UITextField *textField8 = [self.view viewWithTag:10008];
+        UITextField *textField9 = [self.view viewWithTag:10009];
+        UITextField *textField10 = [self.view viewWithTag:10010];
+        UITextField *textField11 = [self.view viewWithTag:10011];
+        UITextField *textField12 = [self.view viewWithTag:10012];
+        UITextField *textField13 = [self.view viewWithTag:10013];
+        
+        
         
         for (int i = 0; i < [TopModel user].ary4.count; i ++) {
-            NSString *name = [self WarningContent:[TopModel user].newWaterAry[i] CurrentTag:1000 + i];
+            NSString *name = [self WarningContent:[TopModel user].newWaterAry[i] CurrentTag:10000 + i];
             if (![name isEqualToString:@""]) {
                 [TLAlert alertWithInfo:name];
                 return;
@@ -133,9 +152,17 @@
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = YES;
         http.showView = self.view;
-        http.code = @"632490";
-        http.parameters[@"bizCode"] = self.model.code;
-        http.parameters[@"creditUserCode"] = self.model.creditUser[@"code"];
+        
+        if ([BaseModel isBlankString:self.waterDic[@"code"]] == YES) {
+            http.code = @"632490";
+            http.parameters[@"bizCode"] = self.model.code;
+            http.parameters[@"creditUserCode"] = self.model.creditUser[@"code"];
+        }else
+        {
+            http.code = @"632492";
+            http.parameters[@"code"] = self.waterDic[@"code"];
+        }
+       
         if ([textField1.text isEqualToString:@"微信"]) {
             http.parameters[@"type"] = @"1";
         }else if ([textField1.text isEqualToString:@"支付宝"])
@@ -148,15 +175,15 @@
 
         http.parameters[@"datetimeStart"] = textField2.text;
         http.parameters[@"datetimeEnd"] = textField3.text;
-        http.parameters[@"jourInterest1"] = textField4.text;
-        http.parameters[@"jourInterest2"] = textField5.text;
-        http.parameters[@"interest1"] = textField6.text;
-        http.parameters[@"interest2"] = textField7.text;
-        http.parameters[@"income"] = textField8.text;
-        http.parameters[@"expend"] = textField9.text;
-        http.parameters[@"monthIncome"] = textField10.text;
-        http.parameters[@"monthExpend"] = textField11.text;
-        http.parameters[@"balance"] = textField12.text;
+        http.parameters[@"jourInterest1"] = [[BaseModel user] setParentKey:@"interest" setDvalue:textField4.text];
+        http.parameters[@"jourInterest2"] = [[BaseModel user] setParentKey:@"interest" setDvalue:textField5.text];
+        http.parameters[@"interest1"] = @([textField6.text floatValue]*1000);
+        http.parameters[@"interest2"] = @([textField7.text floatValue]*1000);
+        http.parameters[@"income"] = @([textField8.text floatValue]*1000);
+        http.parameters[@"expend"] = @([textField9.text floatValue]*1000);
+        http.parameters[@"monthIncome"] = @([textField10.text floatValue]*1000);
+        http.parameters[@"monthExpend"] = @([textField11.text floatValue]*1000);
+        http.parameters[@"balance"] = @([textField12.text floatValue]*1000);
         http.parameters[@"remark"] = textField13.text;
         http.parameters[@"pic"] = [_picArray componentsJoinedByString:@"||"];
         [http postWithSuccess:^(id responseObject) {
@@ -174,7 +201,7 @@
     }
     else
     {
-        [_picArray removeObjectAtIndex:index - 1000];
+        [_picArray removeObjectAtIndex:index - 10000];
         _tableView.picArray = _picArray;
         [self.tableView reloadData];
     }

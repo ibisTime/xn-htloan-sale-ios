@@ -56,7 +56,7 @@
         if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 ) {
             cell.type = ShowType;
             cell.showLbl.tag = 70000 + indexPath.row;
-        }else if (indexPath.row == 5)
+        }else if (indexPath.row == 4 || indexPath.row == 5)
         {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 70000 + indexPath.row;

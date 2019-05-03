@@ -111,7 +111,7 @@
                            @"客户姓名",
                            @"贷款金额",
                            @"贷款银行",
-                           @"驻行内勤",
+                           @"业  务  员",
                            @"申请时间"];
     NSString *bizType;
     if ([surveyModel.bizType integerValue] == 0) {
@@ -127,7 +127,7 @@
                                   [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@",surveyModel.operatorName],
+                                  [NSString stringWithFormat:@"%@",surveyModel.saleUserName],
                                   [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
     
     for (int i = 0; i < nameArray.count; i ++ ) {
@@ -137,6 +137,45 @@
         InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
     }
 }
+
+-(void)setMakeCardModel:(SurveyModel *)makeCardModel
+{
+    _codeLabel.text = [NSString stringWithFormat:@"%@",makeCardModel.code];
+    _stateLabel.text = [[BaseModel user]note:makeCardModel.makeCardNode];
+    
+    NSLog(@"%@",[[BaseModel user]note:makeCardModel.curNodeCode]);
+    NSArray *nameArray = @[
+                           @"业务种类",
+                           @"客户姓名",
+                           @"贷款金额",
+                           @"贷款银行",
+                           @"业  务  员",
+                           @"申请时间"];
+    NSString *bizType;
+    if ([makeCardModel.bizType integerValue] == 0) {
+        bizType = @"新车";
+    }
+    else
+    {
+        bizType = @"二手车";
+    }
+    
+    NSArray *InformationArray = @[
+                                  [NSString stringWithFormat:@"%@",bizType],
+                                  [NSString stringWithFormat:@"%@",makeCardModel.creditUser[@"userName"]],
+                                  [NSString stringWithFormat:@"%.2f",[makeCardModel.loanAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@",makeCardModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@",makeCardModel.saleUserName],
+                                  [NSString stringWithFormat:@"%@",[makeCardModel.applyDatetime convertToDetailDate]]];
+    
+    for (int i = 0; i < nameArray.count; i ++ ) {
+        UILabel *nameLabel = [self viewWithTag:100000 + i];
+        nameLabel.text = nameArray[i];
+        UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+    }
+}
+
 
 
 //准入单     车辆抵押    车辆落户

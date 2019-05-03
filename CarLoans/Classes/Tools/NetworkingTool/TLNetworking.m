@@ -152,6 +152,7 @@
 //
 //    self.parameters[@"json"] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
+//    NSLog(@"%@",self.parameters);
 
     NSDictionary *paraDic = @{@"json":[TLNetworking dictionaryToJson:self.parameters],
                               @"companyCode":@"CD-HTWT000020",

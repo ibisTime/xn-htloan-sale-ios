@@ -1,18 +1,17 @@
 //
-//  NewWaterVC.h
+//  MakeCardApplyTableView.h
 //  CarLoans
 //
 //  Created by 郑勤宝 on 2019/5/2.
 //  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "TLTableView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NewWaterVC : BaseViewController
+@interface MakeCardApplyTableView : TLTableView
 @property (nonatomic , strong)SurveyModel *model;
-@property (nonatomic , strong)NSDictionary *waterDic;
 @end
 
 NS_ASSUME_NONNULL_END

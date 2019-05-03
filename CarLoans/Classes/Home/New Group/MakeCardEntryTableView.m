@@ -1,12 +1,13 @@
 //
-//  CreditSingleTableView.m
+//  MakeCardEntryTableView.m
 //  CarLoans
 //
 //  Created by 郑勤宝 on 2019/5/2.
 //  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "CreditSingleTableView.h"
+#import "MakeCardEntryTableView.h"
+
 
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
@@ -17,10 +18,10 @@
 #import "UsedCarInformationCell.h"
 #define UsedCarInformation @"UsedCarInformationCell"
 #import "ChooseCell.h"
-@interface CreditSingleTableView ()<UITableViewDataSource,UITableViewDelegate,CreditReportingPersonInformationDelegate>
+@interface MakeCardEntryTableView ()<UITableViewDataSource,UITableViewDelegate,CreditReportingPersonInformationDelegate>
 
 @end
-@implementation CreditSingleTableView
+@implementation MakeCardEntryTableView
 
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -85,15 +86,17 @@
         cell.nameTextLabel.hidden = NO;
         return cell;
     }
+    
     NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-    ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[ChooseCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"派单给";
-    cell.detailsLabel.tag = 10000;
-   
+    cell.name = @"卡号";
+    cell.nameText = @"请输入卡号";
+    cell.nameTextField.tag = 10000;
+    
     return cell;
 }
 
@@ -175,6 +178,5 @@
         
     }
 }
-
 
 @end

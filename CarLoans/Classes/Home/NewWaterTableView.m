@@ -50,20 +50,71 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.topLbl.text = [TopModel user].newWaterAry[indexPath.row];
-        
+        NSString *type;
+
         if (indexPath.row == 0) {
             cell.type = ShowType;
             cell.showLbl.text = self.model.creditUser[@"userName"];
-        }else
-            if (indexPath.row <= 5) {
-                cell.type = UIChooseType;
-                cell.chooseLbl.tag = 1000 + indexPath.row;
+        }else if (indexPath.row <= 5) {
+            
+            if ([BaseModel isBlankString:self.waterDic[@"code"]] == NO) {
+                if ([_waterDic[@"type"] isEqualToString:@"1"]) {
+                    type = @"微信";
+                }else if ([_waterDic[@"type"] isEqualToString:@"2"])
+                {
+                    type = @"支付宝";
+                }else
+                {
+                    type = @"银行";
+                }
+                if (indexPath.row == 1) {
+                    cell.chooseLbl.text = type;
+                }
+                if (indexPath.row == 2) {
+                    cell.chooseLbl.text = [_waterDic[@"datetimeStart"] convertDate];
+                }
+                if (indexPath.row == 3) {
+                    cell.chooseLbl.text = [_waterDic[@"datetimeEnd"] convertDate];
+                }
+                if (indexPath.row == 4) {
+                    cell.chooseLbl.text = _waterDic[@"jourInterest1"];
+                }
+                if (indexPath.row == 5) {
+                    cell.chooseLbl.text = _waterDic[@"jourInterest2"];
+                }
             }
-            else
-            {
-                cell.type = UIInputType;
-                cell.inputTextField.tag = 1000 + indexPath.row;
+            cell.type = UIChooseType;
+            cell.chooseLbl.tag = 10000 + indexPath.row;
+        }
+        else
+        {
+            if (indexPath.row == 6) {
+                cell.inputTextField.text = [NSString stringWithFormat:@"%.2f",[_waterDic[@"interest1"] floatValue]/1000];
             }
+            if (indexPath.row == 7) {
+                cell.inputTextField.text = [NSString stringWithFormat:@"%.2f",[_waterDic[@"interest2"] floatValue]/1000];
+            }
+            if (indexPath.row == 8) {
+                cell.inputTextField.text = [NSString stringWithFormat:@"%.2f",[_waterDic[@"income"] floatValue]/1000];
+            }
+            if (indexPath.row == 9) {
+                cell.inputTextField.text = [NSString stringWithFormat:@"%.2f",[_waterDic[@"expend"] floatValue]/1000];
+            }
+            if (indexPath.row == 10) {
+                cell.inputTextField.text = [NSString stringWithFormat:@"%.2f",[_waterDic[@"monthIncome"] floatValue]/1000];
+            }
+            if (indexPath.row == 11) {
+                cell.inputTextField.text = [NSString stringWithFormat:@"%.2f",[_waterDic[@"monthExpend"] floatValue]/1000];
+            }
+            if (indexPath.row == 12) {
+                cell.inputTextField.text = [NSString stringWithFormat:@"%.2f",[_waterDic[@"balance"] floatValue]/1000];
+            }
+            if (indexPath.row == 13) {
+                cell.inputTextField.text = _waterDic[@"remark"];
+            }
+            cell.type = UIInputType;
+            cell.inputTextField.tag = 10000 + indexPath.row;
+        }
         return cell;
     }
     
@@ -74,7 +125,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.delegate = self;
-    
+    cell.collectDataArray = self.picArray;
     return cell;
 }
 
@@ -105,9 +156,9 @@
     if (indexPath.section == 1) {
         float numberToRound;
         int result;
-        numberToRound = (_picArray.count + 1.0)/3.0;
+        numberToRound = (self.picArray.count + 1.0)/3.0;
         result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
+        return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
     }
     return 53;
 }
@@ -163,10 +214,10 @@
         UIView *headView = [[UIView alloc]init];
 
         UIButton *initiateButton = [UIButton buttonWithTitle:@"确定" titleColor:[UIColor whiteColor] backgroundColor:MainColor titleFont:18];
-        initiateButton.frame = CGRectMake(15, 30, SCREEN_WIDTH/2 - 30, 50);
+        initiateButton.frame = CGRectMake(15, 30, SCREEN_WIDTH - 30, 50);
         kViewRadius(initiateButton, 5);
         [initiateButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        initiateButton.tag = 100;
+//        initiateButton.tag = 100;
         [headView addSubview:initiateButton];
         
         return headView;

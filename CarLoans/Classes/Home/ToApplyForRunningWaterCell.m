@@ -18,7 +18,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         NSArray *nameArray = @[@"征信人:",
                                @"分类:",
-                               @"流水日期区间:",
+                               @"区间:",
                                @"总收入:",
                                @"总支出:",
                                @"余额:",
@@ -34,7 +34,7 @@
         
         for (int i = 0; i < nameArray.count; i ++ ) {
 
-            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + i % nameArray.count*25, SCREEN_WIDTH - 107 - 60, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:GaryTextColor];
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + i % nameArray.count*25, SCREEN_WIDTH - 107 - 45, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(12) textColor:GaryTextColor];
             nameLabel.text = nameArray[i];
             nameLabel.tag = 100000 + i;
             [backView addSubview:nameLabel];
@@ -43,10 +43,13 @@
         
         UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 107 - 20 - 30 , 20 , 30, 30);
-//        [deleteBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        
         [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
         //        deleteBtn.backgroundColor = [UIColor redColor];
+        self.deleteBtn = deleteBtn;
         [self addSubview:deleteBtn];
+        
+        
     }
     return self;
 }
@@ -73,12 +76,12 @@
         type = @"银行";
     }
     label1.text = [NSString stringWithFormat:@"分类:%@",[BaseModel convertNull:type]];
-    label2.text = [NSString stringWithFormat:@"%@-%@",[WaterDic[@"datetimeStart"] convertDate],[WaterDic[@"datetimeEnd"] convertDate]];
-    label3.text = [NSString stringWithFormat:@"%.2f",[WaterDic[@"income"] floatValue]/1000];
-    label4.text = [NSString stringWithFormat:@"%.2f",[WaterDic[@"expend"] floatValue]/1000];
-    label5.text = [NSString stringWithFormat:@"%.2f",[WaterDic[@"balance"] floatValue]/1000];
-    label6.text = [NSString stringWithFormat:@"%.2f",[WaterDic[@"monthIncome"] floatValue]/1000];
-    label7.text = [NSString stringWithFormat:@"%.2f",[WaterDic[@"monthExpend"] floatValue]/1000];
+    label2.text = [NSString stringWithFormat:@"流水区间:%@-%@",[WaterDic[@"datetimeStart"] convertDate],[WaterDic[@"datetimeEnd"] convertDate]];
+    label3.text = [NSString stringWithFormat:@"总收入:%.2f",[WaterDic[@"income"] floatValue]/1000];
+    label4.text = [NSString stringWithFormat:@"总支出:%.2f",[WaterDic[@"expend"] floatValue]/1000];
+    label5.text = [NSString stringWithFormat:@"余额:%.2f",[WaterDic[@"balance"] floatValue]/1000];
+    label6.text = [NSString stringWithFormat:@"月均收入:%.2f",[WaterDic[@"monthIncome"] floatValue]/1000];
+    label7.text = [NSString stringWithFormat:@"月均支出:%.2f",[WaterDic[@"monthExpend"] floatValue]/1000];
     
 }
 

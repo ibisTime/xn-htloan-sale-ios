@@ -52,10 +52,10 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-//        NSArray *topArray = @[@"*婚姻状况",@"*家庭人口",@"*家庭电话",@"*家庭主要财产（元）",@"*家庭主要财产说明",@"*户籍地",@"*户籍地邮编",@"*居住地",@"*居住地邮编"];
+
         cell.topLbl.text = [TopModel user].ary4[indexPath.row];
         
-        if (indexPath.row == 0) {
+        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 8) {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 40000 + indexPath.row;
         }
@@ -79,11 +79,56 @@
     NSArray *topArray = @[@"户口本",@"结婚证/离婚证",@"购房合同/房产本",@"购房发票",@"居住证明",@"自建房证明",@"家访照片"];
     cell.name = topArray[indexPath.row];
     
+    cell.muArray = [NSMutableArray array];
+    if (indexPath.row == 0) {
+        
+        cell.muArray = [NSMutableArray arrayWithArray:self.hkBookPdf];
+    }else if (indexPath.row == 1)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.marryPdf];
+    }else if (indexPath.row == 2)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.houseContract];
+    }else if (indexPath.row == 3)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.houseInvoice];
+    }else if (indexPath.row == 4)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.liveProvePdf];
+    }else if (indexPath.row == 5)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.buildProvePdf];
+    }else if (indexPath.row == 6)
+    {
+        cell.muArray = [NSMutableArray arrayWithArray:self.housePictureApply];
+    }
+    
     MJWeakSelf;
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
         
         weakSelf.returnAryBlock(imgAry, name);
-        
+        if ([name isEqualToString:@"户口本"]) {
+            weakSelf.hkBookPdf = imgAry;
+        }
+        if ([name isEqualToString:@"结婚证/离婚证"]) {
+            weakSelf.marryPdf = imgAry;
+        }
+        if ([name isEqualToString:@"购房合同/房产本"]) {
+            weakSelf.houseContract = imgAry;
+        }
+        if ([name isEqualToString:@"购房发票"]) {
+            weakSelf.houseInvoice = imgAry;
+        }
+        if ([name isEqualToString:@"居住证明"]) {
+            weakSelf.liveProvePdf = imgAry;
+        }
+        if ([name isEqualToString:@"自建房证明"]) {
+            weakSelf.buildProvePdf = imgAry;
+        }
+        if ([name isEqualToString:@"家访照片"]) {
+            weakSelf.housePictureApply = imgAry;
+        }
+        [self reloadData];
     };
     return cell;
 }
@@ -103,10 +148,31 @@
     if (indexPath.section == 0) {
         return 53;
     }
-    
+    NSInteger num = 0;
+    if (indexPath.row == 0) {
+        num = self.hkBookPdf.count;
+    }
+    if (indexPath.row == 1) {
+        num = self.marryPdf.count;
+    }
+    if (indexPath.row == 2) {
+        num = self.houseContract.count;
+    }
+    if (indexPath.row == 3) {
+        num = self.houseInvoice.count;
+    }
+    if (indexPath.row == 4) {
+        num = self.liveProvePdf.count;
+    }
+    if (indexPath.row == 5) {
+        num = self.buildProvePdf.count;
+    }
+    if (indexPath.row == 6) {
+        num = self.housePictureApply.count;
+    }
     float numberToRound;
     int result;
-    numberToRound = (1.0)/3.0;
+    numberToRound = (1.0 + num)/3.0;
     result = (int)ceilf(numberToRound);
     return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
 }

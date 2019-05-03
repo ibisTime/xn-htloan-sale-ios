@@ -1,12 +1,13 @@
 //
-//  CreditSingleTableView.m
+//  MakeCardApplyTableView.m
 //  CarLoans
 //
 //  Created by 郑勤宝 on 2019/5/2.
 //  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "CreditSingleTableView.h"
+#import "MakeCardApplyTableView.h"
+
 
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
@@ -17,10 +18,10 @@
 #import "UsedCarInformationCell.h"
 #define UsedCarInformation @"UsedCarInformationCell"
 #import "ChooseCell.h"
-@interface CreditSingleTableView ()<UITableViewDataSource,UITableViewDelegate,CreditReportingPersonInformationDelegate>
+@interface MakeCardApplyTableView ()<UITableViewDataSource,UITableViewDelegate,CreditReportingPersonInformationDelegate>
 
 @end
-@implementation CreditSingleTableView
+@implementation MakeCardApplyTableView
 
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -40,7 +41,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
     
 }
 
@@ -85,15 +86,28 @@
         cell.nameTextLabel.hidden = NO;
         return cell;
     }
+    if (indexPath.section == 1) {
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[ChooseCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.name = @"寄送地址";
+        cell.detailsLabel.tag = 10000;
+        
+        return cell;
+    }
     NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-    ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[ChooseCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"派单给";
-    cell.detailsLabel.tag = 10000;
-   
+    cell.name = @"详细地址";
+    cell.nameText = @"请输入详细地址";
+    cell.nameTextField.tag = 10001;
+    
     return cell;
 }
 
@@ -136,7 +150,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 2) {
         return 100;
     }
     return 0.01;
@@ -150,7 +164,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 2) {
         UIView *headView = [[UIView alloc]init];
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -175,6 +189,5 @@
         
     }
 }
-
 
 @end

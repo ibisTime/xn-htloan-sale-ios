@@ -3,6 +3,7 @@
 #import <Foundation/Foundation.h>
 
 @interface AccessSingleModel : NSObject
+@property (nonatomic , strong)NSDictionary *repayBiz;
 @property (nonatomic , strong)NSDictionary *creditUser;
 @property (nonatomic , copy)NSString *isAdvanceFund;
 @property (nonatomic , copy)NSString *monthIncome;

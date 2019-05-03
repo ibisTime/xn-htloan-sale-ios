@@ -41,15 +41,11 @@
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     AdmissionDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AdmissionDetailsCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row==0) {//指定第一行为选中状态
-        
         [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        
     }
-
     NSArray *array = @[@"贷款信息",@"车辆信息",@"客户信息",@"家庭情况",@"工作情况",@"共还人信息",@"担保人信息",@"流水信息"];
     cell.nameLbl.text = array[indexPath.row];
     if (cell.height == 0) {

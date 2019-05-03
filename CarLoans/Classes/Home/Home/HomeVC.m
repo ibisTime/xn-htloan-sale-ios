@@ -42,6 +42,7 @@
 #import "HomeCollectionViewCell.h"
 //附件池
 #import "AttachmentPoolVC.h"
+#import "MakeCardVC.h"
 @interface HomeVC ()<RefreshDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSDictionary *dataDic;
@@ -252,10 +253,10 @@
                 break;
             case 8:
             {
-                AccessApplyVC *vc = [AccessApplyVC new];
+                MakeCardVC *vc = [MakeCardVC new];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.title = @"制卡";
-                vc.curNodeCodeList = @[];
+                vc.makeCardNodeList = @[@"h1",@"h2"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

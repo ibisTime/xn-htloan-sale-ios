@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ToApplyForRunningWaterCell : UITableViewCell
-
+@property (nonatomic , strong)UIButton *deleteBtn;
 @property (nonatomic , strong)NSDictionary *WaterDic;
 
 @end
