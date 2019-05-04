@@ -282,7 +282,7 @@
         [confirmButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [headView addSubview:confirmButton];
         UIButton *saveButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        saveButton.frame = CGRectMake((SCREEN_WIDTH-60)/2+30, 30, (SCREEN_WIDTH-60)/2, 50);
+        saveButton.frame = CGRectMake((SCREEN_WIDTH)/2+10, 30, (SCREEN_WIDTH-60)/2, 50);
         [saveButton setTitle:@"保存" forState:(UIControlStateNormal)];
         saveButton.backgroundColor = MainColor;
         kViewRadius(saveButton, 5);

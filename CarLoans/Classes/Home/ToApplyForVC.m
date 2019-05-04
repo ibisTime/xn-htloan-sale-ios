@@ -109,7 +109,14 @@
 
 @property (nonatomic ,strong) JHAddressPickView * pickView;
 
+@property (nonatomic ,strong) UIButton *saveBtn;
 
+@property (nonatomic , strong)NSArray *brandAry;
+@property (nonatomic , strong)NSArray *carsAry;
+@property (nonatomic , strong)NSArray *modelsAry;
+@property (nonatomic , strong)NSDictionary *brandDic;
+@property (nonatomic , strong)NSDictionary *carsDic;
+@property (nonatomic , strong)NSDictionary *modelsDic;
 @end
 
 @implementation ToApplyForVC
@@ -167,20 +174,12 @@
     _baseModel.ModelDelegate = self;
     
     UIView *rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-    
-    UIButton *applyBtn = [UIButton buttonWithTitle:@"申请" titleColor:kWhiteColor backgroundColor:kClearColor titleFont:14];
-    [rightView addSubview:applyBtn];
-    applyBtn.frame = CGRectMake(0, 0, 50, 44);
-    applyBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [applyBtn addTarget:self action:@selector(applyBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-    
     UIButton *saveBtn = [UIButton buttonWithTitle:@"保存" titleColor:kWhiteColor backgroundColor:kClearColor titleFont:14];
     [rightView addSubview:saveBtn];
+    self.saveBtn = saveBtn;
     saveBtn.frame = CGRectMake(50, 0, 50, 44);
     saveBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [saveBtn addTarget:self action:@selector(rightButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-    
-    
+    [saveBtn addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
     
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -191,42 +190,90 @@
    
 }
 
--(void)applyBtnClick:(UIButton *)sender
+-(void)applyBtnClick
 {
-    TLNetworking *http = [TLNetworking new];
-    http.isShowMsg = NO;
-    http.code = @"632538";
-    http.parameters[@"code"] = self.model.code;
-    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    [http postWithSuccess:^(id responseObject) {
-        [TLAlert alertWithSucces:@"申请成功"];
-        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
-        [self.navigationController popViewControllerAnimated:YES];
-
-    } failure:^(NSError *error) {
+    
+    [TLAlert alertWithTitle:@"提示" msg:@"请确保每个页面都已保存" confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
+        
+    } confirm:^(UIAlertAction *action) {
+        
+//        NSString *name;
+//        //    [self rightButtonClick];
+//        for (int i = 0; i < [TopModel user].ary1.count; i ++) {
+//            name = [self WarningContent:[TopModel user].ary1[i] CurrentTag:10000 + i];
+//            if (![name isEqualToString:@""]) {
+//                [TLAlert alertWithInfo:name];
+//                return;
+//            }
+//        }
+//        
+//        for (int i = 0; i < [TopModel user].ary2.count; i ++) {
+//            name = [self WarningContent:[TopModel user].ary2[i] CurrentTag:20000 + i];
+//            if (![name isEqualToString:@""]) {
+//                [TLAlert alertWithInfo:name];
+//                return;
+//            }
+//        }
+//        
+//        
+//        for (int i = 0; i < [TopModel user].ary3.count; i ++) {
+//            name = [self WarningContent:[TopModel user].ary3[i] CurrentTag:30000 + i];
+//            if (![name isEqualToString:@""]) {
+//                [TLAlert alertWithInfo:name];
+//                return;
+//            }
+//        }
+//        
+//        for (int i = 0; i < [TopModel user].ary4.count; i ++) {
+//            name = [self WarningContent:[TopModel user].ary4[i] CurrentTag:40000 + i];
+//            if (![name isEqualToString:@""]) {
+//                [TLAlert alertWithInfo:name];
+//                return;
+//            }
+//        }
+//        
+//        for (int i = 0; i < [TopModel user].ary5.count; i ++) {
+//            name = [self WarningContent:[TopModel user].ary5[i] CurrentTag:50000 + i];
+//            if (![name isEqualToString:@""]) {
+//                [TLAlert alertWithInfo:name];
+//                return;
+//            }
+//        }
+        TLNetworking *http = [TLNetworking new];
+        http.isShowMsg = NO;
+        http.code = @"632538";
+        http.parameters[@"code"] = self.model.code;
+        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:@"申请成功"];
+            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } failure:^(NSError *error) {
+            
+        }];
         
     }];
+    
+    
     
 }
 
 //申请
--(void)rightButtonClick:(UIButton *)sender
+-(void)rightButtonClick
 {
     
     [self GetTheTag];
-    BOOL isLoanRole2 = NO;
-    BOOL isLoanRole3 = NO;
-    for (int i = 0; i < self.model.creditUserList.count; i ++) {
-        if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"2"]) {
-            
-            isLoanRole2 = YES;
-        }
-        if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"3"]) {
-            isLoanRole3 = YES;
-        }
-    }
+    NSString *name;
     if (self.SelectLeftRow == 0) {
+        for (int i = 0; i < [TopModel user].ary1.count; i ++) {
+            name = [self WarningContent:[TopModel user].ary1[i] CurrentTag:10000 + i];
+            if (![name isEqualToString:@""]) {
+                [TLAlert alertWithInfo:name];
+                return;
+            }
+        }
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = NO;
         http.code = @"632530";
@@ -238,42 +285,41 @@
         http.parameters[@"periods"] = right1Label1.text;
         //   银行利率
         http.parameters[@"bankRate"] = right1Label2.text;
-        
         //   贷款金额
         http.parameters[@"loanAmount"] = @([right1Label3.text floatValue]*1000);
         //   贷款产品
         http.parameters[@"loanProductCode"] = LoanProductsDic[@"code"];
         //   年化费率
-        http.parameters[@"yearRate"] = right1Label5.text;
+//        http.parameters[@"yearRate"] = right1Label5.text;
         //   GPS费用
-        http.parameters[@"gpsFee"] = @([right1Label6.text floatValue]*1000);
+        http.parameters[@"gpsFee"] = @([right1Label5.text floatValue]*1000);
         //   公证费用
-        http.parameters[@"authFee"] = @([right1Label7.text floatValue]*1000);
+        http.parameters[@"authFee"] = @([right1Label6.text floatValue]*1000);
         //   返点利率
-        http.parameters[@"backRate"] = right1Label8.text;
+//        http.parameters[@"backRate"] = right1Label8.text;
         //   前置利率
-        http.parameters[@"preRate"] = right1Label9.text;
+//        http.parameters[@"preRate"] = right1Label9.text;
         //   首付金额
-        http.parameters[@"sfAmount"] = @([right1Label10.text floatValue]*1000);
+        http.parameters[@"sfAmount"] = @([right1Label7.text floatValue]*1000);
         //   首付比例
-        http.parameters[@"sfRate"] = right1Label11.text;
+        http.parameters[@"sfRate"] = right1Label8.text;
         //   是否融资
-        http.parameters[@"isFinacing"] = [self CanOrNo:right1Label12.text];
+        http.parameters[@"isFinacing"] = [self CanOrNo:right1Label9.text];
         //   是否垫资
-        http.parameters[@"isAdvanceFund"] = [self CanOrNo:right1Label13.text];
+        http.parameters[@"isAdvanceFund"] = [self CanOrNo:right1Label10.text];
         //   是否安装gps
-        http.parameters[@"isAzGps"] = [self CanOrNo:right1Label14.text];
+        http.parameters[@"isAzGps"] = [self CanOrNo:right1Label11.text];
         //   是否我司续保
-        http.parameters[@"isPlatInsure"] = [self CanOrNo:right1Label15.text];
+        http.parameters[@"isPlatInsure"] = [self CanOrNo:right1Label12.text];
         //   月供保证金
-        http.parameters[@"monthDeposit"] = @([right1Label16.text floatValue]*1000);
+        http.parameters[@"monthDeposit"] = @([right1Label13.text floatValue]*1000);
 
         //   团队服务费
-        http.parameters[@"teamFee"] = @([right1Label17.text  floatValue]*1000);
+        http.parameters[@"teamFee"] = @([right1Label14.text  floatValue]*1000);
         //   其他费用
-        http.parameters[@"otherFee"] = @([right1Label18.text  floatValue]*1000);
+        http.parameters[@"otherFee"] = @([right1Label15.text  floatValue]*1000);
         //   开票价格
-        http.parameters[@"invoicePrice"] = @([right1Label19.text  floatValue]*1000);
+        http.parameters[@"invoicePrice"] = @([right1Label16.text  floatValue]*1000);
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];
             
@@ -282,6 +328,13 @@
         }];
     }
     if (self.SelectLeftRow == 1) {
+        for (int i = 0; i < [TopModel user].ary2.count; i ++) {
+            name = [self WarningContent:[TopModel user].ary2[i] CurrentTag:20000 + i];
+            if (![name isEqualToString:@""]) {
+                [TLAlert alertWithInfo:name];
+                return;
+            }
+        }
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = NO;
         http.code = @"632531";
@@ -291,7 +344,7 @@
         //   机动车销售公司
         http.parameters[@"vehicleCompanyName"] = right2Label1.text;
         //   开票单位
-        http.parameters[@"invoiceCompany"] = @([right2Label2.text floatValue]*1000);
+        http.parameters[@"invoiceCompany"] = right2Label2.text;
         //   开票价
         http.parameters[@"invoicePrice"] = @([right2Label3.text floatValue]*1000);
         //   车辆类型
@@ -311,7 +364,7 @@
         //   市场指导价
         http.parameters[@"originalPrice"] = @([right2Label11.text floatValue]*1000);
         //   所属区域
-        http.parameters[@"region"] = right2Label12.text;
+        http.parameters[@"region"] = [_baseModel setParentKey:@"region" setDvalue:right2Label12.text];
         //   厂家贴息
         http.parameters[@"carDealerSubsidy"] = @([right2Label13.text floatValue]*1000);
         //   油补公里数
@@ -333,7 +386,13 @@
         }];
     }
     if (self.SelectLeftRow == 2) {
-
+        for (int i = 0; i < [TopModel user].ary3.count; i ++) {
+            name = [self WarningContent:[TopModel user].ary3[i] CurrentTag:30000 + i];
+            if (![name isEqualToString:@""]) {
+                [TLAlert alertWithInfo:name];
+                return;
+            }
+        }
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = NO;
         http.code = @"632532";
@@ -389,6 +448,13 @@
         }];
     }
     if (self.SelectLeftRow == 3) {
+        for (int i = 0; i < [TopModel user].ary4.count; i ++) {
+            name = [self WarningContent:[TopModel user].ary4[i] CurrentTag:40000 + i];
+            if (![name isEqualToString:@""]) {
+                [TLAlert alertWithInfo:name];
+                return;
+            }
+        }
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = NO;
         http.code = @"632533";
@@ -420,7 +486,12 @@
         // 现居住邮编
         http.parameters[@"nowPostCode"] = right4Label10.text;
         // 现住房屋类型
-        http.parameters[@"nowHouseType"] = right4Label11.text;
+        if ([right4Label11.text isEqualToString:@"自有"]) {
+            http.parameters[@"nowHouseType"] = @"0";
+        }else if ([right4Label11.text isEqualToString:@"租用"])
+        {
+            http.parameters[@"nowHouseType"] = @"1";
+        }
         // 户口本资料
         http.parameters[@"hkBookPdf"] = [_hkBookPdf componentsJoinedByString:@"||"];
         // 结婚证资料
@@ -444,6 +515,13 @@
         }];
     }
     if (self.SelectLeftRow == 4) {
+        for (int i = 0; i < [TopModel user].ary5.count; i ++) {
+            name = [self WarningContent:[TopModel user].ary5[i] CurrentTag:50000 + i];
+            if (![name isEqualToString:@""]) {
+                [TLAlert alertWithInfo:name];
+                return;
+            }
+        }
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = NO;
         http.code = @"632534";
@@ -494,6 +572,13 @@
     }
     
     if (self.SelectLeftRow == 5) {
+        for (int i = 0; i < [TopModel user].ary6.count; i ++) {
+            name = [self WarningContent:[TopModel user].ary6[i] CurrentTag:60000 + i];
+            if (![name isEqualToString:@""]) {
+                [TLAlert alertWithInfo:name];
+                return;
+            }
+        }
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = NO;
         http.code = @"632535";
@@ -516,18 +601,20 @@
         http.parameters[@"companyAddress"] = right6Label9.text;
         // 工作单位电话
         http.parameters[@"companyContactNo"] = right6Label10.text;
-        
-        
-        
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];
-            
         } failure:^(NSError *error) {
             
         }];
     }
     if (self.SelectLeftRow == 6) {
-        
+        for (int i = 0; i < [TopModel user].ary7.count; i ++) {
+            name = [self WarningContent:[TopModel user].ary7[i] CurrentTag:70000 + i];
+            if (![name isEqualToString:@""]) {
+                [TLAlert alertWithInfo:name];
+                return;
+            }
+        }
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = NO;
         http.code = @"632536";
@@ -536,21 +623,21 @@
         http.parameters[@"dealType"] = @(1);
     
         // 配偶学历
-        http.parameters[@"education"] = [_baseModel setParentKey:@"education" setDvalue:right6Label4.text];
+        http.parameters[@"education"] = [_baseModel setParentKey:@"education" setDvalue:right7Label4.text];
         // 省市区
-        http.parameters[@"birthAddressProvince"] = self.province1;
-        http.parameters[@"birthAddressCity"] = self.city1;
-        http.parameters[@"birthAddressArea"] = self.area1;
+        http.parameters[@"birthAddressProvince"] = self.province2;
+        http.parameters[@"birthAddressCity"] = self.city2;
+        http.parameters[@"birthAddressArea"] = self.area2;
         // 户籍地地址
-        http.parameters[@"birthAddress"] = right6Label6.text;
+        http.parameters[@"birthAddress"] = right7Label6.text;
         // 户籍地邮编
-        http.parameters[@"birthPostCode"] = right6Label7.text;
+        http.parameters[@"birthPostCode"] = right7Label7.text;
         // 工作单位名称
-        http.parameters[@"companyName"] = right6Label8.text;
+        http.parameters[@"companyName"] = right7Label8.text;
         // 工作单位地址
-        http.parameters[@"companyAddress"] = right6Label9.text;
+        http.parameters[@"companyAddress"] = right7Label9.text;
         // 工作单位电话
-        http.parameters[@"companyContactNo"] = right6Label10.text;
+        http.parameters[@"companyContactNo"] = right7Label10.text;
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];
             
@@ -558,72 +645,9 @@
             
         }];
     }
-//    if (sender.tag == 101) {
-//        NSString *name = @"";
-//        for (int i = 0; i < [TopModel user].ary1.count; i ++) {
-//            name = [self WarningContent:[TopModel user].ary1[i] CurrentTag:10000 + i];
-//            if (![name isEqualToString:@""]) {
-//                [TLAlert alertWithInfo:name];
-//                return;
-//            }
-//        }
-//
-//        for (int i = 0; i < [TopModel user].ary2.count; i ++) {
-//            name = [self WarningContent:[TopModel user].ary2[i] CurrentTag:20000 + i];
-//            if (![name isEqualToString:@""]) {
-//                [TLAlert alertWithInfo:name];
-//                return;
-//            }
-//        }
-//
-//
-//        for (int i = 0; i < [TopModel user].ary3.count; i ++) {
-//            name = [self WarningContent:[TopModel user].ary3[i] CurrentTag:30000 + i];
-//            if (![name isEqualToString:@""]) {
-//
-//                [TLAlert alertWithInfo:name];
-//                return;
-//            }
-//        }
-//
-//        for (int i = 0; i < [TopModel user].ary4.count; i ++) {
-//            name = [self WarningContent:[TopModel user].ary4[i] CurrentTag:40000 + i];
-//            if (![name isEqualToString:@""]) {
-//                [TLAlert alertWithInfo:name];
-//                return;
-//            }
-//        }
-//
-//        for (int i = 0; i < [TopModel user].ary5.count; i ++) {
-//            name = [self WarningContent:[TopModel user].ary5[i] CurrentTag:50000 + i];
-//            if (![name isEqualToString:@""]) {
-//                [TLAlert alertWithInfo:name];
-//                return;
-//            }
-//        }
-//        if (isLoanRole2 == YES) {
-//            for (int i = 0; i < [TopModel user].ary6.count; i ++) {
-//                name = [self WarningContent:[TopModel user].ary6[i] CurrentTag:60000 + i];
-//                if (![name isEqualToString:@""]) {
-//                    [TLAlert alertWithInfo:name];
-//                    return;
-//                }
-//            }
-//        }
-//        if (isLoanRole3 == YES) {
-//            for (int i = 0; i < [TopModel user].ary7.count; i ++) {
-//                name = [self WarningContent:[TopModel user].ary7[i] CurrentTag:70000 + i];
-//                if (![name isEqualToString:@""]) {
-//                    [TLAlert alertWithInfo:name];
-//                    return;
-//                }
-//            }
-//        }
-//        [self access:sender.tag - 100];
-//    }else
-//    {
-//        [self access:sender.tag - 100];
-//    }
+    if (self.SelectLeftRow == 7) {
+        [self applyBtnClick];
+    }
 }
 
 -(NSString *)WarningContent:(NSString *)name CurrentTag:(NSInteger)tag
@@ -682,10 +706,23 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (refreshTableview.tag == 100) {
+        if (indexPath.row == 7) {
+            [_saveBtn setTitle:@"申请" forState:(UIControlStateNormal)];
+
+        }else
+        {
+            [_saveBtn setTitle:@"保存" forState:(UIControlStateNormal)];
+        }
+        
         self.SelectLeftRow = indexPath.row;
         UITableView *tableView = [self.view viewWithTag:indexPath.row + 101];
         [self.view bringSubviewToFront:tableView];
     }
+    
+    
+    
+    
+    
 //    贷款信息
     if (refreshTableview.tag == 101) {
         _SelectTag = indexPath.row + 10000;
@@ -698,7 +735,8 @@
         if (indexPath.row == 4) {
             [self LoanProducts];
         }
-        if (indexPath.row == 12 || indexPath.row == 13  || indexPath.row == 14 || indexPath.row == 15) {
+        
+        if (indexPath.row == 9 || indexPath.row == 10  || indexPath.row == 11 || indexPath.row == 12) {
             [_baseModel ReturnsParentKeyAnArray:@"can_or_no"];
         }
     }
@@ -713,8 +751,69 @@
         if (indexPath.row == 4) {
             [_baseModel ReturnsParentKeyAnArray:@"car_type"];
         }
+        
+        if (indexPath.row == 5) {
+            TLNetworking *http = [TLNetworking new];
+            
+            http.isShowMsg = NO;
+            http.code = @"630406";
+            http.parameters[@"status"] = @"1";
+            [http postWithSuccess:^(id responseObject) {
+                
+                
+                _brandAry = responseObject[@"data"];
+                NSMutableArray *array = [NSMutableArray array];
+                for (int i = 0 ; i < _brandAry.count; i ++) {
+                    [array addObject:_brandAry[i][@"name"]];
+                }
+                [_baseModel CustomBouncedView:array setState:@"100"];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+        if (indexPath.row == 6) {
+//            if ([BaseModel isBlankString:_brandDic[@"code"]] == YES) {
+//                [TLAlert alertWithInfo:@"请先选择品牌"];
+//            }
+            TLNetworking *http = [TLNetworking new];
+            http.isShowMsg = NO;
+            http.code = @"630416";
+            http.parameters[@"brandCode"] = _brandDic[@"code"];
+            http.parameters[@"status"] = @"1";
+            [http postWithSuccess:^(id responseObject) {
+                _carsAry = responseObject[@"data"];
+                NSMutableArray *array = [NSMutableArray array];
+                for (int i = 0 ; i < _carsAry.count; i ++) {
+                    [array addObject:_carsAry[i][@"name"]];
+                }
+                [_baseModel CustomBouncedView:array setState:@"100"];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+        if (indexPath.row == 7) {
+//            if ([BaseModel isBlankString:_carsDic[@"code"]] == YES) {
+//                [TLAlert alertWithInfo:@"请先选择车系"];
+//            }
+            TLNetworking *http = [TLNetworking new];
+            http.isShowMsg = NO;
+            http.code = @"630426";
+            http.parameters[@"brandCode"] = _brandDic[@"code"];
+            http.parameters[@"status"] = @"1";
+            [http postWithSuccess:^(id responseObject) {
+                _modelsAry = responseObject[@"data"];
+                NSMutableArray *array = [NSMutableArray array];
+                for (int i = 0 ; i < _modelsAry.count; i ++) {
+                    [array addObject:_modelsAry[i][@"cars"][@"name"]];
+                }
+                [_baseModel CustomBouncedView:array setState:@"100"];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
         if (indexPath.row == 12) {
-            [self.pickView showInView:self.view];
+            [_baseModel ReturnsParentKeyAnArray:@"region"];
+//            [self.pickView showInView:self.view];
         }
     }
     
@@ -739,12 +838,19 @@
         }
         if (indexPath.section == 1) {
             _SelectTag = indexPath.row + 30013;
-            [_baseModel ReturnsParentKeyAnArray:@"credit_user_relation"];
+            if (indexPath.row == 1) {
+                [_baseModel ReturnsParentKeyAnArray:@"credit_user_relation"];
+            }
+            
         }
         if (indexPath.section == 2) {
             _SelectTag = indexPath.row + 30016;
-            [_baseModel ReturnsParentKeyAnArray:@"credit_user_relation"];
+            if (indexPath.row == 1) {
+                [_baseModel ReturnsParentKeyAnArray:@"credit_user_relation"];
+            }
+            
         }
+        
     }
 //    家庭情况
     if (refreshTableview.tag == 104) {
@@ -758,6 +864,9 @@
             }
             if (indexPath.row == 8) {
                 [self.pickView showInView:self.view];
+            }
+            if (indexPath.row == 11) {
+                [_baseModel CustomBouncedView:[NSMutableArray arrayWithArray:@[@"自有",@"租用"]] setState:@"100"];
             }
         }
     }
@@ -824,18 +933,26 @@
 {
 //
     if (_SelectTag == 10001) {
-        right1Label2.text = [NSString stringWithFormat:@"%.2f",[LoanBankDic[[NSString stringWithFormat:@"rate%@",Str]] floatValue]/1000];
+        right1Label2.text = [NSString stringWithFormat:@"%.2f",[LoanBankDic[[NSString stringWithFormat:@"rate%@",Str]] floatValue]];
     }
     if (_SelectTag == 10004) {
         LoanProductsDic = LoanProductsArray[sid];
-        right1Label5.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"yearRate"] floatValue]];
-        right1Label6.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"gpsFee"] floatValue]/1000];
-        right1Label7.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"authRate"] floatValue]/1000];
-        right1Label8.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"backRate"] floatValue]/1000];
-        right1Label9.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"preRate"] floatValue]/1000];
+//        right1Label5.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"yearRate"] floatValue]];
+        right1Label5.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"gpsFee"] floatValue]/1000];
+        right1Label6.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"authRate"] floatValue]/1000];
+//        right1Label8.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"backRate"] floatValue]/1000];
+//        right1Label9.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"preRate"] floatValue]/1000];
+    }
+    if (_SelectTag == 20006) {
+        _brandDic = _brandAry[sid];
+    }
+    if (_SelectTag == 20007) {
+        _carsDic = _carsAry[sid];
     }
     UILabel *right1Label1 = [self.view viewWithTag:_SelectTag];
     right1Label1.text = Str;
+    
+    
 }
 
 -(void)LoanBank
@@ -860,7 +977,7 @@
     
     http.isShowMsg = NO;
     http.code = @"632177";
-    http.parameters[@"status"] = @"3";
+    http.parameters[@"status"] = @"2";
 
     [http postWithSuccess:^(id responseObject) {
         LoanProductsArray = responseObject[@"data"];
@@ -1073,52 +1190,32 @@
     right1Label0.text = [NSString stringWithFormat:@"%@",self.model.loanBankName];
     right1Label3.text = [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000];
     
-    if ([BaseModel isBlankString:self.model.loanInfo[@"loanProductName"]] == NO) {
+    if ([BaseModel isBlankString:self.model.loanInfo[@"periods"]] == NO) {
         right1Label1.text = [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]];
         right1Label2.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"bankRate"] floatValue]];
-        
         right1Label4.text = [BaseModel convertNull:self.model.loanInfo[@"loanProductName"]];
-        TLNetworking *http = [TLNetworking new];
-        http.isShowMsg = NO;
-        http.code = @"632177";
-        http.parameters[@"status"] = @"3";
-        [http postWithSuccess:^(id responseObject) {
-            LoanProductsArray = responseObject[@"data"];
-            
-            for (int i = 0; i < LoanProductsArray.count; i ++) {
-                if ([LoanProductsArray[i][@"code"] isEqualToString:self.model.loanInfo[@"loanProductCode"]]) {
-                    LoanProductsDic = LoanProductsArray[i];
-                    right1Label5.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"yearRate"] floatValue]];
-                    right1Label6.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"gpsFee"] floatValue]/1000];
-                    right1Label7.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"authRate"] floatValue]/1000];
-                    right1Label8.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"backRate"] floatValue]/1000];
-                    right1Label9.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"preRate"] floatValue]/1000];
-                    
-                };
-            }
-        } failure:^(NSError *error) {
-            
-        }];
-        right1Label10.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"sfAmount"] floatValue]/1000];
-        right1Label11.text = [NSString stringWithFormat:@"%@",self.model.loanInfo[@"sfRate"]];
-        right1Label12.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isFinacing];
-        right1Label13.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isAdvanceFund];
-        right1Label14.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isGpsAz];
-        right1Label15.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isPlatInsure];
-        
-        right1Label16.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"monthDeposit"] floatValue]/1000];
-        right1Label17.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"teamFee"] floatValue]/1000];
-        right1Label18.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"otherFee"] floatValue]/1000];
-        right1Label19.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"invoicePrice"] floatValue]/1000];
+//        right1Label5.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"yearRate"] floatValue]];
+        right1Label5.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000];
+        right1Label6.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"authRate"] floatValue]/1000];
+//        right1Label8.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"backRate"] floatValue]/1000];
+//        right1Label9.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"preRate"] floatValue]/1000];
+        right1Label7.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"sfAmount"] floatValue]/1000];
+        right1Label8.text = [NSString stringWithFormat:@"%@",self.model.loanInfo[@"sfRate"]];
+        right1Label9.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isFinacing];
+        right1Label10.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isAdvanceFund];
+        right1Label11.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isGpsAz];
+        right1Label12.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isPlatInsure];
+        right1Label13.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"monthDeposit"] floatValue]/1000];
+        right1Label14.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"teamFee"] floatValue]/1000];
+        right1Label15.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"otherFee"] floatValue]/1000];
+        right1Label16.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"invoicePrice"] floatValue]/1000];
         [self.rightTableView1 reloadData];
     }
-    
-    
     
     if ([BaseModel isBlankString:self.model.carInfoRes[@"vehicleCompanyName"]]==NO) {
 
         right2Label1.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"vehicleCompanyName"]];
-        right2Label2.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"invoiceCompany"] floatValue]/1000];
+        right2Label2.text = self.model.carInfoRes[@"invoiceCompany"];
         right2Label3.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"invoicePrice"] floatValue]/1000];
         right2Label4.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carType"]];
         right2Label5.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carBrand"]];
@@ -1129,7 +1226,7 @@
         right2Label10.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carEngineNo"]];
         
         right2Label11.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000];
-        right2Label12.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"region"]];
+        right2Label12.text = [_baseModel setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]];
         right2Label13.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"carDealerSubsidy"] floatValue]/1000];
         right2Label14.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"oilSubsidyKil"]];
         right2Label15.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"oilSubsidy"] floatValue]/1000];
@@ -1151,31 +1248,35 @@
             right3Label0.text = creditUser[@"userName"];
             right3Label1.text = creditUser[@"mobile"];
             right3Label2.text = creditUser[@"idNo"];
-            right3Label3.text = [_baseModel setParentKey:@"gender" setDkey:creditUser[@"gender"]];
-            right3Label4.text = [NSString stringWithFormat:@"%ld",[creditUser[@"age"] integerValue]];
-            right3Label5.text = creditUser[@"nation"];
-            right3Label6.text = [_baseModel setParentKey:@"politics" setDkey:creditUser[@"political"]];
-            right3Label7.text = [_baseModel setParentKey:@"education" setDkey:creditUser[@"education"]];
-            right3Label8.text = creditUser[@"workProfession"];
-            right3Label9.text = creditUser[@"postTitle"];
             
-            if ([creditUser[@"isDriceLicense"] isEqualToString:@"1"]) {
-                right3Label10.text = @"有";
-            }else if ([right3Label10.text isEqualToString:@"0"])
-            {
-                right3Label10.text = @"无";
-            }else
-            {
-                right3Label10.text = @"";
+            if ([creditUser[@"gender"] integerValue] != 0) {
+                right3Label3.text = [_baseModel setParentKey:@"gender" setDkey:creditUser[@"gender"]];
+                right3Label4.text = [NSString stringWithFormat:@"%ld",[creditUser[@"age"] integerValue]];
+                right3Label5.text = creditUser[@"nation"];
+                right3Label6.text = [_baseModel setParentKey:@"politics" setDkey:creditUser[@"political"]];
+                right3Label7.text = [_baseModel setParentKey:@"education" setDkey:creditUser[@"education"]];
+                right3Label8.text = creditUser[@"workProfession"];
+                right3Label9.text = creditUser[@"postTitle"];
+                
+                if ([creditUser[@"isDriceLicense"] isEqualToString:@"1"]) {
+                    right3Label10.text = @"有";
+                }else if ([right3Label10.text isEqualToString:@"0"])
+                {
+                    right3Label10.text = @"无";
+                }else
+                {
+                    right3Label10.text = @"";
+                }
+                right3Label11.text = creditUser[@"carType"];
+                right3Label12.text = creditUser[@"mainIncome"];
+                right3Label13.text = creditUser[@"emergencyName1"];
+                right3Label14.text = [_baseModel setParentKey:@"credit_user_relation" setDkey:creditUser[@"emergencyRelation1"]];
+                right3Label15.text = creditUser[@"emergencyMobile1"];
+                right3Label16.text = creditUser[@"emergencyName2"];
+                right3Label17.text = [_baseModel setParentKey:@"credit_user_relation" setDkey:creditUser[@"emergencyRelation2"]];
+                right3Label18.text = creditUser[@"emergencyMobile2"];
             }
-            right3Label11.text = creditUser[@"carType"];
-            right3Label12.text = creditUser[@"mainIncome"];
-            right3Label13.text = creditUser[@"emergencyName1"];
-            right3Label14.text = [_baseModel setParentKey:@"credit_user_relation" setDkey:creditUser[@"emergencyRelation1"]];
-            right3Label15.text = creditUser[@"emergencyMobile1"];
-            right3Label16.text = creditUser[@"emergencyName2"];
-            right3Label17.text = [_baseModel setParentKey:@"credit_user_relation" setDkey:creditUser[@"emergencyRelation2"]];
-            right3Label18.text = creditUser[@"emergencyMobile2"];
+            
             
             
             if ([creditUser[@"marryState"] integerValue] != 0) {
@@ -1198,7 +1299,12 @@
                 self.area4 = creditUser[@"birthAddressArea"];
                 right4Label9.text = creditUser[@"nowAddress"];
                 right4Label10.text = creditUser[@"nowPostCode"];
-                right4Label11.text = creditUser[@"nowHouseType"];
+                if ([creditUser[@"nowHouseType"] isEqualToString:@"0"]) {
+                    right4Label11.text = @"自有";
+                }else if ([creditUser[@"nowHouseType"] isEqualToString:@"1"])
+                {
+                    right4Label11.text = @"租用";
+                }
             }
             
             

@@ -121,7 +121,16 @@
     self.cell = cell;
     NSArray *placArray = @[@"请输入使用占比",@"请输入说明"];
     cell.nameText = placArray[indexPath.row];
-    
+    if (indexPath.row == 0) {
+        if ([cell.nameTextField.text isEqualToString:@""] && [self.creditCardOccupation floatValue] != 0) {
+            cell.nameTextField.text = self.creditCardOccupation;
+        }
+    }
+    if (indexPath.row == 1) {
+        if ([cell.nameTextField.text isEqualToString:@""] && [BaseModel isBlankString:self.creditNote] == NO) {
+            cell.nameTextField.text = self.creditNote;
+        }
+    }
     
     cell.nameTextField.tag = 3000 + indexPath.row;
     return cell;

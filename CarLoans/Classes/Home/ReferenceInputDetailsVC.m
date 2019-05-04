@@ -11,8 +11,7 @@
 @interface ReferenceInputDetailsVC ()<RefreshDelegate,BaseModelDelegate>
 @property (nonatomic , strong)ReferenceInputDetailsTableView *tableView;
 //@property (nonatomic , strong)SurveyDetailsModel *surveyDetailsModel;
-@property (nonatomic , strong)NSMutableArray *bankCreditReport;
-@property (nonatomic , strong)NSMutableArray *dataCreditReport;
+
 @property (nonatomic , strong)TLImagePicker *imagePicker;
 @property (nonatomic , assign)NSInteger selectInt;
 
@@ -94,6 +93,8 @@
 
 -(void)TheAssignment
 {
+    
+    
     if ([self.creditListDic[@"bankResult"] isEqualToString:@"1"])
     {
         _bankResult = @"通过";
@@ -109,13 +110,13 @@
     self.dataCreditReport = [NSMutableArray arrayWithArray:[self.creditListDic[@"dataCreditReport"] componentsSeparatedByString:@"||"]];
     self.tableView.dataCreditReport = self.dataCreditReport;
     UITextField *textField1 = [self.view viewWithTag:3000];
-    UITextField *textField2 = [self.view viewWithTag:3001];
+//    UITextField *textField2 = [self.view viewWithTag:3001];
     textField1.text = [NSString stringWithFormat:@"%.2f",[self.creditListDic[@"creditCardOccupation"] floatValue]*100];
-    textField2.text = self.creditListDic[@"creditNote"];
-    
-    
-    
+//    textField2.text = self.creditListDic[@"creditNote"];
+    self.tableView.creditNote = self.creditListDic[@"creditNote"];
     [self.tableView reloadData];
+    
+//    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight);
 }
 
 - (void)initTableView {
@@ -124,6 +125,8 @@
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.dataDic = self.dataDic;
     [self.view addSubview:self.tableView];
+    
+    
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -77,7 +77,6 @@
             if (indexPath.row == 5) {
                 return 40;
             }
-            
         }
         if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"3"]) {
             if (indexPath.row == 6) {

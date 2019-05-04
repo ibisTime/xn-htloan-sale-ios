@@ -10,6 +10,7 @@
 #import "AccessApplyTableView.h"
 #import "AccessApplyApplyVC.h"
 #import "ToApplyForVC.h"
+#import "AccessAuditVC.h"
 @interface AccessApplyVC ()<RefreshDelegate>
 @property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
 @property (nonatomic , strong)AccessApplyTableView *tableView;
@@ -39,8 +40,6 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-//    if ([_model[index].curNodeCode isEqualToString:@"b1"] || [_model[index].curNodeCode isEqualToString:@"b1x"])
-//    {
     
     TLNetworking *http = [TLNetworking new];
     http.isShowMsg = NO;
@@ -49,11 +48,56 @@
     http.parameters[@"code"] = self.model[index].code;
     
     [http postWithSuccess:^(id responseObject) {
-//        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
-        ToApplyForVC *vc = [ToApplyForVC new];
-        vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
-        [self.navigationController pushViewController:vc animated:YES];
-        
+    
+        if ([_model[index].curNodeCode isEqualToString:@"b1"] || [_model[index].curNodeCode isEqualToString:@"b1x"])
+        {
+            ToApplyForVC *vc = [ToApplyForVC new];
+            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([_model[index].curNodeCode isEqualToString:@"b2"])
+        {
+            AccessAuditVC *vc = [AccessAuditVC new];
+            vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
+            vc.code = @"632140";
+            vc.model = self.model[index];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([_model[index].curNodeCode isEqualToString:@"b3"])
+        {
+            AccessAuditVC *vc = [AccessAuditVC new];
+            vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
+            vc.code = @"632121";
+            vc.model = self.model[index];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([_model[index].curNodeCode isEqualToString:@"b4"])
+        {
+            AccessAuditVC *vc = [AccessAuditVC new];
+            vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
+            vc.code = @"632138";
+            vc.model = self.model[index];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([_model[index].curNodeCode isEqualToString:@"b5"])
+        {
+            AccessAuditVC *vc = [AccessAuditVC new];
+            vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
+            vc.code = @"632122";
+            vc.model = self.model[index];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([_model[index].curNodeCode isEqualToString:@"b6"])
+        {
+            AccessAuditVC *vc = [AccessAuditVC new];
+            vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
+            vc.code = @"632139";
+            vc.model = self.model[index];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([_model[index].curNodeCode isEqualToString:@"b7"])
+        {
+            AccessAuditVC *vc = [AccessAuditVC new];
+            vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
+            vc.code = @"632143";
+            vc.model = self.model[index];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    
     } failure:^(NSError *error) {
         
     }];

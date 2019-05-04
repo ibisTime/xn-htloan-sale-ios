@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)NSDictionary *dataDic;
 @property (nonatomic , copy)NSString *bankResult;
 @property (nonatomic , copy)NSString *creditNote;
+@property (nonatomic , copy)NSString *creditCardOccupation;
+
 @property (nonatomic , strong)TextFieldCell *cell;
 @end
 

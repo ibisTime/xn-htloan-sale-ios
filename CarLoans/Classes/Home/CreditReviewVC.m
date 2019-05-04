@@ -26,7 +26,18 @@
     [self initTableView];
     [self cdbiz_statusLoadData];
     
-    //    [self loadData];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -10;
+    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+    [self.RightButton setTitle:@"查看详情" forState:(UIControlStateNormal)];
+    [self.RightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+}
+
+-(void)rightButtonClick
+{
+    AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
+    vc.model = self.surveyModel;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)cdbiz_statusLoadData

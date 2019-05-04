@@ -76,14 +76,10 @@
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
     if ([state isEqualToString:@"录入"]) {
-        ReferenceInputDetailsVC *vc = [ReferenceInputDetailsVC new];
-        vc.dataDic = self.surveyModel.creditUserList[index];
-        vc.creditListDic = _creditList[index];
-        vc.row = index;
-        vc.creditListBlock = ^(NSDictionary * _Nonnull creditListDic, NSInteger row) {
-            [_creditList replaceObjectAtIndex:row withObject:creditListDic];
-        };
-        [self.navigationController pushViewController:vc animated:YES];
+        
+        
+        [self ReferenceInputRow:index];
+        
     }else
     {
         for (int i = 0; i < _creditList.count; i ++) {
@@ -93,16 +89,10 @@
             }
         }
         
-//        UITextField *textField = [self.view viewWithTag:3000];
-//        if ([textField.text isEqualToString:@""]) {
-//            [TLAlert alertWithInfo:@"请输入说明"];
-//            return;
-//        }
         
         TLNetworking *http = [TLNetworking new];
         http.code = @"632111";
         http.showView = self.view;
-//        http.parameters[@"approveNote"] = textField.text;
         http.parameters[@"creditList"] = _creditList;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"bizCode"] = _surveyModel.code;
@@ -118,6 +108,21 @@
     }
 }
 
+-(void)ReferenceInputRow:(NSInteger)row
+{
+    ReferenceInputDetailsVC *vc = [ReferenceInputDetailsVC new];
+    vc.dataDic = self.surveyModel.creditUserList[row];
+    vc.creditListDic = _creditList[row];
+    vc.row = row;
+    vc.creditListBlock = ^(NSDictionary * _Nonnull creditListDic, NSInteger row) {
+        [_creditList replaceObjectAtIndex:row withObject:creditListDic];
+    };
+    
+    
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -125,10 +130,8 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-    SurveyInformationVC *vc = [SurveyInformationVC new];
-    vc.dataDic = self.surveyModel.creditUserList[index - 123];
-    
-    [self.navigationController pushViewController:vc animated:YES];
+
+    [self ReferenceInputRow:index - 123];
 }
 
 

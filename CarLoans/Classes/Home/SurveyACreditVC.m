@@ -18,6 +18,7 @@
 
     NSString *secondCarReport;
 }
+
 @property (nonatomic , strong)SurveyACreditTableView *tableView;
 
 @property (nonatomic , strong)TLImagePicker *imagePicker;
@@ -26,7 +27,7 @@
 //业务种类
 @property (nonatomic , strong)NSArray *speciesArray;
 
-@property (nonatomic , strong)SurveyDetailsModel *DetailsModel;
+//@property (nonatomic , strong)SurveyDetailsModel *DetailsModel;
 
 @end
 
@@ -81,13 +82,17 @@
     [self initTableView];
     secondCarReport = @"";
     self.tableView.secondCarReport = @"";
-    if ([_state isEqualToString:@"1"]) {
+    [SVProgressHUD show];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self loadData];
-    }
+        [SVProgressHUD dismiss];
+    });
+    
     bizType = 100;
 //    [self ModifyTheInformation];
 
 }
+
 
 #pragma mark -- 接收到通知
 - (void)InfoNotificationAction:(NSNotification *)notification
@@ -99,15 +104,10 @@
          [peopleArray replaceObjectAtIndex:selectRow - 1234 withObject:dic];
     }else
     {
-//        [peopleArray addObject:dic];
         [peopleArray addObject:dic];
-
     }
     self.tableView.peopleAray = peopleArray;
     [self.tableView reloadData];
-
-
-
 }
 
 #pragma mark -- 删除通知
@@ -118,49 +118,153 @@
 
 -(void)loadData
 {
-    CarLoansWeakSelf;
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"632117";
-    http.showView = self.view;
-    http.parameters[@"code"] = _model.code;
-    [http postWithSuccess:^(id responseObject) {
-        weakSelf.DetailsModel = [SurveyDetailsModel mj_objectWithKeyValues:responseObject[@"data"]];
-//        weakSelf.tableView.DetailsModel = self.DetailsModel;
-        weakSelf.tableView.peopleAray = weakSelf.DetailsModel.creditUserList;
-        NSLog(@"%@",self.tableView.peopleAray);
-        [peopleArray addObjectsFromArray:weakSelf.DetailsModel.creditUserList];
-        UITextField *textField1 = [self.view viewWithTag:300];
-        textField1.text = [NSString stringWithFormat:@"%.2f",[_DetailsModel.loanAmount floatValue]/1000];
-        UITextField *textField2 = [self.view viewWithTag:301];
-        textField2.text = _DetailsModel.note;
-        loanBankCode = _DetailsModel.loanBankCode;
-        if ([_model.bizType isEqualToString:@"0"]) {
-            _tableView.speciesStr = @"新车";
-
-        }else
-        {
-            _tableView.speciesStr = @"二手车";
-        }
-        _tableView.secondCarReport = _DetailsModel.secondCarReport;
-        bizType = [_model.bizType integerValue];
-        TLNetworking *http = [TLNetworking new];
-        http.isShowMsg = YES;
-        http.code = @"632037";
-        [http postWithSuccess:^(id responseObject) {
-            self.bankArray = responseObject[@"data"];
-            for (int i = 0; i < _bankArray.count; i ++) {
-                if ([_DetailsModel.loanBank isEqualToString:_bankArray[i][@"code"]]) {
-                    _tableView.bankStr = _bankArray[i][@"bankName"];
+    NSString *idNoFront;
+    NSString *idNoReverse;
+    NSString *authPdf;
+    NSString *interviewPic;
+    NSMutableArray *array = [NSMutableArray array];
+    
+    
+    for (int j = 0; j < self.model.creditUserList.count; j ++) {
+        NSDictionary *dataDic;
+        NSDictionary *creditUser = self.model.creditUserList[j];
+        if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"1"]) {
+            
+            for (int k = 0; k < self.model.attachments.count; k ++) {
+                NSDictionary *attachments = self.model.attachments[k];
+                if ([attachments[@"kname"] isEqualToString:@"id_no_front_apply"]) {
+                    idNoFront = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_apply"]) {
+                    idNoReverse = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"auth_pdf_apply"]) {
+                    authPdf = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"interview_pic_apply"]) {
+                    interviewPic = attachments[@"url"];
                 }
             }
-            [weakSelf.tableView reloadData];
-        } failure:^(NSError *error) {
-
-        }];
-        [weakSelf.tableView reloadData];
+            
+            dataDic  = @{
+                         @"userName":[BaseModel convertNull:creditUser[@"userName"]],
+                         @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
+                         @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
+                         @"relation":[BaseModel convertNull:creditUser[@"relation"]],
+                         @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
+                         @"idFront":[BaseModel convertNull:idNoFront],
+                         @"idReverse":[BaseModel convertNull:idNoReverse],
+                         @"authPdf":[BaseModel convertNull:authPdf],
+                         @"interviewPic":[BaseModel convertNull:interviewPic]
+                         };
+            [array addObject:dataDic];
+        }
+        if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"2"]) {
+            
+            for (int k = 0; k < self.model.attachments.count; k ++) {
+                NSDictionary *attachments = self.model.attachments[k];
+                if ([attachments[@"kname"] isEqualToString:@"id_no_front_gh"]) {
+                    idNoFront = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_gh"]) {
+                    idNoReverse = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"auth_pdf_gh"]) {
+                    authPdf = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"interview_pic_gh"]) {
+                    interviewPic = attachments[@"url"];
+                }
+            }
+            
+            dataDic  = @{
+                         @"userName":[BaseModel convertNull:creditUser[@"userName"]],
+                         @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
+                         @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
+                         @"relation":[BaseModel convertNull:creditUser[@"relation"]],
+                         @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
+                         @"idFront":[BaseModel convertNull:idNoFront],
+                         @"idReverse":[BaseModel convertNull:idNoReverse],
+                         @"authPdf":[BaseModel convertNull:authPdf],
+                         @"interviewPic":[BaseModel convertNull:interviewPic]
+                         };
+            [array addObject:dataDic];
+        }
+        if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"3"]) {
+            for (int k = 0; k < self.model.attachments.count; k ++) {
+                NSDictionary *attachments = self.model.attachments[k];
+                if ([attachments[@"kname"] isEqualToString:@"id_no_front_gua"]) {
+                    idNoFront = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_gua"]) {
+                    idNoReverse = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"auth_pdf_gua"]) {
+                    authPdf = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"interview_pic_gua"]) {
+                    interviewPic = attachments[@"url"];
+                }
+            }
+            
+            dataDic  = @{
+                         @"userName":[BaseModel convertNull:creditUser[@"userName"]],
+                         @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
+                         @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
+                         @"relation":[BaseModel convertNull:creditUser[@"relation"]],
+                         @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
+                         @"idFront":[BaseModel convertNull:idNoFront],
+                         @"idReverse":[BaseModel convertNull:idNoReverse],
+                         @"authPdf":[BaseModel convertNull:authPdf],
+                         @"interviewPic":[BaseModel convertNull:interviewPic]
+                         };
+            [array addObject:dataDic];
+        }
+    }
+//    for (int i = 0; i < self.model.attachments.count; i ++) {
+//        NSDictionary *attachments = self.model.attachments[i];
+    
+            
+          
+            
+            
+//        }
+//    }
+    
+    self.tableView.peopleAray = array;
+//    NSLog(@"%@",self.tableView.peopleAray);
+//    [peopleArray addObjectsFromArray:array];
+    peopleArray = array;
+    
+    UITextField *textField1 = [self.view viewWithTag:300];
+    textField1.text = [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000];
+    UITextField *textField2 = [self.view viewWithTag:301];
+    textField2.text = self.model.creditNote;
+    loanBankCode = self.model.loanBankCode;
+    if ([_model.bizType isEqualToString:@"0"]) {
+        _tableView.speciesStr = @"新车";
+        
+    }else
+    {
+        _tableView.speciesStr = @"二手车";
+    }
+    _tableView.secondCarReport = self.model.secondCarReport;
+    bizType = [_model.bizType integerValue];
+    TLNetworking *http = [TLNetworking new];
+    http.isShowMsg = YES;
+    http.code = @"632037";
+    [http postWithSuccess:^(id responseObject) {
+        self.bankArray = responseObject[@"data"];
+        for (int i = 0; i < _bankArray.count; i ++) {
+            if ([self.model.loanBank isEqualToString:_bankArray[i][@"code"]]) {
+                _tableView.bankStr = _bankArray[i][@"bankName"];
+            }
+        }
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
-        WGLog(@"%@",error);
+        
     }];
+    [self.tableView reloadData];
     
     
     
@@ -261,7 +365,7 @@
 
     }
     http.parameters[@"creditUserList"] = peopleArray;
-    http.parameters[@"note"] = textField2.text;
+    http.parameters[@"creditNote"] = textField2.text;
     if (bizType == 1) {
 //        二手车
         http.parameters[@"secondCarReport"] = secondCarReport;

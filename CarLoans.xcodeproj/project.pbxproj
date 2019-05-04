@@ -241,6 +241,8 @@
 		1F651AAC227B393100EFB78B /* MakeCardApplyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AAB227B393100EFB78B /* MakeCardApplyTableView.m */; };
 		1F651AB2227B419600EFB78B /* MakeCardEntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AB1227B419600EFB78B /* MakeCardEntryVC.m */; };
 		1F651AB5227B41B800EFB78B /* MakeCardEntryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */; };
+		1F651ABB227D7A0B00EFB78B /* AccessAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */; };
+		1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */; };
 		5F4B98A33D181725064D3D42 /* libPods-CarLoans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB36E56BF8F7E87912612D2 /* libPods-CarLoans.a */; };
 		7A0592A520FDCBD100075FE8 /* SurveyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592A420FDCBD100075FE8 /* SurveyVC.m */; };
 		7A0592AC20FDCD0E00075FE8 /* SurveyACreditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592AB20FDCD0E00075FE8 /* SurveyACreditVC.m */; };
@@ -931,6 +933,10 @@
 		1F651AB1227B419600EFB78B /* MakeCardEntryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardEntryVC.m; sourceTree = "<group>"; };
 		1F651AB3227B41B800EFB78B /* MakeCardEntryTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeCardEntryTableView.h; sourceTree = "<group>"; };
 		1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeCardEntryTableView.m; sourceTree = "<group>"; };
+		1F651AB9227D7A0900EFB78B /* AccessAuditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessAuditVC.h; sourceTree = "<group>"; };
+		1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditVC.m; sourceTree = "<group>"; };
+		1F651ABC227D7A1D00EFB78B /* AccessAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessAuditTableView.h; sourceTree = "<group>"; };
+		1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditTableView.m; sourceTree = "<group>"; };
 		7A0592A320FDCBD100075FE8 /* SurveyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyVC.h; sourceTree = "<group>"; };
 		7A0592A420FDCBD100075FE8 /* SurveyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurveyVC.m; sourceTree = "<group>"; };
 		7A0592AA20FDCD0E00075FE8 /* SurveyACreditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyACreditVC.h; sourceTree = "<group>"; };
@@ -1619,6 +1625,7 @@
 		1F151A3D2272A4CA002B7EDA /* AccessApply准入申请 */ = {
 			isa = PBXGroup;
 			children = (
+				1F651AB6227D79C800EFB78B /* AccessAudit准入审核 */,
 				1F651A2E2275AEC200EFB78B /* ToApplyFor申请 */,
 				1F151A602272AB14002B7EDA /* AccessApplyApply申请 */,
 				1F151A472272AB13002B7EDA /* AccessApplyDetails详情 */,
@@ -2771,6 +2778,33 @@
 				1F651AB1227B419600EFB78B /* MakeCardEntryVC.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		1F651AB6227D79C800EFB78B /* AccessAudit准入审核 */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AB8227D79EC00EFB78B /* Controller */,
+				1F651AB7227D79E900EFB78B /* Viiew */,
+			);
+			name = "AccessAudit准入审核";
+			sourceTree = "<group>";
+		};
+		1F651AB7227D79E900EFB78B /* Viiew */ = {
+			isa = PBXGroup;
+			children = (
+				1F651ABC227D7A1D00EFB78B /* AccessAuditTableView.h */,
+				1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */,
+			);
+			name = Viiew;
+			sourceTree = "<group>";
+		};
+		1F651AB8227D79EC00EFB78B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F651AB9227D7A0900EFB78B /* AccessAuditVC.h */,
+				1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		7A05929A20FDCB1700075FE8 /* View */ = {
@@ -4910,6 +4944,7 @@
 				7A35825821119B16006FB5B5 /* CustomerInvalidCell.m in Sources */,
 				7A13AEB021104E4300B8F785 /* QNNetworkInfo.m in Sources */,
 				7A0592B220FDE39100075FE8 /* SurveyACreditTableView.m in Sources */,
+				1F651ABB227D7A0B00EFB78B /* AccessAuditVC.m in Sources */,
 				7A0592A520FDCBD100075FE8 /* SurveyVC.m in Sources */,
 				1F1EF2AC2265D03000EADA25 /* AttachmentPoolTableView.m in Sources */,
 				1F151A912272AB14002B7EDA /* ApplyTableView1.m in Sources */,
@@ -4976,6 +5011,7 @@
 				7A13AEB121104E4300B8F785 /* QNRecord.m in Sources */,
 				7AB29E8620FD8EB30014FCB3 /* TLNetworking.m in Sources */,
 				7A13AE30210FF9C700B8F785 /* SurveyDetailsTableView.m in Sources */,
+				1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */,
 				7AB29DDD20FD8D580014FCB3 /* BaseModel.m in Sources */,
 				7AB29E8220FD8EB30014FCB3 /* TLTableView.m in Sources */,
 				1F1EF3362269BC1C00EADA25 /* ReferenceInputDetailsTableView.m in Sources */,

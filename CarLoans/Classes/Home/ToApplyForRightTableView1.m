@@ -46,61 +46,16 @@
     // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
     if (!cell) {
         cell = [[ToApplyForEncapsulationCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        NSArray *bottomAry = @[[NSString stringWithFormat:@"%@",self.model.loanBankName],
-                              [NSString stringWithFormat:@"%@",self.model.repayBiz[@"periods"]],
-                               ];
+
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.topLbl.text = [TopModel user].ary1[indexPath.row];
     
-    
-//    right1Label0.text = [NSString stringWithFormat:@"%@",self.model.loanBankName];
-//
-//    right1Label3.text = self.model.loanAmount;
-//
-//
-//    if ([BaseModel isBlankString:self.model.repayBiz[@"loanProductName"]] == NO) {
-//        right1Label1.text = [NSString stringWithFormat:@"%@",self.model.repayBiz[@"periods"]];
-//        right1Label4.text = [BaseModel convertNull:self.model.repayBiz[@"loanProductName"]];
-//        TLNetworking *http = [TLNetworking new];
-//        http.isShowMsg = NO;
-//        http.code = @"632177";
-//        http.parameters[@"status"] = @"3";
-//        [http postWithSuccess:^(id responseObject) {
-//            LoanProductsArray = responseObject[@"data"];
-//
-//            for (int i = 0; i < LoanProductsArray.count; i ++) {
-//                if ([LoanProductsArray[i][@"code"] isEqualToString:self.model.repayBiz[@"loanProductCode"]]) {
-//                    LoanProductsDic = LoanProductsArray[i];
-//                    right1Label5.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"yearRate"] floatValue]];
-//                    right1Label6.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"gpsFee"] floatValue]/1000];
-//                    right1Label7.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"authRate"] floatValue]/1000];
-//                    right1Label8.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"backRate"] floatValue]/1000];
-//                    right1Label9.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"preRate"] floatValue]/1000];
-//                };
-//            }
-//        } failure:^(NSError *error) {
-//
-//        }];
-//        right1Label10.text = [NSString stringWithFormat:@"%.2f",[self.model.repayBiz[@"sfAmount"] floatValue]/1000];
-//        right1Label11.text = [NSString stringWithFormat:@"%@",self.model.repayBiz[@"sfRate"]];
-//        right1Label12.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isFinacing];
-//        right1Label13.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isAdvanceFund];
-//        right1Label14.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isGpsAz];
-//        right1Label15.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isPlatInsure];
-//
-//        [self.rightTableView1 reloadData];
-//    }
-    
-    
-    
-    
-    
-    if (indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 12 || indexPath.row == 13 || indexPath.row == 14 || indexPath.row == 15 ) {
+    if (indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 9 || indexPath.row == 10  || indexPath.row == 11 || indexPath.row == 12) {
         cell.type = ChooseType;
         cell.chooseLbl.tag = 10000 + indexPath.row;
-    }else if (indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13|| indexPath.row == 16 || indexPath.row == 17 || indexPath.row == 18 || indexPath.row == 19|| indexPath.row == 20)
+    }else if (indexPath.row == 7 || indexPath.row == 8 ||  indexPath.row == 13 || indexPath.row == 14 || indexPath.row == 15 || indexPath.row == 16)
     {
         cell.type = InputType;
         cell.inputTextField.tag = 10000 + indexPath.row;

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface SurveyModel : NSObject
+@property (nonatomic , copy)NSString *creditNote;
+@property (nonatomic , copy)NSString *secondCarReport;
 @property (nonatomic , copy)NSDictionary *carInfoRes;
 @property (nonatomic , copy)NSDictionary *loanInfo;
 @property (nonatomic , copy)NSDictionary *carInfo;

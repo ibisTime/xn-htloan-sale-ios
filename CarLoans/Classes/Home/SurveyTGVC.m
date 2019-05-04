@@ -74,6 +74,7 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
+    
     if ([self.title isEqualToString:@"征信派单"]) {
         CreditSingleVC *vc = [CreditSingleVC new];
         vc.model = self.model[index];

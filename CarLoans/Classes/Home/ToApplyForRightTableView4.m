@@ -55,7 +55,7 @@
 
         cell.topLbl.text = [TopModel user].ary4[indexPath.row];
         
-        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 8) {
+        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 11) {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 40000 + indexPath.row;
         }
@@ -64,7 +64,6 @@
             cell.type = InputType;
             cell.inputTextField.tag = indexPath.row + 40000;
         }
-        
         return cell;
     }
     // 定义cell标识  每个cell对应一个自己的标识

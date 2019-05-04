@@ -1,12 +1,14 @@
 //
-//  CreditReviewTableView.m
+//  AccessAuditTableView.m
 //  CarLoans
 //
-//  Created by 郑勤宝 on 2019/4/25.
+//  Created by 郑勤宝 on 2019/5/4.
 //  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "CreditReviewTableView.h"
+#import "AccessAuditTableView.h"
+
+
 
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
@@ -16,10 +18,11 @@
 #define SurverCertificate @"SurverCertificateCell"
 #import "UsedCarInformationCell.h"
 #define UsedCarInformation @"UsedCarInformationCell"
-@interface CreditReviewTableView ()<UITableViewDataSource,UITableViewDelegate,CreditReportingPersonInformationDelegate>
+#import "ChooseCell.h"
+@interface AccessAuditTableView ()<UITableViewDataSource,UITableViewDelegate,CreditReportingPersonInformationDelegate>
 
 @end
-@implementation CreditReviewTableView
+@implementation AccessAuditTableView
 
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -85,14 +88,23 @@
         return cell;
     }
     
-    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name = @"审核意见";
     cell.nameText = @"请输入审核意见";
-    cell.nameTextField.tag = 3000;
+    cell.nameTextField.tag = 10000;
+    
     return cell;
 }
 
+-(void)ReferenceInputButton:(UIButton *)sender
+{
+    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag - 1000 selectRowState:@"录入"];
+}
 
 
 -(void)CreditReportingPersonInformationButton:(UIButton *)sender
@@ -113,11 +125,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section == 2) {
-//        return 15 + 135 * self.model.creditUserList.count + (self.model.creditUserList.count - 1) * 10;
-//    }
     return 50;
-    
 }
 
 #pragma mark -- 区头高度
@@ -150,36 +158,38 @@
         UIView *headView = [[UIView alloc]init];
         
         UIButton *throughButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        throughButton.frame = CGRectMake(20, 30, (SCREEN_WIDTH - 60)/2, 50);
+        throughButton.frame = CGRectMake(20, 30, SCREEN_WIDTH/2 - 30, 50);
         [throughButton setTitle:@"通过" forState:(UIControlStateNormal)];
         throughButton.backgroundColor = MainColor;
         kViewRadius(throughButton, 5);
         throughButton.titleLabel.font = HGfont(18);
-        throughButton.tag = 100;
-        [throughButton addTarget:self action:@selector(auditButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [throughButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        throughButton.tag = 1000;
         [headView addSubview:throughButton];
         
-        UIButton *notThroughButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        notThroughButton.frame = CGRectMake(SCREEN_WIDTH/2 + 10, 30, (SCREEN_WIDTH - 60)/2, 50);
-        [notThroughButton setTitle:@"不通过" forState:(UIControlStateNormal)];
-        notThroughButton.backgroundColor = MainColor;
-        kViewRadius(notThroughButton, 5);
-        notThroughButton.titleLabel.font = HGfont(18);
-        notThroughButton.tag = 101;
-        [notThroughButton addTarget:self action:@selector(auditButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        [headView addSubview:notThroughButton];
+        UIButton *throughButton1 = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        throughButton1.frame = CGRectMake(SCREEN_WIDTH/2 + 10, 30, SCREEN_WIDTH/2 - 30, 50);
+        [throughButton1 setTitle:@"不通过" forState:(UIControlStateNormal)];
+        throughButton1.backgroundColor = MainColor;
+        kViewRadius(throughButton1, 5);
+        throughButton1.titleLabel.font = HGfont(18);
+        throughButton1.tag = 1001;
+        [throughButton1 addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [headView addSubview:throughButton1];
         
         return headView;
     }
     return nil;
 }
 
--(void)auditButtonClick:(UIButton *)sender
+-(void)confirmButtonClick:(UIButton *)sender
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
         
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"audit"];
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"confirm"];
         
     }
 }
+
+
 @end

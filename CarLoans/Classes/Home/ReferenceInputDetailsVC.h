@@ -21,6 +21,9 @@ typedef void(^CreditListBlock)(NSDictionary *creditListDic, NSInteger row);
 
 @property (nonatomic , strong)NSDictionary *creditListDic;
 
+@property (nonatomic , strong)NSMutableArray *bankCreditReport;
+@property (nonatomic , strong)NSMutableArray *dataCreditReport;
+
 @end
 
 NS_ASSUME_NONNULL_END
