@@ -57,7 +57,7 @@
 //        NSArray *topArray = @[@"*业务类型",@"*机动车销售公司",@"*开票单价",@"*开票价格",@"*车辆类型",@"*车辆品牌",@"*车辆车系",@"*车辆车型",@"*车辆颜色",@"*车架号",@"*发动机号",@"*市场指导价",@"*所属区域",@"*厂家贴息",@"*油补公里数",@"油补（元）",@"抵押代理人",@"抵押地点",@"*落户地点"];
         cell.topLbl.text = [TopModel user].ary2[indexPath.row];
         
-        if (indexPath.row == 1 || indexPath.row == 4 ||indexPath.row == 5 ||indexPath.row == 6 ||indexPath.row == 7 || indexPath.row == 12)
+        if (indexPath.row == 1 || indexPath.row == 4 ||indexPath.row == 5 || indexPath.row == 12)
         {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 20000 + indexPath.row;

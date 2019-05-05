@@ -19,6 +19,7 @@
 #import "JHAddressPickView.h"
 #import "TopModel.h"
 #import "NewWaterVC.h"
+#import "SelectedListView.h"
 @interface ToApplyForVC ()<RefreshDelegate,BaseModelDelegate>
 {
     UILabel *right1Label0;    UILabel *right1Label1;    UILabel *right1Label2;    UILabel *right1Label3;    UILabel *right1Label4;    UILabel *right1Label5;    UILabel *right1Label6;    UILabel *right1Label7;    UILabel *right1Label8;    UILabel *right1Label9;    UILabel *right1Label10;    UILabel *right1Label11;    UILabel *right1Label12;    UILabel *right1Label13;    UILabel *right1Label14;    UILabel *right1Label15;    UILabel *right1Label16;    UILabel *right1Label17;    UILabel *right1Label18;    UILabel *right1Label19;    UILabel *right1Label20;
@@ -164,6 +165,24 @@
      [self CreditFlowingWater];
 }
 
+-(void)GetTheTag
+{
+    right1Label0 = [self.view viewWithTag:10000];    right1Label1 = [self.view viewWithTag:10001];    right1Label2 = [self.view viewWithTag:10002];    right1Label3 = [self.view viewWithTag:10003];    right1Label4 = [self.view viewWithTag:10004];    right1Label5 = [self.view viewWithTag:10005];
+    right1Label6 = [self.view viewWithTag:10006];    right1Label7 = [self.view viewWithTag:10007];    right1Label8 = [self.view viewWithTag:10008];    right1Label9 = [self.view viewWithTag:10009];    right1Label10 = [self.view viewWithTag:10010];    right1Label11 = [self.view viewWithTag:10011];    right1Label12 = [self.view viewWithTag:10012];    right1Label13 = [self.view viewWithTag:10013];    right1Label14 = [self.view viewWithTag:10014];    right1Label15 = [self.view viewWithTag:10015];    right1Label16 = [self.view viewWithTag:10016];    right1Label17 = [self.view viewWithTag:10017];    right1Label18 = [self.view viewWithTag:10018];    right1Label19 = [self.view viewWithTag:10019];    right1Label20 = [self.view viewWithTag:10020];
+    
+    right2Label0 = [self.view viewWithTag:20000];    right2Label1 = [self.view viewWithTag:20001];    right2Label2 = [self.view viewWithTag:20002];    right2Label3 = [self.view viewWithTag:20003];    right2Label4 = [self.view viewWithTag:20004];    right2Label5 = [self.view viewWithTag:20005];    right2Label6 = [self.view viewWithTag:20006];    right2Label7 = [self.view viewWithTag:20007];    right2Label8 = [self.view viewWithTag:20008];    right2Label9 = [self.view viewWithTag:20009];    right2Label10 = [self.view viewWithTag:20010];    right2Label11 = [self.view viewWithTag:20011];    right2Label12 = [self.view viewWithTag:20012];    right2Label13 = [self.view viewWithTag:20013];    right2Label14 = [self.view viewWithTag:20014];    right2Label15 = [self.view viewWithTag:20015];    right2Label16 = [self.view viewWithTag:20016];    right2Label17 = [self.view viewWithTag:20017];
+    
+    right3Label0 = [self.view viewWithTag:30000];    right3Label1 = [self.view viewWithTag:30001];    right3Label2 = [self.view viewWithTag:30002];    right3Label3 = [self.view viewWithTag:30003];    right3Label4 = [self.view viewWithTag:30004];    right3Label5 = [self.view viewWithTag:30005];    right3Label6 = [self.view viewWithTag:30006];    right3Label7 = [self.view viewWithTag:30007];    right3Label8 = [self.view viewWithTag:30008];    right3Label9 = [self.view viewWithTag:30009];    right3Label10 = [self.view viewWithTag:30010];    right3Label11 = [self.view viewWithTag:30011];    right3Label12 = [self.view viewWithTag:30012];    right3Label13 = [self.view viewWithTag:30013];    right3Label14 = [self.view viewWithTag:30014];    right3Label15 = [self.view viewWithTag:30015];    right3Label16 = [self.view viewWithTag:30016];    right3Label17 = [self.view viewWithTag:30017];    right3Label18 = [self.view viewWithTag:30018];
+    
+    right4Label0 = [self.view viewWithTag:40000];    right4Label1 = [self.view viewWithTag:40001];    right4Label2 = [self.view viewWithTag:40002];    right4Label3 = [self.view viewWithTag:40003];    right4Label4 = [self.view viewWithTag:40004];    right4Label5 = [self.view viewWithTag:40005];    right4Label6 = [self.view viewWithTag:40006];    right4Label7 = [self.view viewWithTag:40007];    right4Label8 = [self.view viewWithTag:40008];    right4Label9 = [self.view viewWithTag:40009];    right4Label10 = [self.view viewWithTag:40010];    right4Label11 = [self.view viewWithTag:40011];
+    
+    right5Label0 = [self.view viewWithTag:50000];    right5Label1 = [self.view viewWithTag:50001];    right5Label2 = [self.view viewWithTag:50002];    right5Label3 = [self.view viewWithTag:50003];    right5Label4 = [self.view viewWithTag:50004];    right5Label5 = [self.view viewWithTag:50005];    right5Label6 = [self.view viewWithTag:50006];    right5Label7 = [self.view viewWithTag:50007];    right5Label8 = [self.view viewWithTag:50008];    right5Label9 = [self.view viewWithTag:50009];    right5Label10 = [self.view viewWithTag:50010];
+    
+    right6Label0 = [self.view viewWithTag:60000];    right6Label1 = [self.view viewWithTag:60001];    right6Label2 = [self.view viewWithTag:60002];    right6Label3 = [self.view viewWithTag:60003];    right6Label4 = [self.view viewWithTag:60004];    right6Label5 = [self.view viewWithTag:60005];    right6Label6 = [self.view viewWithTag:60006];    right6Label7 = [self.view viewWithTag:60007];    right6Label8 = [self.view viewWithTag:60008];    right6Label9 = [self.view viewWithTag:60009];    right6Label10 = [self.view viewWithTag:60010];
+    
+    right7Label0 = [self.view viewWithTag:70000];    right7Label1 = [self.view viewWithTag:70001];    right7Label2 = [self.view viewWithTag:70002];    right7Label3 = [self.view viewWithTag:70003];    right7Label4 = [self.view viewWithTag:70004];    right7Label5 = [self.view viewWithTag:70005];    right7Label6 = [self.view viewWithTag:70006];    right7Label7 = [self.view viewWithTag:70007];    right7Label8 = [self.view viewWithTag:70008];    right7Label9 = [self.view viewWithTag:70009];    right7Label10 = [self.view viewWithTag:70010];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -249,15 +268,9 @@
             NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] postNotification:notification];
             [self.navigationController popViewControllerAnimated:YES];
-            
         } failure:^(NSError *error) {
-            
         }];
-        
     }];
-    
-    
-    
 }
 
 //申请
@@ -753,64 +766,9 @@
         }
         
         if (indexPath.row == 5) {
-            TLNetworking *http = [TLNetworking new];
-            
-            http.isShowMsg = NO;
-            http.code = @"630406";
-            http.parameters[@"status"] = @"1";
-            [http postWithSuccess:^(id responseObject) {
-                
-                
-                _brandAry = responseObject[@"data"];
-                NSMutableArray *array = [NSMutableArray array];
-                for (int i = 0 ; i < _brandAry.count; i ++) {
-                    [array addObject:_brandAry[i][@"name"]];
-                }
-                [_baseModel CustomBouncedView:array setState:@"100"];
-            } failure:^(NSError *error) {
-                
-            }];
+            [self chooseCar];
         }
-        if (indexPath.row == 6) {
-//            if ([BaseModel isBlankString:_brandDic[@"code"]] == YES) {
-//                [TLAlert alertWithInfo:@"请先选择品牌"];
-//            }
-            TLNetworking *http = [TLNetworking new];
-            http.isShowMsg = NO;
-            http.code = @"630416";
-            http.parameters[@"brandCode"] = _brandDic[@"code"];
-            http.parameters[@"status"] = @"1";
-            [http postWithSuccess:^(id responseObject) {
-                _carsAry = responseObject[@"data"];
-                NSMutableArray *array = [NSMutableArray array];
-                for (int i = 0 ; i < _carsAry.count; i ++) {
-                    [array addObject:_carsAry[i][@"name"]];
-                }
-                [_baseModel CustomBouncedView:array setState:@"100"];
-            } failure:^(NSError *error) {
-                
-            }];
-        }
-        if (indexPath.row == 7) {
-//            if ([BaseModel isBlankString:_carsDic[@"code"]] == YES) {
-//                [TLAlert alertWithInfo:@"请先选择车系"];
-//            }
-            TLNetworking *http = [TLNetworking new];
-            http.isShowMsg = NO;
-            http.code = @"630426";
-            http.parameters[@"brandCode"] = _brandDic[@"code"];
-            http.parameters[@"status"] = @"1";
-            [http postWithSuccess:^(id responseObject) {
-                _modelsAry = responseObject[@"data"];
-                NSMutableArray *array = [NSMutableArray array];
-                for (int i = 0 ; i < _modelsAry.count; i ++) {
-                    [array addObject:_modelsAry[i][@"cars"][@"name"]];
-                }
-                [_baseModel CustomBouncedView:array setState:@"100"];
-            } failure:^(NSError *error) {
-                
-            }];
-        }
+
         if (indexPath.row == 12) {
             [_baseModel ReturnsParentKeyAnArray:@"region"];
 //            [self.pickView showInView:self.view];
@@ -928,6 +886,123 @@
     }
 }
 
+
+-(void)chooseCar
+{
+    TLNetworking *http = [TLNetworking new];
+    
+    http.isShowMsg = NO;
+    http.code = @"630406";
+    http.parameters[@"status"] = @"1";
+    [http postWithSuccess:^(id responseObject) {
+        
+        
+        _brandAry = responseObject[@"data"];
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0 ; i < _brandAry.count; i ++) {
+            [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_brandAry[i][@"name"]]]];
+        }
+//        NSMutableArray *array = [NSMutableArray array];
+//        for (int i = 0;  i < dvalueArray.count; i ++) {
+//            [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",dvalueArray[i]]]];
+//        }
+        
+        SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+        view.isSingle = YES;
+        view.array = array;
+        view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+            [LEEAlert closeWithCompletionBlock:^{
+                NSLog(@"选中的%@" , array);
+                
+                SelectedListModel *model = array[0];
+                right2Label5.text = model.title;
+                _brandDic = _brandAry[model.sid];
+                
+                
+                TLNetworking *http = [TLNetworking new];
+                http.isShowMsg = NO;
+                http.code = @"630416";
+                http.parameters[@"brandCode"] = _brandDic[@"code"];
+                http.parameters[@"status"] = @"1";
+                [http postWithSuccess:^(id responseObject) {
+                    _carsAry = responseObject[@"data"];
+                    
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (int i = 0 ; i < _brandAry.count; i ++) {
+                        [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_carsAry[i][@"name"]]]];
+                    }
+                    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+                    view.isSingle = YES;
+                    view.array = array;
+                    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+                        [LEEAlert closeWithCompletionBlock:^{
+                            NSLog(@"选中的%@" , array);
+                            SelectedListModel *model = array[0];
+                            right2Label6.text = model.title;
+                            _carsDic = _carsAry[model.sid];
+                            
+                            _modelsAry = _carsDic[@"cars"];
+                            
+                            NSMutableArray *array = [NSMutableArray array];
+                            for (int i = 0 ; i < _modelsAry.count; i ++) {
+                                [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_modelsAry[i][@"name"]]]];
+                            }
+                            
+                            
+                            
+                            SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+                            view.isSingle = YES;
+                            view.array = array;
+                            view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+                                [LEEAlert closeWithCompletionBlock:^{
+                                    NSLog(@"选中的%@" , array);
+                                    SelectedListModel *model = array[0];
+                                    right2Label7.text = model.title;
+                                    //                                                [self.ModelDelegate TheReturnValueStr:model.title selectDic:nameArray[model.sid] selectSid:model.sid];
+                                }];
+                            };
+                            [LEEAlert alert].config
+                            .LeeTitle(@"选择")
+                            .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+                            .LeeCustomView(view)
+                            .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+                            .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+                            .LeeClickBackgroundClose(YES)
+                            .LeeShow();
+                            
+                        }];
+                    };
+                    [LEEAlert alert].config
+                    .LeeTitle(@"选择")
+                    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+                    .LeeCustomView(view)
+                    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+                    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+                    .LeeClickBackgroundClose(YES)
+                    .LeeShow();
+                    
+                } failure:^(NSError *error) {
+                    
+                }];
+                
+            }];
+        };
+        [LEEAlert alert].config
+        .LeeTitle(@"选择")
+        .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+        .LeeCustomView(view)
+        .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+        .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+        .LeeClickBackgroundClose(YES)
+        .LeeShow();
+        
+        
+        //                [_baseModel CustomBouncedView:array setState:@"100"];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 //弹框代理方法
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
 {
@@ -943,12 +1018,10 @@
 //        right1Label8.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"backRate"] floatValue]/1000];
 //        right1Label9.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"preRate"] floatValue]/1000];
     }
-    if (_SelectTag == 20006) {
-        _brandDic = _brandAry[sid];
-    }
-    if (_SelectTag == 20007) {
-        _carsDic = _carsAry[sid];
-    }
+
+//    if (_SelectTag == 20007) {
+//        _carsDic = _carsAry[sid];
+//    }
     UILabel *right1Label1 = [self.view viewWithTag:_SelectTag];
     right1Label1.text = Str;
     
@@ -1444,22 +1517,6 @@
 
 }
 
--(void)GetTheTag
-{
-    right1Label0 = [self.view viewWithTag:10000];    right1Label1 = [self.view viewWithTag:10001];    right1Label2 = [self.view viewWithTag:10002];    right1Label3 = [self.view viewWithTag:10003];    right1Label4 = [self.view viewWithTag:10004];    right1Label5 = [self.view viewWithTag:10005];
-    right1Label6 = [self.view viewWithTag:10006];    right1Label7 = [self.view viewWithTag:10007];    right1Label8 = [self.view viewWithTag:10008];    right1Label9 = [self.view viewWithTag:10009];    right1Label10 = [self.view viewWithTag:10010];    right1Label11 = [self.view viewWithTag:10011];    right1Label12 = [self.view viewWithTag:10012];    right1Label13 = [self.view viewWithTag:10013];    right1Label14 = [self.view viewWithTag:10014];    right1Label15 = [self.view viewWithTag:10015];    right1Label16 = [self.view viewWithTag:10016];    right1Label17 = [self.view viewWithTag:10017];    right1Label18 = [self.view viewWithTag:10018];    right1Label19 = [self.view viewWithTag:10019];    right1Label20 = [self.view viewWithTag:10020];
-    
-    right2Label0 = [self.view viewWithTag:20000];    right2Label1 = [self.view viewWithTag:20001];    right2Label2 = [self.view viewWithTag:20002];    right2Label3 = [self.view viewWithTag:20003];    right2Label4 = [self.view viewWithTag:20004];    right2Label5 = [self.view viewWithTag:20005];    right2Label6 = [self.view viewWithTag:20006];    right2Label7 = [self.view viewWithTag:20007];    right2Label8 = [self.view viewWithTag:20008];    right2Label9 = [self.view viewWithTag:20009];    right2Label10 = [self.view viewWithTag:20010];    right2Label11 = [self.view viewWithTag:20011];    right2Label12 = [self.view viewWithTag:20012];    right2Label13 = [self.view viewWithTag:20013];    right2Label14 = [self.view viewWithTag:20014];    right2Label15 = [self.view viewWithTag:20015];    right2Label16 = [self.view viewWithTag:20016];    right2Label17 = [self.view viewWithTag:20017];
-    
-    right3Label0 = [self.view viewWithTag:30000];    right3Label1 = [self.view viewWithTag:30001];    right3Label2 = [self.view viewWithTag:30002];    right3Label3 = [self.view viewWithTag:30003];    right3Label4 = [self.view viewWithTag:30004];    right3Label5 = [self.view viewWithTag:30005];    right3Label6 = [self.view viewWithTag:30006];    right3Label7 = [self.view viewWithTag:30007];    right3Label8 = [self.view viewWithTag:30008];    right3Label9 = [self.view viewWithTag:30009];    right3Label10 = [self.view viewWithTag:30010];    right3Label11 = [self.view viewWithTag:30011];    right3Label12 = [self.view viewWithTag:30012];    right3Label13 = [self.view viewWithTag:30013];    right3Label14 = [self.view viewWithTag:30014];    right3Label15 = [self.view viewWithTag:30015];    right3Label16 = [self.view viewWithTag:30016];    right3Label17 = [self.view viewWithTag:30017];    right3Label18 = [self.view viewWithTag:30018];
-    
-    right4Label0 = [self.view viewWithTag:40000];    right4Label1 = [self.view viewWithTag:40001];    right4Label2 = [self.view viewWithTag:40002];    right4Label3 = [self.view viewWithTag:40003];    right4Label4 = [self.view viewWithTag:40004];    right4Label5 = [self.view viewWithTag:40005];    right4Label6 = [self.view viewWithTag:40006];    right4Label7 = [self.view viewWithTag:40007];    right4Label8 = [self.view viewWithTag:40008];    right4Label9 = [self.view viewWithTag:40009];    right4Label10 = [self.view viewWithTag:40010];    right4Label11 = [self.view viewWithTag:40011];
-    
-    right5Label0 = [self.view viewWithTag:50000];    right5Label1 = [self.view viewWithTag:50001];    right5Label2 = [self.view viewWithTag:50002];    right5Label3 = [self.view viewWithTag:50003];    right5Label4 = [self.view viewWithTag:50004];    right5Label5 = [self.view viewWithTag:50005];    right5Label6 = [self.view viewWithTag:50006];    right5Label7 = [self.view viewWithTag:50007];    right5Label8 = [self.view viewWithTag:50008];    right5Label9 = [self.view viewWithTag:50009];    right5Label10 = [self.view viewWithTag:50010];
-    
-    right6Label0 = [self.view viewWithTag:60000];    right6Label1 = [self.view viewWithTag:60001];    right6Label2 = [self.view viewWithTag:60002];    right6Label3 = [self.view viewWithTag:60003];    right6Label4 = [self.view viewWithTag:60004];    right6Label5 = [self.view viewWithTag:60005];    right6Label6 = [self.view viewWithTag:60006];    right6Label7 = [self.view viewWithTag:60007];    right6Label8 = [self.view viewWithTag:60008];    right6Label9 = [self.view viewWithTag:60009];    right6Label10 = [self.view viewWithTag:60010];
-    
-    right7Label0 = [self.view viewWithTag:70000];    right7Label1 = [self.view viewWithTag:70001];    right7Label2 = [self.view viewWithTag:70002];    right7Label3 = [self.view viewWithTag:70003];    right7Label4 = [self.view viewWithTag:70004];    right7Label5 = [self.view viewWithTag:70005];    right7Label6 = [self.view viewWithTag:70006];    right7Label7 = [self.view viewWithTag:70007];    right7Label8 = [self.view viewWithTag:70008];    right7Label9 = [self.view viewWithTag:70009];    right7Label10 = [self.view viewWithTag:70010];
-}
+
 
 @end
