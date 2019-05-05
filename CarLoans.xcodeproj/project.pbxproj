@@ -139,9 +139,6 @@
 		1F19AAC4220193030090BF84 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19AA60220193020090BF84 /* GPUImage.framework */; };
 		1F19AAC5220193030090BF84 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19AA61220193020090BF84 /* libssl.a */; };
 		1F19AAC6220193030090BF84 /* FilterEngine.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F19AA62220193020090BF84 /* FilterEngine.bundle */; };
-		1F19AAC7220193030090BF84 /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19AA64220193020090BF84 /* ILiveSDK.framework */; };
-		1F19AAC8220193030090BF84 /* ILiveLogReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19AA65220193020090BF84 /* ILiveLogReport.framework */; };
-		1F19AAC9220193030090BF84 /* TILLiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F19AA66220193020090BF84 /* TILLiveSDK.framework */; };
 		1F1EF1C5226452FB00EADA25 /* TLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF1C4226452FB00EADA25 /* TLTabBarController.m */; };
 		1F1EF1D12264549E00EADA25 /* CustomerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF1D02264549D00EADA25 /* CustomerVC.m */; };
 		1F1EF1D4226454A900EADA25 /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF1D3226454A900EADA25 /* MessageVC.m */; };
@@ -243,6 +240,15 @@
 		1F651AB5227B41B800EFB78B /* MakeCardEntryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */; };
 		1F651ABB227D7A0B00EFB78B /* AccessAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */; };
 		1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */; };
+		36B28A6E227E9C4000A8C07D /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */; };
+		36B28A6F227E9C4000A8C07D /* ILiveLogReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */; };
+		36B28A70227E9C4000A8C07D /* TILLiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */; };
+		36B28A75227EA29C00A8C07D /* FinancialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B28A74227EA29C00A8C07D /* FinancialVC.m */; };
+		36B28A78227EBE5800A8C07D /* ProductUsInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B28A77227EBE5800A8C07D /* ProductUsInputVC.m */; };
+		36B28A7B227EBECC00A8C07D /* ProductUsInputTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B28A7A227EBECC00A8C07D /* ProductUsInputTableView.m */; };
+		36B28A7F227EE70700A8C07D /* FinancialTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B28A7E227EE70700A8C07D /* FinancialTableView.m */; };
+		36B28A82227EFFAC00A8C07D /* CheckProtextUs.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B28A81227EFFAC00A8C07D /* CheckProtextUs.m */; };
+		36B28A85227F003E00A8C07D /* CheckProtectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B28A84227F003E00A8C07D /* CheckProtectTableView.m */; };
 		5F4B98A33D181725064D3D42 /* libPods-CarLoans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB36E56BF8F7E87912612D2 /* libPods-CarLoans.a */; };
 		7A0592A520FDCBD100075FE8 /* SurveyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592A420FDCBD100075FE8 /* SurveyVC.m */; };
 		7A0592AC20FDCD0E00075FE8 /* SurveyACreditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0592AB20FDCD0E00075FE8 /* SurveyACreditVC.m */; };
@@ -733,9 +739,6 @@
 		1F19AA60220193020090BF84 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
 		1F19AA61220193020090BF84 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		1F19AA62220193020090BF84 /* FilterEngine.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FilterEngine.bundle; sourceTree = "<group>"; };
-		1F19AA64220193020090BF84 /* ILiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveSDK.framework; sourceTree = "<group>"; };
-		1F19AA65220193020090BF84 /* ILiveLogReport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveLogReport.framework; sourceTree = "<group>"; };
-		1F19AA66220193020090BF84 /* TILLiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TILLiveSDK.framework; sourceTree = "<group>"; };
 		1F1EF1C3226452FB00EADA25 /* TLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTabBarController.h; sourceTree = "<group>"; };
 		1F1EF1C4226452FB00EADA25 /* TLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTabBarController.m; sourceTree = "<group>"; };
 		1F1EF1CF2264549D00EADA25 /* CustomerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerVC.h; sourceTree = "<group>"; };
@@ -937,6 +940,21 @@
 		1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditVC.m; sourceTree = "<group>"; };
 		1F651ABC227D7A1D00EFB78B /* AccessAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessAuditTableView.h; sourceTree = "<group>"; };
 		1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditTableView.m; sourceTree = "<group>"; };
+		36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveSDK.framework; sourceTree = "<group>"; };
+		36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveLogReport.framework; sourceTree = "<group>"; };
+		36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TILLiveSDK.framework; sourceTree = "<group>"; };
+		36B28A73227EA29C00A8C07D /* FinancialVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialVC.h; sourceTree = "<group>"; };
+		36B28A74227EA29C00A8C07D /* FinancialVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialVC.m; sourceTree = "<group>"; };
+		36B28A76227EBE5800A8C07D /* ProductUsInputVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductUsInputVC.h; sourceTree = "<group>"; };
+		36B28A77227EBE5800A8C07D /* ProductUsInputVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductUsInputVC.m; sourceTree = "<group>"; };
+		36B28A79227EBECC00A8C07D /* ProductUsInputTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductUsInputTableView.h; sourceTree = "<group>"; };
+		36B28A7A227EBECC00A8C07D /* ProductUsInputTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductUsInputTableView.m; sourceTree = "<group>"; };
+		36B28A7D227EE70700A8C07D /* FinancialTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialTableView.h; sourceTree = "<group>"; };
+		36B28A7E227EE70700A8C07D /* FinancialTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTableView.m; sourceTree = "<group>"; };
+		36B28A80227EFFAC00A8C07D /* CheckProtextUs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckProtextUs.h; sourceTree = "<group>"; };
+		36B28A81227EFFAC00A8C07D /* CheckProtextUs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckProtextUs.m; sourceTree = "<group>"; };
+		36B28A83227F003E00A8C07D /* CheckProtectTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckProtectTableView.h; sourceTree = "<group>"; };
+		36B28A84227F003E00A8C07D /* CheckProtectTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckProtectTableView.m; sourceTree = "<group>"; };
 		7A0592A320FDCBD100075FE8 /* SurveyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyVC.h; sourceTree = "<group>"; };
 		7A0592A420FDCBD100075FE8 /* SurveyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurveyVC.m; sourceTree = "<group>"; };
 		7A0592AA20FDCD0E00075FE8 /* SurveyACreditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyACreditVC.h; sourceTree = "<group>"; };
@@ -1529,14 +1547,14 @@
 				7A35841621196C38006FB5B5 /* libprotobuf.tbd in Frameworks */,
 				7A35841421196C31006FB5B5 /* libicucore.tbd in Frameworks */,
 				7A35841221196C2A006FB5B5 /* libiconv.tbd in Frameworks */,
-				1F19AAC7220193030090BF84 /* ILiveSDK.framework in Frameworks */,
+				36B28A6E227E9C4000A8C07D /* ILiveSDK.framework in Frameworks */,
 				7A35841021196C23006FB5B5 /* libc++.tbd in Frameworks */,
 				7A35840E21196C1D006FB5B5 /* libbz2.tbd in Frameworks */,
 				7A35840C21196C18006FB5B5 /* VideoToolbox.framework in Frameworks */,
 				7A35840A21196C0D006FB5B5 /* SystemConfiguration.framework in Frameworks */,
 				7A35840821196C07006FB5B5 /* QuartzCore.framework in Frameworks */,
 				1F19AA69220193030090BF84 /* TLSSDK.framework in Frameworks */,
-				1F19AAC9220193030090BF84 /* TILLiveSDK.framework in Frameworks */,
+				36B28A70227E9C4000A8C07D /* TILLiveSDK.framework in Frameworks */,
 				7A35840621196C01006FB5B5 /* OpenGLES.framework in Frameworks */,
 				7A35840421196BFA006FB5B5 /* OpenAL.framework in Frameworks */,
 				7A35840221196BF2006FB5B5 /* JavaScriptCore.framework in Frameworks */,
@@ -1547,7 +1565,7 @@
 				7A3583FA21196BD7006FB5B5 /* CoreMedia.framework in Frameworks */,
 				1F19AA6D220193030090BF84 /* QAVSDK.framework in Frameworks */,
 				1F19AA68220193030090BF84 /* ImSDK.framework in Frameworks */,
-				1F19AAC8220193030090BF84 /* ILiveLogReport.framework in Frameworks */,
+				36B28A6F227E9C4000A8C07D /* ILiveLogReport.framework in Frameworks */,
 				1F19AAC0220193030090BF84 /* libcrypto.a in Frameworks */,
 				7A3583F821196BCE006FB5B5 /* CoreGraphics.framework in Frameworks */,
 				7A358312211847D4006FB5B5 /* AVFoundation.framework in Frameworks */,
@@ -1787,10 +1805,10 @@
 			isa = PBXGroup;
 			children = (
 				1F19A9EB220193020090BF84 /* LoadSDK.sh */,
+				36B28A6A227E9C3F00A8C07D /* ILiveSDK */,
 				1F19A9EC220193020090BF84 /* IMSDK */,
 				1F19A9F2220193020090BF84 /* AVSDK */,
 				1F19A9F4220193020090BF84 /* BeautySDK */,
-				1F19AA63220193020090BF84 /* ILiveSDK */,
 			);
 			path = ILiveSDK;
 			sourceTree = "<group>";
@@ -2035,16 +2053,6 @@
 				1F19AA5F220193020090BF84 /* PE.dat */,
 			);
 			path = YoutuBeauty;
-			sourceTree = "<group>";
-		};
-		1F19AA63220193020090BF84 /* ILiveSDK */ = {
-			isa = PBXGroup;
-			children = (
-				1F19AA64220193020090BF84 /* ILiveSDK.framework */,
-				1F19AA65220193020090BF84 /* ILiveLogReport.framework */,
-				1F19AA66220193020090BF84 /* TILLiveSDK.framework */,
-			);
-			path = ILiveSDK;
 			sourceTree = "<group>";
 		};
 		1F1EF1C6226453B300EADA25 /* My */ = {
@@ -2293,6 +2301,10 @@
 			children = (
 				1F1EF22F2265CD0100EADA25 /* ProtectUsVC.h */,
 				1F1EF2302265CD0100EADA25 /* ProtectUsVC.m */,
+				36B28A76227EBE5800A8C07D /* ProductUsInputVC.h */,
+				36B28A77227EBE5800A8C07D /* ProductUsInputVC.m */,
+				36B28A80227EFFAC00A8C07D /* CheckProtextUs.h */,
+				36B28A81227EFFAC00A8C07D /* CheckProtextUs.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2300,8 +2312,12 @@
 		1F1EF2312265CD0100EADA25 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1F1EF2322265CD0100EADA25 /* ProtectUsTableView.m */,
 				1F1EF2332265CD0100EADA25 /* ProtectUsTableView.h */,
+				1F1EF2322265CD0100EADA25 /* ProtectUsTableView.m */,
+				36B28A79227EBECC00A8C07D /* ProductUsInputTableView.h */,
+				36B28A7A227EBECC00A8C07D /* ProductUsInputTableView.m */,
+				36B28A83227F003E00A8C07D /* CheckProtectTableView.h */,
+				36B28A84227F003E00A8C07D /* CheckProtectTableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2805,6 +2821,43 @@
 				1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		36B28A6A227E9C3F00A8C07D /* ILiveSDK */ = {
+			isa = PBXGroup;
+			children = (
+				36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */,
+				36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */,
+				36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */,
+			);
+			path = ILiveSDK;
+			sourceTree = "<group>";
+		};
+		36B28A71227EA23D00A8C07D /* Financial财务垫资 */ = {
+			isa = PBXGroup;
+			children = (
+				36B28A7C227EE6E500A8C07D /* View */,
+				36B28A72227EA25900A8C07D /* Controller */,
+			);
+			name = "Financial财务垫资";
+			sourceTree = "<group>";
+		};
+		36B28A72227EA25900A8C07D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				36B28A73227EA29C00A8C07D /* FinancialVC.h */,
+				36B28A74227EA29C00A8C07D /* FinancialVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		36B28A7C227EE6E500A8C07D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36B28A7D227EE70700A8C07D /* FinancialTableView.h */,
+				36B28A7E227EE70700A8C07D /* FinancialTableView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		7A05929A20FDCB1700075FE8 /* View */ = {
@@ -4410,6 +4463,7 @@
 				7AB29EAF20FDC88A0014FCB3 /* Survey征信 */,
 				7AB29EB320FDC8DB0014FCB3 /* FaceSign面签 */,
 				1F151A3D2272A4CA002B7EDA /* AccessApply准入申请 */,
+				36B28A71227EA23D00A8C07D /* Financial财务垫资 */,
 				1F651A98227B2EEE00EFB78B /* MakeCard制卡 */,
 				7A0F8E732119B9C100BA8358 /* SettlementAudit结清审核 */,
 				7A3582B92117EB0D006FB5B5 /* BankLending银行放款 */,
@@ -4801,6 +4855,7 @@
 				1F151A8A2272AB14002B7EDA /* DetailsTableView8.m in Sources */,
 				7A0592DA20FEDFD500075FE8 /* LoginVC.m in Sources */,
 				7AB29D9820FD85680014FCB3 /* ViewController.m in Sources */,
+				36B28A7B227EBECC00A8C07D /* ProductUsInputTableView.m in Sources */,
 				1F1EF2342265CD0200EADA25 /* ProtectUsVC.m in Sources */,
 				7A0F8EB2211BD73900BA8358 /* InstallationDetailsTableView.m in Sources */,
 				7A13AE1C210F26A100B8F785 /* IQUITextFieldView+Additions.m in Sources */,
@@ -4954,6 +5009,7 @@
 				1F651A582276DDFE00EFB78B /* ToApplyForRunningWaterCell.m in Sources */,
 				1F151A462272A7E1002B7EDA /* AccessApplyTableView.m in Sources */,
 				7A0F8E7C2119BA4400BA8358 /* SettlementAuditTableView.m in Sources */,
+				36B28A75227EA29C00A8C07D /* FinancialVC.m in Sources */,
 				B8C1740E215F499F00B10E44 /* GPSNotInstallVC.m in Sources */,
 				7A0F8EAC211B1FB900BA8358 /* SendCodeView.m in Sources */,
 				7A0F8EA0211B0D3800BA8358 /* UIViewController+PlayerRotation.m in Sources */,
@@ -4969,6 +5025,7 @@
 				7A13AEBB21104E4300B8F785 /* QNDes.m in Sources */,
 				7A3582A521143D04006FB5B5 /* CarSettledInDetailsTableView.m in Sources */,
 				7A13AEC721104E4400B8F785 /* QNPHAssetFile.m in Sources */,
+				36B28A7F227EE70700A8C07D /* FinancialTableView.m in Sources */,
 				1F1EF2D42266D40C00EADA25 /* AdmissionDetailsTableView4.m in Sources */,
 				1F651A452275B15E00EFB78B /* ToApplyForRightTableView5.m in Sources */,
 				1F1EF2CA2265E45700EADA25 /* AdmiissionDetailsIDCardCellCell.m in Sources */,
@@ -5067,6 +5124,7 @@
 				7AB29E7020FD8EB30014FCB3 /* TFHpple.m in Sources */,
 				7A35828D2113F053006FB5B5 /* FaceSignModel.m in Sources */,
 				7AB29E7520FD8EB30014FCB3 /* LEEAlert.m in Sources */,
+				36B28A82227EFFAC00A8C07D /* CheckProtextUs.m in Sources */,
 				7A13AE22210F26A100B8F785 /* IQTextView.m in Sources */,
 				7A35828221130625006FB5B5 /* WSDatePickerView.m in Sources */,
 				1F1EF1EF22647AA700EADA25 /* TodoViewController.m in Sources */,
@@ -5086,6 +5144,7 @@
 				7A945561210EFF5000BDFD33 /* GPSClaimsVC.m in Sources */,
 				7A35828121130625006FB5B5 /* UIView+Extension.m in Sources */,
 				1F651A3F2275B15200EFB78B /* ToApplyForRightTableView3.m in Sources */,
+				36B28A85227F003E00A8C07D /* CheckProtectTableView.m in Sources */,
 				7A0592C220FDF0F400075FE8 /* ADPeopleVC.m in Sources */,
 				7AB29E7F20FD8EB30014FCB3 /* SignFinishView.m in Sources */,
 				1F1EF30E2268293D00EADA25 /* CreditDetailsTableView.m in Sources */,
@@ -5100,6 +5159,7 @@
 				1F651A76227A9FE400EFB78B /* NewWaterVC.m in Sources */,
 				7A13AEB321104E4300B8F785 /* QNDnspodFree.m in Sources */,
 				1F151A972272AB14002B7EDA /* ApplyTableView3.m in Sources */,
+				36B28A78227EBE5800A8C07D /* ProductUsInputVC.m in Sources */,
 				1F1EF2E02266D6F400EADA25 /* AdmissionDetailsTableView8.m in Sources */,
 				7A3582B1211452F9006FB5B5 /* VehiclesInDetailsTableView.m in Sources */,
 				7A3582772112FBDB006FB5B5 /* SenderTableView.m in Sources */,

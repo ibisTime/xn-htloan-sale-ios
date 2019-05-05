@@ -51,6 +51,7 @@
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
+    
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];

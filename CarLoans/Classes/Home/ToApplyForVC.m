@@ -299,12 +299,12 @@
         //   银行利率
         http.parameters[@"bankRate"] = right1Label2.text;
         //   贷款金额
-        http.parameters[@"loanAmount"] = @([right1Label3.text floatValue]*1000);
+        http.parameters[@"loanAmount"] =[NSString stringWithFormat:@"%.f",[right1Label3.text floatValue]*1000];
         //   贷款产品
         http.parameters[@"loanProductCode"] = LoanProductsDic[@"code"];
         //   年化费率
 //        http.parameters[@"yearRate"] = right1Label5.text;
-        //   GPS费用
+        //   GPS费用.f
         http.parameters[@"gpsFee"] = @([right1Label5.text floatValue]*1000);
         //   公证费用
         http.parameters[@"authFee"] = @([right1Label6.text floatValue]*1000);
@@ -313,8 +313,8 @@
         //   前置利率
 //        http.parameters[@"preRate"] = right1Label9.text;
         //   首付金额
-        http.parameters[@"sfAmount"] = @([right1Label7.text floatValue]*1000);
-        //   首付比例
+        http.parameters[@"sfAmount"] = [NSString stringWithFormat:@"%.f",[right1Label7.text floatValue]*1000];
+        //   首付比例.f
         http.parameters[@"sfRate"] = right1Label8.text;
         //   是否融资
         http.parameters[@"isFinacing"] = [self CanOrNo:right1Label9.text];

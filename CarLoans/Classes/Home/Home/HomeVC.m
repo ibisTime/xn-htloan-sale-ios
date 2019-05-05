@@ -42,6 +42,9 @@
 #import "HomeCollectionViewCell.h"
 //附件池
 #import "AttachmentPoolVC.h"
+
+//财务垫资
+#import "FinancialVC.h"
 #import "MakeCardVC.h"
 @interface HomeVC ()<RefreshDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
@@ -103,7 +106,7 @@
         cell.nameLbl.text = array[indexPath.row];
     }
     if (indexPath.section == 1) {
-        NSArray *array = @[@"资料传递",@"发保合",@"GPS安装",@"银行放款",@"车辆抵押"];
+        NSArray *array = @[@"资料传递",@"财务垫资",@"发保合",@"GPS安装",@"银行放款",@"车辆抵押"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
@@ -279,27 +282,36 @@
                 break;
             case 1:
             {
-                ProtectUsVC *vc = [ProtectUsVC new];
+                FinancialVC * vc = [FinancialVC new];
                 vc.hidesBottomBarWhenPushed = YES;
-                vc.curNodeCodeList = @[@"c1"];
+                vc.curNodeCodeList = @[@"g1",@"g2",@"g3",@"g4",@"g5"];
                 [self.navigationController pushViewController:vc animated:YES];
+                
             }
                 break;
             case 2:
+            {
+                ProtectUsVC *vc = [ProtectUsVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.curNodeCodeList = @[@"c1",@"c2",@"c1x"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 3:
             {
                 GPSInstallationVC *vc = [GPSInstallationVC new];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
-            case 3:
+            case 4:
             {
                 BankLendingVC *vc = [BankLendingVC new];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
-            case 4:
+            case 5:
             {
                 CarMortgageVC *vc = [CarMortgageVC new];
                 vc.hidesBottomBarWhenPushed = YES;

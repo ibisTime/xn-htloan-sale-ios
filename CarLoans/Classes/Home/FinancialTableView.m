@@ -1,9 +1,15 @@
-#import "ProtectUsTableView.h"
+//
+//  FinancialTableView.m
+//  CarLoans
+//
+//  Created by 梅敏杰 on 2019/5/5.
+//  Copyright © 2019年 QinBao Zheng. All rights reserved.
+//
+
+#import "FinancialTableView.h"
 #import "InformationCell.h"
 #define Information @"InformationCell"
-@interface ProtectUsTableView ()<UITableViewDataSource,UITableViewDelegate>
-@end
-@implementation ProtectUsTableView
+@implementation FinancialTableView
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
         self.dataSource = self;
@@ -29,19 +35,7 @@
     if (self.model.count > 0) {
         cell.surveyModel = self.model[indexPath.row];
     }
-    cell.button.tag = indexPath.row;
-    cell.isFinancial == NO;
-    NSString *titleLabel = cell.button.titleLabel.text;
-    if ([titleLabel isEqualToString:@"录入发报合"]) {
-        [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
-    }
-    else if([titleLabel isEqualToString:@"审核发报合"]){
-        [cell.button addTarget:self action:@selector(buttonClick2:) forControlEvents:(UIControlEventTouchUpInside)];
-    }
-    else if ([titleLabel isEqualToString:@"重录发报合"]){
-        [cell.button addTarget:self action:@selector(buttonClick3:) forControlEvents:(UIControlEventTouchUpInside)];
-    }
-    
+    [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
     return cell;
 }
 -(void)buttonClick1:(UIButton *)sender
@@ -56,12 +50,6 @@
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select2"];
     }
 }
--(void)buttonClick3:(UIButton *)sender
-{
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select3"];
-    }
-}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {
@@ -71,7 +59,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    return 280;
+    //    return 280;
     return 330;
 }
 #pragma mark -- 区头高度

@@ -1,21 +1,32 @@
-#import "ProtectUsVC.h"
-#import "ProtectUsTableView.h"
-//录入发报合
-#import "ProductUsInputVC.h"
-//审核发报合
-#import "CheckProtextUs.h"
+//
+//  FinancialVC.m
+//  CarLoans
+//
+//  Created by 梅敏杰 on 2019/5/5.
+//  Copyright © 2019年 QinBao Zheng. All rights reserved.
+//
 
-@interface ProtectUsVC ()<RefreshDelegate>
+#import "FinancialVC.h"
+#import "FinancialTableView.h"
+@interface FinancialVC ()<RefreshDelegate>
 @property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
-@property (nonatomic , strong)ProtectUsTableView *tableView;
+@property (nonatomic,strong) FinancialTableView * tableView;
 @end
-@implementation ProtectUsVC
+
+@implementation FinancialVC
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"财务垫资";
     [self initTableView];
     [self LoadData];
-    self.title = @"发保合";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
+}
+- (void)initTableView {
+    self.tableView = [[FinancialTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView.refreshDelegate = self;
+    self.tableView.backgroundColor = kBackgroundColor;
+    [self.view addSubview:self.tableView];
 }
 #pragma mark -- 接收到通知
 - (void)InfoNotificationAction:(NSNotification *)notification{
@@ -26,34 +37,12 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LOADDATAPAGE object:nil];
 }
-- (void)initTableView {
-    self.tableView = [[ProtectUsTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
-    self.tableView.refreshDelegate = self;
-    self.tableView.backgroundColor = kBackgroundColor;
-    [self.view addSubview:self.tableView];
-}
--(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-}
--(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
-{
-}
--(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
-{
-    if ([state isEqualToString:@"select1"] || [state isEqualToString:@"select3"]) {
-        ProductUsInputVC * vc = [ProductUsInputVC new];
-        vc.model = self.model[index];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if ([state isEqualToString:@"select2"]){
-        CheckProtextUs * vc = [CheckProtextUs new];
-        vc.model = self.model[index];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
+
 -(void)LoadData
 {
+    
     CarLoansWeakSelf;
+    
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632515";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
@@ -118,5 +107,15 @@
     }];
     [self.tableView beginRefreshing];
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

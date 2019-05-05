@@ -59,7 +59,7 @@
 @property (nonatomic , strong)NSArray *bizTasks;
 @property (nonatomic , strong)NSArray *bizLogs;
 
-
+@property (nonatomic,strong) NSString * fbhgpsNode;
 
 @property (nonatomic , copy)NSString *applyUserName;
 
