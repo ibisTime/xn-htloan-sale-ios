@@ -35,6 +35,7 @@
     if (self.model.count > 0) {
         cell.surveyModel = self.model[indexPath.row];
     }
+    NSLog(@"%ld",cell.button.tag);
     [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
     return cell;
 }

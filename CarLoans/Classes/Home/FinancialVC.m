@@ -107,6 +107,9 @@
     }];
     [self.tableView beginRefreshing];
 }
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
+    
+}
 
 /*
 #pragma mark - Navigation

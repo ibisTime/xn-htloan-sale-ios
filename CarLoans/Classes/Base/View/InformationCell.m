@@ -145,28 +145,37 @@
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 280,SCREEN_WIDTH, 1)];
     line.backgroundColor = kLineColor;
     [self addSubview:line];
-    
+    _button = [[UIButton alloc]init];
+    [_button setTitleColor:kNavBarBackgroundColor forState:UIControlStateNormal];
     if ([surveyModel.fbhgpsNode isEqualToString:@"c2"]) {
-        _button = [UIButton buttonWithTitle:@"审核发报合" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
-    }else if ([surveyModel.fbhgpsNode isEqualToString:@"c1"]){
-        _button = [UIButton buttonWithTitle:@"录入发报合" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
-    }else if ([surveyModel.fbhgpsNode isEqualToString:@"c1x"]){
-        _button = [UIButton buttonWithTitle:@"重录发报合" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+        [_button setTitle:@"审核发报合" forState:(UIControlStateNormal)];
+        _button.tag = 1001;
+    }
+    else if ([surveyModel.fbhgpsNode isEqualToString:@"c1"]){
+        [_button setTitle:@"录入发报合" forState:(UIControlStateNormal)];
+    }
+    else if ([surveyModel.fbhgpsNode isEqualToString:@"c1x"]){
+        [_button setTitle:@"重录发报合" forState:(UIControlStateNormal)];
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g1"]) {
-        _button = [UIButton buttonWithTitle:@"确认用款单" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+        [_button setTitle:@"确认用款单" forState:(UIControlStateNormal)];
+        _button.tag = 1001;
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g2"]){
-            _button = [UIButton buttonWithTitle:@"用款一审" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+        [_button setTitle:@"用款一审" forState:(UIControlStateNormal)];
+        _button.tag = 1002;
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g3"]){
-            _button = [UIButton buttonWithTitle:@"用款二审" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+        [_button setTitle:@"用款二审" forState:UIControlStateNormal];
+        _button.tag = 1003;
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g4"]){
-            _button = [UIButton buttonWithTitle:@"制单回录" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+        [_button setTitle:@"制单回录" forState:UIControlStateNormal];
+        _button.tag = 1004;
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g5"]){
-            _button = [UIButton buttonWithTitle:@"垫资回录" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+        [_button setTitle:@"垫资回录" forState:UIControlStateNormal];
+        _button.tag = 1005;
     }
     
     _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);

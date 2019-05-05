@@ -52,10 +52,11 @@
         cell.topLbl.text = [TopModel user].newWaterAry[indexPath.row];
         NSString *type;
 
-        if (indexPath.row == 0) {
-            cell.type = ShowType;
-            cell.showLbl.text = self.model.creditUser[@"userName"];
-        }else if (indexPath.row <= 5) {
+//        if (indexPath.row == 0) {
+//            cell.type = ShowType;
+////            cell.showLbl.text = self.model.creditUser[@"userName"];
+//        }else
+            if (indexPath.row <= 5) {
             
             if ([BaseModel isBlankString:self.waterDic[@"code"]] == NO) {
                 if ([_waterDic[@"type"] isEqualToString:@"1"]) {
@@ -66,6 +67,9 @@
                 }else
                 {
                     type = @"银行";
+                }
+                if (indexPath.row == 0) {
+                    cell.chooseLbl.text = _waterDic[@"userName"];
                 }
                 if (indexPath.row == 1) {
                     cell.chooseLbl.text = type;

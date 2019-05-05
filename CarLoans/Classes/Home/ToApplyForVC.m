@@ -557,7 +557,7 @@
         // 职位
         http.parameters[@"position"] = right5Label6.text;
         // 月收入
-        http.parameters[@"monthIncome"] = @([right5Label7.text floatValue]*1000);
+        http.parameters[@"monthIncome"] =  [NSString stringWithFormat:@"%.f",[right5Label7.text floatValue]*1000];
         // 工作描述
         http.parameters[@"otherWorkNote"] = right5Label8.text;
         
@@ -928,7 +928,7 @@
                     _carsAry = responseObject[@"data"];
                     
                     NSMutableArray *array = [NSMutableArray array];
-                    for (int i = 0 ; i < _brandAry.count; i ++) {
+                    for (int i = 0 ; i < _carsAry.count; i ++) {
                         [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_carsAry[i][@"name"]]]];
                     }
                     SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];

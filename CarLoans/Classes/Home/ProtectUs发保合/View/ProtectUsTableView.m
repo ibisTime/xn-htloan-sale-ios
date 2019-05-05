@@ -30,7 +30,6 @@
         cell.surveyModel = self.model[indexPath.row];
     }
     cell.button.tag = indexPath.row;
-    cell.isFinancial == NO;
     NSString *titleLabel = cell.button.titleLabel.text;
     if ([titleLabel isEqualToString:@"录入发报合"]) {
         [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];

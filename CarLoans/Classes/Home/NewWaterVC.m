@@ -92,6 +92,15 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _SelectTag = indexPath.row + 10000;
+    if (indexPath.row == 0) {
+        NSMutableArray *  array = [NSMutableArray array];
+        for (int i = 0;i < self.model.creditUserList.count ; i ++) {
+            [array addObject:self.model.creditUserList[0][@"userName"]];
+        }
+        BaseModel *baseModel = [BaseModel user];
+        baseModel.ModelDelegate = self;
+        [baseModel CustomBouncedView:array setState:@"100"];
+    }
     if (indexPath.row == 1) {
         BaseModel *baseModel = [BaseModel user];
         baseModel.ModelDelegate = self;
@@ -102,7 +111,7 @@
         WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
             
             NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
-            UILabel *right1Label1 = [self.view viewWithTag:1000 + indexPath.row];
+            UILabel *right1Label1 = [self.view viewWithTag:10000 + indexPath.row];
             right1Label1.text = date;
             
         }];
@@ -156,7 +165,7 @@
         if ([BaseModel isBlankString:self.waterDic[@"code"]] == YES) {
             http.code = @"632490";
             http.parameters[@"bizCode"] = self.model.code;
-            http.parameters[@"creditUserCode"] = self.model.creditUser[@"code"];
+            http.parameters[@"creditUserCode"] = self.model.creditUserList[0][@"code"];
         }else
         {
             http.code = @"632492";

@@ -61,7 +61,7 @@
         {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 20000 + indexPath.row;
-        }else if (indexPath.row == 0)
+        }else if (indexPath.row == 0||indexPath.row == 6||indexPath.row == 7)
         {
             cell.type = ShowType;
             cell.showLbl.tag = 20000 + indexPath.row;
