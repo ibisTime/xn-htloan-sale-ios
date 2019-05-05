@@ -259,7 +259,7 @@
                 MakeCardVC *vc = [MakeCardVC new];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.title = @"制卡";
-                vc.makeCardNodeList = @[@"h1",@"h2"];
+                vc.makeCardNodeList = @[@"h1",@"h2",@"h3"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
