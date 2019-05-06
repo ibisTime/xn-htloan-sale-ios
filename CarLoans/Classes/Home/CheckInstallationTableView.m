@@ -1,29 +1,27 @@
 //
-//  GPSInstallationDetailsTableView.m
+//  CheckInstallationTableView.m
 //  CarLoans
 //
-//  Created by QinBao Zheng on 2018/8/3.
-//  Copyright © 2018年 QinBao Zheng. All rights reserved.
+//  Created by 梅敏杰 on 2019/5/6.
+//  Copyright © 2019年 QinBao Zheng. All rights reserved.
 //
 
-#import "GPSInstallationDetailsTableView.h"
+#import "CheckInstallationTableView.h"
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
-#import "SurveyPeopleTableViewCell.h"
+
 #define SurveyPeople @"SurveyPeopleTableViewCell"
 #import "GPSInformationListCell.h"
 #define GPSInformationList @"GPSInformationListCell"
 #import "AddGPSPeopleCell.h"
 #define AddGPSPeople @"AddGPSPeopleCell"
-@interface GPSInstallationDetailsTableView ()<UITableViewDataSource,UITableViewDelegate,SurveyPeopleDelegate>
 
-@end
-
-
-@implementation GPSInstallationDetailsTableView
+#import "InputBoxCell.h"
+#define InputBox @"InputBoxCell"
+@implementation CheckInstallationTableView
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-
+    
     if (self = [super initWithFrame:frame style:style]) {
         self.dataSource = self;
         self.delegate = self;
@@ -31,13 +29,12 @@
         [self registerClass:[SurveyPeopleTableViewCell class] forCellReuseIdentifier:SurveyPeople];
         [self registerClass:[GPSInformationListCell class] forCellReuseIdentifier:GPSInformationList];
         [self registerClass:[AddGPSPeopleCell class] forCellReuseIdentifier:AddGPSPeople];
-
-
-
+        [self registerClass:[InputBoxCell class] forCellReuseIdentifier:InputBox];
+        
+        
     }
     return self;
 }
-
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -50,10 +47,10 @@
     if (section == 0) {
         return 8;
     }
-    if (section == 1) {
-        return _peopleAray.count;
+    if (section == 2) {
+        return 1;
     }
-    return 1;
+    return _peopleAray.count;
 }
 
 #pragma mark -- tableView
@@ -73,38 +70,44 @@
         }
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
+        NSDictionary * dic = _model.creditUserList[0];
         NSArray *detailsArray = @[
                                   [NSString stringWithFormat:@"%@", _model.code],
-                                  [NSString stringWithFormat:@"%@", _model.creditUser[@"userName"]],
+                                  [NSString stringWithFormat:@"%@", dic[@"userName"]],
                                   [NSString stringWithFormat:@"%@", _model.loanBankName],
                                   [NSString stringWithFormat:@"%@",_model.loanAmount],
                                   [NSString stringWithFormat:@"%@",bizType],
-                                  [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
-                                  [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
+                                  [NSString stringWithFormat:@"%@-%@-%@",dic[@"companyName"],dic[@"teamName"],self.model.saleUserName],
+                                  [NSString stringWithFormat:@"%@-%@",dic[@"companyName"],dic[@"teamName"]],
                                   [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]
                                   ];
         cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
     }
-
+    
     if (indexPath.section == 1) {
         GPSInformationListCell *cell = [tableView dequeueReusableCellWithIdentifier:GPSInformationList forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.dic = _peopleAray[indexPath.row];
+        cell.Dicionary = _peopleAray[indexPath.row];
         [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.deleteBtn.tag = indexPath.row;
         return cell;
     }
-    AddGPSPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:AddGPSPeople forIndexPath:indexPath];
+    InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    cell.name = @"审核意见";
+    cell.nameText = @"请输入审核意见";
+    cell.symbolLabel.hidden = YES;
+    cell.tag = 400;
+//    AddGPSPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:AddGPSPeople forIndexPath:indexPath];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 -(void)deleteBtnClick:(UIButton *)sender
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-
+        
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@""];
     }
 }
@@ -114,7 +117,7 @@
 -(void)photoBtnClick:(UIButton *)sender
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
-
+        
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
 }
@@ -129,10 +132,11 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        return 50;
+    if (indexPath.section == 1) {
+        
+        return 145;
     }
-    return 145;
+    return 50;
 }
 
 #pragma mark -- 区头高度
@@ -160,35 +164,34 @@
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
         backView.backgroundColor = [UIColor whiteColor];
         [headView addSubview:backView];
-
+        
         UILabel *headLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(15) textColor:[UIColor blackColor]];
         headLabel.text = @"GPS";
         [backView addSubview:headLabel];
-
+        
         return headView;
     }
     return nil;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    if (section == 2) {
-        UIView *headView = [[UIView alloc]init];
-
-        UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        confirmButton.frame = CGRectMake(20, 30, SCREEN_WIDTH - 40, 50);
-        [confirmButton setTitle:@"确定" forState:(UIControlStateNormal)];
-        confirmButton.backgroundColor = MainColor;
-        kViewRadius(confirmButton, 5);
-        confirmButton.titleLabel.font = HGfont(18);
-        [confirmButton addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        confirmButton.tag = 100;
-        [headView addSubview:confirmButton];
-
-        return headView;
-    }
-    return nil;
-}
-
+//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    if (section == 1) {
+//        UIView *headView = [[UIView alloc]init];
+//
+//        UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//        confirmButton.frame = CGRectMake(20, 30, SCREEN_WIDTH - 40, 50);
+//        [confirmButton setTitle:@"确定" forState:(UIControlStateNormal)];
+//        confirmButton.backgroundColor = MainColor;
+//        kViewRadius(confirmButton, 5);
+//        confirmButton.titleLabel.font = HGfont(18);
+//        [confirmButton addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//        confirmButton.tag = 100;
+//        [headView addSubview:confirmButton];
+//
+//        return headView;
+//    }
+//    return nil;
+//}
 
 @end

@@ -105,8 +105,7 @@
 
 
 //资信调查
--(void)setSurveyModel:(SurveyModel *)surveyModel
-{
+-(void)setSurveyModel:(SurveyModel *)surveyModel{
     _codeLabel.text = [NSString stringWithFormat:@"%@",surveyModel.code];
     _stateLabel.text = [[BaseModel user]note:surveyModel.curNodeCode];
     
@@ -182,6 +181,74 @@
     kViewBorderRadius(_button, 5, 1, MainColor);
     [self addSubview:_button];
 //    _button.hidden = YES;
+    
+    
+}
+-(void)setGpsInstallationModel:(GPSInstallationModel *)gpsInstallationModel{
+    _codeLabel.text = [NSString stringWithFormat:@"%@",gpsInstallationModel.code];
+    _stateLabel.text = [[BaseModel user]note:gpsInstallationModel.curNodeCode];
+    
+    NSLog(@"%@",[[BaseModel user]note:gpsInstallationModel.curNodeCode]);
+    NSArray *nameArray = @[
+                           @"业务种类",
+                           @"客户姓名",
+                           @"贷款金额",
+                           @"贷款银行",
+                           @"驻行内勤",
+                           @"申请时间"];
+    NSString *bizType;
+    if ([gpsInstallationModel.bizType integerValue] == 0) {
+        bizType = @"新车";
+    }
+    else
+    {
+        bizType = @"二手车";
+    }
+    
+    NSArray *InformationArray = @[
+                                  [NSString stringWithFormat:@"%@",bizType],
+                                  [NSString stringWithFormat:@"%@",gpsInstallationModel.creditUser[@"userName"]],
+                                  [NSString stringWithFormat:@"%.2f",[gpsInstallationModel.loanAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@",gpsInstallationModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@",gpsInstallationModel.operatorName],
+                                  [NSString stringWithFormat:@"%@",[gpsInstallationModel.applyDatetime convertToDetailDate]]];
+    
+    for (int i = 0; i < nameArray.count; i ++ ) {
+        UILabel *nameLabel = [self viewWithTag:100000 + i];
+        nameLabel.text = nameArray[i];
+        UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+    }
+    
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 280,SCREEN_WIDTH, 1)];
+    line.backgroundColor = kLineColor;
+    [self addSubview:line];
+    _button = [[UIButton alloc]init];
+    [_button setTitleColor:kNavBarBackgroundColor forState:UIControlStateNormal];
+    
+    if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d1"]){
+        [_button setTitle:@"" forState:(UIControlStateNormal)];
+        [_button setTitle:@"录入GPS" forState:(UIControlStateNormal)];
+    }
+    else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d2"]) {
+        [_button setTitle:@"" forState:(UIControlStateNormal)];
+        [_button setTitle:@"审核GPS" forState:(UIControlStateNormal)];
+        _button.tag = 1001;
+    }
+    else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d3"]){
+        [_button setTitle:@"" forState:(UIControlStateNormal)];
+        [_button setTitle:@"重新录入" forState:(UIControlStateNormal)];
+        _button.tag = 1002;
+    }
+    else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d4"]){
+        [_button setTitle:@"安装完成" forState:(UIControlStateNormal)];
+//        _button.enabled = NO;
+    }
+    
+    _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);
+    kViewBorderRadius(_button, 5, 1, MainColor);
+    [self addSubview:_button];
+    //    _button.hidden = YES;
     
     
 }

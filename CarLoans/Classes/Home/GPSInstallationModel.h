@@ -18,7 +18,7 @@
 
 @property (nonatomic , copy)NSString *applyUserName;
 
-@property (nonatomic , assign)CGFloat loanAmount;
+@property (nonatomic , copy)NSString *loanAmount;
 
 @property (nonatomic , copy)NSString *loanBankName;
 
@@ -30,4 +30,12 @@
 
 @property (nonatomic , copy)NSString *advanfCurNodeCode;
 
+@property (nonatomic , copy)NSString *fbhgpsNode;
+@property (nonatomic , copy)NSString *operatorName;
+
+@property (nonatomic , strong)NSDictionary *creditUser;
+@property (nonatomic , strong)NSArray *creditUserList;
+@property (nonatomic,strong) NSArray * budgetOrderGps;
+@property (nonatomic , copy)NSString *teamName;
+@property (nonatomic , copy)NSString *saleUserName;
 @end

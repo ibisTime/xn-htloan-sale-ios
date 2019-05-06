@@ -1,36 +1,61 @@
 //
-//  CheckProtectTableView.m
+//  CheckTableView2.m
 //  CarLoans
 //
-//  Created by 梅敏杰 on 2019/5/5.
+//  Created by 梅敏杰 on 2019/5/6.
 //  Copyright © 2019年 QinBao Zheng. All rights reserved.
 //
 
-#import "CheckProtectTableView.h"
+#import "CheckTableView2.h"
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
+#import "ChooseCell.h"
+#define Choose @"ChooseCell"
 #import "InputBoxCell.h"
 #define InputBox @"InputBoxCell"
 
-@implementation CheckProtectTableView
+#define Task @"TaskCell"
+@implementation CheckTableView2
+
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
-    
-    if (self = [super initWithFrame:frame style:style]) {
+    self = [super initWithFrame:frame style:style];
+    if (self) {
         self.delegate = self;
         self.dataSource = self;
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[InputBoxCell class] forCellReuseIdentifier:InputBox];
-//        [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CollectionView];
-//        [self registerClass:[ChooseCell class] forCellReuseIdentifier:Choose];
+        [self registerClass:[TaskCell class] forCellReuseIdentifier:Task];
+        
     }
     return self;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 3;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 0) {
+        return 8;
+    }
+    return 1;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        return 50 + 15 + (_taskArray.count + 1)*145 + 5;
+    }
+    return 55;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return  0.001;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.001;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         TextFieldCell * cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务类型",@"业务归属",@"指派归属",@"当前状态"];
+        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务种类",@"业务归属",@"指派归属",@"当前状态"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSString *bizType;
@@ -52,11 +77,23 @@
                               [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
         
         cell.TextFidStr = rightAry[indexPath.row];
-        
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;
         return cell;
     }
+    else if (indexPath.section == 1){
+        TaskCell * cell = [tableView dequeueReusableCellWithIdentifier:Task forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.name = @"征信人";
+        cell.btnStr = @"添加征信人";
+        cell.delegate = self;
+        [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        if (_taskArray.count > 0) {
+            cell.TaskArray = _taskArray;
+        }
+        return cell;
+    }
+    
     InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name = @"审核意见";
@@ -64,37 +101,19 @@
     cell.symbolLabel.hidden = YES;
     cell.tag = 400;
     return cell;
-    
-   
 }
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//添加任务
+-(void)photoBtnClick:(UIButton *)sender
 {
-    return 2;
-    
-}
-
-#pragma mark -- 行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 1) {
-        return 1;
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
+        
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
-        return 8;
-    
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-        return 50;
-   
-    
-}
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.01;
+-(void)SurveyTaskSelectButton:(UIButton *)sender{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
+        
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
+    }
 }
 @end

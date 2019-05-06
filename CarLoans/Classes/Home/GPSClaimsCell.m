@@ -125,6 +125,7 @@
                            @"客户姓名",
                            @"业务公司",
                            @"品牌型号",
+                           
                            ];
     NSArray *InformationArray = @[
                                   [NSString stringWithFormat:@"%@",gpsInstallationModel.applyUserName],

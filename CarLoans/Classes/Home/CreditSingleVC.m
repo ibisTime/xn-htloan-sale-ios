@@ -33,7 +33,7 @@
     TLNetworking *http = [TLNetworking new];
     http.code = @"630066";
     http.showView = self.view;
-    http.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
+    http.parameters[@"roleCode"] = @"SR20180000000000000NQZY";
 
     [http postWithSuccess:^(id responseObject) {
         

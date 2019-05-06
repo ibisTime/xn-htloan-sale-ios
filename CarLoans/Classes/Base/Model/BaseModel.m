@@ -302,5 +302,12 @@
     }
     return dkey;
 }
++ (NSString *)getCurrentTime {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // yyyy-MM-dd 可自定义，也可以换成 yyyy-MM-dd HH:MM:SS
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+    return dateTime;
+}
 
 @end

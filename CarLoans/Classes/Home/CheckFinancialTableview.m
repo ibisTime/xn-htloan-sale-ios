@@ -1,36 +1,43 @@
 //
-//  CheckProtectTableView.m
+//  CheckFinancialTableview.m
 //  CarLoans
 //
-//  Created by 梅敏杰 on 2019/5/5.
+//  Created by 梅敏杰 on 2019/5/6.
 //  Copyright © 2019年 QinBao Zheng. All rights reserved.
 //
 
-#import "CheckProtectTableView.h"
+#import "CheckFinancialTableview.h"
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
-#import "InputBoxCell.h"
-#define InputBox @"InputBoxCell"
-
-@implementation CheckProtectTableView
+#import "ChooseCell.h"
+#define Choose @"ChooseCell"
+@implementation CheckFinancialTableview
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
-    
-    if (self = [super initWithFrame:frame style:style]) {
+    self = [super initWithFrame:frame style:style];
+    if (self) {
         self.delegate = self;
         self.dataSource = self;
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
-        [self registerClass:[InputBoxCell class] forCellReuseIdentifier:InputBox];
-//        [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CollectionView];
-//        [self registerClass:[ChooseCell class] forCellReuseIdentifier:Choose];
+        [self registerClass:[ChooseCell class] forCellReuseIdentifier:Choose];
     }
     return self;
+    
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+#pragma mark -- 行数
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 9;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
+    if (indexPath.row < 8) {
         TextFieldCell * cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务类型",@"业务归属",@"指派归属",@"当前状态"];
+        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务种类",@"业务归属",@"指派归属",@"当前状态"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSString *bizType;
@@ -52,49 +59,35 @@
                               [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
         
         cell.TextFidStr = rightAry[indexPath.row];
-        
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;
         return cell;
     }
-    InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
+    ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"审核意见";
-    cell.nameText = @"请输入审核意见";
-    cell.symbolLabel.hidden = YES;
-    cell.tag = 400;
+    cell.name = @"*是否垫资";
+    cell.details = [self WhetherOrNot:self.model.isAdvanceFund];
     return cell;
-    
-   
 }
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(NSString *)WhetherOrNot:(NSString *)str
 {
-    return 2;
-    
-}
-
-#pragma mark -- 行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 1) {
-        return 1;
+    if ([str isEqualToString:@"1"]) {
+        return @"是";
+    }else if ([str isEqualToString:@"0"])
+    {
+        return @"否";
+    }else
+    {
+        return @"";
     }
-        return 8;
-    
 }
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-        return 50;
-   
-    
+    return 55;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.001;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.01;
+    return 0.001;
 }
 @end

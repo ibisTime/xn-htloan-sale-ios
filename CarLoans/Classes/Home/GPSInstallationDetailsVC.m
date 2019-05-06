@@ -27,7 +27,17 @@
     self.title = @"安装回录";
     listArray = [NSMutableArray array];
     gpsAzListArray= [NSMutableArray array];
-    [self initTableView];
+    
+    
+    TLNetworking * http = [TLNetworking new];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [GPSInstallationModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDGPS object:nil];
 }
@@ -63,7 +73,7 @@
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
-
+    self.tableView.peopleAray = self.model.budgetOrderGps;
     [self.view addSubview:self.tableView];
 }
 

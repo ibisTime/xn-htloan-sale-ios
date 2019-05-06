@@ -73,7 +73,7 @@
 //}
 
 
-
++ (NSString *)getCurrentTime;
 
 + (instancetype)user;
 //是否为需要登录，如果已登录，取出用户信息

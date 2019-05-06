@@ -11,4 +11,6 @@
 @interface GPSInstallationVC : BaseViewController
 @property (nonatomic , assign)BOOL isNotInstall;
 
+@property (nonatomic , strong)NSArray *curNodeCodeList;
+
 @end

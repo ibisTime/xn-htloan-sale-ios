@@ -17,7 +17,9 @@
 #define TextField @"TextFieldCell"
 #import "CarSettledUpdataPhotoCell.h"
 #define CarSettledUpdataPhoto @"CarSettledUpdataPhotoCell"
-@interface SurveyACreditTableView ()<UITableViewDataSource,UITableViewDelegate,SurveyPeopleDelegate>
+#import "DriveCardCell.h"
+#define DriveCard @"DriveCardCell"
+@interface SurveyACreditTableView ()<UITableViewDataSource,UITableViewDelegate,SurveyPeopleDelegate,DriveCardDelegate>
 
 @end
 
@@ -33,6 +35,7 @@
         [self registerClass:[SurveyPeopleTableViewCell class] forCellReuseIdentifier:SurveyPeople];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[CarSettledUpdataPhotoCell class] forCellReuseIdentifier:CarSettledUpdataPhoto];
+        [self registerClass:[DriveCardCell class] forCellReuseIdentifier:DriveCard];
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 
     }
@@ -45,9 +48,8 @@
         return 4;
     }else
     {
-        return 5;
+        return 6;
     }
-
 }
 
 #pragma mark -- 行数
@@ -126,6 +128,15 @@
             return cell;
         }
         if (indexPath.section == 3) {
+            DriveCardCell * cell = [tableView dequeueReusableCellWithIdentifier:DriveCard forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.IdCardDelegate = self;
+            cell.idNoFront = self.idNoFront;
+            cell.idNoReverse = self.idNoReverse;
+            
+            return cell;
+        }
+        if (indexPath.section == 4) {
             SurveyPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SurveyPeople forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.name = @"征信人";
@@ -191,10 +202,10 @@
         return 50;
     }else
     {
-        if (indexPath.section == 2) {
+        if (indexPath.section == 2 || indexPath.section == 3) {
             return SCREEN_WIDTH/3 + 15;
         }
-        if (indexPath.section == 3) {
+        if (indexPath.section == 4) {
             return 50 + 15 + (_peopleAray.count + 1)*145 + 5;
         }
         return 50;
@@ -212,10 +223,10 @@
         return 10;
     }else
     {
-        if (section == 0 || section == 4) {
+        if (section == 0 || section == 5) {
             return 0.01;
         }
-        if (section == 2) {
+        if (section == 4) {
             return 50;
         }
         return 10;
@@ -260,6 +271,20 @@
 
             return headView;
         }
+        else if (section == 3){
+            UIView *headView = [[UIView alloc]init];
+            
+            UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+            backView.backgroundColor = [UIColor whiteColor];
+            [headView addSubview:backView];
+            
+            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+            lineView.backgroundColor = LineBackColor;
+            [headView addSubview:lineView];
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+            nameLabel.text = @"行驶证";
+            [headView addSubview:nameLabel];
+        }
     }
 
     return nil;
@@ -291,7 +316,7 @@
         }
     }else
     {
-        if (section == 4) {
+        if (section == 5) {
             UIView *headView = [[UIView alloc]init];
 
 
@@ -322,6 +347,13 @@
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
 
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
+    }
+}
+-(void)DriceCardBtn:(UIButton *)sender{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+        
     }
 }
 

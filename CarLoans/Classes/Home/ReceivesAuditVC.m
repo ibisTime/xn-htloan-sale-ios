@@ -211,6 +211,7 @@
     http.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"remark"] = textField.text;
+    http.parameters[@"approveResult"] = [NSString stringWithFormat:@"%ld",index];
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"收件成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

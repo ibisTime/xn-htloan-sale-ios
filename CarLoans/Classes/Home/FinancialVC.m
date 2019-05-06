@@ -8,6 +8,14 @@
 
 #import "FinancialVC.h"
 #import "FinancialTableView.h"
+//确认用款单
+#import "CheckFinancialVC.h"
+//垫资一审、制单回录
+#import "CheckVC1.h"
+//垫资二审
+#import "CheckVC2.h"
+//垫资回录
+#import "ReFinancialVC.h"
 @interface FinancialVC ()<RefreshDelegate>
 @property (nonatomic , strong)NSMutableArray <SurveyModel *>*model;
 @property (nonatomic,strong) FinancialTableView * tableView;
@@ -108,6 +116,45 @@
     [self.tableView beginRefreshing];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
+    NSLog(@"%ld",sender.tag);
+    NSLog(@"%@",self.model[index].fbhgpsNode);
+    NSString * fbhgpsNode = self.model[index].fbhgpsNode;
+    if ([fbhgpsNode isEqualToString:@"g1"]) {
+        CheckFinancialVC * vc = [CheckFinancialVC new];
+        vc.title = @"确认用款单";
+        vc.code = @"632460";
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+        if ([fbhgpsNode isEqualToString:@"g2"]){
+        CheckVC1 * vc = [CheckVC1 new];
+        vc.title = @"用款一审";
+        vc.code = @"632461";
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if ([fbhgpsNode isEqualToString:@"g3"]){
+        CheckVC2 * vc = [CheckVC2 new];
+        vc.title = @"用款二审";
+        vc.code = @"632462";
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if ([fbhgpsNode isEqualToString:@"g4"]){
+        CheckVC1 * vc = [CheckVC1 new];
+        vc.title = @"制单回录";
+        vc.code = @"632463";
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if ([fbhgpsNode isEqualToString:@"g5"]){
+        ReFinancialVC * vc = [ReFinancialVC new];
+        vc.title = @"垫资回录";
+        vc.code = @"632464";
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 }
 

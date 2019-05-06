@@ -301,6 +301,7 @@
             {
                 GPSInstallationVC *vc = [GPSInstallationVC new];
                 vc.hidesBottomBarWhenPushed = YES;
+                vc.curNodeCodeList = @[@"d1",@"d2",@"d3",@"d4"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

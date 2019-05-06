@@ -11,5 +11,6 @@
 @interface GPSInformationListCell : UITableViewCell
 
 @property (nonatomic , strong)NSDictionary *dic;
+@property (nonatomic , strong)NSDictionary *Dicionary;
 @property (nonatomic , strong)UIButton *deleteBtn;
 @end

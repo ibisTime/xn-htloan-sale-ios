@@ -14,7 +14,8 @@
 #import "AccessSingleModel.h"
 //资料传递
 #import "DataTransferModel.h"
-
+//gps安装
+#import "GPSInstallationModel.h"
 
 @interface InformationCell : UITableViewCell
 
@@ -39,6 +40,6 @@
 @property (nonatomic , strong)SurveyModel *surveyModel;
 @property (nonatomic , strong)AccessSingleModel *accessSingleModel;
 @property (nonatomic , strong)DataTransferModel *dataTransferModel;
-
+@property (nonatomic,strong) GPSInstallationModel * gpsInstallationModel;
 
 @end

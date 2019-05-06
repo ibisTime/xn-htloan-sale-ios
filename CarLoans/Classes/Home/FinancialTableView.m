@@ -36,7 +36,9 @@
         cell.surveyModel = self.model[indexPath.row];
     }
     NSLog(@"%ld",cell.button.tag);
+    cell.button.tag = indexPath.row;
     [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
+    
     return cell;
 }
 -(void)buttonClick1:(UIButton *)sender
@@ -51,6 +53,9 @@
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select2"];
     }
 }
+
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {

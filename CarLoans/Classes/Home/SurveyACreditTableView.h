@@ -18,4 +18,9 @@
 
 @property (nonatomic , copy)NSString *secondCarReport;
 
+//    行驶证正面
+@property (nonatomic , copy)NSString *idNoFront;
+//     行驶证反面
+@property (nonatomic , copy)NSString *idNoReverse;
+
 @end

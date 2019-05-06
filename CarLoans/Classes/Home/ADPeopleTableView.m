@@ -61,7 +61,7 @@
 
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"姓名",@"手机号"];
+        NSArray *nameArray = @[@"*姓名",@"*手机号"];
         NSArray *placeholderArray = @[@"请输入姓名",@"请输入手机号"];
         cell.name = nameArray[indexPath.row];
         cell.nameText = placeholderArray[indexPath.row];
@@ -76,7 +76,7 @@
     if (indexPath.section == 1) {
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"贷款角色",@"与借款人关系"];
+        NSArray *nameArray = @[@"*贷款角色",@"*与借款人关系"];
         cell.name = nameArray[indexPath.row];
         if (indexPath.row == 0) {
             if ([BaseModel isBlankString:self.loanRole] == NO) {
@@ -93,7 +93,7 @@
     if (indexPath.section == 2) {
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"身份证号";
+        cell.name = @"*身份证号";
         cell.nameText = @"请输入身份证号";
         cell.nameTextField.tag = 20002;
 
@@ -242,7 +242,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
 
-        NSArray *array = @[@"征信查询授权书",@"面签照片"];
+        NSArray *array = @[@"*征信查询授权书",@"*手持身份证照片"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section - 4];
         [headView addSubview:nameLabel];

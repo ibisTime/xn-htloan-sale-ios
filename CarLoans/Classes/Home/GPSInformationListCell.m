@@ -36,13 +36,7 @@
             [backView addSubview:informationLabel];
         }
 
-        UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 45, 0, 30, 30);
-        _deleteBtn = deleteBtn;
-//        [deleteBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
-        //        deleteBtn.backgroundColor = [UIColor redColor];
-        [self addSubview:deleteBtn];
+        
     }
     return self;
 }
@@ -62,6 +56,31 @@
     label2.text = [NSString stringWithFormat:@"%@",dic[@"dic"][@"azLocation"]];
     label3.text = [NSString stringWithFormat:@"%@",dic[@"dic"][@"azDatetime"]];
     label4.text = [NSString stringWithFormat:@"%@",dic[@"dic"][@"azUser"]];
+    
+    
+    UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 45, 0, 30, 30);
+    _deleteBtn = deleteBtn;
+    //        [deleteBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+    //        deleteBtn.backgroundColor = [UIColor redColor];
+    [self addSubview:deleteBtn];
+}
+-(void)setDicionary:(NSDictionary *)Dicionary{
+//    NSArray *detailsArray = @[
+//                              [NSString stringWithFormat:@"%@",Dicionary[@"gpsDevNo"]],
+//                              [NSString stringWithFormat:@"%@",Dicionary[@"dic"][@"azLocation"]],
+//                              [NSString stringWithFormat:@"%@",Dicionary[@"dic"][@"azDatetime"]],
+//                              [NSString stringWithFormat:@"%@",Dicionary[@"dic"][@"azUser"]]
+//                              ];
+    UILabel *label1 = [self viewWithTag:1000];
+    UILabel *label2 = [self viewWithTag:1001];
+    UILabel *label3 = [self viewWithTag:1002];
+    UILabel *label4 = [self viewWithTag:1003];
+    label1.text = [NSString stringWithFormat:@"%@",Dicionary[@"gpsDevNo"]];
+    label2.text = [NSString stringWithFormat:@"%@",Dicionary[@"azLocation"]];
+    label3.text = [NSString stringWithFormat:@"%@",Dicionary[@"azDatetime"]];
+    label4.text = [NSString stringWithFormat:@"%@",Dicionary[@"azUser"]];
 }
 
 @end

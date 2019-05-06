@@ -5,6 +5,8 @@
 //录入
 #import "GPSInstallationDetailsVC.h"
 #import "InstallationDetailsVC.h"
+//GPS审核
+#import "CheckInstallationVC.h"
 @interface GPSInstallationVC ()<RefreshDelegate>
 @property (nonatomic , strong)NSMutableArray <GPSInstallationModel *>*model;
 @property (nonatomic , strong)GPSInstallationTableView *tableView;
@@ -62,13 +64,13 @@
 {
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632148";
+    helper.code = @"632515";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
 
-    NSArray *array = @[@"002_09",@"002_10",@"002_12",@"002_32"];
-    helper.parameters[@"advanfCurNodeCodeList"] = array;
+//    NSArray *array = @[@"002_09",@"002_10",@"002_12",@"002_32"];
+    helper.parameters[@"fbhgpsNodeList"] = self.curNodeCodeList;
     
     helper.parameters[@"isGpsAz"] = @"1";
 
@@ -104,8 +106,8 @@
         helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
         helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
         
-        NSArray *array = @[@"002_09",@"002_10",@"002_12",@"002_32"];
-        helper.parameters[@"curNodeCodeList"] = array;
+//        NSArray *array = @[@"002_09",@"002_10",@"002_12",@"002_32"];
+        helper.parameters[@"fbhgpsNodeList"] = weakSelf.curNodeCodeList;
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             //去除没有的币种
@@ -131,6 +133,19 @@
     }];
     [self.tableView beginRefreshing];
 }
-
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
+    if ([state isEqualToString:@"select1"]) {
+        GPSInstallationDetailsVC * vc = [GPSInstallationDetailsVC new];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    else if ([state isEqualToString:@"select2"]) {
+        CheckInstallationVC * vc = [CheckInstallationVC new];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+}
 
 @end
