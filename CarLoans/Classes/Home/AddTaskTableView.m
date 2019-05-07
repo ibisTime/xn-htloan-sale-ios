@@ -35,9 +35,19 @@
     cell.name = array[indexPath.row];
     cell.tag = 1000 + indexPath.row;
     cell.symbolLabel.hidden = YES;
+    if (self.selectRow > 1000) {
+        NSArray *Array = @[_dataDic[@"getUser"],_dataDic[@"name"],_dataDic[@"time"]];
+        cell.nameTextField.text = Array[indexPath.row];
+    }
     if (indexPath.row == 2) {
         cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 55;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
 }
 @end

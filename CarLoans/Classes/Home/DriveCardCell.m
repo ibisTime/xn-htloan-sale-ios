@@ -10,24 +10,24 @@
 
 @implementation DriveCardCell
 
--(UILabel *)nameLbl
-{
-    if (!_nameLbl) {
-        _nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        _nameLbl.text = @"行驶证";
-    }
-    return _nameLbl;
-}
+//-(UILabel *)nameLbl
+//{
+//    if (!_nameLbl) {
+//        _nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+//        _nameLbl.text = @"行驶证";
+//    }
+//    return _nameLbl;
+//}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self addSubview:self.nameLbl];
+//        [self addSubview:self.nameLbl];
         NSArray *nameArray = @[@"行驶证正面",@"行驶证反面"];
         for (int i = 0; i < 2; i ++) {
             _photoBtn = [UIButton buttonWithTitle:nameArray[i] titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
-            _photoBtn.frame = CGRectMake(15 + i % 2 * (SCREEN_WIDTH - 20)/2, 50, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
+            _photoBtn.frame = CGRectMake(15 + i % 2 * (SCREEN_WIDTH - 20)/2, 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
             kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
             [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
                 [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];

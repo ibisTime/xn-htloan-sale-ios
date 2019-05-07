@@ -84,8 +84,8 @@
     else if (indexPath.section == 1){
         TaskCell * cell = [tableView dequeueReusableCellWithIdentifier:Task forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"征信人";
-        cell.btnStr = @"添加征信人";
+        cell.name = @"任务";
+        cell.btnStr = @"添加任务";
         cell.delegate = self;
         [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         if (_taskArray.count > 0) {

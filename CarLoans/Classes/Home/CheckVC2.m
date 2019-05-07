@@ -91,15 +91,39 @@
     
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
-    selectRow = index;
-    AddTaskVC *vc = [[AddTaskVC alloc]init];
-    vc.dataDic = self.tableView.taskArray[index - 1234];
-    vc.selectRow = index;
-    if (index == 1234) {
-        vc.isFirstEntry = YES;
+//    selectRow = index;
+    if (index == 102) {
+        AddTaskVC *vc = [[AddTaskVC alloc]init];
+        if (TaskArray.count > 0) {
+            vc.isFirstEntry = NO;
+        }else
+        {
+            vc.isFirstEntry = YES;
+        }
+        [self.navigationController pushViewController:vc animated:YES];
+        selectRow = 0;
     }
-    vc.state = self.state;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    else
+    {
+        selectRow = index;
+        AddTaskVC *vc = [[AddTaskVC alloc]init];
+        vc.dataDic = self.tableView.taskArray[index - 1234];
+        vc.selectRow = index;
+        if (index == 1234) {
+            vc.isFirstEntry = YES;
+        }
+        vc.state = self.state;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+//    vc.dataDic = self.tableView.taskArray[index - 102];
+//    vc.selectRow = index;
+//    if (index == 102) {
+//        vc.isFirstEntry = YES;
+//    }
+//    vc.state = self.state;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

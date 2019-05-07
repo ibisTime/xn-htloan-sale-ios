@@ -72,7 +72,7 @@
 //    NSArray *array = @[@"002_09",@"002_10",@"002_12",@"002_32"];
     helper.parameters[@"fbhgpsNodeList"] = self.curNodeCodeList;
     
-    helper.parameters[@"isGpsAz"] = @"1";
+//    helper.parameters[@"isGpsAz"] = @"1";
 
   
     helper.isList = NO;
@@ -134,18 +134,34 @@
     [self.tableView beginRefreshing];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
-    if ([state isEqualToString:@"select1"]) {
+    if ([self.model[index].fbhgpsNode isEqualToString:@"d1"]) {
         GPSInstallationDetailsVC * vc = [GPSInstallationDetailsVC new];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
-        
-    }
-    else if ([state isEqualToString:@"select2"]) {
+    }else if ([self.model[index].fbhgpsNode isEqualToString:@"d2"]){
         CheckInstallationVC * vc = [CheckInstallationVC new];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
-        
     }
+    else if ([self.model[index].fbhgpsNode isEqualToString:@"d3"]){
+        GPSInstallationDetailsVC * vc = [GPSInstallationDetailsVC new];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+   
+//    if ([state isEqualToString:@"select1"]) {
+//        GPSInstallationDetailsVC * vc = [GPSInstallationDetailsVC new];
+//        vc.model = self.model[index];
+//        [self.navigationController pushViewController:vc animated:YES];
+//        
+//    }
+//    else if ([state isEqualToString:@"select2"]) {
+//        CheckInstallationVC * vc = [CheckInstallationVC new];
+//        vc.model = self.model[index];
+//        [self.navigationController pushViewController:vc animated:YES];
+//        
+//    }
 }
 
 @end

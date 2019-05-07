@@ -45,11 +45,11 @@
         NSArray *rightAry = @[[BaseModel convertNull:self.model.code],
                               [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
                               [BaseModel convertNull:self.model.loanBankName],
-                              [NSString stringWithFormat:@"%.2f万",[self.model.loanAmount floatValue]/10000],
+                              [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                               bizType,
                               [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
                               [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
-                              [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
+                              [BaseModel convertNull:[[BaseModel user]note:self.model.fbhgpsNode]]];
         
         cell.TextFidStr = rightAry[indexPath.row];
         

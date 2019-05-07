@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"添加任务";
     [self initTableView];
     
     self.passBtn = [UIButton buttonWithTitle:@"确认" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];
@@ -32,6 +33,10 @@
 -(void)initTableView{
     self.tableView = [[AddTaskTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 70)style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
+    self.tableView.dataDic = self.dataDic;
+    self.tableView.selectRow = self.selectRow;
+    self.tableView.state = self.state;
+    self.tableView.isFirstEntry = self.isFirstEntry;
 //    self.tableView.model= self.model;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];

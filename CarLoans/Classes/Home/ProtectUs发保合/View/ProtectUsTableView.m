@@ -30,16 +30,22 @@
         cell.surveyModel = self.model[indexPath.row];
     }
     cell.button.tag = indexPath.row;
-    NSString *titleLabel = cell.button.titleLabel.text;
-    if ([titleLabel isEqualToString:@"录入发报合"]) {
-        [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
+    SurveyModel * model = self.model[indexPath.row];
+    
+    if ([model.fbhgpsNode isEqualToString:@"c1"]){
+        [cell.button setTitle:@"录入发报合" forState:(UIControlStateNormal)];
+        cell.button.hidden = NO;
     }
-    else if([titleLabel isEqualToString:@"审核发报合"]){
-        [cell.button addTarget:self action:@selector(buttonClick2:) forControlEvents:(UIControlEventTouchUpInside)];
+    else if ([model.fbhgpsNode isEqualToString:@"c2"]) {
+        [cell.button setTitle:@"审核发报合" forState:(UIControlStateNormal)];
+        cell.button.hidden = NO;
     }
-    else if ([titleLabel isEqualToString:@"重录发报合"]){
-        [cell.button addTarget:self action:@selector(buttonClick3:) forControlEvents:(UIControlEventTouchUpInside)];
+    else if ([model.fbhgpsNode isEqualToString:@"c1x"]){
+        [cell.button setTitle:@"重录发报合" forState:(UIControlStateNormal)];
+        cell.button.hidden = NO;
     }
+
+    [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
     
     return cell;
 }
@@ -49,18 +55,18 @@
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select1"];
     }
 }
--(void)buttonClick2:(UIButton *)sender
-{
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select2"];
-    }
-}
--(void)buttonClick3:(UIButton *)sender
-{
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select3"];
-    }
-}
+//-(void)buttonClick2:(UIButton *)sender
+//{
+//    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+//        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select2"];
+//    }
+//}
+//-(void)buttonClick3:(UIButton *)sender
+//{
+//    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+//        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select3"];
+//    }
+//}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {

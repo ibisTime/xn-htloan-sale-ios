@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *creditCardOccupation;
 
 @property (nonatomic , strong)TextFieldCell *cell;
+@property (nonatomic , copy)NSString *secondCarReport;
 @end
 
 NS_ASSUME_NONNULL_END

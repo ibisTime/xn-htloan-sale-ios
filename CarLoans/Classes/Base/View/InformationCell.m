@@ -48,11 +48,15 @@
         if (self.isGps == YES) {
             k = 13;
         }else{
-            k = 11;
+//            if (self.isFinancial == YES) {
+//                k = 100;
+//            }else
+                k = 11;
         }
         if (self.isCar == YES) {
             k = 7;
         }
+        
         for (int i = 0; i < k; i ++) {
             _nameLabel = [UILabel labelWithFrame:CGRectMake(15 , 70 + i % k * 35, 100, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:GaryTextColor];
 //            _nameLabel.text = nameArray[i];
@@ -79,7 +83,18 @@
             lineView2.backgroundColor = LineBackColor;
             [self addSubview:lineView2];
             _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:14];
-            _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290+60+90, 100, 30);
+//            _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290+60+90, 100, 30);
+            _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290, 100, 30);
+            kViewBorderRadius(_button, 5, 1, MainColor);
+            [self addSubview:_button];
+            _button.hidden = YES;
+        }
+        else if (k == 100){
+            UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 279+70+90, SCREEN_WIDTH, 1)];
+            lineView2.backgroundColor = LineBackColor;
+            [self addSubview:lineView2];
+            _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:14];
+            _button.frame = CGRectMake(SCREEN_WIDTH - 115, 280, 100, 30);
             kViewBorderRadius(_button, 5, 1, MainColor);
             [self addSubview:_button];
             _button.hidden = YES;
@@ -131,7 +146,7 @@
              [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
              [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
              [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
-             [NSString stringWithFormat:@"%@",surveyModel.operatorName],
+             [NSString stringWithFormat:@"%@-%@-%@",surveyModel.insideJobCompanyName,surveyModel.insideJobDepartMentName,surveyModel.insideJobName],
              [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
 
     for (int i = 0; i < nameArray.count; i ++ ) {
@@ -144,42 +159,51 @@
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 280,SCREEN_WIDTH, 1)];
     line.backgroundColor = kLineColor;
     [self addSubview:line];
-    _button = [[UIButton alloc]init];
-    [_button setTitleColor:kNavBarBackgroundColor forState:UIControlStateNormal];
-    if ([surveyModel.fbhgpsNode isEqualToString:@"c2"]) {
-        [_button setTitle:@"审核发报合" forState:(UIControlStateNormal)];
-        _button.tag = 1001;
-    }
-    else if ([surveyModel.fbhgpsNode isEqualToString:@"c1"]){
-        [_button setTitle:@"录入发报合" forState:(UIControlStateNormal)];
-    }
-    else if ([surveyModel.fbhgpsNode isEqualToString:@"c1x"]){
-        [_button setTitle:@"重录发报合" forState:(UIControlStateNormal)];
-    }
-    else if ([surveyModel.fbhgpsNode isEqualToString:@"g1"]) {
+//    _button = [[UIButton alloc]init];
+//    [_button setTitleColor:kNavBarBackgroundColor forState:UIControlStateNormal];
+//    if ([surveyModel.fbhgpsNode isEqualToString:@"c2"]) {
+//        [_button setTitle:@"审核发报合" forState:(UIControlStateNormal)];
+//        _button.tag = 1001;
+//        _button.hidden = NO;
+//    }
+//    else if ([surveyModel.fbhgpsNode isEqualToString:@"c1"]){
+//        [_button setTitle:@"录入发报合" forState:(UIControlStateNormal)];
+//        _button.hidden = NO;
+//    }
+//    else if ([surveyModel.fbhgpsNode isEqualToString:@"c1x"]){
+//        [_button setTitle:@"重录发报合" forState:(UIControlStateNormal)];
+//        _button.hidden = NO;
+//    }
+//    else
+        if ([surveyModel.fbhgpsNode isEqualToString:@"g1"]) {
         [_button setTitle:@"确认用款单" forState:(UIControlStateNormal)];
         _button.tag = 1001;
+        _button.hidden = NO;
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g2"]){
         [_button setTitle:@"用款一审" forState:(UIControlStateNormal)];
         _button.tag = 1002;
+        _button.hidden = NO;
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g3"]){
         [_button setTitle:@"用款二审" forState:UIControlStateNormal];
         _button.tag = 1003;
+        _button.hidden = NO;
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g4"]){
         [_button setTitle:@"制单回录" forState:UIControlStateNormal];
         _button.tag = 1004;
+        _button.hidden = NO;
     }
     else if ([surveyModel.fbhgpsNode isEqualToString:@"g5"]){
         [_button setTitle:@"垫资回录" forState:UIControlStateNormal];
         _button.tag = 1005;
+        _button.hidden = NO;
     }
     
-    _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);
-    kViewBorderRadius(_button, 5, 1, MainColor);
-    [self addSubview:_button];
+//    _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);
+//    kViewBorderRadius(_button, 5, 1, MainColor);
+//    [self addSubview:_button];
 //    _button.hidden = YES;
     
     
@@ -210,7 +234,7 @@
                                   [NSString stringWithFormat:@"%@",gpsInstallationModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[gpsInstallationModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",gpsInstallationModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@",gpsInstallationModel.operatorName],
+                                  [NSString stringWithFormat:@"%@-%@-%@",gpsInstallationModel.insideJobCompanyName,gpsInstallationModel.insideJobDepartMentName,gpsInstallationModel.insideJobName],
                                   [NSString stringWithFormat:@"%@",[gpsInstallationModel.applyDatetime convertToDetailDate]]];
     
     for (int i = 0; i < nameArray.count; i ++ ) {
@@ -223,31 +247,35 @@
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 280,SCREEN_WIDTH, 1)];
     line.backgroundColor = kLineColor;
     [self addSubview:line];
-    _button = [[UIButton alloc]init];
-    [_button setTitleColor:kNavBarBackgroundColor forState:UIControlStateNormal];
+//    _button = [[UIButton alloc]init];
+//    [_button setTitleColor:kNavBarBackgroundColor forState:UIControlStateNormal];
     
     if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d1"]){
-        [_button setTitle:@"" forState:(UIControlStateNormal)];
+//        [_button setTitle:@"" forState:(UIControlStateNormal)];
         [_button setTitle:@"录入GPS" forState:(UIControlStateNormal)];
+        _button.hidden = NO;
     }
     else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d2"]) {
-        [_button setTitle:@"" forState:(UIControlStateNormal)];
+//        [_button setTitle:@"" forState:(UIControlStateNormal)];
         [_button setTitle:@"审核GPS" forState:(UIControlStateNormal)];
         _button.tag = 1001;
+        _button.hidden = NO;
     }
     else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d3"]){
-        [_button setTitle:@"" forState:(UIControlStateNormal)];
+//        [_button setTitle:@"" forState:(UIControlStateNormal)];
         [_button setTitle:@"重新录入" forState:(UIControlStateNormal)];
         _button.tag = 1002;
+        _button.hidden = NO;
     }
     else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d4"]){
         [_button setTitle:@"安装完成" forState:(UIControlStateNormal)];
+        _button.hidden = NO;
 //        _button.enabled = NO;
     }
     
-    _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);
-    kViewBorderRadius(_button, 5, 1, MainColor);
-    [self addSubview:_button];
+//    _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);
+//    kViewBorderRadius(_button, 5, 1, MainColor);
+//    [self addSubview:_button];
     //    _button.hidden = YES;
     
     

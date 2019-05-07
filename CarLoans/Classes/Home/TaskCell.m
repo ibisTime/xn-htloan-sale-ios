@@ -57,7 +57,7 @@
 }
 -(void)setTaskArray:(NSArray *)TaskArray{
     NSArray *nameArray = @[@"任务名称:",
-                           @"执行人:",
+                           @"执行人 :",
                            @"创建时间:",
                            @"任务时效:"];
     for (int i = 0; i < TaskArray.count; i ++ ) {
@@ -68,8 +68,11 @@
         backView.backgroundColor = BackColor;
         kViewBorderRadius(backView, 2, 1, HGColor(230, 230, 230));
         [self addSubview:backView];
+        NSArray * array = TaskArray[i];
         
-        for (int j = 0; j < TaskArray.count; j ++) {
+        for (int j = 0; j < array.count; j ++) {
+//            NSArray * array = TaskArray[j];
+            
             UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + j%5*25, 60, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:GaryTextColor];
             nameLabel.text = nameArray[j];
             [backView addSubview:nameLabel];

@@ -65,7 +65,9 @@
             cell.type = InputType;
             cell.inputTextField.tag = 50000 + indexPath.row;
         }
-        
+        if (indexPath.row == 4 || indexPath.row == 7 || indexPath.row == 9 || indexPath.row == 10) {
+            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+        }
         return cell;
     }
     // 定义cell标识  每个cell对应一个自己的标识

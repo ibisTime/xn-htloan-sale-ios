@@ -37,6 +37,9 @@
 @property (nonatomic,assign) BOOL isFinancial;
 
 
+//@property (nonatomic,assign) BOOL isFinancial;
+
+
 @property (nonatomic , strong)SurveyModel *surveyModel;
 @property (nonatomic , strong)AccessSingleModel *accessSingleModel;
 @property (nonatomic , strong)DataTransferModel *dataTransferModel;

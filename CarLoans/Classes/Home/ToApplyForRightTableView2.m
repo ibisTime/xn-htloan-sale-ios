@@ -57,11 +57,11 @@
 //        NSArray *topArray = @[@"*业务类型",@"*机动车销售公司",@"*开票单价",@"*开票价格",@"*车辆类型",@"*车辆品牌",@"*车辆车系",@"*车辆车型",@"*车辆颜色",@"*车架号",@"*发动机号",@"*市场指导价",@"*所属区域",@"*厂家贴息",@"*油补公里数",@"油补（元）",@"抵押代理人",@"抵押地点",@"*落户地点"];
         cell.topLbl.text = [TopModel user].ary2[indexPath.row];
         
-        if (indexPath.row == 1 || indexPath.row == 4 ||indexPath.row == 5 || indexPath.row == 12)
+        if (indexPath.row == 1 || indexPath.row == 3 ||indexPath.row == 4 || indexPath.row == 11)
         {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 20000 + indexPath.row;
-        }else if (indexPath.row == 0||indexPath.row == 6||indexPath.row == 7)
+        }else if (indexPath.row == 0||indexPath.row == 6)
         {
             cell.type = ShowType;
             cell.showLbl.tag = 20000 + indexPath.row;
@@ -70,6 +70,9 @@
         {
             cell.type = InputType;
             cell.inputTextField.tag = 20000 + indexPath.row;
+            if ( indexPath.row == 10||indexPath.row == 12|| indexPath.row == 13|| indexPath.row == 14) {
+                cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+            }
         }
         if (indexPath.row == 0) {
             cell.bottomStr = self.model.bizTypeStr;

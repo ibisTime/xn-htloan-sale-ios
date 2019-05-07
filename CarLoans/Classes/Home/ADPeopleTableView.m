@@ -71,6 +71,9 @@
             NSArray *Array = @[_dataDic[@"userName"],_dataDic[@"mobile"]];
             cell.TextFidStr = Array[indexPath.row];
         }
+        if (indexPath.row == 1) {
+            cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+        }
         return cell;
     }
     if (indexPath.section == 1) {

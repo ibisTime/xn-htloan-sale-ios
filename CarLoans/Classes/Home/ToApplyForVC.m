@@ -22,9 +22,30 @@
 #import "SelectedListView.h"
 @interface ToApplyForVC ()<RefreshDelegate,BaseModelDelegate>
 {
-    UILabel *right1Label0;    UILabel *right1Label1;    UILabel *right1Label2;    UILabel *right1Label3;    UILabel *right1Label4;    UILabel *right1Label5;    UILabel *right1Label6;    UILabel *right1Label7;    UILabel *right1Label8;    UILabel *right1Label9;    UILabel *right1Label10;    UILabel *right1Label11;    UILabel *right1Label12;    UILabel *right1Label13;    UILabel *right1Label14;    UILabel *right1Label15;    UILabel *right1Label16;    UILabel *right1Label17;    UILabel *right1Label18;    UILabel *right1Label19;    UILabel *right1Label20;
+    UILabel *right1Label0;
+    UILabel *right1Label1;
+    UILabel *right1Label2;
+    UILabel *right1Label3;
+    UILabel *right1Label4;    UILabel *right1Label5;    UILabel *right1Label6;    UILabel *right1Label7;    UILabel *right1Label8;    UILabel *right1Label9;    UILabel *right1Label10;    UILabel *right1Label11;    UILabel *right1Label12;    UILabel *right1Label13;    UILabel *right1Label14;    UILabel *right1Label15;    UILabel *right1Label16;    UILabel *right1Label17;    UILabel *right1Label18;    UILabel *right1Label19;    UILabel *right1Label20;
     
-    UILabel *right2Label0;    UILabel *right2Label1;    UILabel *right2Label2;    UILabel *right2Label3;    UILabel *right2Label4;    UILabel *right2Label5;    UILabel *right2Label6;    UILabel *right2Label7;    UILabel *right2Label8;    UILabel *right2Label9;    UILabel *right2Label10;    UILabel *right2Label11;    UILabel *right2Label12;    UILabel *right2Label13;    UILabel *right2Label14;    UILabel *right2Label15;    UILabel *right2Label16;    UILabel *right2Label17;
+    UILabel *right2Label0;
+    UILabel *right2Label1;
+    UILabel *right2Label2;
+    UILabel *right2Label3;
+    UILabel *right2Label4;
+    UILabel *right2Label5;
+    UILabel *right2Label6;
+    UILabel *right2Label7;
+    UILabel *right2Label8;
+    UILabel *right2Label9;
+    UILabel *right2Label10;
+    UILabel *right2Label11;
+    UILabel *right2Label12;
+    UILabel *right2Label13;
+    UILabel *right2Label14;
+    UILabel *right2Label15;
+    UILabel *right2Label16;
+    UILabel *right2Label17;
     
     UILabel *right3Label0;    UILabel *right3Label1;    UILabel *right3Label2;    UILabel *right3Label3;    UILabel *right3Label4;    UILabel *right3Label5;    UILabel *right3Label6;    UILabel *right3Label7;    UILabel *right3Label8;    UILabel *right3Label9;    UILabel *right3Label10;    UILabel *right3Label11;    UILabel *right3Label12;    UILabel *right3Label13;    UILabel *right3Label14;    UILabel *right3Label15;    UILabel *right3Label16;    UILabel *right3Label17;    UILabel *right3Label18;
     
@@ -407,27 +428,29 @@
 //        http.parameters[@"backRate"] = right1Label8.text;
         //   前置利率
 //        http.parameters[@"preRate"] = right1Label9.text;
+        
+        //   开票价格
+        http.parameters[@"invoicePrice"] = @([right1Label7.text  floatValue]*1000);
         //   首付金额
-        http.parameters[@"sfAmount"] = [NSString stringWithFormat:@"%.f",[right1Label7.text floatValue]*1000];
+        http.parameters[@"sfAmount"] = [NSString stringWithFormat:@"%.f",[right1Label8.text floatValue]*1000];
         //   首付比例.f
-        http.parameters[@"sfRate"] = right1Label8.text;
+        http.parameters[@"sfRate"] = right1Label9.text;
         //   是否融资
-        http.parameters[@"isFinacing"] = [self CanOrNo:right1Label9.text];
+        http.parameters[@"isFinacing"] = [self CanOrNo:right1Label10.text];
         //   是否垫资
-        http.parameters[@"isAdvanceFund"] = [self CanOrNo:right1Label10.text];
+        http.parameters[@"isAdvanceFund"] = [self CanOrNo:right1Label11.text];
         //   是否安装gps
-        http.parameters[@"isAzGps"] = [self CanOrNo:right1Label11.text];
+        http.parameters[@"isAzGps"] = [self CanOrNo:right1Label12.text];
         //   是否我司续保
-        http.parameters[@"isPlatInsure"] = [self CanOrNo:right1Label12.text];
+        http.parameters[@"isPlatInsure"] = [self CanOrNo:right1Label13.text];
         //   月供保证金
-        http.parameters[@"monthDeposit"] = @([right1Label13.text floatValue]*1000);
+        http.parameters[@"monthDeposit"] = @([right1Label14.text floatValue]*1000);
 
         //   团队服务费
-        http.parameters[@"teamFee"] = @([right1Label14.text  floatValue]*1000);
+        http.parameters[@"teamFee"] = @([right1Label15.text  floatValue]*1000);
         //   其他费用
-        http.parameters[@"otherFee"] = @([right1Label15.text  floatValue]*1000);
-        //   开票价格
-        http.parameters[@"invoicePrice"] = @([right1Label16.text  floatValue]*1000);
+        http.parameters[@"otherFee"] = @([right1Label16.text  floatValue]*1000);
+        
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];
             
@@ -454,33 +477,33 @@
         //   开票单位
         http.parameters[@"invoiceCompany"] = right2Label2.text;
         //   开票价
-        http.parameters[@"invoicePrice"] = @([right2Label3.text floatValue]*1000);
+//        http.parameters[@"invoicePrice"] = @([right2Label3.text floatValue]*1000);
         //   车辆类型
-        http.parameters[@"carType"] = right2Label4.text;
+        http.parameters[@"carType"] = right2Label3.text;
         //   品牌
-        http.parameters[@"carBrand"] = right2Label5.text;
+        http.parameters[@"carBrand"] = right2Label4.text;
         //   车系
-        http.parameters[@"carSeries"] = right2Label6.text;
+        http.parameters[@"carSeries"] = right2Label5.text;
         //   车型
-        http.parameters[@"carModel"] = right2Label7.text;
+        http.parameters[@"carModel"] = right2Label6.text;
         //   颜色
-        http.parameters[@"carColor"] = right2Label8.text;
+        http.parameters[@"carColor"] = right2Label7.text;
         //   车架号
-        http.parameters[@"carFrameNo"] = right2Label9.text;
+        http.parameters[@"carFrameNo"] = right2Label8.text;
         //   发动机号
-        http.parameters[@"carEngineNo"] = right2Label10.text;
+        http.parameters[@"carEngineNo"] = right2Label9.text;
         //   市场指导价
-        http.parameters[@"originalPrice"] = @([right2Label11.text floatValue]*1000);
+        http.parameters[@"originalPrice"] = @([right2Label10.text floatValue]*1000);
         //   所属区域
-        http.parameters[@"region"] = [_baseModel setParentKey:@"region" setDvalue:right2Label12.text];
+        http.parameters[@"region"] = [_baseModel setParentKey:@"region" setDvalue:right2Label11.text];
         //   厂家贴息
-        http.parameters[@"carDealerSubsidy"] = @([right2Label13.text floatValue]*1000);
+        http.parameters[@"carDealerSubsidy"] = @([right2Label12.text floatValue]*1000);
         //   油补公里数
-        http.parameters[@"oilSubsidyKil"] = right2Label14.text;
+        http.parameters[@"oilSubsidyKil"] = right2Label13.text;
         //   油补
-        http.parameters[@"oilSubsidy"] = @([right2Label15.text floatValue]*1000);
+        http.parameters[@"oilSubsidy"] = @([right2Label14.text floatValue]*1000);
         //   落户地点
-        http.parameters[@"settleAddress"] = right2Label16.text;
+        http.parameters[@"settleAddress"] = right2Label15.text;
         //   合格证
         http.parameters[@"carHgzPic"] = [_carHgzPic componentsJoinedByString:@"||"];
         //   车辆照片
@@ -534,7 +557,9 @@
         //   现有车辆
         http.parameters[@"carType"] = right3Label11.text;
         //   主要收入来源
-        http.parameters[@"mainIncome"] = right3Label12.text;
+//        http.parameters[@"mainIncome"] = right3Label12.text;
+        http.parameters[@"mainIncome"] = [_baseModel setParentKey:@"main_income" setDvalue:right3Label12.text];
+        
         //   家庭紧急联系人信息1 姓名
         http.parameters[@"emergencyName1"] = right3Label13.text;
         //   家庭紧急联系人信息1 与申请人关系
@@ -844,7 +869,7 @@
             [self LoanProducts];
         }
         
-        if (indexPath.row == 9 || indexPath.row == 10  || indexPath.row == 11 || indexPath.row == 12) {
+        if (indexPath.row == 13 || indexPath.row == 10  || indexPath.row == 11 || indexPath.row == 12) {
             [_baseModel ReturnsParentKeyAnArray:@"can_or_no"];
         }
     }
@@ -856,15 +881,15 @@
         if (indexPath.row == 1) {
             [self AutomobileSales];
         }
-        if (indexPath.row == 4) {
+        if (indexPath.row == 3) {
             [_baseModel ReturnsParentKeyAnArray:@"car_type"];
         }
         
-        if (indexPath.row == 5) {
+        if (indexPath.row == 4) {
             [self chooseCar];
         }
 
-        if (indexPath.row == 12) {
+        if (indexPath.row == 11) {
             [_baseModel ReturnsParentKeyAnArray:@"region"];
 //            [self.pickView showInView:self.view];
         }
@@ -886,6 +911,9 @@
             }
             if (indexPath.row == 10) {
                 [_baseModel CustomBouncedView:[NSMutableArray arrayWithArray:@[@"有",@"无"]] setState:@"100"];
+            }
+            if (indexPath.row == 12) {
+                [_baseModel ReturnsParentKeyAnArray:@"main_income"];
             }
             
         }
@@ -1010,7 +1038,7 @@
                 NSLog(@"选中的%@" , array);
                 
                 SelectedListModel *model = array[0];
-                right2Label5.text = model.title;
+                right2Label4.text = model.title;
                 _brandDic = _brandAry[model.sid];
                 
                 
@@ -1033,7 +1061,7 @@
                         [LEEAlert closeWithCompletionBlock:^{
                             NSLog(@"选中的%@" , array);
                             SelectedListModel *model = array[0];
-                            right2Label6.text = model.title;
+                            right2Label5.text = model.title;
                             _carsDic = _carsAry[model.sid];
                             
                             _modelsAry = _carsDic[@"cars"];
@@ -1052,7 +1080,7 @@
                                 [LEEAlert closeWithCompletionBlock:^{
                                     NSLog(@"选中的%@" , array);
                                     SelectedListModel *model = array[0];
-                                    right2Label7.text = model.title;
+                                    right2Label6.text = model.title;
                                     //                                                [self.ModelDelegate TheReturnValueStr:model.title selectDic:nameArray[model.sid] selectSid:model.sid];
                                 }];
                             };
@@ -1384,21 +1412,21 @@
 
         right2Label1.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"vehicleCompanyName"]];
         right2Label2.text = self.model.carInfoRes[@"invoiceCompany"];
-        right2Label3.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"invoicePrice"] floatValue]/1000];
-        right2Label4.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carType"]];
-        right2Label5.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carBrand"]];
-        right2Label6.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carSeries"]];
-        right2Label7.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carModel"]];
-        right2Label8.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carColor"]];
-        right2Label9.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carFrameNo"]];
-        right2Label10.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carEngineNo"]];
+//        right2Label3.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"invoicePrice"] floatValue]/1000];
+        right2Label3.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carType"]];
+        right2Label4.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carBrand"]];
+        right2Label5.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carSeries"]];
+        right2Label6.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carModel"]];
+        right2Label7.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carColor"]];
+        right2Label7.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carFrameNo"]];
+        right2Label8.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carEngineNo"]];
         
-        right2Label11.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000];
-        right2Label12.text = [_baseModel setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]];
-        right2Label13.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"carDealerSubsidy"] floatValue]/1000];
-        right2Label14.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"oilSubsidyKil"]];
-        right2Label15.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"oilSubsidy"] floatValue]/1000];
-        right2Label16.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"settleAddress"]];
+        right2Label9.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000];
+        right2Label10.text = [_baseModel setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]];
+        right2Label11.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"carDealerSubsidy"] floatValue]/1000];
+        right2Label12.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"oilSubsidyKil"]];
+        right2Label13.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"oilSubsidy"] floatValue]/1000];
+        right2Label14.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"settleAddress"]];
         
     }
 

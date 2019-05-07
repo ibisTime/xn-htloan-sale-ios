@@ -40,13 +40,30 @@
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
-    if ([state isEqualToString:@"select1"] || [state isEqualToString:@"select3"]) {
+//    if ([state isEqualToString:@"select1"] || [state isEqualToString:@"select3"]) {
+//        ProductUsInputVC * vc = [ProductUsInputVC new];
+//        vc.model = self.model[index];
+//
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    else if ([state isEqualToString:@"select2"]){
+//        CheckProtextUs * vc = [CheckProtextUs new];
+//        vc.model = self.model[index];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+    NSLog(@"%ld",index);
+    if ([self.model[index].fbhgpsNode isEqualToString:@"c1"]) {
         ProductUsInputVC * vc = [ProductUsInputVC new];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if ([state isEqualToString:@"select2"]){
+    else if ([self.model[index].fbhgpsNode isEqualToString:@"c2"]){
         CheckProtextUs * vc = [CheckProtextUs new];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if ([self.model[index].fbhgpsNode isEqualToString:@"c1x"]){
+        ProductUsInputVC * vc = [ProductUsInputVC new];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }

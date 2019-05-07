@@ -141,7 +141,7 @@
 
     [self.tableView addLoadMoreAction:^{
 
-        helper.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];;
+        helper.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];
         NSArray *array = @[@"1",@"2",@"3"];
         helper.parameters[@"statusList"] = array;
         helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];

@@ -77,7 +77,7 @@
                               [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
                               [BaseModel convertNull:self.model.loanBankName],
                               bizType,
-                              [NSString stringWithFormat:@"%.2f万",[self.model.loanAmount floatValue]/10000],
+                              [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                               [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
                               [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
                               [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
@@ -94,7 +94,7 @@
         cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"审核意见";
+    cell.name = @"*审核意见";
     cell.nameText = @"请输入审核意见";
     cell.nameTextField.tag = 10000;
     

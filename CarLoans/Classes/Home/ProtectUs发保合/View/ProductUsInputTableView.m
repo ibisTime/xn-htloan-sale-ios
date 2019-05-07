@@ -58,11 +58,11 @@
         NSArray *rightAry = @[[BaseModel convertNull:self.model.code],
                               [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
                               [BaseModel convertNull:self.model.loanBankName],
-                              [NSString stringWithFormat:@"%.2f万",[self.model.loanAmount floatValue]/10000],
+                              [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                               bizType,
                               [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
-                              [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
-                              [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
+                              [NSString stringWithFormat:@"%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobName],
+                              [BaseModel convertNull:[[BaseModel user]note:self.model.fbhgpsNode]]];
         
         cell.TextFidStr = rightAry[indexPath.row];
         
@@ -75,7 +75,7 @@
             ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //            cell.delegate = self;
-            cell.name = @"保单开始日期";
+            cell.name = @"*保单开始日期";
             cell.tag = 1000 + indexPath.row;
             return cell;
         }
@@ -83,7 +83,7 @@
             ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             //            cell.delegate = self;
-            cell.name = @"保单到期日期";
+            cell.name = @"*保单到期日期";
             cell.tag = 1000 + indexPath.row;
             return cell;
         }
@@ -124,7 +124,7 @@
     CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
-    cell.selectStr = @"其他资料";
+    cell.selectStr = @"其它资料";
     cell.collectDataArray = self.carSettleOtherPdf;
     return cell;
 
@@ -192,7 +192,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
-        NSArray *array = @[@"发票",@"交强险",@"商业险",@"合格证",@"其它资料"];
+        NSArray *array = @[@"*发票",@"*交强险",@"*商业险",@"*合格证",@"其它资料"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];

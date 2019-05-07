@@ -50,7 +50,6 @@
 @property (nonatomic , copy)NSString *loanBankName;
 @property (nonatomic , copy)NSString *nowAddress;
 @property (nonatomic , copy)NSString *cancelNodeCode;
-@property (nonatomic , copy)NSString *saleUserName;
 @property (nonatomic , copy)NSString *companyName;
 
 @property (nonatomic , copy)NSString *bizType;
@@ -58,7 +57,7 @@
 @property (nonatomic , copy)NSString *applyDatetime;
 @property (nonatomic , copy)NSString *curNodeCode;
 
-
+@property (nonatomic,copy) NSString * fbhgpsNode;
 @property (nonatomic , copy)NSString *carInvoice;
 @property (nonatomic , copy)NSString *carHgzPic;
 @property (nonatomic , copy)NSString *carJqx;
@@ -87,7 +86,12 @@
 @property (nonatomic , strong)NSArray *Newpics6;
 @property (nonatomic , strong)NSArray *Newpics7;
 @property (nonatomic , strong)NSArray *Newpics8;//身份证照片
+@property (nonatomic , copy)NSString *insideJobCompanyName;
+@property (nonatomic , copy)NSString *insideJobDepartMentName;
 @property (nonatomic , copy)NSString *insideJobName;
+@property (nonatomic , copy)NSString *saleUserCompanyName;
+@property (nonatomic , copy)NSString *saleUserDepartMentName;
+@property (nonatomic , copy)NSString *saleUserName;
 @property (nonatomic , copy)NSString *pledgeUser;
 @property (nonatomic , copy)NSString *advanfCurNodeCode;
 @property (nonatomic , copy)NSString *pledgeUserIdCardCopy;

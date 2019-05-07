@@ -73,15 +73,15 @@
         self.tableView.carJqx = self.carJqx;
         
     }
-    else if (self.selectInt == 103){
+    else if (self.selectInt == 102){
         [self.carSyx addObject: data];
         self.tableView.carSyx = self.carSyx;
     }
-    else if (self.selectInt == 104){
+    else if (self.selectInt == 103){
         [self.carHgzPic addObject: data];
         self.tableView.carHgzPic = self.carHgzPic;
     }
-    else if (self.selectInt == 105){
+    else if (self.selectInt == 104){
         [self.carSettleOtherPdf addObject: data];
         self.tableView.carSettleOtherPdf = self.carSettleOtherPdf;
     }
@@ -163,6 +163,30 @@
 //        [TLAlert alertWithInfo:@"请选择保单到期日期"];
 //    }
 //    else{
+    if (self.policyDatetime.length == 0) {
+        [TLAlert alertWithMsg:@"请选择保单开始日期"];
+        return;
+    }
+    else if (self.policyDueDate.length == 0){
+        [TLAlert alertWithMsg:@"请选择保单到期日期"];
+        return;
+    }
+    else if (self.carInvoice.count == 0){
+        [TLAlert alertWithMsg:@"请上传发票"];
+        return;
+    }
+    else if (self.carJqx.count == 0){
+        [TLAlert alertWithMsg:@"请上传交强险"];
+        return;
+    }
+    else if (self.carSyx.count == 0){
+        [TLAlert alertWithMsg:@"请上传商业险"];
+        return;
+    }
+    else if (self.policyDueDate.length == 0){
+        [TLAlert alertWithMsg:@"请选择保单到期日期"];
+        return;
+    }
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"632131";
         http.parameters[@"code"] = self.model.code;

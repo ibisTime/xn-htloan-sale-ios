@@ -210,19 +210,19 @@
               failure(nil);
           }
           
-          if ([responseObject[@"errorCode"] isEqual:@"4"]) {
-              //token错误  4
-              
-              [TLAlert alertWithTitle:@"提示" message:@"登录失效,请重新登录" confirmAction:^{
-                  LoginVC *vc = [[LoginVC alloc]init];
-                  UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-                  UINavigationController *vcC = [[UINavigationController alloc]initWithRootViewController:vc];
-                  [USERDEFAULTS removeObjectForKey:USER_ID];
-                  [USERDEFAULTS removeObjectForKey:TOKEN_ID];
-                  window.rootViewController = vcC;
-              }];
-              return;
-          }
+//          if ([responseObject[@"errorCode"] isEqual:@"4"]) {
+//              //token错误  4
+//              
+//              [TLAlert alertWithTitle:@"提示" message:@"登录失效,请重新登录" confirmAction:^{
+//                  LoginVC *vc = [[LoginVC alloc]init];
+//                  UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+//                  UINavigationController *vcC = [[UINavigationController alloc]initWithRootViewController:vc];
+//                  [USERDEFAULTS removeObjectForKey:USER_ID];
+//                  [USERDEFAULTS removeObjectForKey:TOKEN_ID];
+//                  window.rootViewController = vcC;
+//              }];
+//              return;
+//          }
           
           [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
       }

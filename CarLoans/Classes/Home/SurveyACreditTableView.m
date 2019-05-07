@@ -69,7 +69,7 @@
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        NSArray *nameArray = @[@"银行",@"业务种类"];
+        NSArray *nameArray = @[@"*银行",@"*业务种类"];
         cell.name = nameArray[indexPath.row];
         NSArray *detailsArray = @[_bankStr,_speciesStr];
         cell.detailsLabel.text = detailsArray[indexPath.row];
@@ -78,9 +78,10 @@
     if (indexPath.section == 1) {
         InputBoxCell *cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"贷款金额";
+        cell.name = @"*贷款金额";
         cell.nameText = @"请输入贷款金额";
         cell.nameTextField.tag = 300;
+        cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
         return cell;
     }
 
@@ -88,7 +89,7 @@
         if (indexPath.section == 2) {
             SurveyPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SurveyPeople forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.name = @"征信人";
+            cell.name = @"*征信人";
             cell.btnStr = @"添加征信人";
             cell.delegate = self;
             [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -139,7 +140,7 @@
         if (indexPath.section == 4) {
             SurveyPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SurveyPeople forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.name = @"征信人";
+            cell.name = @"*征信人";
             cell.btnStr = @"添加征信人";
             cell.delegate = self;
             [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -223,13 +224,13 @@
         return 10;
     }else
     {
-        if (section == 0 || section == 5) {
+        if (section == 0 || section == 5  || section == 1) {
             return 0.01;
         }
-        if (section == 4) {
+//        if (section == 4) {
             return 50;
-        }
-        return 10;
+//        }
+//        return 0.01;
     }
 
 }
@@ -244,7 +245,7 @@
         return 0.01;
     }else
     {
-        if (section == 4) {
+        if (section == 5) {
             return 100;
         }
         return 0.01;
@@ -266,7 +267,7 @@
             lineView.backgroundColor = LineBackColor;
             [headView addSubview:lineView];
             UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-            nameLabel.text = @"二手车评估报告";
+            nameLabel.text = @"*二手车评估报告";
             [headView addSubview:nameLabel];
 
             return headView;
@@ -282,8 +283,9 @@
             lineView.backgroundColor = LineBackColor;
             [headView addSubview:lineView];
             UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-            nameLabel.text = @"行驶证";
+            nameLabel.text = @"*行驶证";
             [headView addSubview:nameLabel];
+            return headView;
         }
     }
 

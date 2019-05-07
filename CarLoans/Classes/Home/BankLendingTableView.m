@@ -51,11 +51,22 @@
     }
     cell.button.hidden = NO;
     cell.button.tag = indexPath.row;
-    [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+   
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessSingleModel = self.model[indexPath.row];
-
-
+    if ([self.model[indexPath.row].curNodeCode isEqualToString:@"e3"]) {
+        [cell.button setTitle:@"确认提交银行" forState:(UIControlStateNormal)];
+        cell.button.hidden = NO;
+    }
+    else if ([self.model[indexPath.row].curNodeCode isEqualToString:@"e4"]) {
+        [cell.button setTitle:@"录入放款信息" forState:(UIControlStateNormal)];
+        cell.button.hidden = NO;
+    }
+    else if ([self.model[indexPath.row].curNodeCode isEqualToString:@"e5"]) {
+        [cell.button setTitle:@"确认收款" forState:(UIControlStateNormal)];
+        cell.button.hidden = NO;
+    }
+    [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
 
     return cell;
 

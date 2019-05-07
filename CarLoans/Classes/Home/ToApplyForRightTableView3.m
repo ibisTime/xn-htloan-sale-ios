@@ -55,9 +55,12 @@
 //        NSArray *topArray = @[@"*姓名",@"*电话",@"*身份证",@"*性别",@"*年龄",@"*民族",@"*政治面貌",@"*学历",@"职业",@"职称",@"*有无驾照",@"现有车辆",@"*主要收入来源"];
         cell.topLbl.text = [TopModel user].ary3[indexPath.row];
         
-        if (indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 11 || indexPath.row == 12) {
+        if (indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 11 ) {
             cell.type = InputType;
             cell.inputTextField.tag = 30000 + indexPath.row;
+            if (indexPath.row == 4) {
+                cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+            }
         }else if (indexPath.row >= 0 && indexPath.row <= 2)
         {
             cell.type = ShowType;
@@ -68,15 +71,6 @@
             cell.type = ChooseType;
             cell.chooseLbl.tag = 30000 + indexPath.row;
         }
-//        if (indexPath.row == 0) {
-//            cell.bottomStr = self.model.creditUser[@"userName"];
-//        }
-//        if (indexPath.row == 1) {
-//            cell.bottomStr = self.model.creditUser[@"mobile"];
-//        }
-//        if (indexPath.row == 2) {
-//            cell.bottomStr = self.model.creditUser[@"idNo"];
-//        }
 
         
         return cell;
@@ -98,6 +92,9 @@
         if (indexPath.row == 0 || indexPath.row == 2) {
             cell.type = InputType;
             cell.inputTextField.tag = 30013 + indexPath.row;
+            if (indexPath.row == 2) {
+                cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+            }
         }else
         {
             cell.type = ChooseType;
@@ -122,6 +119,9 @@
     if (indexPath.row == 0 || indexPath.row == 2) {
         cell.type = InputType;
         cell.inputTextField.tag = 30016 + indexPath.row;
+        if (indexPath.row == 2) {
+            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+        }
     }else
     {
         cell.type = ChooseType;

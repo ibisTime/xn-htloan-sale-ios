@@ -28,7 +28,12 @@
 @property (nonatomic , strong)NSArray *speciesArray;
 
 //@property (nonatomic , strong)SurveyDetailsModel *DetailsModel;
+@property (nonatomic , assign)NSInteger selectInt;
 
+//    身份证正面
+@property (nonatomic , copy)NSString *idNoFront;
+//    身份证反面
+@property (nonatomic , copy)NSString *idNoReverse;
 @end
 
 @implementation SurveyACreditVC
@@ -67,8 +72,19 @@
 
 -(void)setImage:(UIImage *)image setData:(NSString *)data
 {
-    secondCarReport = data;
-    self.tableView.secondCarReport = secondCarReport;
+    if (self.selectInt == 0) {
+        secondCarReport = data;
+        self.tableView.secondCarReport = secondCarReport;
+    }
+    else if (self.selectInt == 50){
+        self.idNoFront = data;
+        self.tableView.idNoFront = self.idNoFront;
+    }
+    else if (self.selectInt == 51){
+        self.idNoReverse = data;
+        self.tableView.idNoReverse = self.idNoReverse;
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -249,6 +265,7 @@
         _tableView.speciesStr = @"二手车";
     }
     _tableView.secondCarReport = self.model.secondCarReport;
+//    _tableView.idNoFront = self.model.car
     bizType = [_model.bizType integerValue];
     TLNetworking *http = [TLNetworking new];
     http.isShowMsg = YES;
@@ -281,7 +298,16 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
-    [self.imagePicker picker];
+    if ([state isEqualToString:@"add"]) {
+        self.selectInt = index;
+        [self.imagePicker picker];
+    }
+    else if ([state isEqualToString:@"IDCard"])
+    {
+        self.selectInt = index;
+        [self.imagePicker picker];
+    }
+    
 }
 
 
@@ -352,6 +378,19 @@
     }else
     {
 //        发起
+        if (secondCarReport.length < 1) {
+            [TLAlert alertWithInfo:@"请上传评估报告"];
+            return;
+        }
+        if (self.idNoFront.length < 1) {
+            [TLAlert alertWithInfo:@"请上传行驶证正面照片"];
+            return;
+        }
+        if (self.idNoReverse.length < 1) {
+            [TLAlert alertWithInfo:@"请上传行驶证反面照片"];
+            return;
+        }
+        
         http.code = @"632110";
     }
 
@@ -369,6 +408,8 @@
     if (bizType == 1) {
 //        二手车
         http.parameters[@"secondCarReport"] = secondCarReport;
+        http.parameters[@"xszFront"] = self.idNoFront;
+        http.parameters[@"xszReverse"] = self.idNoReverse;
     }
 
     WGLog(@" =========== %@",textField2.text);
@@ -448,6 +489,7 @@
     }
     [self.tableView reloadData];
 }
+
 
 
 @end

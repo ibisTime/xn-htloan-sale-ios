@@ -25,12 +25,15 @@
 @property (nonatomic , copy)NSString *code;
 @property (nonatomic , copy)NSString *updateDatetime;
 @property (nonatomic , copy)NSString *saleUserName;
+@property (nonatomic , copy)NSString *saleUserCompanyName;
+@property (nonatomic , copy)NSString *saleUserDepartMentName;
 @property (nonatomic , copy)NSString *updaterName;
 @property (nonatomic , copy)NSString *idNo;
 @property (nonatomic , copy)NSString *operatorName;
 @property (nonatomic , copy)NSString *loanAmount;
 @property (nonatomic , copy)NSString *loanBankCode;
 @property (nonatomic , copy)NSString *isCancel;
+
 @property (nonatomic , copy)NSString *applyDatetime;
 @property (nonatomic , copy)NSString *mobile;
 @property (nonatomic , copy)NSString *bizType;
@@ -39,6 +42,9 @@
 @property (nonatomic , copy)NSString *note;
 @property (nonatomic , copy)NSString *saleUserId;
 @property (nonatomic , copy)NSString *companyName;
+@property (nonatomic,copy) NSString * insideJobCompanyName;
+@property (nonatomic,copy) NSString * insideJobDepartMentName;
+@property (nonatomic,copy) NSString * insideJobName;
 @property (nonatomic , copy)NSString *insideJob;
 @property (nonatomic , copy)NSString *userName;
 @property (nonatomic , copy)NSString *teamCode;

@@ -31,11 +31,13 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:Information forIndexPath:indexPath];
+    cell.isFinancial = YES;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.model.count > 0) {
         cell.surveyModel = self.model[indexPath.row];
     }
     NSLog(@"%ld",cell.button.tag);
+    
     cell.button.tag = indexPath.row;
     [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
     

@@ -38,9 +38,9 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
-            date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
-            self.tableView.date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
+        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+            date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+            self.tableView.date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
             [self.tableView reloadData];
 
         }];
@@ -64,7 +64,7 @@
     http.code = @"632129";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
-    if ([textFid1.text isEqualToString:@""]) {
+    if (![textFid1.text isEqualToString:@""]) {
         http.parameters[@"bankCommitNote"] = textFid1.text;
     }
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];

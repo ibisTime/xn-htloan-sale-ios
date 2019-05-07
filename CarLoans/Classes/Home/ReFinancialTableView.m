@@ -30,71 +30,84 @@
     
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 14;
+    if (section == 1) {
+        return 1;
+    }
+    return 13;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        return 180;
+    }
     return 55;
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.001;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return 50;
+    }
     return 0.001;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row < 11) {
-        TextFieldCell * cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务类型",@"业务归属",@"指派归属",@"当前状态",@"汽车经销商",@"资金划转授权书",@"其他资料"];
-        cell.name = nameArray[indexPath.row];
-        cell.isInput = @"0";
-        NSString *bizType;
-        if ([self.model.credit[@"bizType"] integerValue] == 0) {
-            bizType = @"新车";
+    if (indexPath.section == 0) {
+        if (indexPath.row < 11) {
+            TextFieldCell * cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务类型",@"业务归属",@"指派归属",@"当前状态",@"汽车经销商",@"资金划转授权书",@"其他资料"];
+            cell.name = nameArray[indexPath.row];
+            cell.isInput = @"0";
+            NSString *bizType;
+            if ([self.model.credit[@"bizType"] integerValue] == 0) {
+                bizType = @"新车";
+            }
+            else
+            {
+                bizType = @"二手车";
+            }
+            
+            NSArray *rightAry = @[[BaseModel convertNull:self.model.code],
+                                  [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
+                                  [BaseModel convertNull:self.model.loanBankName],
+                                  [NSString stringWithFormat:@"%.2f万",[self.model.loanAmount floatValue]/10000],
+                                  bizType,
+                                  [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
+                                  [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
+                                  [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]],
+                                  [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
+                                  [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
+                                  [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
+            
+            cell.TextFidStr = rightAry[indexPath.row];
+            cell.nameTextField.hidden = YES;
+            cell.nameTextLabel.hidden = NO;
+            return cell;
         }
-        else
-        {
-            bizType = @"二手车";
+        else if (indexPath.row == 11) {
+            ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*垫资日期";
+            cell.tag = 1000 + indexPath.row;
+            return cell;
         }
-        
-        NSArray *rightAry = @[[BaseModel convertNull:self.model.code],
-                              [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
-                              [BaseModel convertNull:self.model.loanBankName],
-                              [NSString stringWithFormat:@"%.2f万",[self.model.loanAmount floatValue]/10000],
-                              bizType,
-                              [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
-                              [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
-                              [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]],
-                              [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
-                              [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
-                              [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
-        
-        cell.TextFidStr = rightAry[indexPath.row];
-        cell.nameTextField.hidden = YES;
-        cell.nameTextLabel.hidden = NO;
-        return cell;
+        else if (indexPath.row == 12){
+            InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*垫资金额";
+            cell.nameText = @"请输入垫资金额";
+            cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+            cell.symbolLabel.hidden = YES;
+            cell.tag = 1000 + indexPath.row;
+            return cell;
+        }
     }
-    else if (indexPath.row == 11) {
-        ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"*垫资日期";
-        cell.tag = 1000 + indexPath.row;
-        return cell;
-    }
-    else if (indexPath.row == 12){
-        InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"*垫资金额";
-        cell.nameText = @"请输入垫资金额";
-        cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
-        cell.symbolLabel.hidden = YES;
-        cell.tag = 1000 + indexPath.row;
-        return cell;
-    }
+   
     CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
@@ -132,5 +145,26 @@
    
     
 }
-
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+        UIView *headView = [[UIView alloc]init];
+        
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+        backView.backgroundColor = [UIColor whiteColor];
+        [headView addSubview:backView];
+        
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+        lineView.backgroundColor = LineBackColor;
+        [headView addSubview:lineView];
+        
+        NSArray *array = @[@"*水单"];
+        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+        nameLabel.text = array[section - 1];
+        [headView addSubview:nameLabel];
+        
+        return headView;
+    }
+    return nil;
+}
 @end

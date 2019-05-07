@@ -8,7 +8,7 @@
 
 #import "ToApplyForRightTableView1.h"
 
-@interface ToApplyForRightTableView1 ()<UITableViewDataSource,UITableViewDelegate>
+@interface ToApplyForRightTableView1 ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @end
 @implementation ToApplyForRightTableView1
@@ -52,13 +52,18 @@
     
     cell.topLbl.text = [TopModel user].ary1[indexPath.row];
     
-    if (indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 9 || indexPath.row == 10  || indexPath.row == 11 || indexPath.row == 12) {
+    if (indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 13 || indexPath.row == 10  || indexPath.row == 11 || indexPath.row == 12 ) {
         cell.type = ChooseType;
         cell.chooseLbl.tag = 10000 + indexPath.row;
-    }else if (indexPath.row == 7 || indexPath.row == 8 ||  indexPath.row == 13 || indexPath.row == 14 || indexPath.row == 15 || indexPath.row == 16)
+    }else if (indexPath.row == 7 || indexPath.row == 14 || indexPath.row == 15 || indexPath.row == 16)
     {
         cell.type = InputType;
         cell.inputTextField.tag = 10000 + indexPath.row;
+        if (indexPath.row == 7) {
+            cell.inputTextField.delegate = self;
+            
+        }
+        cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     else
     {
@@ -68,7 +73,24 @@
     return cell;
 }
 
-
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    NSString * resultStr = [textField.text stringByAppendingString:string];
+//    if ([resultStr floatValue] > ([self.model.loanAmount floatValue ] /1000)) {
+        NSLog(@"%@",resultStr);
+        UITextField * text = [self viewWithTag:10000+ 8];
+        text.text = [NSString stringWithFormat:@"%.f",[resultStr floatValue] - ([self.model.loanAmount floatValue ] /1000)];
+        
+        UITextField * text1 = [self viewWithTag:10000+ 9];
+        text1.text = [NSString stringWithFormat:@"%.2f",[text.text floatValue] / [resultStr floatValue] ];
+        
+        return YES;
+//    }
+//    else{
+//        [TLAlert alertWithInfo:@"开票价输入不合理"];
+//        return NO;
+//    }
+    
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

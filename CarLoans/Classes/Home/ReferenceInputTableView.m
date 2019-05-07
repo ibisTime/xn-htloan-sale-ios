@@ -73,9 +73,9 @@
                               [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
                               [BaseModel convertNull:self.model.loanBankName],
                               bizType,
-                              [NSString stringWithFormat:@"%.2f万",[self.model.loanAmount floatValue]/10000],
+                              [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                               [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
-                              [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
+                              [NSString stringWithFormat:@"%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserName],
                               [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
         
         cell.TextFidStr = rightAry[indexPath.row];

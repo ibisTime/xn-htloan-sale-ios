@@ -530,18 +530,18 @@
     
 }
 
--(void)rightButtonClick
-{
-    [TLAlert alertWithTitle:@"提示" msg:@"是否退出登录" confirmMsg:@"取消" cancleMsg:@"确认" cancle:^(UIAlertAction *action) {
-        LoginVC *vc = [[LoginVC alloc]init];
-        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-        [USERDEFAULTS removeObjectForKey:USER_ID];
-        [USERDEFAULTS removeObjectForKey:TOKEN_ID];
-        window.rootViewController = vc;
-    } confirm:^(UIAlertAction *action) {
-
-    }];
-}
+//-(void)rightButtonClick
+//{
+//    [TLAlert alertWithTitle:@"提示" msg:@"是否退出登录" confirmMsg:@"取消" cancleMsg:@"确认" cancle:^(UIAlertAction *action) {
+//        LoginVC *vc = [[LoginVC alloc]init];
+//        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+//        [USERDEFAULTS removeObjectForKey:USER_ID];
+//        [USERDEFAULTS removeObjectForKey:TOKEN_ID];
+//        window.rootViewController = vc;
+//    } confirm:^(UIAlertAction *action) {
+//
+//    }];
+//}
 
 -(void)viewWillAppear:(BOOL)animated
 {

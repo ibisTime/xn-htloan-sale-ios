@@ -225,6 +225,10 @@
         [TLAlert alertWithInfo:@"请输入手机号"];
         return;
     }
+    if (textField2.text.length != 11) {
+        [TLAlert alertWithInfo:@"手机号格式不正确，请重新输入"];
+        return;
+    }
     if ([_loanRole isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"选择贷款角色"];
         return;
@@ -235,6 +239,10 @@
     }
     if ([textField3.text isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请输入身份证号"];
+        return;
+    }
+    if (textField3.text.length != 18) {
+        [TLAlert alertWithInfo:@"身份证号格式不正确，请重新输入"];
         return;
     }
     if ([_idNoFront isEqualToString:@""]) {

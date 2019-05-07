@@ -83,24 +83,45 @@
     if (indexPath.section == 1) {
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChooseCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"银行征信结果(是否通过)";
+        cell.name = @"*银行征信结果(是否通过)";
         cell.detailsLabel.text = self.bankResult;
         
         return cell;
     }
     if (indexPath.section == 2) {
-        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+//        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.delegate = self;
+//        cell.selectStr = @"*银行征信报告(单)";
+//        cell.collectDataArray = self.bankCreditReport;
+//        return cell;
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.delegate = self;
-        cell.selectStr = @"银行征信报告(单)";
-        cell.collectDataArray = self.bankCreditReport;
+        
+        UIButton *_photoBtn = [UIButton buttonWithTitle:@"评估报告" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
+        _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
+        //            [_photoBtn setTitle:@"评估报告" forState:(UIControlStateNormal)];
+        [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
+            [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
+        }];
+        
+        
+        kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
+        
+        [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [cell addSubview:_photoBtn];
+        
+        UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
+        [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+        [_photoBtn addSubview:photoImage];
+        
         return cell;
     }
     if (indexPath.section == 3) {
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        cell.selectStr = @"大数据征信报告(多张)";
+        cell.selectStr = @"*大数据征信报告(多张)";
         cell.collectDataArray = self.dataCreditReport;
         return cell;
     }
@@ -116,12 +137,13 @@
         cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"信用卡使用占比（%）",@"征信结果说明"];
+    NSArray *nameArray = @[@"*信用卡使用占比（%）",@"征信结果说明"];
     cell.name = nameArray[indexPath.row];
     self.cell = cell;
     NSArray *placArray = @[@"请输入使用占比",@"请输入说明"];
     cell.nameText = placArray[indexPath.row];
     if (indexPath.row == 0) {
+        cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
         if ([cell.nameTextField.text isEqualToString:@""] && [self.creditCardOccupation floatValue] != 0) {
             cell.nameTextField.text = self.creditCardOccupation;
         }
@@ -152,7 +174,12 @@
     }
     
 }
-
+-(void)appraisalReportBtnClick:(UIButton *)sender
+{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:0 selectRowState:@"add"];
+    }
+}
 //删除
 -(void)UploadImagesBtn:(UIButton *)sender str:(NSString *)str
 {
@@ -240,7 +267,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
-        NSArray *array = @[@"银行征信报告(单)",@"大数据征信报告(多张)"];
+        NSArray *array = @[@"*银行征信报告(单)",@"*大数据征信报告(多张)"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];

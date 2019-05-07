@@ -127,7 +127,7 @@
                                   [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@",surveyModel.saleUserName],
+                                  [NSString stringWithFormat:@"%@-%@-%@",surveyModel.saleUserCompanyName,surveyModel.saleUserDepartMentName,surveyModel.saleUserName],
                                   [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
     
     for (int i = 0; i < nameArray.count; i ++ ) {

@@ -8,7 +8,9 @@
 
 #import "ReferenceInputDetailsVC.h"
 #import "ReferenceInputDetailsTableView.h"
-@interface ReferenceInputDetailsVC ()<RefreshDelegate,BaseModelDelegate>
+@interface ReferenceInputDetailsVC ()<RefreshDelegate,BaseModelDelegate>{
+    NSString *secondCarReport;
+}
 @property (nonatomic , strong)ReferenceInputDetailsTableView *tableView;
 //@property (nonatomic , strong)SurveyDetailsModel *surveyDetailsModel;
 
@@ -68,6 +70,11 @@
         [self.dataCreditReport addObject:data];
         self.tableView.dataCreditReport = self.dataCreditReport;
         
+    }
+    if (self.selectInt == 0) {
+        secondCarReport = data;
+        [self.bankCreditReport addObject:data];
+        self.tableView.secondCarReport = secondCarReport;
     }
     [self.tableView reloadData];
 }
@@ -177,7 +184,8 @@
             return;
         }
         
-        if (self.bankCreditReport.count == 0) {
+//        if (self.bankCreditReport.count == 0) {
+        if (secondCarReport.length == 0){
             [TLAlert alertWithInfo:@"请上传银行征信报告"];
             return;
         }
@@ -205,7 +213,7 @@
             bankResult = @"0";
         }
         
-        NSDictionary *dic = @{@"bankCreditReport":[_bankCreditReport componentsJoinedByString:@"||"],
+        NSDictionary *dic = @{@"bankCreditReport":secondCarReport,
                               @"creditCardOccupation":[NSString stringWithFormat:@"%.2f",[textField1.text floatValue]/100],
                               @"creditNote":textField2.text,
                               @"bankResult":bankResult,

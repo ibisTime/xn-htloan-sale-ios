@@ -10,6 +10,8 @@
 #import "BankLendingTableView.h"
 #import "AccessSingleModel.h"
 #import "BankLendingDetailsVC.h"
+#import "InputLendingDetailsVC.h"
+#import "ConfirmLendingVC.h"
 @interface BankLendingVC ()
 <RefreshDelegate>
 @property (nonatomic , strong)BankLendingTableView *tableView;
@@ -54,9 +56,22 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-    BankLendingDetailsVC *vc = [[BankLendingDetailsVC alloc]init];
-    vc.model = self.model[index];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.model[index].curNodeCode isEqualToString:@"e3"]) {
+        BankLendingDetailsVC *vc = [[BankLendingDetailsVC alloc]init];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([self.model[index].curNodeCode isEqualToString:@"e4"]){
+        InputLendingDetailsVC * vc = [[InputLendingDetailsVC alloc]init];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([self.model[index].curNodeCode isEqualToString:@"e5"]){
+        ConfirmLendingVC * vc = [[ConfirmLendingVC alloc]init];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+//
+    
 }
 
 -(void)LoadData
@@ -70,7 +85,7 @@
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
 
-    NSArray *array = @[@"002_11",@"002_13",@"002_14",@"002_15",@"002_16",@"002_17"];
+    NSArray *array = @[@"e3",@"e4",@"e5"];
     helper.parameters[@"curNodeCodeList"] = array;
     helper.isList = NO;
     helper.isCurrency = YES;

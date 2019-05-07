@@ -79,9 +79,9 @@
                                   [NSString stringWithFormat:@"%@", _model.loanBankName],
                                   [NSString stringWithFormat:@"%@",_model.loanAmount],
                                   [NSString stringWithFormat:@"%@",bizType],
-                                  [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
-                                  [NSString stringWithFormat:@"%@-%@",self.model.companyName,self.model.teamName],
-                                  [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]
+                                  [NSString stringWithFormat:@"%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserName],
+                                  [NSString stringWithFormat:@"%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobName],
+                                  [BaseModel convertNull:[[BaseModel user]note:self.model.fbhgpsNode]]
                                   ];
         cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
@@ -162,7 +162,7 @@
         [headView addSubview:backView];
 
         UILabel *headLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(15) textColor:[UIColor blackColor]];
-        headLabel.text = @"GPS";
+        headLabel.text = @"*GPS";
         [backView addSubview:headLabel];
 
         return headView;

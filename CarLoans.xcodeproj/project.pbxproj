@@ -240,6 +240,10 @@
 		1F651AB5227B41B800EFB78B /* MakeCardEntryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */; };
 		1F651ABB227D7A0B00EFB78B /* AccessAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */; };
 		1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */; };
+		36932BA922819AE000FE0431 /* InputLendingDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */; };
+		36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAB22819AF800FE0431 /* InputLendingDetailsTableView.m */; };
+		36932BAF2281B26600FE0431 /* ConfirmLendingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */; };
+		36932BB22281B27D00FE0431 /* ConfirmLendingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BB12281B27D00FE0431 /* ConfirmLendingTableView.m */; };
 		36B28A6E227E9C4000A8C07D /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */; };
 		36B28A6F227E9C4000A8C07D /* ILiveLogReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */; };
 		36B28A70227E9C4000A8C07D /* TILLiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */; };
@@ -956,6 +960,14 @@
 		1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditVC.m; sourceTree = "<group>"; };
 		1F651ABC227D7A1D00EFB78B /* AccessAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessAuditTableView.h; sourceTree = "<group>"; };
 		1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditTableView.m; sourceTree = "<group>"; };
+		36932BA722819AE000FE0431 /* InputLendingDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsVC.h; sourceTree = "<group>"; };
+		36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputLendingDetailsVC.m; sourceTree = "<group>"; };
+		36932BAA22819AF800FE0431 /* InputLendingDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsTableView.h; sourceTree = "<group>"; };
+		36932BAB22819AF800FE0431 /* InputLendingDetailsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputLendingDetailsTableView.m; sourceTree = "<group>"; };
+		36932BAD2281B26600FE0431 /* ConfirmLendingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmLendingVC.h; sourceTree = "<group>"; };
+		36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmLendingVC.m; sourceTree = "<group>"; };
+		36932BB02281B27D00FE0431 /* ConfirmLendingTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmLendingTableView.h; sourceTree = "<group>"; };
+		36932BB12281B27D00FE0431 /* ConfirmLendingTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmLendingTableView.m; sourceTree = "<group>"; };
 		36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveSDK.framework; sourceTree = "<group>"; };
 		36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveLogReport.framework; sourceTree = "<group>"; };
 		36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TILLiveSDK.framework; sourceTree = "<group>"; };
@@ -3743,6 +3755,10 @@
 				7A3582C12117EB62006FB5B5 /* BankLendingTableView.m */,
 				7A3582C62117F040006FB5B5 /* BankLendingDetailsTableView.h */,
 				7A3582C72117F040006FB5B5 /* BankLendingDetailsTableView.m */,
+				36932BAA22819AF800FE0431 /* InputLendingDetailsTableView.h */,
+				36932BAB22819AF800FE0431 /* InputLendingDetailsTableView.m */,
+				36932BB02281B27D00FE0431 /* ConfirmLendingTableView.h */,
+				36932BB12281B27D00FE0431 /* ConfirmLendingTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3761,6 +3777,10 @@
 				7A3582BE2117EB50006FB5B5 /* BankLendingVC.m */,
 				7A3582C32117F01D006FB5B5 /* BankLendingDetailsVC.h */,
 				7A3582C42117F01D006FB5B5 /* BankLendingDetailsVC.m */,
+				36932BA722819AE000FE0431 /* InputLendingDetailsVC.h */,
+				36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */,
+				36932BAD2281B26600FE0431 /* ConfirmLendingVC.h */,
+				36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -5004,6 +5024,7 @@
 				7A0F8EB2211BD73900BA8358 /* InstallationDetailsTableView.m in Sources */,
 				36C02E0822800B30007EC7CF /* DriveCardCell.m in Sources */,
 				7A13AE1C210F26A100B8F785 /* IQUITextFieldView+Additions.m in Sources */,
+				36932BAF2281B26600FE0431 /* ConfirmLendingVC.m in Sources */,
 				1F1EF2162265AC0200EADA25 /* TLUserForgetPwdVC.m in Sources */,
 				1F151A882272AB14002B7EDA /* DetailsTableView6.m in Sources */,
 				1F1EF1D7226454BA00EADA25 /* MyVC.m in Sources */,
@@ -5031,6 +5052,7 @@
 				1F1EF29F2265CD6F00EADA25 /* CollectionCell1.m in Sources */,
 				1F1EF1F222647AC900EADA25 /* AnnouncementVC.m in Sources */,
 				B82ED84821D248960019AAE0 /* CLTextFiled.m in Sources */,
+				36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */,
 				1F651A7C227AA15500EFB78B /* NewWaterTableView.m in Sources */,
 				7AB29E8E20FD8EB30014FCB3 /* ImageUtil.m in Sources */,
 				7A0F8E7F2119BA9F00BA8358 /* SettlementAuditModel.m in Sources */,
@@ -5076,6 +5098,7 @@
 				1F00AE8E2271BDAC00A8E15D /* FaceSignAuditTableView.m in Sources */,
 				7A94556F210EFFFE00BDFD33 /* DataTransferVC.m in Sources */,
 				7AB29E6820FD8EB30014FCB3 /* MJProperty.m in Sources */,
+				36932BB22281B27D00FE0431 /* ConfirmLendingTableView.m in Sources */,
 				7A3582902113F668006FB5B5 /* GPSInstallationModel.m in Sources */,
 				7A13AEAD21104E4300B8F785 /* QNDnsManager.m in Sources */,
 				B8547BA52181F56300EC5092 /* CustomTableViewCell.m in Sources */,
@@ -5273,6 +5296,7 @@
 				7AB29E7820FD8EB30014FCB3 /* FontSizeView.m in Sources */,
 				1F651A97227AD28800EFB78B /* CreditSingleTableView.m in Sources */,
 				7A13AED92110584D00B8F785 /* SurvuyPeopleModel.m in Sources */,
+				36932BA922819AE000FE0431 /* InputLendingDetailsVC.m in Sources */,
 				7A0592E920FF3A9900075FE8 /* CarSettledInTableView.m in Sources */,
 				7A13ADCD210F0E2B00B8F785 /* DataCollectedVC.m in Sources */,
 				7AB29E8120FD8EB30014FCB3 /* UIView+Banner.m in Sources */,

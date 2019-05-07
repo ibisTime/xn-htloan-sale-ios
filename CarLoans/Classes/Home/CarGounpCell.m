@@ -92,7 +92,8 @@
     //    cell.backgroundColor = [UIColor redColor];
     if (indexPath.row == 0) {
         photoBtn = [UIButton buttonWithTitle:@"" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
-        photoBtn.frame = CGRectMake(2.5, 32.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5);
+//        photoBtn.frame = CGRectMake(2.5, 32.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5);
+photoBtn.frame = CGRectMake(2.5, 2.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5);
         kViewBorderRadius(photoBtn, 5, 1, HGColor(230, 230, 230));
         
         [photoBtn setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
@@ -102,7 +103,8 @@
         [cell addSubview:backView];
     }else
     {
-        UIImageView *image = [[UIImageView alloc]initWithFrame: CGRectMake(2.5, 32.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5)];
+//        UIImageView *image = [[UIImageView alloc]initWithFrame: CGRectMake(2.5, 32.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5)];
+        UIImageView *image = [[UIImageView alloc]initWithFrame: CGRectMake(2.5, 2.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5)];
         kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
         image.contentMode = UIViewContentModeScaleToFill;
         [image sd_setImageWithURL:[NSURL URLWithString:[array[indexPath.row - 1] convertImageUrl]]];

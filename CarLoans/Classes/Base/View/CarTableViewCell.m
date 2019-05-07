@@ -167,7 +167,7 @@
     }
     NSArray *InformationArray = @[
                                   [NSString stringWithFormat:@"%@",bizType],
-                                  [NSString stringWithFormat:@"%@",accessSingleModel.applyUserName],
+                                  [NSString stringWithFormat:@"%@",accessSingleModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[accessSingleModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",accessSingleModel.loanBankName],
                                   isAdvanceFund,
