@@ -90,10 +90,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.title = @"发起征信";
 
     peopleArray = [NSMutableArray array];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDADPEOPLENOTICE object:nil];
     [self initTableView];
     secondCarReport = @"";
@@ -138,6 +138,10 @@
     NSString *idNoReverse;
     NSString *authPdf;
     NSString *interviewPic;
+    NSString *xszFront;
+    NSString *secondCarReport;
+    NSString *xszReverse;
+    
     NSMutableArray *array = [NSMutableArray array];
     
     
@@ -160,6 +164,15 @@
                 if ([attachments[@"kname"] isEqualToString:@"interview_pic_apply"]) {
                     interviewPic = attachments[@"url"];
                 }
+                if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
+                    xszFront = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
+                    xszReverse = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
+                    secondCarReport = attachments[@"url"];
+                }
             }
             
             dataDic  = @{
@@ -171,7 +184,10 @@
                          @"idFront":[BaseModel convertNull:idNoFront],
                          @"idReverse":[BaseModel convertNull:idNoReverse],
                          @"authPdf":[BaseModel convertNull:authPdf],
-                         @"interviewPic":[BaseModel convertNull:interviewPic]
+                         @"interviewPic":[BaseModel convertNull:interviewPic],
+                         @"xszFront":[BaseModel convertNull:xszFront],
+                         @"xszReverse":[BaseModel convertNull:xszReverse],
+                         @"secondCarReport":[BaseModel convertNull:secondCarReport]
                          };
             [array addObject:dataDic];
         }
@@ -191,6 +207,15 @@
                 if ([attachments[@"kname"] isEqualToString:@"interview_pic_gh"]) {
                     interviewPic = attachments[@"url"];
                 }
+                if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
+                    xszFront = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
+                    xszReverse = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
+                    secondCarReport = attachments[@"url"];
+                }
             }
             
             dataDic  = @{
@@ -202,10 +227,14 @@
                          @"idFront":[BaseModel convertNull:idNoFront],
                          @"idReverse":[BaseModel convertNull:idNoReverse],
                          @"authPdf":[BaseModel convertNull:authPdf],
-                         @"interviewPic":[BaseModel convertNull:interviewPic]
+                         @"interviewPic":[BaseModel convertNull:interviewPic],
+                         @"xszFront":[BaseModel convertNull:xszFront],
+                         @"xszReverse":[BaseModel convertNull:xszReverse],
+                         @"secondCarReport":[BaseModel convertNull:secondCarReport]
                          };
             [array addObject:dataDic];
         }
+        
         if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"3"]) {
             for (int k = 0; k < self.model.attachments.count; k ++) {
                 NSDictionary *attachments = self.model.attachments[k];
@@ -221,6 +250,16 @@
                 if ([attachments[@"kname"] isEqualToString:@"interview_pic_gua"]) {
                     interviewPic = attachments[@"url"];
                 }
+                if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
+                    xszFront = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
+                    xszReverse = attachments[@"url"];
+                }
+                if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
+                    secondCarReport = attachments[@"url"];
+                }
+                
             }
             
             dataDic  = @{
@@ -232,25 +271,26 @@
                          @"idFront":[BaseModel convertNull:idNoFront],
                          @"idReverse":[BaseModel convertNull:idNoReverse],
                          @"authPdf":[BaseModel convertNull:authPdf],
-                         @"interviewPic":[BaseModel convertNull:interviewPic]
+                         @"interviewPic":[BaseModel convertNull:interviewPic],
+                         @"xszFront":[BaseModel convertNull:xszFront],
+                         @"xszReverse":[BaseModel convertNull:xszReverse],
+                         @"secondCarReport":[BaseModel convertNull:secondCarReport]
                          };
             [array addObject:dataDic];
         }
     }
-//    for (int i = 0; i < self.model.attachments.count; i ++) {
-//        NSDictionary *attachments = self.model.attachments[i];
-    
-            
-          
-            
-            
-//        }
-//    }
-    
+
     self.tableView.peopleAray = array;
-//    NSLog(@"%@",self.tableView.peopleAray);
-//    [peopleArray addObjectsFromArray:array];
     peopleArray = array;
+    if (self.model) {
+        self.tableView.idNoReverse = self.model.xszReverse;
+        self.tableView.idNoFront = self.model.xszFront;
+        if (peopleArray.count != 0) {
+            self.tableView.secondCarReport = peopleArray[0][@"secondCarReport"];
+        }
+        
+        self.tableView.speciesStr = @"二手车";
+    }
     
     UITextField *textField1 = [self.view viewWithTag:300];
     textField1.text = [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000];
@@ -293,6 +333,8 @@
     self.tableView.backgroundColor = kBackgroundColor;
     _tableView.bankStr = @"";
     _tableView.speciesStr = @"";
+    
+    
     [self.view addSubview:self.tableView];
 }
 
@@ -355,6 +397,7 @@
 {
     UITextField *textField1 = [self.view viewWithTag:300];
     UITextField *textField2 = [self.view viewWithTag:301];
+    
     if ([loanBankCode isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请选择银行"];
         return;
@@ -363,11 +406,15 @@
         [TLAlert alertWithInfo:@"请选择业务种类"];
         return;
     }
-   
     if (peopleArray.count == 0) {
         [TLAlert alertWithInfo:@"请添加征信人"];
         return;
     }
+    if (textField1.text.length < 1) {
+        [TLAlert alertWithInfo:@"请输入贷款金额"];
+        return;
+    }
+    
     TLNetworking *http = [TLNetworking new];
     if ([_state isEqualToString:@"1"]) {
 
@@ -378,26 +425,13 @@
     }else
     {
 //        发起
-        if (secondCarReport.length < 1) {
-            [TLAlert alertWithInfo:@"请上传评估报告"];
-            return;
-        }
-        if (self.idNoFront.length < 1) {
-            [TLAlert alertWithInfo:@"请上传行驶证正面照片"];
-            return;
-        }
-        if (self.idNoReverse.length < 1) {
-            [TLAlert alertWithInfo:@"请上传行驶证反面照片"];
-            return;
-        }
-        
         http.code = @"632110";
     }
-
+    
     http.showView = self.view;
     http.parameters[@"buttonCode"] = buttonCode;
     http.parameters[@"loanBankCode"] = loanBankCode;
-    http.parameters[@"bizType"] = @(bizType);
+    http.parameters[@"bizType"] = [NSString stringWithFormat:@"%ld",bizType];
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     if (![textField1.text isEqualToString:@""]) {
         http.parameters[@"loanAmount"] = @([textField1.text integerValue] * 1000);
@@ -405,15 +439,38 @@
     }
     http.parameters[@"creditUserList"] = peopleArray;
     http.parameters[@"creditNote"] = textField2.text;
-    if (bizType == 1) {
-//        二手车
-        http.parameters[@"secondCarReport"] = secondCarReport;
-        http.parameters[@"xszFront"] = self.idNoFront;
-        http.parameters[@"xszReverse"] = self.idNoReverse;
+//    if ([buttonCode isEqualToString:@"1"]) {
+        if (bizType == 1) {
+            //        二手车
+            if (peopleArray.count > 0) {
+                if (secondCarReport.length < 1) {
+                    secondCarReport = peopleArray[0][@"secondCarReport"];
+                    self.idNoFront = peopleArray[0][@"xszFront"];
+                    self.idNoReverse = peopleArray[0][@"xszReverse"];
+                }
+            }
+            if (secondCarReport.length < 1) {
+                [TLAlert alertWithInfo:@"请上传评估报告"];
+                return;
+            }
+            if (self.idNoFront.length < 1) {
+                [TLAlert alertWithInfo:@"请上传行驶证正面照片"];
+                return;
+            }
+            if (self.idNoReverse.length < 1) {
+                [TLAlert alertWithInfo:@"请上传行驶证反面照片"];
+                return;
+            }
+            http.parameters[@"secondCarReport"] = secondCarReport;
+            http.parameters[@"xszFront"] = self.idNoFront;
+            http.parameters[@"xszReverse"] = self.idNoReverse;
+        }
+        
+//    }
+    else{
+        
     }
-
-    WGLog(@" =========== %@",textField2.text);
-
+    
     [http postWithSuccess:^(id responseObject) {
         if ([buttonCode isEqualToString:@"1"]) {
             [TLAlert alertWithSucces:@"征信成功"];

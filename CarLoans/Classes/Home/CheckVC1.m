@@ -23,13 +23,13 @@
     if ([self.code isEqualToString:@"632461"]) {
         self.passBtn = [UIButton buttonWithTitle:@"通过" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];
         self.passBtn.tag = 1001;
-        self.passBtn.frame = CGRectMake(10, SCREEN_HEIGHT - kNavigationBarHeight - 60, (SCREEN_WIDTH - 20) / 2 - 20, 50);
+        self.passBtn.frame = CGRectMake(10, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH  / 2 - 20, 50);
         [self.passBtn addTarget:self action:@selector(Confirm:) forControlEvents:(UIControlEventTouchUpInside)];
         [self.view addSubview:self.passBtn];
         
         self.UnpassBtn = [UIButton buttonWithTitle:@"不通过" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];
         self.UnpassBtn.tag = 1000;
-        self.UnpassBtn.frame = CGRectMake((SCREEN_WIDTH - 20) / 2 + 10, SCREEN_HEIGHT - kNavigationBarHeight - 60, (SCREEN_WIDTH - 20) / 2 - 20, 50);
+        self.UnpassBtn.frame = CGRectMake(SCREEN_WIDTH  / 2 + 10, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH / 2 - 20, 50);
         [self.UnpassBtn addTarget:self action:@selector(Confirm:) forControlEvents:(UIControlEventTouchUpInside)];
         [self.view addSubview:self.UnpassBtn];
     }

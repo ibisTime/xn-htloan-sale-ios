@@ -44,4 +44,7 @@
 @property (nonatomic,copy) NSString * insideJobCompanyName;
 @property (nonatomic,copy) NSString * insideJobDepartMentName;
 @property (nonatomic,copy) NSString * insideJobName;
+@property (nonatomic,copy) NSString * insideJobPostName;
+
+@property (nonatomic , copy)NSString *insideJob;
 @end

@@ -20,4 +20,6 @@
 
 @property (nonatomic , assign)BOOL isRecview;
 
+@property (nonatomic,strong) NSString * state;
+
 @end

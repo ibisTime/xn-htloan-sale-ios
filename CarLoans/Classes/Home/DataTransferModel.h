@@ -10,7 +10,7 @@
 
 @interface DataTransferModel : NSObject
 @property (nonatomic , copy) NSString *userRole;
-
+@property (nonatomic,strong) NSString * curNodeCode;
 @property (nonatomic , copy)NSString *insideJob;
 @property (nonatomic , copy)NSString *budgetCode;
 @property (nonatomic , copy)NSString *logisticsCompany;

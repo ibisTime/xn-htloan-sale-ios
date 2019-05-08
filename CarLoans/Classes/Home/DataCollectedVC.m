@@ -12,8 +12,9 @@
 #import "SenderVC.h"
 #import "ReceivesAuditVC.h"
 #import "CadListModel.h"
+#import "SendDataTransferTableView.h"
 @interface DataCollectedVC ()<RefreshDelegate>
-@property (nonatomic , strong)DataTransferTableView *tableView;
+@property (nonatomic , strong)SendDataTransferTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
 @property (nonatomic , strong)NSMutableArray <CadListModel *>*models;
 
@@ -46,17 +47,31 @@
 }
 
 - (void)initTableView {
-    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStyleGrouped)];
+//    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStyleGrouped)];
+//    self.tableView.refreshDelegate = self;
+//    self.tableView.backgroundColor = kBackgroundColor;
+//    [self.view addSubview:self.tableView];
+//    if (self.isDetail == YES) {
+//        self.title = @"资料收件详情";
+//        self.tableView.isDetail = YES;
+//        self.tableView.isRecview = YES;
+//        self.tableView.model = self.model;
+//        [self.tableView reloadData];
+//    }
+    
+    self.tableView = [[SendDataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.state = @"collect";
     [self.view addSubview:self.tableView];
-    if (self.isDetail == YES) {
-        self.title = @"资料收件详情";
-        self.tableView.isDetail = YES;
-        self.tableView.isRecview = YES;
-        self.tableView.model = self.model;
-        [self.tableView reloadData];
-    }
+//    if (self.isDetail == YES) {
+//        self.title = @"发件详情";
+//        self.tableView.isDetail = YES;
+//        self.tableView.isRecview = YES;
+//        self.tableView.model = self.model;
+//
+//    }
+    [self.tableView reloadData];
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index

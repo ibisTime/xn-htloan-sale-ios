@@ -24,6 +24,7 @@
 @property (nonatomic,strong)NSArray *collectDataArray;
 //标题
 @property (nonatomic , copy)NSString *selectStr;
+@property (nonatomic,strong) NSString * title;
 //是否允许编辑
 @property (nonatomic , assign)BOOL isEditor;
 

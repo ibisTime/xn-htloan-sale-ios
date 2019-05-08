@@ -26,20 +26,21 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return 2;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray * array = @[@"任务名称",@"执行人",@"任务时效"];
+    NSArray * array = @[@"任务名称",@"任务时效"];
     cell.name = array[indexPath.row];
     cell.tag = 1000 + indexPath.row;
     cell.symbolLabel.hidden = YES;
     if (self.selectRow > 1000) {
-        NSArray *Array = @[_dataDic[@"getUser"],_dataDic[@"name"],_dataDic[@"time"]];
+        
+        NSArray *Array = @[_dataDic[@"name"],_dataDic[@"time"]];
         cell.nameTextField.text = Array[indexPath.row];
     }
-    if (indexPath.row == 2) {
+    if (indexPath.row == 1) {
         cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     return cell;

@@ -261,5 +261,9 @@
 @property (nonatomic , copy)NSString *carDealerCode;
 @property (nonatomic , copy)NSString *carDealerCodeStr;
 @property (nonatomic , copy)NSArray *carDealerArray;
-
+@property (nonatomic,copy) NSString * xszReverse;
+@property (nonatomic,copy) NSString * xszFront;
+//@property (nonatomic,copy) NSString * secondCarReport;
+@property (nonatomic,strong) NSString * saleUserPostName;
+@property (nonatomic,strong) NSString * insideJobPostName;
 @end

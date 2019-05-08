@@ -15,6 +15,7 @@
 
 #define Information @"InformationCell"
 #define GPSInformation @"GPSInfomationCell"
+#import "TransferCell.h"
 
 @interface DataTransferTableView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -59,187 +60,208 @@
 }
 
 #pragma mark -- tableView
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *rid=@"cell1";
     
-    if (self.isGps == YES) {
-       
-        if (self.isDetail == YES) {
-            
-                
-                GPSDetailaCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-                if (cell == nil) {
-                    cell = [[GPSDetailaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPSDetail];
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                }
-                DataTransferModel *model = self.model[indexPath.row];
-                cell.dataTransferModel = model;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
-                if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
-                    cell.button.hidden = YES;
-                }else if ([model.status  isEqualToString:@"1"]|| [model.status  isEqualToString:@"2"])
-                {
-                    
-                    cell.button.hidden = YES;
-//                    [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
-                }
-                else
-                {
-                    
-                    
-                    cell.button.hidden = YES;
-                }
-                [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-                cell.button.tag = indexPath.row;
-                return cell;
-           
-        }
+    TransferCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    
+    if(cell==nil){
         
-            GPSInfomationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-            if (cell == nil) {
-                cell = [[GPSInfomationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPSInformation];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
-            DataTransferModel *model = self.model[indexPath.row];
-            cell.dataTransferModel = model;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-        if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
-            cell.button.hidden = YES;
-//            [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
-        }else if ([model.status  isEqualToString:@"1"])
-        {
-            if (self.isDetail == YES) {
-                cell.button.hidden = YES;
-            }else{
-                cell.button.hidden = NO;
-                [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
-            }
-          
-        }
-        else
-        {
-            
-            
-            cell.button.hidden = YES;
-        }
-        [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        cell.button.tag = indexPath.row;
-        return cell;
-    }else{
-        if (self.isRecview == YES) {
-            if (indexPath.section == 0) {
-                InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-                if (cell == nil) {
-                    cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                }
-                DataTransferModel *model = self.model[indexPath.row];
-                cell.dataTransferModel = model;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
-                    cell.button.hidden = YES;
-                    //            [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
-                }else if ([model.status  isEqualToString:@"1"]||[model.status  isEqualToString:@"2"])
-                {
-                    if (self.isDetail == YES) {
-                        cell.button.hidden = YES;
-                        
-                    }else{
-                        cell.button.hidden = NO;
-                        [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
-                    }
-                    
-                    
-                }
-                else
-                {
-                    
-                    
-                    cell.button.hidden = YES;
-                }
-                [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-                cell.button.tag = indexPath.row;
-                return cell;
-            }else{
-                    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    
-                    UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH-30, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
-                    kViewRadius(nameLabel, 5);
-                    nameLabel.text = @"材料清单";
-                    
-                    
-                    [cell addSubview:nameLabel];
-                    NSArray *idArr = [self.model[0].filelist componentsSeparatedByString:@","];
-                    NSMutableArray *cadArray = [NSMutableArray array];
-                    if (idArr.count > 0  && self.models.count > 0) {
-                        
-                        for (int i = 0; i <idArr.count; i++) {
-                            for (CadListModel*mode in self.models) {
-                                if ([idArr[i] isEqualToString:mode.id]) {
-                                    [cadArray addObject:[NSString stringWithFormat:@"%@-%@份",mode.name,mode.number]];
-                                }
-                            }
-                        }
-                        
-                    }
-                    if (cadArray.count>0) {
-                        
-                        for (int i = 0; i < cadArray.count; i++) {
-                            CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
-                            fild.backgroundColor = kLineColor;
-                            fild.font = [UIFont systemFontOfSize:13];
-                            fild.contentLab.text = cadArray[i];
-                            
-                            [cell addSubview:fild];
-                            fild.enabled = NO;
-                            
-                        }
-                        
-                    }
-                    
-                    return cell;
-            }
-        }else{
-        InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-        if (cell == nil) {
-            cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        DataTransferModel *model = self.model[indexPath.row];
-        cell.dataTransferModel = model;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"] ||[model.status  isEqualToString:@"2"]) {
-            cell.button.hidden = YES;
-//            [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
-        }else if ([model.status  isEqualToString:@"1"])
-        {
-            if (self.isDetail == YES) {
-                cell.button.hidden = YES;
-
-            }else{
-                cell.button.hidden = NO;
-                [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
-            }
-           
-            
-        }
-        else
-        {
-          
-            
-            cell.button.hidden = YES;
-        }
-        [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        cell.button.tag = indexPath.row;
-        return cell;
+        cell=[[TransferCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
+        
     }
-    }
-
+    cell.dataTransferModel = self.model[indexPath.row];
+    
+    
+    return cell;
 }
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    static NSString *CellIdentifier = @"Cell";
+//
+//    if (self.isGps == YES) {
+//
+//        if (self.isDetail == YES) {
+//
+//
+//                GPSDetailaCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//                if (cell == nil) {
+//                    cell = [[GPSDetailaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPSDetail];
+//                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                }
+//                DataTransferModel *model = self.model[indexPath.row];
+//                cell.dataTransferModel = model;
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//
+//                cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 330+60+60+60+60 + 5, 100, 30);
+//                if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
+//                    cell.button.hidden = YES;
+//                }else if ([model.status  isEqualToString:@"1"]|| [model.status  isEqualToString:@"2"])
+//                {
+//
+//                    cell.button.hidden = YES;
+////                    [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
+//                }
+//                else
+//                {
+//
+//
+//                    cell.button.hidden = YES;
+//                }
+//                [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//                cell.button.tag = indexPath.row;
+//
+//                return cell;
+//
+//        }
+//
+//            GPSInfomationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//            if (cell == nil) {
+//                cell = [[GPSInfomationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPSInformation];
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            }
+//            DataTransferModel *model = self.model[indexPath.row];
+//            cell.dataTransferModel = model;
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 330+60+60+60+60 + 5, 100, 30);
+//        if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
+//            cell.button.hidden = YES;
+////            [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
+//        }else if ([model.status  isEqualToString:@"1"])
+//        {
+//            if (self.isDetail == YES) {
+//                cell.button.hidden = YES;
+//            }else{
+//                cell.button.hidden = NO;
+//                [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
+//            }
+//
+//        }
+//        else
+//        {
+//
+//
+//            cell.button.hidden = YES;
+//        }
+//        [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//        cell.button.tag = indexPath.row;
+////        cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 330+60+60+60+60 + 5, 100, 30);
+//        return cell;
+//    }
+//
+//    else{
+//        if (self.isRecview == YES) {
+//            if (indexPath.section == 0) {
+//                InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//                if (cell == nil) {
+//                    cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                }
+//                DataTransferModel *model = self.model[indexPath.row];
+//                cell.dataTransferModel = model;
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"]) {
+//                    cell.button.hidden = YES;
+//                    //            [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
+//                }else if ([model.status  isEqualToString:@"1"]||[model.status  isEqualToString:@"2"])
+//                {
+//                    if (self.isDetail == YES) {
+//                        cell.button.hidden = YES;
+//
+//                    }else{
+//                        cell.button.hidden = NO;
+//                        [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
+//                    }
+//
+//
+//                }
+//                else
+//                {
+//
+//
+//                    cell.button.hidden = YES;
+//                }
+//                [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//                cell.button.tag = indexPath.row;
+//                cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 330+60+60+60+60 + 5, 100, 30);
+//                return cell;
+//            }else{
+//                    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+//                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//
+//                    UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH-30, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
+//                    kViewRadius(nameLabel, 5);
+//                    nameLabel.text = @"材料清单";
+//
+//
+//                    [cell addSubview:nameLabel];
+//                    NSArray *idArr = [self.model[0].filelist componentsSeparatedByString:@","];
+//                    NSMutableArray *cadArray = [NSMutableArray array];
+//                    if (idArr.count > 0  && self.models.count > 0) {
+//
+//                        for (int i = 0; i <idArr.count; i++) {
+//                            for (CadListModel*mode in self.models) {
+//                                if ([idArr[i] isEqualToString:mode.id]) {
+//                                    [cadArray addObject:[NSString stringWithFormat:@"%@-%@份",mode.name,mode.number]];
+//                                }
+//                            }
+//                        }
+//
+//                    }
+//                    if (cadArray.count>0) {
+//
+//                        for (int i = 0; i < cadArray.count; i++) {
+//                            CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
+//                            fild.backgroundColor = kLineColor;
+//                            fild.font = [UIFont systemFontOfSize:13];
+//                            fild.contentLab.text = cadArray[i];
+//
+//                            [cell addSubview:fild];
+//                            fild.enabled = NO;
+//
+//                        }
+//
+//                    }
+//
+//                    return cell;
+//            }
+//        }else{
+//        InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//        if (cell == nil) {
+//            cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        }
+//        DataTransferModel *model = self.model[indexPath.row];
+//        cell.dataTransferModel = model;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        if ([model.status  isEqualToString:@"0"] ||[model.status  isEqualToString:@"3"] ||[model.status  isEqualToString:@"2"]) {
+//            cell.button.hidden = YES;
+////            [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
+//        }else if ([model.status  isEqualToString:@"1"])
+//        {
+//            if (self.isDetail == YES) {
+//                cell.button.hidden = YES;
+//
+//            }else{
+//                cell.button.hidden = NO;
+//                [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
+//            }
+//
+//
+//        }
+//        else
+//        {
+//
+//
+//            cell.button.hidden = YES;
+//        }
+//        [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//        cell.button.tag = indexPath.row;
+//            cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 330+60+60+60+60 + 5, 100, 30);
+//        return cell;
+//    }
+//    }
+//
+//}
 
 //发件
 -(void)buttonClick:(UIButton *)sender

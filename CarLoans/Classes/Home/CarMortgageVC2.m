@@ -112,12 +112,12 @@
     CarLoansWeakSelf;
     
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632148";
+    helper.code = @"632515";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
-    NSArray *array = @[@"002_20",@"002_21",@"002_33",@"002_34"];
-    helper.parameters[@"curNodeCodeList"] = array;
+//    NSArray *array = @[@"002_20",@"002_21",@"002_33",@"002_34"];
+    helper.parameters[@"curNodeCodeList"] = self.curNodeCodeList;
     helper.parameters[@"isMortgage"] = @"0";
     
     helper.isList = NO;

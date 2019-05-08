@@ -258,7 +258,7 @@
     lineView.backgroundColor = LineBackColor;
     [headView addSubview:lineView];
 
-    NSArray *array = @[@"*银行视频",@"*公司视频",@"其他视频(选填)",@"*银行面签图片",@"银行合同(选填)",@"公司合同(选填)",@"*资金划转授权书",@"其他资料(选填)"];
+    NSArray *array = @[@"*银行视频",@"*公司视频",@"其他视频",@"*银行面签图片",@"银行合同",@"公司合同",@"*资金划转授权书",@"其他资料"];
     UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
     nameLabel.text = array[section];
     [headView addSubview:nameLabel];

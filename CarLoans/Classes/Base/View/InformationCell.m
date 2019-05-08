@@ -146,7 +146,7 @@
              [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
              [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
              [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
-             [NSString stringWithFormat:@"%@-%@-%@",surveyModel.insideJobCompanyName,surveyModel.insideJobDepartMentName,surveyModel.insideJobName],
+              [NSString stringWithFormat:@"%@",surveyModel.insideJobName],
              [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
 
     for (int i = 0; i < nameArray.count; i ++ ) {
@@ -234,7 +234,7 @@
                                   [NSString stringWithFormat:@"%@",gpsInstallationModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[gpsInstallationModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",gpsInstallationModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@-%@-%@",gpsInstallationModel.insideJobCompanyName,gpsInstallationModel.insideJobDepartMentName,gpsInstallationModel.insideJobName],
+                                  [NSString stringWithFormat:@"%@",gpsInstallationModel.insideJobName],
                                   [NSString stringWithFormat:@"%@",[gpsInstallationModel.applyDatetime convertToDetailDate]]];
     
     for (int i = 0; i < nameArray.count; i ++ ) {
@@ -280,11 +280,53 @@
     
     
 }
-
+-(void)setCarMortgageModel:(AccessSingleModel *)CarMortgageModel{
+    {
+        _codeLabel.text = [NSString stringWithFormat:@"%@",CarMortgageModel.code];
+        _stateLabel.text = [[BaseModel user]note:CarMortgageModel.curNodeCode];
+        
+        NSLog(@"%@",[[BaseModel user]note:CarMortgageModel.curNodeCode]);
+        NSArray *nameArray = @[
+                               @"业务种类",
+                               @"客户姓名",
+                               @"贷款金额",
+                               @"贷款银行",
+                               @"是否垫资",
+                               @"申请时间"];
+        NSString *bizType;
+        if ([CarMortgageModel.bizType integerValue] == 0) {
+            bizType = @"新车";
+        }
+        else
+        {
+            bizType = @"二手车";
+        }
+        NSString *isAdvanceFund;
+        if ([CarMortgageModel.isAdvanceFund isEqualToString:@"1"]) {
+            isAdvanceFund = @"已垫资";
+        }else
+        {
+            isAdvanceFund = @"未垫资";
+        }
+        NSArray *InformationArray = @[
+                                      [NSString stringWithFormat:@"%@",bizType],
+                                      [NSString stringWithFormat:@"%@",CarMortgageModel.creditUser[@"userName"]],
+                                      [NSString stringWithFormat:@"%.2f",[CarMortgageModel.loanAmount floatValue]/1000],
+                                      [NSString stringWithFormat:@"%@",CarMortgageModel.loanBankName],
+                                      isAdvanceFund,
+                                      [NSString stringWithFormat:@"%@",[CarMortgageModel.applyDatetime convertToDetailDate]]];
+        
+        for (int i = 0; i < nameArray.count; i ++ ) {
+            UILabel *nameLabel = [self viewWithTag:100000 + i];
+            nameLabel.text = nameArray[i];
+            UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+            InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+        }
+    }
+}
 
 //准入单     车辆抵押    车辆落户
--(void)setAccessSingleModel:(AccessSingleModel *)accessSingleModel
-{
+-(void)setAccessSingleModel:(AccessSingleModel *)accessSingleModel{
     _codeLabel.text = [NSString stringWithFormat:@"%@",accessSingleModel.code];
     _stateLabel.text = [[BaseModel user]note:accessSingleModel.curNodeCode];
 

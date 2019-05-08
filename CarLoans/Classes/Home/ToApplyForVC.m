@@ -1183,9 +1183,7 @@
             [array addObject:LoanProductsArray[i][@"name"]];
         }
         [_baseModel CustomBouncedView:array setState:@"100"];
- 
     } failure:^(NSError *error) {
-        
     }];
 }
 
@@ -1420,7 +1418,6 @@
         right2Label7.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carColor"]];
         right2Label7.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carFrameNo"]];
         right2Label8.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carEngineNo"]];
-        
         right2Label9.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000];
         right2Label10.text = [_baseModel setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]];
         right2Label11.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"carDealerSubsidy"] floatValue]/1000];

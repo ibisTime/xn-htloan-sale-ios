@@ -7,9 +7,13 @@
 //
 
 #import "TLTableView.h"
+@protocol SelectButtonDelegate <NSObject>
 
+-(void)selectButtonClick:(UIButton *)sender;
+
+@end
 @interface SurveyACreditTableView : TLTableView
-
+@property (nonatomic, assign) id <SelectButtonDelegate> ButtonDelegate;
 @property (nonatomic , copy)NSString *bankStr;
 
 @property (nonatomic , copy)NSString *speciesStr;

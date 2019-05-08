@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , assign)BOOL isFirstEntry;
 @property (nonatomic , copy)NSString *state;
+@property (nonatomic , strong)SurveyModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

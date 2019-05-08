@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ReFinancialTableView : TLTableView<UITableViewDelegate,UITableViewDataSource,CustomCollectionDelegate>
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic,strong) NSMutableArray * carInvoice;//发票
+@property (nonatomic , strong)NSArray *peopleAray;
 @end
 
 NS_ASSUME_NONNULL_END

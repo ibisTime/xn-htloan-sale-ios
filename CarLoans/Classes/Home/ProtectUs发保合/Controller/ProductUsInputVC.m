@@ -187,6 +187,10 @@
         [TLAlert alertWithMsg:@"请选择保单到期日期"];
         return;
     }
+    else if (self.carHgzPic.count == 0){
+        [TLAlert alertWithMsg:@"请选择合格证"];
+        return;
+    }
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"632131";
         http.parameters[@"code"] = self.model.code;

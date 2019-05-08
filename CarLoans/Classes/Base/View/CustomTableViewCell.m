@@ -56,6 +56,7 @@
             
             _InformationLabel = [UILabel labelWithFrame:CGRectMake(115 , 70 + i % k * 35, SCREEN_WIDTH - 130, 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
             _InformationLabel.tag = 1000000 + i;
+            _InformationLabel.numberOfLines = 2;
             [self addSubview:_InformationLabel];
         }
         if (k == 13) {
@@ -127,13 +128,14 @@
                                   [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@-%@-%@",surveyModel.saleUserCompanyName,surveyModel.saleUserDepartMentName,surveyModel.saleUserName],
+                                  [NSString stringWithFormat:@"%@",surveyModel.insideJobName],
                                   [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
     
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.numberOfLines = 2;
         InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
     }
 }
@@ -165,13 +167,14 @@
                                   [NSString stringWithFormat:@"%@",makeCardModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[makeCardModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",makeCardModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@",makeCardModel.saleUserName],
+                                  [NSString stringWithFormat:@"%@",makeCardModel.insideJobName],
                                   [NSString stringWithFormat:@"%@",[makeCardModel.applyDatetime convertToDetailDate]]];
     
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.numberOfLines = 0;
         InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
     }
 }

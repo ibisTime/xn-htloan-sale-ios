@@ -34,7 +34,7 @@
     
     self.UnpassBtn = [UIButton buttonWithTitle:@"不通过" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];
     self.UnpassBtn.tag = 1000;
-    self.UnpassBtn.frame = CGRectMake((SCREEN_WIDTH - 20) / 2 + 10, SCREEN_HEIGHT - kNavigationBarHeight - 60, (SCREEN_WIDTH - 20) / 2 - 20, 50);
+    self.UnpassBtn.frame = CGRectMake(SCREEN_WIDTH / 2 + 10, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH / 2 - 20, 50);
     [self.UnpassBtn addTarget:self action:@selector(Confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.UnpassBtn];
     // Do any additional setup after loading the view.
@@ -94,6 +94,7 @@
 //    selectRow = index;
     if (index == 102) {
         AddTaskVC *vc = [[AddTaskVC alloc]init];
+        vc.model = self.model;
         if (TaskArray.count > 0) {
             vc.isFirstEntry = NO;
         }else
@@ -109,6 +110,7 @@
         selectRow = index;
         AddTaskVC *vc = [[AddTaskVC alloc]init];
         vc.dataDic = self.tableView.taskArray[index - 1234];
+        vc.model = self.model;
         vc.selectRow = index;
         if (index == 1234) {
             vc.isFirstEntry = YES;

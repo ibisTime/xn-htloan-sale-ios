@@ -41,19 +41,19 @@
 }
 
 - (void)initTableView {
-    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
-    self.tableView.isGps = YES;
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kTabBarHeight, 0);
-    self.tableView.refreshDelegate = self;
-    self.tableView.backgroundColor = kBackgroundColor;
-    [self.view addSubview:self.tableView];
-    if (self.isDetail == YES) {
-        self.tableView.isDetail = self.isDetail;
-        self.tableView.model = self.model;
-        self.title = @"GPS收件详情";
-
-        [self.tableView reloadData];
-    }
+//    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+//    self.tableView.isGps = YES;
+////    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kTabBarHeight, 0);
+//    self.tableView.refreshDelegate = self;
+//    self.tableView.backgroundColor = kBackgroundColor;
+//    [self.view addSubview:self.tableView];
+//    if (self.isDetail == YES) {
+//        self.tableView.isDetail = self.isDetail;
+//        self.tableView.model = self.model;
+//        self.title = @"GPS收件详情";
+//
+//        [self.tableView reloadData];
+//    }
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath

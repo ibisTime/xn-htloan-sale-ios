@@ -108,22 +108,33 @@
         if (indexPath.section == 2) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
             UIButton *_photoBtn = [UIButton buttonWithTitle:@"评估报告" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
             _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
 //            [_photoBtn setTitle:@"评估报告" forState:(UIControlStateNormal)];
             [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
                 [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
             }];
-
-
             kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
 
             [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
             [cell addSubview:_photoBtn];
 
             UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-            [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+            if (self.secondCarReport) {
+//                if (!self.peopleAray[0][@"secondCarReport"]) {
+                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+//                }
+            }
+            if (self.peopleAray.count > 0) {
+                if (self.secondCarReport) {
+                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+                }
+                else{
+                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.peopleAray[0][@"secondCarReport"] convertImageUrl]]];
+                }
+                
+            }
+            
             [_photoBtn addSubview:photoImage];
 
             return cell;
@@ -132,9 +143,24 @@
             DriveCardCell * cell = [tableView dequeueReusableCellWithIdentifier:DriveCard forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.IdCardDelegate = self;
-            cell.idNoFront = self.idNoFront;
-            cell.idNoReverse = self.idNoReverse;
-            
+            if (self.peopleAray.count > 0) {
+                if (!self.idNoFront) {
+                    cell.idNoFront  = [self.peopleAray[0][@"xszFront"] convertImageUrl];
+                }
+                if (!self.idNoReverse) {
+                    cell.idNoReverse = [self.peopleAray[0][@"xszReverse"] convertImageUrl];
+                }
+                else{
+                    cell.idNoFront = self.idNoFront;
+                    cell.idNoReverse = self.idNoReverse;
+                }
+            }
+            if (self.idNoFront) {
+                cell.idNoFront  = self.idNoFront;
+            }
+            if (self.idNoReverse) {
+                cell.idNoReverse = self.idNoReverse;
+            }
             return cell;
         }
         if (indexPath.section == 4) {
@@ -358,5 +384,8 @@
         
     }
 }
-
+-(void)SelectButtonClick:(UIButton *)sender
+{
+    [_ButtonDelegate selectButtonClick:sender];
+}
 @end

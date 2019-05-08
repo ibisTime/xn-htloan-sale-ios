@@ -20,12 +20,14 @@
 
 @property (nonatomic ,copy) NSString *updateDatetime;
 
+@property (nonatomic ,copy) NSString *vname;
 @property (nonatomic ,copy) NSString *name;
 
 @property (nonatomic ,copy) NSString *updater;
 
+@property (nonatomic,strong) NSString * code;
 
+@property (nonatomic,strong) NSString * curNodeCode;
 
-
-
+@property (nonatomic,strong) NSString * attachType;
 @end

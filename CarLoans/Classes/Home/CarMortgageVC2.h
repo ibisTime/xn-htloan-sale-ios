@@ -10,5 +10,6 @@
 
 @interface CarMortgageVC2 : BaseViewController
 @property (nonatomic , assign) BOOL  isMortgage;
+@property (nonatomic , strong)NSArray *curNodeCodeList;
 
 @end

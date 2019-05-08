@@ -160,7 +160,7 @@
                 model.ModelDelegate = self;
                 NSMutableArray *array = [NSMutableArray array];
                 for (CadListModel *model in self.models) {
-                    [array addObject:[NSString stringWithFormat:@"%@-%@份",model.name,model.number]];
+                    [array addObject:[NSString stringWithFormat:@"%@-%@份",model.vname,model.number]];
                 }
 //                [NSThread sleepForTimeInterval:1];
                 [model CustomBounced:array setState:@"100" isSign:NO];
@@ -219,21 +219,12 @@
                   
                     secondLabl.frame = CGRectMake(50, 80+i*30, 200, 30);
                     
-                    secondLabl.text =self.models[i].name;
+                    secondLabl.text =self.models[i].vname;
                     [secondLabl addSubview:rightImg];
                     
                     [view addSubview:secondLabl];
                 }
-              
-                
-              
-               
             }
-          
-
-                
-          
-            
         }
         
     }
@@ -243,20 +234,16 @@
 
 -(void)TheReturnValuearr:(NSArray *)arr
 {
-    
-    
-    
-    
     self.fileIdList = [NSMutableArray array];
     NSMutableArray *arr1 = [NSMutableArray array];
     for (SelectedListModel *model in arr) {
-        for (CadListModel *m in self.models) {
-            if ([model.title isEqualToString:[NSString stringWithFormat:@"%@-%@份",m.name,m.number]]) {
-                [self.fileIdList addObject:m.id];
-                [arr1 addObject:[NSString stringWithFormat:@"%@-%@份",m.name,m.number]];
-
-            }
-        }
+//        for (CadListModel *m in self.models) {
+//            if ([model.title isEqualToString:[NSString stringWithFormat:@"%@-%@份",m.name,m.number]]) {
+                [self.fileIdList addObject:self.models[model.sid].id];
+                [arr1 addObject:[NSString stringWithFormat:@"%@",model.title]];
+//
+//            }
+//        }
     }
     self.cadList = arr1;
     self.tableView.cardList = arr1;

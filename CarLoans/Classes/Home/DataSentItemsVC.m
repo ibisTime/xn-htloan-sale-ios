@@ -65,15 +65,16 @@
     self.tableView = [[SendDataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.state = @"send";
     [self.view addSubview:self.tableView];
-    if (self.isDetail == YES) {
-        self.title = @"发件详情";
-        self.tableView.isDetail = YES;
-        self.tableView.isRecview = YES;
-        self.tableView.model = self.model;
-        [self.tableView reloadData];
-    }
-  
+//    if (self.isDetail == YES) {
+//        self.title = @"发件详情";
+//        self.tableView.isDetail = YES;
+//        self.tableView.isRecview = YES;
+//        self.tableView.model = self.model;
+//
+//    }
+  [self.tableView reloadData];
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,16 +119,7 @@
 
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632155";
-//    NSArray *array = @[@"0",@"3"];
-//    helper.parameters[@"statusList"] = array;
-//    NSArray *array1 = @[@"0",@"3"];
     helper.parameters[@"type"] = @"1";
-
-//    helper.parameters[@"typeList"] = array1;
-
-
-//    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-
 
     helper.isList = NO;
     helper.isCurrency = YES;

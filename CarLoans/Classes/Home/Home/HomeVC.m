@@ -15,6 +15,7 @@
 #import "CarSettledInVC.h"
 //车辆抵押
 #import "CarMortgageVC.h"
+//#import "CarMortgageVC2.h"
 #import "HomeCarVC.h"
 //面签
 #import "FaceSignVC.h"
@@ -46,6 +47,8 @@
 //财务垫资
 #import "FinancialVC.h"
 #import "MakeCardVC.h"
+//档案入档
+#import "InputfilesVC.h"
 @interface HomeVC ()<RefreshDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSDictionary *dataDic;
@@ -85,7 +88,7 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 9;
+        return 11;
     }
     if (section == 1) {
         return 5;
@@ -101,7 +104,7 @@
 
     HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCollectionViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        NSArray *array = @[@"征信发起",@"征信派单",@"征信录入",@"征信审核",@"面签录入",@"面签审核",@"准入申请",@"审核岗",@"制卡"];
+        NSArray *array = @[@"征信发起",@"征信派单",@"征信录入",@"征信审核",@"面签录入",@"面签审核",@"准入申请",@"审核岗",@"制卡",@"车辆抵押",@"档案入档"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
@@ -263,13 +266,29 @@
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
+            case 9:
+            {
+                CarMortgageVC *vc = [CarMortgageVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"车辆抵押";
+                vc.curNodeCodeList = @[@"e6",@"f1",@"f2",@"f2x",@"f3",@"f4",@"f5",@"f5x",@"f6",@"f7",@"f8",@"f9",@"f10",@"f11",@"f12"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 10:
+            {
+                InputfilesVC *vc = [InputfilesVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"档案入档";
+                vc.curNodeCodeList = @[@"h1",@"h2",@"h3"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
                 
             default:
                 break;
         }
     }
-    
-    
     if (indexPath.section == 1) {
         
         switch (indexPath.row) {
