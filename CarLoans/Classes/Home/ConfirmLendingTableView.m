@@ -71,8 +71,8 @@
                                   [NSString stringWithFormat:@"%@",_model.loanBankName],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
                                   bizType,
-                                  [NSString stringWithFormat:@"%@-%@-%@",self.model.companyName,self.model.teamName,self.model.saleUserName],
-                                  [NSString stringWithFormat:@"%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobName],
+                                  [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
+                                  [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
                                   [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]
                                   ];
         cell.TextFidStr = detailsArray[indexPath.row];
@@ -187,7 +187,8 @@
 {
     if (section == 3) {
         UIView *headView = [[UIView alloc]init];
-        UILabel * label = [UILabel labelWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kWhiteColor font:Font(18) textColor:kBlackColor];
+        headView.backgroundColor = kWhiteColor;
+        UILabel * label = [UILabel labelWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kWhiteColor font:Font(14) textColor:kBlackColor];
         label.text = @"*收款凭证";
         [headView addSubview:label];
         

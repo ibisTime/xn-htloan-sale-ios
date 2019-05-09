@@ -7,11 +7,12 @@
 //
 
 #import "BaseViewController.h"
-
+#import "GPSInstallationModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckGPSVC : BaseViewController
 @property (nonatomic , strong)NSArray *peopleAray;
+@property (nonatomic , strong)GPSInstallationModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) id <TaskDelegate> delegate;
 
 
-
+@property (nonatomic , strong)UIButton *deleteBtn;
 @property (nonatomic , strong)NSArray *TaskArray;
 
 @property (nonatomic , copy)NSString *Taskname;

@@ -141,8 +141,10 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.delegate = self;
-        self.BankPicArray  = [NSArray arrayWithObjects:dic[@"devPhotos"], nil];
+//        self.BankPicArray  = [NSArray arrayWithObjects:dic[@"devPhotos"], nil];
+        self.BankPicArray = [dic[@"devPhotos"] componentsSeparatedByString:@"||"];
         cell.collectDataArray = self.BankPicArray;
+        cell.selectButton.hidden = YES;
         return cell;
         
     }
@@ -156,10 +158,11 @@
 //        cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
 //        cell.photoStr = @"安装设备图片";
 //        cell.photoBtn.tag = indexPath.section;
-        self.CompanyPicArray = [NSArray arrayWithObjects:dic[@"azPhotos"], nil];
+//        NSString = [NSArray arrayWithObjects:dic[@"azPhotos"], nil];
+        self.CompanyPicArray = [dic[@"azPhotos"] componentsSeparatedByString:@"||"];
         cell.collectDataArray = self.CompanyPicArray;
         cell.photoBtn.tag = indexPath.section;
-        
+        cell.selectButton.hidden = YES;
         return cell;
     }else{
         
@@ -209,7 +212,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 5 || indexPath.section == 6) {
-        return 160;
+        return 130;
     }else{
         return 50;
         
@@ -219,6 +222,10 @@
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    
+    if (section == 5 || section == 6) {
+        return 50;
+    }
     return 0.01;
 }
 
@@ -238,7 +245,7 @@
     if (section == 5) {
         UIView *headView = [[UIView alloc]init];
         
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
         backView.backgroundColor = [UIColor whiteColor];
         [headView addSubview:backView];
         
@@ -255,7 +262,7 @@
     else if (section == 6) {
         UIView *headView = [[UIView alloc]init];
         
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
         backView.backgroundColor = [UIColor whiteColor];
         [headView addSubview:backView];
         

@@ -42,30 +42,32 @@
 }
 -(void)setDic:(NSDictionary *)dic
 {
-    NSArray *detailsArray = @[
-                              [NSString stringWithFormat:@"%@",dic[@"gpsDevNo"]],
-                              [NSString stringWithFormat:@"%@",dic[@"dic"][@"azLocation"]],
-                              [NSString stringWithFormat:@"%@",dic[@"dic"][@"azDatetime"]],
-                              [NSString stringWithFormat:@"%@",dic[@"dic"][@"azUser"]]
-                              ];
+//    NSArray *detailsArray = @[
+//                              [NSString stringWithFormat:@"%@",dic[@"gpsDevNo"]],
+//                              [NSString stringWithFormat:@"%@",dic[@"dic"][@"azLocation"]],
+//                              [[NSString stringWithFormat:@"%@", dic[@"dic"][@"azDatetime"]] convertToSysDate],
+//                              [NSString stringWithFormat:@"%@",dic[@"dic"][@"azUser"]]
+//                              ];
     UILabel *label1 = [self viewWithTag:1000];
     UILabel *label2 = [self viewWithTag:1001];
     UILabel *label3 = [self viewWithTag:1002];
     UILabel *label4 = [self viewWithTag:1003];
     label1.text = [NSString stringWithFormat:@"%@",dic[@"gpsDevNo"]];
     label2.text = [NSString stringWithFormat:@"%@",dic[@"dic"][@"azLocation"]];
+//    label3.text = [[NSString stringWithFormat:@"%@",dic[@"dic"][@"azDatetime"]] convertDate];
     label3.text = [NSString stringWithFormat:@"%@",dic[@"dic"][@"azDatetime"]];
     label4.text = [NSString stringWithFormat:@"%@",dic[@"dic"][@"azUser"]];
-    
-    
-    UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 45, 0, 30, 30);
-    _deleteBtn = deleteBtn;
-    //        [deleteBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-    [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
-    //        deleteBtn.backgroundColor = [UIColor redColor];
-    [self addSubview:deleteBtn];
+//
+//
+//    UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//    deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 45, 0, 30, 30);
+//    _deleteBtn = deleteBtn;
+//    //        [deleteBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//    [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+//    //        deleteBtn.backgroundColor = [UIColor redColor];
+//    [self addSubview:deleteBtn];
 }
+
 -(void)setDicionary:(NSDictionary *)Dicionary{
 //    NSArray *detailsArray = @[
 //                              [NSString stringWithFormat:@"%@",Dicionary[@"gpsDevNo"]],
@@ -79,7 +81,7 @@
     UILabel *label4 = [self viewWithTag:1003];
     label1.text = [NSString stringWithFormat:@"%@",Dicionary[@"gpsDevNo"]];
     label2.text = [NSString stringWithFormat:@"%@",Dicionary[@"azLocation"]];
-    label3.text = [NSString stringWithFormat:@"%@",Dicionary[@"azDatetime"]];
+    label3.text = [[NSString stringWithFormat:@"%@",Dicionary[@"azDatetime"]] convertDate];
     label4.text = [NSString stringWithFormat:@"%@",Dicionary[@"azUser"]];
 }
 

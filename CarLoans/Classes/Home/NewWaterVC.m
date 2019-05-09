@@ -95,7 +95,7 @@
     if (indexPath.row == 0) {
         NSMutableArray *  array = [NSMutableArray array];
         for (int i = 0;i < self.model.creditUserList.count ; i ++) {
-            [array addObject:self.model.creditUserList[0][@"userName"]];
+            [array addObject:self.model.creditUserList[i][@"userName"]];
         }
         BaseModel *baseModel = [BaseModel user];
         baseModel.ModelDelegate = self;
@@ -186,13 +186,13 @@
         http.parameters[@"datetimeEnd"] = textField3.text;
         http.parameters[@"jourInterest1"] = [[BaseModel user] setParentKey:@"interest" setDvalue:textField4.text];
         http.parameters[@"jourInterest2"] = [[BaseModel user] setParentKey:@"interest" setDvalue:textField5.text];
-        http.parameters[@"interest1"] = @([textField6.text floatValue]*1000);
-        http.parameters[@"interest2"] = @([textField7.text floatValue]*1000);
-        http.parameters[@"income"] = @([textField8.text floatValue]*1000);
-        http.parameters[@"expend"] = @([textField9.text floatValue]*1000);
-        http.parameters[@"monthIncome"] = @([textField10.text floatValue]*1000);
-        http.parameters[@"monthExpend"] = @([textField11.text floatValue]*1000);
-        http.parameters[@"balance"] = @([textField12.text floatValue]*1000);
+        http.parameters[@"interest1"] = [NSString stringWithFormat:@"%.f",[textField6.text floatValue]*1000];
+        http.parameters[@"interest2"] = [NSString stringWithFormat:@"%.f",[textField7.text floatValue]*1000];
+        http.parameters[@"income"] = [NSString stringWithFormat:@"%.f",[textField8.text floatValue]*1000];
+        http.parameters[@"expend"] = [NSString stringWithFormat:@"%.f",[textField9.text floatValue]*1000];
+        http.parameters[@"monthIncome"] = [NSString stringWithFormat:@"%.f",[textField10.text floatValue]*1000];
+        http.parameters[@"monthExpend"] = [NSString stringWithFormat:@"%.f",[textField11.text floatValue]*1000];
+        http.parameters[@"balance"] = [NSString stringWithFormat:@"%.f",[textField12.text floatValue]*1000];
         http.parameters[@"remark"] = textField13.text;
         http.parameters[@"pic"] = [_picArray componentsJoinedByString:@"||"];
         [http postWithSuccess:^(id responseObject) {

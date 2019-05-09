@@ -59,6 +59,7 @@
     if (section == 0) {
         return 2;
     }
+    
     return 1;
 }
 
@@ -78,8 +79,9 @@
     if (indexPath.section == 1) {
         InputBoxCell *cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"*贷款金额";
-        cell.nameText = @"请输入贷款金额";
+        cell.name = @"*贷款金额(元)";
+//        cell.nameText = @"请输入贷款金额";
+//        cell.nameTextField.placeholder = @"请输入贷款金额";
         cell.nameTextField.tag = 300;
         cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
         return cell;
@@ -161,6 +163,7 @@
             if (self.idNoReverse) {
                 cell.idNoReverse = self.idNoReverse;
             }
+            [cell.selectButton addTarget:self action:@selector(delateButton:) forControlEvents:(UIControlEventTouchUpInside)];
             return cell;
         }
         if (indexPath.section == 4) {
@@ -184,6 +187,11 @@
 
 }
 
+-(void)delateButton:(UIButton *)sender{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"delete"];
+    }
+}
 -(void)appraisalReportBtnClick:(UIButton *)sender
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {

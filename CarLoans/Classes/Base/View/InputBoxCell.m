@@ -24,7 +24,7 @@
         _nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(145, 0, SCREEN_WIDTH - 180, 50)];
         _nameTextField.font = HGfont(14);
         _nameTextField.textAlignment = NSTextAlignmentRight;
-        [_nameTextField setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
+//        [_nameTextField setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
     }
     return _nameTextField;
 }

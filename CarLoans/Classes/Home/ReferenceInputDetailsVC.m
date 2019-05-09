@@ -61,7 +61,7 @@
         //        征信授权书
         [self.bankCreditReport addObject:data];
         self.tableView.bankCreditReport = self.bankCreditReport;
-        
+        self.tableView.secondCarReport = data;
         
     }
     else if (self.selectInt == 101)
@@ -75,6 +75,7 @@
         secondCarReport = data;
         [self.bankCreditReport addObject:data];
         self.tableView.secondCarReport = secondCarReport;
+         self.tableView.bankCreditReport = self.bankCreditReport;
     }
     [self.tableView reloadData];
 }
@@ -117,13 +118,9 @@
     self.dataCreditReport = [NSMutableArray arrayWithArray:[self.creditListDic[@"dataCreditReport"] componentsSeparatedByString:@"||"]];
     self.tableView.dataCreditReport = self.dataCreditReport;
     UITextField *textField1 = [self.view viewWithTag:3000];
-//    UITextField *textField2 = [self.view viewWithTag:3001];
     textField1.text = [NSString stringWithFormat:@"%.2f",[self.creditListDic[@"creditCardOccupation"] floatValue]*100];
-//    textField2.text = self.creditListDic[@"creditNote"];
-    self.tableView.creditNote = self.creditListDic[@"creditNote"];
+    self.tableView.creditCardOccupation = self.creditListDic[@"creditCardOccupation"];
     [self.tableView reloadData];
-    
-//    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight);
 }
 
 - (void)initTableView {
@@ -179,16 +176,19 @@
     }else if ([state isEqualToString:@"confirm"])
     {
         
-        if ([_bankResult isEqualToString:@""]) {
+        if (_bankResult.length == 0) {
             [TLAlert alertWithInfo:@"请选择征信结果"];
             return;
         }
         
-//        if (self.bankCreditReport.count == 0) {
-        if (secondCarReport.length == 0){
-            [TLAlert alertWithInfo:@"请上传银行征信报告"];
-            return;
+        if (self.bankCreditReport.count == 0) {
+                [TLAlert alertWithInfo:@"请上传银行征信报告"];
+                return;
         }
+        else{
+            secondCarReport = self.bankCreditReport[0];
+        }
+        
         if (self.dataCreditReport.count == 0) {
             [TLAlert alertWithInfo:@"请上传大数据征信报告"];
             return;

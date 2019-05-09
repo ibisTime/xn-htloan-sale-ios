@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)UIButton *photoBtn;
 
 @property (nonatomic , strong)UIImageView *photoImage;
+
+@property (nonatomic,strong) UIButton *selectButton;
 @end
 
 NS_ASSUME_NONNULL_END

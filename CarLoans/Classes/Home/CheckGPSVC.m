@@ -25,6 +25,10 @@
     self.tableView = [[CheckGPSTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
 //    self.tableView.model = self.model;
+    //安装图片
+    self.tableView.BankPicArray = @[@"" ];
+    //设备图片
+    self.tableView.CompanyPicArray = @[@""];
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.peopleAray = self.peopleAray;
     [self.view addSubview:self.tableView];

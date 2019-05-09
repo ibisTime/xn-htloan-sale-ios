@@ -36,4 +36,6 @@
 @property (nonatomic, assign) id <CarSettledUpdataPhotoDelegate> IdCardDelegate;
 
 @property (nonatomic , strong)UIButton *photoBtn;
+
+@property (nonatomic,strong) UIButton * selectButton;
 @end

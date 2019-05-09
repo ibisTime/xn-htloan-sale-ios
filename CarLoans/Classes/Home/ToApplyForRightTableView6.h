@@ -13,6 +13,7 @@ typedef void (^ReturnAryBlock)(NSArray *imgAry,NSString *name);
 @interface ToApplyForRightTableView6 : TLTableView
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic, copy) ReturnAryBlock returnAryBlock;
+@property (nonatomic,strong) NSArray * mateAssetPdf;
 @end
 
 NS_ASSUME_NONNULL_END

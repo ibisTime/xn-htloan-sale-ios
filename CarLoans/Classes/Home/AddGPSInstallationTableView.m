@@ -115,7 +115,7 @@
         cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
         cell.photoStr = @"上传设备图片";
         cell.photoBtn.tag = indexPath.section;
-        cell.collectDataArray = self.BankPicArray;
+        cell.collectDataArray = self.otherPicArray;
         return cell;
 
     }
@@ -129,7 +129,7 @@
         cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
         cell.photoStr = @"安装设备图片";
         cell.photoBtn.tag = indexPath.section;
-        cell.collectDataArray = self.CompanyPicArray;
+        cell.collectDataArray = self.azPicArray;
         cell.photoBtn.tag = indexPath.section;
         
         return cell;

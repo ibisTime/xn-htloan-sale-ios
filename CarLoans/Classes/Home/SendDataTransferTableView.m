@@ -128,7 +128,7 @@
         if ([self.model[indexPath.row].sendType isEqualToString:@"1"]) {
             return  495;
         }
-        return 330+60+60+60;
+        return 330+60;
     }
     else
         return 330+60+60;

@@ -39,6 +39,7 @@
 @property (nonatomic , copy)NSString *teamName;
 @property (nonatomic , copy)NSString *saleUserCompanyName;
 @property (nonatomic , copy)NSString *saleUserDepartMentName;
+@property (nonatomic , copy)NSString *saleUserPostName;
 @property (nonatomic , copy)NSString *saleUserName;
 
 @property (nonatomic,copy) NSString * insideJobCompanyName;

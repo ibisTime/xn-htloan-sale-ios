@@ -58,14 +58,17 @@
 {
     if ([self.model[index].curNodeCode isEqualToString:@"e3"]) {
         BankLendingDetailsVC *vc = [[BankLendingDetailsVC alloc]init];
+        vc.title = @"确认提交银行";
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([self.model[index].curNodeCode isEqualToString:@"e4"]){
         InputLendingDetailsVC * vc = [[InputLendingDetailsVC alloc]init];
+        vc.title = @"录入放款信息";
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([self.model[index].curNodeCode isEqualToString:@"e5"]){
         ConfirmLendingVC * vc = [[ConfirmLendingVC alloc]init];
+        vc.title = @"确认收款";
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }

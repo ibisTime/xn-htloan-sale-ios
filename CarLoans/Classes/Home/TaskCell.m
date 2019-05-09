@@ -47,6 +47,14 @@
         lineView1.backgroundColor = LineBackColor;
         [self addSubview:lineView1];
         
+        UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 20 - 30 , 20 , 30, 30);
+        
+        [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+        //        deleteBtn.backgroundColor = [UIColor redColor];
+        self.deleteBtn = deleteBtn;
+        [self addSubview:deleteBtn];
+        
     }
     return self;
 }

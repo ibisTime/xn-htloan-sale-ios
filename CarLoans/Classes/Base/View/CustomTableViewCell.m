@@ -167,7 +167,7 @@
                                   [NSString stringWithFormat:@"%@",makeCardModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[makeCardModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",makeCardModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@",makeCardModel.insideJobName],
+                                  [NSString stringWithFormat:@"%@",makeCardModel.saleUserName],
                                   [NSString stringWithFormat:@"%@",[makeCardModel.applyDatetime convertToDetailDate]]];
     
     for (int i = 0; i < nameArray.count; i ++ ) {

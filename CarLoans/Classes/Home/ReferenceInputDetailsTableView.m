@@ -112,7 +112,14 @@
         [cell addSubview:_photoBtn];
         
         UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-        [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+        if (self.bankCreditReport.count > 0) {
+            [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.bankCreditReport[0] convertImageUrl]]];
+        }else{
+             [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+        }
+        
+       
+        
         [_photoBtn addSubview:photoImage];
         
         return cell;
@@ -145,7 +152,7 @@
     if (indexPath.row == 0) {
         cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
         if ([cell.nameTextField.text isEqualToString:@""] && [self.creditCardOccupation floatValue] != 0) {
-            cell.nameTextField.text = self.creditCardOccupation;
+            cell.nameTextField.text =[NSString stringWithFormat:@"%.f", [self.creditCardOccupation floatValue] * 100];
         }
     }
     if (indexPath.row == 1) {

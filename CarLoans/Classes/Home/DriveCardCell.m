@@ -43,13 +43,13 @@
             _photoImage.hidden = YES;
             
             
-            UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-            selectButton.frame = selectButton.frame = CGRectMake(15 + (SCREEN_WIDTH - 40)/2 - 30 + i % 2 * (SCREEN_WIDTH - 20)/2, 50, 30, 30);
-            [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
-            [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-            selectButton.tag = 5000 + i;
-            selectButton.hidden= YES;
-            [self addSubview:selectButton];
+            self.selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+            self.selectButton.frame = self.selectButton.frame = CGRectMake(15 + (SCREEN_WIDTH - 40)/2 - 30 + i % 2 * (SCREEN_WIDTH - 20)/2, 10, 30, 30);
+            [self.selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+            [self.selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            self.selectButton.tag = 5000 + i;
+            self.selectButton.hidden= YES;
+            [self addSubview:self.selectButton];
             
         }
         

@@ -66,7 +66,9 @@
             cell.inputTextField.tag = 70000 + indexPath.row;
         }
         cell.topLbl.text = [TopModel user].ary7[indexPath.row];
-        
+        if (indexPath.row == 7||indexPath.row == 11||indexPath.row == 12) {
+            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+        }
         
         return cell;
     }
@@ -81,6 +83,9 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *topArray = @[@"其他资料"];
     cell.name = topArray[indexPath.row];
+    
+    cell.muArray = [NSMutableArray array];
+    cell.muArray = [NSMutableArray arrayWithArray:self.otherPic];
     
     MJWeakSelf;
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {

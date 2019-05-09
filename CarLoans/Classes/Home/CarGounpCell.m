@@ -112,12 +112,12 @@ photoBtn.frame = CGRectMake(2.5, 2.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH 
 //        image.image = [UIImage imageNamed:array[indexPath.row - 1]] ;
         [cell addSubview:image];
         
-        UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        selectButton.frame = CGRectMake((SCREEN_WIDTH - 20)/4 - 42.5, 22.5, 30, 30);
-        [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
-        [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        selectButton.tag = indexPath.row - 1 + 1000;
-        [cell addSubview:selectButton];
+        self.selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        self.selectButton.frame = CGRectMake((SCREEN_WIDTH - 20)/4 - 42.5, 22.5, 30, 30);
+        [self.selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+        [self.selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        self.selectButton.tag = indexPath.row - 1 + 1000;
+        [cell addSubview:self.selectButton];
     }
     return cell;
 }

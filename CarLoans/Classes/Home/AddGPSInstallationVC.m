@@ -83,7 +83,7 @@
         case 5:
         {
             [self.bankPicArray addObject:data];
-            self.tableView.BankPicArray = self.bankPicArray;
+            self.tableView.otherPicArray = self.bankPicArray;
 //            self.tableView.Str1 = data;
 //            self.str1 = data;
         }
@@ -91,7 +91,7 @@
         case 6:
         {
             [self.CompanyPicArray addObject:data];
-            self.tableView.CompanyPicArray = self.CompanyPicArray;
+            self.tableView.azPicArray = self.CompanyPicArray;
 
         }
             break;
@@ -117,7 +117,7 @@
     self.CompanyPicArray = [NSMutableArray array];
 
     NSLog(@"%@",_dataDic);
-    if (self.isSelect == 100) {
+    if (self.isSelect >= 100) {
         date = _dataDic[@"dic"][@"azDatetime"];
         code = _dataDic[@"dic"][@"code"];
         gpsDevNo = _dataDic[@"gpsDevNo"];
@@ -127,9 +127,9 @@
         self.tableView.Str1 = _dataDic[@"dic"][@"azLocation"];
         self.tableView.Str2 = _dataDic[@"dic"][@"azUser"];
         self.tableView.Str3 = _dataDic[@"dic"][@"remark"];
+        self.tableView.azPicArray = [_dataDic[@"azPhotos"] componentsSeparatedByString:@"||"];
+        self.tableView.otherPicArray = [_dataDic[@"devPhotos"] componentsSeparatedByString:@"||"];
         [self.tableView reloadData];
-
-
     }
 }
 
@@ -187,9 +187,17 @@
         [TLAlert alertWithInfo:@"请输入安装人员"];
         return;
     }
+    
     NSString *devPhotos = [self.bankPicArray componentsJoinedByString:@"||"];
     NSString *azPhotos = [self.CompanyPicArray componentsJoinedByString:@"||"];
-
+    if (devPhotos.length == 0) {
+        [TLAlert alertWithInfo:@"请选择设备图片"];
+        return;
+    }
+    if (azPhotos.length == 0) {
+        [TLAlert alertWithInfo:@"请选择安装图片"];
+        return;
+    }
     NSDictionary *data = @{@"code":code,
                            @"azLocation":textField1.text,
                            @"azDatetime":date,

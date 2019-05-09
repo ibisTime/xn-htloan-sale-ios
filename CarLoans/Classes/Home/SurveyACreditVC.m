@@ -289,20 +289,26 @@
             self.tableView.secondCarReport = peopleArray[0][@"secondCarReport"];
         }
         
-        self.tableView.speciesStr = @"二手车";
+//        self.tableView.speciesStr = @"二手车";
     }
     
     UITextField *textField1 = [self.view viewWithTag:300];
-    textField1.text = [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000];
+    if (![[NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000] isEqualToString:@"0.00"]) {
+        textField1.text = [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000];
+    }
+    
     UITextField *textField2 = [self.view viewWithTag:301];
     textField2.text = self.model.creditNote;
     loanBankCode = self.model.loanBankCode;
     if ([_model.bizType isEqualToString:@"0"]) {
         _tableView.speciesStr = @"新车";
-        
-    }else
+
+    }else if([_model.bizType isEqualToString:@"1"])
     {
         _tableView.speciesStr = @"二手车";
+    }else
+    {
+        _tableView.speciesStr = @"";
     }
     _tableView.secondCarReport = self.model.secondCarReport;
 //    _tableView.idNoFront = self.model.car
@@ -348,6 +354,16 @@
     {
         self.selectInt = index;
         [self.imagePicker picker];
+    }
+    else if ([state isEqualToString:@"delete"]){
+        if (sender.tag == 5000) {
+            self.tableView.idNoFront = nil;
+            [self.tableView reloadData];
+        }else if (sender.tag == 5001){
+            self.tableView.idNoReverse = nil;
+            [self.tableView reloadData];
+        }
+        
     }
     
 }
@@ -539,11 +555,11 @@
         loanBankCode = self.bankArray[sid][@"code"];
     }else
     {
-
         _tableView.speciesStr = Str;
         bizType = [dic[@"dkey"] integerValue];
         NSLog(@"%ld",bizType);
     }
+    
     [self.tableView reloadData];
 }
 

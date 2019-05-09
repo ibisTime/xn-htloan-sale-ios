@@ -72,7 +72,16 @@
     }
     return cell;
 }
-
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    NSString * resultStr = textField.text;
+    
+    NSLog(@"%@",resultStr);
+    UITextField * text = [self viewWithTag:10000+ 8];
+    text.text = [NSString stringWithFormat:@"%.f",[resultStr floatValue] - ([self.model.loanAmount floatValue ] /1000)];
+    
+    UITextField * text1 = [self viewWithTag:10000+ 9];
+    text1.text = [NSString stringWithFormat:@"%.2f",[text.text floatValue] / [resultStr floatValue] ];
+}
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     NSString * resultStr = [textField.text stringByAppendingString:string];
 //    if ([resultStr floatValue] > ([self.model.loanAmount floatValue ] /1000)) {

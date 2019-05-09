@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 //其他图片
 @property (nonatomic , strong)NSArray *CompanyPicArray;
 @property (nonatomic , strong)NSArray *peopleAray;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

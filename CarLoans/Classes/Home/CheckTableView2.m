@@ -91,6 +91,8 @@
         if (_taskArray.count > 0) {
             cell.TaskArray = _taskArray;
         }
+        [cell.deleteBtn addTarget:self action:@selector(deleteButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.deleteBtn.tag = indexPath.row;
         return cell;
     }
     
@@ -115,5 +117,10 @@
         
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
+}
+
+-(void)deleteButtonClick:(UIButton *)sender
+{
+    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"delect"];
 }
 @end

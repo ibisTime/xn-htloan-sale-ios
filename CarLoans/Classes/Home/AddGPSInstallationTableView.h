@@ -10,9 +10,9 @@
 
 @interface AddGPSInstallationTableView : TLTableView
 //安装图片
-@property (nonatomic , strong)NSArray *BankPicArray;
+@property (nonatomic , strong)NSArray *azPicArray;
 //其他图片
-@property (nonatomic , strong)NSArray *CompanyPicArray;
+@property (nonatomic , strong)NSArray *otherPicArray;
 @property (nonatomic  , copy)NSString *GPS;
 
 @property (nonatomic  , copy)NSString *date;

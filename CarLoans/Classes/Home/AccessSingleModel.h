@@ -102,5 +102,7 @@
 @property (nonatomic , copy)NSString *areaName; //区域经理
 //@property (nonatomic , strong) NSDictionary *creditUser;
 @property (nonatomic , strong) NSDictionary *gpsApply;
+@property (nonatomic,strong) NSString * saleUserPostName;
+@property (nonatomic,strong) NSString * insideJobPostName;
 
 @end

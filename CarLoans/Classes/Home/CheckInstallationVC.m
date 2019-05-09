@@ -80,6 +80,7 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         CheckGPSVC * vc = [CheckGPSVC new];
+        vc.model = self.model;
         vc.peopleAray = self.model.budgetOrderGps[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
