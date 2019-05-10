@@ -18,13 +18,13 @@
 
 @property (nonatomic , copy)NSString *speciesStr;
 
-@property (nonatomic , strong)NSArray *peopleAray;
+@property (nonatomic , strong)NSMutableArray *peopleAray;
 
 @property (nonatomic , copy)NSString *secondCarReport;
 
 //    行驶证正面
-@property (nonatomic , copy)NSString *idNoFront;
+@property (nonatomic , copy)NSString *xszFront;
 //     行驶证反面
-@property (nonatomic , copy)NSString *idNoReverse;
+@property (nonatomic , copy)NSString *xszReverse;
 
 @end

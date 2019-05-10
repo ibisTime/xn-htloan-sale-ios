@@ -186,29 +186,29 @@
     return 0.01;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == 2) {
-        UIView *headView = [[UIView alloc]init];
-        
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-        backView.backgroundColor = [UIColor whiteColor];
-        [headView addSubview:backView];
-        
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        lineView.backgroundColor = LineBackColor;
-        [headView addSubview:lineView];
-        
-//        NSArray *array = @[@"抵押代理人身份证复印件"];
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        nameLabel.text = @"抵押代理人身份证复印件";
-        [headView addSubview:nameLabel];
-        
-        return headView;
-    }
-    return nil;
-    return nil;
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if (section == 2) {
+//        UIView *headView = [[UIView alloc]init];
+//        
+//        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+//        backView.backgroundColor = [UIColor whiteColor];
+//        [headView addSubview:backView];
+//        
+//        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+//        lineView.backgroundColor = LineBackColor;
+//        [headView addSubview:lineView];
+//        
+////        NSArray *array = @[@"抵押代理人身份证复印件"];
+//        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+//        nameLabel.text = @"抵押代理人身份证复印件";
+//        [headView addSubview:nameLabel];
+//        
+//        return headView;
+//    }
+//    return nil;
+//    return nil;
+//}
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {

@@ -72,7 +72,7 @@
             cell.TextFidStr = Array[indexPath.row];
         }
         if (indexPath.row == 1) {
-            cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+            cell.nameTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         }
         return cell;
     }
@@ -108,6 +108,8 @@
     if (indexPath.section == 3) {
         UploadIdCardCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.nameArray = @[@"身份证正面",@"身份证反面"];
+        cell.nameLbl.text = @"*身份证";
         cell.IdCardDelegate = self;
         cell.idNoFront = self.idNoFront;
         cell.idNoReverse = self.idNoReverse;

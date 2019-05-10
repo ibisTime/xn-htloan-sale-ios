@@ -19,7 +19,9 @@
 #define CarSettledUpdataPhoto @"CarSettledUpdataPhotoCell"
 #import "DriveCardCell.h"
 #define DriveCard @"DriveCardCell"
-@interface SurveyACreditTableView ()<UITableViewDataSource,UITableViewDelegate,SurveyPeopleDelegate,DriveCardDelegate>
+#import "UploadIdCardCell.h"
+#define UploadIdCard @"UploadIdCardCell"
+@interface SurveyACreditTableView ()<UITableViewDataSource,UITableViewDelegate,SurveyPeopleDelegate,DriveCardDelegate,UploadIdCardDelegate>
 
 @end
 
@@ -37,6 +39,7 @@
         [self registerClass:[CarSettledUpdataPhotoCell class] forCellReuseIdentifier:CarSettledUpdataPhoto];
         [self registerClass:[DriveCardCell class] forCellReuseIdentifier:DriveCard];
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [self registerClass:[UploadIdCardCell class] forCellReuseIdentifier:UploadIdCard];
 
     }
     return self;
@@ -122,49 +125,41 @@
             [cell addSubview:_photoBtn];
 
             UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-            if (self.secondCarReport) {
-//                if (!self.peopleAray[0][@"secondCarReport"]) {
-                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+//            if (self.secondCarReport) {
+////                if (!self.peopleAray[0][@"secondCarReport"]) {
+//
+////                }
+//            }
+//            if (self.peopleAray.count > 0) {
+//                if (self.secondCarReport) {
+//                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
 //                }
-            }
-            if (self.peopleAray.count > 0) {
-                if (self.secondCarReport) {
-                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
-                }
-                else{
-                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.peopleAray[0][@"secondCarReport"] convertImageUrl]]];
-                }
-                
-            }
-            
+//                else{
+//                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.peopleAray[0][@"secondCarReport"] convertImageUrl]]];
+//                }
+//
+//            }
+            [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
             [_photoBtn addSubview:photoImage];
 
             return cell;
         }
         if (indexPath.section == 3) {
-            DriveCardCell * cell = [tableView dequeueReusableCellWithIdentifier:DriveCard forIndexPath:indexPath];
+            UploadIdCardCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.nameArray = @[@"行驶证正面",@"行驶证反面"];
+            cell.nameLbl.text = @"*行驶证";
             cell.IdCardDelegate = self;
-            if (self.peopleAray.count > 0) {
-                if (!self.idNoFront) {
-                    cell.idNoFront  = [self.peopleAray[0][@"xszFront"] convertImageUrl];
-                }
-                if (!self.idNoReverse) {
-                    cell.idNoReverse = [self.peopleAray[0][@"xszReverse"] convertImageUrl];
-                }
-                else{
-                    cell.idNoFront = self.idNoFront;
-                    cell.idNoReverse = self.idNoReverse;
-                }
-            }
-            if (self.idNoFront) {
-                cell.idNoFront  = self.idNoFront;
-            }
-            if (self.idNoReverse) {
-                cell.idNoReverse = self.idNoReverse;
-            }
-            [cell.selectButton addTarget:self action:@selector(delateButton:) forControlEvents:(UIControlEventTouchUpInside)];
+            cell.idNoFront = self.xszFront;
+            cell.idNoReverse = self.xszReverse;
             return cell;
+//            DriveCardCell * cell = [tableView dequeueReusableCellWithIdentifier:DriveCard forIndexPath:indexPath];
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.IdCardDelegate = self;
+//            cell.idNoFront = self.xszFront;
+//            cell.idNoReverse = self.xszReverse;
+//            [cell.selectButton addTarget:self action:@selector(delateButton:) forControlEvents:(UIControlEventTouchUpInside)];
+//            return cell;
         }
         if (indexPath.section == 4) {
             SurveyPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SurveyPeople forIndexPath:indexPath];
@@ -186,12 +181,15 @@
     }
 
 }
-
--(void)delateButton:(UIButton *)sender{
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"delete"];
-    }
+-(void)SelectButtonClick:(UIButton *)sender{
+    [_ButtonDelegate selectButtonClick:sender];
 }
+
+//-(void)delateButton:(UIButton *)sender{
+//    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+//        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"delete"];
+//    }
+//}
 -(void)appraisalReportBtnClick:(UIButton *)sender
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
@@ -237,9 +235,13 @@
         return 50;
     }else
     {
-        if (indexPath.section == 2 || indexPath.section == 3) {
+        if (indexPath.section == 2) {
             return SCREEN_WIDTH/3 + 15;
         }
+        if (indexPath.section == 3) {
+            return SCREEN_WIDTH/3 + 70;
+        }
+        
         if (indexPath.section == 4) {
             return 50 + 15 + (_peopleAray.count + 1)*145 + 5;
         }
@@ -258,7 +260,7 @@
         return 10;
     }else
     {
-        if (section == 0 || section == 5  || section == 1) {
+        if (section == 0 || section == 5  || section == 1 || section == 4 || section == 3) {
             return 0.01;
         }
 //        if (section == 4) {
@@ -306,21 +308,21 @@
 
             return headView;
         }
-        else if (section == 3){
-            UIView *headView = [[UIView alloc]init];
-            
-            UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-            backView.backgroundColor = [UIColor whiteColor];
-            [headView addSubview:backView];
-            
-            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-            lineView.backgroundColor = LineBackColor;
-            [headView addSubview:lineView];
-            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-            nameLabel.text = @"*行驶证";
-            [headView addSubview:nameLabel];
-            return headView;
-        }
+//        else if (section == 3){
+//            UIView *headView = [[UIView alloc]init];
+//
+//            UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+//            backView.backgroundColor = [UIColor whiteColor];
+//            [headView addSubview:backView];
+//
+//            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+//            lineView.backgroundColor = LineBackColor;
+//            [headView addSubview:lineView];
+//            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+//            nameLabel.text = @"*行驶证";
+//            [headView addSubview:nameLabel];
+//            return headView;
+//        }
     }
 
     return nil;
@@ -385,15 +387,20 @@
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
 }
--(void)DriceCardBtn:(UIButton *)sender{
+//-(void)DriceCardBtn:(UIButton *)sender{
+//    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+//        
+//        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+//        
+//    }
+//}
+//身份证
+-(void)UploadIdCardBtn:(UIButton *)sender
+{
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
         
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
         
     }
-}
--(void)SelectButtonClick:(UIButton *)sender
-{
-    [_ButtonDelegate selectButtonClick:sender];
 }
 @end

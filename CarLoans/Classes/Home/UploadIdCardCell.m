@@ -14,7 +14,7 @@
 {
     if (!_nameLbl) {
         _nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        _nameLbl.text = @"*身份证";
+//        _nameLbl.text = @"*身份证";
     }
     return _nameLbl;
 }
@@ -24,9 +24,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self addSubview:self.nameLbl];
-        NSArray *nameArray = @[@"身份证正面",@"身份证反面"];
+        
         for (int i = 0; i < 2; i ++) {
-            _photoBtn = [UIButton buttonWithTitle:nameArray[i] titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
+            _photoBtn = [UIButton buttonWithTitle:self.nameArray[i] titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
             _photoBtn.frame = CGRectMake(15 + i % 2 * (SCREEN_WIDTH - 20)/2, 50, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
             kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
             [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
@@ -61,7 +61,18 @@
     }
     return self;
 }
-
+-(void)setNameArray:(NSArray *)nameArray{
+    for (int i = 0; i < 2; i ++) {
+        UIButton * btn = [self viewWithTag:50 + i];
+        [btn setTitle:nameArray[i] forState:(UIControlStateNormal)];
+        [btn setBackgroundColor:BackColor forState:(UIControlStateNormal)];
+        [btn setTitleColor:GaryTextColor forState:(UIControlStateNormal)];
+        [btn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
+            [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
+        }];
+    }
+    
+}
 -(void)setIdNoFront:(NSString *)idNoFront
 {
     UIImageView *image = [self viewWithTag:500];

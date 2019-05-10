@@ -11,8 +11,9 @@
 #import "WSDatePickerView.h"
 #import "InsideMortgageTB.h"
 #import <AVFoundation/AVFoundation.h>
+#import "ChooseCell.h"
 @interface BankMortgatee ()
-<RefreshDelegate>
+<RefreshDelegate,SelectButtonDelegate>
 {
     NSInteger isSelect;
     NSString *date;
@@ -58,6 +59,13 @@
 
 @property (nonatomic , strong)NSMutableArray *GreenBigBenArray;
 
+@property (nonatomic,strong) NSString * policyDatetime;//落户日期
+@property (nonatomic,strong) NSString * policyDueDate;//抵押日期
+
+//    身份证正面
+@property (nonatomic , copy)NSString *AgentidNoFront;
+//    身份证反面
+@property (nonatomic , copy)NSString *AgentidNoReverse;
 
 @end
 
@@ -212,8 +220,16 @@
             
         }
             break;
-       
-            
+        case 50:{
+            self.AgentidNoFront = data;
+            self.tableView.idNoFront = self.AgentidNoFront;
+        }
+            break;
+        case 51:{
+            self.AgentidNoReverse = data;
+            self.tableView.idNoReverse = self.AgentidNoReverse;
+        }
+            break;
         default:
             break;
     }
@@ -378,7 +394,10 @@
                 
             }
         }
-       
+        if ([state isEqualToString:@"IDCard"]) {
+            self.selectInt = index;
+            [self.imagePicker picker];
+        }
        
         
         self.tableView.BankVideoArray = self.BankVideoArray;
@@ -401,8 +420,6 @@
         [self confirmButtonClick];
         return;
     }
-    
-    
     TLNetworking *http = [TLNetworking new];
     http.code = @"632123";
     http.showView = self.view;
@@ -540,7 +557,48 @@
     }];
     
 }
-
-
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+                
+                NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
+                cell.details = date;
+                self.policyDatetime = date;
+                
+            }];
+            datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
+            datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+            datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
+            [datepicker show];
+        }
+        if (indexPath.row == 3) {
+            WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+                
+                NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
+                cell.details = date;
+                self.policyDatetime = date;
+                
+            }];
+            datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
+            datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+            datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
+            [datepicker show];
+        }
+    }
+}
+-(void)selectButtonClick:(UIButton *)sender{
+    if (sender.tag == 5000) {
+        _AgentidNoFront = @"";
+        self.tableView.idNoFront = _AgentidNoFront;
+    }else
+    {
+        _AgentidNoReverse = @"";
+        self.tableView.idNoReverse = _AgentidNoReverse;
+    }
+    [self.tableView reloadData];
+}
 
 @end

@@ -11,6 +11,10 @@
 #define CarSettledUpdataPhoto @"CollectionViewCell"
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
+
+#import "ChooseCell.h"
+#define Choose @"ChooseCell"
+#define UploadIdCard @"UploadIdCardCell"
 @interface InsideMortgageTB ()<UITableViewDataSource,UITableViewDelegate,CustomCollectionDelegate>
 
 
@@ -24,8 +28,8 @@
         self.delegate = self;
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CarSettledUpdataPhoto];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
-
-        
+        [self registerClass:[ChooseCell class] forCellReuseIdentifier:Choose];
+        [self registerClass:[UploadIdCardCell class] forCellReuseIdentifier:UploadIdCard];
     }
     return self;
 }
@@ -33,7 +37,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 7;
+    return 9;
 }
 
 #pragma mark -- 行数
@@ -41,6 +45,9 @@
 {
     if (section ==0) {
         return 8;
+    }
+    else if (section == 1){
+        return 6;
     }
     return 1;
 }
@@ -50,100 +57,121 @@
 {
 
     if (indexPath.section == 0) {
-        
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"业务编号",@"业务团队",@"区域经理",@"贷款金额",@"信贷专员",@"内勤专员",@"客户姓名",@"车牌号"];
+        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务类型",@"业务归属",@"指派归属",@"当前状态"];
         cell.name = nameArray[indexPath.row];
-        if (indexPath.row == 7) {
-            cell.isInput = @"1";
-            cell.nameText = @"请输入车牌号";
-            cell.nameTextField.tag = 100 +indexPath.row;
-        }else{
-            cell.isInput = @"0";
-
+        cell.isInput = @"0";
+        NSString *bizType;
+        if ([_model.bizType integerValue] == 0) {
+            bizType = @"新车";
         }
-        NSString *isAdvanceFund;
-        if ([_model.isAdvanceFund isEqualToString:@"1"]) {
-            isAdvanceFund = @"已垫资";
-        }else
+        else
         {
-            isAdvanceFund = @"未垫资";
+            bizType = @"二手车";
         }
         NSArray *detailsArray = @[
                                   [NSString stringWithFormat:@"%@",_model.code],
-
-                                  [NSString stringWithFormat:@"%@",_model.teamName],
-                                  [NSString stringWithFormat:@"%@",_model.areaName],
+                                  [NSString stringWithFormat:@"%@",_model.creditUser[@"userName"]],
+                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",_model.saleUserName],
-                                  [NSString stringWithFormat:@"%@",_model.insideJobName],
-                                  [NSString stringWithFormat:@"%@",_model.applyUserName]
-                                  ,@""
+                                  [NSString stringWithFormat:@"%@",bizType],
+                                  [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
+                                  [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
+                                  [[BaseModel user]note:_model.curNodeCode]
+                                  
                                   ];
-        if (indexPath.row == 7) {
-
-        }else{
-            cell.TextFidStr = detailsArray[indexPath.row];
-
-        }
+        cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
-    }else{
+    }
+    else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*落户日期";
+            cell.tag = 1000 + indexPath.row;
+            return cell;
+        }
+        else if (indexPath.row == 1 || indexPath.row == 2){
+            static NSString *rid=@"cell";
+            TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            NSArray * arr = @[@"*落户地点",@"*车牌号"];
+            cell.name = arr[indexPath.row - 1];
+            cell.nameTextField.tag = 1000+indexPath.row;
+            return cell;
+        }
+        else if (indexPath.row == 3){
+            ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*抵押日期";
+            cell.tag = 1000 + indexPath.row;
+            return cell;
+        }
+        else if (indexPath.row == 4 || indexPath.row == 5){
+            static NSString *rid=@"cell123";
+            TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            NSArray * arr = @[@"*代理人",@"*代理人身份证号"];
+            cell.name = arr[indexPath.row - 4];
+            cell.nameTextField.tag = 1000+indexPath.row;
+            return cell;
+        }
+    }
+    else if (indexPath.section == 2) {
+        UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.nameLbl.text = @"*代理人身份证";
+        cell.nameArray = @[@"身份证正面",@"身份证反面"];
+        cell.IdCardDelegate = self;
+        cell.idNoFront = self.idNoFront;
+        cell.idNoReverse = self.idNoReverse;
+        return cell;
+    }
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CarSettledUpdataPhoto forIndexPath:indexPath];
-        
         cell.delegate = self;
         cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
-        
-        
         switch (indexPath.section) {
-            case 1:
+            case 3:
             {
                 cell.collectDataArray = self.BankVideoArray;
                 break;
                 
             }
-            case 2:
+            case 4:
             {
                 cell.collectDataArray = self.CompanyVideoArray;
                 break;
-                
-            }
-            case 3:
-            {
-                cell.collectDataArray = self.OtherVideoArray;
-                break;
-                
-            }
-            case 4:
-            {
-                cell.collectDataArray = self.BankSignArray;
-                break;
-                
             }
             case 5:
             {
-                cell.collectDataArray = self.BankContractArray;
+                cell.collectDataArray = self.OtherVideoArray;
                 break;
-                
             }
             case 6:
             {
+                cell.collectDataArray = self.BankSignArray;
+                break;
+            }
+            case 7:
+            {
+                cell.collectDataArray = self.BankContractArray;
+                break;
+            }
+            case 8:
+            {
                 cell.collectDataArray = self.CompanyContractArray;
                 break;
-                
-                
             }
-            
-                
-                
             default:
                 break;
         }
-        //    cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
         return cell;
-        
-    }
-    
+
 }
 
 
@@ -180,73 +208,77 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < 4)
-    {
-        if (indexPath.section == 0) {
+//    if (indexPath.section < 5)
+//    {
+        if (indexPath.section == 0 || indexPath.section == 1) {
             return 50;
         }
-        if (indexPath.section == 1) {
+        if (indexPath.section == 2) {
+            return SCREEN_WIDTH/3 + 70;
+        }
+        if (indexPath.section == 3) {
             float numberToRound;
             int result;
             numberToRound = (_BankVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
         }
-        if (indexPath.section == 2) {
+        if (indexPath.section == 4) {
             float numberToRound;
             int result;
             numberToRound = (_CompanyVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
         }
-        if (indexPath.section == 3) {
+        if (indexPath.section == 5) {
             float numberToRound;
             int result;
             numberToRound = (_OtherVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
         }
-    }
-    else
-    {
-        if (indexPath.section == 4) {
+//    }
+//    else
+//    {
+        if (indexPath.section == 6) {
             float numberToRound;
             int result;
             numberToRound = (self.BankSignArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
         }
-        if (indexPath.section == 5) {
+        if (indexPath.section == 7) {
             float numberToRound;
             int result;
             numberToRound = (self.BankContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
         }
-        if (indexPath.section == 6) {
+        if (indexPath.section == 8) {
             float numberToRound;
             int result;
             numberToRound = (self.CompanyContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
         }
-        if (indexPath.section == 7) {
-            float numberToRound;
-            int result;
-            numberToRound = (self.MoneyArray.count + 1.0)/3.0;
-            result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
-        }
-        
-        
-    }
-    return SCREEN_WIDTH/3 + 15;
+//        if (indexPath.section == 9) {
+//            float numberToRound;
+//            int result;
+//            numberToRound = (self.MoneyArray.count + 1.0)/3.0;
+//            result = (int)ceilf(numberToRound);
+//            return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
+//        }
+
+
+//    }
+//    return SCREEN_WIDTH/3 + 15;
+    return 0.01;
 }
 
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section==0) {
+    if (section==0 || section == 1 ||  section == 2) {
         return 0.01;
     }else{
         return 50;
@@ -257,41 +289,41 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 6) {
-        return 100;
+    if (section == 8) {
+        return 80;
     }
     return 0.01;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section >0) {
+    if (section >2) {
         UIView *headView = [[UIView alloc]init];
-        
+
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
         backView.backgroundColor = [UIColor whiteColor];
         [headView addSubview:backView];
-        
+
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
-        
+
         NSArray *array = @[@"大本扫描件",@"车钥匙",@"车辆批单",@"登记证书",@"车辆行驶证扫描件",@"完税证明扫描件"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        nameLabel.text = array[section-1];
+        nameLabel.text = array[section-3];
         [headView addSubview:nameLabel];
-        
+
         return headView;
     }else{
-        
+
         return [UIView new];
     }
-   
+
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 6) {
+    if (section == 8) {
         UIView *headView = [[UIView alloc]init];
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -308,7 +340,7 @@
         
         return headView;
     }
-    return nil;
+    return [UIView new];
 }
 
 -(void)confirmButtonClick:(UIButton *)sender
@@ -325,5 +357,19 @@
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
 }
+#pragma mark - UploadIdCardDelegate
+//身份证
+-(void)UploadIdCardBtn:(UIButton *)sender
+{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+        
+    }
+}
 
+-(void)SelectButtonClick:(UIButton *)sender
+{
+    [_AgentDelegate selectButtonClick:sender];
+}
 @end

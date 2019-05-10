@@ -35,7 +35,7 @@
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return 9;
 }
 
 #pragma mark -- tableView
@@ -46,7 +46,7 @@
     if (indexPath.row==0) {//指定第一行为选中状态
         [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
-    NSArray *array = @[@"贷款信息",@"车辆信息",@"客户信息",@"家庭情况",@"工作情况",@"共还人信息",@"担保人信息",@"流水信息"];
+    NSArray *array = @[@"贷款信息",@"车辆信息",@"客户信息",@"家庭情况",@"工作情况",@"共还人信息",@"担保人信息",@"流水信息",@"抵押信息"];
     cell.nameLbl.text = array[indexPath.row];
     if (cell.height == 0) {
         cell.nameLbl.hidden = YES;

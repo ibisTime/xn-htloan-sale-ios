@@ -11,10 +11,13 @@
 #import "AccessSingleModel.h"
 #import "InputInformationMortgageVC.h"
 #import "insideMortgatee.h"
+//录入抵押信息
 #import "BankMortgatee.h"
 #import "InsideSureVC.h"
 #import "InputInformationDetailVC.h"
 #import "VehiclesInDetailsVC.h"
+//内勤确认
+#import "AgentCheckVC.h"
 @interface CarMortgageVC ()<RefreshDelegate>
 @property (nonatomic , strong)AccessSingleTableView *tableView;
 
@@ -75,13 +78,22 @@
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
         
+        //内勤录入抵押信息
+//        AgentCheckVC *vc = [[AgentCheckVC alloc]init];
+//        vc.model = self.model[index];
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+//        BankMortgatee *vc = [[BankMortgatee alloc]init];
+//        vc.model = self.model[index];
+//        [self.navigationController pushViewController:vc animated:YES];
+        
     }else if ( [model.curNodeCode isEqualToString:@"f1"]){
         //内勤录入抵押信息
-        
         BankMortgatee *vc = [[BankMortgatee alloc]init];
-        
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
+        
+        
     }else if ( [model.curNodeCode isEqualToString:@"f4"]){
         //        InsideSureVC *vc = [[InsideSureVC alloc] init];
         //驻行抵押申请

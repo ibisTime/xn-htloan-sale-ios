@@ -240,6 +240,11 @@
 		1F651AB5227B41B800EFB78B /* MakeCardEntryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */; };
 		1F651ABB227D7A0B00EFB78B /* AccessAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */; };
 		1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */; };
+		36294E4E22855B6C004C4479 /* AgentCheckVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E4D22855B6C004C4479 /* AgentCheckVC.m */; };
+		36294E5122855BA3004C4479 /* AgentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5022855BA3004C4479 /* AgentTableView.m */; };
+		36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5322856325004C4479 /* ToApplyForRightTableView9.m */; };
+		36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E56228592F7004C4479 /* CheckCarTableView.m */; };
+		36294E5A22859313004C4479 /* CheckCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5922859313004C4479 /* CheckCarVC.m */; };
 		36932BA922819AE000FE0431 /* InputLendingDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */; };
 		36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAB22819AF800FE0431 /* InputLendingDetailsTableView.m */; };
 		36932BAF2281B26600FE0431 /* ConfirmLendingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */; };
@@ -963,6 +968,16 @@
 		1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditVC.m; sourceTree = "<group>"; };
 		1F651ABC227D7A1D00EFB78B /* AccessAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessAuditTableView.h; sourceTree = "<group>"; };
 		1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditTableView.m; sourceTree = "<group>"; };
+		36294E4C22855B6C004C4479 /* AgentCheckVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentCheckVC.h; sourceTree = "<group>"; };
+		36294E4D22855B6C004C4479 /* AgentCheckVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentCheckVC.m; sourceTree = "<group>"; };
+		36294E4F22855BA3004C4479 /* AgentTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentTableView.h; sourceTree = "<group>"; };
+		36294E5022855BA3004C4479 /* AgentTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentTableView.m; sourceTree = "<group>"; };
+		36294E5222856325004C4479 /* ToApplyForRightTableView9.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToApplyForRightTableView9.h; sourceTree = "<group>"; };
+		36294E5322856325004C4479 /* ToApplyForRightTableView9.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToApplyForRightTableView9.m; sourceTree = "<group>"; };
+		36294E55228592F7004C4479 /* CheckCarTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckCarTableView.h; sourceTree = "<group>"; };
+		36294E56228592F7004C4479 /* CheckCarTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarTableView.m; sourceTree = "<group>"; };
+		36294E5822859313004C4479 /* CheckCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckCarVC.h; sourceTree = "<group>"; };
+		36294E5922859313004C4479 /* CheckCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarVC.m; sourceTree = "<group>"; };
 		36932BA722819AE000FE0431 /* InputLendingDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsVC.h; sourceTree = "<group>"; };
 		36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputLendingDetailsVC.m; sourceTree = "<group>"; };
 		36932BAA22819AF800FE0431 /* InputLendingDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsTableView.h; sourceTree = "<group>"; };
@@ -2672,6 +2687,8 @@
 				1F651A4A2275B16A00EFB78B /* ToApplyForRightTableView7.m */,
 				1F651A4C2275B17000EFB78B /* ToApplyForRightTableView8.h */,
 				1F651A4D2275B17000EFB78B /* ToApplyForRightTableView8.m */,
+				36294E5222856325004C4479 /* ToApplyForRightTableView9.h */,
+				36294E5322856325004C4479 /* ToApplyForRightTableView9.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4068,6 +4085,10 @@
 				B84F22C9219C193000886ADF /* InsideSureTB.m */,
 				B89ACB8421C8910A00186F58 /* CarDetailTb.h */,
 				B89ACB8521C8910A00186F58 /* CarDetailTb.m */,
+				36294E4F22855BA3004C4479 /* AgentTableView.h */,
+				36294E5022855BA3004C4479 /* AgentTableView.m */,
+				36294E55228592F7004C4479 /* CheckCarTableView.h */,
+				36294E56228592F7004C4479 /* CheckCarTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4087,6 +4108,10 @@
 				B84F22CC219C24C600886ADF /* InsideSureHomeVC.m */,
 				B89ACB8121C88DBC00186F58 /* InputInformationDetailVC.h */,
 				B89ACB8221C88DBC00186F58 /* InputInformationDetailVC.m */,
+				36294E4C22855B6C004C4479 /* AgentCheckVC.h */,
+				36294E4D22855B6C004C4479 /* AgentCheckVC.m */,
+				36294E5822859313004C4479 /* CheckCarVC.h */,
+				36294E5922859313004C4479 /* CheckCarVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -5195,6 +5220,7 @@
 				1F1EF2132265AB3D00EADA25 /* OperationCell.m in Sources */,
 				7A3582932113F678006FB5B5 /* GPSInstallationTableView.m in Sources */,
 				1F1EF2352265CD0200EADA25 /* ProtectUsTableView.m in Sources */,
+				36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */,
 				1F651A3C2275B14D00EFB78B /* ToApplyForRightTableView2.m in Sources */,
 				7A13ADD0210F0E4500B8F785 /* GPSCollectedVC.m in Sources */,
 				7AB29EAA20FDB9750014FCB3 /* HomeHeadView.m in Sources */,
@@ -5389,6 +5415,7 @@
 				7A13AED121104E4400B8F785 /* QNResumeUpload.m in Sources */,
 				7A3582BF2117EB50006FB5B5 /* BankLendingVC.m in Sources */,
 				1F00AE8122718A3F00A8E15D /* CreditReviewTableView.m in Sources */,
+				36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */,
 				1F151A922272AB14002B7EDA /* ApplyTableView6.m in Sources */,
 				7A3582642112A8D8006FB5B5 /* FaceSignMQVC.m in Sources */,
 				7A13AEB421104E4300B8F785 /* QNNiuDns.m in Sources */,
@@ -5455,6 +5482,7 @@
 				7A3582C22117EB62006FB5B5 /* BankLendingTableView.m in Sources */,
 				1F651A332275AF2D00EFB78B /* ToApplyForVC.m in Sources */,
 				B8F5C1AF21996421002A00B6 /* BankMortgatee.m in Sources */,
+				36294E5122855BA3004C4479 /* AgentTableView.m in Sources */,
 				7A945568210EFFB100BDFD33 /* HistoryUserVC.m in Sources */,
 				7A13AEB721104E4300B8F785 /* QNResolver.m in Sources */,
 				36C02DE9227FDA19007EC7CF /* CheckTableView2.m in Sources */,
@@ -5462,6 +5490,7 @@
 				1F651A522275B33200EFB78B /* ToApplyForEncapsulationCell.m in Sources */,
 				7A35825221119AB7006FB5B5 /* CustomerInvalidModel.m in Sources */,
 				B89ACB8621C8910A00186F58 /* CarDetailTb.m in Sources */,
+				36294E4E22855B6C004C4479 /* AgentCheckVC.m in Sources */,
 				1F1EF2BB2265D38300EADA25 /* RepaymentPlanHeadView.m in Sources */,
 				1F151A932272AB14002B7EDA /* ApplyTableView8.m in Sources */,
 				7A3582742112FAF5006FB5B5 /* SenderVC.m in Sources */,
@@ -5475,6 +5504,7 @@
 				7A13ADD6210F106000B8F785 /* DataTransferModel.m in Sources */,
 				7A94555A210EFE8400BDFD33 /* CustomerInvalidVC.m in Sources */,
 				1F1EF1C5226452FB00EADA25 /* TLTabBarController.m in Sources */,
+				36294E5A22859313004C4479 /* CheckCarVC.m in Sources */,
 				7A35826D2112B5D6006FB5B5 /* CollectionViewCell.m in Sources */,
 				7A35825E21129D4A006FB5B5 /* GPSClaimsDetailsVC.m in Sources */,
 				1F1EF20D2265AB1B00EADA25 /* OperationVC.m in Sources */,

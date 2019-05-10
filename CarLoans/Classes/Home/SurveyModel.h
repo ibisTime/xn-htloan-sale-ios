@@ -57,7 +57,7 @@
 
 @property (nonatomic , copy)NSString *dkAmount;
 @property (nonatomic , copy)NSString *status;
-@property (nonatomic , copy)NSString *zfStatus;
+@property (nonatomic , copy)NSString *cancelStatus;
 @property (nonatomic , copy)NSString *ywyUser;
 //@property (nonatomic , strong) NSDictionary *creditUser;
 @property (nonatomic , strong)NSDictionary *credit;

@@ -16,6 +16,7 @@
 #import "ToApplyForRightTableView6.h"
 #import "ToApplyForRightTableView7.h"
 #import "ToApplyForRightTableView8.h"
+#import "ToApplyForRightTableView9.h"
 #import "JHAddressPickView.h"
 #import "TopModel.h"
 #import "NewWaterVC.h"
@@ -26,7 +27,9 @@
     UILabel *right1Label1;
     UILabel *right1Label2;
     UILabel *right1Label3;
-    UILabel *right1Label4;    UILabel *right1Label5;    UILabel *right1Label6;    UILabel *right1Label7;    UILabel *right1Label8;    UILabel *right1Label9;    UILabel *right1Label10;    UILabel *right1Label11;    UILabel *right1Label12;    UILabel *right1Label13;    UILabel *right1Label14;    UILabel *right1Label15;    UILabel *right1Label16;    UILabel *right1Label17;    UILabel *right1Label18;    UILabel *right1Label19;    UILabel *right1Label20;
+    UILabel *right1Label4;
+    UILabel *right1Label5;
+    UILabel *right1Label6;    UILabel *right1Label7;    UILabel *right1Label8;    UILabel *right1Label9;    UILabel *right1Label10;    UILabel *right1Label11;    UILabel *right1Label12;    UILabel *right1Label13;    UILabel *right1Label14;    UILabel *right1Label15;    UILabel *right1Label16;    UILabel *right1Label17;    UILabel *right1Label18;    UILabel *right1Label19;    UILabel *right1Label20;
     
     UILabel *right2Label0;
     UILabel *right2Label1;
@@ -56,7 +59,11 @@
     UILabel *right6Label0;    UILabel *right6Label1;    UILabel *right6Label2;    UILabel *right6Label3;    UILabel *right6Label4;    UILabel *right6Label5;    UILabel *right6Label6;    UILabel *right6Label7;    UILabel *right6Label8;    UILabel *right6Label9;    UILabel *right6Label10;
     
     UILabel *right7Label0;    UILabel *right7Label1;    UILabel *right7Label2;    UILabel *right7Label3;    UILabel *right7Label4;    UILabel *right7Label5;    UILabel *right7Label6;    UILabel *right7Label7;    UILabel *right7Label8;    UILabel *right7Label9;    UILabel *right7Label10;
-
+    
+    UILabel * right9Label0;
+    UILabel * right9Label1;
+    UILabel * right9Label2;
+    
 //    银行字典
     NSDictionary *LoanBankDic;
 //    选中贷款产品字典
@@ -75,6 +82,8 @@
 @property (nonatomic , strong)ToApplyForRightTableView6 *rightTableView6;
 @property (nonatomic , strong)ToApplyForRightTableView7 *rightTableView7;
 @property (nonatomic , strong)ToApplyForRightTableView8 *rightTableView8;
+@property (nonatomic,strong) ToApplyForRightTableView9 * rightTableView9;
+
 @property (nonatomic , strong)BaseModel *baseModel;
 
 @property (nonatomic , strong)UILabel *addressLabel1;
@@ -124,6 +133,10 @@
 @property (nonatomic , strong)NSArray *mateAssetPdf;
 //担保人其他资料
 @property (nonatomic , strong)NSArray *guaAssetPdf;
+//代理人身份证正面
+@property (nonatomic , strong)NSArray * AgentFontPic;
+//代理人身份证反面
+@property (nonatomic , strong)NSArray * AgentReversePic;
 
 //选中单元格tag
 @property (nonatomic , assign)NSInteger SelectTag;
@@ -299,6 +312,12 @@
     right7Label8 = [self.view viewWithTag:70008];
     right7Label9 = [self.view viewWithTag:70009];
     right7Label10 = [self.view viewWithTag:70010];
+    
+    right9Label0 = [self.view viewWithTag:90000];
+    right9Label1 = [self.view viewWithTag:90001];
+    right9Label2 = [self.view viewWithTag:90002];
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -721,7 +740,6 @@
             
         }];
     }
-    
     if (self.SelectLeftRow == 5) {
         for (int i = 0; i < [TopModel user].ary6.count; i ++) {
             name = [self WarningContent:[TopModel user].ary6[i] CurrentTag:60000 + i];
@@ -860,7 +878,7 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (refreshTableview.tag == 100) {
-        if (indexPath.row == 7) {
+        if (indexPath.row == 8) {
             [_saveBtn setTitle:@"申请" forState:(UIControlStateNormal)];
 
         }else
@@ -1305,6 +1323,10 @@
     self.rightTableView8.backgroundColor = kWhiteColor;
     self.rightTableView8.tag = 108;
     
+    self.rightTableView9 = [[ToApplyForRightTableView9 alloc]initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, 100000) style:(UITableViewStyleGrouped)];
+    self.rightTableView9.refreshDelegate = self;
+    self.rightTableView9.backgroundColor = kWhiteColor;
+    self.rightTableView9.tag = 109;
     
     self.rightTableView1.model = self.model;
     self.rightTableView2.model = self.model;
@@ -1314,6 +1336,7 @@
     self.rightTableView6.model = self.model;
     self.rightTableView7.model = self.model;
     self.rightTableView8.model = self.model;
+    self.rightTableView9.model = self.model;
     
     [self.view addSubview:self.rightTableView1];
     [self.view addSubview:self.rightTableView2];
@@ -1323,6 +1346,7 @@
     [self.view addSubview:self.rightTableView6];
     [self.view addSubview:self.rightTableView7];
     [self.view addSubview:self.rightTableView8];
+    [self.view addSubview:self.rightTableView9];
     
     MJWeakSelf;
     self.rightTableView2.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
@@ -1380,6 +1404,14 @@
         weakSelf.guaAssetPdf = imgAry;
     };
     
+    self.rightTableView9.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
+        if ([name isEqualToString:@"代理人身份证正面"]) {
+            weakSelf.AgentFontPic = imgAry;
+        }
+        else{
+            weakSelf.AgentReversePic = imgAry;
+        }
+    };
     [self.view bringSubviewToFront:self.rightTableView1];
 
     [SVProgressHUD show];
@@ -1402,6 +1434,7 @@
     self.rightTableView6.frame = CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight);
     self.rightTableView7.frame = CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight);
     self.rightTableView8.frame = CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight);
+    self.rightTableView9.frame = CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight);
     
     right1Label0.text = [NSString stringWithFormat:@"%@",self.model.loanBankName];
     right1Label3.text = [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000];

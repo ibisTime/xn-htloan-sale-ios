@@ -174,7 +174,17 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 //    NSLog(@"点击了 %ld ", indexPath.row);
     if (indexPath.row == 0) {
-        [self.imagePicker picker];
+        if ([self.name isEqualToString:@"代理人身份证正面"] || [self.name isEqualToString:@"代理人身份证反面"]) {
+            if (self.muArray.count >= 1) {
+                [TLAlert alertWithInfo:@"只能选择一张图片"];
+                return;
+            }else{
+                [self.imagePicker picker];
+                return;
+            }
+            
+        }else
+            [self.imagePicker picker];
     }else
     {
         NSMutableArray *muArray = [NSMutableArray array];

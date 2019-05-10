@@ -31,4 +31,6 @@
 
 @property (nonatomic , strong)UIImageView *photoImage;
 
+@property (nonatomic,strong) NSArray *nameArray;
+
 @end

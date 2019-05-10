@@ -3,7 +3,7 @@
 //征信人
 #import "ADPeopleVC.h"
 #import "SurveyDetailsModel.h"
-@interface SurveyACreditVC ()<RefreshDelegate,BaseModelDelegate>
+@interface SurveyACreditVC ()<RefreshDelegate,BaseModelDelegate,SelectButtonDelegate>
 {
 
     NSInteger selectRow;
@@ -16,10 +16,11 @@
 
     NSMutableArray *peopleArray;
 
-    NSString *secondCarReport;
+    
 }
 
 @property (nonatomic , strong)SurveyACreditTableView *tableView;
+@property (nonatomic,strong) NSString * secondCarReport;;
 
 @property (nonatomic , strong)TLImagePicker *imagePicker;
 //银行卡
@@ -73,16 +74,16 @@
 -(void)setImage:(UIImage *)image setData:(NSString *)data
 {
     if (self.selectInt == 0) {
-        secondCarReport = data;
-        self.tableView.secondCarReport = secondCarReport;
+        self.secondCarReport = data;
+        self.tableView.secondCarReport = self.secondCarReport;
     }
     else if (self.selectInt == 50){
         self.idNoFront = data;
-        self.tableView.idNoFront = self.idNoFront;
+        self.tableView.xszFront = self.idNoFront;
     }
     else if (self.selectInt == 51){
         self.idNoReverse = data;
-        self.tableView.idNoReverse = self.idNoReverse;
+        self.tableView.xszReverse = self.idNoReverse;
     }
     
     [self.tableView reloadData];
@@ -96,7 +97,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDADPEOPLENOTICE object:nil];
     [self initTableView];
-    secondCarReport = @"";
+    self.secondCarReport = @"";
     self.tableView.secondCarReport = @"";
     [SVProgressHUD show];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -278,19 +279,27 @@
                          };
             [array addObject:dataDic];
         }
+        self.tableView.xszFront = array[0][@"xszFront"];
+        self.tableView.xszReverse = array[0][@"xszReverse"];
+        self.tableView.secondCarReport = array[0][@"secondCarReport"];
+        
+        self.secondCarReport = array[0][@"secondCarReport"];
+        self.idNoFront = array[0][@"xszFront"];
+        self.idNoReverse =  array[0][@"xszReverse"];
     }
 
     self.tableView.peopleAray = array;
+    
     peopleArray = array;
-    if (self.model) {
-        self.tableView.idNoReverse = self.model.xszReverse;
-        self.tableView.idNoFront = self.model.xszFront;
-        if (peopleArray.count != 0) {
-            self.tableView.secondCarReport = peopleArray[0][@"secondCarReport"];
-        }
+//    if (self.model) {
+//        self.tableView.xszFront = self.model.xszReverse;
+//        self.tableView.xszReverse = self.model.xszFront;
+//        if (peopleArray.count != 0) {
+//            self.tableView.secondCarReport = peopleArray[0][@"secondCarReport"];
+//        }
         
 //        self.tableView.speciesStr = @"二手车";
-    }
+//    }
     
     UITextField *textField1 = [self.view viewWithTag:300];
     if (![[NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000] isEqualToString:@"0.00"]) {
@@ -310,7 +319,7 @@
     {
         _tableView.speciesStr = @"";
     }
-    _tableView.secondCarReport = self.model.secondCarReport;
+//    _tableView.secondCarReport = self.model.secondCarReport;
 //    _tableView.idNoFront = self.model.car
     bizType = [_model.bizType integerValue];
     TLNetworking *http = [TLNetworking new];
@@ -337,6 +346,7 @@
     self.tableView = [[SurveyACreditTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.ButtonDelegate = self;
     _tableView.bankStr = @"";
     _tableView.speciesStr = @"";
     
@@ -357,10 +367,23 @@
     }
     else if ([state isEqualToString:@"delete"]){
         if (sender.tag == 5000) {
-            self.tableView.idNoFront = nil;
+            if (self.tableView.peopleAray.count > 0) {
+//                self.tableView.peopleAray[0][@"xszFront"] = @"";
+                NSMutableDictionary * dic = self.tableView.peopleAray[0];
+                [dic removeObjectForKey:@"xszFront"];
+                [self.tableView.peopleAray replaceObjectAtIndex:0 withObject:dic];
+            }else{
+                self.tableView.xszFront = nil;
+            }
             [self.tableView reloadData];
         }else if (sender.tag == 5001){
-            self.tableView.idNoReverse = nil;
+            if (self.tableView.peopleAray.count > 0) {
+                NSMutableDictionary * dic = self.tableView.peopleAray[0];
+                [dic removeObjectForKey:@"xszReverse"];
+                [self.tableView.peopleAray replaceObjectAtIndex:0 withObject:dic];
+            }
+            else
+                self.tableView.xszReverse = nil;
             [self.tableView reloadData];
         }
         
@@ -368,7 +391,21 @@
     
 }
 
-
+//删除身份证图片
+-(void)selectButtonClick:(UIButton *)sender
+{
+    if (sender.tag == 5000) {
+        
+        
+        _idNoFront = @"";
+        self.tableView.xszFront = _idNoFront;
+    }else
+    {
+        _idNoReverse = @"";
+        self.tableView.xszReverse = _idNoReverse;
+    }
+    [self.tableView reloadData];
+}
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
 
@@ -458,14 +495,14 @@
 //    if ([buttonCode isEqualToString:@"1"]) {
         if (bizType == 1) {
             //        二手车
-            if (peopleArray.count > 0) {
-                if (secondCarReport.length < 1) {
-                    secondCarReport = peopleArray[0][@"secondCarReport"];
-                    self.idNoFront = peopleArray[0][@"xszFront"];
-                    self.idNoReverse = peopleArray[0][@"xszReverse"];
-                }
-            }
-            if (secondCarReport.length < 1) {
+//            if (peopleArray.count > 0) {
+//                if (secondCarReport.length < 1) {
+//                    secondCarReport = peopleArray[0][@"secondCarReport"];
+//                    self.idNoFront = peopleArray[0][@"xszFront"];
+//                    self.idNoReverse = peopleArray[0][@"xszReverse"];
+//                }
+//            }
+            if (self.secondCarReport.length < 1) {
                 [TLAlert alertWithInfo:@"请上传评估报告"];
                 return;
             }
@@ -477,7 +514,7 @@
                 [TLAlert alertWithInfo:@"请上传行驶证反面照片"];
                 return;
             }
-            http.parameters[@"secondCarReport"] = secondCarReport;
+            http.parameters[@"secondCarReport"] = self.secondCarReport;
             http.parameters[@"xszFront"] = self.idNoFront;
             http.parameters[@"xszReverse"] = self.idNoReverse;
         }

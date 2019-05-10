@@ -113,42 +113,28 @@
 
 -(void)confirmButtonClick
 {
-
-    UITextField *textField1 = [self.view viewWithTag:100];
-    UITextField *textField2 = [self.view viewWithTag:101];
-    UITextField *textField3 = [self.view viewWithTag:102];
-
-    if ([date isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请选择抵押日期"];
+    UITextField *textField2 = [self.view viewWithTag:1000];
+    if (textField2.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入车辆抵押补充说明"];
         return;
+    }else{
+        TLNetworking *http = [TLNetworking new];
+        http.code = @"632144";
+        http.showView = self.view;
+        http.parameters[@"code"] = _model.code;
+        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+        http.parameters[@"supplementNote"] = textField2.text;
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:@"提交成功"];
+            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError *error) {
+            WGLog(@"%@",error);
+        }];
     }
+
    
-
-    //
-    NSString *GreenBigBen = [_GreenBigBenArray componentsJoinedByString:@"||"];
-
-
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"632132";
-    http.showView = self.view;
-    http.parameters[@"code"] = _model.code;
-    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"approveUser"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"pledgeBankCommitDatetime"] = date;
-    http.parameters[@"pledgeBankCommitNot"] = textField2.text;
-  
-
-
-    [http postWithSuccess:^(id responseObject) {
-        [TLAlert alertWithSucces:@"提交成功"];
-        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
-        [self.navigationController popViewControllerAnimated:YES];
-
-    } failure:^(NSError *error) {
-        WGLog(@"%@",error);
-    }];
 
 }
 

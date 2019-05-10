@@ -42,6 +42,7 @@
 #import "UIView+Frame.h"
 #import "NSDictionary+Extension.h"
 #import "AdmissionDetailsVC.h"
+#import "AccessSingleModel.h"
 #define TOKEN_ID @"token_id"
 #define USER_ID @"user_id"
 #define USERDATA @"USERDATA"
