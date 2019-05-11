@@ -818,7 +818,23 @@
         }];
     }
     if (self.SelectLeftRow == 7) {
-        [self applyBtnClick];
+        [TLAlert alertWithInfo:@"保存成功"];
+    }
+    if (self.SelectLeftRow == 8) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"632539";
+        http.parameters[@"code"] = self.model.code;
+        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+        http.parameters[@"pledgeUser"] = [ BaseModel convertNull: right9Label0.text];
+        http.parameters[@"pledgeUserIdCard"] =[BaseModel convertNull:right9Label1.text];
+        http.parameters[@"pledgeUserIdCardFront"] = self.AgentFontPic;
+        http.parameters[@"pledgeUserIdCardReverse"] = self.AgentReversePic;
+        http.parameters[@"pledgeAddress"] =[BaseModel convertNull: right9Label2.text];
+        [http postWithSuccess:^(id responseObject) {
+            [self applyBtnClick];
+        } failure:^(NSError *error) {
+            
+        }];
     }
 }
 

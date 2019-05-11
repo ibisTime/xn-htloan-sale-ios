@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol CarSettledUpdataPhotoDelegate <NSObject>
+@protocol CarSettledUpdataPhotodelegate <NSObject>
 
 -(void)CarSettledUpdataPhotoBtn:(UIButton *)sender selectStr:(NSString *)Str;
 
@@ -23,7 +23,7 @@
 @property (nonatomic , copy)NSString *photoimg;
 
 
-@property (nonatomic, assign) id <CarSettledUpdataPhotoDelegate> IdCardDelegate;
+@property (nonatomic, assign) id <CarSettledUpdataPhotodelegate> IdCardDelegate;
 
 @property (nonatomic , strong)UIButton *photoBtn;
 

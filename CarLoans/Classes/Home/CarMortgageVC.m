@@ -18,6 +18,9 @@
 #import "VehiclesInDetailsVC.h"
 //内勤确认
 #import "AgentCheckVC.h"
+
+//确认提交银行
+#import "CheckCarVC.h"
 @interface CarMortgageVC ()<RefreshDelegate>
 @property (nonatomic , strong)AccessSingleTableView *tableView;
 
@@ -77,43 +80,26 @@
         //        insideMortgatee *vc = [[insideMortgatee alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
-        
-        //内勤录入抵押信息
-//        AgentCheckVC *vc = [[AgentCheckVC alloc]init];
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
-        
-//        BankMortgatee *vc = [[BankMortgatee alloc]init];
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
+
         
     }else if ( [model.curNodeCode isEqualToString:@"f1"]){
         //内勤录入抵押信息
+        AgentCheckVC *vc = [[AgentCheckVC alloc]init];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ( [model.curNodeCode isEqualToString:@"f4"]){
+        
         BankMortgatee *vc = [[BankMortgatee alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
         
-        
-    }else if ( [model.curNodeCode isEqualToString:@"f4"]){
-        //        InsideSureVC *vc = [[InsideSureVC alloc] init];
-        //驻行抵押申请
-        insideMortgatee *vc = [[insideMortgatee alloc]init];
-        
-        vc.model = self.model[index];
-        [self.navigationController pushViewController:vc animated:YES];
     }else if ( [model.curNodeCode isEqualToString:@"f9"]){
-        InsideSureVC *vc = [[InsideSureVC alloc] init];
-        //内勤确认
-        //        insideMortgatee *vc = [[insideMortgatee alloc]init];
+        
+        CheckCarVC * vc = [[CheckCarVC alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }
-//    else{
-//        InputInformationMortgageVC *vc = [[InputInformationMortgageVC alloc]init];
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
-//        
-//    }
+
     
 }
 

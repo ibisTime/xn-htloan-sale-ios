@@ -108,10 +108,11 @@
                                @"信贷专员",
                                @"内勤专员",
                                @"快递状态"];
+        
         InformationArray = @[
                              [NSString stringWithFormat:@"%@",[[BaseModel user]note:dataTransferModel.fromNodeCode]],
                              [NSString stringWithFormat:@"%@",[[BaseModel user]note:dataTransferModel.toNodeCode]],
-                             [NSString stringWithFormat:@"%@",[[BaseModel user]note:dataTransferModel.sendType]],
+                             [NSString stringWithFormat:@"%@",[[BaseModel user]value:dataTransferModel.sendType]],
                              [NSString stringWithFormat:@"%@",[[BaseModel user] setParentKey:@"kd_company" setDkey:dataTransferModel.logisticsCompany]],
                              [NSString stringWithFormat:@"%@",dataTransferModel.logisticsCode],
                              [NSString stringWithFormat:@"%@",dataTransferModel.senderName],
@@ -135,7 +136,7 @@
         InformationArray = @[
                              [NSString stringWithFormat:@"%@",[[BaseModel user]note:dataTransferModel.fromNodeCode]],
                              [NSString stringWithFormat:@"%@",[[BaseModel user]note:dataTransferModel.toNodeCode]],
-                             [NSString stringWithFormat:@"%@",[[BaseModel user]note:dataTransferModel.sendType]],
+                             [NSString stringWithFormat:@"%@",[[BaseModel user]value:dataTransferModel.sendType]],
                              [NSString stringWithFormat:@"%@",dataTransferModel.senderName],
                              [NSString stringWithFormat:@"%@",dataTransferModel.receiverName],
                              [NSString stringWithFormat:@"%@",dataTransferModel.teamName],

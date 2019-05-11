@@ -64,11 +64,8 @@
     static NSString *rid=@"cell1";
     
     TransferCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-    
     if(cell==nil){
-        
         cell=[[TransferCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
-        
     }
     cell.dataTransferModel = self.model[indexPath.row];
     

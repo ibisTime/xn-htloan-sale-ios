@@ -280,7 +280,7 @@
                 InputfilesVC *vc = [InputfilesVC new];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.title = @"档案入档";
-                vc.curNodeCodeList = @[@"h1",@"h2",@"h3"];
+                vc.curNodeCodeList = @[@"e9",@"e10",@"f13",@"f14"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

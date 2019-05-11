@@ -79,7 +79,6 @@
         NSArray * array = TaskArray[i];
         
         for (int j = 0; j < array.count; j ++) {
-//            NSArray * array = TaskArray[j];
             
             UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + j%5*25, 60, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:GaryTextColor];
             nameLabel.text = nameArray[j];
@@ -104,6 +103,53 @@
     }
 
     _photoBtn.frame = CGRectMake(15, 60 + TaskArray.count * 145, SCREEN_WIDTH - 30, 135);
+}
+
+-(void)setFileArray:(NSArray *)FileArray{
+    NSArray *nameArray = @[@"文件内容:",
+                           @"份数 :",
+                           @"存放人:",
+                           @"存放时间:",
+                           @"备注"];
+    for (int i = 0; i < FileArray.count; i ++ ) {
+        
+        
+        
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15, 60 + i % FileArray.count * 145, SCREEN_WIDTH - 30, 135)];
+        backView.backgroundColor = BackColor;
+        kViewBorderRadius(backView, 2, 1, HGColor(230, 230, 230));
+        [self addSubview:backView];
+//        NSArray * array = FileArray[i];
+        NSDictionary * dic = @{@"content":FileArray[i][@"content"],@"fileCount":FileArray[i][@"fileCount"],@"operatorName":FileArray[i][@"operatorName"],@"remark":FileArray[i][@"remark"],@"depositDateTime":[FileArray[i][@"depositDateTime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]};
+        
+        
+        NSLog(@" array.count %ld", dic.count);
+        for (int j = 0; j < dic.count; j ++) {
+            
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + j%5*25, 60, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:GaryTextColor];
+            nameLabel.text = nameArray[j];
+            [backView addSubview:nameLabel];
+            
+            UILabel *informationLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 10+j%5*25, SCREEN_WIDTH - 120, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:TextColor];
+            NSArray *detailsArray = @[
+                                      [NSString stringWithFormat:@"%@",dic[@"content"]],
+                                      [NSString stringWithFormat:@"%@",dic[@"fileCount"]],
+                                      [NSString stringWithFormat:@"%@",dic[@"operatorName"]],
+                                      [NSString stringWithFormat:@"%@",dic[@"remark"]],
+                                      [NSString stringWithFormat:@"%@",dic[@"depositDateTime"]]
+                                      ];
+            informationLabel.text = detailsArray[j];
+            [backView addSubview:informationLabel];
+        }
+        
+        UIButton *backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        backButton.frame = CGRectMake(15, 60 + i % FileArray.count * 145, SCREEN_WIDTH - 30, 135);
+        [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        backButton.tag = 1234 + i;
+        [self addSubview:backButton];
+    }
+    
+    _photoBtn.frame = CGRectMake(15, 60 + FileArray.count * 145, SCREEN_WIDTH - 30, 135);
 }
 -(void)backButtonClick:(UIButton *)sender
 {

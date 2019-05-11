@@ -172,7 +172,18 @@
     }
     return name;
 }
-
+-(NSString *)value:(NSString *)code{
+    NSString * name;
+    NSArray * array =[USERDEFAULTS objectForKey:BOUNCEDDATA];
+    for (int i = 0; i < array.count; i ++) {
+        if ([array[i][@"parentKey"] isEqualToString:@"send_type"]) {
+            if([array[i][@"dkey"] isEqualToString:code]){
+                name = array[i][@"dvalue"];
+            }
+        }
+    }
+    return name;
+}
 
 -(void)ReturnsParentKeyAnArray:(NSString *)parentKey
 {

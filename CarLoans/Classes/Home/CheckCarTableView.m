@@ -80,6 +80,37 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 1) {
+        return 100;
+    }
+    return 0.01;
+}
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 1) {
+        UIView *headView = [[UIView alloc]init];
+        
+        UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        confirmButton.frame = CGRectMake(20, 30, SCREEN_WIDTH - 40, 50);
+        [confirmButton setTitle:@"确认" forState:(UIControlStateNormal)];
+        confirmButton.backgroundColor = MainColor;
+        kViewRadius(confirmButton, 5);
+        confirmButton.titleLabel.font = HGfont(18);
+        [confirmButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [headView addSubview:confirmButton];
+        
+        return headView;
+    }
+    return nil;
+}
+-(void)confirmButtonClick:(UIButton *)sender{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"confirm"];
+    }
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {
         [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];

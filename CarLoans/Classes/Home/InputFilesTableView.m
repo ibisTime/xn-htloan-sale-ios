@@ -53,9 +53,9 @@
     cell.CarMortgageModel = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [cell.button setTitle:[[BaseModel user]note:model.curNodeCode] forState:(UIControlStateNormal)];
+    [cell.button setTitle:[[BaseModel user]note:model.enterNodeCode] forState:(UIControlStateNormal)];
     
-    if ([self.model[indexPath.row].curNodeCode isEqualToString:@"e6"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f1"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f4"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f9"]) {
+    if ([self.model[indexPath.row].enterNodeCode isEqualToString:@"e9"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"e10"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"f13"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"f14"]) {
         cell.button.hidden = NO;
     }
     else
@@ -63,7 +63,7 @@
     
     [cell.button.titleLabel sizeToFit];
     
-    cell.button.frame = CGRectMake(SCREEN_WIDTH - cell.button.titleLabel.width - 25, 290, cell.button.titleLabel.width + 10, 30);
+    cell.button.frame = CGRectMake(SCREEN_WIDTH - cell.button.titleLabel.width - 25, 270, cell.button.titleLabel.width + 10, 30);
     
     [cell.button setTitle:[[BaseModel user]note:model.curNodeCode] forState:(UIControlStateNormal)];
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -101,7 +101,7 @@
     //
     //    }
     if ([self.model[indexPath.row].curNodeCode isEqualToString:@"e6"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f1"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f4"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f9"]) {
-        return 330;
+        return 380;
     }
     return 300;
     

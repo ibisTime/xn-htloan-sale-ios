@@ -8,6 +8,7 @@
 
 #import "InputfilesVC.h"
 #import "InputFilesTableView.h"
+#import "InputVC.h"
 @interface InputfilesVC ()<RefreshDelegate>
 @property (nonatomic,strong) InputFilesTableView * tableView;
 @end
@@ -16,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDADPEOPLENOTICE object:nil];
     [self initTableView];
     [self loaddata];
     // Do any additional setup after loading the view.
@@ -29,7 +31,16 @@
     self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
 }
+- (void)InfoNotificationAction:(NSNotification *)notification
+{
+    [self loaddata];
+}
 
+#pragma mark -- 删除通知
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDADPEOPLENOTICE object:nil];
+}
 -(void)loaddata{
 
     CarLoansWeakSelf;
@@ -39,7 +50,7 @@
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
-    helper.parameters[@"curNodeCodeList"] = self.curNodeCodeList;
+    helper.parameters[@"enterNodeCodeList"] = self.curNodeCodeList;
     //    helper.parameters[@"isMortgage"] = [NSString stringWithFormat:@"%d",self.isMortgage];
     
     helper.isList = NO;
@@ -80,7 +91,7 @@
         
         //        NSArray *array = @[@"002_20",@"002_21",@"002_33",@"002_34"];
         
-        helper.parameters[@"curNodeCodeList"] = self.curNodeCodeList;
+        helper.parameters[@"curNodeCodeList"] = weakSelf.curNodeCodeList;
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             //去除没有的币种
@@ -105,5 +116,9 @@
     }];
     [self.tableView beginRefreshing];
 }
-
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
+    InputVC * vc = [[InputVC alloc]init];
+    vc.model = self.model[index];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end

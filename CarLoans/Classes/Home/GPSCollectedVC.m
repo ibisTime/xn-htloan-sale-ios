@@ -77,7 +77,6 @@
 {
     DataTransferModel *model = self.model[index];
     if ([model.status isEqualToString:@"0"] || [model.status isEqualToString:@"3"]) {
-        return;
         SenderVC *vc = [[SenderVC alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];

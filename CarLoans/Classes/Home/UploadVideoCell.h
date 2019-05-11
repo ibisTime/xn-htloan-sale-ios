@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol CustomCollectionDelegate1 <NSObject>
+@protocol CustomCollectiondelegate1 <NSObject>
 
 - (void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString*)str;
 
@@ -19,7 +19,7 @@
 @interface UploadVideoCell : UITableViewCell
 
 
-@property (nonatomic, assign) id<CustomCollectionDelegate1> delegate;
+@property (nonatomic, assign) id<CustomCollectiondelegate1> delegate;
 @property (nonatomic,strong)UICollectionView *collectionView;
 @property (nonatomic,strong)NSArray *collectDataArray;
 @property (nonatomic , copy)NSString *selectStr;

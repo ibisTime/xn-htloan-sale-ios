@@ -31,7 +31,7 @@
         [self registerClass:[GPSInfomationCell class] forCellReuseIdentifier:GPSInformation];
         [self registerClass:[GPSDetailaCell class] forCellReuseIdentifier:GPSDetail];
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-
+        [self registerClass:[TransferCell class] forCellReuseIdentifier:@"cell1"];
     }
     return self;
 }
@@ -61,17 +61,14 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     static NSString *rid=@"cell1";
-    
     TransferCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-    
     if(cell==nil){
-        
-        cell=[[TransferCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
-        
+        cell=[[TransferCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
     }
-    cell.dataTransferModel = self.model[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.dataTransferModel = self.model[indexPath.row];
     if ([self.state isEqualToString:@"send"]) {
         if ([self.model[indexPath.row].status isEqualToString:@"0"]) {
             [cell.button setTitle:@"发件" forState:(UIControlStateNormal)];
@@ -96,6 +93,7 @@
         else
             cell.button.hidden = YES;
     }
+    cell.button.tag = indexPath.row;
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     
     return cell;
@@ -121,17 +119,63 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.model[indexPath.row].status isEqualToString:@"0"] || [self.model[indexPath.row].status isEqualToString:@"1"] || [self.model[indexPath.row].status isEqualToString:@"3"]) {
-        if (!self.model[indexPath.row].sendType) {
-            return 330;
+//    if ([self.model[indexPath.row].status isEqualToString:@"0"] || [self.model[indexPath.row].status isEqualToString:@"1"] || [self.model[indexPath.row].status isEqualToString:@"3"]) {
+//        if (!self.model[indexPath.row].sendType) {
+//            return 330;
+//        }
+//        if ([self.model[indexPath.row].sendType isEqualToString:@"1"]) {
+//            return  395;
+//        }
+//        return 330+60+60;
+//    }
+//    else
+//        return 330+60;
+    
+    if ([self.model[indexPath.row].status isEqualToString:@"0"]) {
+        return 330;
+    }else{
+        if ([self.model[indexPath.row].sendType isEqualToString:@"1"]){
+            return 390;
         }
-        if ([self.model[indexPath.row].sendType isEqualToString:@"1"]) {
-            return  495;
-        }
-        return 330+60;
+        else
+            return 440;
     }
-    else
-        return 330+60+60;
+    
+    
+    
+    
+    
+//    if ([self.model[indexPath.row].status isEqualToString:@"0"]) {
+//        return 330;
+//    }
+//    if ([self.model[indexPath.row].status isEqualToString:@"1"]) {
+//        if (([self.model[indexPath.row].sendType isEqualToString:@"1"])) {
+//            return 330;
+//        }
+//        else{
+//            return 440;
+//        }
+//    }
+//    if (([self.model[indexPath.row].status isEqualToString:@"2"])) {
+//        if (([self.model[indexPath.row].sendType isEqualToString:@"1"])) {
+//            return 480;
+//        }
+//        else{
+//            return 440;
+//        }
+//    }
+//    if (([self.model[indexPath.row].status isEqualToString:@"3"])) {
+//        if (([self.model[indexPath.row].sendType isEqualToString:@"1"])) {
+//            return 330;
+//        }
+//        else{
+//            return 440;
+//        }
+//    }
+//
+//    return 330;
+    // 0待发件 1已发件代收件 2 已收件审核 3已收件代补件
+    //sendtype 1线下 2快递
     
 //    DataTransferModel *model = self.model[indexPath.row];
 //    if (self.isGps == YES) {

@@ -82,7 +82,7 @@
     if(cell==nil){
         cell=[[ToApplyForEncapsulationCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
     }
-    NSArray * arr =  @[@"抵押代理人"];
+    NSArray * arr =  @[@"抵押地点"];
     cell.topLbl.text = arr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.type = InputType;

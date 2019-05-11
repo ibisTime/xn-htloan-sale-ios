@@ -103,20 +103,19 @@
         SenderVC *vc = [[SenderVC alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
-    }else
-    {
-        ReceivesAuditVC *vc = [[ReceivesAuditVC alloc]init];
-        vc.model = self.model[index];
-        [self.navigationController pushViewController:vc animated:YES];
     }
+//    else
+//    {
+//        ReceivesAuditVC *vc = [[ReceivesAuditVC alloc]init];
+//        vc.model = self.model[index];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 
 }
 
 -(void)LoadData
 {
-
     CarLoansWeakSelf;
-
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632155";
     helper.parameters[@"type"] = @"1";

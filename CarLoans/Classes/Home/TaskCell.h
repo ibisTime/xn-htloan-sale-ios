@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , strong)UIButton *deleteBtn;
 @property (nonatomic , strong)NSArray *TaskArray;
+@property (nonatomic,strong) NSArray * FileArray;
 
 @property (nonatomic , copy)NSString *Taskname;
 

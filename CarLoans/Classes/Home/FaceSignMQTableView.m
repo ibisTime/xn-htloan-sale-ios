@@ -11,7 +11,7 @@
 #define UploadVideo @"UploadVideoCell"
 #import "CollectionViewCell.h"
 #define CarSettledUpdataPhoto @"CollectionViewCell"
-@interface FaceSignMQTableView ()<UITableViewDataSource,UITableViewDelegate,CustomCollectionDelegate1,CustomCollectionDelegate>
+@interface FaceSignMQTableView ()<UITableViewDataSource,UITableViewDelegate,CustomCollectiondelegate1,CustomCollectiondelegate>
 
 @end
 

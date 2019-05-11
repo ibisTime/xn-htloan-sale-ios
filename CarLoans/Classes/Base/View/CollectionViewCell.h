@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CollectionViewCell.h"
 
-@protocol CustomCollectionDelegate <NSObject>
+@protocol CustomCollectiondelegate <NSObject>
 
 - (void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString*)str;
 
 -(void)UploadImagesBtn:(UIButton *)sender str:(NSString *)str;
 
 @end
+
 
 @interface CollectionViewCell : UITableViewCell
 

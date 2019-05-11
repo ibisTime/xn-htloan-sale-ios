@@ -47,7 +47,7 @@
         return 8;
     }
     else if (section == 1){
-        return 6;
+        return 7;
     }
     return 1;
 }
@@ -110,13 +110,13 @@
             cell.tag = 1000 + indexPath.row;
             return cell;
         }
-        else if (indexPath.row == 4 || indexPath.row == 5){
+        else if (indexPath.row == 4 || indexPath.row == 5|| indexPath.row == 6){
             static NSString *rid=@"cell123";
             TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
             if(cell==nil){
                 cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
             }
-            NSArray * arr = @[@"*代理人",@"*代理人身份证号"];
+            NSArray * arr = @[@"*抵押地点",@"*代理人",@"*代理人身份证号"];
             cell.name = arr[indexPath.row - 4];
             cell.nameTextField.tag = 1000+indexPath.row;
             return cell;
@@ -221,21 +221,21 @@
             int result;
             numberToRound = (_BankVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
+            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 15;
         }
         if (indexPath.section == 4) {
             float numberToRound;
             int result;
             numberToRound = (_CompanyVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
+            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 15;
         }
         if (indexPath.section == 5) {
             float numberToRound;
             int result;
             numberToRound = (_OtherVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
+            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 15;
         }
 //    }
 //    else
@@ -245,21 +245,21 @@
             int result;
             numberToRound = (self.BankSignArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
+            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 15;
         }
         if (indexPath.section == 7) {
             float numberToRound;
             int result;
             numberToRound = (self.BankContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
+            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 15;
         }
         if (indexPath.section == 8) {
             float numberToRound;
             int result;
             numberToRound = (self.CompanyContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
+            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 15;
         }
 //        if (indexPath.section == 9) {
 //            float numberToRound;

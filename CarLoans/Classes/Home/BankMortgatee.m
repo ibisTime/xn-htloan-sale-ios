@@ -164,7 +164,7 @@
     
  
     switch (_selectInt) {
-        case 1:
+        case 3:
         {
             if (self.BankVideoArray.count == 0) {
                 self.BankVideoArray = [NSMutableArray array];
@@ -173,7 +173,7 @@
             self.tableView.BankVideoArray = self.BankVideoArray;
         }
             break;
-        case 2:
+        case 4:
         {
             if (self.CompanyVideoArray.count == 0) {
                 self.CompanyVideoArray = [NSMutableArray array];
@@ -182,7 +182,7 @@
             self.tableView.CompanyVideoArray = self.CompanyVideoArray;
         }
             break;
-        case 3:
+        case 5:
         {
             if (self.OtherVideoArray.count == 0) {
                 self.OtherVideoArray = [NSMutableArray array];
@@ -191,7 +191,7 @@
             self.tableView.OtherVideoArray = self.OtherVideoArray;
         }
             break;
-        case 4:
+        case 6:
         {
             if (self.BankSignArray.count == 0) {
                 self.BankSignArray = [NSMutableArray array];
@@ -200,7 +200,7 @@
             self.tableView.BankSignArray = self.BankSignArray;
         }
             break;
-        case 5:
+        case 7:
         {
             if (self.BankContractArray.count == 0) {
                 self.BankContractArray = [NSMutableArray array];
@@ -210,7 +210,7 @@
             
         }
             break;
-        case 6:
+        case 8:
         {
             if (self.CompanyContractArray.count == 0) {
                 self.CompanyContractArray = [NSMutableArray array];
@@ -345,7 +345,8 @@
     }else
     {
         NSLog(@"删除 %ld",index);
-        if (index == 1)
+        NSLog(@"删除了 %ld",sender.tag);
+        if (index == 3)
         {
             [self.BankVideoArray removeObjectAtIndex:sender.tag - 1000];
             if (self.BankVideoDataArray.count > 0) {
@@ -353,7 +354,7 @@
                 
             }
         }
-        else if (index == 2)
+        else if (index == 4)
         {
             [self.CompanyVideoArray removeObjectAtIndex:sender.tag - 1000];
             if (self.CompanyVideoDataArray.count > 0) {
@@ -361,7 +362,7 @@
                 
             }
         }
-        else if (index == 3)
+        else if (index == 5)
         {
             
             [self.OtherVideoArray removeObjectAtIndex:sender.tag - 1000];
@@ -370,7 +371,7 @@
                 
             }
         }
-        else if (index == 4)
+        else if (index == 6)
         {
             
             if (self.BankSignArray.count > 0) {
@@ -378,7 +379,7 @@
                 
             }
         }
-        else if (index == 5)
+        else if (index == 7)
         {
             
             if (self.BankContractArray.count > 0) {
@@ -386,7 +387,7 @@
                 
             }
         }
-        else if (index == 6)
+        else if (index == 8)
         {
             
             if (self.CompanyContractArray.count > 0) {
@@ -420,51 +421,54 @@
         [self confirmButtonClick];
         return;
     }
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"632123";
-    http.showView = self.view;
-    //    [_interviewPicArray componentsJoinedByString:@"||"]
-    http.parameters[@"code"] = _model.code;
-    // http.parameters[@"code"] = _model.code; 车牌号
-
-    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"bankVideo"] = [_BankVideoDataArray componentsJoinedByString:@"||"];
-    http.parameters[@"companyVideo"] = [_CompanyVideoDataArray componentsJoinedByString:@"||"];
-    if (sender.tag == 10001) {
-        http.parameters[@"isSend"] = @"0";
-        
-    }else{
-        http.parameters[@"isSend"] = @"1";
-        
-    }
-    
-    http.parameters[@"otherVideo"] = [_OtherVideoDataArray componentsJoinedByString:@"||"];
-    http.parameters[@"bankPhoto"] = [self.BankSignArray componentsJoinedByString:@"||"];
-    http.parameters[@"bankContract"] = [self.BankContractArray componentsJoinedByString:@"||"];;
-    http.parameters[@"companyContract"] = [self.CompanyContractArray componentsJoinedByString:@"||"];;
-    http.parameters[@"advanceFundAmountPdf"] = [self.MoneyArray componentsJoinedByString:@"||"];;
-    http.parameters[@"interviewOtherPdf"] = [self.otherArray componentsJoinedByString:@"||"];;
-    
-    [http postWithSuccess:^(id responseObject) {
-        if (sender.tag == 10001) {
-            [TLAlert alertWithSucces:@"保存成功"];
-            
-        }else{
-            [TLAlert alertWithSucces:@"面签成功"];
-            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
-            [[NSNotificationCenter defaultCenter] postNotification:notification];
-        }
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSError *error) {
-        WGLog(@"%@",error);
-    }];
+//    TLNetworking *http = [TLNetworking new];
+//    http.code = @"632123";
+//    http.showView = self.view;
+//    //    [_interviewPicArray componentsJoinedByString:@"||"]
+//    http.parameters[@"code"] = _model.code;
+//    // http.parameters[@"code"] = _model.code; 车牌号
+//
+//    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+//    http.parameters[@"bankVideo"] = [_BankVideoDataArray componentsJoinedByString:@"||"];
+//    http.parameters[@"companyVideo"] = [_CompanyVideoDataArray componentsJoinedByString:@"||"];
+//    if (sender.tag == 10001) {
+//        http.parameters[@"isSend"] = @"0";
+//
+//    }else{
+//        http.parameters[@"isSend"] = @"1";
+//
+//    }
+//
+//    http.parameters[@"otherVideo"] = [_OtherVideoDataArray componentsJoinedByString:@"||"];
+//    http.parameters[@"bankPhoto"] = [self.BankSignArray componentsJoinedByString:@"||"];
+//    http.parameters[@"bankContract"] = [self.BankContractArray componentsJoinedByString:@"||"];;
+//    http.parameters[@"companyContract"] = [self.CompanyContractArray componentsJoinedByString:@"||"];;
+//    http.parameters[@"advanceFundAmountPdf"] = [self.MoneyArray componentsJoinedByString:@"||"];;
+//    http.parameters[@"interviewOtherPdf"] = [self.otherArray componentsJoinedByString:@"||"];;
+//    http.parameters[@"pledgeUserIdCardFront"] = self.AgentidNoFront;
+//    http.parameters[@"pledgeUserIdCardReverse"] = self.AgentidNoReverse;
+//
+//    [http postWithSuccess:^(id responseObject) {
+//        if (sender.tag == 10001) {
+//            [TLAlert alertWithSucces:@"保存成功"];
+//
+//        }else{
+//            [TLAlert alertWithSucces:@"面签成功"];
+//            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
+//            [[NSNotificationCenter defaultCenter] postNotification:notification];
+//        }
+//
+//        [self.navigationController popViewControllerAnimated:YES];
+//    } failure:^(NSError *error) {
+//        WGLog(@"%@",error);
+//    }];
 }
 
 
 - (void)initTableView {
     self.tableView = [[InsideMortgageTB alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
+    self.tableView.AgentDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
@@ -488,10 +492,41 @@
 -(void)confirmButtonClick
 {
     
-    UITextField *textField1 = [self.view viewWithTag:106];
-    UITextField *textField2 = [self.view viewWithTag:107];
-    UITextField *textField3 = [self.view viewWithTag:108];
-
+    UITextField *textField1 = [self.view viewWithTag:1001];//落户地点
+    UITextField *textField2 = [self.view viewWithTag:1002];//车牌号
+    UITextField *textField3 = [self.view viewWithTag:1004];//抵押地点
+    UITextField *textField4 = [self.view viewWithTag:1005];//代理人
+    UITextField *textField5 = [self.view viewWithTag:1006];//代理身份证号
+    
+    
+    if ([textField1.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入落户地点"];
+        return;
+    }
+    if ([textField2.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入车牌号"];
+        return;
+    }
+    if ([textField3.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入抵押地点"];
+        return;
+    }
+    if ([textField4.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入代理人姓名"];
+        return;
+    }
+    if ([textField5.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入代理人身份证号"];
+        return;
+    }
+    if (self.AgentidNoFront.length == 0) {
+        [TLAlert alertWithInfo:@"请上传代理人身份证正面"];
+        return;
+    }
+    if (self.AgentidNoReverse.length == 0) {
+        [TLAlert alertWithInfo:@"请上传代理人身份证反面"];
+        return;
+    }
    
     if (self.BankVideoArray.count == 0) {
         [TLAlert alertWithInfo:@"请上传绿大本扫描件图片"];
@@ -522,30 +557,33 @@
     }
     
    
-    if ([textField2.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入抵押地点"];
-        return;
-    }
+    
     
     //
-    NSString *GreenBigBen = [_GreenBigBenArray componentsJoinedByString:@"||"];
+//    NSString *GreenBigBen = [_GreenBigBenArray componentsJoinedByString:@"||"];
     
     
     TLNetworking *http = [TLNetworking new];
     http.code = @"632133";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
-    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"carBigSmj"] = [self.BankVideoArray componentsJoinedByString:@"||"];
-    http.parameters[@"carKey"] = [self.CompanyVideoArray componentsJoinedByString:@"||"];
-    http.parameters[@"carNumber"] = textField2.text;
-    http.parameters[@"carPd"] = [self.OtherVideoArray componentsJoinedByString:@"||"];
+    http.parameters[@"carNumber"] = [BaseModel convertNull:textField2.text];
     http.parameters[@"carRegcerti"] = [self.BankSignArray componentsJoinedByString:@"||"];
+    http.parameters[@"carPd"] = [self.OtherVideoArray componentsJoinedByString:@"||"];
+    http.parameters[@"carKey"] = [self.CompanyVideoArray componentsJoinedByString:@"||"];
+    http.parameters[@"carBigSmj"] = [self.BankVideoArray componentsJoinedByString:@"||"];
     http.parameters[@"carXszSmj"] = [self.BankContractArray componentsJoinedByString:@"||"];
     http.parameters[@"dutyPaidProveSmj"] = [self.CompanyContractArray componentsJoinedByString:@"||"];
+    http.parameters[@"pledgeDatetime"] = self.policyDueDate;
+    http.parameters[@"carSettleDatetime"] = self.policyDatetime;
+    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+    http.parameters[@"settleAddress"] = [BaseModel convertNull:textField1.text];
+    http.parameters[@"pledgeAddress"] = [BaseModel convertNull:textField3.text];
+    http.parameters[@"pledgeUser"] = [BaseModel convertNull:textField4.text];
+    http.parameters[@"pledgeUserIdCard"] = [BaseModel convertNull:textField5.text];
+    http.parameters[@"pledgeUserIdCardFront"] = self.AgentidNoFront;
+    http.parameters[@"pledgeUserIdCardReverse"] = self.AgentidNoReverse;
 
-
-    
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"内勤录入成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
@@ -579,7 +617,7 @@
                 NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
                 ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
                 cell.details = date;
-                self.policyDatetime = date;
+                self.policyDueDate = date;
                 
             }];
             datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
@@ -590,6 +628,7 @@
     }
 }
 -(void)selectButtonClick:(UIButton *)sender{
+    NSLog(@"点击%ld",sender.tag);
     if (sender.tag == 5000) {
         _AgentidNoFront = @"";
         self.tableView.idNoFront = _AgentidNoFront;

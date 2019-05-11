@@ -283,7 +283,7 @@
 -(void)setCarMortgageModel:(AccessSingleModel *)CarMortgageModel{
     {
         _codeLabel.text = [NSString stringWithFormat:@"%@",CarMortgageModel.code];
-        _stateLabel.text = [[BaseModel user]note:CarMortgageModel.curNodeCode];
+        _stateLabel.text = [[BaseModel user]note:CarMortgageModel.enterNodeCode];
         
         NSLog(@"%@",[[BaseModel user]note:CarMortgageModel.curNodeCode]);
         NSArray *nameArray = @[

@@ -274,6 +274,11 @@
 		36C02E0E22802FE2007EC7CF /* CheckInstallationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E0D22802FE2007EC7CF /* CheckInstallationTableView.m */; };
 		36C02E1122803C5D007EC7CF /* CheckGPSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E1022803C5D007EC7CF /* CheckGPSVC.m */; };
 		36C02E1422803C77007EC7CF /* CheckGPSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E1322803C77007EC7CF /* CheckGPSTableView.m */; };
+		36E6FF1A2286B12B00CD2744 /* InputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E6FF192286B12B00CD2744 /* InputVC.m */; };
+		36E6FF1D2286B14000CD2744 /* InputTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E6FF1C2286B14000CD2744 /* InputTableView.m */; };
+		36E6FF232286B4FF00CD2744 /* AddFilesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E6FF222286B4FF00CD2744 /* AddFilesVC.m */; };
+		36E6FF262286B52900CD2744 /* AddFilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E6FF252286B52900CD2744 /* AddFilesTableView.m */; };
+		36E6FF292286CAA200CD2744 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E6FF282286CAA200CD2744 /* FileModel.m */; };
 		36F9E721228273DC009DAC65 /* CarMortgageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F9E720228273DC009DAC65 /* CarMortgageVC.m */; };
 		36F9E7272282837C009DAC65 /* InputfilesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F9E7262282837C009DAC65 /* InputfilesVC.m */; };
 		36F9E72A2282839A009DAC65 /* InputFilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F9E7292282839A009DAC65 /* InputFilesTableView.m */; };
@@ -1033,6 +1038,16 @@
 		36C02E1022803C5D007EC7CF /* CheckGPSVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckGPSVC.m; sourceTree = "<group>"; };
 		36C02E1222803C77007EC7CF /* CheckGPSTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckGPSTableView.h; sourceTree = "<group>"; };
 		36C02E1322803C77007EC7CF /* CheckGPSTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckGPSTableView.m; sourceTree = "<group>"; };
+		36E6FF182286B12B00CD2744 /* InputVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputVC.h; sourceTree = "<group>"; };
+		36E6FF192286B12B00CD2744 /* InputVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputVC.m; sourceTree = "<group>"; };
+		36E6FF1B2286B14000CD2744 /* InputTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputTableView.h; sourceTree = "<group>"; };
+		36E6FF1C2286B14000CD2744 /* InputTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputTableView.m; sourceTree = "<group>"; };
+		36E6FF212286B4FF00CD2744 /* AddFilesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFilesVC.h; sourceTree = "<group>"; };
+		36E6FF222286B4FF00CD2744 /* AddFilesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFilesVC.m; sourceTree = "<group>"; };
+		36E6FF242286B52900CD2744 /* AddFilesTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFilesTableView.h; sourceTree = "<group>"; };
+		36E6FF252286B52900CD2744 /* AddFilesTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFilesTableView.m; sourceTree = "<group>"; };
+		36E6FF272286CAA100CD2744 /* FileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileModel.h; sourceTree = "<group>"; };
+		36E6FF282286CAA200CD2744 /* FileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileModel.m; sourceTree = "<group>"; };
 		36F9E71F228273DC009DAC65 /* CarMortgageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarMortgageVC.h; sourceTree = "<group>"; };
 		36F9E720228273DC009DAC65 /* CarMortgageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarMortgageVC.m; sourceTree = "<group>"; };
 		36F9E7252282837C009DAC65 /* InputfilesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputfilesVC.h; sourceTree = "<group>"; };
@@ -3032,9 +3047,19 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		36E6FF2A2286CAA600CD2744 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36E6FF272286CAA100CD2744 /* FileModel.h */,
+				36E6FF282286CAA200CD2744 /* FileModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		36F9E7222282834B009DAC65 /* InputFiles档案入档 */ = {
 			isa = PBXGroup;
 			children = (
+				36E6FF2A2286CAA600CD2744 /* Model */,
 				36F9E72422828365009DAC65 /* View */,
 				36F9E7232282835E009DAC65 /* Controller */,
 			);
@@ -3046,6 +3071,10 @@
 			children = (
 				36F9E7252282837C009DAC65 /* InputfilesVC.h */,
 				36F9E7262282837C009DAC65 /* InputfilesVC.m */,
+				36E6FF182286B12B00CD2744 /* InputVC.h */,
+				36E6FF192286B12B00CD2744 /* InputVC.m */,
+				36E6FF212286B4FF00CD2744 /* AddFilesVC.h */,
+				36E6FF222286B4FF00CD2744 /* AddFilesVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -3055,6 +3084,10 @@
 			children = (
 				36F9E7282282839A009DAC65 /* InputFilesTableView.h */,
 				36F9E7292282839A009DAC65 /* InputFilesTableView.m */,
+				36E6FF1B2286B14000CD2744 /* InputTableView.h */,
+				36E6FF1C2286B14000CD2744 /* InputTableView.m */,
+				36E6FF242286B52900CD2744 /* AddFilesTableView.h */,
+				36E6FF252286B52900CD2744 /* AddFilesTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -5113,6 +5146,7 @@
 				1F151A8E2272AB14002B7EDA /* DetailsTableView4.m in Sources */,
 				B82C71052195AF1700742EE8 /* TLTextField.m in Sources */,
 				7A13AEC521104E4400B8F785 /* QNEtag.m in Sources */,
+				36E6FF292286CAA200CD2744 /* FileModel.m in Sources */,
 				1F1EF29F2265CD6F00EADA25 /* CollectionCell1.m in Sources */,
 				1F1EF1F222647AC900EADA25 /* AnnouncementVC.m in Sources */,
 				B82ED84821D248960019AAE0 /* CLTextFiled.m in Sources */,
@@ -5140,6 +5174,7 @@
 				1F651A6B22784B7200EFB78B /* JHAddressToolBar.m in Sources */,
 				1F651AAC227B393100EFB78B /* MakeCardApplyTableView.m in Sources */,
 				1F151A852272AB14002B7EDA /* DetailsTableView10.m in Sources */,
+				36E6FF232286B4FF00CD2744 /* AddFilesVC.m in Sources */,
 				7A13AEC921104E4400B8F785 /* QNSystem.m in Sources */,
 				7A13AE1D210F26A100B8F785 /* IQUIView+Hierarchy.m in Sources */,
 				7AB29E9620FD8EB30014FCB3 /* UILable+convience.m in Sources */,
@@ -5294,6 +5329,7 @@
 				1F00AE782270045A00A8E15D /* NSString+Check.m in Sources */,
 				1F1EF2DA2266D6E300EADA25 /* AdmissionDetailsTableView6.m in Sources */,
 				7A13AECB21104E4400B8F785 /* QNResponseInfo.m in Sources */,
+				36E6FF262286B52900CD2744 /* AddFilesTableView.m in Sources */,
 				1F1EF3332269BC0700EADA25 /* ReferenceInputDetailsVC.m in Sources */,
 				7A0592B520FDE64200075FE8 /* InputBoxCell.m in Sources */,
 				1F1EF1FE22657EF200EADA25 /* CustomerDetailsVC.m in Sources */,
@@ -5306,6 +5342,7 @@
 				7AB29E8B20FD8EB30014FCB3 /* CDCommon.m in Sources */,
 				1F151A982272AB14002B7EDA /* ApplyTableView9.m in Sources */,
 				7A13AEC021104E4400B8F785 /* QNPipeline.m in Sources */,
+				36E6FF1D2286B14000CD2744 /* InputTableView.m in Sources */,
 				7A0F8E792119B9FE00BA8358 /* SettlementAuditVC.m in Sources */,
 				7AB29E6C20FD8EB30014FCB3 /* NSObject+MJCoding.m in Sources */,
 				7A13AEB121104E4300B8F785 /* QNRecord.m in Sources */,
@@ -5362,6 +5399,7 @@
 				7A13ADB9210F029900B8F785 /* ApplyCancellationTableView.m in Sources */,
 				7AB29E7820FD8EB30014FCB3 /* FontSizeView.m in Sources */,
 				1F651A97227AD28800EFB78B /* CreditSingleTableView.m in Sources */,
+				36E6FF1A2286B12B00CD2744 /* InputVC.m in Sources */,
 				7A13AED92110584D00B8F785 /* SurvuyPeopleModel.m in Sources */,
 				36932BA922819AE000FE0431 /* InputLendingDetailsVC.m in Sources */,
 				7A0592E920FF3A9900075FE8 /* CarSettledInTableView.m in Sources */,

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckCarVC : BaseViewController
-
+@property (nonatomic , strong)AccessSingleModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

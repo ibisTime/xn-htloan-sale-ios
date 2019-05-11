@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
-@protocol CustomCollectionDelegate <NSObject>
+
+@class CollectionCell1;
+@protocol CustomCollectiondelegate <NSObject>
 - (void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString*)str;
 -(void)UploadImagesBtn:(UIButton *)sender str:(NSString *)str;
 @end
@@ -8,4 +10,5 @@
 @property (nonatomic,strong)UICollectionView *collectionView;
 @property (nonatomic,strong)NSArray *collectDataArray;
 @property (nonatomic , copy)NSString *selectStr;
+//@dynamic delegate;
 @end

@@ -97,6 +97,8 @@
 -(void )ReturnsParentKeyAnArray:(NSString *)parentKey;
 //查找节点
 -(NSString *)note:(NSString *)curNodeCode;
+
+-(NSString *)value:(NSString *)code;
 //查找角色............
 -(NSString *)setParentKey:(NSString *)parentKey setDkey:(NSString *)dkey;
 -(NSString *)setParentKey:(NSString *)parentKey setDvalue:(NSString *)dvalue;
