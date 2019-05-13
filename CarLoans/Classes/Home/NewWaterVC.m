@@ -174,10 +174,12 @@
        
         if ([textField1.text isEqualToString:@"微信"]) {
             http.parameters[@"type"] = @"1";
-        }else if ([textField1.text isEqualToString:@"支付宝"])
+        }
+        else if ([textField1.text isEqualToString:@"支付宝"])
         {
             http.parameters[@"type"] = @"2";
-        }else
+        }
+        else
         {
             http.parameters[@"type"] = @"3";
         }

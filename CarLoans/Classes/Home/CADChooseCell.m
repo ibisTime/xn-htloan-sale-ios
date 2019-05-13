@@ -23,11 +23,8 @@
         [self.firstLabl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.mas_centerX);
             make.left.equalTo(self.mas_left).offset(15);
-            
-            
         }];
         [self.secondLabl mas_makeConstraints:^(MASConstraintMaker *make) {
-           
             make.centerX.equalTo(self.mas_centerX);
             make.left.equalTo(self.firstLabl.mas_right).offset(15);
         }];

@@ -11,6 +11,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AdmissionDetailsTableView2 : TLTableView
 @property (nonatomic , strong)SurveyModel *model;
+
+@property (nonatomic , strong)NSString *id_no_front_apply;
+@property (nonatomic , strong)NSString *id_no_reverse_apply;
+@property (nonatomic , strong)NSArray *auth_pdf_apply;
+@property (nonatomic , strong)NSArray *interview_pic_apply;
+@property (nonatomic , strong)NSArray *bank_report_apply;
+
+@property (nonatomic , strong)NSString *id_no_front_gua;
+@property (nonatomic , strong)NSString *id_no_reverse_gua;
+@property (nonatomic , strong)NSArray *auth_pdf_gua;
+@property (nonatomic , strong)NSArray *interview_pic_gua;
+@property (nonatomic , strong)NSArray *bank_report_gua;
+
+@property (nonatomic , strong)NSString *id_no_front_gh;
+@property (nonatomic , strong)NSString *id_no_reverse_gh;
+@property (nonatomic , strong)NSArray *auth_pdf_gh;
+@property (nonatomic , strong)NSArray *interview_pic_gh;
+@property (nonatomic , strong)NSArray *bank_report_gh;
+
 @end
 
 NS_ASSUME_NONNULL_END

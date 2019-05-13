@@ -105,7 +105,7 @@
         return 53;
     }
     if (indexPath.section == 2) {
-        return 55;
+        return 50;
     }
     if (indexPath.row == 0) {
         float numberToRound;

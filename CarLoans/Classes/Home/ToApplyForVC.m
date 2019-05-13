@@ -839,6 +839,7 @@
         http.parameters[@"pledgeUserIdCard"] =[BaseModel convertNull:right9Label1.text];
         http.parameters[@"pledgeUserIdCardFront"] = [self.AgentFontPic componentsJoinedByString:@"||"];
         http.parameters[@"pledgeUserIdCardReverse"] = [self.AgentReversePic componentsJoinedByString:@"||"];
+
         http.parameters[@"pledgeAddress"] =[BaseModel convertNull: right9Label2.text];
         [http postWithSuccess:^(id responseObject) {
             [self applyBtnClick];
@@ -1125,11 +1126,7 @@
         for (int i = 0 ; i < _brandAry.count; i ++) {
             [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_brandAry[i][@"name"]]]];
         }
-//        NSMutableArray *array = [NSMutableArray array];
-//        for (int i = 0;  i < dvalueArray.count; i ++) {
-//            [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",dvalueArray[i]]]];
-//        }
-        
+
         SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
         view.isSingle = YES;
         view.array = array;
@@ -1281,7 +1278,7 @@
     http.isShowMsg = NO;
     http.code = @"632177";
     http.parameters[@"status"] = @"2";
-
+    http.parameters[@"type"] = self.model.carType;
     [http postWithSuccess:^(id responseObject) {
         LoanProductsArray = responseObject[@"data"];
         NSMutableArray *array = [NSMutableArray array];

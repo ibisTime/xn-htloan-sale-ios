@@ -199,6 +199,7 @@
     UITextField *textField = [self.view viewWithTag:100];
 
     TLNetworking *http = [TLNetworking new];
+<<<<<<< HEAD
 //    if (index == 1) {
 //        http.code = @"632152";
 //    }else
@@ -206,6 +207,8 @@
 //        http.code = @"632151";
 //        
 //    }
+=======
+>>>>>>> b93a2026f058484743c813d85a90d2b869884b04
     http.code = @"632151";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
@@ -213,7 +216,13 @@
     http.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"remark"] = textField.text;
-    http.parameters[@"approveResult"] = [NSString stringWithFormat:@"%ld",index];
+    if (index == 0) {
+        http.parameters[@"approveResult"] = @(1);
+    }else
+    {
+        http.parameters[@"approveResult"] = @(0);
+    }
+    
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"收件成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

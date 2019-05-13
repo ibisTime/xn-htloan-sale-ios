@@ -492,37 +492,24 @@
     }
     http.parameters[@"creditUserList"] = peopleArray;
     http.parameters[@"creditNote"] = textField2.text;
-//    if ([buttonCode isEqualToString:@"1"]) {
-        if (bizType == 1) {
-            //        二手车
-//            if (peopleArray.count > 0) {
-//                if (secondCarReport.length < 1) {
-//                    secondCarReport = peopleArray[0][@"secondCarReport"];
-//                    self.idNoFront = peopleArray[0][@"xszFront"];
-//                    self.idNoReverse = peopleArray[0][@"xszReverse"];
-//                }
-//            }
-            if (self.secondCarReport.length < 1) {
-                [TLAlert alertWithInfo:@"请上传评估报告"];
-                return;
-            }
-            if (self.idNoFront.length < 1) {
-                [TLAlert alertWithInfo:@"请上传行驶证正面照片"];
-                return;
-            }
-            if (self.idNoReverse.length < 1) {
-                [TLAlert alertWithInfo:@"请上传行驶证反面照片"];
-                return;
-            }
-            http.parameters[@"secondCarReport"] = self.secondCarReport;
-            http.parameters[@"xszFront"] = self.idNoFront;
-            http.parameters[@"xszReverse"] = self.idNoReverse;
+    if (bizType == 1) {
+        if (self.secondCarReport.length < 1) {
+            [TLAlert alertWithInfo:@"请上传评估报告"];
+            return;
         }
-        
-//    }
-    else{
-        
+        if (self.idNoFront.length < 1) {
+            [TLAlert alertWithInfo:@"请上传行驶证正面照片"];
+            return;
+        }
+        if (self.idNoReverse.length < 1) {
+            [TLAlert alertWithInfo:@"请上传行驶证反面照片"];
+            return;
+        }
+        http.parameters[@"secondCarReport"] = self.secondCarReport;
+        http.parameters[@"xszFront"] = self.idNoFront;
+        http.parameters[@"xszReverse"] = self.idNoReverse;
     }
+
     
     [http postWithSuccess:^(id responseObject) {
         if ([buttonCode isEqualToString:@"1"]) {

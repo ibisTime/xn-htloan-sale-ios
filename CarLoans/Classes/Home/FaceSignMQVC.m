@@ -315,35 +315,61 @@
         NSDictionary *dic = self.model.attachments[i];
 //        银行视频
         if ([dic[@"kname"] isEqualToString:@"bank_video"]) {
-            self.BankVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            if ([dic[@"url"] isEqualToString:@""]) {
+                return;
+            }
+            [self.BankVideoArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
 //        公司视频
         if ([dic[@"kname"] isEqualToString:@"company_video"]) {
-            self.CompanyVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            if ([dic[@"url"] isEqualToString:@""]) {
+                return;
+            }
+            [self.CompanyVideoArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
 //        其他视频
         if ([dic[@"kname"] isEqualToString:@"other_video"]) {
-            self.OtherVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            if ([dic[@"url"] isEqualToString:@""]) {
+                return;
+            }
+            [self.OtherVideoArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
 //        银行面签图片
         if ([dic[@"kname"] isEqualToString:@"bank_photo"]) {
-            self.BankSignArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            if ([dic[@"url"] isEqualToString:@""]) {
+                return;
+            }
+            [self.BankSignArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];;
         }
 //        银行合同
         if ([dic[@"kname"] isEqualToString:@"bank_contract"]) {
-            self.BankContractArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            if ([dic[@"url"] isEqualToString:@""]) {
+                return;
+            }
+            [self.BankContractArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
 //        公司合同
         if ([dic[@"kname"] isEqualToString:@"company_contract"]) {
-            self.CompanyContractArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            if ([dic[@"url"] isEqualToString:@""]) {
+                return;
+            }
+            [self.CompanyContractArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
+        
 //        资金划转授权书
         if ([dic[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
-            self.MoneyArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+//            if ([dic[@"url"] isEqualToString:@""]) {
+//                return;
+//            }
+            [self.MoneyArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
+        
 //        面签其他资料
         if ([dic[@"kname"] isEqualToString:@"interview_other_pdf"]) {
-            self.otherArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            if ([dic[@"url"] isEqualToString:@""]) {
+                return;
+            }
+            [self.otherArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
         }
         self.tableView.BankVideoArray = self.BankVideoArray;
         self.tableView.CompanyVideoArray = self.CompanyVideoArray;
@@ -355,6 +381,7 @@
         self.tableView.otherArray = self.otherArray;
         [self.tableView reloadData];
     }
+    
 }
 
 
@@ -502,9 +529,10 @@
             [TLAlert alertWithSucces:@"保存成功"];
         }else{
             [TLAlert alertWithSucces:@"面签成功"];
-            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
-            [[NSNotificationCenter defaultCenter] postNotification:notification];
+            
         }
+        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         WGLog(@"%@",error);

@@ -78,7 +78,7 @@
         cell.isInput = @"0";
         NSArray *detailsArray = @[
                                   [NSString stringWithFormat:@"%@",_model.customerName],
-                                  [NSString stringWithFormat:@"%@",_model.code],
+                                  [NSString stringWithFormat:@"%@",_model.bizCode],
                                   @" "
                                   ];
         if ([cell.name isEqualToString:@"参考材料清单"]) {
@@ -92,7 +92,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
+        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH-30, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
         nameLabel.text = self.cardStr;
         kViewRadius(nameLabel, 5);
         nameLabel.text = @"请选择材料清单";

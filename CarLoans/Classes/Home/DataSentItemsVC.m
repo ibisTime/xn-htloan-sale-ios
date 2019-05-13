@@ -7,15 +7,15 @@
 //
 
 #import "DataSentItemsVC.h"
-#import "SendDataTransferTableView.h"
+#import "DataTransferTableView.h"
 #import "DataTransferModel.h"
 #import "SenderVC.h"
 #import "ReceivesAuditVC.h"
 #import "CadListModel.h"
 @interface DataSentItemsVC ()<RefreshDelegate>
-@property (nonatomic , strong)SendDataTransferTableView *tableView;
+@property (nonatomic , strong)DataTransferTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
-@property (nonatomic , strong)NSMutableArray <CadListModel *>*models;
+//@property (nonatomic , strong)NSMutableArray <CadListModel *>*models;
 
 @end
 
@@ -25,12 +25,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initTableView];
-    if (self.isDetail == NO) {
-        
-        [self LoadData];
-
-    }
-    [self loadCadList];
+    [self LoadData];
+//    [self loadCadList];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
 }
@@ -40,21 +36,21 @@
     [self LoadData];
 
 }
-- (void)loadCadList
-{
-    
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"632217";
-    http.showView = self.view;
-    
-    [http postWithSuccess:^(id responseObject) {
-        self.models = [CadListModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-        self.tableView.models = self.models;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
-}
+//- (void)loadCadList
+//{
+//
+//    TLNetworking *http = [TLNetworking new];
+//    http.code = @"632217";
+//    http.showView = self.view;
+//
+//    [http postWithSuccess:^(id responseObject) {
+//        self.models = [CadListModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+//        self.tableView.models = self.models;
+//        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//
+//    }];
+//}
 #pragma mark -- 删除通知
 - (void)dealloc
 {
@@ -62,54 +58,47 @@
 }
 
 - (void)initTableView {
-    self.tableView = [[SendDataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStyleGrouped)];
+    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
-    self.tableView.state = @"send";
     [self.view addSubview:self.tableView];
-//    if (self.isDetail == YES) {
-//        self.title = @"发件详情";
-//        self.tableView.isDetail = YES;
-//        self.tableView.isRecview = YES;
-//        self.tableView.model = self.model;
-//
-//    }
+
   [self.tableView reloadData];
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isDetail == YES) {
-        return;
-    }
-    DataSentItemsVC *vc = [DataSentItemsVC new];
-    NSMutableArray <DataTransferModel *>*models = [NSMutableArray array];
-    [models addObject:self.model[indexPath.row]];
-    vc.title = @"资料发件";
-    vc.isDetail = YES;
-    vc.tableView.isDetail = YES;
-    vc.tableView.isRecview = YES;
 
-    vc.model = models;
-    vc.tableView.model = models;
-    [vc.tableView reloadData];
-    [self.navigationController pushViewController:vc animated:YES];
+//    CustomerDetailsVC *vc = [CustomerDetailsVC new];
+//    vc.model = self.model[indexPath.row];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-    DataTransferModel *model = self.model[index];
-    if ([model.status isEqualToString:@"0"] || [model.status isEqualToString:@"3"] ) {
-        SenderVC *vc = [[SenderVC alloc]init];
-        vc.model = self.model[index];
-        [self.navigationController pushViewController:vc animated:YES];
+    SenderVC *vc = [SenderVC new];
+    vc.model = self.model[index];
+    NSString *state;
+    if ([self.model[index].status isEqualToString:@"0"]) {
+        state = @"待发件";
+ 
+    }else if ([self.model[index].status isEqualToString:@"1"])
+    {
+        state = @"已发件待收件";
+       
+    }else if ([self.model[index].status isEqualToString:@"2"])
+    {
+        state = @"已收件审核";
+   
+        
+    }else
+    {
+        state = @"已收件待补件";
+        
     }
-//    else
-//    {
-//        ReceivesAuditVC *vc = [[ReceivesAuditVC alloc]init];
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    vc.title = state;
+
+    [self.navigationController pushViewController:vc animated:YES];
 
 }
 
@@ -119,7 +108,8 @@
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632155";
     helper.parameters[@"type"] = @"1";
-
+    helper.parameters[@"statusList"] = @[@"0",@"3"];
+//    helper.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];;
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
@@ -146,11 +136,6 @@
 
     [self.tableView addLoadMoreAction:^{
 
-//        NSArray *array = @[@"0",@"3"];
-//        helper.parameters[@"statusList"] = array;
-        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-        NSArray *array1 = @[@"1",@"3"];
-        helper.parameters[@"typeList"] = array1;
 
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);

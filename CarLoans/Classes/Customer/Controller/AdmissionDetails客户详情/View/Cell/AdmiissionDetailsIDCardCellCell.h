@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AdmiissionDetailsIDCardCellCell : UITableViewCell
 @property (nonatomic , strong)UILabel *topLbl;
 @property (nonatomic , strong)NSDictionary *creditUser;
+@property (nonatomic , strong)UIButton *button1;
+@property (nonatomic , strong)UIButton *button2;
 @end
 
 NS_ASSUME_NONNULL_END

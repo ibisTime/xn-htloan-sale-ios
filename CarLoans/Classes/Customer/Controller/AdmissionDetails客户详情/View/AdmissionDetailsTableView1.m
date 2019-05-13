@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 11;
+    return 10;
 }
 
 #pragma mark -- tableView
@@ -48,16 +48,15 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"业务编号",@"客户姓名",@"业务公司",@"区域经理",@"业务团队",@"信贷专员",@"业务内勤",@"贷款金额",@"贷款银行",@"档案存放位置",@"档案目录"];
+    NSArray *topArray = @[@"业务编号",@"客户姓名",@"业务公司",@"业务团队",@"信贷专员",@"业务内勤",@"贷款金额",@"贷款银行",@"档案存放位置",@"档案目录"];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNullReturnStr:self.model.code],
                              [BaseModel convertNullReturnStr:self.model.creditUser[@"userName"]],
-                             [BaseModel convertNullReturnStr:self.model.companyName],
+                             [BaseModel convertNullReturnStr:self.model.saleUserCompanyName],
+                             [BaseModel convertNullReturnStr:_model.saleUserDepartMentName],
                              [BaseModel convertNullReturnStr:_model.saleUserName],
-                             [BaseModel convertNullReturnStr:_model.teamName],
-                             @"",
-                             @"",
+                             [BaseModel convertNullReturnStr:_model.insideJobName],
                              [NSString stringWithFormat:@"%.2f万",[_model.loanAmount floatValue]/10000],
                              [BaseModel convertNullReturnStr:_model.loanBankName],
                              @"",

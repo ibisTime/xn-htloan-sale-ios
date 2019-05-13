@@ -51,7 +51,19 @@
             cell = [[AdmiissionDetailsIDCardCellCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.creditUser = dataDic;
+        
+        if ([dataDic[@"loanRole"] isEqualToString:@"1"]) {
+            [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_apply convertImageUrl]] forState:UIControlStateNormal];
+            [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_apply convertImageUrl]] forState:UIControlStateNormal];
+        }
+        if ([dataDic[@"loanRole"] isEqualToString:@"2"]) {
+            [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gh convertImageUrl]] forState:UIControlStateNormal];
+            [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gh convertImageUrl]] forState:UIControlStateNormal];
+        }
+        if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
+            [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gua convertImageUrl]] forState:UIControlStateNormal];
+            [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gua convertImageUrl]] forState:UIControlStateNormal];
+        }
         return cell;
     }
     if (indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 9) {
@@ -61,19 +73,54 @@
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 6) {
-            cell.collectDataArray = [dataDic[@"authPdf"] componentsSeparatedByString:@"||"];
-            cell.selectStr = @"征信查询授权书";
+        
+        if ([dataDic[@"loanRole"] isEqualToString:@"1"]) {
+            if (indexPath.row == 6) {
+                cell.collectDataArray = self.auth_pdf_apply;
+                cell.selectStr = @"征信查询授权书";
+            }
+            if (indexPath.row == 7) {
+                cell.collectDataArray = self.interview_pic_apply;
+                cell.selectStr = @"面签照片";
+            }
+            if (indexPath.row == 9) {
+                
+                cell.collectDataArray = self.bank_report_apply;
+                cell.selectStr = @"征信报告";
+            }
         }
-        if (indexPath.row == 7) {
-            cell.collectDataArray = [dataDic[@"interviewPic"] componentsSeparatedByString:@"||"];
-            cell.selectStr = @"面签照片";
+        if ([dataDic[@"loanRole"] isEqualToString:@"2"]) {
+            if (indexPath.row == 6) {
+                cell.collectDataArray = self.auth_pdf_gh;
+                cell.selectStr = @"征信查询授权书";
+            }
+            if (indexPath.row == 7) {
+                cell.collectDataArray = self.interview_pic_gh;
+                cell.selectStr = @"面签照片";
+            }
+            if (indexPath.row == 9) {
+                
+                cell.collectDataArray = self.bank_report_gh;
+                cell.selectStr = @"征信报告";
+            }
         }
-        if (indexPath.row == 9) {
-            NSString *str = [NSString stringWithFormat:@"%@||%@",dataDic[@"dataCreditReport"],dataDic[@"BankCreditReport"]];
-            cell.collectDataArray = [str componentsSeparatedByString:@"||"];
-            cell.selectStr = @"征信报告";
+        if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
+            if (indexPath.row == 6) {
+                cell.collectDataArray = self.auth_pdf_gua;
+                cell.selectStr = @"征信查询授权书";
+            }
+            if (indexPath.row == 7) {
+                cell.collectDataArray = self.interview_pic_gua;
+                cell.selectStr = @"面签照片";
+            }
+            if (indexPath.row == 9) {
+                
+                cell.collectDataArray = self.bank_report_gua;
+                cell.selectStr = @"征信报告";
+            }
         }
+        
+        
         
         return cell;
         
@@ -98,7 +145,7 @@
                              @"",
                              @"",
                              @"",
-                             @"0",
+                             [NSString stringWithFormat:@"%.2f",[dataDic[@"creditCardOccupation"] floatValue]],
                              @"",
                              [BaseModel convertNullReturnStr:dataDic[@"bankCreditResultRemark"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
@@ -121,11 +168,57 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *dataDic = self.model.creditUserList[indexPath.section];
+    
+    NSArray *array;
+    if ([dataDic[@"loanRole"] isEqualToString:@"1"]) {
+        if (indexPath.row == 6) {
+            array = self.auth_pdf_apply;
+        }
+        if (indexPath.row == 7) {
+            array = self.interview_pic_apply;
+        
+        }
+        if (indexPath.row == 9) {
+            
+            array = self.bank_report_apply;
+        }
+    }
+    if ([dataDic[@"loanRole"] isEqualToString:@"2"]) {
+        if (indexPath.row == 6) {
+            array = self.auth_pdf_gh;
+            
+        }
+        if (indexPath.row == 7) {
+            array = self.interview_pic_gh;
+        
+        }
+        if (indexPath.row == 9) {
+            
+            array = self.bank_report_gh;
+            
+        }
+    }
+    if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
+        if (indexPath.row == 6) {
+            array = self.auth_pdf_gua;
+            
+        }
+        if (indexPath.row == 7) {
+            array = self.interview_pic_gua;
+            
+        }
+        if (indexPath.row == 9) {
+            
+            array = self.bank_report_gua;
+        }
+    }
+    
+    
     if (indexPath.row == 5) {
         return (SCREEN_WIDTH - 107 - 40)/2/210*133 + 47;
     }
     if (indexPath.row == 6) {
-        NSArray *array = [dataDic[@"authPdf"] componentsSeparatedByString:@"||"];
+       
         float numberToRound;
         int result;
         numberToRound = (array.count)/3.0;
@@ -133,7 +226,7 @@
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
     if (indexPath.row == 7) {
-        NSArray *array = [dataDic[@"interviewPic"] componentsSeparatedByString:@"||"];
+       
         float numberToRound;
         int result;
         numberToRound = (array.count)/3.0;
@@ -141,8 +234,7 @@
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }
     if (indexPath.row == 9) {
-        NSString *str = [NSString stringWithFormat:@"%@||%@",dataDic[@"dataCreditReport"],dataDic[@"BankCreditReport"]];
-        NSArray *array = [str componentsSeparatedByString:@"||"];
+
         float numberToRound;
         int result;
         numberToRound = (array.count)/3.0;

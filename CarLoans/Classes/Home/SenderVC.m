@@ -191,7 +191,7 @@
 //                mengView.alpha = 0.6;
 //                mengView.frame = self.view.bounds;
 //                [self.view addSubview:mengView];
-                UIView *view = [UIView new];
+                UIView *view = [[UIView alloc]init];
                 self.centerView = view;
                 view.frame = CGRectMake(50, 100, SCREEN_WIDTH-100, self.models.count *30);
                 view.backgroundColor = kWhiteColor;

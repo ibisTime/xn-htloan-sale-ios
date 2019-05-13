@@ -47,13 +47,7 @@
         lineView1.backgroundColor = LineBackColor;
         [self addSubview:lineView1];
         
-        UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 20 - 30 , 20 , 30, 30);
         
-        [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
-        //        deleteBtn.backgroundColor = [UIColor redColor];
-        self.deleteBtn = deleteBtn;
-        [self addSubview:deleteBtn];
         
     }
     return self;
@@ -68,16 +62,17 @@
                            @"执行人 :",
                            @"创建时间:",
                            @"任务时效:"];
+    
+
+    
     for (int i = 0; i < TaskArray.count; i ++ ) {
-        
-        
-        
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15, 60 + i % TaskArray.count * 145, SCREEN_WIDTH - 30, 135)];
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15, 60 + i % TaskArray.count * 145, SCREEN_WIDTH - 30, 110)];
         backView.backgroundColor = BackColor;
         kViewBorderRadius(backView, 2, 1, HGColor(230, 230, 230));
+        backView.tag = 100000 + i;
         [self addSubview:backView];
-        NSArray * array = TaskArray[i];
         
+        NSArray * array = TaskArray[i];
         for (int j = 0; j < array.count; j ++) {
             
             UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + j%5*25, 60, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:GaryTextColor];
@@ -96,14 +91,23 @@
         }
         
         UIButton *backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        backButton.frame = CGRectMake(15, 60 + i % TaskArray.count * 145, SCREEN_WIDTH - 30, 135);
+        backButton.frame = CGRectMake(15, 60 + i % TaskArray.count * 120, SCREEN_WIDTH - 30, 110);
         [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         backButton.tag = 1234 + i;
         [self addSubview:backButton];
+        
+
     }
 
-    _photoBtn.frame = CGRectMake(15, 60 + TaskArray.count * 145, SCREEN_WIDTH - 30, 135);
+    _photoBtn.frame = CGRectMake(15, 60 + TaskArray.count * 120, SCREEN_WIDTH - 30, 110);
+    _TaskArray = TaskArray;
 }
+
+-(void)deleteClick:(UIButton *)sender
+{
+    [_delegate deleteButton:sender];
+}
+
 
 -(void)setFileArray:(NSArray *)FileArray{
     NSArray *nameArray = @[@"文件内容:",
@@ -119,12 +123,7 @@
         backView.backgroundColor = BackColor;
         kViewBorderRadius(backView, 2, 1, HGColor(230, 230, 230));
         [self addSubview:backView];
-//        NSArray * array = FileArray[i];
-        NSDictionary * dic = @{@"content":FileArray[i][@"content"],@"fileCount":FileArray[i][@"fileCount"],@"operatorName":FileArray[i][@"operatorName"],@"remark":FileArray[i][@"remark"],@"depositDateTime":[FileArray[i][@"depositDateTime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]};
-        
-        
-        NSLog(@" array.count %ld", dic.count);
-        for (int j = 0; j < dic.count; j ++) {
+        for (int j = 0; j < 5; j ++) {
             
             UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + j%5*25, 60, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:GaryTextColor];
             nameLabel.text = nameArray[j];
@@ -132,11 +131,11 @@
             
             UILabel *informationLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 10+j%5*25, SCREEN_WIDTH - 120, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:TextColor];
             NSArray *detailsArray = @[
-                                      [NSString stringWithFormat:@"%@",dic[@"content"]],
-                                      [NSString stringWithFormat:@"%@",dic[@"fileCount"]],
-                                      [NSString stringWithFormat:@"%@",dic[@"operatorName"]],
-                                      [NSString stringWithFormat:@"%@",dic[@"remark"]],
-                                      [NSString stringWithFormat:@"%@",dic[@"depositDateTime"]]
+                                      [NSString stringWithFormat:@"%@",FileArray[i][@"content"]],
+                                      [NSString stringWithFormat:@"%@",FileArray[i][@"fileCount"]],
+                                      [NSString stringWithFormat:@"%@",FileArray[i][@"operatorName"]],
+                                      [NSString stringWithFormat:@"%@",FileArray[i][@"remark"]],
+                                      [NSString stringWithFormat:@"%@",FileArray[i][@"depositDateTime"]]
                                       ];
             informationLabel.text = detailsArray[j];
             [backView addSubview:informationLabel];
@@ -155,6 +154,7 @@
 {
     [_delegate SurveyTaskSelectButton:sender];
 }
+
 -(void)setBtnStr:(NSString *)btnStr
 {
     [_photoBtn setTitle:btnStr forState:(UIControlStateNormal)];

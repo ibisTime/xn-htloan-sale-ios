@@ -45,7 +45,6 @@
 //     InputBoxCell  * cell1 = [self.view viewWithTag:1000];
      InputBoxCell  * cell2 = [self.view viewWithTag:1000];
      InputBoxCell  * cell3 = [self.view viewWithTag:1001];
-    
     if (self.model) {
         NSDictionary *dataDic  = @{@"getUser":self.model.saleUserName,@"name":cell2.nameTextField.text,@"time":cell3.nameTextField.text,@"createtime":[BaseModel getCurrentTime]};
         NSNotification *notification =[NSNotification notificationWithName:ADDADPEOPLENOTICE object:nil userInfo:dataDic];

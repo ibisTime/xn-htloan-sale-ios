@@ -130,7 +130,7 @@
         cell.photoStr = @"安装设备图片";
         cell.photoBtn.tag = indexPath.section;
         cell.collectDataArray = self.azPicArray;
-        cell.photoBtn.tag = indexPath.section;
+
         
         return cell;
     }else{
@@ -181,7 +181,25 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 5 || indexPath.section == 6) {
-        return 160;
+        if (indexPath.section == 5) {
+            float numberToRound;
+            int result;
+            
+            numberToRound = (_otherPicArray.count + 1.0)/4.0;
+            result = (int)ceilf(numberToRound);
+            NSLog(@"roundf(%.2f) = %d", numberToRound, result);
+            return result * (SCREEN_WIDTH - 20 / 4 + 5) + 10;
+        }else
+        {
+            float numberToRound;
+            int result;
+            
+            numberToRound = (_azPicArray.count + 1.0)/4.0;
+            result = (int)ceilf(numberToRound);
+            NSLog(@"roundf(%.2f) = %d", numberToRound, result);
+            return result * (SCREEN_WIDTH - 20 / 4 + 5) + 10;
+        }
+        
     }else{
         return 50;
 
