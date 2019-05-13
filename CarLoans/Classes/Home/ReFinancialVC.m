@@ -257,6 +257,11 @@
         self.selectInt = index;
         [self.imagePicker picker];
     }
+    if ([state isEqualToString:@"DeletePhotos1"]) {
+        [self.carInvoice removeObjectAtIndex:index - 1000];
+        self.tableView.carInvoice = self.carInvoice;
+        [self.tableView reloadData];
+    }
 }
 
 -(void)initTableView{

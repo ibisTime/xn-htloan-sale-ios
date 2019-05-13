@@ -96,6 +96,7 @@
             
         }
         cell.name = @"*收款账号";
+        cell.nameTextField.text = _bankNo;
         cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.tag = 100 + indexPath.row;

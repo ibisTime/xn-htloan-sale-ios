@@ -87,7 +87,7 @@
     else if ([self.state isEqualToString:@"collect"]){
         if ([self.model[indexPath.row].status isEqualToString:@"1"]) {
             [cell.button setTitle:@"收件" forState:(UIControlStateNormal)];
-            cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 330+60+60+20, 100, 30);
+            cell.button.frame = CGRectMake(SCREEN_WIDTH - 115, 330+60+20, 100, 30);
             cell.hidden = NO;
         }
         else
@@ -131,15 +131,21 @@
 //    else
 //        return 330+60;
     
-    if ([self.model[indexPath.row].status isEqualToString:@"0"]) {
-        return 330;
-    }else{
-        if ([self.model[indexPath.row].sendType isEqualToString:@"1"]){
-            return 390;
+    if ([self.state isEqualToString:@"send"]) {
+        if ([self.model[indexPath.row].status isEqualToString:@"0"]) {
+            return 330;
+        }else{
+            if ([self.model[indexPath.row].sendType isEqualToString:@"1"]){
+                return 390;
+            }
+            else
+                return 440;
         }
-        else
-            return 440;
     }
+    else{
+        return 440;
+    }
+    
     
     
     

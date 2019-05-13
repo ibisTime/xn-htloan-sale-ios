@@ -30,7 +30,7 @@
     
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return 3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
@@ -39,16 +39,17 @@
     return 1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 3) {
-        return 180;
-    }
+//    if (indexPath.section == 3) {
+//        return 180;
+//    }
     if (indexPath.section == 1) {
          NSArray * collectDataArray = [self.peopleAray[0][@"advance_fund_amount_pdf"] componentsSeparatedByString:@"||"];
         return 180 * ((collectDataArray.count / 3) + 1);
     }
     if (indexPath.section == 2) {
-         NSArray * collectDataArray = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];
-        return 180 * ((collectDataArray.count / 3) + 1);
+        return 180;
+//         NSArray * collectDataArray = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];
+//        return 180 * ((collectDataArray.count / 3) + 1);
     }
     return 55;
     
@@ -128,27 +129,33 @@
         cell.collectDataArray = collectDataArray;
         return cell;
     }
-    if (indexPath.section == 2){
-        static NSString *rid=@"qwecell";
-        
-        CollectionViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-        if(cell==nil){
-            cell=[[CollectionViewCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
-        }
-        
+//    if (indexPath.section == 2){
+        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
-        cell.isEditor = NO;
-        NSArray *array = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];//分隔符
-        cell.collectDataArray = array;
+        cell.selectStr = @"*水单";
+        cell.collectDataArray = self.carInvoice;
         return cell;
-    }
-    CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.delegate = self;
-    cell.selectStr = @"*水单";
-    cell.collectDataArray = self.carInvoice;
-    return cell;
+//        static NSString *rid=@"qwecell";
+//
+//        CollectionViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+//        if(cell==nil){
+//            cell=[[CollectionViewCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
+//        }
+//
+//        cell.delegate = self;
+//        cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
+//        cell.isEditor = NO;
+//        NSArray *array = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];//分隔符
+//        cell.collectDataArray = array;
+//        return cell;
+//    }
+//    CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.delegate = self;
+//    cell.selectStr = @"*水单";
+//    cell.collectDataArray = self.carInvoice;
+//    return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -172,7 +179,7 @@
 {
     
     
-    if ([str isEqualToString:@"水单"]) {
+    if ([str isEqualToString:@"*水单"]) {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
             [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos1"];
         }
@@ -211,31 +218,31 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
-        NSArray *array = @[@"面签其他资料"];
+        NSArray *array = @[@"*水单"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];
         
         return headView;
     }
-    if (section == 3) {
-        UIView *headView = [[UIView alloc]init];
-        
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-        backView.backgroundColor = [UIColor whiteColor];
-        [headView addSubview:backView];
-        
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        lineView.backgroundColor = LineBackColor;
-        [headView addSubview:lineView];
-        
-        NSArray *array = @[@"*水单"];
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        nameLabel.text = array[section - 3];
-        [headView addSubview:nameLabel];
-        
-        return headView;
-    }
+//    if (section == 3) {
+//        UIView *headView = [[UIView alloc]init];
+//
+//        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+//        backView.backgroundColor = [UIColor whiteColor];
+//        [headView addSubview:backView];
+//
+//        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+//        lineView.backgroundColor = LineBackColor;
+//        [headView addSubview:lineView];
+//
+//        NSArray *array = @[@"*水单"];
+//        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+//        nameLabel.text = array[section - 3];
+//        [headView addSubview:nameLabel];
+//
+//        return headView;
+//    }
     return nil;
 }
 @end

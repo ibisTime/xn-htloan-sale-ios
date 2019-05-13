@@ -113,7 +113,7 @@ photoBtn.frame = CGRectMake(2.5, 2.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH 
         [cell addSubview:image];
         
         self.selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        self.selectButton.frame = CGRectMake((SCREEN_WIDTH - 20)/4 - 42.5, 22.5, 30, 30);
+        self.selectButton.frame = CGRectMake((SCREEN_WIDTH - 20)/4 - 42.5, 10, 30, 30);
         [self.selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
         [self.selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         self.selectButton.tag = indexPath.row - 1 + 1000;

@@ -21,6 +21,8 @@
 #import "TopModel.h"
 #import "NewWaterVC.h"
 #import "SelectedListView.h"
+#import "MultiBaseView.h"
+
 @interface ToApplyForVC ()<RefreshDelegate,BaseModelDelegate>
 {
     UILabel *right1Label0;
@@ -50,7 +52,13 @@
     UILabel *right2Label16;
     UILabel *right2Label17;
     
-    UILabel *right3Label0;    UILabel *right3Label1;    UILabel *right3Label2;    UILabel *right3Label3;    UILabel *right3Label4;    UILabel *right3Label5;    UILabel *right3Label6;    UILabel *right3Label7;    UILabel *right3Label8;    UILabel *right3Label9;    UILabel *right3Label10;    UILabel *right3Label11;    UILabel *right3Label12;    UILabel *right3Label13;    UILabel *right3Label14;    UILabel *right3Label15;    UILabel *right3Label16;    UILabel *right3Label17;    UILabel *right3Label18;
+    UILabel *right3Label0;
+    UILabel *right3Label1;
+    UILabel *right3Label2;
+    UILabel *right3Label3;
+    UILabel *right3Label4;
+    UILabel *right3Label5;
+    UILabel *right3Label6;    UILabel *right3Label7;    UILabel *right3Label8;    UILabel *right3Label9;    UILabel *right3Label10;    UILabel *right3Label11;    UILabel *right3Label12;    UILabel *right3Label13;    UILabel *right3Label14;    UILabel *right3Label15;    UILabel *right3Label16;    UILabel *right3Label17;    UILabel *right3Label18;
     
     UILabel *right4Label0;    UILabel *right4Label1;    UILabel *right4Label2;    UILabel *right4Label3;    UILabel *right4Label4;    UILabel *right4Label5;    UILabel *right4Label6;    UILabel *right4Label7;    UILabel *right4Label8;    UILabel *right4Label9;    UILabel *right4Label10;    UILabel *right4Label11;
     
@@ -138,6 +146,7 @@
 //代理人身份证反面
 @property (nonatomic , strong)NSArray * AgentReversePic;
 
+@property (nonatomic,strong) NSMutableArray * MainIncomeArray;
 //选中单元格tag
 @property (nonatomic , assign)NSInteger SelectTag;
 
@@ -579,7 +588,8 @@
         http.parameters[@"carType"] = right3Label11.text;
         //   主要收入来源
 //        http.parameters[@"mainIncome"] = right3Label12.text;
-        http.parameters[@"mainIncome"] = [_baseModel setParentKey:@"main_income" setDvalue:right3Label12.text];
+//        http.parameters[@"mainIncome"] = [_baseModel setParentKey:@"main_income" setDvalue:right3Label12.text];
+        http.parameters[@"mainIncome"] = [self.MainIncomeArray componentsJoinedByString:@","];
         
         //   家庭紧急联系人信息1 姓名
         http.parameters[@"emergencyName1"] = right3Label13.text;
@@ -827,8 +837,8 @@
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"pledgeUser"] = [ BaseModel convertNull: right9Label0.text];
         http.parameters[@"pledgeUserIdCard"] =[BaseModel convertNull:right9Label1.text];
-        http.parameters[@"pledgeUserIdCardFront"] = self.AgentFontPic;
-        http.parameters[@"pledgeUserIdCardReverse"] = self.AgentReversePic;
+        http.parameters[@"pledgeUserIdCardFront"] = [self.AgentFontPic componentsJoinedByString:@"||"];
+        http.parameters[@"pledgeUserIdCardReverse"] = [self.AgentReversePic componentsJoinedByString:@"||"];
         http.parameters[@"pledgeAddress"] =[BaseModel convertNull: right9Label2.text];
         [http postWithSuccess:^(id responseObject) {
             [self applyBtnClick];
@@ -968,7 +978,8 @@
                 [_baseModel CustomBouncedView:[NSMutableArray arrayWithArray:@[@"有",@"无"]] setState:@"100"];
             }
             if (indexPath.row == 12) {
-                [_baseModel ReturnsParentKeyAnArray:@"main_income"];
+//                [_baseModel ReturnsParentKeyAnArray:@"main_income"];
+                [self chooseMainIncome];
             }
             
         }
@@ -1064,7 +1075,41 @@
     }
 }
 
-
+-(void)chooseMainIncome{
+    NSMutableArray *dataArray = [NSMutableArray array];
+    NSArray *array = [USERDEFAULTS objectForKey:BOUNCEDDATA];
+    for (int i = 0; i < array.count; i ++) {
+        if ([array[i][@"parentKey"] isEqualToString:@"main_income"]) {
+            [dataArray addObject:array[i]];
+        }
+    }
+    NSMutableArray *array1 = [NSMutableArray array];
+    for (int i = 0; i < dataArray.count; i ++) {
+        [array1 addObject:dataArray[i]];
+    }
+    
+    NSMutableArray *dvalueArray = [NSMutableArray array];
+    for (int i = 0; i < array1.count ; i ++) {
+        [dvalueArray addObject:array1[i][@"dvalue"]];
+    }
+    
+    self.MainIncomeArray = [NSMutableArray array];
+    [MultiBaseView showMultiSheetAlertWithTitle:@"选择" conditions:dvalueArray resultBlock:^(NSArray *selectArr) {
+        
+//        NSLog(@"选中:----------------");
+//        right3Label12.text =  [selectArr componentsJoinedByString:@","];
+        for (NSString *str in selectArr) {
+            for (int i = 0; i < dataArray.count; i ++) {
+                if ([str isEqualToString:dataArray[i][@"dvalue"] ]) {
+                    [self.MainIncomeArray addObject:dataArray[i][@"dkey"]];
+                }
+            }
+        }
+        right3Label12.text =  [selectArr componentsJoinedByString:@","];
+    } cancleBlock:^{
+        NSLog(@"取消");
+    }];
+}
 -(void)chooseCar
 {
     TLNetworking *http = [TLNetworking new];
@@ -1197,6 +1242,12 @@
 //        right1Label8.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"backRate"] floatValue]/1000];
 //        right1Label9.text = [NSString stringWithFormat:@"%.2f",[LoanProductsDic[@"preRate"] floatValue]/1000];
     }
+    if (_SelectTag == 40000) {
+        right4Label0.text = Str;
+    }
+//    if (_SelectTag == 40011) {
+//        right4Label11.text = dic[@"dvalue"];
+//    }
 
 //    if (_SelectTag == 20007) {
 //        _carsDic = _carsAry[sid];
@@ -1531,7 +1582,26 @@
                     right3Label10.text = @"";
                 }
                 right3Label11.text = creditUser[@"carType"];
-                right3Label12.text = creditUser[@"mainIncome"];
+//                right3Label12.text = creditUser[@"mainIncome"];
+                NSMutableArray *dataArray = [NSMutableArray array];
+                NSArray *array = [USERDEFAULTS objectForKey:BOUNCEDDATA];
+                for (int i = 0; i < array.count; i ++) {
+                    if ([array[i][@"parentKey"] isEqualToString:@"main_income"]) {
+                        [dataArray addObject:array[i]];
+                    }
+                }
+                NSArray * array1 = [creditUser[@"mainIncome"] componentsSeparatedByString:@","];
+                NSMutableArray *dvalueArray = [NSMutableArray array];
+                for (int i = 0; i < array1.count; i ++) {
+                    for (int j = 0; j < dataArray.count; j ++) {
+                        if ([array1[i] isEqualToString:dataArray[j][@"dkey"] ]) {
+                            [dvalueArray addObject:dataArray[j][@"dvalue"] ];
+                        }
+                    }
+                }
+                right3Label12.text = [dvalueArray componentsJoinedByString:@","];
+                
+                
                 right3Label13.text = creditUser[@"emergencyName1"];
                 right3Label14.text = [_baseModel setParentKey:@"credit_user_relation" setDkey:creditUser[@"emergencyRelation1"]];
                 right3Label15.text = creditUser[@"emergencyMobile1"];

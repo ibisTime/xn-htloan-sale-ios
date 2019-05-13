@@ -131,6 +131,7 @@
     if ([state isEqualToString:@"delect"]) {
 //        [TaskArray removeObject:index];
         [TaskArray removeObjectAtIndex:index];
+        self.tableView.taskArray = TaskArray;
         [self.tableView reloadData];
     }
 }

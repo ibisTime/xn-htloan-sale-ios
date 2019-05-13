@@ -16,6 +16,8 @@
     //    银行编号
     NSString *loanBankCode;
     
+    NSString *loanBanlNum;
+    
     NSString *secondCarReport;
 }
 @property (nonatomic,strong) ConfirmLendingTableView * tableView;
@@ -143,7 +145,8 @@
     http.parameters[@"code"] = self.model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"receiptBankCode"] = loanBankCode;
-    http.parameters[@"receiptBankcardNumber"] = cell.nameTextField.text;
+//    http.parameters[@"receiptBankcardNumber"] = cell.nameTextField.text;
+    http.parameters[@"receiptBankcardNumber"] = loanBanlNum;
     http.parameters[@"receiptPdf"] = secondCarReport;
     http.parameters[@"receiptRemark"] = cell1.nameTextField.text;
     [http postWithSuccess:^(id responseObject) {
@@ -160,7 +163,9 @@
     if (selectNumber == 0)
     {
         _tableView.bankStr = Str;
+        _tableView.bankNo = self.bankArray[sid][@"bankcardNumber"];
         loanBankCode = self.bankArray[sid][@"code"];
+        loanBanlNum = self.bankArray[sid][@"bankcardNumber"];
     }
     [self.tableView reloadData];
 }

@@ -74,12 +74,22 @@
 }
 -(void)loaddetails{
     TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"632117";
+    http.code = @"632516";
     http.parameters[@"code"] = self.model.code;
     [http postWithSuccess:^(id responseObject) {
         NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);
         self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
         self.tableView.model = self.model;
+        for (int i = 0; i < self.model.attachments.count; i ++) {
+            if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_front"]) {
+                self.idNoFront = self.model.attachments[i][@"url"];
+                self.tableView.idNoFront = self.model.attachments[i][@"url"];
+            }
+            if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_reverse"]) {
+                self.idNoReverse = self.model.attachments[i][@"url"];
+                self.tableView.idNoReverse = self.model.attachments[i][@"url"];
+            }
+        }
         [self.view addSubview:self.tableView];
 //        [self.tableView reloadData];
     } failure:^(NSError *error) {

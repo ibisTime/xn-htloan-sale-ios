@@ -106,4 +106,6 @@
 @property (nonatomic,strong) NSString * insideJobPostName;
 @property (nonatomic,strong) NSString * enterNodeCode;
 @property (nonatomic,copy) NSDictionary * carPledge;
+
+@property (nonatomic,strong) NSArray * attachments;
 @end

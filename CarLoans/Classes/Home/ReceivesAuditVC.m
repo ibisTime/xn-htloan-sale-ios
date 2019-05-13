@@ -199,12 +199,14 @@
     UITextField *textField = [self.view viewWithTag:100];
 
     TLNetworking *http = [TLNetworking new];
-    if (index == 0) {
-        http.code = @"632151";
-    }else
-    {
-        http.code = @"632152";
-    }
+//    if (index == 1) {
+//        http.code = @"632152";
+//    }else
+//    {
+//        http.code = @"632151";
+//        
+//    }
+    http.code = @"632151";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
