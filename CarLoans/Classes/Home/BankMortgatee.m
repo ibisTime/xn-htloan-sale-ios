@@ -254,9 +254,33 @@
     _otherArray = [NSMutableArray array];
     
     [self initTableView];
+    [self loaddetails];
  
 }
-
+-(void)loaddetails{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);
+        self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        self.tableView.model = self.model;
+        for (int i = 0; i < self.model.attachments.count; i ++) {
+            if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_front"]) {
+                self.AgentidNoFront = self.model.attachments[i][@"url"];
+                self.tableView.idNoFront = self.model.attachments[i][@"url"];
+            }
+            if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_reverse"]) {
+                self.AgentidNoReverse = self.model.attachments[i][@"url"];
+                self.tableView.idNoReverse = self.model.attachments[i][@"url"];
+            }
+        }
+        [self.view addSubview:self.tableView];
+        //        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 //- (void)loadHistoryList
 //{
 //    TLNetworking *http = [TLNetworking new];
@@ -471,7 +495,7 @@
     self.tableView.AgentDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
-    [self.view addSubview:self.tableView];
+//    [self.view addSubview:self.tableView];
 }
 
 

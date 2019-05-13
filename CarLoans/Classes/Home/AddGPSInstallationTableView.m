@@ -72,7 +72,7 @@
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"*安装时间";
-        cell.details = self.date;
+        cell.details = [self.date convertDateWithFormat:@"yyyy-MM-dd HH:mm"];
         cell.detailsLabel.tag = 104;
         return cell;
     }

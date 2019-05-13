@@ -1,19 +1,15 @@
 //
-//  TaskCell.m
+//  FileCell.m
 //  CarLoans
 //
-//  Created by 梅敏杰 on 2019/5/6.
-//  Copyright © 2019年 QinBao Zheng. All rights reserved.
+//  Created by 梅敏杰 on 2019/5/13.
+//  Copyright © 2019 QinBao Zheng. All rights reserved.
 //
 
-#import "TaskCell.h"
+#import "FileCell.h"
 
-@implementation TaskCell
+@implementation FileCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
 -(UIButton *)photoBtn
 {
     if (!_photoBtn) {
@@ -54,7 +50,7 @@
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 -(void)setTaskArray:(NSArray *)TaskArray{
@@ -63,7 +59,7 @@
                            @"创建时间:",
                            @"任务时效:"];
     
-
+    
     
     for (int i = 0; i < TaskArray.count; i ++ ) {
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15, 60 + i % TaskArray.count * 145, SCREEN_WIDTH - 30, 110)];
@@ -96,9 +92,9 @@
         backButton.tag = 1234 + i;
         [self addSubview:backButton];
         
-
+        
     }
-
+    
     _photoBtn.frame = CGRectMake(15, 60 + TaskArray.count * 120, SCREEN_WIDTH - 30, 110);
     _TaskArray = TaskArray;
 }
@@ -109,7 +105,7 @@
 }
 
 
--(void)setFileArray:(NSArray *)FileArray{
+-(void)setFileArray:(NSDictionary *)FileArray{
     NSArray *nameArray = @[@"文件内容:",
                            @"份数 :",
                            @"存放人:",
@@ -131,11 +127,11 @@
             
             UILabel *informationLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 10+j%5*25, SCREEN_WIDTH - 120, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:TextColor];
             NSArray *detailsArray = @[
-                                      [NSString stringWithFormat:@"%@",FileArray[i][@"content"]],
-                                      [NSString stringWithFormat:@"%@",FileArray[i][@"fileCount"]],
-                                      [NSString stringWithFormat:@"%@",FileArray[i][@"operatorName"]],
-                                      [FileArray[i][@"depositDateTime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"],
-                                      [NSString stringWithFormat:@"%@",FileArray[i][@"remark"]]
+                                      [NSString stringWithFormat:@"%@",FileArray[@"content"]],
+                                      [NSString stringWithFormat:@"%@",FileArray[@"fileCount"]],
+                                      [NSString stringWithFormat:@"%@",FileArray[@"operatorName"]],
+                                      [FileArray[@"depositDateTime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"],
+                                      [NSString stringWithFormat:@"%@",FileArray[@"remark"]]
                                       ];
             informationLabel.text = detailsArray[j];
             [backView addSubview:informationLabel];

@@ -239,7 +239,7 @@
     }
     if (indexPath.section == 2) {
         WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
-            date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+            date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
             self.tableView.date = date;
             [self.tableView reloadData];
 

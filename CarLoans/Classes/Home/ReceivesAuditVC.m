@@ -208,10 +208,10 @@
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"remark"] = textField.text;
     if (index == 0) {
-        http.parameters[@"approveResult"] = @(1);
+        http.parameters[@"approveResult"] = @(0);
     }else
     {
-        http.parameters[@"approveResult"] = @(0);
+        http.parameters[@"approveResult"] = @(1);
     }
     
     [http postWithSuccess:^(id responseObject) {

@@ -45,6 +45,7 @@
     self.tableView = [[InputTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.model = self.model;
+    self.tableView.location = [[BaseModel user]setParentKey:@"enter_location" setDkey:@"01"];
     [self findFile];
     [self.view addSubview:self.tableView];
 }

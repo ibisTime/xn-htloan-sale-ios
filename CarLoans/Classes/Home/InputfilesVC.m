@@ -9,6 +9,7 @@
 #import "InputfilesVC.h"
 #import "InputFilesTableView.h"
 #import "InputVC.h"
+#import "CheckFileVC.h"
 @interface InputfilesVC ()<RefreshDelegate>
 @property (nonatomic,strong) InputFilesTableView * tableView;
 @end
@@ -126,8 +127,16 @@
     [self.tableView beginRefreshing];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
-    InputVC * vc = [[InputVC alloc]init];
-    vc.model = self.model[index];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.model[index].enterNodeCode isEqualToString:@"e9"] || [self.model[index].enterNodeCode isEqualToString:@"f13"]) {
+        InputVC * vc = [[InputVC alloc]init];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([self.model[index].enterNodeCode isEqualToString:@"f14"]) {
+        CheckFileVC * vc = [[CheckFileVC alloc]init];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 @end

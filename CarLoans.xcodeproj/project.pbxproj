@@ -246,6 +246,9 @@
 		36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5322856325004C4479 /* ToApplyForRightTableView9.m */; };
 		36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E56228592F7004C4479 /* CheckCarTableView.m */; };
 		36294E5A22859313004C4479 /* CheckCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5922859313004C4479 /* CheckCarVC.m */; };
+		366A2AB9228986F200FF8366 /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2AB8228986F200FF8366 /* FileCell.m */; };
+		366A2ABC2289AF6B00FF8366 /* CheckFileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */; };
+		366A2ABF2289AF8300FF8366 /* CheckFileTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */; };
 		36932BA922819AE000FE0431 /* InputLendingDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */; };
 		36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAB22819AF800FE0431 /* InputLendingDetailsTableView.m */; };
 		36932BAF2281B26600FE0431 /* ConfirmLendingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */; };
@@ -993,6 +996,16 @@
 		36294E56228592F7004C4479 /* CheckCarTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarTableView.m; sourceTree = "<group>"; };
 		36294E5822859313004C4479 /* CheckCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckCarVC.h; sourceTree = "<group>"; };
 		36294E5922859313004C4479 /* CheckCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarVC.m; sourceTree = "<group>"; };
+		366A2AAD22895E6600FF8366 /* libAWDProtobufBluetooth.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufBluetooth.tbd; path = usr/lib/libAWDProtobufBluetooth.tbd; sourceTree = SDKROOT; };
+		366A2AAF22895E8D00FF8366 /* libAWDProtobufFacetime.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufFacetime.tbd; path = usr/lib/libAWDProtobufFacetime.tbd; sourceTree = SDKROOT; };
+		366A2AB122895E9300FF8366 /* libAWDProtobufFacetimeiMessage.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufFacetimeiMessage.tbd; path = usr/lib/libAWDProtobufFacetimeiMessage.tbd; sourceTree = SDKROOT; };
+		366A2AB322895E9B00FF8366 /* libAWDProtobufGCK.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufGCK.tbd; path = usr/lib/libAWDProtobufGCK.tbd; sourceTree = SDKROOT; };
+		366A2AB7228986F200FF8366 /* FileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileCell.h; sourceTree = "<group>"; };
+		366A2AB8228986F200FF8366 /* FileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileCell.m; sourceTree = "<group>"; };
+		366A2ABA2289AF6B00FF8366 /* CheckFileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckFileVC.h; sourceTree = "<group>"; };
+		366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckFileVC.m; sourceTree = "<group>"; };
+		366A2ABD2289AF8300FF8366 /* CheckFileTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckFileTableView.h; sourceTree = "<group>"; };
+		366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckFileTableView.m; sourceTree = "<group>"; };
 		36932BA722819AE000FE0431 /* InputLendingDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsVC.h; sourceTree = "<group>"; };
 		36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputLendingDetailsVC.m; sourceTree = "<group>"; };
 		36932BAA22819AF800FE0431 /* InputLendingDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsTableView.h; sourceTree = "<group>"; };
@@ -3124,6 +3137,8 @@
 				36E6FF192286B12B00CD2744 /* InputVC.m */,
 				36E6FF212286B4FF00CD2744 /* AddFilesVC.h */,
 				36E6FF222286B4FF00CD2744 /* AddFilesVC.m */,
+				366A2ABA2289AF6B00FF8366 /* CheckFileVC.h */,
+				366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -3137,6 +3152,10 @@
 				36E6FF1C2286B14000CD2744 /* InputTableView.m */,
 				36E6FF242286B52900CD2744 /* AddFilesTableView.h */,
 				36E6FF252286B52900CD2744 /* AddFilesTableView.m */,
+				366A2AB7228986F200FF8366 /* FileCell.h */,
+				366A2AB8228986F200FF8366 /* FileCell.m */,
+				366A2ABD2289AF8300FF8366 /* CheckFileTableView.h */,
+				366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4863,6 +4882,10 @@
 		D73FDE365E592AB5CDB3FA63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				366A2AB322895E9B00FF8366 /* libAWDProtobufGCK.tbd */,
+				366A2AB122895E9300FF8366 /* libAWDProtobufFacetimeiMessage.tbd */,
+				366A2AAF22895E8D00FF8366 /* libAWDProtobufFacetime.tbd */,
+				366A2AAD22895E6600FF8366 /* libAWDProtobufBluetooth.tbd */,
 				7A35841D21196C5F006FB5B5 /* libz.tbd */,
 				7A35841B21196C58006FB5B5 /* libstdc++.tbd */,
 				7A35841921196C51006FB5B5 /* libstdc++.6.tbd */,
@@ -5189,6 +5212,7 @@
 				1F1EF2F52266F63900EADA25 /* VideoCell.m in Sources */,
 				1F1EF1DD22646D1000EADA25 /* CustomerTableView.m in Sources */,
 				7A13AEC321104E4400B8F785 /* QNAsyncRun.m in Sources */,
+				366A2ABF2289AF8300FF8366 /* CheckFileTableView.m in Sources */,
 				7A13AE24210F26A200B8F785 /* IQPreviousNextView.m in Sources */,
 				1F1EF320226876CA00EADA25 /* CreditDetailsPeoplePhotoCell.m in Sources */,
 				7A3582CB21182EA9006FB5B5 /* CarSettledUpdataPhotoCell.m in Sources */,
@@ -5198,6 +5222,7 @@
 				7AB29E7720FD8EB30014FCB3 /* UIView+SDAutoLayout.m in Sources */,
 				1F151A8E2272AB14002B7EDA /* DetailsTableView4.m in Sources */,
 				B82C71052195AF1700742EE8 /* TLTextField.m in Sources */,
+				366A2AB9228986F200FF8366 /* FileCell.m in Sources */,
 				7A13AEC521104E4400B8F785 /* QNEtag.m in Sources */,
 				36E6FF292286CAA200CD2744 /* FileModel.m in Sources */,
 				1F1EF29F2265CD6F00EADA25 /* CollectionCell1.m in Sources */,
@@ -5340,6 +5365,7 @@
 				7A13AEB521104E4300B8F785 /* QNHijackingDetectWrapper.m in Sources */,
 				36C02E00227FFFB0007EC7CF /* ReFinancialTableView.m in Sources */,
 				1F651A582276DDFE00EFB78B /* ToApplyForRunningWaterCell.m in Sources */,
+				366A2ABC2289AF6B00FF8366 /* CheckFileVC.m in Sources */,
 				36E52D152289158300C18806 /* UIView+Extension.m in Sources */,
 				1F151A462272A7E1002B7EDA /* AccessApplyTableView.m in Sources */,
 				7A0F8E7C2119BA4400BA8358 /* SettlementAuditTableView.m in Sources */,
