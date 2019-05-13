@@ -55,8 +55,7 @@
     {
         [listArray insertObject:dic[@"dic"] atIndex:0];
         [gpsAzListArray insertObject:dic atIndex:0];
-//        [listArray addObject:dic[@"dic"]];
-//        [gpsAzListArray addObject:dic];
+
     }
     self.tableView.peopleAray = gpsAzListArray;
     [self.tableView reloadData];

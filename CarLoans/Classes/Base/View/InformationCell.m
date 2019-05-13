@@ -71,7 +71,7 @@
             UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 279+70+90+60, SCREEN_WIDTH, 1)];
             lineView2.backgroundColor = LineBackColor;
             [self addSubview:lineView2];
-            _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+            _button = [UIButton buttonWithTitle:@"提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
             _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290+60+90+60, 100, 30);
             kViewBorderRadius(_button, 5, 1, MainColor);
             [self addSubview:_button];
@@ -82,7 +82,7 @@
             UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 279+70+90, SCREEN_WIDTH, 1)];
             lineView2.backgroundColor = LineBackColor;
             [self addSubview:lineView2];
-            _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:14];
+            _button = [UIButton buttonWithTitle:@"提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:14];
 //            _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290+60+90, 100, 30);
             _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290, 100, 30);
             kViewBorderRadius(_button, 5, 1, MainColor);
@@ -93,7 +93,7 @@
             UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 279+70+90, SCREEN_WIDTH, 1)];
             lineView2.backgroundColor = LineBackColor;
             [self addSubview:lineView2];
-            _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:14];
+            _button = [UIButton buttonWithTitle:@"提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:14];
             _button.frame = CGRectMake(SCREEN_WIDTH - 115, 280, 100, 30);
             kViewBorderRadius(_button, 5, 1, MainColor);
             [self addSubview:_button];
@@ -104,7 +104,7 @@
             UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 279, SCREEN_WIDTH, 1)];
             lineView2.backgroundColor = LineBackColor;
             [self addSubview:lineView2];
-            _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+            _button = [UIButton buttonWithTitle:@"提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
             _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290, 100, 30);
             kViewBorderRadius(_button, 5, 1, MainColor);
             [self addSubview:_button];
@@ -175,7 +175,7 @@
 //        _button.hidden = NO;
 //    }
 //    else
-        if ([surveyModel.fbhgpsNode isEqualToString:@"g1"]) {
+    if ([surveyModel.fbhgpsNode isEqualToString:@"g1"]) {
         [_button setTitle:@"确认用款单" forState:(UIControlStateNormal)];
         _button.tag = 1001;
         _button.hidden = NO;
@@ -200,12 +200,6 @@
         _button.tag = 1005;
         _button.hidden = NO;
     }
-    
-//    _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);
-//    kViewBorderRadius(_button, 5, 1, MainColor);
-//    [self addSubview:_button];
-//    _button.hidden = YES;
-    
     
 }
 -(void)setGpsInstallationModel:(GPSInstallationModel *)gpsInstallationModel{
@@ -247,16 +241,12 @@
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 280,SCREEN_WIDTH, 1)];
     line.backgroundColor = kLineColor;
     [self addSubview:line];
-//    _button = [[UIButton alloc]init];
-//    [_button setTitleColor:kNavBarBackgroundColor forState:UIControlStateNormal];
-    
+
     if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d1"]){
-//        [_button setTitle:@"" forState:(UIControlStateNormal)];
         [_button setTitle:@"录入GPS" forState:(UIControlStateNormal)];
         _button.hidden = NO;
     }
     else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d2"]) {
-//        [_button setTitle:@"" forState:(UIControlStateNormal)];
         [_button setTitle:@"审核GPS" forState:(UIControlStateNormal)];
         _button.tag = 1001;
         _button.hidden = NO;

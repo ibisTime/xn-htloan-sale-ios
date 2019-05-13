@@ -48,10 +48,8 @@
     CarLoansWeakSelf;
 
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632148";
-    helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-//    NSArray *array = @[@"001_01",@"001_02",@"001_03",@"001_04",@"001_05",@"001_06",@"001_07"];
-//    helper.parameters[@"curNodeCodeList"] = array;
+    helper.code = @"632515";
+
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
@@ -86,9 +84,7 @@
     }];
 
     [self.tableView addLoadMoreAction:^{
-        helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-        helper.parameters[@"key"] = @"1";
+
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             //去除没有的币种

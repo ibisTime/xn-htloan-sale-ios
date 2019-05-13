@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdmissionDetailsVC : BaseViewController
-
+@property (nonatomic , copy)NSString *code;
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic , strong)NSArray *dataArray;
 

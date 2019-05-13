@@ -240,6 +240,7 @@
 		1F651AB5227B41B800EFB78B /* MakeCardEntryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651AB4227B41B800EFB78B /* MakeCardEntryTableView.m */; };
 		1F651ABB227D7A0B00EFB78B /* AccessAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */; };
 		1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */; };
+		1F8E2DE52287E8BF0045D62B /* GPSSentitemsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */; };
 		36294E4E22855B6C004C4479 /* AgentCheckVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E4D22855B6C004C4479 /* AgentCheckVC.m */; };
 		36294E5122855BA3004C4479 /* AgentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5022855BA3004C4479 /* AgentTableView.m */; };
 		36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5322856325004C4479 /* ToApplyForRightTableView9.m */; };
@@ -566,7 +567,6 @@
 		B8C1740B215F1C7700B10E44 /* GPSHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C1740A215F1C7700B10E44 /* GPSHomeVC.m */; };
 		B8C1740E215F499F00B10E44 /* GPSNotInstallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C1740D215F499F00B10E44 /* GPSNotInstallVC.m */; };
 		B8CD1CF7216EEF4100969A77 /* CarGounpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CD1CF6216EEF4100969A77 /* CarGounpCell.m */; };
-		B8E1A72421CCC0F00022AB29 /* SendDataTransferTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E1A72321CCC0F00022AB29 /* SendDataTransferTableView.m */; };
 		B8E1A72721CCEE690022AB29 /* NewSelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E1A72621CCEE690022AB29 /* NewSelectedListView.m */; };
 		B8F5C1A9219929AB002A00B6 /* HomeCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C1A8219929AB002A00B6 /* HomeCarVC.m */; };
 		B8F5C1AC2199640C002A00B6 /* insideMortgatee.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C1AB2199640B002A00B6 /* insideMortgatee.m */; };
@@ -973,6 +973,8 @@
 		1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditVC.m; sourceTree = "<group>"; };
 		1F651ABC227D7A1D00EFB78B /* AccessAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessAuditTableView.h; sourceTree = "<group>"; };
 		1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditTableView.m; sourceTree = "<group>"; };
+		1F8E2DE32287E8BF0045D62B /* GPSSentitemsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSSentitemsVC.h; sourceTree = "<group>"; };
+		1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSSentitemsVC.m; sourceTree = "<group>"; };
 		36294E4C22855B6C004C4479 /* AgentCheckVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentCheckVC.h; sourceTree = "<group>"; };
 		36294E4D22855B6C004C4479 /* AgentCheckVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentCheckVC.m; sourceTree = "<group>"; };
 		36294E4F22855BA3004C4479 /* AgentTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentTableView.h; sourceTree = "<group>"; };
@@ -1612,8 +1614,6 @@
 		B8C1740D215F499F00B10E44 /* GPSNotInstallVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSNotInstallVC.m; sourceTree = "<group>"; };
 		B8CD1CF5216EEF4100969A77 /* CarGounpCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarGounpCell.h; sourceTree = "<group>"; };
 		B8CD1CF6216EEF4100969A77 /* CarGounpCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarGounpCell.m; sourceTree = "<group>"; };
-		B8E1A72221CCC0F00022AB29 /* SendDataTransferTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendDataTransferTableView.h; sourceTree = "<group>"; };
-		B8E1A72321CCC0F00022AB29 /* SendDataTransferTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendDataTransferTableView.m; sourceTree = "<group>"; };
 		B8E1A72521CCEE690022AB29 /* NewSelectedListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewSelectedListView.h; sourceTree = "<group>"; };
 		B8E1A72621CCEE690022AB29 /* NewSelectedListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewSelectedListView.m; sourceTree = "<group>"; };
 		B8F5C1A7219929AB002A00B6 /* HomeCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCarVC.h; sourceTree = "<group>"; };
@@ -2345,6 +2345,8 @@
 				1F1EF2C02265D91C00EADA25 /* AdmissionDetailsTableView1.m */,
 				1F1EF2C52265E04700EADA25 /* AdmissionDetailsTableView2.h */,
 				1F1EF2C62265E04700EADA25 /* AdmissionDetailsTableView2.m */,
+				1F1EF2DE2266D6F300EADA25 /* AdmissionDetailsTableView8.h */,
+				1F1EF2DF2266D6F300EADA25 /* AdmissionDetailsTableView8.m */,
 				1F1EF2CF2266D11600EADA25 /* AdmissionDetailsTableView3.h */,
 				1F1EF2D02266D11600EADA25 /* AdmissionDetailsTableView3.m */,
 				1F1EF2D22266D40C00EADA25 /* AdmissionDetailsTableView4.h */,
@@ -2355,8 +2357,6 @@
 				1F1EF2D92266D6E300EADA25 /* AdmissionDetailsTableView6.m */,
 				1F1EF2DB2266D6EB00EADA25 /* AdmissionDetailsTableView7.h */,
 				1F1EF2DC2266D6EB00EADA25 /* AdmissionDetailsTableView7.m */,
-				1F1EF2DE2266D6F300EADA25 /* AdmissionDetailsTableView8.h */,
-				1F1EF2DF2266D6F300EADA25 /* AdmissionDetailsTableView8.m */,
 				1F1EF2E12266D6FA00EADA25 /* AdmissionDetailsTableView9.h */,
 				1F1EF2E22266D6FA00EADA25 /* AdmissionDetailsTableView9.m */,
 				1F1EF2E42266D70000EADA25 /* AdmissionDetailsTableView10.h */,
@@ -3059,9 +3059,9 @@
 		36F9E7222282834B009DAC65 /* InputFiles档案入档 */ = {
 			isa = PBXGroup;
 			children = (
+				36F9E7232282835E009DAC65 /* Controller */,
 				36E6FF2A2286CAA600CD2744 /* Model */,
 				36F9E72422828365009DAC65 /* View */,
-				36F9E7232282835E009DAC65 /* Controller */,
 			);
 			name = "InputFiles档案入档";
 			sourceTree = "<group>";
@@ -4066,8 +4066,6 @@
 			children = (
 				7A13ADD1210F102800B8F785 /* DataTransferTableView.h */,
 				7A13ADD2210F102800B8F785 /* DataTransferTableView.m */,
-				B8E1A72221CCC0F00022AB29 /* SendDataTransferTableView.h */,
-				B8E1A72321CCC0F00022AB29 /* SendDataTransferTableView.m */,
 				36F9E72B2282C5D7009DAC65 /* TransferCell.h */,
 				36F9E72C2282C5D7009DAC65 /* TransferCell.m */,
 			);
@@ -4090,6 +4088,8 @@
 				7A13ADC8210F0E0500B8F785 /* DataSentItemsVC.m */,
 				7A13ADCB210F0E2B00B8F785 /* DataCollectedVC.h */,
 				7A13ADCC210F0E2B00B8F785 /* DataCollectedVC.m */,
+				1F8E2DE32287E8BF0045D62B /* GPSSentitemsVC.h */,
+				1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */,
 				7A13ADCE210F0E4500B8F785 /* GPSCollectedVC.h */,
 				7A13ADCF210F0E4500B8F785 /* GPSCollectedVC.m */,
 			);
@@ -5381,7 +5381,6 @@
 				1F151A8C2272AB14002B7EDA /* DetailsTableView9.m in Sources */,
 				7A13AECC21104E4400B8F785 /* QNSessionManager.m in Sources */,
 				B8F735DE21607A0A00AAC90C /* CadListModel.m in Sources */,
-				B8E1A72421CCC0F00022AB29 /* SendDataTransferTableView.m in Sources */,
 				7AB29E9520FD8EB30014FCB3 /* UIColor+theme.m in Sources */,
 				1F151A962272AB14002B7EDA /* ApplyTableView7.m in Sources */,
 				7A13ADD3210F102800B8F785 /* DataTransferTableView.m in Sources */,
@@ -5413,6 +5412,7 @@
 				7A35828221130625006FB5B5 /* WSDatePickerView.m in Sources */,
 				1F1EF1EF22647AA700EADA25 /* TodoViewController.m in Sources */,
 				B8B001C6219A65DA00BDE019 /* InsideMortgageTB.m in Sources */,
+				1F8E2DE52287E8BF0045D62B /* GPSSentitemsVC.m in Sources */,
 				1F151A892272AB14002B7EDA /* DetailsTableView2.m in Sources */,
 				7A13AE27210F26A200B8F785 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				7A13AEB621104E4300B8F785 /* QNHosts.m in Sources */,

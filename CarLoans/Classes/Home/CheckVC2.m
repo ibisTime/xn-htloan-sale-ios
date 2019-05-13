@@ -128,9 +128,10 @@
 //    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
-    if ([state isEqualToString:@"delect"]) {
+    if ([state isEqualToString:@"delete"]) {
 //        [TaskArray removeObject:index];
         [TaskArray removeObjectAtIndex:index];
+        self.tableView.taskArray = TaskArray;
         [self.tableView reloadData];
     }
 }

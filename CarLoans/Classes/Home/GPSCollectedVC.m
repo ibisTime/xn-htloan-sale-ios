@@ -41,31 +41,23 @@
 }
 
 - (void)initTableView {
-//    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
-//    self.tableView.isGps = YES;
-////    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kTabBarHeight, 0);
-//    self.tableView.refreshDelegate = self;
-//    self.tableView.backgroundColor = kBackgroundColor;
-//    [self.view addSubview:self.tableView];
-//    if (self.isDetail == YES) {
-//        self.tableView.isDetail = self.isDetail;
-//        self.tableView.model = self.model;
-//        self.title = @"GPS收件详情";
-//
-//        [self.tableView reloadData];
-//    }
+    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+ 
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kTabBarHeight, 0);
+    self.tableView.refreshDelegate = self;
+    self.tableView.backgroundColor = kBackgroundColor;
+    [self.view addSubview:self.tableView];
+    
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isDetail == YES) {
-        return;
-    }
+    
     GPSCollectedVC *vc = [GPSCollectedVC new];
     NSMutableArray <DataTransferModel *>*models = [NSMutableArray array];
     [models addObject:self.model[indexPath.row]];
     vc.isDetail = YES;
-    vc.tableView.isDetail = YES;
+    
 
     vc.model = models;
     vc.tableView.model = models;
@@ -98,9 +90,8 @@
 
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632155";
-    helper.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];;
-    NSArray *array = @[@"1",@"2"];
-    helper.parameters[@"statusList"] = array;
+//    helper.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];;
+    helper.parameters[@"statusList"] = @[@"1",@"2"];
     helper.parameters[@"type"] = @"2";
 
 //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
@@ -126,7 +117,7 @@
 
             //
             weakSelf.model = shouldDisplayCoins;
-            weakSelf.tableView.isGps = YES;
+            
             weakSelf.tableView.model = shouldDisplayCoins;
             [weakSelf.tableView reloadData_tl];
 
@@ -140,10 +131,6 @@
 
     [self.tableView addLoadMoreAction:^{
 
-        helper.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];
-        NSArray *array = @[@"1",@"2",@"3"];
-        helper.parameters[@"statusList"] = array;
-        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             //去除没有的币种

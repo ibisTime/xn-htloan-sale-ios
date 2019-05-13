@@ -57,7 +57,7 @@
 ////            cell.showLbl.text = self.model.creditUser[@"userName"];
 //        }else
         
-            if (indexPath.row <= 5) {
+        if (indexPath.row <= 5) {
             
             if ([BaseModel isBlankString:self.waterDic[@"code"]] == NO) {
                 if ([_waterDic[@"type"] isEqualToString:@"1"]) {
@@ -81,12 +81,12 @@
                 if (indexPath.row == 3) {
                     cell.chooseLbl.text = [_waterDic[@"datetimeEnd"] convertDate];
                 }
-//                if (indexPath.row == 4) {
-//                    cell.chooseLbl.text = [NSString stringWithFormat:@"%@",[BaseModel convertNull: _waterDic[@"jourInterest1"]]];
-//                }
-//                if (indexPath.row == 5) {
-//                    cell.chooseLbl.text = [NSString stringWithFormat:@"%@",[BaseModel convertNull: _waterDic[@"jourInterest2"]]];
-//                }
+                if (indexPath.row == 4) {
+                    cell.chooseLbl.text = [[BaseModel user] setParentKey:@"interest" setDkey:[NSString stringWithFormat:@"%@",_waterDic[@"jourInterest1"]]];
+                }
+                if (indexPath.row == 5) {
+                    cell.chooseLbl.text = [[BaseModel user] setParentKey:@"interest" setDkey:[NSString stringWithFormat:@"%@",_waterDic[@"jourInterest2"]]];
+                }
             }
             cell.type = UIChooseType;
             cell.chooseLbl.tag = 10000 + indexPath.row;

@@ -13,16 +13,5 @@
 
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
 
-@property (nonatomic , strong)NSMutableArray <CadListModel *>*models;
-
-@property (nonatomic , strong) DataTransferModel *mode;
-
-@property (nonatomic , assign)BOOL isGps;
-
-@property (nonatomic , assign)BOOL isDetail;
-
-@property (nonatomic , assign)BOOL isRecview;
-
-
 
 @end

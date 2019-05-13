@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)SurveyTaskSelectButton:(UIButton *)sender;
 
+-(void)deleteButton:(UIButton *)sender;
+
 @end
 @interface TaskCell : UITableViewCell
 @property (nonatomic, assign) id <TaskDelegate> delegate;

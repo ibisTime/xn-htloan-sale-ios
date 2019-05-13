@@ -38,6 +38,7 @@
         [videoBtn setTitle:videoAry[i] forState:(UIControlStateNormal)];
         [videoBtn addTarget:self action:@selector(videoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         videoBtn.tag = i;
+        videoBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         videoBtn.titleLabel.font = Font(14);
         [self addSubview:videoBtn];
     }

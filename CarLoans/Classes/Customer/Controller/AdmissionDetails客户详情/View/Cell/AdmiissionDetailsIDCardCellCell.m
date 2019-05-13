@@ -10,8 +10,7 @@
 
 @implementation AdmiissionDetailsIDCardCellCell
 {
-    UIButton *button1;
-    UIButton *button2;
+    
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -30,10 +29,10 @@
             cardImg.frame = CGRectMake(15 + i % 2 * ((SCREEN_WIDTH - 107 - 40)/2 + 10) , 47, (SCREEN_WIDTH - 107 - 40)/2, (SCREEN_WIDTH - 107 - 40)/2/210*133);
             [self addSubview:cardImg];
             if (i == 0) {
-                button1 = cardImg;
+                self.button1 = cardImg;
             }else
             {
-                button2 = cardImg;
+                self.button2 = cardImg;
                 
             }
         }
@@ -44,8 +43,7 @@
 
 -(void)setCreditUser:(NSDictionary *)creditUser
 {
-    [button1 sd_setImageWithURL:[NSURL URLWithString:[creditUser[@"idFront"] convertImageUrl]] forState:UIControlStateNormal];
-    [button2 sd_setImageWithURL:[NSURL URLWithString:[creditUser[@"idReverse"] convertImageUrl]] forState:UIControlStateNormal];
+    
 }
 
 

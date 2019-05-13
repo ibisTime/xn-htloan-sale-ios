@@ -41,6 +41,15 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:ADDADPEOPLENOTICE object:nil];
 }
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
+    vc.code = _model[indexPath.row].code;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 -(void)loaddata{
 
     CarLoansWeakSelf;

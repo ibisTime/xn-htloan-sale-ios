@@ -52,6 +52,7 @@
     self.title = @"征信详情";
     [self initTableView];
     [self initNavigationController];
+    [self loadData];
 }
 
 -(void)initTableView
@@ -163,33 +164,154 @@
     
     [self.view addSubview:self.tableView16];
     
-    self.tableView1.model = self.model;
-    self.tableView2.model = self.model;
-    self.tableView3.model = self.model;
-    self.tableView4.model = self.model;
-    self.tableView5.model = self.model;
-    self.tableView6.model = self.model;
-    self.tableView7.model = self.model;
-    self.tableView8.model = self.model;
-    self.tableView9.model = self.model;
-    self.tableView10.model = self.model;
-    self.tableView11.model = self.model;
-    self.tableView12.model = self.model;
-    self.tableView13.model = self.model;
-    self.tableView14.model = self.model;
-    self.tableView15.model = self.model;
-    self.tableView16.model = self.model;
+    
 
     
     [self.view bringSubviewToFront:self.tableView1];
     
 }
 
+-(void)loadData
+{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    if ([BaseModel isBlankString:self.code] == YES) {
+        http.parameters[@"code"] = self.model.code;
+    }else
+    {
+        http.parameters[@"code"] = self.code;
+    }
+    
+    [http postWithSuccess:^(id responseObject) {
+//        NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        self.tableView.model = self.model;
+        self.tableView1.model = self.model;
+        self.tableView2.model = self.model;
+        self.tableView3.model = self.model;
+        self.tableView4.model = self.model;
+        self.tableView5.model = self.model;
+        self.tableView6.model = self.model;
+        self.tableView7.model = self.model;
+        self.tableView8.model = self.model;
+        self.tableView9.model = self.model;
+        self.tableView10.model = self.model;
+        self.tableView11.model = self.model;
+        self.tableView12.model = self.model;
+        self.tableView13.model = self.model;
+        self.tableView14.model = self.model;
+        self.tableView15.model = self.model;
+        self.tableView16.model = self.model;
+        
+        for (int i = 0; i < self.model.attachments.count; i ++) {
+            NSDictionary *attachment = self.model.attachments[i];
+//            申请人图片
+            if ([attachment[@"kname"] isEqualToString:@"id_no_front_apply"]) {
+                self.tableView2.id_no_front_apply = attachment[@"url"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"id_no_reverse_apply"]) {
+                self.tableView2.id_no_reverse_apply = attachment[@"url"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"auth_pdf_apply"]) {
+                self.tableView2.auth_pdf_apply = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"interview_pic_apply"]) {
+                self.tableView2.interview_pic_apply = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"bank_report_apply"]) {
+                self.tableView2.bank_report_apply = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            
+//            担保人图片
+            if ([attachment[@"kname"] isEqualToString:@"id_no_front_gua"]) {
+                self.tableView2.id_no_front_gua = attachment[@"url"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"id_no_reverse_gua"]) {
+                self.tableView2.id_no_reverse_gua = attachment[@"url"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"auth_pdf_gua"]) {
+                self.tableView2.auth_pdf_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"interview_pic_gua"]) {
+                self.tableView2.interview_pic_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"bank_report_gua"]) {
+                self.tableView2.bank_report_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            
+//            共还人图片
+            if ([attachment[@"kname"] isEqualToString:@"id_no_front_gh"]) {
+                self.tableView2.id_no_front_gh = attachment[@"url"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"id_no_reverse_gh"]) {
+                self.tableView2.id_no_reverse_gh = attachment[@"url"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"auth_pdf_gh"]) {
+                self.tableView2.auth_pdf_gh = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"interview_pic_gh"]) {
+                self.tableView2.interview_pic_gh = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"bank_report_gh"]) {
+                self.tableView2.bank_report_gh = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            
+//            面签
+            if ([attachment[@"kname"] isEqualToString:@"bank_video"]) {
+                self.tableView8.bank_video = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"company_video"]) {
+                self.tableView8.company_video = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"other_video"]) {
+                self.tableView8.other_video = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"bank_photo"]) {
+                self.tableView8.bank_photo = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"bank_contract"]) {
+                self.tableView8.bank_contract = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"company_contract"]) {
+                self.tableView8.company_contract = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
+                self.tableView8.advance_fund_amount_pdf = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"interview_other_pdf"]) {
+                self.tableView8.interview_other_pdf = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            
+        }
+        
+        
+        [self.tableView1 reloadData];
+        [self.tableView2 reloadData];
+        [self.tableView3 reloadData];
+        [self.tableView4 reloadData];
+        [self.tableView5 reloadData];
+        [self.tableView6 reloadData];
+        [self.tableView7 reloadData];
+        [self.tableView8 reloadData];
+        [self.tableView9 reloadData];
+        [self.tableView10 reloadData];
+        [self.tableView11 reloadData];
+        [self.tableView12 reloadData];
+        [self.tableView13 reloadData];
+        [self.tableView14 reloadData];
+        [self.tableView15 reloadData];
+        [self.tableView16 reloadData];
+
+
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (refreshTableview.tag == 100) {
         UITableView *tableView = [self.view viewWithTag:indexPath.row + 101];
-        
         [self.view bringSubviewToFront:tableView];
     }
 }

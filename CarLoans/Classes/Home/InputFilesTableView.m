@@ -38,12 +38,8 @@
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:Information forIndexPath:indexPath];
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
     static NSString *CellIdentifier = @"Cell";
-    InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+    InformationCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.isCar = self.isCar;
     if (cell == nil) {
         cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -57,13 +53,12 @@
     
     if ([self.model[indexPath.row].enterNodeCode isEqualToString:@"e9"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"e10"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"f13"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"f14"]) {
         cell.button.hidden = NO;
+        [cell.button setTitle:@"入档" forState:(UIControlStateNormal)];
     }
     else
         cell.button.hidden = YES;
     
-    [cell.button.titleLabel sizeToFit];
     
-    cell.button.frame = CGRectMake(SCREEN_WIDTH - cell.button.titleLabel.width - 25, 270, cell.button.titleLabel.width + 10, 30);
     
     [cell.button setTitle:[[BaseModel user]note:model.curNodeCode] forState:(UIControlStateNormal)];
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -91,20 +86,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AccessSingleModel *model = self.model[indexPath.row];
-    //    if ([model.curNodeCode isEqualToString:@"002_31"]) {
-    //        return 300;
-    //
-    //    }else
-    //    {
-    //        return 330;
-    //
-    //    }
-    if ([self.model[indexPath.row].curNodeCode isEqualToString:@"e6"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f1"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f4"] || [self.model[indexPath.row].curNodeCode isEqualToString:@"f9"]) {
-        return 380;
-    }
-    return 300;
-    
+    return 330;
 }
 
 #pragma mark -- 区头高度

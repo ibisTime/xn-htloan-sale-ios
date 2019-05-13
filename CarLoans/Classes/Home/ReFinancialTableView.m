@@ -50,7 +50,7 @@
          NSArray * collectDataArray = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];
         return 180 * ((collectDataArray.count / 3) + 1);
     }
-    return 55;
+    return 50;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

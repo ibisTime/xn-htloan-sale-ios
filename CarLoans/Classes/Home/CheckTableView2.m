@@ -41,9 +41,9 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
-        return 50 + 15 + (_taskArray.count + 1)*145 + 5;
+        return 50 + 15 + (_taskArray.count + 1)*120 + 5;
     }
-    return 55;
+    return 50;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return  0.001;
@@ -88,11 +88,7 @@
         cell.btnStr = @"添加任务";
         cell.delegate = self;
         [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        if (_taskArray.count > 0) {
-            cell.TaskArray = _taskArray;
-        }
-        [cell.deleteBtn addTarget:self action:@selector(deleteButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        cell.deleteBtn.tag = indexPath.row;
+        cell.TaskArray = _taskArray;
         return cell;
     }
     
@@ -104,6 +100,7 @@
     cell.tag = 400;
     return cell;
 }
+
 //添加任务
 -(void)photoBtnClick:(UIButton *)sender
 {
@@ -112,6 +109,7 @@
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
 }
+
 -(void)SurveyTaskSelectButton:(UIButton *)sender{
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
         
@@ -119,8 +117,9 @@
     }
 }
 
--(void)deleteButtonClick:(UIButton *)sender
+-(void)deleteButton:(UIButton *)sender
 {
-    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"delect"];
+    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"delete"];
 }
+
 @end

@@ -81,7 +81,7 @@
 {
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632148";
+    helper.code = @"632515";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     NSArray *curNodeCodeList = @[@"002_18"];
     helper.parameters[@"advanfCurNodeCodeList"] = curNodeCodeList;

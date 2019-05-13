@@ -74,7 +74,7 @@
 }
 -(void)loaddetails{
     TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"632117";
+    http.code = @"632516";
     http.parameters[@"code"] = self.model.code;
     [http postWithSuccess:^(id responseObject) {
         NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);

@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , strong)UILabel *InformationLabel;
 
+@property (nonatomic , strong)UIView *lineView;
+
 @property (nonatomic , strong)DataTransferModel *dataTransferModel;
 @property (nonatomic , strong)CadListModel *cadListModel;
 @end

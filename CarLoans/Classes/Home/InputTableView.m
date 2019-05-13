@@ -94,7 +94,7 @@
     if (indexPath.section == 2) {
         return 50 + 15 + (_FileArray.count + 1)*145 + 5;
     }
-    return 55;
+    return 50;
 }
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
