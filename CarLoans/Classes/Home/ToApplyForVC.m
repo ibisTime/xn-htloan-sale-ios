@@ -1096,9 +1096,6 @@
     
     self.MainIncomeArray = [NSMutableArray array];
     [MultiBaseView showMultiSheetAlertWithTitle:@"选择" conditions:dvalueArray resultBlock:^(NSArray *selectArr) {
-        
-//        NSLog(@"选中:----------------");
-//        right3Label12.text =  [selectArr componentsJoinedByString:@","];
         for (NSString *str in selectArr) {
             for (int i = 0; i < dataArray.count; i ++) {
                 if ([str isEqualToString:dataArray[i][@"dvalue"] ]) {

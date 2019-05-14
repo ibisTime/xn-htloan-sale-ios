@@ -49,15 +49,15 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         if (indexPath.row == 3) {
-            cell.collectDataArray = @[@"",@"",@"",@"",@"",@"",@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_invoice"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"发票";
         }
         if (indexPath.row == 4) {
-            cell.collectDataArray = @[@"",@"",@"",@"",@"",@"",@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_jqx"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"交强险";
         }
         if (indexPath.row == 5) {
-            cell.collectDataArray = @[@"",@"",@"",@"",@"",@"",@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_syx"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"商业险";
         }
         if (indexPath.row == 6) {
@@ -79,10 +79,19 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"保单日期",@"保单到期日",@"落户日期",@"",@"",@"",@"",@"抵押日期",@""];
+    NSArray *topArray = @[@"保单日期",
+                          @"保单到期日",
+                          @"落户日期",
+                          @"",@"",@"",@"",@"抵押日期",@""];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[@"2018-12-01",@"2019-12-01",@"2018-12-19",@"",@"",@"",@"",@"2018-12-19",@""];
+    NSArray *bottomArray = @[
+                             [BaseModel convertNull:[self.model.carInfoRes[@"policyDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
+                             [BaseModel convertNull:[self.model.carInfoRes[@"policyDueDate"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
+                             [BaseModel convertNull:[self.model.carInfoRes[@"carSettleDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
+                             @"",@"",@"",@"",
+                             @"2018-12-19",
+                             @""];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];

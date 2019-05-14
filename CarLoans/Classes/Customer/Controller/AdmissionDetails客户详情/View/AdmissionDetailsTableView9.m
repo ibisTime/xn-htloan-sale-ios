@@ -49,7 +49,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         if (indexPath.row == 9) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"advance_bill_pdf"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"水单";
         }
         
@@ -63,10 +63,30 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"GPS费用",@"公证费",@"月供保证金",@"其他费用",@"公司服务费",@"团队服务费",@"银行服务费",@"垫资日期",@"垫资金额",@"",@"垫资说明"];
+    NSArray *topArray = @[@"GPS费用",
+                          @"公证费",
+                          @"月供保证金",
+                          @"其他费用",
+                          @"公司服务费",
+                          @"团队服务费",
+                          @"银行服务费",
+                          @"垫资日期",
+                          @"垫资金额",
+                          @"",
+                          @"垫资说明"];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[@"1000.00",@"653.00",@"2200.00",@"100.00",@"1000.00",@"188888.00",@"银行服务费",@"2018-11-30",@"垫资金额",@"",@"垫资说明"];
+    NSArray *bottomArray = @[[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"gpsFee"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"monthDeposit"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"otherFee"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"companyFee"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"teamFee"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000],
+                             [BaseModel convertNull:[self.model.advance[@"advanceFundDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
+                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"advanceFundAmount"] floatValue]/1000],
+                             @"",
+                             [BaseModel convertNull:self.model.advance[@"advanceNote"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];

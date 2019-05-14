@@ -320,5 +320,14 @@
     NSString *dateTime = [formatter stringFromDate:[NSDate date]];
     return dateTime;
 }
-
+-(NSString *)FindUrlWithModel:(SurveyModel *)model ByKname:(NSString *)Kname{
+    NSString * string;
+    NSLog(@"%ld",model.attachments.count)
+    for (int i = 0; i < model.attachments.count; i++) {
+        if ([Kname isEqualToString:model.attachments[i][@"kname"]]) {
+            string = model.attachments[i][@"url"];
+        }
+    }
+    return string;
+}
 @end

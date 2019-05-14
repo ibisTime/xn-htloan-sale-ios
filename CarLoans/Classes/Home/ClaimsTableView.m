@@ -48,16 +48,18 @@
     if (section ==0) {
         return 1;
 
-    }else{
-        if (self.teamStr) {
-            return 4;
-
-        }else{
-            return 3;
-
-        }
-
     }
+    return 3;
+//    else{
+//        if (self.teamStr) {
+//            return 4;
+//
+//        }else{
+//            return 3;
+//
+//        }
+//
+//    }
 }
 
 #pragma mark -- tableView
@@ -71,93 +73,95 @@
         cell.xiaImage.image = HGImage(@"you");
         cell.xiaImage.frame = CGRectMake(SCREEN_WIDTH - 25, 17.5, 7.5, 15);
         return cell;
-    }else{
-        if (self.teamStr) {
-            if (indexPath.row == 0) {
-                ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:TextFiel forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                if ([self.teamStr isEqualToString:@"本部"]) {
-                    cell.name = @"匹配客户";
-                    cell.details = self.teamname;
-
-                }else{
-                    cell.name = @"匹配团队";
-                    cell.details = self.teamname;
-
-                    self.isList = NO;
-                    self.carLabel.hidden = YES;
-                    self.nameLabel.hidden = YES;
-                    self.numberLabel.hidden = YES;
-                    self.car.hidden = YES;
-                    self.number.hidden = YES;
-                    self.name.hidden = YES;
-                }
-                cell.xiaImage.image = HGImage(@"you");
-                cell.details = self.teamname;
-                cell.xiaImage.frame = CGRectMake(SCREEN_WIDTH - 25, 17.5, 7.5, 15);
-                if (self.isList == YES) {
-                    self.carLabel.hidden = YES;
-                    self.nameLabel.hidden = YES;
-                    self.numberLabel.hidden = YES;
-                    self.car.hidden = YES;
-                    self.number.hidden = YES;
-                    self.name.hidden = YES;
-                    
-                    UILabel * nameLabel = [UILabel labelWithFrame:CGRectMake(15, 50, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-                    self.nameLabel = nameLabel;
-                    UILabel * carLabel = [UILabel labelWithFrame:CGRectMake(15, 90, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-                    self.carLabel = carLabel;
-                    
-                    UILabel * numberLabel = [UILabel labelWithFrame:CGRectMake(15, 130, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-                    self.numberLabel = numberLabel;
-                    
-                    UILabel * name = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 50, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-                    UILabel * car = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 90, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-                    UILabel * number = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 130, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-                    self.name = name;
-                    self.number = number;
-                    self.car = car;
-                    
-                    
-                    
-                    nameLabel.text = @"客户姓名";
-                    carLabel.text = @"客户手机号";
-                    numberLabel.text = @"车架号";
-                    name.text = self.model.applyUserName;
-                    car.text = self.model.mobile;
-                    number.text = self.model.carFrameNo;
-                    [cell addSubview:nameLabel];
-                    [cell addSubview:carLabel];
-                    [cell addSubview:numberLabel];
-                    [cell addSubview:name];
-                    [cell addSubview:car];
-                    [cell addSubview:number];
-                    
-                }
-                return cell;
-            }
-        }
+    }
+//    else{
+//        if (self.teamStr) {
+//            if (indexPath.row == 0) {
+//                ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:TextFiel forIndexPath:indexPath];
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                if ([self.teamStr isEqualToString:@"本部"]) {
+//                    cell.name = @"匹配客户";
+//                    cell.details = self.teamname;
+//
+//                }else{
+//                    cell.name = @"匹配团队";
+//                    cell.details = self.teamname;
+//
+//                    self.isList = NO;
+//                    self.carLabel.hidden = YES;
+//                    self.nameLabel.hidden = YES;
+//                    self.numberLabel.hidden = YES;
+//                    self.car.hidden = YES;
+//                    self.number.hidden = YES;
+//                    self.name.hidden = YES;
+//                }
+//                cell.xiaImage.image = HGImage(@"you");
+//                cell.details = self.teamname;
+//                cell.xiaImage.frame = CGRectMake(SCREEN_WIDTH - 25, 17.5, 7.5, 15);
+//                if (self.isList == YES) {
+//                    self.carLabel.hidden = YES;
+//                    self.nameLabel.hidden = YES;
+//                    self.numberLabel.hidden = YES;
+//                    self.car.hidden = YES;
+//                    self.number.hidden = YES;
+//                    self.name.hidden = YES;
+//
+//                    UILabel * nameLabel = [UILabel labelWithFrame:CGRectMake(15, 50, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
+//                    self.nameLabel = nameLabel;
+//                    UILabel * carLabel = [UILabel labelWithFrame:CGRectMake(15, 90, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
+//                    self.carLabel = carLabel;
+//
+//                    UILabel * numberLabel = [UILabel labelWithFrame:CGRectMake(15, 130, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
+//                    self.numberLabel = numberLabel;
+//
+//                    UILabel * name = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 50, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
+//                    UILabel * car = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 90, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
+//                    UILabel * number = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 130, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
+//                    self.name = name;
+//                    self.number = number;
+//                    self.car = car;
+//
+//
+//
+//                    nameLabel.text = @"客户姓名";
+//                    carLabel.text = @"客户手机号";
+//                    numberLabel.text = @"车架号";
+//                    name.text = self.model.applyUserName;
+//                    car.text = self.model.mobile;
+//                    number.text = self.model.carFrameNo;
+//                    [cell addSubview:nameLabel];
+//                    [cell addSubview:carLabel];
+//                    [cell addSubview:numberLabel];
+//                    [cell addSubview:name];
+//                    [cell addSubview:car];
+//                    [cell addSubview:number];
+//
+//                }
+//                return cell;
+//            }
+//        }
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSArray *nameArray;
         NSArray *nameTextArray;
-        if (self.teamStr) {
-            nameArray = @[@"",@"申领有线个数",@"申领无线个数",@"申领说明"];
-            nameTextArray = @[@"",@"请输入申领个数",@"申领无线个数",@"请输入申领说明"];
-
-        }else{
-            nameArray = @[@"申领有线个数",@"申领无线个数",@"申领说明"];
-            nameTextArray = @[@"请输入申领个数",@"申领无线个数",@"请输入申领说明"];
-        }
-     
+//        if (self.teamStr) {
+//            nameArray = @[@"",@"申领有线个数",@"申领无线个数",@"申领说明"];
+//            nameTextArray = @[@"",@"请输入申领个数",@"申领无线个数",@"请输入申领说明"];
+//
+//        }else{
+//            nameArray = @[@"申领有线个数",@"申领无线个数",@"申领说明"];
+//            nameTextArray = @[@"请输入申领个数",@"申领无线个数",@"请输入申领说明"];
+//        }
+    nameArray = @[@"申领有线个数",@"申领无线个数",@"申领说明"];
+    nameTextArray = @[@"请输入申领个数",@"申领无线个数",@"请输入申领说明"];
         cell.nameTextField.tag = 100 + indexPath.row;
         cell.name = nameArray[indexPath.row];
         cell.nameText = nameTextArray[indexPath.row];
         
         return cell;
         
-    }
+//    }
     
 }
 
@@ -173,18 +177,18 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        return 50;
-
-    }else{
-    if (indexPath.row == 0) {
-        if (self.isList == YES) {
-            return SCREEN_HEIGHT/667*180;
-        }
-      return 50;
-    }
+//    if (indexPath.section == 0) {
+//        return 50;
+//
+//    }else{
+//    if (indexPath.row == 0) {
+//        if (self.isList == YES) {
+//            return SCREEN_HEIGHT/667*180;
+//        }
+//      return 50;
+//    }
     return 50;
-    }
+//    }
 }
 
 #pragma mark -- 区头高度

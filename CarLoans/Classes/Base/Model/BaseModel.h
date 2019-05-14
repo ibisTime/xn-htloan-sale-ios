@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SurveyModel.h"
 @protocol BaseModelDelegate <NSObject>
 
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid;
@@ -103,5 +103,5 @@
 -(NSString *)setParentKey:(NSString *)parentKey setDkey:(NSString *)dkey;
 -(NSString *)setParentKey:(NSString *)parentKey setDvalue:(NSString *)dvalue;
 -(void)phoneCode:(UIButton *)sender;
-
+-(NSString *)FindUrlWithModel:(SurveyModel *)model ByKname:(NSString *)Kname;
 @end

@@ -37,27 +37,27 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 13;
+    return 10;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 12) {
-        static NSString *CellIdentifier = @"PhotoCell";
-        PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-        if (cell == nil) {
-            cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        if (indexPath.row == 12) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
-            cell.selectStr = @"工作资料上传";
-        }
-        
-        return cell;
-        
-    }
+//    if (indexPath.row == 10) {
+//        static NSString *CellIdentifier = @"PhotoCell";
+//        PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//        if (cell == nil) {
+//            cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        }
+//        if (indexPath.row == 10) {
+//            cell.collectDataArray = @[@"",@"",@"",@""];
+//            cell.selectStr = @"工作资料上传";
+//        }
+//
+//        return cell;
+//
+//    }
     static NSString *CellIdentifier = @"Cell";
     AdmissionInformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
     if (cell == nil) {
@@ -65,10 +65,37 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"单位名称",@"单位地址",@"是否卡邮寄地址",@"所属行业",@"单位经济性质",@"主要收入来源",@"职务",@"职业",@"职称",@"月收入(元)",@"何时进入现单位工作",@"工作描述及还款来源分析",@""];
-    cell.topLbl.text = topArray[indexPath.row];
+    NSArray *topArray = @[@"单位名称",@"单位地址",@"所属行业",@"单位经济性质",@"主要收入来源",@"职业",@"职称",@"月收入(元)",@"何时进入现单位工作",@"工作描述及还款来源分析"];
     
-    NSArray *bottomArray = @[@"伊宁边境经济合作区兄弟连户外拓展部",@"新疆伊宁市阿合买提江街黄河大厦综合楼919室",@"是",@"所属行业",@"单位经济性质",@"主要收入来源",@"职务",@"职业",@"职称",@"8,000.00",@"2017-01",@"",@""];
+    cell.topLbl.text = topArray[indexPath.row];
+    NSMutableArray *dataArray = [NSMutableArray array];
+    NSArray *array = [USERDEFAULTS objectForKey:BOUNCEDDATA];
+    for (int i = 0; i < array.count; i ++) {
+        if ([array[i][@"parentKey"] isEqualToString:@"main_income"]) {
+            [dataArray addObject:array[i]];
+        }
+    }
+    NSArray * array1 = [self.model.creditUser[@"mainIncome"] componentsSeparatedByString:@","];
+    NSMutableArray *dvalueArray = [NSMutableArray array];
+    for (int i = 0; i < array1.count; i ++) {
+        for (int j = 0; j < dataArray.count; j ++) {
+            if ([array1[i] isEqualToString:dataArray[j][@"dkey"] ]) {
+                [dvalueArray addObject:dataArray[j][@"dvalue"] ];
+            }
+        }
+    }
+//    right3Label12.text = [dvalueArray componentsJoinedByString:@","];
+    
+    NSArray *bottomArray = @[[BaseModel convertNull:self.model.creditUser[@"companyName"]],
+                             [BaseModel convertNull:self.model.creditUser[@"companyAddress"]],
+                             [BaseModel convertNull:self.model.creditUser[@"workBelongIndustry"]],
+                             [BaseModel convertNull:[[BaseModel user]setParentKey:@"work_company_property" setDkey:self.model.creditUser[@"workCompanyProperty"]]],
+                             [BaseModel convertNull:[dvalueArray componentsJoinedByString:@","]],
+                             [BaseModel convertNull:self.model.creditUser[@"workProfession"]],
+                             [BaseModel convertNull:self.model.creditUser[@"postTitle"]],
+                             [NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"monthIncome"] floatValue]/1000],
+                             [BaseModel convertNull:self.model.creditUser[@"workDatetime"]],
+                             [BaseModel convertNull:self.model.creditUser[@"otherWorkNote"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];
