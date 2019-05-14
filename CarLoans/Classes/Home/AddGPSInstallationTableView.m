@@ -72,7 +72,7 @@
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"*安装时间";
-        cell.details = self.date;
+        cell.details = self.date ;
         cell.detailsLabel.tag = 104;
         return cell;
     }
@@ -188,7 +188,7 @@
             numberToRound = (_otherPicArray.count + 1.0)/4.0;
             result = (int)ceilf(numberToRound);
             NSLog(@"roundf(%.2f) = %d", numberToRound, result);
-            return result * (SCREEN_WIDTH - 20 / 4 + 5) + 10;
+            return result * ((SCREEN_WIDTH - 20) / 4 + 5) + 10;
         }else
         {
             float numberToRound;
@@ -197,7 +197,7 @@
             numberToRound = (_azPicArray.count + 1.0)/4.0;
             result = (int)ceilf(numberToRound);
             NSLog(@"roundf(%.2f) = %d", numberToRound, result);
-            return result * (SCREEN_WIDTH - 20 / 4 + 5) + 10;
+            return result * ((SCREEN_WIDTH - 20) / 4 + 5) + 10;
         }
         
     }else{

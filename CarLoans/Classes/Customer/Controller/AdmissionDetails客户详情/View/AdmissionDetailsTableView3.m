@@ -16,6 +16,7 @@
 {
     AdmissionInformationCell *_cell;
 }
+@property (nonatomic , strong)BaseModel *baseModel;
 @end
 @implementation AdmissionDetailsTableView3
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -39,31 +40,31 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 30;
+    return 28;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 27 || indexPath.row == 28 || indexPath.row == 29) {
+    if (indexPath.row == 26 || indexPath.row == 27 ) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 27) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
+        if (indexPath.row == 26) {
+            cell.collectDataArray =  [[self FindUrlByKname:@"car_pic"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"车辆照片";
         }
-        if (indexPath.row == 28) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
+        if (indexPath.row == 27) {
+            cell.collectDataArray = [[self FindUrlByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"合格证照片";
         }
-        if (indexPath.row == 29) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
-            cell.selectStr = @"车辆价格核实报告";
-        }
+//        if (indexPath.row == 29) {
+//            cell.collectDataArray = @[@"",@"",@"",@""];
+//            cell.selectStr = @"车辆价格核实报告";
+//        }
         
         return cell;
         
@@ -75,13 +76,60 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"业务种类",@"贷款期限",@"贷款产品",@"是否垫资",@"是否融资",@"所属区域",@"机动车销售公司",@"开票单位",@"开票价(元)",@"市场指导价(元)",@"首付金额(元)",@"首付比例(%)",@"贷款额(元)",@"月供保证金(元)",@"服务费(元)",@"GPS费用(元)",@"公证费(元)",@"其他费用(元)",@"车辆类型",@"车辆品牌",@"车系",@"车型名称",@"车辆型号",@"车辆颜色",@"车架号",@"发动机号",@"落户地点",@"",@"",@""];
+    NSArray *topArray = @[@"业务种类",
+                          @"贷款期限",
+                          @"贷款产品",
+                          @"是否垫资",
+                          @"是否融资",
+                          @"所属区域",
+                          @"机动车销售公司",
+                          @"开票单位",
+                          @"开票价(元)",
+                          @"市场指导价(元)",
+                          @"首付金额(元)",
+                          @"首付比例(%)",
+                          @"贷款额(元)",
+                          @"月供保证金(元)",
+                          @"服务费(元)",
+                          @"GPS费用(元)",
+                          @"公证费(元)",
+                          @"其他费用(元)",
+                          @"车辆类型",
+                          @"车辆品牌",
+                          @"车系",
+                          @"车型名称",
+                          @"车辆颜色",
+                          @"车架号",
+                          @"发动机号",
+                          @"落户地点"];
     cell.topLbl.text = topArray[indexPath.row];
-    
-    
-    
-    NSArray *bottomArray = @[[BaseModel convertNull:self.model.bizTypeStr],
-                             @"24",@"AFSF",@"是否垫资",@"是否融资",@"所属区域",@"新疆庞大本顺汽车销售服务有限公司",@"新疆庞大本顺汽车销售服务有限公司",@"650.00",@"1000",@"10000",@"30",@"65230.00",@"62350.00",@"650.00",@"GPS费用(元)",@"11650.00",@"650.00",@"车辆类型",@"思域牌",@"本田思域",@"宝马",@"DHW7153FCCSE",@"车辆颜色",@"LVHFC1665K6075840",@"发动机号",@"落户地点",@"",@"",@""];
+    NSArray *bottomArray = @[[BaseModel convertNull:self.model.bizType],
+                             [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]],
+                             [BaseModel convertNull:self.model.loanInfo[@"loanProductName"]] ,
+                             [self.model.isAdvanceFund isEqualToString:@"1"]?@"是":@"否",
+                             [self.model.isFinacing isEqualToString:@"1"]?@"是":@"否",
+                             [BaseModel convertNull:[_baseModel setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"vehicleCompanyName"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"invoiceCompany"]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"invoicePrice"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"sfAmount"] floatValue]/1000]],
+                             [NSString stringWithFormat:@"%@",self.model.loanInfo[@"sfRate"]],
+                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"loanAmount"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"monthDeposit"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"teamFee"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"authFee"] floatValue]/1000],
+                             [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"otherFee"] floatValue]/1000],
+                             [BaseModel convertNull:self.model.carInfoRes[@"carType"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"carBrand"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"carSeries"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"carModel"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"carColor"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"carFrameNo"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"carEngineNo"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"settleAddress"]]];
+    NSLog(@"%@-%ld",bottomArray[indexPath.row],indexPath.row);
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];
@@ -89,7 +137,16 @@
     return cell;
 }
 
-
+-(NSString *)FindUrlByKname:(NSString *)Kname{
+    NSString * string;
+    NSLog(@"%ld",self.model.attachments.count)
+    for (int i = 0; i < self.model.attachments.count; i++) {
+        if ([Kname isEqualToString:self.model.attachments[i][@"kname"]]) {
+            string = self.model.attachments[i][@"url"];
+        }
+    }
+    return string;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -101,27 +158,27 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 27) {
+    if (indexPath.row == 26) {
         float numberToRound;
         int result;
         numberToRound = (4.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
-    if (indexPath.row == 28) {
+    if (indexPath.row == 27) {
         float numberToRound;
         int result;
         numberToRound = (4.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }
-    if (indexPath.row == 29) {
-        float numberToRound;
-        int result;
-        numberToRound = (4.0)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
-    }
+//    if (indexPath.row == 28) {
+//        float numberToRound;
+//        int result;
+//        numberToRound = (4.0)/3.0;
+//        result = (int)ceilf(numberToRound);
+//        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
+//    }
     return _cell.bottomLbl.yy ;
 }
 

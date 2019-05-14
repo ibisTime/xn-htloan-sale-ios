@@ -65,8 +65,13 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    InputInformationDetailVC *vc = [[InputInformationDetailVC alloc]init];
-    vc.model = self.model[indexPath.row];
+//    InputInformationDetailVC *vc = [[InputInformationDetailVC alloc]init];
+//    vc.model = self.model[indexPath.row];
+//    [self.navigationController pushViewController:vc animated:YES];
+    AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
+//    self.model
+//    vc.model = self.model[indexPath.row];
+    vc.code = self.model[indexPath.row].code;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -119,6 +119,16 @@
             NSArray * arr = @[@"*抵押地点",@"*代理人",@"*代理人身份证号"];
             cell.name = arr[indexPath.row - 4];
             cell.nameTextField.tag = 1000+indexPath.row;
+            if (indexPath.row == 5) {
+                if (self.model.carPledge[@"pledgeUser"]) {
+                    cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
+                }
+            }
+            if (indexPath.row == 6) {
+                if (self.model.carPledge[@"pledgeUserIdCard"]) {
+                    cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
+                }
+            }
             return cell;
         }
     }
@@ -308,7 +318,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
 
-        NSArray *array = @[@"大本扫描件",@"车钥匙",@"车辆批单",@"登记证书",@"车辆行驶证扫描件",@"完税证明扫描件"];
+        NSArray *array = @[@"*大本扫描件",@"*车钥匙",@"*车辆批单",@"*登记证书",@"*车辆行驶证扫描件",@"*完税证明扫描件"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section-3];
         [headView addSubview:nameLabel];

@@ -63,10 +63,28 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"卡号",@"放款日期",@"银行账单日",@"银行还款日",@"公司还款日",@"首期还款日期",@"首期月供金额",@"每期月供金额",@"收款账号",@""];
+    NSArray *topArray = @[@"卡号",
+                          @"放款日期",
+                          @"银行账单日",
+                          @"银行还款日",
+                          @"公司还款日",
+                          @"首期还款日期",
+                          @"首期月供金额",
+                          @"每期月供金额",
+                          @"收款账号",
+                          @""];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[@"6222330062163688",@"2018-12-13",@"2200.00",@"25",@"2019-01-25",@"188888.00",@"银行服务费",@"2018-11-30",@"3002015119200183947",@""];
+    NSArray *bottomArray = @[@"6222330062163688",
+                             @"2018-12-13",
+                             @"2200.00",
+                             @"25",
+                             @"2019-01-25",
+                             @"188888.00",
+                             @"银行服务费",
+                             @"2018-11-30",
+                             @"3002015119200183947",
+                             @""];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];

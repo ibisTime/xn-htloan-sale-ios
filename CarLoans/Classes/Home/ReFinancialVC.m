@@ -257,6 +257,11 @@
         self.selectInt = index;
         [self.imagePicker picker];
     }
+    if ([state isEqualToString:@"DeletePhotos1"]) {
+        [self.carInvoice removeObjectAtIndex:index - 1000];
+        self.tableView.carInvoice = self.carInvoice;
+        [self.tableView reloadData];
+    }
 }
 
 -(void)initTableView{
@@ -283,9 +288,10 @@
 }
 }
 -(void)confirm:(UIButton *)sender{
-    InputBoxCell * cell = [self.view viewWithTag:1012];
+    InputBoxCell * cell = [self.view viewWithTag:1010];
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = self.code;
+    self.carInvoicestr = [self.carInvoice componentsJoinedByString:@"||"];
     http.parameters[@"advanceFundAmount"] = [NSString stringWithFormat:@"%.f", [cell.nameTextField.text floatValue] * 1000];
     http.parameters[@"advanceFundDatetime"] = self.policyDatetime;
     http.parameters[@"billPdf"] = self.carInvoicestr;

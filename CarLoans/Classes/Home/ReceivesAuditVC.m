@@ -199,6 +199,7 @@
     UITextField *textField = [self.view viewWithTag:100];
 
     TLNetworking *http = [TLNetworking new];
+
     http.code = @"632151";
     http.showView = self.view;
     http.parameters[@"code"] = _model.code;
@@ -207,10 +208,10 @@
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"remark"] = textField.text;
     if (index == 0) {
-        http.parameters[@"approveResult"] = @(1);
+        http.parameters[@"approveResult"] = @(0);
     }else
     {
-        http.parameters[@"approveResult"] = @(0);
+        http.parameters[@"approveResult"] = @(1);
     }
     
     [http postWithSuccess:^(id responseObject) {

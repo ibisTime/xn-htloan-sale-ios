@@ -284,14 +284,14 @@
         initiateButton.frame = CGRectMake(15, 30, SCREEN_WIDTH/2 - 30, 50);
         kViewRadius(initiateButton, 5);
         [initiateButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        initiateButton.tag = 0;
+        initiateButton.tag = 1;
         [headView addSubview:initiateButton];
 
         UIButton *saveButton = [UIButton buttonWithTitle:@"收件待补件" titleColor:[UIColor whiteColor] backgroundColor:MainColor titleFont:18];
         saveButton.frame = CGRectMake(SCREEN_WIDTH/2 + 15, 30, SCREEN_WIDTH/2 - 30, 50);
         kViewRadius(saveButton, 5);
         [saveButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        saveButton.tag = 1;
+        saveButton.tag = 0;
         [headView addSubview:saveButton];
 
         return headView;

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *bankStr;
 @property (nonatomic , copy)NSString *speciesStr;
 @property (nonatomic , copy)NSString *secondCarReport;
+@property (nonatomic,copy) NSString * bankNo;
 @end
 
 NS_ASSUME_NONNULL_END

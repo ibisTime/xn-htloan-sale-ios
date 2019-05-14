@@ -27,7 +27,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return self.model.budgetOrderGps.count;
 }
 
 #pragma mark -- 行数
@@ -40,43 +40,54 @@
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.row == 5 || indexPath.row == 6 ) {
-        static NSString *CellIdentifier = @"PhotoCell";
-        PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-        if (cell == nil) {
-            cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    for (int i = 0; i < self.model.budgetOrderGps.count; i ++) {
+        if (indexPath.section == i) {
+            if (indexPath.row == 5 || indexPath.row == 6 ) {
+                static NSString *CellIdentifier = @"PhotoCell";
+                PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+                if (cell == nil) {
+                    cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                }
+                if (indexPath.row == 5) {
+                    cell.collectDataArray = [self.model.budgetOrderGps[i][@"devPhotos"] componentsSeparatedByString:@"||"];
+                    cell.selectStr = @"设备图片";
+                }
+                if (indexPath.row == 6) {
+                    cell.collectDataArray = [self.model.budgetOrderGps[i][@"azPhotos"] componentsSeparatedByString:@"||"];
+                    cell.selectStr = @"安装图片";
+                }
+                
+                return cell;
+                
+            }
+            
+            static NSString *CellIdentifier = @"Cell";
+            AdmissionInformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+            if (cell == nil) {
+                cell = [[AdmissionInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            _cell = cell;
+            NSArray *topArray = @[@"GPS设备号",@"GPS类型",@"安装位置",@"安装时间",@"安装人员",@"",@"",@"备注"];
+            cell.topLbl.text = topArray[indexPath.row];
+            
+            NSArray *bottomArray = @[[BaseModel convertNull:self.model.budgetOrderGps[i][@"gpsDevNo"]],
+                                     [self.model.budgetOrderGps[i][@"gpsType"] isEqualToString:@"1"]?@"有线":@"无线",
+                                     [BaseModel convertNull:self.model.budgetOrderGps[i][@"azLocation"]],
+                                     [BaseModel convertNull:[self.model.budgetOrderGps[i][@"azDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH-mm"]],
+                                     [BaseModel convertNull:self.model.budgetOrderGps[i][@"azUser"]],
+                                     @"",
+                                     @"",
+                                     [BaseModel convertNull:self.model.budgetOrderGps[i][@"remark"]]];
+            cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
+            cell.bottomLbl.numberOfLines = 0;
+            cell.bottomLbl.text = bottomArray[indexPath.row];
+            [cell.bottomLbl sizeToFit];
+            return cell;
         }
-        if (indexPath.row == 5) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
-            cell.selectStr = @"设备图片";
-        }
-        if (indexPath.row == 6) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
-            cell.selectStr = @"安装图片";
-        }
-        
-        return cell;
-        
     }
-    
-    static NSString *CellIdentifier = @"Cell";
-    AdmissionInformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-    if (cell == nil) {
-        cell = [[AdmissionInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    _cell = cell;
-    NSArray *topArray = @[@"GPS设备号",@"GPS类型",@"安装位置",@"安装时间",@"安装人员",@"",@"",@"备注"];
-    cell.topLbl.text = topArray[indexPath.row];
-    
-    NSArray *bottomArray = @[@"客户",@"有线",@"中控",@"2018-12-12",@"安装人员",@"",@"",@""];
-    cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
-    cell.bottomLbl.numberOfLines = 0;
-    cell.bottomLbl.text = bottomArray[indexPath.row];
-    [cell.bottomLbl sizeToFit];
-    return cell;
+    return nil;
 }
 
 

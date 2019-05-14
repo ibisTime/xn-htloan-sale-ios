@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 3;
+    return 2;
 }
 
 #pragma mark -- tableView
@@ -48,35 +48,37 @@
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.collectDataArray = @[@"",@"",@"",@""];
+        
+    
+        cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"hkb_apply"] componentsSeparatedByString:@"||"];
         cell.selectStr = @"户口本";
         
         return cell;
         
     }
-    if (indexPath.row == 1) {
+//    if (indexPath.row == 1) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.collectDataArray = @[@"",@"",@"",@""];
+        cell.collectDataArray = @[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"id_no_front_apply"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"id_no_reverse_apply"]]];
         cell.selectStr = @"身份证";
         
         return cell;
         
-    }
-    static NSString *CellIdentifier = @"PhotoCell";
-    PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-    if (cell == nil) {
-        cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    cell.collectDataArray = @[@"",@"",@"",@""];
-    cell.selectStr = @"其他资料";
-    
-    return cell;
+//    }
+//    static NSString *CellIdentifier = @"PhotoCell";
+//    PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//    if (cell == nil) {
+//        cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    }
+//    cell.collectDataArray = @[@"",@"",@"",@""];
+//    cell.selectStr = @"其他资料";
+//
+//    return cell;
     
 }
 

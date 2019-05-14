@@ -22,7 +22,7 @@
     [self initTable];
     if (self.fileModel) {
         self.tableView.content = self.fileModel.content;
-        self.tableView.fileCount =[NSString stringWithFormat:@"%ld", self.fileModel.fileCount];
+        self.tableView.fileCount =self.fileModel.fileCount;
         self.tableView.remark = self.fileModel.remark;
         self.tableView.date = [self.fileModel.depositDateTime convertDateWithFormat:@"yyyy-MM-dd HH:mm"];
         date = [self.fileModel.depositDateTime convertDateWithFormat:@"yyyy-MM-dd HH:mm"];

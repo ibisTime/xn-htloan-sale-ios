@@ -51,16 +51,24 @@
     
     [cell.button setTitle:[[BaseModel user]note:model.enterNodeCode] forState:(UIControlStateNormal)];
     
-    if ([self.model[indexPath.row].enterNodeCode isEqualToString:@"e9"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"e10"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"f13"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"f14"]) {
+    if ([self.model[indexPath.row].enterNodeCode isEqualToString:@"e9"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"f13"] || [self.model[indexPath.row].enterNodeCode isEqualToString:@"f14"]) {
+        if ([self.model[indexPath.row].enterNodeCode isEqualToString:@"e9"]) {
+            [cell.button setTitle:@"第一次待入档" forState:(UIControlStateNormal)];
+        }
+        if ([self.model[indexPath.row].enterNodeCode isEqualToString:@"f13"]) {
+            [cell.button setTitle:@"第二次待入档" forState:(UIControlStateNormal)];
+        }
+        if ([self.model[indexPath.row].enterNodeCode isEqualToString:@"f14"]) {
+            [cell.button setTitle:@"确认入档" forState:(UIControlStateNormal)];
+        }
         cell.button.hidden = NO;
-        [cell.button setTitle:@"入档" forState:(UIControlStateNormal)];
     }
     else
         cell.button.hidden = YES;
     
     
     
-    [cell.button setTitle:[[BaseModel user]note:model.curNodeCode] forState:(UIControlStateNormal)];
+//    [cell.button setTitle:[[BaseModel user]note:model.enterNodeCode] forState:(UIControlStateNormal)];
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.button.tag = indexPath.row;
     

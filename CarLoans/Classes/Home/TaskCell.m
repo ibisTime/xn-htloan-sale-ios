@@ -134,8 +134,8 @@
                                       [NSString stringWithFormat:@"%@",FileArray[i][@"content"]],
                                       [NSString stringWithFormat:@"%@",FileArray[i][@"fileCount"]],
                                       [NSString stringWithFormat:@"%@",FileArray[i][@"operatorName"]],
-                                      [NSString stringWithFormat:@"%@",FileArray[i][@"remark"]],
-                                      [NSString stringWithFormat:@"%@",FileArray[i][@"depositDateTime"]]
+                                      [FileArray[i][@"depositDateTime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"],
+                                      [NSString stringWithFormat:@"%@",FileArray[i][@"remark"]]
                                       ];
             informationLabel.text = detailsArray[j];
             [backView addSubview:informationLabel];

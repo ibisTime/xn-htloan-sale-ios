@@ -10,7 +10,9 @@
 #import "ClaimsTableView.h"
 #import "AccessSingleVC.h"
 #import "GPSTeamModel.h"
-@interface ClaimsVC ()<RefreshDelegate,BaseModelDelegate>
+@interface ClaimsVC ()<RefreshDelegate,BaseModelDelegate>{
+    NSString * str;
+}
 @property (nonatomic , strong)ClaimsTableView *tableView;
 @property (nonatomic ,strong) AccessSingleModel *model;
 @property (nonatomic ,strong) NSMutableArray <GPSTeamModel *>*teamArray;
@@ -51,26 +53,26 @@
         BaseModel *model = [BaseModel new];
         model.ModelDelegate = self;
         NSMutableArray *array = [NSMutableArray array];
-        [array addObject:@"本部"];
-        [array addObject:@"分部"];
+        [array addObject:@"有线"];
+        [array addObject:@"无线"];
 
         [model CustomBouncedView:array setState:@"100"];
         return;
     }
-    if (indexPath.section == 1) {
-        if ([self.tableView.teamStr isEqualToString:@"本部"]) {
-            if (indexPath.row == 0) {
-                AccessSingleVC *vc = [[AccessSingleVC alloc]init];
-                vc.isHidden = YES;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        }else{
-            if (indexPath.row == 0) {
-              //获取团队 code
-                [self loadTeamData];
-            }
-        }
-    }
+//    if (indexPath.section == 1) {
+//        if ([self.tableView.teamStr isEqualToString:@"本部"]) {
+//            if (indexPath.row == 0) {
+//                AccessSingleVC *vc = [[AccessSingleVC alloc]init];
+//                vc.isHidden = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
+//        }else{
+//            if (indexPath.row == 0) {
+//              //获取团队 code
+//                [self loadTeamData];
+//            }
+//        }
+//    }
   
     //
     
@@ -79,32 +81,34 @@
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
 {
     WGLog(@"%@",dic);
-    if (self.tableView.teamStr) {
-        
-        if ([self.tableView.teamStr isEqualToString:@"本部"]) {
-            _tableView.teamname = Str;
-            if ([Str isEqualToString:@"本部"] || [Str isEqualToString:@"分部"]) {
-                _tableView.teamStr = Str;
-
-            }
-           
-
-        }else{
-            _tableView.teamname = Str;
-            if ([Str isEqualToString:@"本部"] || [Str isEqualToString:@"分部"]) {
-                _tableView.teamStr = Str;
-                
-            }
-            
-        }
-    }else{
-        _tableView.teamStr = Str;
-
-    }
-    
-    if (self.teamArray.count >0) {
-        self.teamCode = self.teamArray[sid].code;
-    }
+    str = Str;
+    _tableView.teamStr = Str;
+//    if (self.tableView.teamStr) {
+//
+//        if ([self.tableView.teamStr isEqualToString:@"本部"]) {
+//            _tableView.teamname = Str;
+//            if ([Str isEqualToString:@"本部"] || [Str isEqualToString:@"分部"]) {
+//                _tableView.teamStr = Str;
+//
+//            }
+//
+//
+//        }else{
+//            _tableView.teamname = Str;
+//            if ([Str isEqualToString:@"本部"] || [Str isEqualToString:@"分部"]) {
+//                _tableView.teamStr = Str;
+//
+//            }
+//
+//        }
+//    }else{
+//        _tableView.teamStr = Str;
+//
+//    }
+//
+//    if (self.teamArray.count >0) {
+//        self.teamCode = self.teamArray[sid].code;
+//    }
    
     [self.tableView reloadData];
 }
@@ -113,9 +117,9 @@
 {
     
     NSLog(@"%ld",index);
-    UITextField *textFid1 = [self.view viewWithTag:101];
-    UITextField *textFid2 = [self.view viewWithTag:102];
-    UITextField *textFid3 = [self.view viewWithTag:103];
+    UITextField *textFid1 = [self.view viewWithTag:100];
+    UITextField *textFid2 = [self.view viewWithTag:101];
+    UITextField *textFid3 = [self.view viewWithTag:102];
 
     if ([textFid1.text isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请输入申领个数"];
@@ -126,22 +130,22 @@
     http.showView = self.view;
     http.parameters[@"applyWiredCount"] = textFid1.text;
     http.parameters[@"applyWirelessCount"] = textFid2.text;
-    http.parameters[@"customerName"] =self.model.applyUserName;
-    if ([self.tableView.teamStr isEqualToString:@"本部"]) {
-        http.parameters[@"applyUsername"] = self.model.applyUserName;
-
-        http.parameters[@"applyType"] =@"1";
-
-    }else{
-        http.parameters[@"applyType"] =@"2";
-        http.parameters[@"teamCode"] =self.teamCode;
-
-    }
-
-    http.parameters[@"budgetOrderCode"] = self.model.code;
+//    http.parameters[@"customerName"] =self.model.applyUserName;
+//    if ([self.tableView.teamStr isEqualToString:@"本部"]) {
+//        http.parameters[@"applyUsername"] = self.model.applyUserName;
+//
+//        http.parameters[@"applyType"] =@"1";
+//
+//    }else{
+//        http.parameters[@"applyType"] =@"2";
+//        http.parameters[@"teamCode"] =self.teamCode;
+//
+//    }
+//
+//    http.parameters[@"budgetOrderCode"] = self.model.code;
     http.parameters[@"applyReason"] = textFid3.text;
     http.parameters[@"applyUser"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"type"] = @"1";
+    http.parameters[@"type"] = [str isEqualToString:@"有线"]?@"1":@"2";
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"申领成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

@@ -166,6 +166,8 @@
                 [model CustomBounced:array setState:@"100" isSign:NO];
 //                [model CustomBouncedView:array setState:@"100"];
                 return;
+                
+                
                 UIView *mengView = [UIView new];
                 self.mengView = mengView;
                 mengView.backgroundColor = [UIColor blackColor];
@@ -181,6 +183,8 @@
                 [self.mengView addSubview:self.selectTableView];
                 
                 return;
+                
+                
 //                UIView *mengView = [UIView new];
 //                self.mengView = mengView;
 //                mengView.backgroundColor = [UIColor blackColor];
@@ -215,10 +219,7 @@
                    
                     UITapGestureRecognizer *t = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseCad:)];
                     [secondLabl addGestureRecognizer:t];
-                    
-                  
                     secondLabl.frame = CGRectMake(50, 80+i*30, 200, 30);
-                    
                     secondLabl.text =self.models[i].vname;
                     [secondLabl addSubview:rightImg];
                     

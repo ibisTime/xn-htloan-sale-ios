@@ -246,6 +246,9 @@
 		36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5322856325004C4479 /* ToApplyForRightTableView9.m */; };
 		36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E56228592F7004C4479 /* CheckCarTableView.m */; };
 		36294E5A22859313004C4479 /* CheckCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5922859313004C4479 /* CheckCarVC.m */; };
+		366A2AB9228986F200FF8366 /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2AB8228986F200FF8366 /* FileCell.m */; };
+		366A2ABC2289AF6B00FF8366 /* CheckFileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */; };
+		366A2ABF2289AF8300FF8366 /* CheckFileTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */; };
 		36932BA922819AE000FE0431 /* InputLendingDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */; };
 		36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAB22819AF800FE0431 /* InputLendingDetailsTableView.m */; };
 		36932BAF2281B26600FE0431 /* ConfirmLendingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */; };
@@ -275,6 +278,14 @@
 		36C02E0E22802FE2007EC7CF /* CheckInstallationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E0D22802FE2007EC7CF /* CheckInstallationTableView.m */; };
 		36C02E1122803C5D007EC7CF /* CheckGPSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E1022803C5D007EC7CF /* CheckGPSVC.m */; };
 		36C02E1422803C77007EC7CF /* CheckGPSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E1322803C77007EC7CF /* CheckGPSTableView.m */; };
+		36E52D0E2289158300C18806 /* MultiBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E52D002289158200C18806 /* MultiBaseView.m */; };
+		36E52D0F2289158300C18806 /* MultiSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E52D022289158200C18806 /* MultiSelectCell.xib */; };
+		36E52D102289158300C18806 /* MultiSelectHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E52D032289158200C18806 /* MultiSelectHeaderView.m */; };
+		36E52D112289158300C18806 /* MultiSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E52D042289158200C18806 /* MultiSelectCell.m */; };
+		36E52D122289158300C18806 /* MultiSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E52D052289158200C18806 /* MultiSelectView.m */; };
+		36E52D132289158300C18806 /* cell_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E52D072289158200C18806 /* cell_selected@3x.png */; };
+		36E52D142289158300C18806 /* cell_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E52D082289158200C18806 /* cell_selected@2x.png */; };
+		36E52D152289158300C18806 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E52D0C2289158200C18806 /* UIView+Extension.m */; };
 		36E6FF1A2286B12B00CD2744 /* InputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E6FF192286B12B00CD2744 /* InputVC.m */; };
 		36E6FF1D2286B14000CD2744 /* InputTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E6FF1C2286B14000CD2744 /* InputTableView.m */; };
 		36E6FF232286B4FF00CD2744 /* AddFilesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E6FF222286B4FF00CD2744 /* AddFilesVC.m */; };
@@ -985,6 +996,16 @@
 		36294E56228592F7004C4479 /* CheckCarTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarTableView.m; sourceTree = "<group>"; };
 		36294E5822859313004C4479 /* CheckCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckCarVC.h; sourceTree = "<group>"; };
 		36294E5922859313004C4479 /* CheckCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarVC.m; sourceTree = "<group>"; };
+		366A2AAD22895E6600FF8366 /* libAWDProtobufBluetooth.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufBluetooth.tbd; path = usr/lib/libAWDProtobufBluetooth.tbd; sourceTree = SDKROOT; };
+		366A2AAF22895E8D00FF8366 /* libAWDProtobufFacetime.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufFacetime.tbd; path = usr/lib/libAWDProtobufFacetime.tbd; sourceTree = SDKROOT; };
+		366A2AB122895E9300FF8366 /* libAWDProtobufFacetimeiMessage.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufFacetimeiMessage.tbd; path = usr/lib/libAWDProtobufFacetimeiMessage.tbd; sourceTree = SDKROOT; };
+		366A2AB322895E9B00FF8366 /* libAWDProtobufGCK.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufGCK.tbd; path = usr/lib/libAWDProtobufGCK.tbd; sourceTree = SDKROOT; };
+		366A2AB7228986F200FF8366 /* FileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileCell.h; sourceTree = "<group>"; };
+		366A2AB8228986F200FF8366 /* FileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileCell.m; sourceTree = "<group>"; };
+		366A2ABA2289AF6B00FF8366 /* CheckFileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckFileVC.h; sourceTree = "<group>"; };
+		366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckFileVC.m; sourceTree = "<group>"; };
+		366A2ABD2289AF8300FF8366 /* CheckFileTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckFileTableView.h; sourceTree = "<group>"; };
+		366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckFileTableView.m; sourceTree = "<group>"; };
 		36932BA722819AE000FE0431 /* InputLendingDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsVC.h; sourceTree = "<group>"; };
 		36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputLendingDetailsVC.m; sourceTree = "<group>"; };
 		36932BAA22819AF800FE0431 /* InputLendingDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsTableView.h; sourceTree = "<group>"; };
@@ -1040,6 +1061,19 @@
 		36C02E1022803C5D007EC7CF /* CheckGPSVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckGPSVC.m; sourceTree = "<group>"; };
 		36C02E1222803C77007EC7CF /* CheckGPSTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckGPSTableView.h; sourceTree = "<group>"; };
 		36C02E1322803C77007EC7CF /* CheckGPSTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckGPSTableView.m; sourceTree = "<group>"; };
+		36E52D002289158200C18806 /* MultiBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiBaseView.m; sourceTree = "<group>"; };
+		36E52D012289158200C18806 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		36E52D022289158200C18806 /* MultiSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiSelectCell.xib; sourceTree = "<group>"; };
+		36E52D032289158200C18806 /* MultiSelectHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSelectHeaderView.m; sourceTree = "<group>"; };
+		36E52D042289158200C18806 /* MultiSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSelectCell.m; sourceTree = "<group>"; };
+		36E52D052289158200C18806 /* MultiSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSelectView.m; sourceTree = "<group>"; };
+		36E52D072289158200C18806 /* cell_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_selected@3x.png"; sourceTree = "<group>"; };
+		36E52D082289158200C18806 /* cell_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_selected@2x.png"; sourceTree = "<group>"; };
+		36E52D092289158200C18806 /* MultiBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiBaseView.h; sourceTree = "<group>"; };
+		36E52D0A2289158200C18806 /* MultiSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSelectCell.h; sourceTree = "<group>"; };
+		36E52D0B2289158200C18806 /* MultiSelectHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSelectHeaderView.h; sourceTree = "<group>"; };
+		36E52D0C2289158200C18806 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		36E52D0D2289158200C18806 /* MultiSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSelectView.h; sourceTree = "<group>"; };
 		36E6FF182286B12B00CD2744 /* InputVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputVC.h; sourceTree = "<group>"; };
 		36E6FF192286B12B00CD2744 /* InputVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputVC.m; sourceTree = "<group>"; };
 		36E6FF1B2286B14000CD2744 /* InputTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputTableView.h; sourceTree = "<group>"; };
@@ -3047,6 +3081,34 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		36E52CFF2289158200C18806 /* MultiAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				36E52D002289158200C18806 /* MultiBaseView.m */,
+				36E52D012289158200C18806 /* UIView+Extension.h */,
+				36E52D022289158200C18806 /* MultiSelectCell.xib */,
+				36E52D032289158200C18806 /* MultiSelectHeaderView.m */,
+				36E52D042289158200C18806 /* MultiSelectCell.m */,
+				36E52D052289158200C18806 /* MultiSelectView.m */,
+				36E52D062289158200C18806 /* image */,
+				36E52D092289158200C18806 /* MultiBaseView.h */,
+				36E52D0A2289158200C18806 /* MultiSelectCell.h */,
+				36E52D0B2289158200C18806 /* MultiSelectHeaderView.h */,
+				36E52D0C2289158200C18806 /* UIView+Extension.m */,
+				36E52D0D2289158200C18806 /* MultiSelectView.h */,
+			);
+			path = MultiAlertView;
+			sourceTree = "<group>";
+		};
+		36E52D062289158200C18806 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				36E52D072289158200C18806 /* cell_selected@3x.png */,
+				36E52D082289158200C18806 /* cell_selected@2x.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		36E6FF2A2286CAA600CD2744 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3075,6 +3137,8 @@
 				36E6FF192286B12B00CD2744 /* InputVC.m */,
 				36E6FF212286B4FF00CD2744 /* AddFilesVC.h */,
 				36E6FF222286B4FF00CD2744 /* AddFilesVC.m */,
+				366A2ABA2289AF6B00FF8366 /* CheckFileVC.h */,
+				366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -3088,6 +3152,10 @@
 				36E6FF1C2286B14000CD2744 /* InputTableView.m */,
 				36E6FF242286B52900CD2744 /* AddFilesTableView.h */,
 				36E6FF252286B52900CD2744 /* AddFilesTableView.m */,
+				366A2AB7228986F200FF8366 /* FileCell.h */,
+				366A2AB8228986F200FF8366 /* FileCell.m */,
+				366A2ABD2289AF8300FF8366 /* CheckFileTableView.h */,
+				366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4279,6 +4347,7 @@
 		7AB29DCB20FD8B2E0014FCB3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				36E52CFF2289158200C18806 /* MultiAlertView */,
 				B82C71032195AF1500742EE8 /* TLTextField.h */,
 				B82C71042195AF1600742EE8 /* TLTextField.m */,
 				7AB29DFF20FD8EB10014FCB3 /* CustomUI */,
@@ -4813,6 +4882,10 @@
 		D73FDE365E592AB5CDB3FA63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				366A2AB322895E9B00FF8366 /* libAWDProtobufGCK.tbd */,
+				366A2AB122895E9300FF8366 /* libAWDProtobufFacetimeiMessage.tbd */,
+				366A2AAF22895E8D00FF8366 /* libAWDProtobufFacetime.tbd */,
+				366A2AAD22895E6600FF8366 /* libAWDProtobufBluetooth.tbd */,
 				7A35841D21196C5F006FB5B5 /* libz.tbd */,
 				7A35841B21196C58006FB5B5 /* libstdc++.tbd */,
 				7A35841921196C51006FB5B5 /* libstdc++.6.tbd */,
@@ -5022,6 +5095,7 @@
 				1F19AAB7220193030090BF84 /* huzi_9.png in Resources */,
 				7AB29DA020FD85710014FCB3 /* LaunchScreen.storyboard in Resources */,
 				1F19AABA220193030090BF84 /* apple.mp4 in Resources */,
+				36E52D132289158300C18806 /* cell_selected@3x.png in Resources */,
 				1F19AA72220193030090BF84 /* qingliang.png in Resources */,
 				1F19AA91220193030090BF84 /* tooth_8.png in Resources */,
 				1F19AA89220193030090BF84 /* tooth_17.png in Resources */,
@@ -5043,11 +5117,13 @@
 				7A13AE2A210F26A200B8F785 /* README.md in Resources */,
 				1F19AA98220193030090BF84 /* ear_1.png in Resources */,
 				1F19AA76220193030090BF84 /* weimei.png in Resources */,
+				36E52D142289158300C18806 /* cell_selected@2x.png in Resources */,
 				1F19AAA6220193030090BF84 /* ear_18.png in Resources */,
 				7A35828321130625006FB5B5 /* WSDatePickerView.xib in Resources */,
 				1F19AAA7220193030090BF84 /* ear_19.png in Resources */,
 				7A13AE29210F26A200B8F785 /* LICENSE.md in Resources */,
 				1F19AAB6220193030090BF84 /* huzi_11.png in Resources */,
+				36E52D0F2289158300C18806 /* MultiSelectCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5074,7 +5150,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CarLoans/Pods-CarLoans-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CarLoans/Pods-CarLoans-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
@@ -5085,7 +5161,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CarLoans/Pods-CarLoans-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarLoans/Pods-CarLoans-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		66E0CCBF165B72730ACD4B49 /* [CP] Check Pods Manifest.lock */ = {
@@ -5136,6 +5212,7 @@
 				1F1EF2F52266F63900EADA25 /* VideoCell.m in Sources */,
 				1F1EF1DD22646D1000EADA25 /* CustomerTableView.m in Sources */,
 				7A13AEC321104E4400B8F785 /* QNAsyncRun.m in Sources */,
+				366A2ABF2289AF8300FF8366 /* CheckFileTableView.m in Sources */,
 				7A13AE24210F26A200B8F785 /* IQPreviousNextView.m in Sources */,
 				1F1EF320226876CA00EADA25 /* CreditDetailsPeoplePhotoCell.m in Sources */,
 				7A3582CB21182EA9006FB5B5 /* CarSettledUpdataPhotoCell.m in Sources */,
@@ -5145,6 +5222,7 @@
 				7AB29E7720FD8EB30014FCB3 /* UIView+SDAutoLayout.m in Sources */,
 				1F151A8E2272AB14002B7EDA /* DetailsTableView4.m in Sources */,
 				B82C71052195AF1700742EE8 /* TLTextField.m in Sources */,
+				366A2AB9228986F200FF8366 /* FileCell.m in Sources */,
 				7A13AEC521104E4400B8F785 /* QNEtag.m in Sources */,
 				36E6FF292286CAA200CD2744 /* FileModel.m in Sources */,
 				1F1EF29F2265CD6F00EADA25 /* CollectionCell1.m in Sources */,
@@ -5162,6 +5240,7 @@
 				36C02E03227FFFC6007EC7CF /* ReFinancialVC.m in Sources */,
 				7AB29E7D20FD8EB30014FCB3 /* ShareButton.m in Sources */,
 				7AB29E9220FD8EB30014FCB3 /* UIButton+Custom.m in Sources */,
+				36E52D0E2289158300C18806 /* MultiBaseView.m in Sources */,
 				7A945550210EFDB600BDFD33 /* FaceSignVC.m in Sources */,
 				1F151A8D2272AB14002B7EDA /* DetailsTableView3.m in Sources */,
 				7A13AEBE21104E4400B8F785 /* QNIP.m in Sources */,
@@ -5251,6 +5330,7 @@
 				7AB29E7120FD8EB30014FCB3 /* TFHppleElement.m in Sources */,
 				7A0592AF20FDD98300075FE8 /* ChooseCell.m in Sources */,
 				7A13AE21210F26A100B8F785 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				36E52D122289158300C18806 /* MultiSelectView.m in Sources */,
 				7A0F8E8F211A91D100BA8358 /* ReceivesAuditTableView.m in Sources */,
 				1F1EF2132265AB3D00EADA25 /* OperationCell.m in Sources */,
 				7A3582932113F678006FB5B5 /* GPSInstallationTableView.m in Sources */,
@@ -5261,6 +5341,7 @@
 				7AB29EAA20FDB9750014FCB3 /* HomeHeadView.m in Sources */,
 				1F151A9D2272AB14002B7EDA /* AccessApplyAddGPSTableView.m in Sources */,
 				1F651A94227AD27A00EFB78B /* CreditSingleVC.m in Sources */,
+				36E52D102289158300C18806 /* MultiSelectHeaderView.m in Sources */,
 				7A0F8FC9211D70E500BA8358 /* GPSInstallationDetailsModel.m in Sources */,
 				7A13AEC421104E4400B8F785 /* QNCrc32.m in Sources */,
 				36F9E72D2282C5D7009DAC65 /* TransferCell.m in Sources */,
@@ -5284,6 +5365,8 @@
 				7A13AEB521104E4300B8F785 /* QNHijackingDetectWrapper.m in Sources */,
 				36C02E00227FFFB0007EC7CF /* ReFinancialTableView.m in Sources */,
 				1F651A582276DDFE00EFB78B /* ToApplyForRunningWaterCell.m in Sources */,
+				366A2ABC2289AF6B00FF8366 /* CheckFileVC.m in Sources */,
+				36E52D152289158300C18806 /* UIView+Extension.m in Sources */,
 				1F151A462272A7E1002B7EDA /* AccessApplyTableView.m in Sources */,
 				7A0F8E7C2119BA4400BA8358 /* SettlementAuditTableView.m in Sources */,
 				36B28A75227EA29C00A8C07D /* FinancialVC.m in Sources */,
@@ -5422,6 +5505,7 @@
 				1F1EF2EC2266D70D00EADA25 /* AdmissionDetailsTableView12.m in Sources */,
 				1F1EF2F22266D71A00EADA25 /* AdmissionDetailsTableView14.m in Sources */,
 				1F1EF1DA226462FD00EADA25 /* HomeCollectionViewCell.m in Sources */,
+				36E52D112289158300C18806 /* MultiSelectCell.m in Sources */,
 				1F1EF2FA22670B1B00EADA25 /* AddingAssociatedVC.m in Sources */,
 				1F1EF2072265A72F00EADA25 /* CustomerDetailsChooseCell.m in Sources */,
 				7A3582A221143CF2006FB5B5 /* CarSettledInDetailsVC.m in Sources */,

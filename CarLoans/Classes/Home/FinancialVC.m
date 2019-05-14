@@ -157,7 +157,11 @@
     }
     
 }
-
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AdmissionDetailsVC * vc = [[AdmissionDetailsVC alloc]init];
+    vc.code = self.model[indexPath.row].code;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 /*
 #pragma mark - Navigation
 

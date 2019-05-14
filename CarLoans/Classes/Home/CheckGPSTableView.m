@@ -212,11 +212,35 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 5 || indexPath.section == 6) {
-        return 130;
+        if (indexPath.section == 5) {
+            float numberToRound;
+            int result;
+            
+            numberToRound = (_BankPicArray.count + 1.0)/4.0;
+            result = (int)ceilf(numberToRound);
+            NSLog(@"roundf(%.2f) = %d", numberToRound, result);
+            return result * ((SCREEN_WIDTH - 20) / 4 + 5) + 10;
+        }else
+        {
+            float numberToRound;
+            int result;
+            
+            numberToRound = (_CompanyPicArray.count + 1.0)/4.0;
+            result = (int)ceilf(numberToRound);
+            NSLog(@"roundf(%.2f) = %d", numberToRound, result);
+            return result * ((SCREEN_WIDTH - 20) / 4 + 5) + 10;
+        }
+        
     }else{
         return 50;
         
     }
+//    if (indexPath.section == 5 || indexPath.section == 6) {
+//        return 130;
+//    }else{
+//        return 50;
+//
+//    }
 }
 
 #pragma mark -- 区头高度

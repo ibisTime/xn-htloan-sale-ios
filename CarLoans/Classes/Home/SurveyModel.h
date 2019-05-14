@@ -266,4 +266,7 @@
 //@property (nonatomic,copy) NSString * secondCarReport;
 @property (nonatomic,strong) NSString * saleUserPostName;
 @property (nonatomic,strong) NSString * insideJobPostName;
+@property (nonatomic,strong) NSDictionary * carPledge;
+@property (nonatomic,strong) NSDictionary * advance;
+@property (nonatomic,strong) NSArray * budgetOrderGps;
 @end

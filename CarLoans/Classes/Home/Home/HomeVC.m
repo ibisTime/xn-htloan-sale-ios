@@ -280,7 +280,7 @@
                 InputfilesVC *vc = [InputfilesVC new];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.title = @"档案入档";
-                vc.curNodeCodeList = @[@"e9",@"e10",@"f13",@"f14"];
+                vc.curNodeCodeList = @[@"e7",@"e8",@"e9",@"e10",@"f11",@"f12",@"f13",@"f14",@"f15"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
@@ -312,7 +312,7 @@
             {
                 ProtectUsVC *vc = [ProtectUsVC new];
                 vc.hidesBottomBarWhenPushed = YES;
-                vc.curNodeCodeList = @[@"c1",@"c2",@"c1x"];
+                vc.curNodeCodeList = @[@"c1",@"c2",@"c1x",@"c3"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
