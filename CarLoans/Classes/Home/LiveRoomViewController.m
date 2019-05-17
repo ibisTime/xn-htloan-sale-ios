@@ -91,6 +91,7 @@
         //        NSString * jsonString = @"";
         NSData *jsonData = [strUrl dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+        
         if ([dic[@"code"] intValue] != 0 ) {
             [TLAlert alertWithMsg:@"请重新开始录制"];
             sender.enabled = YES;
@@ -203,14 +204,30 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    MJWeakSelf;
+//    MJWeakSelf;
+    
+    if (self.isjoin == NO) {
+        [self loginOutRoom];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"KsingOut" object:nil];
+    }
     [[ILiveRoomManager getInstance] quitRoom:^{
         NSLog(@"退出房间成功");
-        if (weakSelf.isjoin == NO) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"KsingOut" object:nil];
-        }
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         NSLog(@"退出房间失败 %d : %@", errId, errMsg);
+    }];
+}
+
+- (void)loginOutRoom
+{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"632955";
+    http.showView = self.view;
+    http.parameters[@"code"] = self.roomId;
+    [http postWithSuccess:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+//        [TLAlert alertWithSucces:@"已退出房间"];
+    } failure:^(NSError *error) {
+        
     }];
 }
 
@@ -356,6 +373,8 @@
         }
     }];
 }
+
+
 
 #pragma mark - ILiveRoomDisconnectListener
 /**

@@ -573,12 +573,19 @@
             //            房间已经存在
             //                faceStr = @"1";
             self.isJoin = YES;
+            
             [self checkCount];
+            
         }else{
             //            房间不存在
             //                faceStr = @"";
+            
             self.isJoin = NO;
             [self requestIsEmpy];
+            
+            
+            
+            
             
         }
 
@@ -605,13 +612,19 @@
             [TLAlert alertWithMsg:@"房间已满"];
         }else{
             
+            
             [self sendPhoneCode];
+            
         }
     } failure:^(NSError *error) {
         
     }];
 }
 
+-(void)join
+{
+    
+}
 //
 - (void)requestIsEmpy
 {
@@ -624,7 +637,22 @@
     [ht postWithSuccess:^(id responseObject) {
         self.strid = responseObject[@"data"];;
         NSLog(@"strid%@",self.strid);
-        [self checkCount];
+        
+//        发送短信
+        TLNetworking *ht = [TLNetworking new];
+        ht.code = @"632136";
+        ht.parameters[@"roomId"] = self.strid;
+        ht.parameters[@"code"] = self.model.code;
+        
+        ht.showView = self.view;
+        [ht postWithSuccess:^(id responseObject) {
+            
+            [self checkCount];
+            
+        } failure:^(NSError *error) {
+            WGLog(@"%@",error);
+        }];
+        
     } failure:^(NSError *error) {
         
     }];
@@ -632,59 +660,86 @@
 
 
 //退出房间
-- (void)loginOutRoom
-{
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"632955";
-    http.showView = self.view;
-    http.parameters[@"code"] = self.strid;
-    [http postWithSuccess:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-
-        [TLAlert alertWithSucces:@"已退出房间"];
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
+//- (void)loginOutRoom
+//{
+//    TLNetworking *http = [TLNetworking new];
+//    http.code = @"632955";
+//    http.showView = self.view;
+//    http.parameters[@"code"] = self.strid;
+//    [http postWithSuccess:^(id responseObject) {
+//        NSLog(@"%@",responseObject);
+//
+//        [TLAlert alertWithSucces:@"已退出房间"];
+//
+//    } failure:^(NSError *error) {
+//
+//    }];
+//}
 
 //发起面签
 - (void)sendPhoneCode
 {
-//    TLNetworking *ht = [TLNetworking new];
-//    ht.code = @"632136";
-//    ht.parameters[@"roomId"] = self.strid;
-//    ht.parameters[@"code"] = self.model.code;
-//
-//    ht.showView = self.view;
-//    [ht postWithSuccess:^(id responseObject) {
     
-//        if ([faceStr isEqualToString:@""]) {
-            TLNetworking *http= [TLNetworking new];
-            http.code = @"630800";
-            http.showView = self.view;
-            http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+        
+    TLNetworking *http= [TLNetworking new];
+    http.code = @"630800";
+    http.showView = self.view;
+    http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+    
+    [http postWithSuccess:^(id responseObject) {
+        
+        [SVProgressHUD showWithStatus:@""];
+        NSString *str =  [[ILiveLoginManager getInstance] getLoginId];
+        if (!str) {
+            [[ILiveSDK getInstance] initSdk:[responseObject[@"data"][@"txAppCode"] intValue] accountType:[responseObject[@"data"][@"accountType"] intValue]];
             
-            [http postWithSuccess:^(id responseObject) {
+            [[ILiveLoginManager getInstance] iLiveLogin:[USERDEFAULTS objectForKey:USER_ID] sig:responseObject[@"data"][@"sign"] succ:^{
+                //                    faceStr = responseObject[@"data"][@"sign"];
+                [SVProgressHUD dismiss];
                 
-                [SVProgressHUD showWithStatus:@""];
-                NSString *str =  [[ILiveLoginManager getInstance] getLoginId];
-                if (!str) {
-                
-                [[ILiveSDK getInstance] initSdk:[responseObject[@"data"][@"txAppCode"] intValue] accountType:[responseObject[@"data"][@"accountType"] intValue]];
-                
-                [[ILiveLoginManager getInstance] iLiveLogin:[USERDEFAULTS objectForKey:USER_ID] sig:responseObject[@"data"][@"sign"] succ:^{
-//                    faceStr = responseObject[@"data"][@"sign"];
-                    [SVProgressHUD dismiss];
+                if (self.isJoin == YES) {
+                    // 1. 创建live房间页面
+                    
+                    
+                    
+                    
+                    
+                    FaceToFaceSignVC *liveRoomVC = [[FaceToFaceSignVC alloc] init];
+                    liveRoomVC.hidesBottomBarWhenPushed = YES;
+                    // 2. 创建房间配置对象
+                    ILiveRoomOption *option = [ILiveRoomOption defaultHostLiveOption];
+                    option.imOption.imSupport = NO;
+                    // 不自动打开摄像头
+                    option.avOption.autoCamera = NO;
+                    // 不自动打开mic
+                    option.avOption.autoMic = NO;
+                    // 设置房间内音视频监听
+                    option.memberStatusListener = liveRoomVC;
+                    // 设置房间中断事件监听
+                    option.roomDisconnectListener = liveRoomVC;
+                    
+                    // 该参数代表进房之后使用什么规格音视频参数，参数具体值为客户在腾讯云实时音视频控制台画面设定中配置的角色名（例如：默认角色名为user, 可设置controlRole = @"user"）
+                    option.controlRole = @"cd_room";
+                    
+                    // 3. 调用创建房间接口，传入房间ID和房间配置对象
+                    [[ILiveRoomManager getInstance] joinRoom:[self.strid intValue] option:option succ:^{
+                        // 加入房间成功，跳转到房间页
+                        [self.navigationController pushViewController:liveRoomVC animated:YES];
+                    } failed:^(NSString *module, int errId, NSString *errMsg) {
+                        // 加入房间失败
+                        self.alertCtrl.title = @"加入房间失败";
+                        self.alertCtrl.message = [NSString stringWithFormat:@"errId:%d errMsg:%@",errId, errMsg];
+                        [self presentViewController:self.alertCtrl animated:YES completion:nil];
+                    }];
+                }else
+                {
                     // 1. 创建live房间页面
                     LiveRoomViewController *liveRoomVC = [[LiveRoomViewController alloc] init];
                     liveRoomVC.isjoin = self.isJoin;
                     liveRoomVC.roomId = self.strid;
-//                    self.isroomManger = YES;
-//                    self.stremid = nil;
-//                    liveRoomVC.faceStr = faceStr;
                     liveRoomVC.curreryBlock = ^(NSString* roomID) {
                         self.stremid = roomID;
+//                        [self loadEndMovieUrlOut];
                     };
                     // 2. 创建房间配置对象
                     ILiveRoomOption *option = [ILiveRoomOption defaultHostLiveOption];
@@ -696,8 +751,8 @@
                     option.roomDisconnectListener = liveRoomVC;
                     
                     // 该参数代表进房之后使用什么规格音视频参数，参数具体值为客户在腾讯云实时音视频控制台画面设定中配置的角色名（例如：默认角色名为user, 可设置controlRole = @"user"）
-                    option.controlRole = @"cd_room";
-
+                    option.controlRole = @"user";
+                    
                     [[ILiveRoomManager getInstance] createRoom:[self.strid intValue] option:option succ:^{
                         // 创建房间成功，跳转到房间页
                         [SVProgressHUD dismiss];
@@ -712,71 +767,99 @@
                         self.alertCtrl.message = [NSString stringWithFormat:@"errId:%d errMsg:%@",errId, errMsg];
                         [self presentViewController:self.alertCtrl animated:YES completion:nil];
                     }];
-                    
-                    
-                    // 登录成功，跳转到创建房间页
-                    
-                } failed:^(NSString *module, int errId, NSString *errMsg) {
-                    NSLog(@"%@",errMsg);
-                    [SVProgressHUD dismiss];
-
-                    [TLAlert alertWithError:[NSString stringWithFormat:@"%@",errMsg]];
-                }];
-                NSLog(@"%@",responseObject);
-                    
-                    
-                }else
-                {
-                    // 1. 创建live房间页面
-                    LiveRoomViewController *liveRoomVC = [[LiveRoomViewController alloc] init];
-                    //            liveRoomVC.RightButton.hidden = YES;
-//                    liveRoomVC.RightButton.hidden =NO;
-//                    liveRoomVC.num = self.num;
-//                    liveRoomVC.faceStr = faceStr;
-//                    self.isroomManger = YES;
-//                    self.stremid = nil;
-                    liveRoomVC.roomId = self.strid;
-                    liveRoomVC.isjoin = self.isJoin;
-                    liveRoomVC.curreryBlock = ^(NSString* roomID) {
-                        self.stremid = roomID;
-                    };
-                    // 2. 创建房间配置对象
-                    ILiveRoomOption *option = [ILiveRoomOption defaultHostLiveOption];
-                    option.imOption.imSupport = YES;
-                    // 设置房间内音视频监听
-                    option.memberStatusListener = liveRoomVC;
-                    // 设置房间中断事件监听
-                    option.roomDisconnectListener = liveRoomVC;
-                    
-                    // 该参数代表进房之后使用什么规格音视频参数，参数具体值为客户在腾讯云实时音视频控制台画面设定中配置的角色名（例如：默认角色名为user, 可设置controlRole = @"user"）
-                    option.controlRole = @"cd_room";
-                    
-                    // 3. 调用创建房间接口，传入房间ID和房间配置对象
-                    //        [string substringFromIndex:string.length - 8 ];
-                    liveRoomVC.roomId = self.strid;
-                    self.roomId = self.strid;
-                    [[ILiveRoomManager getInstance] createRoom:[self.strid intValue] option:option succ:^{
-                        // 创建房间成功，跳转到房间页
-                        //                [self requestWithRoomID:self.strid];
-                        liveRoomVC.roomId = self.strid;
-                        [SVProgressHUD dismiss];
-
-                        [self.navigationController pushViewController:liveRoomVC animated:YES];
-                        
-                    } failed:^(NSString *module, int errId, NSString *errMsg) {
-                        // 创建房间失败
-                        
-                        [SVProgressHUD dismiss];
-                        self.alertCtrl.title = @"创建房间失败";
-                        self.alertCtrl.message = [NSString stringWithFormat:@"errId:%d errMsg:%@",errId, errMsg];
-                        [self presentViewController:self.alertCtrl animated:YES completion:nil];
-                    }];
-                    
                 }
                 
-            } failure:^(NSError *error) {
-                WGLog(@"%@",error);
+                
+                
+                
+                // 登录成功，跳转到创建房间页
+                
+            } failed:^(NSString *module, int errId, NSString *errMsg) {
+                NSLog(@"%@",errMsg);
+                [SVProgressHUD dismiss];
+                
+                [TLAlert alertWithError:[NSString stringWithFormat:@"%@",errMsg]];
             }];
+            NSLog(@"%@",responseObject);
+            
+            
+        }else
+        {
+            
+            if (self.isJoin == YES) {
+                // 1. 创建live房间页面
+                FaceToFaceSignVC *liveRoomVC = [[FaceToFaceSignVC alloc] init];
+                liveRoomVC.hidesBottomBarWhenPushed = YES;
+                // 2. 创建房间配置对象
+                ILiveRoomOption *option = [ILiveRoomOption defaultHostLiveOption];
+                option.imOption.imSupport = NO;
+                // 不自动打开摄像头
+                option.avOption.autoCamera = NO;
+                // 不自动打开mic
+                option.avOption.autoMic = NO;
+                // 设置房间内音视频监听
+                option.memberStatusListener = liveRoomVC;
+                // 设置房间中断事件监听
+                option.roomDisconnectListener = liveRoomVC;
+                
+                // 该参数代表进房之后使用什么规格音视频参数，参数具体值为客户在腾讯云实时音视频控制台画面设定中配置的角色名（例如：默认角色名为user, 可设置controlRole = @"user"）
+                option.controlRole = @"cd_room";
+                
+                // 3. 调用创建房间接口，传入房间ID和房间配置对象
+                [[ILiveRoomManager getInstance] joinRoom:[self.strid intValue] option:option succ:^{
+                    // 加入房间成功，跳转到房间页
+                    [self.navigationController pushViewController:liveRoomVC animated:YES];
+                } failed:^(NSString *module, int errId, NSString *errMsg) {
+                    // 加入房间失败
+                    self.alertCtrl.title = @"加入房间失败";
+                    self.alertCtrl.message = [NSString stringWithFormat:@"errId:%d errMsg:%@",errId, errMsg];
+                    [self presentViewController:self.alertCtrl animated:YES completion:nil];
+                }];
+            }else
+            {
+                // 1. 创建live房间页面
+                LiveRoomViewController *liveRoomVC = [[LiveRoomViewController alloc] init];
+                liveRoomVC.isjoin = self.isJoin;
+                liveRoomVC.roomId = self.strid;
+                //                    self.isroomManger = YES;
+                //                    self.stremid = nil;
+                //                    liveRoomVC.faceStr = faceStr;
+                liveRoomVC.curreryBlock = ^(NSString* roomID) {
+                    self.stremid = roomID;
+//                    [self loadEndMovieUrlOut];
+                };
+                // 2. 创建房间配置对象
+                ILiveRoomOption *option = [ILiveRoomOption defaultHostLiveOption];
+                //                option.imOption.imSupport = YES;
+                
+                // 设置房间内音视频监听
+                option.memberStatusListener = liveRoomVC;
+                // 设置房间中断事件监听
+                option.roomDisconnectListener = liveRoomVC;
+                
+                // 该参数代表进房之后使用什么规格音视频参数，参数具体值为客户在腾讯云实时音视频控制台画面设定中配置的角色名（例如：默认角色名为user, 可设置controlRole = @"user"）
+                option.controlRole = @"user";
+                
+                [[ILiveRoomManager getInstance] createRoom:[self.strid intValue] option:option succ:^{
+                    // 创建房间成功，跳转到房间页
+                    [SVProgressHUD dismiss];
+                    liveRoomVC.roomId = self.strid;
+                    [self.navigationController pushViewController:liveRoomVC animated:YES];
+                    
+                } failed:^(NSString *module, int errId, NSString *errMsg) {
+                    // 创建房间失败
+                    
+                    [SVProgressHUD dismiss];
+                    self.alertCtrl.title = @"创建房间失败";
+                    self.alertCtrl.message = [NSString stringWithFormat:@"errId:%d errMsg:%@",errId, errMsg];
+                    [self presentViewController:self.alertCtrl animated:YES completion:nil];
+                }];
+            }
+        }
+        
+    } failure:^(NSError *error) {
+        WGLog(@"%@",error);
+    }];
 
 }
 
@@ -785,10 +868,21 @@
 //录制通知
 - (void)loadEndMovieUrlOut
 {
-    [self loginOutRoom];
+    
     if ([BaseModel isBlankString:self.stremid] == NO) {
-     
-        [TLAlert alertWithInfo:@"正在获取录制视频"];
+    
+        [TLAlert alertWithTitle:@"提示" msg:@"是否获取视频" confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
+            
+        } confirm:^(UIAlertAction *action) {
+            [SVProgressHUD showWithStatus:@"正在获取录制视频"];
+            [self video];
+        }];
+    }
+}
+
+-(void)video
+{
+    if ([BaseModel isBlankString:self.stremid] == NO) {
         TLNetworking *http = [TLNetworking new];
         http.code = @"632952";
         http.showView = self.view;
@@ -796,33 +890,37 @@
         [NSThread sleepForTimeInterval:3];
         [http postWithSuccess:^(id responseObject) {
             
-            NSString *strUrl = [responseObject[@"data"] stringByReplacingOccurrencesOfString:@"\%" withString:@""];
-            //        NSString * jsonString = @"";
-            NSData *jsonData = [strUrl dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
-            NSArray *arr = dic[@"output"][@"file_list"];
-            if (arr.count > 0) {
-                NSDictionary *url = dic[@"output"][@"file_list"][0];
-                self.signPlayUrl = url[@"record_file_url"];
-                NSLog(@"%@",url);
-                if (self.BankVideoArray.count == 0) {
-                    self.BankVideoArray = [NSMutableArray array];
-                }
-                if (self.BankVideoArray.count == 0) {
-                    self.BankVideoArray = [NSMutableArray array];
-                }
-                [self.BankVideoArray addObject:self.signPlayUrl];
+            self.signPlayUrl = responseObject[@"data"];
+            if ([BaseModel isBlankString:self.signPlayUrl] == YES) {
+                [TLAlert alertWithTitle:@"提示" msg:@"获取失败，是否重新获取" confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
+                    
+                } confirm:^(UIAlertAction *action) {
+                    [self loadEndMovieUrlOut];
+                }];
+            }else
+            {
                 [self.BankVideoArray addObject:self.signPlayUrl];
                 self.tableView.BankVideoArray = self.BankVideoArray;
                 [self.tableView reloadData];
-                self.isroomManger = NO;
             }
             
-        } failure:^(NSError *error) {
             
+        } failure:^(NSError *error) {
+            [TLAlert alertWithTitle:@"提示" msg:@"获取失败，是否重新获取" confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
+                
+           
+            } confirm:^(UIAlertAction *action) {
+                [self loadEndMovieUrlOut];
+            }];
+        }];
+    }else
+    {
+        [TLAlert alertWithTitle:@"提示" msg:@"获取失败，是否重新获取" confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
+            
+        } confirm:^(UIAlertAction *action) {
+            [self loadEndMovieUrlOut];
         }];
     }
-    
 }
 
 

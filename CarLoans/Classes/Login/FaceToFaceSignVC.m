@@ -50,8 +50,8 @@
     
     number = 0;
     UIButton *switchButton = [UIButton buttonWithTitle:@"切换摄像头" titleColor:kWhiteColor backgroundColor:kClearColor titleFont:14];
-    switchButton.frame = CGRectMake(SCREEN_WIDTH-120, 5, 100, 24);
-    
+    switchButton.frame = CGRectMake(SCREEN_WIDTH - 115, 5, 100, 24);
+    switchButton.contentHorizontalAlignment =  UIControlContentHorizontalAlignmentRight;
     [self.view addSubview:switchButton];
     
     [switchButton addTarget:self action:@selector(SwitchCanmer:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -134,18 +134,18 @@
 
 
 
--(void)viewDidAppear:(BOOL)animated
-{
-    if (self.RightButton.hidden == YES) {
-        
-    }else{
-        [TLAlert alertWithMsg:@"已发送面签短信给用户"];
-        
-    }
-    
-    [super viewDidAppear:animated];
-    
-}
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    if (self.RightButton.hidden == YES) {
+//
+//    }else{
+//        [TLAlert alertWithMsg:@"已发送面签短信给用户"];
+//
+//    }
+//
+//    [super viewDidAppear:animated];
+//
+//}
 #pragma mark - Custom Method
 // 检测音视频权限
 - (void)detectAuthorizationStatus {
