@@ -246,6 +246,31 @@
 		36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5322856325004C4479 /* ToApplyForRightTableView9.m */; };
 		36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E56228592F7004C4479 /* CheckCarTableView.m */; };
 		36294E5A22859313004C4479 /* CheckCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5922859313004C4479 /* CheckCarVC.m */; };
+		3662016822924AF10010C78A /* CheckRepayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016722924AF10010C78A /* CheckRepayVC.m */; };
+		3662016B22924BA40010C78A /* CheckRepayTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016A22924BA40010C78A /* CheckRepayTableView.m */; };
+		3662016F22924ED50010C78A /* RepayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016E22924ED50010C78A /* RepayModel.m */; };
+		36620172229255DC0010C78A /* CheckRepayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36620171229255DC0010C78A /* CheckRepayCell.m */; };
+		366201782292659F0010C78A /* RepayPlanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201772292659F0010C78A /* RepayPlanVC.m */; };
+		3662017C229265BE0010C78A /* RepayPlanTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662017B229265BE0010C78A /* RepayPlanTableView.m */; };
+		3662017F229267990010C78A /* RepayPlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662017E229267990010C78A /* RepayPlanCell.m */; };
+		366201852292713E0010C78A /* ForwardRepayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201842292713E0010C78A /* ForwardRepayVC.m */; };
+		36620188229271530010C78A /* ForwardRepayTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36620187229271530010C78A /* ForwardRepayTableView.m */; };
+		3662018E229284240010C78A /* ConfirmRepayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662018D229284240010C78A /* ConfirmRepayVC.m */; };
+		36620191229284410010C78A /* ConfirmRepayTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36620190229284410010C78A /* ConfirmRepayTableView.m */; };
+		366201942292901A0010C78A /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201932292901A0010C78A /* BottomView.m */; };
+		366201972292A0AC0010C78A /* DepartmentAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201962292A0AC0010C78A /* DepartmentAuditVC.m */; };
+		3662019A2292A1000010C78A /* DepartmentAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201992292A1000010C78A /* DepartmentAuditTableView.m */; };
+		366201A02292AF110010C78A /* ManagerAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662019F2292AF110010C78A /* ManagerAuditVC.m */; };
+		366201A32292AF2A0010C78A /* ManagerAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201A22292AF2A0010C78A /* ManagerAuditTableView.m */; };
+		366201A92292BCF00010C78A /* CancelMortgageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201A82292BCF00010C78A /* CancelMortgageTableView.m */; };
+		366201AC2292BD120010C78A /* CancelMortgageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201AB2292BD120010C78A /* CancelMortgageVC.m */; };
+		366201AF2292C3EF0010C78A /* CancelMortgageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201AE2292C3EF0010C78A /* CancelMortgageCell.m */; };
+		366201B22292C6EE0010C78A /* CancelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201B12292C6EE0010C78A /* CancelVC.m */; };
+		366201B52292C7960010C78A /* CancelTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201B42292C7960010C78A /* CancelTableView.m */; };
+		366201BB2292D1740010C78A /* SignTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201BA2292D1740010C78A /* SignTableView.m */; };
+		366201BE2292D1880010C78A /* SignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201BD2292D1880010C78A /* SignVC.m */; };
+		366201C12292D2E00010C78A /* SignModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201C02292D2E00010C78A /* SignModel.m */; };
+		366201C52292D4040010C78A /* SignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201C42292D4040010C78A /* SignCell.m */; };
 		366A2AB9228986F200FF8366 /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2AB8228986F200FF8366 /* FileCell.m */; };
 		366A2ABC2289AF6B00FF8366 /* CheckFileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */; };
 		366A2ABF2289AF8300FF8366 /* CheckFileTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */; };
@@ -996,6 +1021,56 @@
 		36294E56228592F7004C4479 /* CheckCarTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarTableView.m; sourceTree = "<group>"; };
 		36294E5822859313004C4479 /* CheckCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckCarVC.h; sourceTree = "<group>"; };
 		36294E5922859313004C4479 /* CheckCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarVC.m; sourceTree = "<group>"; };
+		3662016622924AF10010C78A /* CheckRepayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayVC.h; sourceTree = "<group>"; };
+		3662016722924AF10010C78A /* CheckRepayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckRepayVC.m; sourceTree = "<group>"; };
+		3662016922924BA40010C78A /* CheckRepayTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayTableView.h; sourceTree = "<group>"; };
+		3662016A22924BA40010C78A /* CheckRepayTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckRepayTableView.m; sourceTree = "<group>"; };
+		3662016D22924ED50010C78A /* RepayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepayModel.h; sourceTree = "<group>"; };
+		3662016E22924ED50010C78A /* RepayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepayModel.m; sourceTree = "<group>"; };
+		36620170229255DC0010C78A /* CheckRepayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayCell.h; sourceTree = "<group>"; };
+		36620171229255DC0010C78A /* CheckRepayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckRepayCell.m; sourceTree = "<group>"; };
+		366201762292659F0010C78A /* RepayPlanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepayPlanVC.h; sourceTree = "<group>"; };
+		366201772292659F0010C78A /* RepayPlanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepayPlanVC.m; sourceTree = "<group>"; };
+		3662017A229265BE0010C78A /* RepayPlanTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepayPlanTableView.h; sourceTree = "<group>"; };
+		3662017B229265BE0010C78A /* RepayPlanTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepayPlanTableView.m; sourceTree = "<group>"; };
+		3662017D229267990010C78A /* RepayPlanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepayPlanCell.h; sourceTree = "<group>"; };
+		3662017E229267990010C78A /* RepayPlanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepayPlanCell.m; sourceTree = "<group>"; };
+		366201832292713E0010C78A /* ForwardRepayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRepayVC.h; sourceTree = "<group>"; };
+		366201842292713E0010C78A /* ForwardRepayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRepayVC.m; sourceTree = "<group>"; };
+		36620186229271530010C78A /* ForwardRepayTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRepayTableView.h; sourceTree = "<group>"; };
+		36620187229271530010C78A /* ForwardRepayTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRepayTableView.m; sourceTree = "<group>"; };
+		3662018C229284240010C78A /* ConfirmRepayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmRepayVC.h; sourceTree = "<group>"; };
+		3662018D229284240010C78A /* ConfirmRepayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmRepayVC.m; sourceTree = "<group>"; };
+		3662018F229284410010C78A /* ConfirmRepayTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmRepayTableView.h; sourceTree = "<group>"; };
+		36620190229284410010C78A /* ConfirmRepayTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmRepayTableView.m; sourceTree = "<group>"; };
+		366201922292901A0010C78A /* BottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomView.h; sourceTree = "<group>"; };
+		366201932292901A0010C78A /* BottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
+		366201952292A0AC0010C78A /* DepartmentAuditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepartmentAuditVC.h; sourceTree = "<group>"; };
+		366201962292A0AC0010C78A /* DepartmentAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepartmentAuditVC.m; sourceTree = "<group>"; };
+		366201982292A1000010C78A /* DepartmentAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepartmentAuditTableView.h; sourceTree = "<group>"; };
+		366201992292A1000010C78A /* DepartmentAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepartmentAuditTableView.m; sourceTree = "<group>"; };
+		3662019E2292AF110010C78A /* ManagerAuditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagerAuditVC.h; sourceTree = "<group>"; };
+		3662019F2292AF110010C78A /* ManagerAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagerAuditVC.m; sourceTree = "<group>"; };
+		366201A12292AF2A0010C78A /* ManagerAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagerAuditTableView.h; sourceTree = "<group>"; };
+		366201A22292AF2A0010C78A /* ManagerAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagerAuditTableView.m; sourceTree = "<group>"; };
+		366201A72292BCF00010C78A /* CancelMortgageTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelMortgageTableView.h; sourceTree = "<group>"; };
+		366201A82292BCF00010C78A /* CancelMortgageTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelMortgageTableView.m; sourceTree = "<group>"; };
+		366201AA2292BD120010C78A /* CancelMortgageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelMortgageVC.h; sourceTree = "<group>"; };
+		366201AB2292BD120010C78A /* CancelMortgageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelMortgageVC.m; sourceTree = "<group>"; };
+		366201AD2292C3EF0010C78A /* CancelMortgageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelMortgageCell.h; sourceTree = "<group>"; };
+		366201AE2292C3EF0010C78A /* CancelMortgageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelMortgageCell.m; sourceTree = "<group>"; };
+		366201B02292C6EE0010C78A /* CancelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelVC.h; sourceTree = "<group>"; };
+		366201B12292C6EE0010C78A /* CancelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelVC.m; sourceTree = "<group>"; };
+		366201B32292C7960010C78A /* CancelTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelTableView.h; sourceTree = "<group>"; };
+		366201B42292C7960010C78A /* CancelTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelTableView.m; sourceTree = "<group>"; };
+		366201B92292D1740010C78A /* SignTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignTableView.h; sourceTree = "<group>"; };
+		366201BA2292D1740010C78A /* SignTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignTableView.m; sourceTree = "<group>"; };
+		366201BC2292D1880010C78A /* SignVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignVC.h; sourceTree = "<group>"; };
+		366201BD2292D1880010C78A /* SignVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignVC.m; sourceTree = "<group>"; };
+		366201BF2292D2E00010C78A /* SignModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignModel.h; sourceTree = "<group>"; };
+		366201C02292D2E00010C78A /* SignModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignModel.m; sourceTree = "<group>"; };
+		366201C32292D4040010C78A /* SignCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignCell.h; sourceTree = "<group>"; };
+		366201C42292D4040010C78A /* SignCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignCell.m; sourceTree = "<group>"; };
 		366A2AAD22895E6600FF8366 /* libAWDProtobufBluetooth.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufBluetooth.tbd; path = usr/lib/libAWDProtobufBluetooth.tbd; sourceTree = SDKROOT; };
 		366A2AAF22895E8D00FF8366 /* libAWDProtobufFacetime.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufFacetime.tbd; path = usr/lib/libAWDProtobufFacetime.tbd; sourceTree = SDKROOT; };
 		366A2AB122895E9300FF8366 /* libAWDProtobufFacetimeiMessage.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufFacetimeiMessage.tbd; path = usr/lib/libAWDProtobufFacetimeiMessage.tbd; sourceTree = SDKROOT; };
@@ -2958,6 +3033,204 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		3662016322924AAB0010C78A /* CheckRepay还款业务查询 */ = {
+			isa = PBXGroup;
+			children = (
+				36620180229270ED0010C78A /* FoewardRepay提前还款 */,
+				36620173229265610010C78A /* RepayPlan还款计划 */,
+				3662016C22924EC30010C78A /* Model */,
+				3662016522924ACD0010C78A /* View */,
+				3662016422924AC40010C78A /* Controller */,
+			);
+			name = "CheckRepay还款业务查询";
+			sourceTree = "<group>";
+		};
+		3662016422924AC40010C78A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3662016622924AF10010C78A /* CheckRepayVC.h */,
+				3662016722924AF10010C78A /* CheckRepayVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3662016522924ACD0010C78A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3662016922924BA40010C78A /* CheckRepayTableView.h */,
+				3662016A22924BA40010C78A /* CheckRepayTableView.m */,
+				36620170229255DC0010C78A /* CheckRepayCell.h */,
+				36620171229255DC0010C78A /* CheckRepayCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		3662016C22924EC30010C78A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3662016D22924ED50010C78A /* RepayModel.h */,
+				3662016E22924ED50010C78A /* RepayModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		36620173229265610010C78A /* RepayPlan还款计划 */ = {
+			isa = PBXGroup;
+			children = (
+				36620175229265750010C78A /* View */,
+				366201742292656F0010C78A /* Controller */,
+			);
+			name = "RepayPlan还款计划";
+			sourceTree = "<group>";
+		};
+		366201742292656F0010C78A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				366201762292659F0010C78A /* RepayPlanVC.h */,
+				366201772292659F0010C78A /* RepayPlanVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		36620175229265750010C78A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3662017A229265BE0010C78A /* RepayPlanTableView.h */,
+				3662017B229265BE0010C78A /* RepayPlanTableView.m */,
+				3662017D229267990010C78A /* RepayPlanCell.h */,
+				3662017E229267990010C78A /* RepayPlanCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		36620180229270ED0010C78A /* FoewardRepay提前还款 */ = {
+			isa = PBXGroup;
+			children = (
+				36620182229271120010C78A /* View */,
+				36620181229271090010C78A /* Controller */,
+			);
+			name = "FoewardRepay提前还款";
+			sourceTree = "<group>";
+		};
+		36620181229271090010C78A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				366201832292713E0010C78A /* ForwardRepayVC.h */,
+				366201842292713E0010C78A /* ForwardRepayVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		36620182229271120010C78A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36620186229271530010C78A /* ForwardRepayTableView.h */,
+				36620187229271530010C78A /* ForwardRepayTableView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		36620189229283AF0010C78A /* ConfirmRepay确认还款管理 */ = {
+			isa = PBXGroup;
+			children = (
+				3662018B229283EC0010C78A /* View */,
+				3662018A229283E40010C78A /* Controller */,
+			);
+			name = "ConfirmRepay确认还款管理";
+			sourceTree = "<group>";
+		};
+		3662018A229283E40010C78A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3662018C229284240010C78A /* ConfirmRepayVC.h */,
+				3662018D229284240010C78A /* ConfirmRepayVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3662018B229283EC0010C78A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				366201922292901A0010C78A /* BottomView.h */,
+				366201932292901A0010C78A /* BottomView.m */,
+				3662018F229284410010C78A /* ConfirmRepayTableView.h */,
+				36620190229284410010C78A /* ConfirmRepayTableView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		366201A42292BCB60010C78A /* CancelMortgage解除抵押 */ = {
+			isa = PBXGroup;
+			children = (
+				366201A62292BCD00010C78A /* Controller */,
+				366201A52292BCC90010C78A /* View */,
+			);
+			name = "CancelMortgage解除抵押";
+			sourceTree = "<group>";
+		};
+		366201A52292BCC90010C78A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				366201A72292BCF00010C78A /* CancelMortgageTableView.h */,
+				366201A82292BCF00010C78A /* CancelMortgageTableView.m */,
+				366201AD2292C3EF0010C78A /* CancelMortgageCell.h */,
+				366201AE2292C3EF0010C78A /* CancelMortgageCell.m */,
+				366201B32292C7960010C78A /* CancelTableView.h */,
+				366201B42292C7960010C78A /* CancelTableView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		366201A62292BCD00010C78A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				366201AA2292BD120010C78A /* CancelMortgageVC.h */,
+				366201AB2292BD120010C78A /* CancelMortgageVC.m */,
+				366201B02292C6EE0010C78A /* CancelVC.h */,
+				366201B12292C6EE0010C78A /* CancelVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		366201B62292D1320010C78A /* Sign面签视频 */ = {
+			isa = PBXGroup;
+			children = (
+				366201C22292D2E40010C78A /* Model */,
+				366201B82292D1560010C78A /* view */,
+				366201B72292D14D0010C78A /* Controller */,
+			);
+			name = "Sign面签视频";
+			sourceTree = "<group>";
+		};
+		366201B72292D14D0010C78A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				366201BC2292D1880010C78A /* SignVC.h */,
+				366201BD2292D1880010C78A /* SignVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		366201B82292D1560010C78A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				366201B92292D1740010C78A /* SignTableView.h */,
+				366201BA2292D1740010C78A /* SignTableView.m */,
+				366201C32292D4040010C78A /* SignCell.h */,
+				366201C42292D4040010C78A /* SignCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		366201C22292D2E40010C78A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				366201BF2292D2E00010C78A /* SignModel.h */,
+				366201C02292D2E00010C78A /* SignModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		36B28A6A227E9C3F00A8C07D /* ILiveSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -3352,6 +3625,10 @@
 				7A0F8E7B2119BA4400BA8358 /* SettlementAuditTableView.m */,
 				7A0F8E832119C33400BA8358 /* SettlementAuditDetailsTableView.h */,
 				7A0F8E842119C33400BA8358 /* SettlementAuditDetailsTableView.m */,
+				366201982292A1000010C78A /* DepartmentAuditTableView.h */,
+				366201992292A1000010C78A /* DepartmentAuditTableView.m */,
+				366201A12292AF2A0010C78A /* ManagerAuditTableView.h */,
+				366201A22292AF2A0010C78A /* ManagerAuditTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3372,6 +3649,10 @@
 				7A0F8E782119B9FE00BA8358 /* SettlementAuditVC.m */,
 				7A0F8E802119C2F100BA8358 /* SettlementAuditDetailsVC.h */,
 				7A0F8E812119C2F100BA8358 /* SettlementAuditDetailsVC.m */,
+				366201952292A0AC0010C78A /* DepartmentAuditVC.h */,
+				366201962292A0AC0010C78A /* DepartmentAuditVC.m */,
+				3662019E2292AF110010C78A /* ManagerAuditVC.h */,
+				3662019F2292AF110010C78A /* ManagerAuditVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -4806,6 +5087,10 @@
 				7A74D97320FDCA990096CA59 /* GPSInstallationGPS安装 */,
 				1F1EF2A42265CFD300EADA25 /* AttachmentPool附件池 */,
 				36F9E7222282834B009DAC65 /* InputFiles档案入档 */,
+				3662016322924AAB0010C78A /* CheckRepay还款业务查询 */,
+				36620189229283AF0010C78A /* ConfirmRepay确认还款管理 */,
+				366201A42292BCB60010C78A /* CancelMortgage解除抵押 */,
+				366201B62292D1320010C78A /* Sign面签视频 */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -5190,6 +5475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F151A8A2272AB14002B7EDA /* DetailsTableView8.m in Sources */,
+				366201852292713E0010C78A /* ForwardRepayVC.m in Sources */,
 				7A0592DA20FEDFD500075FE8 /* LoginVC.m in Sources */,
 				7AB29D9820FD85680014FCB3 /* ViewController.m in Sources */,
 				36B28A7B227EBECC00A8C07D /* ProductUsInputTableView.m in Sources */,
@@ -5231,6 +5517,7 @@
 				36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */,
 				1F651A7C227AA15500EFB78B /* NewWaterTableView.m in Sources */,
 				7AB29E8E20FD8EB30014FCB3 /* ImageUtil.m in Sources */,
+				366201B52292C7960010C78A /* CancelTableView.m in Sources */,
 				7A0F8E7F2119BA9F00BA8358 /* SettlementAuditModel.m in Sources */,
 				7AB29E8720FD8EB30014FCB3 /* TLPageDataHelper.m in Sources */,
 				7A0F8E822119C2F100BA8358 /* SettlementAuditDetailsVC.m in Sources */,
@@ -5250,6 +5537,8 @@
 				7A3582962113FA14006FB5B5 /* GPSInstallationDetailsVC.m in Sources */,
 				1F651AB5227B41B800EFB78B /* MakeCardEntryTableView.m in Sources */,
 				B820201021CBB00500237E01 /* CarMortgageVC2.m in Sources */,
+				366201942292901A0010C78A /* BottomView.m in Sources */,
+				3662019A2292A1000010C78A /* DepartmentAuditTableView.m in Sources */,
 				1F651A6B22784B7200EFB78B /* JHAddressToolBar.m in Sources */,
 				1F651AAC227B393100EFB78B /* MakeCardApplyTableView.m in Sources */,
 				1F151A852272AB14002B7EDA /* DetailsTableView10.m in Sources */,
@@ -5263,6 +5552,7 @@
 				7A0592C520FDF10E00075FE8 /* ADPeopleTableView.m in Sources */,
 				7AB29E6620FD8EB30014FCB3 /* MJExtensionConst.m in Sources */,
 				7A945545210EB14F00BDFD33 /* ImageBrowserViewController.m in Sources */,
+				366201A32292AF2A0010C78A /* ManagerAuditTableView.m in Sources */,
 				1F00AE842271976600A8E15D /* CreditResultsVC.m in Sources */,
 				7A13AEDC21107F3100B8F785 /* UsedCarInformationCell.m in Sources */,
 				1F651AA3227B36FD00EFB78B /* MakeCardCell.m in Sources */,
@@ -5283,6 +5573,7 @@
 				B8547BA52181F56300EC5092 /* CustomTableViewCell.m in Sources */,
 				7AB29E7A20FD8EB30014FCB3 /* SelectedListModel.m in Sources */,
 				B84F22C7219C17D500886ADF /* InsideSureVC.m in Sources */,
+				3662018E229284240010C78A /* ConfirmRepayVC.m in Sources */,
 				B81D3CF8216B5CE400170BC4 /* GPSInfomationCell.m in Sources */,
 				7AB29E8F20FD8EB30014FCB3 /* NSDictionary+SetNullWithStr.m in Sources */,
 				7A0592D120FED6A400075FE8 /* SurveyTGVC.m in Sources */,
@@ -5319,10 +5610,12 @@
 				B820200D21CBADC700237E01 /* FaceSignVC2.m in Sources */,
 				1F151A942272AB14002B7EDA /* ApplyTableView2.m in Sources */,
 				1F651A4B2275B16A00EFB78B /* ToApplyForRightTableView7.m in Sources */,
+				366201AF2292C3EF0010C78A /* CancelMortgageCell.m in Sources */,
 				1F651A392275B14700EFB78B /* ToApplyForRightTableView1.m in Sources */,
 				1F1EF1D12264549E00EADA25 /* CustomerVC.m in Sources */,
 				1F1EF2CE2266C91D00EADA25 /* PhotoCell.m in Sources */,
 				1F00AE72226F2C1F00A8E15D /* AdmissionDetailsTableView15.m in Sources */,
+				366201AC2292BD120010C78A /* CancelMortgageVC.m in Sources */,
 				7A13ADDC210F129A00B8F785 /* GPSClaimsCell.m in Sources */,
 				7A0F8E92211ABC9E00BA8358 /* HistoryUserTableView.m in Sources */,
 				B8F5C1B221997809002A00B6 /* FaceSignHomeVC.m in Sources */,
@@ -5362,6 +5655,7 @@
 				1F151A912272AB14002B7EDA /* ApplyTableView1.m in Sources */,
 				1F1EF2B82265D37300EADA25 /* RepaymentPlanTableView.m in Sources */,
 				7A945546210EB14F00BDFD33 /* PhotoView.m in Sources */,
+				36620172229255DC0010C78A /* CheckRepayCell.m in Sources */,
 				7A13AEB521104E4300B8F785 /* QNHijackingDetectWrapper.m in Sources */,
 				36C02E00227FFFB0007EC7CF /* ReFinancialTableView.m in Sources */,
 				1F651A582276DDFE00EFB78B /* ToApplyForRunningWaterCell.m in Sources */,
@@ -5395,9 +5689,11 @@
 				7A13AEAE21104E4300B8F785 /* QNDomain.m in Sources */,
 				1F151A842272AB14002B7EDA /* AccrssApplyDetailsVC.m in Sources */,
 				7A13AE2D210FF98300B8F785 /* SurveyDetailsVC.m in Sources */,
+				366201B22292C6EE0010C78A /* CancelVC.m in Sources */,
 				1F1EF3172268716A00EADA25 /* CreditDetailsPeopleVC.m in Sources */,
 				7AABE3612139222B00283BC7 /* InputInformationMortgageTableView.m in Sources */,
 				7AB29E8920FD8EB30014FCB3 /* TLUploadManager.m in Sources */,
+				366201A92292BCF00010C78A /* CancelMortgageTableView.m in Sources */,
 				B8C1740B215F1C7700B10E44 /* GPSHomeVC.m in Sources */,
 				7A13AE3C21100CF900B8F785 /* SurveyIdCardTableViewCell.m in Sources */,
 				36F9E721228273DC009DAC65 /* CarMortgageVC.m in Sources */,
@@ -5409,14 +5705,17 @@
 				7AB29E6E20FD8EB30014FCB3 /* NSObject+MJProperty.m in Sources */,
 				1F1EF22C2265C08B00EADA25 /* AdmissionDetailsCell.m in Sources */,
 				B84F22C4219BC8BD00886ADF /* BankRequestTB.m in Sources */,
+				366201782292659F0010C78A /* RepayPlanVC.m in Sources */,
 				1F00AE782270045A00A8E15D /* NSString+Check.m in Sources */,
 				1F1EF2DA2266D6E300EADA25 /* AdmissionDetailsTableView6.m in Sources */,
 				7A13AECB21104E4400B8F785 /* QNResponseInfo.m in Sources */,
 				36E6FF262286B52900CD2744 /* AddFilesTableView.m in Sources */,
 				1F1EF3332269BC0700EADA25 /* ReferenceInputDetailsVC.m in Sources */,
+				366201BE2292D1880010C78A /* SignVC.m in Sources */,
 				7A0592B520FDE64200075FE8 /* InputBoxCell.m in Sources */,
 				1F1EF1FE22657EF200EADA25 /* CustomerDetailsVC.m in Sources */,
 				7A13AE1E210F26A100B8F785 /* IQUIViewController+Additions.m in Sources */,
+				366201C12292D2E00010C78A /* SignModel.m in Sources */,
 				7AB29E7420FD8EB30014FCB3 /* TLAlert.m in Sources */,
 				B834137D21D0786100A63D3B /* SelectedCell.m in Sources */,
 				1F1EF2DD2266D6EB00EADA25 /* AdmissionDetailsTableView7.m in Sources */,
@@ -5433,6 +5732,7 @@
 				7A13AE30210FF9C700B8F785 /* SurveyDetailsTableView.m in Sources */,
 				1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */,
 				7AB29DDD20FD8D580014FCB3 /* BaseModel.m in Sources */,
+				36620188229271530010C78A /* ForwardRepayTableView.m in Sources */,
 				7AB29E8220FD8EB30014FCB3 /* TLTableView.m in Sources */,
 				1F1EF3362269BC1C00EADA25 /* ReferenceInputDetailsTableView.m in Sources */,
 				B89ACB8921C8DB0200186F58 /* GPSTeamModel.m in Sources */,
@@ -5460,6 +5760,7 @@
 				7A13ADE8210F15EE00B8F785 /* ClaimsTableView.m in Sources */,
 				7AABE3582139112800283BC7 /* AddGPSPeopleCell.m in Sources */,
 				B8F5C1AC2199640C002A00B6 /* insideMortgatee.m in Sources */,
+				36620191229284410010C78A /* ConfirmRepayTableView.m in Sources */,
 				7A13ADD9210F126F00B8F785 /* GPSClaimsTableView.m in Sources */,
 				1F151A8C2272AB14002B7EDA /* DetailsTableView9.m in Sources */,
 				7A13AECC21104E4400B8F785 /* QNSessionManager.m in Sources */,
@@ -5472,12 +5773,14 @@
 				7A94554A210EC18C00BDFD33 /* TLImagePicker.m in Sources */,
 				7A0F8E852119C33400BA8358 /* SettlementAuditDetailsTableView.m in Sources */,
 				1F00AE872271978200A8E15D /* CreditResultsTableView.m in Sources */,
+				366201972292A0AC0010C78A /* DepartmentAuditVC.m in Sources */,
 				7AACF31921018B0C0066D36B /* SurveyModel.m in Sources */,
 				7AB29E7620FD8EB30014FCB3 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				7A13AE36211002A400B8F785 /* SurveyInformationVC.m in Sources */,
 				7A0F8EAF211BD71800BA8358 /* InstallationDetailsVC.m in Sources */,
 				7A3582C52117F01D006FB5B5 /* BankLendingDetailsVC.m in Sources */,
 				36C02DF8227FE86D007EC7CF /* AddTaskTableView.m in Sources */,
+				3662016F22924ED50010C78A /* RepayModel.m in Sources */,
 				7A13ADB9210F029900B8F785 /* ApplyCancellationTableView.m in Sources */,
 				7AB29E7820FD8EB30014FCB3 /* FontSizeView.m in Sources */,
 				1F651A97227AD28800EFB78B /* CreditSingleTableView.m in Sources */,
@@ -5517,6 +5820,7 @@
 				7AB29E7F20FD8EB30014FCB3 /* SignFinishView.m in Sources */,
 				1F1EF30E2268293D00EADA25 /* CreditDetailsTableView.m in Sources */,
 				7AB29E8020FD8EB30014FCB3 /* HW3DBannerView.m in Sources */,
+				3662017C229265BE0010C78A /* RepayPlanTableView.m in Sources */,
 				1F00AE75226F2EC300A8E15D /* AdmissionDetailsTableView16.m in Sources */,
 				36C02DE3227FCEBC007EC7CF /* CheckFinancialTableview.m in Sources */,
 				7A3582872113EF3D006FB5B5 /* FaceSignTableView.m in Sources */,
@@ -5534,6 +5838,7 @@
 				7A3582772112FBDB006FB5B5 /* SenderTableView.m in Sources */,
 				1F1EF2B52265D36000EADA25 /* RepaymentPlanVC.m in Sources */,
 				7A13AECA21104E4400B8F785 /* QNUrlSafeBase64.m in Sources */,
+				366201BB2292D1740010C78A /* SignTableView.m in Sources */,
 				7A13AED121104E4400B8F785 /* QNResumeUpload.m in Sources */,
 				7A3582BF2117EB50006FB5B5 /* BankLendingVC.m in Sources */,
 				1F00AE8122718A3F00A8E15D /* CreditReviewTableView.m in Sources */,
@@ -5543,6 +5848,7 @@
 				7A13AEB421104E4300B8F785 /* QNNiuDns.m in Sources */,
 				7A13ADE5210F159800B8F785 /* ClaimsVC.m in Sources */,
 				7A13AEC221104E4400B8F785 /* QNALAssetFile.m in Sources */,
+				3662016B22924BA40010C78A /* CheckRepayTableView.m in Sources */,
 				1F1EF2E62266D70000EADA25 /* AdmissionDetailsTableView10.m in Sources */,
 				7A13AE23210F26A200B8F785 /* IQBarButtonItem.m in Sources */,
 				7AB29E7220FD8EB30014FCB3 /* XPathQuery.m in Sources */,
@@ -5558,6 +5864,7 @@
 				7AABE35521390F3D00283BC7 /* GPSInformationListCell.m in Sources */,
 				1F151A872272AB14002B7EDA /* DetailsTableView1.m in Sources */,
 				7AB29E8520FD8EB30014FCB3 /* HttpLogger.m in Sources */,
+				3662017F229267990010C78A /* RepayPlanCell.m in Sources */,
 				7A3582992113FA2E006FB5B5 /* GPSInstallationDetailsTableView.m in Sources */,
 				1F651A6D22784B7200EFB78B /* JHAddressPickView.m in Sources */,
 				7A3582C82117F040006FB5B5 /* BankLendingDetailsTableView.m in Sources */,
@@ -5568,6 +5875,7 @@
 				36F9E72A2282839A009DAC65 /* InputFilesTableView.m in Sources */,
 				1F651AB2227B419600EFB78B /* MakeCardEntryVC.m in Sources */,
 				1F151A9C2272AB14002B7EDA /* AccessApplyAddGPSVC.m in Sources */,
+				3662016822924AF10010C78A /* CheckRepayVC.m in Sources */,
 				1F00AE7E22718A2A00A8E15D /* CreditReviewVC.m in Sources */,
 				1F1EF32A2269ACD800EADA25 /* ReferenceInputTableView.m in Sources */,
 				1F151A9B2272AB14002B7EDA /* ApplyTableView10.m in Sources */,
@@ -5613,12 +5921,14 @@
 				7A35825221119AB7006FB5B5 /* CustomerInvalidModel.m in Sources */,
 				B89ACB8621C8910A00186F58 /* CarDetailTb.m in Sources */,
 				36294E4E22855B6C004C4479 /* AgentCheckVC.m in Sources */,
+				366201A02292AF110010C78A /* ManagerAuditVC.m in Sources */,
 				1F1EF2BB2265D38300EADA25 /* RepaymentPlanHeadView.m in Sources */,
 				1F151A932272AB14002B7EDA /* ApplyTableView8.m in Sources */,
 				7A3582742112FAF5006FB5B5 /* SenderVC.m in Sources */,
 				7A13AE1F210F26A100B8F785 /* IQUIWindow+Hierarchy.m in Sources */,
 				7A13AE26210F26A200B8F785 /* IQToolbar.m in Sources */,
 				7A13AED321104E4400B8F785 /* QNUploadOption.m in Sources */,
+				366201C52292D4040010C78A /* SignCell.m in Sources */,
 				7AB29EA420FD93EA0014FCB3 /* HomeCell.m in Sources */,
 				7A13AECF21104E4400B8F785 /* QNConfiguration.m in Sources */,
 				B800F4742179744B00C358F0 /* NSString+MD5.m in Sources */,

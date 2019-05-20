@@ -22,6 +22,7 @@
  */
 - (void)refreshTableView:(TLTableView*)refreshTableview didSelectRowAtIndexPath:(NSIndexPath*)indexPath;
 
+- (void)refreshTableView:(TLTableView*)refreshTableview didDeselectRowAtIndexPath:(NSIndexPath*)indexPath;
 /* 选中cell上的button时可使用 */
 
 - (void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index;

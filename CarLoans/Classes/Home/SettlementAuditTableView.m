@@ -77,14 +77,27 @@
     }
 
     SettlementAuditModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"003_03"]) {
+    if ([model.curNodeCode isEqualToString:@"003_02"]) {
         cell.button.hidden = NO;
+        [cell.button setTitle:@"清欠催收部审核" forState:(UIControlStateNormal)];
+    }
+    else if ([model.curNodeCode isEqualToString:@"003_03"]) {
+        cell.button.hidden = NO;
+        [cell.button setTitle:@"驻行人员审核" forState:(UIControlStateNormal)];
+    }
+    else if ([model.curNodeCode isEqualToString:@"003_04"]) {
+        cell.button.hidden = NO;
+        [cell.button setTitle:@"总经理审核" forState:(UIControlStateNormal)];
+    }
+    else if ([model.curNodeCode isEqualToString:@"003_05"]) {
+        cell.button.hidden = NO;
+        [cell.button setTitle:@"财务审核" forState:(UIControlStateNormal)];
     }
     else
     {
         cell.button.hidden = YES;
     }
-
+    [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     return cell;
 
 
@@ -93,9 +106,10 @@
 //添加证信人
 -(void)buttonClick:(UIButton *)sender
 {
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
 
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:self.model[sender.tag].curNodeCode];
+        
     }
 }
 
@@ -109,13 +123,14 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SettlementAuditModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode  isEqualToString:@"003_03"]) {
-        return 295;
-    }else
-    {
-        return 245;
-    }
+//    SettlementAuditModel *model = self.model[indexPath.row];
+    return 300;
+//    if ([model.curNodeCode  isEqualToString:@"003_03"]) {
+//        return 295;
+//    }else
+//    {
+//        return 245;
+//    }
 
 }
 

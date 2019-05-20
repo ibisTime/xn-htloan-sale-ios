@@ -159,7 +159,6 @@
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
     }
-    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;

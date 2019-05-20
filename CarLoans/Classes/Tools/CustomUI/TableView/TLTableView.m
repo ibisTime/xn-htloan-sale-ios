@@ -288,5 +288,9 @@ _Pragma("clang diagnostic pop") \
         [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
     }
 }
-
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didDeselectRowAtIndexPath:)]) {
+        [self.refreshDelegate refreshTableView:self didDeselectRowAtIndexPath:indexPath];
+    }
+}
 @end

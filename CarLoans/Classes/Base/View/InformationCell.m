@@ -462,6 +462,59 @@
 
 //
 
+-(void)setRepayModel:(RepayModel *)repayModel{
+    _codeLabel.text = [NSString stringWithFormat:@"%@",repayModel.code];
+    _stateLabel.text = [[BaseModel user]note:repayModel.curNodeCode];
+    
+    NSArray *nameArray = @[
+                           @"业务编号",
+                           @"贷款人",
+                           @"手机号",
+                           @"贷款银行",
+                           @"贷款金额（元）",
+                           @"贷款期数",
+                           @"剩余期数",
+                           @"还款日",
+                           @"月供（元）",
+                           @"剩余欠款(元)",
+                           @"未还清收总成本(元)",
+                           @"逾期金额(元)",
+                           @"累计逾期期数",
+                           @"实际逾期期数",
+                           @"放款日期"];
+//    NSString *bizType;
+ 
+    
+    NSArray *InformationArray = @[
+                                  [NSString stringWithFormat:@"%@",repayModel.code],
+                                  [NSString stringWithFormat:@"%@",repayModel.user[@"realName"]],
+                                  [NSString stringWithFormat:@"%@",repayModel.user[@"mobile"]],
+                                  [NSString stringWithFormat:@"%@",repayModel.loanBankName],
+                                  [NSString stringWithFormat:@"%.2f",[repayModel.loanAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@",repayModel.periods],
+                                  [NSString stringWithFormat:@"%@",repayModel.restPeriods],
+                                  [NSString stringWithFormat:@"%@",repayModel.monthDatetime],
+                                  [NSString stringWithFormat:@"%.2f",[repayModel.monthAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%.2f",[repayModel.restAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%.2f",[repayModel.restTotalCost floatValue]/1000],
+                                  [NSString stringWithFormat:@"%.2f",[repayModel.overdueAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@",repayModel.totalOverdueCount],
+                                  [NSString stringWithFormat:@"%@",repayModel.curOverdueCount],
+                                  [repayModel.bankFkDatetime convertToDetailDate]
+                                   ];
+    
+    for (int i = 0; i < nameArray.count; i ++ ) {
+        UILabel *nameLabel = [self viewWithTag:100000 + i];
+        nameLabel.text = nameArray[i];
+        UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+    }
+    
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 530,SCREEN_WIDTH, 1)];
+    line.backgroundColor = kLineColor;
+    [self addSubview:line];
+}
+
 
 
 @end
