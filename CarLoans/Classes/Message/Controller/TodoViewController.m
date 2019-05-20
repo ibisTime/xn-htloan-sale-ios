@@ -55,8 +55,9 @@
 -(void)loadData{
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632528";
-    helper.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+    helper.code = @"632525";
+    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+    helper.parameters[@"status"] = @"0";
 //    helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.isList = NO;
     helper.isCurrency = YES;
