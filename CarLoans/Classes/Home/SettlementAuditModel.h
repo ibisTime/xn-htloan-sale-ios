@@ -66,4 +66,14 @@
 @property (nonatomic , copy)NSString *applyDatetime;
 @property (nonatomic , copy)NSString *curNodeCode;
 
+@property (nonatomic,strong) NSDictionary * user;
+@property (nonatomic,strong) NSString * isAdvanceSettled;
+@property (nonatomic,strong) NSString * restPeriods;
+@property (nonatomic,strong) NSString * overdueAmount;
+@property (nonatomic,strong) NSString * restTotalCost;
+@property (nonatomic,strong) NSString * unRepayTotalAmount;
+@property (nonatomic,strong) NSString * retreatDeposit;
+@property (nonatomic,strong) NSString * cutLyDeposit;
+@property (nonatomic,strong) NSString * settleDatetime;
+@property (nonatomic,strong) NSString * settleAttach;
 @end

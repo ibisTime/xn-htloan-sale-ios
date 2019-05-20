@@ -45,5 +45,5 @@
 @property (nonatomic , strong)AccessSingleModel *CarMortgageModel;
 @property (nonatomic , strong)DataTransferModel *dataTransferModel;
 @property (nonatomic,strong) GPSInstallationModel * gpsInstallationModel;
-
+@property (nonatomic,strong) RepayModel * repayModel;
 @end

@@ -44,11 +44,20 @@
 //附件池
 #import "AttachmentPoolVC.h"
 
+//还款业务管理
+#import "CheckRepayVC.h"
+//确认还款管理
+#import "ConfirmRepayVC.h"
+//解除抵押
+#import "CancelMortgageVC.h"
 //财务垫资
 #import "FinancialVC.h"
 #import "MakeCardVC.h"
 //档案入档
 #import "InputfilesVC.h"
+
+//面签视频
+#import "SignVC.h"
 @interface HomeVC ()<RefreshDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSDictionary *dataDic;
@@ -94,7 +103,7 @@
         return 5;
     }
     if (section == 2) {
-        return 1;
+        return 4;
     }
     return 4;
 }
@@ -114,12 +123,12 @@
         cell.nameLbl.text = array[indexPath.row];
     }
     if (indexPath.section == 2) {
-        NSArray *array = @[@"结算审核"];
+        NSArray *array = @[@"还款业务管理",@"确认还款管理",@"结算审核",@"解除抵押"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
     if (indexPath.section == 3) {
-        NSArray *array = @[@"业务附件池",@"业务作废",@"GPS申领",@"面签管理"];
+        NSArray *array = @[@"业务附件池",@"业务作废",@"GPS申领",@"面签视频"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
@@ -348,9 +357,40 @@
     
     
     if (indexPath.section == 2) {
-        SettlementAuditVC *vc = [SettlementAuditVC new];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        switch (indexPath.row) {
+                case 0:{
+                    CheckRepayVC * vc = [CheckRepayVC new];
+                    vc.title = @"还款业务管理";
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                
+                break;
+                case 1:{
+                    ConfirmRepayVC * vc = [ConfirmRepayVC new];
+                    vc.title = @"确认还款管理";
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                break;
+                case 2:{
+                    SettlementAuditVC *vc = [SettlementAuditVC new];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                break;
+                case 3:{
+                    CancelMortgageVC * vc = [CancelMortgageVC new];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    vc.title = @"解除抵押";
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                break;
+                
+            default:
+                break;
+        }
+        
         
     }
     
@@ -380,7 +420,10 @@
                 break;
             case 3:
             {
-                
+                SignVC *vc = [SignVC  new];
+                vc.title = @"面签视频";
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
                 

@@ -10,7 +10,10 @@
 #import "SettlementAuditTableView.h"
 #import "SettlementAuditModel.h"
 #import "SettlementAuditDetailsVC.h"
+//
+#import "DepartmentAuditVC.h"
 
+#import "ManagerAuditVC.h"
 @interface SettlementAuditVC ()<RefreshDelegate>
 @property (nonatomic , strong)NSMutableArray <SettlementAuditModel *>*model;
 @property (nonatomic , strong)SettlementAuditTableView *tableView;
@@ -50,11 +53,32 @@
 
 }
 
--(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
-    SettlementAuditDetailsVC *vc = [SettlementAuditDetailsVC new];
-    vc.model = self.model[index];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([state isEqualToString:@"003_02"]) {
+        DepartmentAuditVC * vc = [DepartmentAuditVC new];
+        vc.model =self.model[index];
+        vc.title = @"清欠催收部审核";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([state isEqualToString:@"003_03"]) {
+        SettlementAuditDetailsVC *vc = [SettlementAuditDetailsVC new];
+        vc.model = self.model[index];
+        vc.title = @"驻行人员审核";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([state isEqualToString:@"003_04"]) {
+        ManagerAuditVC *vc = [ManagerAuditVC new];
+        vc.model = self.model[index];
+        vc.title = @"总经理审核";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([state isEqualToString:@"003_05"]) {
+        ManagerAuditVC *vc = [ManagerAuditVC new];
+        vc.model = self.model[index];
+        vc.title = @"财务审核";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)LoadData

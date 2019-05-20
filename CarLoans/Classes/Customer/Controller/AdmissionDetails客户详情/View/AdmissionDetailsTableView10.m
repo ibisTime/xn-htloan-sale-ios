@@ -49,7 +49,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         if (indexPath.row == 9) {
-            cell.collectDataArray = @[@"",@"",@"",@""];
+            cell.collectDataArray = [self.model.bankLoan[@"receiptPdf"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"收款凭证";
         }
         
@@ -75,15 +75,15 @@
                           @""];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[@"6222330062163688",
+    NSArray *bottomArray = @[[BaseModel convertNull:self.model.bankLoan[@"repayBankcardNumber"]],
                              @"2018-12-13",
-                             @"2200.00",
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBankDate"]]],
                              @"25",
                              @"2019-01-25",
                              @"188888.00",
                              @"银行服务费",
                              @"2018-11-30",
-                             @"3002015119200183947",
+                             [BaseModel convertNull:self.model.bankLoan[@"receiptBankcardNumber"]],
                              @""];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;

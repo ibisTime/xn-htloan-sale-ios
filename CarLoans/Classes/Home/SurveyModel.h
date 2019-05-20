@@ -268,5 +268,6 @@
 @property (nonatomic,strong) NSString * insideJobPostName;
 @property (nonatomic,strong) NSDictionary * carPledge;
 @property (nonatomic,strong) NSDictionary * advance;
+@property (nonatomic,strong) NSDictionary * bankLoan;
 @property (nonatomic,strong) NSArray * budgetOrderGps;
 @end
