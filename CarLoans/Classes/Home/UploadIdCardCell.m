@@ -44,7 +44,8 @@
 
 
             UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-            selectButton.frame = selectButton.frame = CGRectMake(15 + (SCREEN_WIDTH - 40)/2 - 30 + i % 2 * (SCREEN_WIDTH - 20)/2, 50, 30, 30);
+//            selectButton.frame =
+            selectButton.frame = CGRectMake(15 + (SCREEN_WIDTH - 40)/2 - 30 + i % 2 * (SCREEN_WIDTH - 20)/2, 50, 30, 30);
             [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
             [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
             selectButton.tag = 5000 + i;
@@ -65,6 +66,8 @@
     for (int i = 0; i < 2; i ++) {
         UIButton * btn = [self viewWithTag:50 + i];
         [btn setTitle:nameArray[i] forState:(UIControlStateNormal)];
+        [btn.titleLabel setFont:Font(13)];
+        [btn setBackgroundColor:BackColor forState:(UIControlStateNormal)];
         [btn setBackgroundColor:BackColor forState:(UIControlStateNormal)];
         [btn setTitleColor:GaryTextColor forState:(UIControlStateNormal)];
         [btn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {

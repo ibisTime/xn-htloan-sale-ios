@@ -246,6 +246,7 @@
 		36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5322856325004C4479 /* ToApplyForRightTableView9.m */; };
 		36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E56228592F7004C4479 /* CheckCarTableView.m */; };
 		36294E5A22859313004C4479 /* CheckCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5922859313004C4479 /* CheckCarVC.m */; };
+		36401C222293D59600580033 /* AddPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36401C212293D59600580033 /* AddPeopleCell.m */; };
 		3662016822924AF10010C78A /* CheckRepayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016722924AF10010C78A /* CheckRepayVC.m */; };
 		3662016B22924BA40010C78A /* CheckRepayTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016A22924BA40010C78A /* CheckRepayTableView.m */; };
 		3662016F22924ED50010C78A /* RepayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016E22924ED50010C78A /* RepayModel.m */; };
@@ -1021,6 +1022,8 @@
 		36294E56228592F7004C4479 /* CheckCarTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarTableView.m; sourceTree = "<group>"; };
 		36294E5822859313004C4479 /* CheckCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckCarVC.h; sourceTree = "<group>"; };
 		36294E5922859313004C4479 /* CheckCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarVC.m; sourceTree = "<group>"; };
+		36401C202293D59600580033 /* AddPeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPeopleCell.h; sourceTree = "<group>"; };
+		36401C212293D59600580033 /* AddPeopleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPeopleCell.m; sourceTree = "<group>"; };
 		3662016622924AF10010C78A /* CheckRepayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayVC.h; sourceTree = "<group>"; };
 		3662016722924AF10010C78A /* CheckRepayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckRepayVC.m; sourceTree = "<group>"; };
 		3662016922924BA40010C78A /* CheckRepayTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayTableView.h; sourceTree = "<group>"; };
@@ -3551,6 +3554,8 @@
 				7A0592BA20FDEAAB00075FE8 /* SurveyPeopleTableViewCell.m */,
 				36C02E0622800B30007EC7CF /* DriveCardCell.h */,
 				36C02E0722800B30007EC7CF /* DriveCardCell.m */,
+				36401C202293D59600580033 /* AddPeopleCell.h */,
+				36401C212293D59600580033 /* AddPeopleCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -5732,6 +5737,7 @@
 				7A13AE30210FF9C700B8F785 /* SurveyDetailsTableView.m in Sources */,
 				1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */,
 				7AB29DDD20FD8D580014FCB3 /* BaseModel.m in Sources */,
+				36401C222293D59600580033 /* AddPeopleCell.m in Sources */,
 				36620188229271530010C78A /* ForwardRepayTableView.m in Sources */,
 				7AB29E8220FD8EB30014FCB3 /* TLTableView.m in Sources */,
 				1F1EF3362269BC1C00EADA25 /* ReferenceInputDetailsTableView.m in Sources */,
@@ -6135,7 +6141,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = CarLoans/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -6184,7 +6190,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = CarLoans/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

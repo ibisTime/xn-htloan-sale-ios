@@ -109,7 +109,7 @@
     {
         selectRow = index;
         AddTaskVC *vc = [[AddTaskVC alloc]init];
-        vc.dataDic = self.tableView.taskArray[index - 1234];
+        vc.dataDic = self.tableView.taskArray[index];
         vc.model = self.model;
         vc.selectRow = index;
         if (index == 1234) {
@@ -119,17 +119,9 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     }
-//    vc.dataDic = self.tableView.taskArray[index - 102];
-//    vc.selectRow = index;
-//    if (index == 102) {
-//        vc.isFirstEntry = YES;
-//    }
-//    vc.state = self.state;
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
     if ([state isEqualToString:@"delete"]) {
-//        [TaskArray removeObject:index];
         [TaskArray removeObjectAtIndex:index];
         self.tableView.taskArray = TaskArray;
         [self.tableView reloadData];

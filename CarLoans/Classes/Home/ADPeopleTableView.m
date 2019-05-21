@@ -67,7 +67,7 @@
         cell.nameText = placeholderArray[indexPath.row];
         cell.nameTextField.tag = 20000 + indexPath.row;
 
-        if (self.selectRow > 1000) {
+        if (self.dataDic.count > 0) {
             NSArray *Array = @[_dataDic[@"userName"],_dataDic[@"mobile"]];
             cell.TextFidStr = Array[indexPath.row];
         }
@@ -100,7 +100,7 @@
         cell.nameText = @"请输入身份证号";
         cell.nameTextField.tag = 20002;
 
-        if (self.selectRow > 1000) {
+        if (self.dataDic.count >= 0) {
             cell.TextFidStr = _dataDic[@"idNo"];
         }
         return cell;

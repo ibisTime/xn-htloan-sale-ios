@@ -15,6 +15,8 @@
 #define InputBox @"InputBoxCell"
 
 #define Task @"TaskCell"
+#import "AddPeopleCell.h"
+#define AddPeople @"AddPeopleCell"
 @implementation CheckTableView2
 
 
@@ -26,22 +28,25 @@
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[InputBoxCell class] forCellReuseIdentifier:InputBox];
         [self registerClass:[TaskCell class] forCellReuseIdentifier:Task];
-        
+        [self registerClass:[AddPeopleCell class] forCellReuseIdentifier:AddPeople];
     }
     return self;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         return 8;
     }
+    if (section == 1) {
+        return self.taskArray.count;
+    }
     return 1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        return 50 + 15 + (_taskArray.count + 1)*120 + 5;
+    if (indexPath.section == 1 || indexPath.section == 2) {
+        return 150;
     }
     return 50;
 }
@@ -59,7 +64,7 @@
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSString *bizType;
-        if ([self.model.credit[@"bizType"] integerValue] == 0) {
+        if ([self.model.bizType integerValue] == 0) {
             bizType = @"新车";
         }
         else
@@ -87,11 +92,22 @@
         cell.name = @"任务";
         cell.btnStr = @"添加任务";
         cell.delegate = self;
-        [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        cell.TaskArray = _taskArray;
+        cell.photoBtn.tag = indexPath.row;
+        [cell.photoBtn addTarget:self action:@selector(SurveyTaskSelectButton:) forControlEvents:(UIControlEventTouchUpInside)];
+        if (self.taskArray.count > 0) {
+            cell.taskDic = self.taskArray[indexPath.row];
+        }
+        cell.selectButton.tag = indexPath.row;
+        [cell.selectButton addTarget:self action:@selector(deleteButton:) forControlEvents:(UIControlEventTouchUpInside)];
         return cell;
     }
-    
+    if (indexPath.section == 2) {
+        AddPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:AddPeople forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [cell.photoBtn setTitle:@"添加任务" forState:(UIControlStateNormal)];
+        return cell;
+    }
     InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name = @"审核意见";

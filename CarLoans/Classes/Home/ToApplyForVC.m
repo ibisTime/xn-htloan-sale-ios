@@ -1780,6 +1780,16 @@
             self.rightTableView7.otherPic = self.guaAssetPdf;
             [self.rightTableView7 reloadData];
         }
+        if ([attachmentsDic[@"kname"] isEqualToString:@"pledge_user_id_card_front"]) {
+            self.AgentFontPic = [attachmentsDic[@"url"] componentsSeparatedByString:@"||"];
+            self.rightTableView9.AgentFontPic = self.AgentFontPic;
+            [self.rightTableView9 reloadData];
+        }
+        if ([attachmentsDic[@"kname"] isEqualToString:@"pledge_user_id_card_reverse"]) {
+            self.AgentReversePic = [attachmentsDic[@"url"] componentsSeparatedByString:@"||"];
+            self.rightTableView9.AgentReversePic = self.AgentReversePic;
+            [self.rightTableView9 reloadData];
+        }
 
     }
     

@@ -9,9 +9,13 @@
 #import "TLTableView.h"
 #import "TextFieldCell.h"
 NS_ASSUME_NONNULL_BEGIN
+@protocol SelectButtonDelegate <NSObject>
 
+-(void)selectButtonClick:(UIButton *)sender;
+
+@end
 @interface ReferenceInputDetailsTableView : TLTableView
-
+@property (nonatomic, assign) id <SelectButtonDelegate> ButtonDelegate;
 @property (nonatomic , strong)NSArray *bankCreditReport;
 @property (nonatomic , strong)NSArray *dataCreditReport;
 @property (nonatomic , strong)NSDictionary *dataDic;

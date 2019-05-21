@@ -8,7 +8,7 @@
 
 #import "ReferenceInputDetailsVC.h"
 #import "ReferenceInputDetailsTableView.h"
-@interface ReferenceInputDetailsVC ()<RefreshDelegate,BaseModelDelegate>{
+@interface ReferenceInputDetailsVC ()<RefreshDelegate,BaseModelDelegate,SelectButtonDelegate>{
     NSString *secondCarReport;
 }
 @property (nonatomic , strong)ReferenceInputDetailsTableView *tableView;
@@ -114,7 +114,10 @@
     self.tableView.bankResult = _bankResult;
     self.tableView.creditNote = self.creditListDic[@"creditNote"];
     self.bankCreditReport = [NSMutableArray arrayWithArray:[self.creditListDic[@"bankCreditReport"] componentsSeparatedByString:@"||"]];
-    self.tableView.bankCreditReport = self.bankCreditReport;
+//    self.tableView.bankCreditReport = self.bankCreditReport;
+    if (self.bankCreditReport.count > 0) {
+        self.tableView.secondCarReport = self.bankCreditReport[0];
+    }
     self.dataCreditReport = [NSMutableArray arrayWithArray:[self.creditListDic[@"dataCreditReport"] componentsSeparatedByString:@"||"]];
     self.tableView.dataCreditReport = self.dataCreditReport;
     UITextField *textField1 = [self.view viewWithTag:3000];
@@ -126,13 +129,18 @@
 - (void)initTableView {
     self.tableView = [[ReferenceInputDetailsTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
+    self.tableView.ButtonDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.dataDic = self.dataDic;
     [self.view addSubview:self.tableView];
     
     
 }
-
+-(void)selectButtonClick:(UIButton *)sender{
+    secondCarReport = @"";
+    self.tableView.secondCarReport = secondCarReport;
+    [self.tableView reloadData];
+}
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {

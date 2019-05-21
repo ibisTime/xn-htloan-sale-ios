@@ -10,41 +10,67 @@
 
 @implementation FileCell
 
--(UIButton *)photoBtn
-{
-    if (!_photoBtn) {
-        _photoBtn = [UIButton buttonWithTitle:@"" titleColor:[UIColor blackColor] backgroundColor:BackColor titleFont:13];
-        _photoBtn.frame = CGRectMake(15, 60, SCREEN_WIDTH - 30, 135);
-        [_photoBtn setTitleColor:GaryTextColor forState:(UIControlStateNormal)];
-        _photoBtn.tag = 102;
-        kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
-    }
-    return _photoBtn;
-}
--(UILabel *)nameLbl
-{
-    if (!_nameLbl) {
-        _nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-    }
-    return _nameLbl;
-}
+//-(UIButton *)photoBtn
+//{
+//    if (!_photoBtn) {
+//        _photoBtn = [UIButton buttonWithTitle:@"" titleColor:[UIColor blackColor] backgroundColor:BackColor titleFont:13];
+//        _photoBtn.frame = CGRectMake(15, 60, SCREEN_WIDTH - 30, 135);
+//        [_photoBtn setTitleColor:GaryTextColor forState:(UIControlStateNormal)];
+//        _photoBtn.tag = 102;
+//        kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
+//    }
+//    return _photoBtn;
+//}
+//-(UILabel *)nameLbl
+//{
+//    if (!_nameLbl) {
+//        _nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+//    }
+//    return _nameLbl;
+//}
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self addSubview:self.nameLbl];
-        [self addSubview:self.photoBtn];
         
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
-        lineView.backgroundColor = LineBackColor;
-        [self addSubview:lineView];
+        NSArray *nameArray = @[@"文件内容:",
+                               @"份数 :",
+                               @"存放人:",
+                               @"存放时间:",
+                               @"备注"];
         
-        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_WIDTH/3 + 79, SCREEN_WIDTH, 1)];
-        lineView1.backgroundColor = LineBackColor;
-        [self addSubview:lineView1];
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 30, 135)];
+        backView.backgroundColor = BackColor;
+        kViewBorderRadius(backView, 2, 1, HGColor(230, 230, 230));
+        [self addSubview:backView];
+        for (int j = 0; j < 5; j ++) {
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + j%5*25, 60, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:GaryTextColor];
+            nameLabel.text = nameArray[j];
+            [backView addSubview:nameLabel];
+            
+            UILabel *informationLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 10+j%5*25, SCREEN_WIDTH - 120, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:TextColor];
+            informationLabel.tag = 100 + j;
+            [backView addSubview:informationLabel];
+        }
+        self.selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        self.selectButton.frame = self.selectButton.frame = CGRectMake(SCREEN_WIDTH - 45, 15, 30, 30);
+        [self.selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
         
+        [self addSubview:self.selectButton];
         
-        
+//        [self addSubview:self.nameLbl];
+//        [self addSubview:self.photoBtn];
+//
+//        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
+//        lineView.backgroundColor = LineBackColor;
+//        [self addSubview:lineView];
+//
+//        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_WIDTH/3 + 79, SCREEN_WIDTH, 1)];
+//        lineView1.backgroundColor = LineBackColor;
+//        [self addSubview:lineView1];
+//
+//
+//
     }
     return self;
 }
@@ -52,6 +78,26 @@
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
+}
+-(void)setTaskDic:(NSDictionary *)taskDic{
+    for (int i = 0; i < 5; i ++) {
+        UILabel *label1 = [self viewWithTag:100 + i];
+        
+        NSArray *detailsArray = @[
+                                  [NSString stringWithFormat:@"%@",taskDic[@"content"]],
+                                  [NSString stringWithFormat:@"%@",taskDic[@"fileCount"]],
+                                  [NSString stringWithFormat:@"%@",taskDic[@"operatorName"]],
+                                  [taskDic[@"depositDateTime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"],
+                                  [NSString stringWithFormat:@"%@",taskDic[@"remark"]]
+                                  ];
+        label1.text = detailsArray[i];
+    }
+    _photoBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    _photoBtn.frame = CGRectMake(15, 60 , SCREEN_WIDTH - 30, 110);
+    [_photoBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self addSubview:_photoBtn];
+    
+    
 }
 -(void)setTaskArray:(NSArray *)TaskArray{
     NSArray *nameArray = @[@"任务名称:",

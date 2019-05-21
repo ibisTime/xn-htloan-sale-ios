@@ -57,42 +57,54 @@
     }
     
     SurveyModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"b1"] || [model.curNodeCode isEqualToString:@"b1x"]) {
-        cell.isXin = YES;
-        [cell.button setTitle:@"录入" forState:(UIControlStateNormal)];
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"b2"]) {
-        [cell.button setTitle:@"区域总审" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"b3"]) {
-        [cell.button setTitle:@"风控一审" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"b4"]) {
-        [cell.button setTitle:@"风控二审" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"b5"]) {
-        [cell.button setTitle:@"风控终审" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"b6"]) {
-        [cell.button setTitle:@"业务总监审核" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"b6"]) {
-        [cell.button setTitle:@"业务总监审核" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else if ([model.curNodeCode isEqualToString:@"b7"]) {
-        [cell.button setTitle:@"财务总监审核" forState:(UIControlStateNormal)];
-        cell.isXin = YES;
-        cell.button.hidden = NO;
-    }else
-    {
-        cell.button.hidden = YES;
-    }
+    
+    cell.isXin = YES;
+    [cell.button setTitle:[[BaseModel user]note:model.curNodeCode] forState:(UIControlStateNormal)];
+    cell.button.hidden = NO;
+
+//    if ([model.curNodeCode isEqualToString:@"b1"] || [model.curNodeCode isEqualToString:@"b1x"]) {
+//        cell.isXin = YES;
+//        [cell.button setTitle:@"录入" forState:(UIControlStateNormal)];
+//        cell.button.hidden = NO;
+//    }else if ([model.curNodeCode isEqualToString:@"b2"]) {
+//        [cell.button setTitle:@"区域总审" forState:(UIControlStateNormal)];
+//        cell.isXin = YES;
+//        cell.button.hidden = NO;
+//    }else if ([model.curNodeCode isEqualToString:@"b3"]) {
+//        [cell.button setTitle:@"风控一审" forState:(UIControlStateNormal)];
+//        cell.isXin = YES;
+//        cell.button.hidden = NO;
+//    }else if ([model.curNodeCode isEqualToString:@"b4"]) {
+//        [cell.button setTitle:@"风控二审" forState:(UIControlStateNormal)];
+//        cell.isXin = YES;
+//        cell.button.hidden = NO;
+//    }else if ([model.curNodeCode isEqualToString:@"b5"]) {
+//        [cell.button setTitle:@"风控终审" forState:(UIControlStateNormal)];
+//        cell.isXin = YES;
+//        cell.button.hidden = NO;
+//    }else if ([model.curNodeCode isEqualToString:@"b6"]) {
+//        [cell.button setTitle:@"业务总监审核" forState:(UIControlStateNormal)];
+//        cell.isXin = YES;
+//        cell.button.hidden = NO;
+//    }else if ([model.curNodeCode isEqualToString:@"b6"]) {
+//        [cell.button setTitle:@"业务总监审核" forState:(UIControlStateNormal)];
+//        cell.isXin = YES;
+//        cell.button.hidden = NO;
+//    }else if ([model.curNodeCode isEqualToString:@"b7"]) {
+//        [cell.button setTitle:@"财务总监审核" forState:(UIControlStateNormal)];
+//        cell.isXin = YES;
+//        cell.button.hidden = NO;
+//    }
+//    else if ([model.curNodeCode isEqualToString:@"b8"]) {
+//        [cell.button setTitle:@"总公司审查部审核" forState:(UIControlStateNormal)];
+//        cell.isXin = YES;
+//        cell.button.hidden = NO;
+//    }else
+//    {
+//        cell.button.hidden = YES;
+//    }
+    [cell.button.titleLabel sizeToFit];
+    cell.button.frame = CGRectMake(SCREEN_WIDTH - cell.button.titleLabel.width - 20, 290, cell.button.titleLabel.width + 10, 30);
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.button.tag = indexPath.row;
     return cell;

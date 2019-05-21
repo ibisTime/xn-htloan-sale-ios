@@ -75,12 +75,14 @@
         }
         NSArray * arr = @[@"*代理人",@"*代理人身份证号"];
         if (indexPath.row == 0) {
-            if (self.model.carPledge[@"pledgeUser"]) {
+            NSString * str1 = self.model.carPledge[@"pledgeUser"];
+            if (str1.length > 0) {
                 cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
             }
         }
+        NSString * str2 = self.model.carPledge[@"pledgeUserIdCard"];
         if (indexPath.row == 1) {
-            if (self.model.carPledge[@"pledgeUserIdCard"]) {
+            if (str2.length > 0) {
                 cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
             }
         }

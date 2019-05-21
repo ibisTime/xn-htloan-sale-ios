@@ -21,6 +21,9 @@
 #define DriveCard @"DriveCardCell"
 #import "UploadIdCardCell.h"
 #define UploadIdCard @"UploadIdCardCell"
+#import "AddPeopleCell.h"
+#define AddPeople @"AddPeopleCell"
+
 @interface SurveyACreditTableView ()<UITableViewDataSource,UITableViewDelegate,SurveyPeopleDelegate,DriveCardDelegate,UploadIdCardDelegate>
 
 @end
@@ -40,6 +43,7 @@
         [self registerClass:[DriveCardCell class] forCellReuseIdentifier:DriveCard];
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [self registerClass:[UploadIdCardCell class] forCellReuseIdentifier:UploadIdCard];
+        [self registerClass:[AddPeopleCell class] forCellReuseIdentifier:AddPeople];
 
     }
     return self;
@@ -48,10 +52,10 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
-        return 4;
+        return 5;
     }else
     {
-        return 6;
+        return 7;
     }
 }
 
@@ -62,6 +66,17 @@
     if (section == 0) {
         return 2;
     }
+    if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
+        if (section == 2) {
+            return self.peopleAray.count;
+        }
+    }
+    else{
+        if (section == 4) {
+            return self.peopleAray.count;
+        }
+    }
+    
     
     return 1;
 }
@@ -92,20 +107,32 @@
 
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
         if (indexPath.section == 2) {
-            SurveyPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SurveyPeople forIndexPath:indexPath];
+            static NSString *rid=@"SurveyPeopleTableViewCell";
+            SurveyPeopleTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[SurveyPeopleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.name = @"*征信人";
             cell.btnStr = @"添加征信人";
             cell.delegate = self;
-            [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
             if (_peopleAray.count > 0) {
-                cell.peopleArray = _peopleAray;
+                cell.peopleDic = _peopleAray[indexPath.row];
             }
+            [cell.selectButton addTarget:self action:@selector(SelectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            cell.selectButton.tag = indexPath.row + 900000;
+            return cell;
+        }
+        if (indexPath.section == 3) {
+            AddPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:AddPeople forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
             return cell;
         }
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"说明栏";
+        cell.nameTextField.placeholder = @"请输入";
         cell.nameTextField.tag = 301;
         return cell;
     }else
@@ -115,32 +142,32 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             UIButton *_photoBtn = [UIButton buttonWithTitle:@"评估报告" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
             _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
-//            [_photoBtn setTitle:@"评估报告" forState:(UIControlStateNormal)];
             [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
                 [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
             }];
             kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
-
-            [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
             [cell addSubview:_photoBtn];
-
+            
             UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-//            if (self.secondCarReport) {
-////                if (!self.peopleAray[0][@"secondCarReport"]) {
-//
-////                }
-//            }
-//            if (self.peopleAray.count > 0) {
-//                if (self.secondCarReport) {
-//                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
-//                }
-//                else{
-//                    [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.peopleAray[0][@"secondCarReport"] convertImageUrl]]];
-//                }
-//
-//            }
             [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
             [_photoBtn addSubview:photoImage];
+            
+            UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+            selectButton.frame = CGRectMake((SCREEN_WIDTH - 40)/2-15 , 0, 30, 30);
+            [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+           
+            selectButton.tag = 50000 + indexPath.section;
+            selectButton.hidden= NO;
+            [cell addSubview:selectButton];
+            if (self.secondCarReport.length > 0) {
+                 [selectButton addTarget:self action:@selector(SelectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+                _photoBtn.userInteractionEnabled = NO;
+                selectButton.hidden = NO;
+            }else{
+                [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+                _photoBtn.userInteractionEnabled = YES;
+                selectButton.hidden = YES;
+            }
 
             return cell;
         }
@@ -153,13 +180,7 @@
             cell.idNoFront = self.xszFront;
             cell.idNoReverse = self.xszReverse;
             return cell;
-//            DriveCardCell * cell = [tableView dequeueReusableCellWithIdentifier:DriveCard forIndexPath:indexPath];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.IdCardDelegate = self;
-//            cell.idNoFront = self.xszFront;
-//            cell.idNoReverse = self.xszReverse;
-//            [cell.selectButton addTarget:self action:@selector(delateButton:) forControlEvents:(UIControlEventTouchUpInside)];
-//            return cell;
+
         }
         if (indexPath.section == 4) {
             SurveyPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SurveyPeople forIndexPath:indexPath];
@@ -167,15 +188,23 @@
             cell.name = @"*征信人";
             cell.btnStr = @"添加征信人";
             cell.delegate = self;
-            [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
             if (_peopleAray.count > 0) {
-                cell.peopleArray = _peopleAray;
+                cell.peopleDic = _peopleAray[indexPath.row];
             }
+            [cell.selectButton addTarget:self action:@selector(SelectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            cell.selectButton.tag = indexPath.row + 900000;
+            return cell;
+        }
+        if (indexPath.section == 5) {
+            AddPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:AddPeople forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
             return cell;
         }
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"说明栏";
+        cell.nameTextField.placeholder = @"请输入";
         cell.nameTextField.tag = 301;
         return cell;
     }
@@ -192,11 +221,16 @@
 //}
 -(void)appraisalReportBtnClick:(UIButton *)sender
 {
+    if (self.secondCarReport.length > 0) {
+        return;
+    }
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
         [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:0 selectRowState:@"add"];
     }
 }
-
+-(void)selectbutton:(UIButton *)sender{
+    [_ButtonDelegate selectButtonClick:sender];
+}
 
 -(void)SurveyPeopleSelectButton:(UIButton *)sender
 {
@@ -230,7 +264,10 @@
 
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
         if (indexPath.section == 2) {
-            return 50 + 15 + (_peopleAray.count + 1)*145 + 5;
+            return 145;
+        }
+        if (indexPath.section == 3) {
+            return 145;
         }
         return 50;
     }else
@@ -243,7 +280,10 @@
         }
         
         if (indexPath.section == 4) {
-            return 50 + 15 + (_peopleAray.count + 1)*145 + 5;
+            return 145;
+        }
+        if (indexPath.section == 5) {
+            return 145;
         }
         return 50;
     }
@@ -254,13 +294,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
-        if (section == 0 || section == 3) {
+        if (section == 0 || section == 4) {
             return 0.01;
         }
         return 10;
     }else
     {
-        if (section == 0 || section == 5  || section == 1 || section == 4 || section == 3) {
+        if (section == 0 || section == 5 || section == 6 || section == 1 || section == 4 || section == 3) {
             return 0.01;
         }
 //        if (section == 4) {
@@ -275,13 +315,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
-        if (section == 3) {
+        if (section == 4) {
             return 100;
         }
         return 0.01;
     }else
     {
-        if (section == 5) {
+        if (section == 6) {
             return 100;
         }
         return 0.01;
@@ -331,7 +371,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
-        if (section == 3) {
+        if (section == 4) {
             UIView *headView = [[UIView alloc]init];
 
 
@@ -354,7 +394,7 @@
         }
     }else
     {
-        if (section == 5) {
+        if (section == 6) {
             UIView *headView = [[UIView alloc]init];
 
 

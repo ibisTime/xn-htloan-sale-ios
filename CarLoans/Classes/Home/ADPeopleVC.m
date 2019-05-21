@@ -130,9 +130,9 @@
     _relation = @"";
     [self initTableView];
 
-    if (self.selectRow > 1000) {
+//    if (self.selectRow > 1000) {
         [self TheValueOf];
-    }
+//    }
 
 //    [self.view addSubview:self.imagePicker];
 }
@@ -289,15 +289,15 @@
         BaseModel *model = [BaseModel new];
         model.ModelDelegate = self;
         if (indexPath.row == 0) {
-            if (self.isFirstEntry == YES) {
-                return;
-            }
+//            if (self.isFirstEntry == YES) {
+//                return;
+//            }
             [model ReturnsParentKeyAnArray:@"credit_user_loan_role"];
         }else
         {
-            if (self.isFirstEntry == YES) {
-                return;
-            }
+//            if (self.isFirstEntry == YES) {
+//                return;
+//            }
             [model ReturnsParentKeyAnArray:@"credit_user_relation"];
         }
     }

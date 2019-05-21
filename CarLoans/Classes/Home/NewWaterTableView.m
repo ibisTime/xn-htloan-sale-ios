@@ -135,7 +135,7 @@
                 
             }
             if (indexPath.row == 13) {
-                NSString * str = _waterDic[@"remark"];
+//                NSString * str = _waterDic[@"remark"];
                 if (![_waterDic[@"remark"] isEqualToString:@""]) {
                     cell.inputTextField.text = _waterDic[@"remark"];
                 }

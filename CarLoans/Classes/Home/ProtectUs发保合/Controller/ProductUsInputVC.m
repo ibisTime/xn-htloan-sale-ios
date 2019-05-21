@@ -60,7 +60,7 @@
 {
     if (self.selectInt == 100)
     {
-        //        征信授权书
+        //        发票
         [self.carInvoice addObject:data];
         self.tableView.carInvoice = self.carInvoice;
         
@@ -154,6 +154,34 @@
         }
         
     }
+    if ([state isEqualToString:@"DeletePhotos1"]) {
+        [self.carInvoice removeObjectAtIndex:index-1000];
+        self.tableView.carInvoice = self.carInvoice;
+        [self.tableView reloadData];
+    }
+    if ([state isEqualToString:@"DeletePhotos2"]) {
+        [self.carJqx removeObjectAtIndex:index-1000];
+        self.tableView.carJqx = self.carJqx;
+        [self.tableView reloadData];
+    }
+    if ([state isEqualToString:@"DeletePhotos3"]) {
+        [self.carSyx removeObjectAtIndex:index-1000];
+        self.tableView.carSyx = self.carSyx;
+        [self.tableView reloadData];
+    }
+    if ([state isEqualToString:@"DeletePhotos4"]) {
+        [self.carHgzPic removeObjectAtIndex:index-1000];
+        self.tableView.carHgzPic = self.carHgzPic;
+        [self.tableView reloadData];
+    }
+    if ([state isEqualToString:@"DeletePhotos5"]) {
+        [self.carSettleOtherPdf removeObjectAtIndex:index-1000];
+        self.tableView.carSettleOtherPdf = self.carSettleOtherPdf;
+        [self.tableView reloadData];
+    }
+    
+    
+    
 }
 -(void)Confirm{
 //    if (self.policyDatetime.length < 1) {
@@ -247,4 +275,5 @@
     NSString * string =  [array componentsJoinedByString:@"||"];
     return string;
 }
+
 @end
