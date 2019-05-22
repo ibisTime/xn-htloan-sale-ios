@@ -32,21 +32,28 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 6;
+    return self.model.attachments.count;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    AttachmentPoolCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AttachmentPoolCell" forIndexPath:indexPath];
+     //AttachmentPoolCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AttachmentPoolCell" forIndexPath:indexPath];
+    static NSString *rid=@"AttachmentPoolCell";
+    AttachmentPoolCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    if(cell==nil){
+        cell=[[AttachmentPoolCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    }
+    NSString * str1 = self.model.attachments[indexPath.row][@"code"];
+    NSString * str2 = self.model.attachments[indexPath.row][@"vname"];
+    NSString * str3 = self.model.attachments[indexPath.row][@"attachType"];
+    NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
+    
+    
+    cell.array = @[[NSString stringWithFormat:@"附件编号：%@",str1],[NSString stringWithFormat:@"附件类型：%@",str2],[NSString stringWithFormat: @"资源类型：%@",str3],[NSString stringWithFormat:@"资源数量：%ld张",arr.count]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
-    
     return cell;
-    
-    
 }
 
 
