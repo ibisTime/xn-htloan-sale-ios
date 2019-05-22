@@ -94,11 +94,15 @@
         vc.model = self.model;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if (index == 1234) {
-        NSLog(@"%ld",sender.tag);
+    else if (index == 1234) {
         AddFilesVC *vc = [[AddFilesVC alloc]init];
         vc.model = self.model;
         vc.fileModel = self.filemodels[sender.tag - 1234];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        AddFilesVC *vc = [[AddFilesVC alloc]init];
+        vc.model = self.model;
+        vc.fileModel = self.filemodels[index];
         [self.navigationController pushViewController:vc animated:YES];
     }
     
@@ -142,3 +146,4 @@
     
 }
 @end
+

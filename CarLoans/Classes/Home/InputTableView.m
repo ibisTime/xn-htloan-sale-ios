@@ -81,14 +81,12 @@
             cell=[[FileCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
         }
         cell.name = @"档案";
-        cell.btnStr = @"新增档案";
         cell.delegate = self;
-        [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         if (_FileArray.count > 0) {
-            //        cell.FileArray = _FileArray;
             cell.taskDic = _FileArray[indexPath.row];
         }
-        [cell.deleteBtn addTarget:self action:@selector(deleteButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.photoBtn.tag = indexPath.row;
+        [cell.selectButton addTarget:self action:@selector(deleteButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.deleteBtn.tag = indexPath.row;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -96,7 +94,7 @@
     AddPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:AddPeople forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-    [cell.photoBtn setTitle:@"添加任务" forState:(UIControlStateNormal)];
+    [cell.photoBtn setTitle:@"添加档案" forState:(UIControlStateNormal)];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -106,7 +104,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2 || indexPath.section == 3) {
-        return 50;
+        return 150;
     }
     return 50;
 }
@@ -153,7 +151,7 @@
 
 -(void)SurveyTaskSelectButton:(UIButton *)sender{
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
-        
+        NSLog(@"%ld",sender.tag);
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
     }
 }
@@ -162,5 +160,7 @@
 {
     [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"delete"];
 }
-
+//-(void)deleteButton:(UIButton *)sender{
+//    
+//}
 @end

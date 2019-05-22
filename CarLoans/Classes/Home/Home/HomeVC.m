@@ -198,7 +198,7 @@
             {
                 SurveyTGVC *vc = [SurveyTGVC new];
                 vc.hidesBottomBarWhenPushed = YES;
-                vc.curNodeCodeList = @[@"a1",@"ax1"];
+                vc.curNodeCodeList = @[@"a1",@"a1x"];
                 vc.title = @"征信发起";
                 [self.navigationController pushViewController:vc animated:YES];
             }

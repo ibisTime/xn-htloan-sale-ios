@@ -143,7 +143,7 @@
         UIView *headView = [[UIView alloc]init];
         headView.backgroundColor = kWhiteColor;
         UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 107 - 15, 58) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kBlackColor];
-        nameLbl.text = @"车辆抵押";
+        nameLbl.text = @"保单信息";
         [headView addSubview:nameLbl];
         
         

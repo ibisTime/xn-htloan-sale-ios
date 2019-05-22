@@ -155,28 +155,22 @@
     if (indexPath.row == 17) {
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"house_picture_apply"] componentsSeparatedByString:@"||"].count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
     if (indexPath.row == 16) {
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"house_contract"] componentsSeparatedByString:@"||"].count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }
-//    if (indexPath.row == 19) {
-//        float numberToRound;
-//        int result;
-//        numberToRound = (4.0)/3.0;
-//        result = (int)ceilf(numberToRound);
-//        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
-//    }
+
     if (indexPath.row == 26) {
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = (2.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }

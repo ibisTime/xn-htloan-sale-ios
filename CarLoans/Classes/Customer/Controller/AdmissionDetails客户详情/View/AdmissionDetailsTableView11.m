@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 16;
+    return 15;
 }
 
 #pragma mark -- tableView
@@ -49,31 +49,32 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         if (indexPath.row == 1) {
-            cell.collectDataArray = @[@"",@""];
+            
+            cell.collectDataArray = @[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_reverse"]]];
             cell.selectStr = @"抵押代理人身份证复印件";
         }
         if (indexPath.row == 8) {
-            cell.collectDataArray = @[@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_regcerti"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"机动车登记证书";
         }
         if (indexPath.row == 9) {
-            cell.collectDataArray = @[@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_pd"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"批单";
         }
         if (indexPath.row == 10) {
-            cell.collectDataArray = @[@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_key"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"车钥匙";
         }
         if (indexPath.row == 11) {
-            cell.collectDataArray = @[@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_big_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"大本扫描件";
         }
         if (indexPath.row == 12) {
-            cell.collectDataArray = @[@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"车辆行驶证扫描件";
         }
         if (indexPath.row == 13) {
-            cell.collectDataArray = @[@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"duty_paid_prove_smj"]componentsSeparatedByString:@"||"];
             cell.selectStr = @"完税证明扫描件";
         }
         return cell;
@@ -86,10 +87,24 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"抵押代理人",@"",@"抵押地点",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间",@"提交说明"];
+    NSArray *topArray = @[@"抵押代理人",@"",@"抵押地点",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间"];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[@"张明",@"",@"乌鲁木齐",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明补充说明补充说明补充说明补充说明补充说明补充说明补充说明补充说明补充说明补充说明",@"新AF02533",@"",@"",@"",@"",@"",@"",@"提交时间",@""];
+    NSArray *bottomArray = @[[BaseModel convertNull:self.model.carPledge[@"pledgeUser"]],
+                             @"",
+                             [BaseModel convertNull:self.model.carInfoRes[@"settleAddress"]],
+                             [NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBillDate"]],
+                             [NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBankDate"]],
+                             [NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayCompanyDate"]],
+                             [BaseModel convertNull:self.model.carPledge[@"pledgeSupplementNote"]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"carNumber"]],
+                             @"",
+                             @"",
+                             @"",
+                             @"",
+                             @"",
+                             @"",
+                             @"提交时间"];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];

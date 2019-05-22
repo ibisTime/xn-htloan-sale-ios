@@ -97,14 +97,14 @@
     if (indexPath.row == 0) {
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"hkb_apply"] componentsSeparatedByString:@"||"].count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
     if (indexPath.row == 1) {
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = (2.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }

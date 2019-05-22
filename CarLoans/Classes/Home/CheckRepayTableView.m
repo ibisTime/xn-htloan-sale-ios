@@ -40,7 +40,8 @@
     NSLog(@"%ld",cell.button.tag);
     cell.button.hidden = NO;
     cell.button1.hidden = NO;
-    
+    cell.button.frame =CGRectMake(SCREEN_WIDTH - 230, 245, 100, 30);
+    cell.button1.frame = CGRectMake(SCREEN_WIDTH - 115, 245, 100, 30);
     cell.button.tag = indexPath.row;
     cell.button1.tag = indexPath.row;
     [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];

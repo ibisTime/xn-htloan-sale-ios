@@ -109,7 +109,7 @@
     if (indexPath.row == 9) {
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"advance_bill_pdf"] componentsSeparatedByString:@"||"].count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }

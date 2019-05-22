@@ -9,6 +9,7 @@
 #import "ConfirmRepayVC.h"
 #import "ConfirmRepayTableView.h"
 #import "BottomView.h"
+#import "AdmissionDetailsVC.h"
 @interface ConfirmRepayVC ()<RefreshDelegate>
 @property (nonatomic,strong) ConfirmRepayTableView * tableView;
 @property (nonatomic , strong)NSMutableArray <RepayModel *>*model;
@@ -16,7 +17,7 @@
 @property (nonatomic ,strong) NSMutableArray *dataArray;//数据源
 @property (nonatomic ,strong) NSMutableArray *deleteArray;//删除的数据
 @property (nonatomic ,strong) UIButton *btn;//编辑按钮
-//@property (nonatomic ,assign) BOOL isInsertEdit;//tableview编辑方式的判断
+@property (nonatomic ,assign) BOOL isInsertEdit;//tableview编辑方式的判断
 @property (nonatomic ,strong) BottomView *bottom_view;//底部视图
 @end
 
@@ -51,29 +52,30 @@
     if (!_btn) {
         self.btn = [UIButton buttonWithType:UIButtonTypeCustom];
         _btn.frame = CGRectMake(0, 0, 50, 44);
-        [_btn setTitle:@"人工确认还款" forState:UIControlStateNormal];
-        [_btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [_btn setTitle:@"编辑" forState:UIControlStateNormal];
+        [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_btn addTarget:self action:@selector(tapBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btn;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
     [self LoadData];
+    _isInsertEdit = NO;
+    self.tableView.isInsertEdit = _isInsertEdit;
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.btn];
-//    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-//    [self.RightButton setTitle:@"人工确认还款" forState:(UIControlStateNormal)];
-//    [self.RightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-//    self.RightButton.selected = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
 }
 - (void)initTableView {
     self.tableView = [[ConfirmRepayTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    
 //    [_tableView setEditing:YES animated:YES];
     [self.view addSubview:self.tableView];
 }
@@ -176,7 +178,6 @@
     }else if ([state isEqualToString:@"select2"]){
         //短信催收
         [TLAlert alertWithTitle:@"提示" msg:@"确定发送?" confirmMsg:@"是" cancleMsg:@"否" cancle:^(UIAlertAction *action) {
-            
         } confirm:^(UIAlertAction *action) {
             TLNetworking * http = [[TLNetworking alloc]init];
             http.code = @"630531";
@@ -196,15 +197,14 @@
             //点击编辑的时候清空删除数组
             [self.deleteArray removeAllObjects];
             [_btn setTitle:@"完成" forState:UIControlStateNormal];
-            self.tableView.isInsertEdit = YES;//这个时候是全选模式
+            _isInsertEdit = YES;
+            self.tableView.isInsertEdit = _isInsertEdit;
             [_tableView setEditing:YES animated:YES];
-
             //如果在全选状态下，点击完成，再次进来的时候需要改变按钮的文字和点击状态
             if (_bottom_view.allBtn.selected) {
                 _bottom_view.allBtn.selected = !_bottom_view.allBtn.selected;
                 [_bottom_view.allBtn setTitle:@"全选" forState:UIControlStateNormal];
             }
-
             //添加底部视图
             CGRect frame = self.bottom_view.frame;
             frame.origin.y -= 50;
@@ -212,12 +212,10 @@
                 self.bottom_view.frame = frame;
                 [self.view addSubview:self.bottom_view];
             }];
-
-
-
         }else{
             [_btn setTitle:@"编辑" forState:UIControlStateNormal];
-            self.tableView.isInsertEdit = NO;
+            _isInsertEdit = NO;
+            self.tableView.isInsertEdit = _isInsertEdit;
             [_tableView setEditing:NO animated:YES];
 
             [UIView animateWithDuration:0.5 animations:^{
@@ -265,10 +263,6 @@
         [self.deleteArray removeAllObjects];
     }
 
-
-    //    NSLog(@"+++++%ld",self.deleteArray.count);
-    //    NSLog(@"===%@",self.deleteArray);
-
 }
 - (void)deleteData{
     if (self.deleteArray.count >0) {
@@ -281,8 +275,6 @@
         } failure:^(NSError *error) {
             
         }];
-//        [self.dataArray removeObjectsInArray:self.deleteArray];
-//        [self.tableView reloadData];
     }else{
         [TLAlert alertWithMsg:@"至少选中一条数据"];
         return;
@@ -294,6 +286,9 @@
         NSLog(@"选中");
         [self.deleteArray addObject:[self.dataArray objectAtIndex:indexPath.row]];
     }else{
+        AdmissionDetailsVC * vc = [AdmissionDetailsVC new];
+        vc.code = self.model[indexPath.row].repayBiz[@"bizCode"];
+        [self.navigationController pushViewController:vc animated:YES];
         NSLog(@"跳转下一页");
     }
 }
@@ -306,5 +301,7 @@
         NSLog(@"取消跳转");
     }
 }
-
+//-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//}
 @end

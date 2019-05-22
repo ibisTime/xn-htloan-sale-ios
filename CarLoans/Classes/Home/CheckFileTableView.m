@@ -30,6 +30,9 @@
     if (section == 0) {
         return 8;
     }
+    if (section == 2) {
+        return self.FileArray.count;
+    }
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -68,21 +71,22 @@
         return cell;
     }
     static NSString *rid=@"upload";
-    TaskCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    FileCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
     if(cell==nil){
-        cell=[[TaskCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        cell=[[FileCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
     }
     cell.name = @"档案";
-    cell.btnStr = @"新增档案";
     cell.delegate = self;
-    [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     if (_FileArray.count > 0) {
-        cell.FileArray = _FileArray;
+        cell.taskDic = _FileArray[indexPath.row];
     }
-    [cell.deleteBtn addTarget:self action:@selector(deleteButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    cell.photoBtn.tag = indexPath.row;
+    cell.selectButton.hidden = YES;
+    [cell.selectButton addTarget:self action:@selector(deleteButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.deleteBtn.tag = indexPath.row;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {
@@ -91,7 +95,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
-        return 50 + 15 + (_FileArray.count + 1)*145 + 5;
+        return 150;
     }
     return 50;
 }
