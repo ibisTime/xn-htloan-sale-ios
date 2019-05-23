@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MakeCardApplyTableView : TLTableView
 @property (nonatomic , strong)SurveyModel *model;
+@property (nonatomic,strong) NSMutableArray * RedCardArray;
+@property (nonatomic , copy)NSString *specialQuatoPic;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -105,7 +105,7 @@
     if (section == 2) {
         return 4;
     }
-    return 4;
+    return 3;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -113,7 +113,7 @@
 
     HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCollectionViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        NSArray *array = @[@"征信发起",@"征信派单",@"征信录入",@"征信审核",@"面签录入",@"面签审核",@"准入申请",@"审核岗",@"制卡",@"车辆抵押",@"档案入档"];
+        NSArray *array = @[@"征信发起",@"征信派单",@"征信录入",@"征信审核",@"面签录入",@"面签审核",@"准入申请",@"准入审核",@"制卡",@"车辆抵押",@"档案入档"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
@@ -123,12 +123,12 @@
         cell.nameLbl.text = array[indexPath.row];
     }
     if (indexPath.section == 2) {
-        NSArray *array = @[@"还款业务管理",@"确认还款管理",@"结算审核",@"解除抵押"];
+        NSArray *array = @[@"还款业务管理",@"确认还款管理",@"结清审核",@"解除抵押"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
     if (indexPath.section == 3) {
-        NSArray *array = @[@"业务附件池",@"业务作废",@"GPS申领",@"面签视频"];
+        NSArray *array = @[@"业务作废",@"GPS申领",@"面签管理"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
@@ -397,28 +397,28 @@
     
     if (indexPath.section == 3) {
         switch (indexPath.row) {
+//            case 0:
+//            {
+//                AttachmentPoolVC *vc = [AttachmentPoolVC  new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
+//                break;
             case 0:
-            {
-                AttachmentPoolVC *vc = [AttachmentPoolVC  new];
-                vc.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-                break;
-            case 1:
             {
                 CustomerInvalidVC *vc = [CustomerInvalidVC  new];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
-            case 2:
+            case 1:
             {
                 GPSClaimsVC *vc = [GPSClaimsVC  new];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
-            case 3:
+            case 2:
             {
                 SignVC *vc = [SignVC  new];
                 vc.title = @"面签视频";
@@ -667,6 +667,15 @@
         [USERDEFAULTS setObject:responseObject[@"data"] forKey:BOUNCEDDATA];
     } failure:^(NSError *error) {
 
+    }];
+    
+    TLNetworking * http2 = [TLNetworking new];
+    http2.isShowMsg = NO;
+    http2.code = @"632067";
+    [http2 postWithSuccess:^(id responseObject) {
+        [USERDEFAULTS setObject:responseObject[@"data"] forKey:COMPANYNODE];
+    } failure:^(NSError *error) {
+        
     }];
 }
 

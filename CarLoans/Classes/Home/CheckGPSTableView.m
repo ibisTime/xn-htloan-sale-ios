@@ -91,7 +91,8 @@
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"安装时间";
-        cell.nameText = [NSString stringWithFormat:@"%@",dic[@"azDatetime"]];
+        
+        cell.nameText = [NSString stringWithFormat:@"%@",[dic[@"azDatetime"] convertDate]];
         cell.nameTextField.enabled = NO;
         return cell;
     }

@@ -12,6 +12,7 @@
 #import "BankLendingDetailsVC.h"
 #import "InputLendingDetailsVC.h"
 #import "ConfirmLendingVC.h"
+#import "AdmissionDetailsVC.h"
 @interface BankLendingVC ()
 <RefreshDelegate>
 @property (nonatomic , strong)BankLendingTableView *tableView;
@@ -49,10 +50,10 @@
     [self.view addSubview:self.tableView];
 }
 
--(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
+//-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//
+//}
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
@@ -150,6 +151,10 @@
     }];
     [self.tableView beginRefreshing];
 }
-
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AdmissionDetailsVC * vc = [AdmissionDetailsVC new];
+    vc.code = self.model[indexPath.row].code;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

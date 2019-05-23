@@ -330,4 +330,25 @@
     }
     return string;
 }
+-(NSString *)setCompanyCode:(NSString *)code{
+    NSString *fullname;
+    NSArray *array = [USERDEFAULTS objectForKey:COMPANYNODE];
+    for (int i = 0; i < array.count; i ++) {
+        if ([array[i][@"code"] isEqualToString:code]) {
+            fullname = array[i][@"fullName"];
+        }
+    }
+    return fullname;
+}
+-(NSString *)setCompanyFullName:(NSString *)fullName{
+    NSString *code;
+//    NSMutableArray *dataArray = [NSMutableArray array];
+    NSArray *array = [USERDEFAULTS objectForKey:COMPANYNODE];
+    for (int i = 0; i < array.count; i ++) {
+        if ([array[i][@"fullName"] isEqualToString:fullName]) {
+            code = array[i][@"code"];
+        }
+    }
+    return code;
+}
 @end

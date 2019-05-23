@@ -38,14 +38,20 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 14;
+    return self.model.repayPlanList.count;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    AdmissionDetailsRepaymentPlanCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RepaymentPlanCell" forIndexPath:indexPath];
+//    AdmissionDetailsRepaymentPlanCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RepaymentPlanCell" forIndexPath:indexPath];
+    static NSString *rid=@"RepaymentPlanCell";
+    AdmissionDetailsRepaymentPlanCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    if(cell==nil){
+        cell=[[AdmissionDetailsRepaymentPlanCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    }
+    cell.dic = self.model.repayPlanList[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     

@@ -9,7 +9,7 @@
 #import "GPSClaimsDetailsTableView.h"
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
-
+#import "GPSCell.h"
 @interface GPSClaimsDetailsTableView ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -30,55 +30,95 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 7;
+//    if (section == 0) {
+//        return 7;
+//    }
+//    return 1;
+    if (section == 1) {
+        if (self.model.gpsList.count == 0) {
+            return 0;
+        }
+        else{
+            return self.model.gpsList.count + 1;
+        }
     }
-    return 1;
+    else
+        if (self.model.gpsList.count == 0) {
+            return 7;
+        }
+        return 8;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        NSArray *nameArray = @[@"状态",@"客户姓名",@"业务团队",@"申请个数",@"有线个数",@"无线个数",@"申领原因",@"GPS列表"];
+        cell.name = nameArray[indexPath.row];
+        cell.isInput = @"0";
+        NSString *state;
+        if (_model.status == 0) {
+            state = @"待审核";
+        }else if (_model.status == 1)
+        {
+            state = @"审核通过,待发货";
+        }
+        else if (_model.status == 2)
+        {
+            state = @"审核不通过";
+        }
+        else if (_model.status == 3)
+        {
+            state = @"已发货,待收货";
+        }else
+        {
+            state = @"已收货";
+        }
+        NSArray *textFidArray = @[
+                                  state,
+                                  [NSString stringWithFormat:@"%@-%@",_model.applyUserName,_model.roleName],
+                                  [NSString stringWithFormat:@"%@",_model.teamName],
+                                  [NSString stringWithFormat:@"%@个",_model.applyCount],
+                                  [NSString stringWithFormat:@"%@个",_model.applyWiredCount],
+                                  [NSString stringWithFormat:@"%@个",_model.applyWirelessCount],
+                                  [BaseModel convertNull:_model.applyReason],
+                                  @""
+                                  ];
+        cell.TextFidStr = textFidArray[indexPath.row];
+        return cell;
+    }
+    
+    if (indexPath.row == 0) {
+        static NSString *rid=@"cell";
+        GPSCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        if(cell==nil){
+            cell=[[GPSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        }
+        cell.rightarray = @[@"GPS类型",@"GPS设备号"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    static NSString *rid=@"cell1";
+    GPSCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    if(cell==nil){
+        cell=[[GPSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    }
+    cell.rightarray = @[
+                        [[BaseModel convertNull:self.model.gpsList[indexPath.row - 1][@"gpsType"]]isEqualToString:@"1"]?@"有线":@"无线",
+                        [BaseModel convertNull:self.model.gpsList[indexPath.row - 1][@"gpsDevNo"]]
+                        ];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"状态",@"客户姓名",@"手机号",@"申请个数",@"有线个数",@"无线个数",@"申请说明"];
-    cell.name = nameArray[indexPath.row];
-    cell.isInput = @"0";
-    NSString *state;
-    if (_model.status == 0) {
-        state = @"待审核";
-    }else if (_model.status == 1)
-    {
-        state = @"审核通过,待发货";
-    }
-    else if (_model.status == 2)
-    {
-        state = @"审核不通过";
-    }
-    else if (_model.status == 3)
-    {
-        state = @"已发货,待收货";
-    }else
-    {
-        state = @"已收货";
-    }
-    NSArray *textFidArray = @[
-             state,
-             [NSString stringWithFormat:@"%@",_model.customerName],
-             [NSString stringWithFormat:@"%@",_model.mobile],
-             [NSString stringWithFormat:@"%@个",_model.applyCount],
-             [NSString stringWithFormat:@"%@个",_model.applyWiredCount],
-             [NSString stringWithFormat:@"%@个",_model.applyWirelessCount],
-             [NSString stringWithFormat:@"%@",_model.applyReason]
-                              ];
-    cell.TextFidStr = textFidArray[indexPath.row];
     return cell;
+    
+    
 }
 
 //添加证信人

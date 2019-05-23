@@ -55,7 +55,7 @@
 //        NSArray *topArray = @[@"*是否自己单位",@"所属行业",@"*单位经济性质",@"*工作单位名称",@"*工作单位地址",@"工作单位电话",@"何时进入该单位",@"职务",@"*月收入",@"工作描述及还款来源分析"];
         cell.topLbl.text = [TopModel user].ary5[indexPath.row];
         
-        if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 5) {
+        if (indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 3 || indexPath.row == 6) {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 50000 + indexPath.row;
             
@@ -65,7 +65,7 @@
             cell.type = InputType;
             cell.inputTextField.tag = 50000 + indexPath.row;
         }
-        if (indexPath.row == 4 || indexPath.row == 7 || indexPath.row == 9 || indexPath.row == 10) {
+        if (indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 10 || indexPath.row == 11) {
             cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
         }
         return cell;

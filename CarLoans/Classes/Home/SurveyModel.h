@@ -270,4 +270,6 @@
 @property (nonatomic,strong) NSDictionary * advance;
 @property (nonatomic,strong) NSDictionary * bankLoan;
 @property (nonatomic,strong) NSArray * budgetOrderGps;
+@property (nonatomic,strong) NSString * cardPostAddress;
+@property (nonatomic,strong) NSArray * repayPlanList;
 @end

@@ -46,6 +46,9 @@
     GPSClaimsCell *cell = [tableView dequeueReusableCellWithIdentifier:GPSClaims forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.gpsclaimsModel = self.model[indexPath.row];
+    if (self.model[indexPath.row].status == 0) {
+        cell.button.hidden = NO;
+    }
     return cell;
 }
 

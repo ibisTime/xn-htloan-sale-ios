@@ -113,26 +113,26 @@
         cell.collectDataArray = self.carSyx;
         return cell;
     }
-    if (indexPath.section == 5) {
+//    if (indexPath.section == 5) {
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        cell.selectStr = @"合格证";
+        cell.selectStr = @"绿大本扫描件";
         cell.collectDataArray = self.carHgzPic;
         return cell;
-    }
-    CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.delegate = self;
-    cell.selectStr = @"其它资料";
-    cell.collectDataArray = self.carSettleOtherPdf;
-    return cell;
+//    }
+//    CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.delegate = self;
+//    cell.selectStr = @"其它资料";
+//    cell.collectDataArray = self.carSettleOtherPdf;
+//    return cell;
 
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 7;
+    return 6;
 
 }
 
@@ -166,7 +166,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    if (section == 2 || section == 3|| section == 4|| section == 5 || section == 6) {
+    if (section == 2 || section == 3|| section == 4|| section == 5) {
         return 50;
     }
     return 0.01;
@@ -180,7 +180,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 2 || section == 3|| section == 4|| section == 5 || section == 6) {
+    if (section == 2 || section == 3|| section == 4|| section == 5 ) {
         UIView *headView = [[UIView alloc]init];
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
@@ -191,7 +191,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
-        NSArray *array = @[@"*发票",@"*交强险",@"*商业险",@"*合格证",@"其它资料"];
+        NSArray *array = @[@"*发票",@"*交强险",@"*商业险",@"*绿大本扫描件"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];
@@ -218,7 +218,7 @@
             [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:102 selectRowState:@"add"];
         }
     }
-    else if ([str isEqualToString:@"合格证"]) {
+    else if ([str isEqualToString:@"绿大本扫描件"]) {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
             [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:103 selectRowState:@"add"];
         }
@@ -250,7 +250,7 @@
            [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos3"];
         }
     }
-    else if ([str isEqualToString:@"合格证"]) {
+    else if ([str isEqualToString:@"绿大本扫描件"]) {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
             [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos4"];
         }

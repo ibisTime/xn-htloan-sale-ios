@@ -24,6 +24,33 @@
 @property (nonatomic , strong)NSString *applyWiredCount;
 @property (nonatomic , strong)NSString *applyWirelessCount;
 @property (nonatomic , strong)NSString *mobile;
+@property (nonatomic,strong) NSArray * gpsList;
+@property (nonatomic,strong) NSString * roleName;
+@property (nonatomic,strong) NSString * teamCode;
+@property (nonatomic,strong) NSString * teamName;
+
+@property (nonatomic,strong) NSString * remark;
+
+/*
+ applyCount: 3
+ applyDatetime: "May 23, 2019 5:38:12 PM"
+ applyReason: "详细"
+ applyUser: "U201905211103072136918"
+ applyUserName: "王磊"
+ applyWiredCount: 1
+ applyWirelessCount: 2
+ code: "GA201905231738120404713"
+ companyCode: "DP201800000000000000001"
+ companyName: "温州浩源有限公司"
+ gpsList: []
+ roleName: "超级管理员"
+ status: "0"
+ teamCode: "BT201905181328458463400"
+ teamName: "柴运来团队"
+ type: "2"
+ 
+ 
+ */
 
 
 

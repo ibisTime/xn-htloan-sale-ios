@@ -104,4 +104,7 @@
 -(NSString *)setParentKey:(NSString *)parentKey setDvalue:(NSString *)dvalue;
 -(void)phoneCode:(UIButton *)sender;
 -(NSString *)FindUrlWithModel:(SurveyModel *)model ByKname:(NSString *)Kname;
+
+-(NSString *)setCompanyFullName:(NSString *)fullName;
+-(NSString *)setCompanyCode:(NSString *)code;
 @end

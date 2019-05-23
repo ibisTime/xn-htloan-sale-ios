@@ -51,19 +51,19 @@
     NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
     
     
-    cell.array = @[[NSString stringWithFormat:@"附件编号：%@",str1],[NSString stringWithFormat:@"附件类型：%@",str2],[NSString stringWithFormat: @"资源类型：%@",str3],[NSString stringWithFormat:@"资源数量：%ld张",arr.count]];
+    cell.array = @[[NSString stringWithFormat:@"编号：%@",str1],[NSString stringWithFormat:@"附件类型：%@",str2],[BaseModel convertNull: [NSString stringWithFormat: @"资源类型：%@",str3]],[NSString stringWithFormat:@"资源数量：%ld张",arr.count]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {
-        [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
-    }
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+////    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {
+////        [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
+////    }
+//}
 
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,4 +93,25 @@
 {
     return nil;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    NSMutableArray *muArray = [NSMutableArray array];
+    NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
+    for (int i = 0; i < arr.count; i++) {
+        [muArray addObject:[arr[i] convertImageUrl]];
+    }
+    NSArray *seleteArray = muArray;
+    
+    if (muArray.count > 0) {
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+            return seleteArray;
+        }];
+        
+    }
+    
+}
+
 @end

@@ -55,7 +55,7 @@
 
         cell.topLbl.text = [TopModel user].ary4[indexPath.row];
         
-        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 11) {
+        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 11 || indexPath.row == 12) {
             cell.type = ChooseType;
             cell.chooseLbl.tag = 40000 + indexPath.row;
         }

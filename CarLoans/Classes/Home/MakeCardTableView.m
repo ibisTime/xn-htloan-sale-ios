@@ -56,12 +56,12 @@
         cell.makeCardModel = self.model[indexPath.row];
     }
     if ([self.model[indexPath.row].makeCardNode isEqualToString:@"h1"]) {
-        [cell.button setTitle:@"申请" forState:(UIControlStateNormal)];
+        [cell.button setTitle:@"填写制卡单" forState:(UIControlStateNormal)];
         cell.button.hidden = NO;
     }else if ([self.model[indexPath.row].makeCardNode isEqualToString:@"h2"])
     {
         cell.button.hidden = NO;
-        [cell.button setTitle:@"录入" forState:(UIControlStateNormal)];
+        [cell.button setTitle:@"手工制卡" forState:(UIControlStateNormal)];
     }else
     {
         cell.button.hidden = YES;

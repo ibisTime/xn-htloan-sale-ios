@@ -83,7 +83,9 @@
         isSelect = indexPath.row + 100;
         AddGPSInstallationVC *vc = [[AddGPSInstallationVC alloc]init];
         vc.gpsArray = listArray;
-        vc.dataDic = gpsAzListArray[indexPath.row];
+        if (gpsAzListArray.count> 0 ) {
+            vc.dataDic = gpsAzListArray[indexPath.row];
+        }
         NSLog(@"%ld",indexPath.row);
         vc.isSelect = isSelect;
         [self.navigationController pushViewController:vc animated:YES];

@@ -62,6 +62,7 @@
 
     TLNetworking *http = [TLNetworking new];
     http.code = @"632217";
+    http.parameters[@"category"] =@"node_file_list";
     http.showView = self.view;
     
     [http postWithSuccess:^(id responseObject) {
@@ -184,13 +185,6 @@
                 
                 return;
                 
-                
-//                UIView *mengView = [UIView new];
-//                self.mengView = mengView;
-//                mengView.backgroundColor = [UIColor blackColor];
-//                mengView.alpha = 0.6;
-//                mengView.frame = self.view.bounds;
-//                [self.view addSubview:mengView];
                 UIView *view = [[UIView alloc]init];
                 self.centerView = view;
                 view.frame = CGRectMake(50, 100, SCREEN_WIDTH-100, self.models.count *30);
