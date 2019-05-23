@@ -82,7 +82,7 @@
     nameLbl.frame = CGRectMake(15, 50, nameLbl.width, 20);
     bankLbl.text = model.loanBankName;
     NSString *bizType;
-    if ([model.credit[@"bizType"] integerValue] == 0) {
+    if ([model.bizType integerValue] == 0) {
         bizType = @"新车";
     }
     else
@@ -94,7 +94,7 @@
     [carNameLbl sizeToFit];
     carNameLbl.frame = CGRectMake(nameLbl.xx + 5, 52.5, carNameLbl.width + 9, 15);
     timeLbl.text = [model.applyDatetime convertToDetailDate];
-    priceLbl.text = [NSString stringWithFormat:@"%.2f万",[model.loanAmount floatValue]/10000];
+    priceLbl.text = [NSString stringWithFormat:@"%.2f",[model.loanAmount floatValue]/1000];
 }
 
 -(void)setDataArray:(NSArray *)dataArray

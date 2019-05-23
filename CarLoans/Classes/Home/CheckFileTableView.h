@@ -8,11 +8,14 @@
 
 #import "TLTableView.h"
 #import "TaskCell.h"
+#import "FileCell.h"
+#import "FileModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CheckFileTableView : TLTableView<UITableViewDataSource,UITableViewDelegate>
+@interface CheckFileTableView : TLTableView<UITableViewDataSource,UITableViewDelegate,TaskDelegate>
 @property (nonatomic,strong) AccessSingleModel * model;
 @property (nonatomic,strong) NSMutableArray * FileArray;
+@property (nonatomic,strong) NSMutableArray<FileModel *> * filemodels;
 @property (nonatomic,strong) NSString * location;
 @end
 

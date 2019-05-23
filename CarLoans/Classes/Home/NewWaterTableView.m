@@ -135,8 +135,9 @@
                 
             }
             if (indexPath.row == 13) {
+//                NSString * str = _waterDic[@"remark"];
                 NSString * str = _waterDic[@"remark"];
-                if (![_waterDic[@"remark"] isEqualToString:@""]) {
+                if (str.length > 0) {
                     cell.inputTextField.text = _waterDic[@"remark"];
                 }
                 
@@ -233,7 +234,7 @@
         UIView *headView = [[UIView alloc]init];
         headView.backgroundColor = kWhiteColor;
         UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 15, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kBlackColor];
-        nameLbl.text = @"流水图片";
+        nameLbl.text = @"*流水图片";
         [headView addSubview:nameLbl];
         return headView;
     }

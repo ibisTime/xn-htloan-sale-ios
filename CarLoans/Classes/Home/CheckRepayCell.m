@@ -294,11 +294,33 @@
     if (self.editing) {
         self.contentView.backgroundColor = [UIColor clearColor];
         self.backgroundColor = [UIColor clearColor];
-        //        self.textLabel.backgroundColor = [UIColor clearColor];
-        //        self.detailTextLabel.backgroundColor = [UIColor clearColor];
-//        self.label.backgroundColor = [UIColor clearColor];
-        
-        
     }
+    
 }
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIControl * _Nonnull control, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ([control isMemberOfClass:NSClassFromString(@"UITableViewCellEditControl")]) {
+            
+            for (UIView *view in control.subviews) {
+                
+                if ([view isKindOfClass:[UIImageView class]]) {
+                    
+                    UIImageView *imageView = (UIImageView *)view;
+                    if (self.selected) {
+                        //设置选中时的照片
+                        imageView.image = [UIImage imageNamed:@"选中"];
+                    }else{
+                        //设置未选中时的照片
+                        imageView.image = [UIImage imageNamed:@"未选中"];
+                    }
+                }
+            }
+        }
+    }];
+}
+
 @end

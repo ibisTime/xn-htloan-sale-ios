@@ -27,13 +27,14 @@
 @property (nonatomic , strong)TLImagePicker *imagePicker;
 
 @property (nonatomic , assign)NSInteger selectInt;
+@property (nonatomic,strong) NSMutableArray * picarray;
 @end
 
 @implementation ConfirmLendingVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.picarray = [NSMutableArray array];
     [self initTableView];
 }
 - (TLImagePicker *)imagePicker {
@@ -68,10 +69,12 @@
 
 -(void)setImage:(UIImage *)image setData:(NSString *)data
 {
-    if (self.selectInt == 0) {
-        secondCarReport = data;
-        self.tableView.secondCarReport = secondCarReport;
-    }
+//    if (self.selectInt == 0) {
+        [self.picarray addObject:data];
+        self.tableView.bankpic = self.picarray;
+//        secondCarReport = data;
+//        self.tableView.secondCarReport = secondCarReport;
+//    }
     
     [self.tableView reloadData];
 }
@@ -122,6 +125,12 @@
         self.selectInt = index;
         [self.imagePicker picker];
     }
+    if ([state isEqualToString:@"delete"]) {
+        NSLog(@"%ld",sender.tag);
+        [self.picarray removeObjectAtIndex:sender.tag - 1000];
+        self.tableView.bankpic = self.picarray;
+        [self.tableView reloadData];
+    }
     
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
@@ -147,7 +156,7 @@
     http.parameters[@"receiptBankCode"] = loanBankCode;
 //    http.parameters[@"receiptBankcardNumber"] = cell.nameTextField.text;
     http.parameters[@"receiptBankcardNumber"] = loanBanlNum;
-    http.parameters[@"receiptPdf"] = secondCarReport;
+    http.parameters[@"receiptPdf"] = [self.picarray componentsJoinedByString:@"||"];
     http.parameters[@"receiptRemark"] = cell1.nameTextField.text;
     [http postWithSuccess:^(id responseObject) {
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

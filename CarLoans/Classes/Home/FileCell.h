@@ -18,9 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FileCell : UITableViewCell
 @property (nonatomic, assign) id <TaskDelegate> delegate;
+
+
 @property (nonatomic , strong)UIButton *deleteBtn;
 @property (nonatomic , strong)NSArray *TaskArray;
-@property (nonatomic,strong) NSDictionary * FileArray;
+@property (nonatomic,strong) NSArray * FileArray;
 
 @property (nonatomic , copy)NSString *Taskname;
 
@@ -39,6 +41,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *btnStr;
 
 @property (nonatomic , copy)NSString *name;
+
+@property (nonatomic,strong) UIButton *selectButton;
+
+@property (nonatomic , strong)NSDictionary *taskDic;
 @end
 
 NS_ASSUME_NONNULL_END

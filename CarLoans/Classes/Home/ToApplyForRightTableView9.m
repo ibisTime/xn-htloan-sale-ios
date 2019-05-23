@@ -86,7 +86,7 @@
     cell.topLbl.text = arr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.type = InputType;
-    cell.inputTextField.tag = 90000 + indexPath.row;
+    cell.inputTextField.tag = 90000 + 2;
     return cell;
 }
 

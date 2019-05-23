@@ -73,7 +73,7 @@
             cell.name = nameArray[indexPath.row];
             cell.isInput = @"0";
             NSString *bizType;
-            if ([self.model.credit[@"bizType"] integerValue] == 0) {
+            if ([self.model.bizType integerValue] == 0) {
                 bizType = @"新车";
             }
             else

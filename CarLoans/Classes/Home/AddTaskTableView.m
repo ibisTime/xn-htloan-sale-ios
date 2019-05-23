@@ -35,7 +35,7 @@
     cell.name = array[indexPath.row];
     cell.tag = 1000 + indexPath.row;
     cell.symbolLabel.hidden = YES;
-    if (self.selectRow > 1000) {
+    if (self.dataDic.count > 0) {
         
         NSArray *Array = @[_dataDic[@"name"],_dataDic[@"time"]];
         cell.nameTextField.text = Array[indexPath.row];

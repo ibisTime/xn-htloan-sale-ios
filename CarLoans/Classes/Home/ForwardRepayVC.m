@@ -59,6 +59,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"提前还款";
     self.picarray = [NSMutableArray array];
     [self initTableView];
 }

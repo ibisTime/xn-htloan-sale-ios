@@ -89,18 +89,12 @@
         return cell;
     }
     if (indexPath.section == 2) {
-//        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.delegate = self;
-//        cell.selectStr = @"*银行征信报告(单)";
-//        cell.collectDataArray = self.bankCreditReport;
-//        return cell;
+
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         UIButton *_photoBtn = [UIButton buttonWithTitle:@"评估报告" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
         _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
-        //            [_photoBtn setTitle:@"评估报告" forState:(UIControlStateNormal)];
         [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
             [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
         }];
@@ -108,19 +102,35 @@
         
         kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
         
-        [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//        [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [cell addSubview:_photoBtn];
         
         UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-        if (self.bankCreditReport.count > 0) {
-            [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.bankCreditReport[0] convertImageUrl]]];
-        }else{
+//        if (self.bankCreditReport.count > 0) {
+//            [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.bankCreditReport[0] convertImageUrl]]];
+//        }else{
              [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+//        }
+        [_photoBtn addSubview:photoImage];
+        
+        UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        selectButton.frame = CGRectMake((SCREEN_WIDTH - 40)/2-15 , 0, 30, 30);
+        [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+        
+        selectButton.tag = 50000 + indexPath.section;
+        selectButton.hidden= NO;
+        [cell addSubview:selectButton];
+        if (self.secondCarReport.length > 0) {
+            [selectButton addTarget:self action:@selector(SelectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            _photoBtn.userInteractionEnabled = NO;
+            selectButton.hidden = NO;
+        }else{
+            [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            _photoBtn.userInteractionEnabled = YES;
+            selectButton.hidden = YES;
         }
         
-       
         
-        [_photoBtn addSubview:photoImage];
         
         return cell;
     }
@@ -164,7 +174,9 @@
     cell.nameTextField.tag = 3000 + indexPath.row;
     return cell;
 }
-
+-(void)SelectButtonClick:(UIButton *)sender{
+    [self.ButtonDelegate selectButtonClick:sender];
+}
 -(void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString *)str
 {
     if ([str isEqualToString:@"银行征信报告(单)"]) {

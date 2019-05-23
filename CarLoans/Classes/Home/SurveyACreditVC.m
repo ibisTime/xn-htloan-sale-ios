@@ -395,15 +395,22 @@
 -(void)selectButtonClick:(UIButton *)sender
 {
     if (sender.tag == 5000) {
-        
-        
         _idNoFront = @"";
         self.tableView.xszFront = _idNoFront;
-    }else
-    {
+    }
+    else if (sender.tag == 5001) {
         _idNoReverse = @"";
         self.tableView.xszReverse = _idNoReverse;
     }
+    else if(sender.tag == 50002){
+        self.secondCarReport = @"";
+        self.tableView.secondCarReport = self.secondCarReport;
+    }
+    else if (sender.tag >= 900000 ){
+        [peopleArray removeObjectAtIndex:sender.tag - 900000];
+        self.tableView.peopleAray = peopleArray;
+    }
+    
     [self.tableView reloadData];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
@@ -554,6 +561,17 @@
             [model ReturnsParentKeyAnArray:@"budget_orde_biz_typer"];
             model.ModelDelegate = self;
         }
+    }
+    if (indexPath.section == 4) {
+        selectRow = indexPath.row;
+        ADPeopleVC *vc = [[ADPeopleVC alloc]init];
+        vc.dataDic = self.tableView.peopleAray[indexPath.row];
+        vc.selectRow = indexPath.row;
+//        if (indexPath.row == 1234) {
+//            vc.isFirstEntry = YES;
+//        }
+        vc.state = self.state;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

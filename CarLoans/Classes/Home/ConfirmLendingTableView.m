@@ -11,6 +11,8 @@
 #define TextField @"TextFieldCell"
 #import "ChooseCell.h"
 #define Choose @"ChooseCell"
+
+#define CarGounp @"CarGounpCell"
 @implementation ConfirmLendingTableView
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -21,7 +23,7 @@
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell2"];
         [self registerClass:[ChooseCell class] forCellReuseIdentifier:Choose];
-        
+        [self registerClass:[CarGounpCell class] forCellReuseIdentifier:CarGounp];
     }
     return self;
 }
@@ -103,38 +105,45 @@
         return cell;
     }
     if (indexPath.section == 3) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        UIButton *_photoBtn = [UIButton buttonWithTitle:@"收款凭证" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
-        _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
-        //            [_photoBtn setTitle:@"评估报告" forState:(UIControlStateNormal)];
-        [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
-            [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
-        }];
-        
-        
-        kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
-        
-        [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        [cell addSubview:_photoBtn];
-        
-        UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-        [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
-        [_photoBtn addSubview:photoImage];
-        
+        CarGounpCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+        if (cell == nil) {
+            cell = [[CarGounpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarGounp];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.delegate = self;
+        cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.row];
+        cell.photoStr = @"上传设备图片";
+        cell.photoBtn.tag = indexPath.section;
+        cell.collectDataArray = self.bankpic;
         return cell;
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//
+//        UIButton *_photoBtn = [UIButton buttonWithTitle:@"收款凭证" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
+//        _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
+//        [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
+//            [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
+//        }];
+//
+//
+//        kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
+//
+//        [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//        [cell addSubview:_photoBtn];
+//
+//        UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
+//        [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
+//        [_photoBtn addSubview:photoImage];
+//
+//        return cell;
     }
     static NSString *rid=@"cell4";
-    
     TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-    
     if(cell==nil){
-        
         cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
-        
     }
     cell.name = @"备注";
+    cell.nameTextField.placeholder = @"请输入";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.tag = 200 + indexPath.row;
     return cell;
@@ -153,6 +162,18 @@
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
         [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:0 selectRowState:@"add"];
+    }
+}
+-(void)CarSettledUpdataPhotoBtn:(UIButton *)sender selectStr:(NSString *)Str
+{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:[Str integerValue] selectRowState:@"add"];
+    }
+}
+-(void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString *)str
+{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:[str intValue] selectRowState:@"add"];
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -222,6 +243,11 @@
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
         
         [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag];
+    }
+}
+-(void)UploadImagesBtn:(UIButton *)sender str:(NSString *)str{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:[str integerValue] selectRowState:@"delete"];
     }
 }
 @end

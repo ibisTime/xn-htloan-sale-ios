@@ -34,29 +34,28 @@
 {
     CheckRepayCell *cell = [tableView dequeueReusableCellWithIdentifier:Information forIndexPath:indexPath];
     cell.isFinancial = YES;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.model.count > 0) {
         cell.ConfirmrepayModel = self.model[indexPath.row];
     }
     NSLog(@"%ld",cell.button.tag);
     cell.button.hidden = NO;
     cell.button1.hidden = NO;
-//    cell.button2.hidden = NO;
     
     cell.button.tag = indexPath.row;
     cell.button1.tag = indexPath.row;
-//    cell.button2.tag = indexPath.row;
     
     [cell.button setTitle:@"消息推送提醒" forState:(UIControlStateNormal)];
     [cell.button1 setTitle:@"短信提醒" forState:(UIControlStateNormal)];
-//    [cell.button2 setTitle:@"短信提醒" forState:(UIControlStateNormal)];
     [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
     [cell.button1 addTarget:self action:@selector(buttonClick2:) forControlEvents:UIControlEventTouchUpInside];
-//    [cell.button2 addTarget:self action:@selector(buttonClick3:) forControlEvents:(UIControlEventTouchUpInside)];
     
-    UIView *backGroundView = [[UIView alloc]init];
-    backGroundView.backgroundColor = [UIColor clearColor];
-    cell.selectedBackgroundView = backGroundView;
+//    UIView *backGroundView = [[UIView alloc]init];
+//    backGroundView.backgroundColor = kClearColor;
+//    cell.selectedBackgroundView = backGroundView;
+    
+    
+    
     return cell;
 }
 -(void)buttonClick1:(UIButton *)sender
@@ -126,9 +125,18 @@
 {
     
     //根据不同状态返回不同编辑模式
+    if (_isInsertEdit) {
+        
         return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
+        
+    }else{
+        
+        return UITableViewCellEditingStyleDelete;
+    }
         
 
 }
+
+
 
 @end

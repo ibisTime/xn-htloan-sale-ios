@@ -10,41 +10,54 @@
 
 @implementation SurveyPeopleTableViewCell
 
--(UILabel *)nameLbl
-{
-    if (!_nameLbl) {
-        _nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-    }
-    return _nameLbl;
-}
+//-(UILabel *)nameLbl
+//{
+//    if (!_nameLbl) {
+//        _nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+//    }
+//    return _nameLbl;
+//}
 
--(UIButton *)photoBtn
-{
-    if (!_photoBtn) {
-        _photoBtn = [UIButton buttonWithTitle:@"" titleColor:[UIColor blackColor] backgroundColor:BackColor titleFont:13];
-        _photoBtn.frame = CGRectMake(15, 60, SCREEN_WIDTH - 30, 135);
-        [_photoBtn setTitleColor:GaryTextColor forState:(UIControlStateNormal)];
-        _photoBtn.tag = 102;
-        kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
-    }
-    return _photoBtn;
-}
+//-(UIButton *)photoBtn
+//{
+//    if (!_photoBtn) {
+//        _photoBtn = [UIButton buttonWithTitle:@"" titleColor:[UIColor blackColor] backgroundColor:BackColor titleFont:13];
+//        _photoBtn.frame = CGRectMake(15, 60, SCREEN_WIDTH - 30, 135);
+//        [_photoBtn setTitleColor:GaryTextColor forState:(UIControlStateNormal)];
+//        _photoBtn.tag = 102;
+//        kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
+//    }
+//    return _photoBtn;
+//}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self addSubview:self.nameLbl];
-        [self addSubview:self.photoBtn];
-
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
-        lineView.backgroundColor = LineBackColor;
-        [self addSubview:lineView];
-
-        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_WIDTH/3 + 79, SCREEN_WIDTH, 1)];
-        lineView1.backgroundColor = LineBackColor;
-        [self addSubview:lineView1];
-
+        NSArray *nameArray = @[@"姓    名:",
+                               @"手机号:",
+                               @"身份证:",
+                               @"角    色:",
+                               @"关    系:"];
+        
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 30, 135)];
+        backView.backgroundColor = BackColor;
+        kViewBorderRadius(backView, 2, 1, HGColor(230, 230, 230));
+        [self addSubview:backView];
+        for (int j = 0; j < 5; j ++) {
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10 + j%5*25, 60, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:GaryTextColor];
+            nameLabel.text = nameArray[j];
+            [backView addSubview:nameLabel];
+            
+            UILabel *informationLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 10+j%5*25, SCREEN_WIDTH - 120, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:TextColor];
+            informationLabel.tag = 100 + j;
+            [backView addSubview:informationLabel];
+        }
+        self.selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        self.selectButton.frame = self.selectButton.frame = CGRectMake(SCREEN_WIDTH - 45, 15, 30, 30);
+        [self.selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+    
+        [self addSubview:self.selectButton];
     }
     return self;
 }
@@ -60,6 +73,30 @@
     [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
         [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
     }];
+}
+
+
+-(void)setPeopleDic:(NSDictionary *)peopleDic
+{
+//    UILabel *label1 = [self viewWithTag:100];
+//    UILabel *label1 = [self viewWithTag:101];
+//    UILabel *label1 = [self viewWithTag:102];
+//    UILabel *label1 = [self viewWithTag:103];
+//    UILabel *label1 = [self viewWithTag:104];
+    
+    for (int i = 0; i < 5; i ++) {
+        UILabel *label1 = [self viewWithTag:100 + i];
+        
+        NSArray *detailsArray = @[
+                                  [NSString stringWithFormat:@"%@",peopleDic[@"userName"]],
+                                  [NSString stringWithFormat:@"%@",peopleDic[@"mobile"]],
+                                  [NSString stringWithFormat:@"%@",peopleDic[@"idNo"]],
+                                  [[BaseModel user] setParentKey:@"credit_user_loan_role" setDkey:peopleDic[@"loanRole"]],
+                                  [[BaseModel user] setParentKey:@"credit_user_relation" setDkey:peopleDic[@"relation"]]
+                                  ];
+        label1.text = detailsArray[i];
+    }
+    
 }
 
 -(void)setPeopleArray:(NSArray *)peopleArray
@@ -102,7 +139,15 @@
         backButton.tag = 1234 + i;
         [self addSubview:backButton];
 
-
+        
+        self.selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        self.selectButton.frame = self.selectButton.frame = CGRectMake(SCREEN_WIDTH - 45, 60 + i % peopleArray.count * 145, 30, 30);
+        [self.selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+        [self.selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        self.selectButton.tag = 900000 + i;
+        self.selectButton.hidden= NO;
+        [self addSubview:self.selectButton];
+        
 
     }
 
@@ -116,6 +161,7 @@
 //    }
     _photoBtn.frame = CGRectMake(15, 60 + peopleArray.count * 145, SCREEN_WIDTH - 30, 135);
 }
+
 
 -(void)setGPSArray:(NSArray *)GPSArray
 {
@@ -210,6 +256,9 @@
 -(void)backButtonClick:(UIButton *)sender
 {
     [_delegate SurveyPeopleSelectButton:sender];
+}
+-(void)selectButtonClick:(UIButton *)sender{
+    [_delegate selectbutton:sender];
 }
 
 @end

@@ -311,77 +311,70 @@
 
 -(void)FaceToFaceContent
 {
+    
     for (int i = 0; i < self.model.attachments.count; i ++) {
         NSDictionary *dic = self.model.attachments[i];
 //        银行视频
         if ([dic[@"kname"] isEqualToString:@"bank_video"]) {
-            if ([dic[@"url"] isEqualToString:@""]) {
-                return;
-            }
+            if (![dic[@"url"] isEqualToString:@""]) {
             [self.BankVideoArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            self.tableView.BankVideoArray = self.BankVideoArray;
+            }
         }
 //        公司视频
         if ([dic[@"kname"] isEqualToString:@"company_video"]) {
-            if ([dic[@"url"] isEqualToString:@""]) {
-                return;
-            }
+            if (![dic[@"url"] isEqualToString:@""]) {
             [self.CompanyVideoArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            self.tableView.CompanyVideoArray = self.CompanyVideoArray;
+            }
         }
 //        其他视频
         if ([dic[@"kname"] isEqualToString:@"other_video"]) {
-            if ([dic[@"url"] isEqualToString:@""]) {
-                return;
+            if (![dic[@"url"] isEqualToString:@""]) {
+                [self.OtherVideoArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+                self.tableView.OtherVideoArray = self.OtherVideoArray;
             }
-            [self.OtherVideoArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            
         }
 //        银行面签图片
         if ([dic[@"kname"] isEqualToString:@"bank_photo"]) {
-            if ([dic[@"url"] isEqualToString:@""]) {
-                return;
+            if (![dic[@"url"] isEqualToString:@""]) {
+            [self.BankSignArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            self.tableView.BankSignArray = self.BankSignArray;
             }
-            [self.BankSignArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];;
         }
 //        银行合同
         if ([dic[@"kname"] isEqualToString:@"bank_contract"]) {
-            if ([dic[@"url"] isEqualToString:@""]) {
-                return;
-            }
+            if (![dic[@"url"] isEqualToString:@""]) {
             [self.BankContractArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            self.tableView.BankContractArray = self.BankContractArray;
+            }
         }
 //        公司合同
         if ([dic[@"kname"] isEqualToString:@"company_contract"]) {
-            if ([dic[@"url"] isEqualToString:@""]) {
-                return;
-            }
+            if (![dic[@"url"] isEqualToString:@""]) {
             [self.CompanyContractArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            self.tableView.CompanyContractArray = self.CompanyContractArray;
+            }
         }
         
 //        资金划转授权书
         if ([dic[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
-//            if ([dic[@"url"] isEqualToString:@""]) {
-//                return;
-//            }
+            if (![dic[@"url"] isEqualToString:@""]) {
             [self.MoneyArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            self.tableView.MoneyArray = self.MoneyArray;
+            }
         }
         
 //        面签其他资料
         if ([dic[@"kname"] isEqualToString:@"interview_other_pdf"]) {
-            if ([dic[@"url"] isEqualToString:@""]) {
-                return;
-            }
+            if (![dic[@"url"] isEqualToString:@""]) {
             [self.otherArray addObjectsFromArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+             self.tableView.otherArray = self.otherArray;
+            }
         }
-        self.tableView.BankVideoArray = self.BankVideoArray;
-        self.tableView.CompanyVideoArray = self.CompanyVideoArray;
-        self.tableView.OtherVideoArray = self.OtherVideoArray;
-        self.tableView.BankSignArray = self.BankSignArray;
-        self.tableView.BankContractArray = self.BankContractArray;
-        self.tableView.CompanyContractArray = self.CompanyContractArray;
-        self.tableView.MoneyArray = self.MoneyArray;
-        self.tableView.otherArray = self.otherArray;
-        [self.tableView reloadData];
     }
-    
+    [self.tableView reloadData];
 }
 
 

@@ -97,6 +97,14 @@
             vc.model = self.model[index];
             [self.navigationController pushViewController:vc animated:YES];
         }
+        else if ([_model[index].curNodeCode isEqualToString:@"b8"])
+        {
+            AccessAuditVC *vc = [AccessAuditVC new];
+            vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
+            vc.code = @"632540";
+            vc.model = self.model[index];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     
     } failure:^(NSError *error) {
         

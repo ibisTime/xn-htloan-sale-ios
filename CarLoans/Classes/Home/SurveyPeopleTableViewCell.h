@@ -14,7 +14,7 @@
 @protocol SurveyPeopleDelegate <NSObject>
 
 -(void)SurveyPeopleSelectButton:(UIButton *)sender;
-
+-(void)selectbutton:(UIButton *)sender;
 @end
 
 @interface SurveyPeopleTableViewCell : UITableViewCell
@@ -25,6 +25,8 @@
 
 @property (nonatomic , strong)NSArray *peopleArray;
 
+@property (nonatomic , strong)NSDictionary *peopleDic;
+
 @property (nonatomic , copy)NSString *name;
 
 @property (nonatomic , copy)NSString *btnStr;
@@ -32,6 +34,8 @@
 @property (nonatomic , strong)UILabel *nameLbl;
 
 @property (nonatomic , strong)UIButton *photoBtn;
+
+@property (nonatomic,strong) UIButton *selectButton;
 
 @property (nonatomic , strong)GPSInstallationModel *model;
 

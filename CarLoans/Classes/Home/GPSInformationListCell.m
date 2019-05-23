@@ -59,13 +59,13 @@
     label4.text = [NSString stringWithFormat:@"%@",dic[@"dic"][@"azUser"]];
 //
 //
-//    UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-//    deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 45, 0, 30, 30);
-//    _deleteBtn = deleteBtn;
-//    //        [deleteBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-//    [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
-//    //        deleteBtn.backgroundColor = [UIColor redColor];
-//    [self addSubview:deleteBtn];
+    UIButton *deleteBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    deleteBtn.frame = CGRectMake(SCREEN_WIDTH - 45, 0, 30, 30);
+    _deleteBtn = deleteBtn;
+//            [deleteBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    [deleteBtn setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+    //        deleteBtn.backgroundColor = [UIColor redColor];
+    [self addSubview:deleteBtn];
 }
 
 -(void)setDicionary:(NSDictionary *)Dicionary{
