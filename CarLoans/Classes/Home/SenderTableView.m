@@ -147,11 +147,6 @@
             }else{
                 fild.text = temp3;
             }
-//            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.name = @"快递单号";
-//            cell.nameText = @"请输入快递单号";
-//            cell.nameTextField.tag = 100;
             return cell;
         }
         if (indexPath.section == 4) {
@@ -186,21 +181,6 @@
         }else{
             fild.text = temp1;
         }
-       
-       
-//        fild.enabled = NO;
-//        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
-//        nameLabel.text = @"备注";
-//        kViewRadius(nameLabel, 5);
-//        UILabel *contentLabel = [UILabel labelWithFrame:CGRectMake( SCREEN_WIDTH-130, 10, SCREEN_WIDTH-130-20, 40) textAligment:(NSTextAlignmentRight) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
-//        contentLabel.text = @"备注";
-//        kViewRadius(contentLabel, 5);
-//        [cell addSubview:contentLabel];
-//        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.name = @"备注";
-//        cell.nameText = @"选填";
-//        cell.nameTextField.tag = 1001;
         return cell;
     }else
     {

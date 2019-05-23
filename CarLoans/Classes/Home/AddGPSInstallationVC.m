@@ -80,7 +80,7 @@
             self.tableView.Str2 = data;
         }
             break;
-        case 5:
+        case 6:
         {
             [self.bankPicArray addObject:data];
             self.tableView.otherPicArray = self.bankPicArray;
@@ -88,14 +88,14 @@
 //            self.str1 = data;
         }
             break;
-        case 6:
+        case 7:
         {
             [self.CompanyPicArray addObject:data];
             self.tableView.azPicArray = self.CompanyPicArray;
 
         }
             break;
-        case 7:
+        case 8:
         {
         }
             break;
@@ -128,7 +128,19 @@
         self.tableView.Str2 = _dataDic[@"dic"][@"azUser"];
         self.tableView.Str3 = _dataDic[@"dic"][@"remark"];
         self.tableView.azPicArray = [_dataDic[@"azPhotos"] componentsSeparatedByString:@"||"];
+        self.CompanyPicArray = [NSMutableArray arrayWithArray:  [_dataDic[@"azPhotos"] componentsSeparatedByString:@"||"]];
+        self.bankPicArray = [NSMutableArray arrayWithArray: [_dataDic[@"devPhotos"] componentsSeparatedByString:@"||"]];
         self.tableView.otherPicArray = [_dataDic[@"devPhotos"] componentsSeparatedByString:@"||"];
+        
+        UITextField * text = [self.view viewWithTag:1080];
+        text.text = _dataDic[@"gpsType"];
+//        for (int i = 0; i < self.dataArray.count; i ++) {
+//            if ([gpsDevNo isEqualToString:self.dataArray[i][@"gpsDevNo"] ]) {
+//                text.text = [_dataArray[i][@"gpsType"] isEqualToString:@"1"]?@"有线":@"无线";
+//            }
+//        }
+        
+        
         [self.tableView reloadData];
     }
 }
@@ -149,10 +161,11 @@
     }else
     {
         if (index == 5) {
+            NSLog(@"%ld",sender.tag);
             [self.bankPicArray removeObjectAtIndex:sender.tag-1000];
             [self.tableView reloadData];
         }else{
-            
+            NSLog(@"%ld",sender.tag);
             [self.CompanyPicArray removeObjectAtIndex:sender.tag-1000];
             [self.tableView reloadData];
 
@@ -205,9 +218,11 @@
                            @"devPhotos":devPhotos,
                            @"azPhotos":azPhotos,
                            @"remark":textField3.text};
+    UITextField * text = [self.view viewWithTag:1080];
     NSDictionary *dic = @{
                           @"dic":data,
                           @"gpsDevNo":gpsDevNo,
+                          @"gpsType":text.text,
                           @"devPhotos":devPhotos,
                           @"azPhotos":azPhotos,
                         };
@@ -237,9 +252,9 @@
             WGLog(@"%@",error);
         }];
     }
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
-            date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
+            date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
             self.tableView.date = date;
             [self.tableView reloadData];
 
@@ -289,6 +304,8 @@
     code = _dataArray[sid][@"code"];
     gpsDevNo = _dataArray[sid][@"gpsDevNo"];
     self.tableView.GPS = _dataArray[sid][@"gpsDevNo"];
+    UITextField * text = [self.view viewWithTag:1080];
+    text.text = [_dataArray[sid][@"gpsType"] isEqualToString:@"1"]?@"有线":@"无线";
     [self.tableView reloadData];
 }
 

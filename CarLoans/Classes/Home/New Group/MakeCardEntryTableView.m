@@ -41,7 +41,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
     
 }
 
@@ -49,7 +49,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 8;
+        return 9;
     }
     return 1;
 }
@@ -60,7 +60,7 @@
     if (indexPath.section == 0) {
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"业务种类",@"贷款金额",@"业务归属",@"指派归属",@"当前状态"];
+        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"业务种类",@"贷款金额",@"业务归属",@"指派归属",@"当前状态",@"卡邮寄地址"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSString *bizType;
@@ -79,11 +79,23 @@
                               [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
-                              [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
+                              [BaseModel convertNull:[[BaseModel user]note:self.model.makeCardNode]],
+                              [BaseModel convertNull:self.model.cardPostAddress]];
         
         cell.TextFidStr = rightAry[indexPath.row];
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;
+        return cell;
+    }
+    if (indexPath.section == 1) {
+        static NSString *rid=@"PhotoCell";
+        PhotoCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        if(cell==nil){
+            cell=[[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"];
+        cell.selectStr = @"红卡照片";
         return cell;
     }
     
@@ -124,6 +136,13 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1) {
+        float numberToRound;
+        int result;
+        numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"].count)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+    }
     return 50;
 }
 
@@ -139,7 +158,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 2) {
         return 100;
     }
     return 0.01;
@@ -153,7 +172,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 2) {
         UIView *headView = [[UIView alloc]init];
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];

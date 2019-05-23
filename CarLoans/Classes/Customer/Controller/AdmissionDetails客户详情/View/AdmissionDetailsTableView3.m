@@ -103,13 +103,14 @@
                           @"发动机号",
                           @"落户地点"];
     cell.topLbl.text = topArray[indexPath.row];
-    NSArray *bottomArray = @[[BaseModel convertNull:self.model.bizType],
+    
+    NSArray *bottomArray = @[[BaseModel convertNull:[NSString stringWithFormat:@"%@",[self.model.bizType isEqualToString:@"1"]?@"二手车":@"新车" ]],
                              [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]],
-                             [BaseModel convertNull:self.model.loanInfo[@"loanProductName"]] ,
+                             [BaseModel convertNull: self.model.loanInfo[@"loanProductName"]] ,
                              [self.model.isAdvanceFund isEqualToString:@"1"]?@"是":@"否",
                              [self.model.isFinacing isEqualToString:@"1"]?@"是":@"否",
-                             [BaseModel convertNull:[_baseModel setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]]],
-                             [BaseModel convertNull:self.model.carInfoRes[@"vehicleCompanyName"]],
+                             [BaseModel convertNull:[[BaseModel user] setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]]],
+                             [BaseModel convertNull:[[BaseModel user]setCompanyCode:self.model.carInfoRes[@"vehicleCompanyName"]]],
                              [BaseModel convertNull:self.model.carInfoRes[@"invoiceCompany"]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"invoicePrice"] floatValue]/1000]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000]],
@@ -121,7 +122,7 @@
                              [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000],
                              [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"authFee"] floatValue]/1000],
                              [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"otherFee"] floatValue]/1000],
-                             [BaseModel convertNull:self.model.carInfoRes[@"carType"]],
+                             [BaseModel convertNull: [[BaseModel user]setParentKey:@"car_type" setDkey:self.model.carInfoRes[@"carType"]]],
                              [BaseModel convertNull:self.model.carInfoRes[@"carBrand"]],
                              [BaseModel convertNull:self.model.carInfoRes[@"carSeries"]],
                              [BaseModel convertNull:self.model.carInfoRes[@"carModel"]],

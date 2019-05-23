@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MakeCardApplyVC : BaseViewController
 @property (nonatomic , strong)SurveyModel *model;
+@property (nonatomic , copy)NSString *specialQuatoPic;
 @end
 
 NS_ASSUME_NONNULL_END

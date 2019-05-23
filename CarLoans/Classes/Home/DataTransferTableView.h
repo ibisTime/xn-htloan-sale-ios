@@ -12,6 +12,7 @@
 @interface DataTransferTableView : TLTableView
 
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
+@property (nonatomic,strong) NSString * state;
 
 
 @end

@@ -39,16 +39,16 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section ==0) {
-        return 1;
-
-    }
+//    if (section ==0) {
+//        return 1;
+//
+//    }
     return 3;
 //    else{
 //        if (self.teamStr) {
@@ -65,15 +65,15 @@
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section ==0) {
-        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:TextFiel forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"申领类型";
-        cell.details = self.teamStr;
-        cell.xiaImage.image = HGImage(@"you");
-        cell.xiaImage.frame = CGRectMake(SCREEN_WIDTH - 25, 17.5, 7.5, 15);
-        return cell;
-    }
+//    if (indexPath.section ==0) {
+//        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:TextFiel forIndexPath:indexPath];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.name = @"申领类型";
+//        cell.details = self.teamStr;
+//        cell.xiaImage.image = HGImage(@"you");
+//        cell.xiaImage.frame = CGRectMake(SCREEN_WIDTH - 25, 17.5, 7.5, 15);
+//        return cell;
+//    }
 //    else{
 //        if (self.teamStr) {
 //            if (indexPath.row == 0) {
@@ -200,13 +200,13 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+//    if (section == 1) {
         return 100;
 
-    }else{
-        return 0.01;
-
-    }
+//    }else{
+//        return 0.01;
+//
+//    }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -216,7 +216,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 0) {
         UIView *headView = [[UIView alloc]init];
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];

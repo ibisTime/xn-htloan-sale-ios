@@ -43,7 +43,28 @@
 @property (nonatomic , copy) NSString *carFrameNo;
 @property (nonatomic , copy) NSString *filelist;
 
-
+/*
+ bizCode: "GA201905231738120404713"
+ code: "L201905232014418023528"
+ gpsApply: {code: "GA201905231738120404713", type: "2", companyCode: "DP201800000000000000001",…}
+ logisticsCode: ""
+ logisticsCompany: ""
+ receiptDatetime: "May 23, 2019 8:15:46 PM"
+ receiver: "U201905211103072136918"
+ receiverName: "王磊"
+ fsendDatetime: "May 23, 2019 8:15:31 PM"
+ sendNote: ""
+ sendType: "1"
+ sender: "USYS201800000000001"
+ senderName: "admin"
+ status: "2"
+ teamCode: "BT201905181328458463400"
+ teamName: "柴运来团队"
+ type: "2"
+ userId: "U201905211103072136918"
+ userName: "王磊"
+ userRole: "超级管理员"
+ */
 
 
 @end

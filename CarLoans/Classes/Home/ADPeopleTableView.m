@@ -99,9 +99,9 @@
         cell.name = @"*身份证号";
         cell.nameText = @"请输入身份证号";
         cell.nameTextField.tag = 20002;
-
-        if (self.dataDic.count >= 0) {
-            cell.TextFidStr = _dataDic[@"idNo"];
+        NSString * str = _dataDic[@"idNo"];
+        if (str.length > 0) {
+            cell.TextFidStr = str;
         }
         return cell;
     }

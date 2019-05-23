@@ -137,7 +137,7 @@
         UIView *headView = [[UIView alloc]init];
         headView.backgroundColor = kWhiteColor;
         UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 107 - 15, 58) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kBlackColor];
-        nameLbl.text = @"其他基本资料上传";
+        nameLbl.text = @"其他基本信息";
         [headView addSubview:nameLbl];
         
         

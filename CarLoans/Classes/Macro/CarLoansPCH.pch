@@ -56,6 +56,7 @@
 #define NODE @"node"
 #import "TLUploadManager.h"
 #define BOUNCEDDATA @"BouncedData"
+#define COMPANYNODE @"CompanyNode"
 #import "NSString+Check.h"
 #import "SurveyModel.h"
 #define ADDADPEOPLENOTICE @"ADDADPEOPLENOTICE"

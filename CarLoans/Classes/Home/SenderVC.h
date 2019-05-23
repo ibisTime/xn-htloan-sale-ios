@@ -13,4 +13,5 @@
 
 @property (nonatomic , strong)DataTransferModel *model;
 
+@property (nonatomic,strong) NSString * state;
 @end

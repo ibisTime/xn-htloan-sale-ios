@@ -50,7 +50,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 8;
+        return 9;
     }
     return 1;
 }
@@ -61,7 +61,7 @@
     if (indexPath.section == 0) {
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"业务种类",@"贷款金额",@"业务归属",@"指派归属",@"当前状态"];
+        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"业务种类",@"贷款金额",@"贷款期数",@"业务归属",@"指派归属",@"当前状态"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSString *bizType;
@@ -78,6 +78,7 @@
                               [BaseModel convertNull:self.model.loanBankName],
                               bizType,
                               [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
+                              [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
                               [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];

@@ -79,7 +79,7 @@
 
 -(void)setGpsclaimsModel:(GPSClaimsModel *)gpsclaimsModel
 {
-    _codeLabel.text = [NSString stringWithFormat:@"%@",gpsclaimsModel.applyUserName];
+    _codeLabel.text = [NSString stringWithFormat:@"%@",gpsclaimsModel.code];
 //0 待审核 1 审核通过,待发货 2 审核不通过 3 已发货,待收货 4 已收货
     if (gpsclaimsModel.status == 0) {
         _stateLabel.text = @"待审核";

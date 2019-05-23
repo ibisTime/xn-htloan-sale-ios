@@ -122,7 +122,7 @@
 //资信调查
 -(void)setSurveyModel:(SurveyModel *)surveyModel{
     _codeLabel.text = [NSString stringWithFormat:@"%@",surveyModel.code];
-    _stateLabel.text = [[BaseModel user]note:surveyModel.curNodeCode];
+    _stateLabel.text = [[BaseModel user]note:surveyModel.fbhgpsNode];
     
     NSLog(@"%@",[[BaseModel user]note:surveyModel.curNodeCode]);
     NSArray *nameArray = @[
@@ -204,7 +204,7 @@
 }
 -(void)setGpsInstallationModel:(GPSInstallationModel *)gpsInstallationModel{
     _codeLabel.text = [NSString stringWithFormat:@"%@",gpsInstallationModel.code];
-    _stateLabel.text = [[BaseModel user]note:gpsInstallationModel.curNodeCode];
+    _stateLabel.text = [[BaseModel user]note:gpsInstallationModel.fbhgpsNode];
     
     NSLog(@"%@",[[BaseModel user]note:gpsInstallationModel.curNodeCode]);
     NSArray *nameArray = @[

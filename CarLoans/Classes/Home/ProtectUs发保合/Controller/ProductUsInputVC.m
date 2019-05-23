@@ -109,7 +109,36 @@
     [self.button addTarget:self action:@selector(Confirm) forControlEvents:(UIControlEventTouchUpInside)];
     kViewRadius(self.button, 3);
     [self.view addSubview:self.button];
+    
+    NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"];
+    if (str.length > 0) {
+        self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
+        self.tableView.carHgzPic = [str componentsSeparatedByString:@"||"];
+        [self.tableView reloadData];
+    }
+    
+    NSString * str1 = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_invoice"];
+    if (str1.length > 0) {
+        self.carInvoice = [NSMutableArray arrayWithArray:  [str1 componentsSeparatedByString:@"||"]];
+        self.tableView.carInvoice = [str1 componentsSeparatedByString:@"||"];
+        [self.tableView reloadData];
+    }
+    
+    NSString * str2 = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_jqx"];
+    if (str2.length > 0) {
+        self.carJqx = [NSMutableArray arrayWithArray:[str2 componentsSeparatedByString:@"||"]];
+        self.tableView.carJqx = [str2 componentsSeparatedByString:@"||"];
+        [self.tableView reloadData];
+    }
+    
+    NSString * str3 = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_syx"];
+    if (str3.length > 0) {
+        self.carSyx =  [NSMutableArray arrayWithArray:  [str3 componentsSeparatedByString:@"||"]];
+        self.tableView.carSyx = [str3 componentsSeparatedByString:@"||"];
+        [self.tableView reloadData];
+    }
 }
+
 
 -(void)initTable{
     self.tableView = [[ProductUsInputTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 70) style:(UITableViewStyleGrouped)];
@@ -216,7 +245,7 @@
         return;
     }
     else if (self.carHgzPic.count == 0){
-        [TLAlert alertWithMsg:@"请选择合格证"];
+        [TLAlert alertWithMsg:@"请选择绿大本扫描件"];
         return;
     }
         TLNetworking * http = [[TLNetworking alloc]init];
@@ -229,7 +258,7 @@
         http.parameters[@"carSyx"] = [self convertToStringWithArray:self.carSyx] ;
         http.parameters[@"carJqx"] = [self convertToStringWithArray:self.carJqx];
         http.parameters[@"carInvoice"] = [self convertToStringWithArray:self.carInvoice];
-        http.parameters[@"carHgzPic"] = [self convertToStringWithArray:self.carHgzPic];
+        http.parameters[@"greenBigSmj"] = [self convertToStringWithArray:self.carHgzPic];
         [http postWithSuccess:^(id responseObject) {
             NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] postNotification:notification];
@@ -249,7 +278,6 @@
                 ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
                 cell.details = date;
                 self.policyDatetime = date;
-                
             }];
             datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
             datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色

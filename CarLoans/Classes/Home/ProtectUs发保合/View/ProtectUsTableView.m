@@ -33,15 +33,15 @@
     SurveyModel * model = self.model[indexPath.row];
     
     if ([model.fbhgpsNode isEqualToString:@"c1"]){
-        [cell.button setTitle:@"录入发报合" forState:(UIControlStateNormal)];
+        [cell.button setTitle:@"录入发保合" forState:(UIControlStateNormal)];
         cell.button.hidden = NO;
     }
     else if ([model.fbhgpsNode isEqualToString:@"c2"]) {
-        [cell.button setTitle:@"审核发报合" forState:(UIControlStateNormal)];
+        [cell.button setTitle:@"审核发保合" forState:(UIControlStateNormal)];
         cell.button.hidden = NO;
     }
     else if ([model.fbhgpsNode isEqualToString:@"c1x"]){
-        [cell.button setTitle:@"重录发报合" forState:(UIControlStateNormal)];
+        [cell.button setTitle:@"重录发保合" forState:(UIControlStateNormal)];
         cell.button.hidden = NO;
     }
 

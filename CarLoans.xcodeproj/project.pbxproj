@@ -304,6 +304,7 @@
 		36C02E0E22802FE2007EC7CF /* CheckInstallationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E0D22802FE2007EC7CF /* CheckInstallationTableView.m */; };
 		36C02E1122803C5D007EC7CF /* CheckGPSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E1022803C5D007EC7CF /* CheckGPSVC.m */; };
 		36C02E1422803C77007EC7CF /* CheckGPSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C02E1322803C77007EC7CF /* CheckGPSTableView.m */; };
+		36D0716E2296BF0D00812532 /* GPSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D0716D2296BF0D00812532 /* GPSCell.m */; };
 		36E52D0E2289158300C18806 /* MultiBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E52D002289158200C18806 /* MultiBaseView.m */; };
 		36E52D0F2289158300C18806 /* MultiSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E52D022289158200C18806 /* MultiSelectCell.xib */; };
 		36E52D102289158300C18806 /* MultiSelectHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E52D032289158200C18806 /* MultiSelectHeaderView.m */; };
@@ -1139,6 +1140,8 @@
 		36C02E1022803C5D007EC7CF /* CheckGPSVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckGPSVC.m; sourceTree = "<group>"; };
 		36C02E1222803C77007EC7CF /* CheckGPSTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckGPSTableView.h; sourceTree = "<group>"; };
 		36C02E1322803C77007EC7CF /* CheckGPSTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckGPSTableView.m; sourceTree = "<group>"; };
+		36D0716C2296BF0D00812532 /* GPSCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSCell.h; sourceTree = "<group>"; };
+		36D0716D2296BF0D00812532 /* GPSCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSCell.m; sourceTree = "<group>"; };
 		36E52D002289158200C18806 /* MultiBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiBaseView.m; sourceTree = "<group>"; };
 		36E52D012289158200C18806 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		36E52D022289158200C18806 /* MultiSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiSelectCell.xib; sourceTree = "<group>"; };
@@ -4334,6 +4337,8 @@
 				7A13ADDB210F129A00B8F785 /* GPSClaimsCell.m */,
 				7A35825F21129D68006FB5B5 /* GPSClaimsDetailsTableView.h */,
 				7A35826021129D68006FB5B5 /* GPSClaimsDetailsTableView.m */,
+				36D0716C2296BF0D00812532 /* GPSCell.h */,
+				36D0716D2296BF0D00812532 /* GPSCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -5829,6 +5834,7 @@
 				3662017C229265BE0010C78A /* RepayPlanTableView.m in Sources */,
 				1F00AE75226F2EC300A8E15D /* AdmissionDetailsTableView16.m in Sources */,
 				36C02DE3227FCEBC007EC7CF /* CheckFinancialTableview.m in Sources */,
+				36D0716E2296BF0D00812532 /* GPSCell.m in Sources */,
 				7A3582872113EF3D006FB5B5 /* FaceSignTableView.m in Sources */,
 				1F00AE6F226EBB9600A8E15D /* NSDictionary+Extension.m in Sources */,
 				7A0592B820FDE99B00075FE8 /* TextFieldCell.m in Sources */,

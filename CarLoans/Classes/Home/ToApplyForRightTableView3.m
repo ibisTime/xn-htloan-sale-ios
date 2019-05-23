@@ -33,9 +33,9 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 15;
+        return 18;
     }
-    return 3;
+    return 4;
 }
 
 #pragma mark -- tableView
@@ -55,13 +55,13 @@
 //        NSArray *topArray = @[@"*姓名",@"*电话",@"*身份证",@"*性别",@"*年龄",@"*民族",@"*政治面貌",@"*学历",@"职业",@"职称",@"*有无驾照",@"现有车辆",@"*主要收入来源"];
         cell.topLbl.text = [TopModel user].ary3[indexPath.row];
         
-        if (indexPath.row == 4 || indexPath.row == 5 ||  indexPath.row == 9 || indexPath.row == 11 || indexPath.row == 13) {
+        if (indexPath.row == 5 ||indexPath.row == 6 ||indexPath.row == 8 ||  indexPath.row == 12 || indexPath.row == 14|| indexPath.row == 16) {
             cell.type = InputType;
             cell.inputTextField.tag = 30000 + indexPath.row;
             if (indexPath.row == 4) {
                 cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
             }
-        }else if (indexPath.row >= 0 && indexPath.row <= 2)
+        }else if (indexPath.row >= 0 && indexPath.row <= 4)
         {
             cell.type = ShowType;
             cell.showLbl.tag = 30000 + indexPath.row;
@@ -87,18 +87,18 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
 //        NSArray *topArray = @[@"*紧急联系人1",@"*与主贷人关系",@"*手机号码"];
-        cell.topLbl.text = [TopModel user].ary3[indexPath.row + 15];
+        cell.topLbl.text = [TopModel user].ary3[indexPath.row + 18];
         
-        if (indexPath.row == 0 || indexPath.row == 2) {
+        if (indexPath.row == 0 || indexPath.row == 3) {
             cell.type = InputType;
-            cell.inputTextField.tag = 30015 + indexPath.row;
+            cell.inputTextField.tag = 30018 + indexPath.row;
             if (indexPath.row == 2) {
                 cell.inputTextField.keyboardType = UIKeyboardTypePhonePad;
             }
         }else
         {
             cell.type = ChooseType;
-            cell.chooseLbl.tag = 30015 + indexPath.row;
+            cell.chooseLbl.tag = 30018 + indexPath.row;
         }
         
         return cell;
@@ -114,18 +114,18 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
 //    NSArray *topArray = @[@"紧急联系人2",@"与主贷人关系",@"手机号码"];
-    cell.topLbl.text = [TopModel user].ary3[indexPath.row + 18];;
+    cell.topLbl.text = [TopModel user].ary3[indexPath.row + 22];;
     
-    if (indexPath.row == 0 || indexPath.row == 2) {
+    if (indexPath.row == 0 || indexPath.row == 3) {
         cell.type = InputType;
-        cell.inputTextField.tag = 30018 + indexPath.row;
+        cell.inputTextField.tag = 30022 + indexPath.row;
         if (indexPath.row == 2) {
             cell.inputTextField.keyboardType = UIKeyboardTypePhonePad;
         }
     }else
     {
         cell.type = ChooseType;
-        cell.chooseLbl.tag = 30018 + indexPath.row;
+        cell.chooseLbl.tag = 30022 + indexPath.row;
     }
     
     return cell;

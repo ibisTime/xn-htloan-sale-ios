@@ -13,6 +13,10 @@
 @property (nonatomic,strong) UIButton * passBtn;
 @property (nonatomic,strong) UIButton * UnpassBtn;
 @property (nonatomic,strong) CheckProtectTableView * tableView;
+@property (nonatomic,strong) NSMutableArray * carSyx;//商业险
+@property (nonatomic,strong) NSMutableArray * carJqx;//交强险
+@property (nonatomic,strong) NSMutableArray * carInvoice;//发票
+@property (nonatomic,strong) NSMutableArray * carHgzPic;//合格证
 @end
 
 @implementation CheckProtextUs
@@ -34,6 +38,35 @@
     self.UnpassBtn.frame = CGRectMake(SCREEN_WIDTH / 2 + 10, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH / 2 - 20, 50);
     [self.UnpassBtn addTarget:self action:@selector(Confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.UnpassBtn];
+    
+    
+    NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"];
+    if (str.length > 0) {
+        self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
+        self.tableView.carHgzPic = [str componentsSeparatedByString:@"||"];
+        [self.tableView reloadData];
+    }
+    
+    NSString * str1 = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_invoice"];
+    if (str1.length > 0) {
+        self.carInvoice = [NSMutableArray arrayWithArray:  [str1 componentsSeparatedByString:@"||"]];
+        self.tableView.carInvoice = [str1 componentsSeparatedByString:@"||"];
+        [self.tableView reloadData];
+    }
+    
+    NSString * str2 = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_jqx"];
+    if (str2.length > 0) {
+        self.carJqx = [NSMutableArray arrayWithArray:[str2 componentsSeparatedByString:@"||"]];
+        self.tableView.carJqx = [str2 componentsSeparatedByString:@"||"];
+        [self.tableView reloadData];
+    }
+    
+    NSString * str3 = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_syx"];
+    if (str3.length > 0) {
+        self.carSyx =  [NSMutableArray arrayWithArray:  [str3 componentsSeparatedByString:@"||"]];
+        self.tableView.carSyx = [str3 componentsSeparatedByString:@"||"];
+        [self.tableView reloadData];
+    }
     // Do any additional setup after loading the view.
 }
 -(void)initTable{

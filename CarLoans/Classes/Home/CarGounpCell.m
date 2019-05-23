@@ -89,10 +89,8 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"cell" forIndexPath:indexPath];
     
     cell.backgroundColor = [UIColor clearColor];
-    //    cell.backgroundColor = [UIColor redColor];
     if (indexPath.row == 0) {
         photoBtn = [UIButton buttonWithTitle:@"" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
-//        photoBtn.frame = CGRectMake(2.5, 32.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5);
 photoBtn.frame = CGRectMake(2.5, 2.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH - 20)/4 - 5);
         kViewBorderRadius(photoBtn, 5, 1, HGColor(230, 230, 230));
         
@@ -107,12 +105,10 @@ photoBtn.frame = CGRectMake(2.5, 2.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH 
         kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
         image.contentMode = UIViewContentModeScaleToFill;
         [image sd_setImageWithURL:[NSURL URLWithString:[array[indexPath.row - 1] convertImageUrl]]];
-
-//        image.image = [UIImage imageNamed:array[indexPath.row - 1]] ;
         [cell addSubview:image];
         
         self.selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        self.selectButton.frame = CGRectMake((SCREEN_WIDTH - 20)/4 - 42.5, 10, 30, 30);
+        self.selectButton.frame = CGRectMake((SCREEN_WIDTH - 20)/4 - 32.5, 0, 30, 30);
         [self.selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
         [self.selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         self.selectButton.tag = indexPath.row - 1 + 1000;
@@ -129,9 +125,27 @@ photoBtn.frame = CGRectMake(2.5, 2.5, (SCREEN_WIDTH - 20)/4 - 5 , (SCREEN_WIDTH 
 #pragma mark -- Collection delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了 %ld ", indexPath.row);
+    if (indexPath.row == 0) {
         if([self.delegate respondsToSelector:@selector(CustomCollection:didSelectRowAtIndexPath:str:)]){
             [self.delegate CustomCollection:collectionView didSelectRowAtIndexPath:indexPath str:_selectStr];
         }
+    }
+    else{
+        NSMutableArray *muArray = [NSMutableArray array];
+//        NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
+        for (int i = 0; i < array.count; i++) {
+            [muArray addObject:[array[i] convertImageUrl]];
+        }
+        NSArray *seleteArray = muArray;
+        
+        if (muArray.count > 0) {
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:indexPath.row - 1 imagesBlock:^NSArray *{
+                return seleteArray;
+            }];
+            
+        }
+    }
 }
 
 -(void)selectButtonClick:(UIButton *)sender

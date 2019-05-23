@@ -48,17 +48,17 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        //选择
-        BaseModel *model = [BaseModel new];
-        model.ModelDelegate = self;
-        NSMutableArray *array = [NSMutableArray array];
-        [array addObject:@"有线"];
-        [array addObject:@"无线"];
-
-        [model CustomBouncedView:array setState:@"100"];
-        return;
-    }
+//    if (indexPath.section == 0) {
+//        //选择
+//        BaseModel *model = [BaseModel new];
+//        model.ModelDelegate = self;
+//        NSMutableArray *array = [NSMutableArray array];
+//        [array addObject:@"有线"];
+//        [array addObject:@"无线"];
+//
+//        [model CustomBouncedView:array setState:@"100"];
+//        return;
+//    }
 //    if (indexPath.section == 1) {
 //        if ([self.tableView.teamStr isEqualToString:@"本部"]) {
 //            if (indexPath.row == 0) {

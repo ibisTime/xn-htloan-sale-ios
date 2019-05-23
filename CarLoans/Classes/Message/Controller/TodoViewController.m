@@ -10,10 +10,13 @@
 #import "MessageTableView.h"
 #import "MessageDetailsVC.h"
 #import "TodoModel.h"
+
+#import "MakeCardApplyVC.h"
 @interface TodoViewController ()<RefreshDelegate>
 @property (nonatomic , strong)MessageTableView *tableView;
 
 @property (nonatomic , strong)NSMutableArray <TodoModel *>*models;
+@property (nonatomic , strong)SurveyModel *model;
 @end
 
 @implementation TodoViewController
@@ -22,12 +25,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initTableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
     if (self.bizTasks.count == 0) {
         [self loadData];
     }
     
 }
-
+#pragma mark -- 接收到通知
+- (void)InfoNotificationAction:(NSNotification *)notification{
+    [self loadData];
+}
+#pragma mark -- 删除通知
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOADDATAPAGE object:nil];
+}
 -(void)initTableView
 {
     self.tableView = [[MessageTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50- kTabBarHeight) style:(UITableViewStyleGrouped)];
@@ -44,13 +56,38 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MessageDetailsVC *vc = [MessageDetailsVC new];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    MessageDetailsVC *vc = [MessageDetailsVC new];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
+//    if ([self.models[indexPath.row].refNode isEqualToString:@"h1"]) {
+    
+        
+//        [self ReturnModelByCode:self.models[indexPath.row].bizCode];
+    [self ReturnModelByCode:self.models[indexPath.row].bizCode WhitNode:self.models[indexPath.row].refNode];
+//    }
 }
 
-//code: 632911
-//json: {"token":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVMjAxOTA0MTcxNDE0NDIwOTEyMjI4IiwiaXNzIjoiYWRtaW4iLCJhdWQiOiIiLCJpYXQiOjE1NTU0ODkwNTEsIm5iZiI6MTU1NTQ4OTA1MSwiZXhwIjoxNTU2MDkzODUxLCJqdGkiOiIifQ.5l_y4JDknsnju2BYyqVkgsQOUtqUXY7VWIESYEoZWNa3JMrp1p6LpyZZWfUySj3dJhmb0v9YA_QyGtThknD8XA","start":1,"limit":10,"roleCode":"RO201800000000000001","teamCode":null}
+
+-(void)ReturnModelByCode:(NSString *)code WhitNode:(NSString *)node{
+    MJWeakSelf;
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
+    http.code  = @"632516";
+    http.parameters[@"code"] = code;
+    [http postWithSuccess:^(id responseObject) {
+        
+        if ([node isEqualToString:@"h1"]) {
+            weakSelf.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+            MakeCardApplyVC * vc = [MakeCardApplyVC new];
+            vc.model = weakSelf.model;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+    } failure:^(NSError *error) {
+
+    }];
+}
 
 -(void)loadData{
     CarLoansWeakSelf;

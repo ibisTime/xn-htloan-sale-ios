@@ -61,8 +61,11 @@
         
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    cell.dataTransferModel = self.model[indexPath.row];
+    if ([self.state isEqualToString:@"gps"]) {
+        cell.gpsmodel = self.model[indexPath.row];
+    }
+    else
+        cell.dataTransferModel = self.model[indexPath.row];
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.button.tag = indexPath.row;
     return cell;
@@ -92,27 +95,52 @@
 {
     DataTransferModel *dataTransferModel = self.model[indexPath.row];
 //    无按钮状态
-    if ([dataTransferModel.status isEqualToString:@"2"])
-    {
-        if (!dataTransferModel.sendType) {
-            return 70 + 35 * 6;
-        }else if ([dataTransferModel.sendType isEqualToString:@"1"]){
+    if ([self.state isEqualToString:@"gps"]) {
+        if ([dataTransferModel.status isEqualToString:@"2"])
+        {
+            if (!dataTransferModel.sendType) {
+                return 70 + 35 * 5;
+            }else if ([dataTransferModel.sendType isEqualToString:@"1"]){
+                return 70 + 35 * 8;
+            }else if ([dataTransferModel.sendType isEqualToString:@"2"]){
+                return 70 + 35 * 10;
+            }
             return 70 + 35 * 9;
-        }else if ([dataTransferModel.sendType isEqualToString:@"2"]){
-            return 70 + 35 * 11;
-        }
-        return 70 + 35 * 11;
-    }else
-    {
-        if (!dataTransferModel.sendType) {
-            return 70 + 35 * 6 + 50;
-        }else if ([dataTransferModel.sendType isEqualToString:@"1"]){
-            return 70 + 35 * 9 + 50;
-        }else if ([dataTransferModel.sendType isEqualToString:@"2"]){
+        }else
+        {
+            if (!dataTransferModel.sendType) {
+                return 70 + 35 * 5 + 50;
+            }else if ([dataTransferModel.sendType isEqualToString:@"1"]){
+                return 70 + 35 * 7 + 50;
+            }else if ([dataTransferModel.sendType isEqualToString:@"2"]){
+                return 70 + 35 * 10 + 50;
+            }
             return 70 + 35 * 11 + 50;
         }
-        return 70 + 35 * 11 + 50;
+    }else{
+        if ([dataTransferModel.status isEqualToString:@"2"])
+        {
+            if (!dataTransferModel.sendType) {
+                return 70 + 35 * 6;
+            }else if ([dataTransferModel.sendType isEqualToString:@"1"]){
+                return 70 + 35 * 9;
+            }else if ([dataTransferModel.sendType isEqualToString:@"2"]){
+                return 70 + 35 * 11;
+            }
+            return 70 + 35 * 11;
+        }else
+        {
+            if (!dataTransferModel.sendType) {
+                return 70 + 35 * 6 + 50;
+            }else if ([dataTransferModel.sendType isEqualToString:@"1"]){
+                return 70 + 35 * 9 + 50;
+            }else if ([dataTransferModel.sendType isEqualToString:@"2"]){
+                return 70 + 35 * 11 + 50;
+            }
+            return 70 + 35 * 11 + 50;
+        }
     }
+    return 0.01;
     
     
     

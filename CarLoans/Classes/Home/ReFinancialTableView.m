@@ -88,7 +88,7 @@
                                   bizType,
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
-                                  [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]],
+                                  [BaseModel convertNull:[[BaseModel user]note:self.model.fbhgpsNode]],
                                   [BaseModel convertNull:self.model.carInfoRes[@"vehicleCompanyName"]]];
             
             cell.TextFidStr = rightAry[indexPath.row];
