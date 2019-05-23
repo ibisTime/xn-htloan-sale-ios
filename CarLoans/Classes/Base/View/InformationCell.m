@@ -257,11 +257,13 @@
         _button.tag = 1002;
         _button.hidden = NO;
     }
-    else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d4"]){
-        [_button setTitle:@"安装完成" forState:(UIControlStateNormal)];
-        _button.hidden = NO;
-//        _button.enabled = NO;
-    }
+//    else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d4"]){
+//        [_button setTitle:@"安装完成" forState:(UIControlStateNormal)];
+//        
+//        kViewBorderRadius(_button, 5, 1, MainColor);
+//        _button.hidden = NO;
+////        _button.enabled = NO;
+//    }
     
 //    _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);
 //    kViewBorderRadius(_button, 5, 1, MainColor);
@@ -270,10 +272,16 @@
     
     
 }
+-(void)setState:(NSString *)state{
+    _state = state;
+}
 -(void)setCarMortgageModel:(AccessSingleModel *)CarMortgageModel{
     {
         _codeLabel.text = [NSString stringWithFormat:@"%@",CarMortgageModel.code];
-        _stateLabel.text = [[BaseModel user]note:CarMortgageModel.enterNodeCode];
+        if ([_state isEqualToString:@"车辆抵押"]) {
+            _stateLabel.text = [[BaseModel user]note:CarMortgageModel.curNodeCode];
+        }else
+            _stateLabel.text = [[BaseModel user]note:CarMortgageModel.enterNodeCode];
         
         NSLog(@"%@",[[BaseModel user]note:CarMortgageModel.curNodeCode]);
         NSArray *nameArray = @[

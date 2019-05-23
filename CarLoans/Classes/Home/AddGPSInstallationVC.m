@@ -131,17 +131,11 @@
         self.CompanyPicArray = [NSMutableArray arrayWithArray:  [_dataDic[@"azPhotos"] componentsSeparatedByString:@"||"]];
         self.bankPicArray = [NSMutableArray arrayWithArray: [_dataDic[@"devPhotos"] componentsSeparatedByString:@"||"]];
         self.tableView.otherPicArray = [_dataDic[@"devPhotos"] componentsSeparatedByString:@"||"];
-        
-        UITextField * text = [self.view viewWithTag:1080];
-        text.text = _dataDic[@"gpsType"];
-//        for (int i = 0; i < self.dataArray.count; i ++) {
-//            if ([gpsDevNo isEqualToString:self.dataArray[i][@"gpsDevNo"] ]) {
-//                text.text = [_dataArray[i][@"gpsType"] isEqualToString:@"1"]?@"有线":@"无线";
-//            }
-//        }
-        
+        self.tableView.gpsType = _dataDic[@"gpsType"];
         
         [self.tableView reloadData];
+//        UITextField * text = [self.view viewWithTag:1080];
+//        text.text = _dataDic[@"gpsType"];
     }
 }
 

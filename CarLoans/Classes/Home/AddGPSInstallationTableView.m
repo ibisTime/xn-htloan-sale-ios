@@ -64,9 +64,9 @@
         cell.nameText = @"";
         cell.nameTextField.tag = 1080;
         cell.nameTextField.userInteractionEnabled = NO;
-//        if (self.isSelect >= 100) {
-//            cell.TextFidStr = self.Str1;
-//        }
+        if (self.isSelect >= 100) {
+            cell.TextFidStr = self.gpsType;
+        }
         return cell;
     }
     if (indexPath.section == 2) {

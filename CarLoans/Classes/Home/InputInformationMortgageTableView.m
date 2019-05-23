@@ -31,7 +31,6 @@
         [self registerClass:[ChooseCell class] forCellReuseIdentifier:ChooseC];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField1];
-
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CollectionView];
         [self registerClass:[SurverCertificateCell class] forCellReuseIdentifier:SurverCertificate1];
 
@@ -52,10 +51,6 @@
     if (section == 0) {
         return 8;
     }
-//    if (section == 1) {
-//        return 1;
-//    }
-    
     return 1;
 }
 
@@ -91,56 +86,6 @@
         cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
     }
-//    if (indexPath.section == 1) {
-//        SurverCertificateCell *cell = [tableView dequeueReusableCellWithIdentifier:SurverCertificate1 forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        NSArray *array = @[@"机动车登记证书",@"批单",@"车钥匙",@"大本扫描件",@"车辆驾驶证扫描件",@"完税证明扫描件"];
-//        cell.name = array[indexPath.row];
-//        switch (indexPath.row) {
-//            case 0:
-//            {
-//                cell.picArray = _model.Newpics2;
-//            }
-//                break;
-//            case 1:
-//            {
-//                cell.picArray = _model.Newpics3;
-//            }
-//                break;
-//            case 2:
-//            {
-//                cell.picArray = _model.Newpics4;
-//            }
-//                break;
-//            case 3:
-//            {
-//                cell.picArray = _model.Newpics5;
-//            }
-//                break;
-//            case 4:
-//            {
-//                cell.picArray = _model.Newpics6;
-//            }
-//                break;
-//            case 5:
-//            {
-//                cell.picArray = _model.Newpics7;
-//            }
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//        return cell;
-//    }
-//    if (indexPath.section == 2) {
-//        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.name = @"提交时间";
-//        cell.details = _date;
-//        return cell;
-//    }
-//    
     TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *nameArray = @[@"*车辆抵押补充说明"];
@@ -183,58 +128,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    float numberToRound;
-//    int result;
-//    if (indexPath.section == 1) {
-//        switch (indexPath.row) {
-//            case 0:
-//            {
-//                numberToRound = (_model.Newpics2.count)/3.0;
-//                result = (int)ceilf(numberToRound);
-//                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
-//            }
-//                break;
-//            case 1:
-//            {
-//                numberToRound = (_model.Newpics3.count)/3.0;
-//                result = (int)ceilf(numberToRound);
-//                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
-//            }
-//                break;
-//            case 2:
-//            {
-//                numberToRound = (_model.Newpics4.count)/3.0;
-//                result = (int)ceilf(numberToRound);
-//                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
-//            }
-//                break;
-//            case 3:
-//            {
-//                numberToRound = (_model.Newpics5.count)/3.0;
-//                result = (int)ceilf(numberToRound);
-//                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
-//            }
-//                break;
-//            case 4:
-//            {
-//                numberToRound = (_model.Newpics6.count)/3.0;
-//                result = (int)ceilf(numberToRound);
-//                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
-//            }
-//                break;
-//            case 5:
-//            {
-//                numberToRound = (_model.Newpics7.count)/3.0;
-//                result = (int)ceilf(numberToRound);
-//                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 60;
-//            }
-//                break;
-//            default:
-//                break;
-//        }
-//    }else{
-//        return 50;
-//    }
+
     return 50;
 
 }

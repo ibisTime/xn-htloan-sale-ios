@@ -140,9 +140,9 @@
 -(void)setAccessSingleModel:(AccessSingleModel *)accessSingleModel
 {
     _codeLabel.text = [NSString stringWithFormat:@"%@",accessSingleModel.code];
-    _stateLabel.text = [[BaseModel user]note:accessSingleModel.advanfCurNodeCode];
+    _stateLabel.text = [[BaseModel user]note:accessSingleModel.curNodeCode];
     
-    NSLog(@"%@",[[BaseModel user]note:accessSingleModel.advanfCurNodeCode]);
+//    NSLog(@"%@",[[BaseModel user]note:accessSingleModel.advanfCurNodeCode]);
     NSArray *nameArray = @[
                            @"业务种类",
                            @"客户姓名",
@@ -280,5 +280,8 @@
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
         InformationLabel.text = [BaseModel convertNull: InformationArray[i]];
     }
+}
+-(void)setBankFKModel:(SurveyModel *)BankFKModel{
+    
 }
 @end

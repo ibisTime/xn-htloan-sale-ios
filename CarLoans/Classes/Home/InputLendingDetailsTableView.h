@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)AccessSingleModel *model;
 @property (nonatomic , copy)NSString *date;
 @property (nonatomic , copy)NSString *date1;
+@property (nonatomic,strong) NSString * day1;
+@property (nonatomic,strong) NSString * day2;
+@property (nonatomic,strong) NSString * day3;
 @end
 
 NS_ASSUME_NONNULL_END

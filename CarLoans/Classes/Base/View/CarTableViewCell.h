@@ -31,5 +31,5 @@
 @property (nonatomic , strong)SurveyModel *surveyModel;
 @property (nonatomic , strong)AccessSingleModel *accessSingleModel;
 @property (nonatomic , strong)DataTransferModel *dataTransferModel;
-
+@property (nonatomic,strong) SurveyModel * BankFKModel;
 @end

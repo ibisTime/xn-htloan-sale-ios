@@ -9,11 +9,17 @@
 #import "InputLendingDetailsVC.h"
 #import "InputLendingDetailsTableView.h"
 #import "TextFieldCell.h"
-@interface InputLendingDetailsVC ()<RefreshDelegate>{
+@interface InputLendingDetailsVC ()<RefreshDelegate,BaseModelDelegate>{
      NSString *date;
     NSString * date1;
+    NSString * day1;
+    NSString * day2;
+    NSString * day3;
+    NSInteger selectRow;
 }
 @property (nonatomic,strong) InputLendingDetailsTableView * tableView;
+@property (nonatomic,strong) NSMutableArray * array;
+@property (nonatomic,strong) BaseModel * baseModel;
 @end
 
 @implementation InputLendingDetailsVC
@@ -21,6 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"录入放款信息";
+    NSArray * array1 = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31"];
+    self.array = [NSMutableArray arrayWithArray:array1];
+    self.baseModel = [BaseModel new];
+    self.baseModel.ModelDelegate = self;
     [self initTableView];
 }
 
@@ -32,8 +42,23 @@
     [self.view addSubview:self.tableView];
 }
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        if (indexPath.row == 1) {
+            selectRow = 1000 + indexPath.row;
+            [self.baseModel CustomBouncedView:[NSMutableArray arrayWithArray:self.array] setState:@"100"];
+        }
+        if (indexPath.row == 2) {
+            selectRow = 1000 + indexPath.row;
+            [self.baseModel CustomBouncedView:[NSMutableArray arrayWithArray:self.array] setState:@"100"];
+        }
+        if (indexPath.row == 3) {
+            selectRow = 1000 + indexPath.row;
+            [self.baseModel CustomBouncedView:[NSMutableArray arrayWithArray:self.array] setState:@"100"];
+        }
+    }
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {
+            
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
                 date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
                 self.tableView.date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
@@ -59,29 +84,49 @@
         }
     }
 }
+//弹框代理方法
+-(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
+{
+    NSLog(@"%@",Str);
+    if (selectRow == 1001) {
+        self.tableView.day1 = Str;
+        day1 = Str;
+        [self.tableView reloadData];
+    }
+    if (selectRow == 1002) {
+        self.tableView.day2 = Str;
+        day2 = Str;
+        [self.tableView reloadData];
+    }
+    if (selectRow == 1003) {
+        self.tableView.day3 = Str;
+        day3 = Str;
+        [self.tableView reloadData];
+    }
+}
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
     TLNetworking * http = [[TLNetworking alloc]init];
     TextFieldCell * cell = [self.view viewWithTag:100];
-    TextFieldCell * cell1 = [self.view viewWithTag:101];
-    TextFieldCell * cell2 = [self.view viewWithTag:102];
-    TextFieldCell * cell3 = [self.view viewWithTag:103];
+//    TextFieldCell * cell1 = [self.view viewWithTag:101];
+//    TextFieldCell * cell2 = [self.view viewWithTag:102];
+//    TextFieldCell * cell3 = [self.view viewWithTag:103];
     TextFieldCell * cell4 = [self.view viewWithTag:104];
     TextFieldCell * cell5 = [self.view viewWithTag:105];
-    TextFieldCell * cell6 = [self.view viewWithTag:106];
+//    TextFieldCell * cell6 = [self.view viewWithTag:106];
     NSLog(@"%@",cell.nameTextField);
     if (![cell.nameTextField.text isBankCardNo]) {
         [TLAlert alertWithMsg:@"请输入正确的银行卡号"];
         return;
     }
-    if ([cell1.nameTextField.text intValue] > 31 || cell1.nameTextField.text.length == 0) {
+    if (day1.length == 0) {
         [TLAlert alertWithMsg:@"请输入正确的账单还款日"];
         return;
     }
-    else if ([cell2.nameTextField.text intValue] > 31 || cell2.nameTextField.text.length == 0) {
+    else if (day2.length == 0) {
         [TLAlert alertWithMsg:@"请输入正确的银行还款日"];
         return;
     }
-    else if ([cell3.nameTextField.text intValue] > 31 || cell3.nameTextField.text.length == 0) {
+    else if (day3.length == 0) {
         [TLAlert alertWithMsg:@"请输入正确的公司还款日"];
         return;
     }
@@ -106,11 +151,11 @@
     http.parameters[@"code"] = self.model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"repayBankcardNumber"] = cell.nameTextField.text;
-    http.parameters[@"repayBillDate"] = cell1.nameTextField.text;
-    http.parameters[@"repayBankDate"] = cell2.nameTextField.text;
-    http.parameters[@"repayCompanyDate"] = cell3.nameTextField.text;
-    http.parameters[@"repayFirstMonthAmount"] = cell4.nameTextField.text;
-    http.parameters[@"repayMonthAmount"] = cell5.nameTextField.text;
+    http.parameters[@"repayBillDate"] = day1;
+    http.parameters[@"repayBankDate"] = day2;
+    http.parameters[@"repayCompanyDate"] = day3;
+    http.parameters[@"repayFirstMonthAmount"] = [NSString stringWithFormat:@"%.f", [cell4.nameTextField.text floatValue]*1000];
+    http.parameters[@"repayMonthAmount"] = [NSString stringWithFormat:@"%.f", [cell5.nameTextField.text floatValue]*1000];
     http.parameters[@"repayFirstMonthDatetime"] = date1;
     http.parameters[@"bankFkDate"] = date;
     [http postWithSuccess:^(id responseObject) {

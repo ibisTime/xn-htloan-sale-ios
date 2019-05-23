@@ -128,6 +128,9 @@
 //    if ([model.advanfCurNodeCode isEqualToString:@"002_09"] || [model.advanfCurNodeCode isEqualToString:@"002_12"]) {
 //        return 225;
 //    }
+    if ([self.model[indexPath.row].fbhgpsNode isEqualToString:@"d4"]) {
+        return 280;
+    }
     return 330;
 }
 

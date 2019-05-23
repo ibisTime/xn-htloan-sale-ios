@@ -85,41 +85,71 @@
     }
     if (indexPath.section == 1) {
 //        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-        static NSString *rid=@"cell";
-        
-        TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-        
-        if(cell==nil){
+        if (indexPath.row == 0 || indexPath.row == 4 || indexPath.row == 5) {
+            static NSString *rid=@"cell";
             
-            cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
+            TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
             
+            if(cell==nil){
+                
+                cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
+                
+            }
+            switch (indexPath.row) {
+                case 0:{
+                    cell.name = @"*卡号";
+                    NSString * str = self.model.repayCardNumber;
+                    if (str.length > 0) {
+                        cell.TextFidStr = str;
+                    }
+                    cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+                }
+                    break;
+//                case 1:
+//                    cell.name = @"*账单还款日";
+//                    cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+//                    break;
+//                case 2:
+//                    cell.name = @"*银行还款日";
+//                    cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+//                    break;
+//                case 3:
+//                    cell.name = @"*公司还款日";
+//                    cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+//                    break;
+                case 4:
+                    cell.name = @"*首期月供金额";
+                    break;
+                case 5:
+                    cell.name = @"*每期月供金额";
+                    break;
+                default:
+                    break;
+            }
+//            cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.tag = 100 + indexPath.row;
+            return cell;
         }
-        switch (indexPath.row) {
-            case 0:
-                cell.name = @"*卡号";
-                break;
-            case 1:
-                cell.name = @"*账单还款日";
-                break;
-            case 2:
+        else{
+            ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (indexPath.row == 1) {
+                cell.name =@"*账单还款日";
+                cell.details = self.day1;
+            }
+            else if (indexPath.row == 2){
                 cell.name = @"*银行还款日";
-                break;
-            case 3:
+                cell.details = self.day2;
+            }
+            else{
                 cell.name = @"*公司还款日";
-                break;
-            case 4:
-                cell.name = @"*首期月供金额";
-                break;
-            case 5:
-                cell.name = @"*每期月供金额";
-                break;
-            default:
-                break;
+                cell.details = self.day3;
+            }
+            
+            return cell;
         }
-        cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.tag = 100 + indexPath.row;
-        return cell;
+       
     }
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

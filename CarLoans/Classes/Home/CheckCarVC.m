@@ -28,6 +28,8 @@
     self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
 }
+
+
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
     UITextField * text = [self.view viewWithTag:1001];
     if (text.text.length == 0) {

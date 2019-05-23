@@ -38,6 +38,7 @@
 
 
 //@property (nonatomic,assign) BOOL isFinancial;
+@property (nonatomic,strong) NSString * state;
 
 
 @property (nonatomic , strong)SurveyModel *surveyModel;

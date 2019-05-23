@@ -41,7 +41,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 7;
+    return 8;
 }
 
 #pragma mark -- 行数
@@ -73,6 +73,19 @@
     if (indexPath.section == 1) {
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.name = @"GPS类型";
+        
+        cell.nameText = [NSString stringWithFormat:@"%@",[dic[@"gpsType"]isEqualToString:@"1"]?@"有线":@"无线"];
+        cell.nameTextField.enabled = NO;
+        //        cell.nameTextField.tag = 100;
+        //        if (self.isSelect >= 100) {
+        //            cell.TextFidStr = self.Str1;
+        //        }
+        return cell;
+    }
+    if (indexPath.section == 2) {
+        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"安装位置";
         cell.nameText = [NSString stringWithFormat:@"%@",dic[@"azLocation"]];
         cell.nameTextField.enabled = NO;
@@ -82,7 +95,7 @@
 //        }
         return cell;
     }
-    if (indexPath.section == 2) {
+    if (indexPath.section ==3) {
 //        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
 //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //        cell.name = @"安装时间";
@@ -96,36 +109,15 @@
         cell.nameTextField.enabled = NO;
         return cell;
     }
-    if (indexPath.section == 3 ){
-//        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        NSArray *nameArray = @[@"安装人员",@"备注"];
-//        cell.name = @"安装人员";
-//        NSArray *placArray = @[@"请输入安装人员",@"请输入备注"];
-//        cell.nameText = @"请输入安装人员";
-//        cell.nameTextField.tag = 101;
-////        if (self.isSelect >= 100) {
-////            NSArray *array = @[_Str2,[BaseModel convertNull:_Str3]];
-//            cell.TextFidStr = array[indexPath.row];
-//        }
+    if (indexPath.section == 4 ){
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"安装人员";
         cell.nameText = [NSString stringWithFormat:@"%@",dic[@"azUser"]];
         cell.nameTextField.enabled = NO;
         return cell;
-    }if (indexPath.section == 4) {
-//        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        NSArray *nameArray = @[@"安装人员",@"备注"];
-//        cell.name = @"备注";
-//        NSArray *placArray = @[@"请输入安装人员",@"请输入备注"];
-//        cell.nameText = @"请输入备注";
-//        cell.nameTextField.tag = 102;
-////        if (self.isSelect >= 100) {
-////            NSArray *array = @[_Str2,[BaseModel convertNull:_Str3]];
-//            cell.TextFidStr = array[indexPath.row];
-////        }
+    }if (indexPath.section == 5) {
+
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"备注";
@@ -135,7 +127,7 @@
     }
     
     
-    if (indexPath.section == 5) {
+    if (indexPath.section == 6) {
         CarGounpCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[CarGounpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarGounp];
@@ -149,17 +141,13 @@
         return cell;
         
     }
-    if (indexPath.section == 6) {
+    if (indexPath.section == 7) {
         CarGounpCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[CarGounpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CarGounp];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.delegate = self;
-//        cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
-//        cell.photoStr = @"安装设备图片";
-//        cell.photoBtn.tag = indexPath.section;
-//        NSString = [NSArray arrayWithObjects:dic[@"azPhotos"], nil];
         self.CompanyPicArray = [dic[@"azPhotos"] componentsSeparatedByString:@"||"];
         cell.collectDataArray = self.CompanyPicArray;
         cell.photoBtn.tag = indexPath.section;
@@ -212,8 +200,8 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 5 || indexPath.section == 6) {
-        if (indexPath.section == 5) {
+    if (indexPath.section == 6 || indexPath.section == 7) {
+        if (indexPath.section == 6) {
             float numberToRound;
             int result;
             
@@ -248,7 +236,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    if (section == 5 || section == 6) {
+    if (section == 6 || section == 7) {
         return 50;
     }
     return 0.01;
@@ -257,7 +245,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 6) {
+    if (section == 7) {
         return 100;
     }
     return 0.01;
@@ -267,7 +255,7 @@
 {
     NSArray *array = @[@"设备图片",@"安装图片"];
     
-    if (section == 5) {
+    if (section == 6) {
         UIView *headView = [[UIView alloc]init];
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
@@ -284,7 +272,7 @@
         return headView;
         
     }
-    else if (section == 6) {
+    else if (section == 7) {
         UIView *headView = [[UIView alloc]init];
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];

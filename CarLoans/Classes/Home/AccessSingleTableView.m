@@ -55,6 +55,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     AccessSingleModel *model = self.model[indexPath.row];
+    cell.state = @"车辆抵押";
     cell.CarMortgageModel = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
         

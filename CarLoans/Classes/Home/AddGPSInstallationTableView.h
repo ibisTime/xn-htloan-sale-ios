@@ -18,6 +18,7 @@
 @property (nonatomic  , copy)NSString *date;
 
 @property (nonatomic , assign)NSInteger isSelect;
+@property (nonatomic,strong) NSString * gpsType;
 @property (nonatomic  , copy)NSString *Str1;
 @property (nonatomic  , copy)NSString *Str2;
 @property (nonatomic  , copy)NSString *Str3;
