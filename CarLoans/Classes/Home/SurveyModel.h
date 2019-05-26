@@ -272,4 +272,5 @@
 @property (nonatomic,strong) NSArray * budgetOrderGps;
 @property (nonatomic,strong) NSString * cardPostAddress;
 @property (nonatomic,strong) NSArray * repayPlanList;
+@property (nonatomic,strong) NSString * intevDateTime;
 @end

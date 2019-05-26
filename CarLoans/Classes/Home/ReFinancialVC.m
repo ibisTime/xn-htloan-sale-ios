@@ -10,7 +10,9 @@
 #import "ReFinancialTableView.h"
 #import "ChooseCell.h"
 #import "InputBoxCell.h"
-@interface ReFinancialVC ()<RefreshDelegate>
+@interface ReFinancialVC ()<RefreshDelegate,BaseModelDelegate>{
+    NSArray *LoanProductsArray;
+}
 @property (nonatomic,strong) ReFinancialTableView * tableView;
 @property (nonatomic,strong) UIButton * passBtn;
 @property (nonatomic,strong) NSString * policyDatetime;//保单开始日期
@@ -18,6 +20,9 @@
 @property (nonatomic , assign)NSInteger selectInt;
 @property (nonatomic,strong) NSMutableArray * carInvoice;//发票
 @property (nonatomic,strong) NSString * carInvoicestr;//发票
+@property (nonatomic , strong)BaseModel *baseModel;
+@property (nonatomic,strong) NSString * bancode;
+@property (nonatomic,strong) NSMutableArray * bankarray;
 @end
 
 @implementation ReFinancialVC
@@ -26,6 +31,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
+    _baseModel = [BaseModel new];
+    _baseModel.ModelDelegate = self;
+    self.bankarray = [NSMutableArray array];
     
     NSString *idNoFront;
     NSString *idNoReverse;
@@ -272,20 +280,53 @@
     [self.view addSubview:self.tableView];
 }
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 9) {
-        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
-            
-            NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
-            ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
-            cell.details = date;
-            self.policyDatetime = date;
-            
-        }];
-        datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
-        datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
-        datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
-        [datepicker show];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 9) {
+            WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+                
+                NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
+                cell.details = date;
+                self.policyDatetime = date;
+                
+            }];
+            datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
+            datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+            datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
+            [datepicker show];
+        }
+    }
+    if (indexPath.section == 3) {
+        [self LoanProducts];
+    }
+    
 }
+-(void)LoanProducts
+{
+    TLNetworking *http = [TLNetworking new];
+    
+    http.isShowMsg = NO;
+    http.code = @"632007";
+    http.parameters[@"type"] = @"4";
+//    http.parameters[@"type"] = self.model.bizType;
+    [http postWithSuccess:^(id responseObject) {
+        LoanProductsArray = responseObject[@"data"];
+        NSMutableArray *array = [NSMutableArray array];
+        
+        for (int i = 0; i < LoanProductsArray.count; i ++) {
+            NSString * str = [NSString stringWithFormat:@"%@-%@",LoanProductsArray[i][@"bankName"],LoanProductsArray[i][@"bankcardNumber"]];
+            [array addObject:str];
+        }
+        self.bankarray = array;
+        [_baseModel CustomBouncedView:array setState:@"100"];
+    } failure:^(NSError *error) {
+    }];
+}
+-(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid{
+    self.bancode = LoanProductsArray[sid][@"code"];
+    ChooseCell * cell = [self.view viewWithTag:1050];
+    cell.details = Str;
+    NSLog(@"%@",self.bancode);
 }
 -(void)confirm:(UIButton *)sender{
     InputBoxCell * cell = [self.view viewWithTag:1010];
@@ -296,6 +337,7 @@
     http.parameters[@"advanceFundDatetime"] = self.policyDatetime;
     http.parameters[@"billPdf"] = self.carInvoicestr;
     http.parameters[@"code"] = self.model.code;
+    http.parameters[@"advanceCardCode"] = self.bancode;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     [http postWithSuccess:^(id responseObject) {
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

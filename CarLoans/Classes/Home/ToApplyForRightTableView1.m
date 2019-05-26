@@ -55,14 +55,18 @@
     if (indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 13 || indexPath.row == 10  || indexPath.row == 11 || indexPath.row == 12 ) {
         cell.type = ChooseType;
         cell.chooseLbl.tag = 10000 + indexPath.row;
-    }else if (indexPath.row == 7 || indexPath.row == 14 || indexPath.row == 15 || indexPath.row == 16)
+    }else if (indexPath.row == 3 ||indexPath.row == 7||indexPath.row == 8 || indexPath.row == 14 || indexPath.row == 15 || indexPath.row == 16)
     {
         cell.type = InputType;
         cell.inputTextField.tag = 10000 + indexPath.row;
-        if (indexPath.row == 7) {
+        if (indexPath.row == 3) {
+            cell.tag = 88888;
             cell.inputTextField.delegate = self;
-            
         }
+        if (indexPath.row == 8) {
+            cell.inputTextField.delegate = self;
+        }
+        
         cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     else
@@ -74,33 +78,28 @@
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     NSString * resultStr = textField.text;
-    
-    NSLog(@"%@",resultStr);
-    UITextField * text = [self viewWithTag:10000+ 8];
-    text.text = [NSString stringWithFormat:@"%.f",[resultStr floatValue] - ([self.model.loanAmount floatValue ] /1000)];
-    
+    UITextField * text = [self viewWithTag:10000+ 3];
+    NSString * str = [NSString stringWithFormat:@"%.4f",[resultStr floatValue] / ([resultStr floatValue] + [text.text floatValue]) ];
     UITextField * text1 = [self viewWithTag:10000+ 9];
-    text1.text = [NSString stringWithFormat:@"%.2f",([text.text floatValue] / [resultStr floatValue]) * 100 ];
-}
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    NSString * resultStr = [textField.text stringByAppendingString:string];
-//    if ([resultStr floatValue] > ([self.model.loanAmount floatValue ] /1000)) {
-        NSLog(@"%@",resultStr);
-        UITextField * text = [self viewWithTag:10000+ 8];
-        text.text = [NSString stringWithFormat:@"%.f",[resultStr floatValue] - ([self.model.loanAmount floatValue ] /1000)];
-        
-        UITextField * text1 = [self viewWithTag:10000+ 9];
-        text1.text = [NSString stringWithFormat:@"%.2f",([text.text floatValue] / [resultStr floatValue] ) * 100];
-        
-        return YES;
-//    }
-//    else{
-//        [TLAlert alertWithInfo:@"开票价输入不合理"];
-//        return NO;
-//    }
-    
+    text1.text = [NSString stringWithFormat:@"%.4f",[str floatValue] * 100];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
+    NSString * resultStr = [textField.text stringByAppendingString:string];
+    UITextField * text = [self viewWithTag:10000+ 3];
+    NSString * str = [NSString stringWithFormat:@"%.4f",[resultStr floatValue] / ([resultStr floatValue] + [text.text floatValue]) ];
+    UITextField * text1 = [self viewWithTag:10000+ 9];
+    text1.text = [NSString stringWithFormat:@"%.4f",[str floatValue] * 100];
+    return YES;
+
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (textField.tag == 10003) {
+        ToApplyForEncapsulationCell * cell = [self viewWithTag:88888];
+        cell.topLbl.text = [NSString stringWithFormat:@"*贷款金额(征信时贷款金额为%.2f)",[self.model.loanAmount floatValue]/1000];
+    }
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {

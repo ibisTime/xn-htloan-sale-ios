@@ -24,8 +24,7 @@
     [self FaceToFaceContent];
 }
 
--(void)FaceToFaceContent
-{
+-(void)FaceToFaceContent{
     for (int i = 0; i < self.model.attachments.count; i ++) {
         NSDictionary *dic = self.model.attachments[i];
         //        银行视频

@@ -55,7 +55,7 @@
         nameLbl.text = models.content;
 //        stateLbl.text = [[BaseModel user]note:models.dealNode];
         timeLbl.text= [models.createDatetime convertToDetailDate];
-        typeLbl.text = models.refOrder;
+        typeLbl.text = models.bizCode;
     }
     
 }

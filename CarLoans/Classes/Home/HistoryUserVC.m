@@ -48,7 +48,7 @@
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"630520";
-    NSArray *array = @[@"003_14",@"003_15",@"003_16",@"003_07",@"007_04"];
+    NSArray *array = @[@"j14",@"j15",@"j16",@"j7",@"007_04"];
     helper.parameters[@"curNodeCodeList"] = array;
     helper.parameters[@"refType"] = @"0";
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
@@ -87,7 +87,7 @@
 
     [self.tableView addLoadMoreAction:^{
 
-        NSArray *array = @[@"003_14",@"003_15",@"003_16",@"003_07",@"007_04"];
+        NSArray *array = @[@"j14",@"j15",@"j16",@"j7",@"007_04"];
         helper.parameters[@"curNodeCodeList"] = array;
         helper.parameters[@"refType"] = @"0";
         helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];

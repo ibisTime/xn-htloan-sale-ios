@@ -250,6 +250,8 @@
 		36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E56228592F7004C4479 /* CheckCarTableView.m */; };
 		36294E5A22859313004C4479 /* CheckCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5922859313004C4479 /* CheckCarVC.m */; };
 		36401C222293D59600580033 /* AddPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36401C212293D59600580033 /* AddPeopleCell.m */; };
+		3650426E229A4D470040383C /* SignVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3650426D229A4D470040383C /* SignVideoVC.m */; };
+		36504271229A4D5E0040383C /* SignVideoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36504270229A4D5E0040383C /* SignVideoTableView.m */; };
 		3662016822924AF10010C78A /* CheckRepayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016722924AF10010C78A /* CheckRepayVC.m */; };
 		3662016B22924BA40010C78A /* CheckRepayTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016A22924BA40010C78A /* CheckRepayTableView.m */; };
 		3662016F22924ED50010C78A /* RepayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016E22924ED50010C78A /* RepayModel.m */; };
@@ -1034,6 +1036,10 @@
 		36294E5922859313004C4479 /* CheckCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarVC.m; sourceTree = "<group>"; };
 		36401C202293D59600580033 /* AddPeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPeopleCell.h; sourceTree = "<group>"; };
 		36401C212293D59600580033 /* AddPeopleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPeopleCell.m; sourceTree = "<group>"; };
+		3650426C229A4D470040383C /* SignVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignVideoVC.h; sourceTree = "<group>"; };
+		3650426D229A4D470040383C /* SignVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignVideoVC.m; sourceTree = "<group>"; };
+		3650426F229A4D5E0040383C /* SignVideoTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignVideoTableView.h; sourceTree = "<group>"; };
+		36504270229A4D5E0040383C /* SignVideoTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignVideoTableView.m; sourceTree = "<group>"; };
 		3662016622924AF10010C78A /* CheckRepayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayVC.h; sourceTree = "<group>"; };
 		3662016722924AF10010C78A /* CheckRepayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckRepayVC.m; sourceTree = "<group>"; };
 		3662016922924BA40010C78A /* CheckRepayTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayTableView.h; sourceTree = "<group>"; };
@@ -3249,6 +3255,8 @@
 			children = (
 				366201BC2292D1880010C78A /* SignVC.h */,
 				366201BD2292D1880010C78A /* SignVC.m */,
+				3650426C229A4D470040383C /* SignVideoVC.h */,
+				3650426D229A4D470040383C /* SignVideoVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -3260,6 +3268,8 @@
 				366201BA2292D1740010C78A /* SignTableView.m */,
 				366201C32292D4040010C78A /* SignCell.h */,
 				366201C42292D4040010C78A /* SignCell.m */,
+				3650426F229A4D5E0040383C /* SignVideoTableView.h */,
+				36504270229A4D5E0040383C /* SignVideoTableView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -5832,6 +5842,7 @@
 				7A13AE36211002A400B8F785 /* SurveyInformationVC.m in Sources */,
 				7A0F8EAF211BD71800BA8358 /* InstallationDetailsVC.m in Sources */,
 				7A3582C52117F01D006FB5B5 /* BankLendingDetailsVC.m in Sources */,
+				36504271229A4D5E0040383C /* SignVideoTableView.m in Sources */,
 				36C02DF8227FE86D007EC7CF /* AddTaskTableView.m in Sources */,
 				3662016F22924ED50010C78A /* RepayModel.m in Sources */,
 				7A13ADB9210F029900B8F785 /* ApplyCancellationTableView.m in Sources */,
@@ -5972,6 +5983,7 @@
 				36C02DE9227FDA19007EC7CF /* CheckTableView2.m in Sources */,
 				7A0F8EA2211B0D3800BA8358 /* SelVideoPlayer.m in Sources */,
 				1F651A522275B33200EFB78B /* ToApplyForEncapsulationCell.m in Sources */,
+				3650426E229A4D470040383C /* SignVideoVC.m in Sources */,
 				7A35825221119AB7006FB5B5 /* CustomerInvalidModel.m in Sources */,
 				B89ACB8621C8910A00186F58 /* CarDetailTb.m in Sources */,
 				36294E4E22855B6C004C4479 /* AgentCheckVC.m in Sources */,

@@ -55,25 +55,25 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
-    if ([state isEqualToString:@"003_02"]) {
+    if ([state isEqualToString:@"j2"]) {
         DepartmentAuditVC * vc = [DepartmentAuditVC new];
         vc.model =self.model[index];
         vc.title = @"清欠催收部审核";
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if ([state isEqualToString:@"003_03"]) {
+    if ([state isEqualToString:@"j3"]) {
         SettlementAuditDetailsVC *vc = [SettlementAuditDetailsVC new];
         vc.model = self.model[index];
         vc.title = @"驻行人员审核";
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if ([state isEqualToString:@"003_04"]) {
+    if ([state isEqualToString:@"j4"]) {
         ManagerAuditVC *vc = [ManagerAuditVC new];
         vc.model = self.model[index];
         vc.title = @"总经理审核";
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if ([state isEqualToString:@"003_05"]) {
+    if ([state isEqualToString:@"j5"]) {
         ManagerAuditVC *vc = [ManagerAuditVC new];
         vc.model = self.model[index];
         vc.title = @"财务审核";
@@ -86,7 +86,7 @@
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"630520";
-    NSArray *array = @[@"003_02",@"003_03",@"003_04",@"003_05"];
+    NSArray *array = @[@"j2",@"j3",@"j4",@"j5"];
     helper.parameters[@"curNodeCodeList"] = array;
     helper.parameters[@"refType"] = @"0";
 //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
@@ -110,7 +110,7 @@
     }];
     [self.tableView addLoadMoreAction:^{
 
-        NSArray *array = @[@"003_02",@"003_03",@"003_04",@"003_05"];
+        NSArray *array = @[@"j2",@"j3",@"j4",@"j5"];
         helper.parameters[@"curNodeCodeList"] = array;
         helper.parameters[@"refType"] = @"0";
 //        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];

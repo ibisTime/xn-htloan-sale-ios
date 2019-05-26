@@ -95,7 +95,7 @@
     
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"630543";
-    helper.parameters[@"curNodeCodeList"] = @[@"003_01"];
+    helper.parameters[@"curNodeCodeList"] = @[@"j1"];
     helper.parameters[@"refType"] = @"0";
     helper.isList = NO;
     helper.isCurrency = YES;

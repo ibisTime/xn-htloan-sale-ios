@@ -51,7 +51,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.t
     self.title = @"发件";
-    [self initTableView];
+    
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632156";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }else{
+        http.parameters[@"code"] = self.model.code;
+    }
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [DataTransferModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
     [self loadCadList];
     self.cadList = [NSMutableArray array];
     self.fileIdList = [NSMutableArray array];

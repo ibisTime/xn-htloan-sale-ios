@@ -79,6 +79,9 @@
 
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithInfo:@"提交成功"];
+//        [self.navigationController popViewControllerAnimated:YES];
+        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         WGLog(@"%@",error);

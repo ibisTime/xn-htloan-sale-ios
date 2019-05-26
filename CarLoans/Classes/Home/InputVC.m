@@ -25,11 +25,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"入档";
-    [self initTable];
+//    [self initTable];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }else{
+        http.parameters[@"code"] = self.model.code;
+    }
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTable];
+    } failure:^(NSError *error) {
+        
+    }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDADPEOPLENOTICE object:nil];
-    
-//    UIButton * button = [UIButton buttonWithTitle:@"确认" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];
-    // Do any additional setup after loading the view.
+
 }
 - (void)InfoNotificationAction:(NSNotification *)notification
 {

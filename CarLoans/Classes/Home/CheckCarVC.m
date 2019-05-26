@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"确认提交";
-    [self inittable];
+    [self loaddetails];
     // Do any additional setup after loading the view.
 }
 -(void)inittable{
@@ -28,7 +28,21 @@
     self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
 }
-
+-(void)loaddetails{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }else
+        http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);
+        self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self inittable];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
     UITextField * text = [self.view viewWithTag:1001];

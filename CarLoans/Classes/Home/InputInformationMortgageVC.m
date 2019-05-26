@@ -73,15 +73,24 @@
     // Do any additional setup after loading the view.
     self.title = @"抵押提交银行";
     date = @"";
-    //    _invoiceArray = [NSMutableArray array];
-    //    _CertificateArray  = [NSMutableArray array];
-    //    _insuranceArray  = [NSMutableArray array];
-    //    _BusinessRisksArray  = [NSMutableArray array];
-    //    _otherArray = [NSMutableArray array];
     _GreenBigBenArray = [NSMutableArray array];
-    [self initTableView];
+    [self loaddetails];
 }
-
+-(void)loaddetails{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }else
+        http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);
+        self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 - (void)initTableView {
     self.tableView = [[InputInformationMortgageTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;

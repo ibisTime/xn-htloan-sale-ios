@@ -12,4 +12,5 @@
 
 @property (nonatomic , strong)GPSInstallationModel *model;
 
+@property (nonatomic,strong) NSString * code;
 @end

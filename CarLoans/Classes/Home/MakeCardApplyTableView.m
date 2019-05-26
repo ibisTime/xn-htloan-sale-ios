@@ -143,7 +143,7 @@
                 cell = [[ChooseCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.name = @"寄送地址";
+            cell.name = @"*寄送地址";
             cell.detailsLabel.tag = 10000;
             return cell;
     }
@@ -154,7 +154,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 0) {
-        cell.name = @"详细地址";
+        cell.name = @"*详细地址";
         cell.nameText = @"请输入详细地址";
         cell.nameTextField.tag = 10001;
     }else{
@@ -178,9 +178,9 @@
 -(void)appraisalReportBtnClick:(UIButton *)sender
 {
     if (self.specialQuatoPic.length > 0) {
-        return;
+        [[BaseModel user]AlterImageByUrl:self.specialQuatoPic];
     }
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+    else if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
         [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:sender.tag selectRowState:@"addspecialQuatoPic"];
     }
 }

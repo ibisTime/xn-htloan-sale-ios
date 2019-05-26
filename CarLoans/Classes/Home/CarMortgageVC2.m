@@ -75,10 +75,8 @@
         //        insideMortgatee *vc = [[insideMortgatee alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
-        
     }else if ( [model.curNodeCode isEqualToString:@"002_21"]){
         //内勤录入抵押信息
-        
         BankMortgatee *vc = [[BankMortgatee alloc]init];
         
         vc.model = self.model[index];

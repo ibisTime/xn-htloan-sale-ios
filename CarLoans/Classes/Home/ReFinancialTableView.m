@@ -30,7 +30,7 @@
     
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
@@ -44,12 +44,15 @@
 //    }
     if (indexPath.section == 1) {
          NSArray * collectDataArray = [self.peopleAray[0][@"advance_fund_amount_pdf"] componentsSeparatedByString:@"||"];
-        return 180 * ((collectDataArray.count / 3) + 1);
+        return 150 * ((collectDataArray.count / 3) + 1);
     }
     if (indexPath.section == 2) {
-        return 180;
+        return 150;
 //         NSArray * collectDataArray = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];
 //        return 180 * ((collectDataArray.count / 3) + 1);
+    }
+    if (indexPath.section == 3) {
+        return 50;
     }
     return 50;
     
@@ -61,7 +64,10 @@
     if (section == 0) {
         return 0.01;
     }
-    return 50;
+    if (section == 1 ||section == 2) {
+        return 50;
+    }
+    return 0.01;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -127,6 +133,13 @@
        
         NSArray * collectDataArray = [self.peopleAray[0][@"advance_fund_amount_pdf"] componentsSeparatedByString:@"||"];
         cell.collectDataArray = collectDataArray;
+        return cell;
+    }
+    if (indexPath.section == 3) {
+        ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.name = @"*垫资账号";
+        cell.tag = 1050 + indexPath.row;
         return cell;
     }
 //    if (indexPath.section == 2){

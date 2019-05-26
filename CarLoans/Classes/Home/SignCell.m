@@ -55,7 +55,7 @@
 //        lineView.backgroundColor = LineBackColor;
 //        [self.contentView addSubview:lineView];
         //        int k = 15;
-        int k = 4;
+        int k = 5;
         
         //        if (self.isGps == YES) {
         //            k = 13;
@@ -87,7 +87,7 @@
         
         _button1 = [UIButton buttonWithTitle:@"还款计划" titleColor:MainColor backgroundColor:kClearColor titleFont:15 cornerRadius:5];
         kViewBorderRadius(_button1, 5, 1, MainColor);
-        _button1.frame = CGRectMake(SCREEN_WIDTH - 115, 155, 100, 30);
+        _button1.frame = CGRectMake(SCREEN_WIDTH - 115, 185, 100, 30);
         [self addSubview:_button1];
         _button1.hidden = YES;
         
@@ -162,57 +162,23 @@
     line.backgroundColor = kLineColor;
     [self addSubview:line];
 }
--(void)setSignModel:(SignModel *)signModel{
-//    _codeLabel.text = [NSString stringWithFormat:@"%@",settlementAuditModel.code];
-//    _stateLabel.text = [[BaseModel user]note:settlementAuditModel.curNodeCode];
-    
-    //    NSArray *nameArray = @[
-    //                           @"业务编号",
-    //                           @"贷款人",
-    //                           @"手机号",
-    //                           @"贷款银行",
-    //                           @"贷款金额（元）",
-    //                           @"贷款期数",
-    //                           @"剩余期数",
-    //                           @"还款日",
-    //                           @"月供（元）",
-    //                           @"剩余欠款(元)",
-    //                           @"未还清收总成本(元)",
-    //                           @"逾期金额(元)",
-    //                           @"累计逾期期数",
-    //                           @"实际逾期期数",
-    //                           @"放款日期"];
+-(void)setSignModel:(SurveyModel *)signModel{
+
     NSArray *nameArray = @[
                            @"业务编号",
-                           @"格式",
-                           @"开始时间",
-                           @"结束时间"];
-    //    NSString *bizType;
+                           @"客户姓名",
+                           @"意向车型",
+                           @"意向金额",
+                           @"生成时间"
+                                  ];
     
-    
-    //    NSArray *InformationArray = @[
-    //                                  [NSString stringWithFormat:@"%@",repayModel.code],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.user[@"realName"]],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.user[@"mobile"]],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.loanBankName],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.loanAmount floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.periods],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.restPeriods],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.monthDatetime],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.monthAmount floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.restAmount floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.restTotalCost floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.overdueAmount floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.totalOverdueCount],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.curOverdueCount],
-    //                                  [repayModel.bankFkDatetime convertToDetailDate]
-    //                                  ];
     
     NSArray *InformationArray = @[
-                                  [NSString stringWithFormat:@"%@",signModel.bizCode],
-                                  [NSString stringWithFormat:@"%@",signModel.fileFormat],
-                                  [NSString stringWithFormat:@"%@",[signModel.startTime convertDateWithFormat:@"yyyy-MM-dd HH-mm"]],
-                                  [NSString stringWithFormat:@"%@",[signModel.endTime convertDateWithFormat:@"yyyy-MM-dd HH-mm"]]
+                                  [NSString stringWithFormat:@"%@",signModel.code],
+                                  [NSString stringWithFormat:@"%@",signModel.creditUser[@"userName"]],
+                                  [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:signModel.carInfoRes[@"carBrand"]],[BaseModel convertNull:signModel.carInfoRes[@"carSeries"]],[BaseModel convertNull:signModel.carInfoRes[@"carModel"]],[BaseModel convertNull:signModel.carInfoRes[@"carColor"]]],
+                                  [NSString stringWithFormat:@"%.2f",[signModel.carInfoRes[@"originalPrice"] floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@",[signModel.intevDateTime convertDate]]
                                   ];
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
@@ -221,7 +187,7 @@
         InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
     }
     
-    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 141,SCREEN_WIDTH, 1)];
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 175,SCREEN_WIDTH, 1)];
     line.backgroundColor = kLineColor;
     [self addSubview:line];
 }

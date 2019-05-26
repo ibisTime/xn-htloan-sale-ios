@@ -33,10 +33,10 @@
         return;
     }
     TLNetworking * http = [[TLNetworking alloc]init];
-    if ([self.model.curNodeCode isEqualToString:@"003_04"]) {
+    if ([self.model.curNodeCode isEqualToString:@"j4"]) {
         http.code = @"630552";
     }
-    if ([self.model.curNodeCode isEqualToString:@"003_05"]) {
+    if ([self.model.curNodeCode isEqualToString:@"j5"]) {
         http.code = @"630553";
     }
     

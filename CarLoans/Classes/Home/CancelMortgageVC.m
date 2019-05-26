@@ -49,7 +49,7 @@
     helper.code = @"630520";
     //    helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
-    helper.parameters[@"curNodeCode"] = @"003_06";
+    helper.parameters[@"curNodeCode"] = @"j6";
     //    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.parameters[@"refType"] = @"0";
     helper.isList = NO;

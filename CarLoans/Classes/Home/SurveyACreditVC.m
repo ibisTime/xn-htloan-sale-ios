@@ -497,7 +497,7 @@
     http.parameters[@"bizType"] = [NSString stringWithFormat:@"%ld",bizType];
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     if (![textField1.text isEqualToString:@""]) {
-        http.parameters[@"loanAmount"] = @([textField1.text integerValue] * 1000);
+        http.parameters[@"creditLoanAmount"] = @([textField1.text integerValue] * 1000);
 
     }
     http.parameters[@"creditUserList"] = peopleArray;

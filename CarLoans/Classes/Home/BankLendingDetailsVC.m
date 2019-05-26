@@ -24,7 +24,20 @@
     // Do any additional setup after loading the view.t
     self.title = @"确认银行提交";
     date = @"";
-    [self initTableView];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }else{
+        http.parameters[@"code"] = self.model.code;
+    }
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+//    [self initTableView];
 }
 
 - (void)initTableView {

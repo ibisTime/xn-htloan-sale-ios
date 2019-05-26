@@ -53,7 +53,10 @@
     [cell.button setTitle:[[BaseModel user]note:self.model[indexPath.row].cancelNodeCode] forState:(UIControlStateNormal)];
     cell.button.tag = indexPath.row;
     [cell.button addTarget:self action:@selector(clickbutton:) forControlEvents:(UIControlEventTouchUpInside)];
-    cell.hidden = NO;
+//    cell.hidden = NO;
+    if ([self.model[indexPath.row].cancelNodeCode isEqualToString:@"i3"]) {
+        cell.button.hidden = YES;
+    }
     return cell;
 }
 -(void)clickbutton:(UIButton *)sender{
@@ -80,6 +83,10 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+    if ([self.model[indexPath.row].cancelNodeCode isEqualToString:@"i3"]) {
+        return 340;
+    }
     return 380;
 }
 

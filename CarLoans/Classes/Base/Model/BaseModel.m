@@ -250,7 +250,7 @@
     for (int i = 0;  i < dvalueArray.count; i ++) {
         [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",dvalueArray[i]]]];
     }
-    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 300, 0) style:UITableViewStylePlain];
     view.isSingle = YES;
     view.array = array;
     view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
@@ -383,5 +383,27 @@
         }
     }
     return code;
+}
+-(void)AlterImageByUrl:(NSString *)url{
+    NSMutableArray *muArray = [NSMutableArray array];
+    NSArray * arr = [NSArray array];
+    if ([url containsString:@"||"]) {
+        arr = [url componentsSeparatedByString:@"||"];
+    }else
+        arr = @[url];
+    
+//    NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
+    for (int i = 0; i < arr.count; i++) {
+        [muArray addObject:[arr[i] convertImageUrl]];
+    }
+    NSArray *seleteArray = muArray;
+    
+    if (muArray.count > 0) {
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+            return seleteArray;
+        }];
+        
+    }
 }
 @end

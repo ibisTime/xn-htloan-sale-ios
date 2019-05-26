@@ -70,14 +70,6 @@
             }
         }
         
-//        UploadVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadVideo forIndexPath:indexPath];
-//        static NSString *CellIdentifier = @"Cell";
-//        UploadVideoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-//        if (cell == nil) {
-//            cell = [[UploadVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//
-//        }
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         cell.isEditor = NO;

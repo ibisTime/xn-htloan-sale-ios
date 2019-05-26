@@ -24,6 +24,18 @@
     [self navigativeView];
     [self initTableView];
     [self LoadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
+}
+
+#pragma mark -- 接收到通知
+- (void)InfoNotificationAction:(NSNotification *)notification{
+    [self LoadData];
+}
+
+#pragma mark -- 删除通知
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LOADDATAPAGE object:nil];
 }
 
 - (void)initTableView {
@@ -54,11 +66,11 @@
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
 //    if ([self.model[index].cancelNodeCode isEqualToString:@"i1"]) {
-//        YeWuCheckVC * vc = [YeWuCheckVC new];
-//        vc.model = self.model[index];
-//        [self.navigationController pushViewController:vc animated:YES];
+        YeWuCheckVC * vc = [YeWuCheckVC new];
+        vc.model = self.model[index];
+        [self.navigationController pushViewController:vc animated:YES];
 //    }
-    NSLog(@"%ld",index);
+//    NSLog(@"%ld",index);
 }
 
 
@@ -74,9 +86,8 @@
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632515";
     NSArray *array = @[@"i1",@"i2",@"i3"];
+    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.parameters[@"cancelNodeCodeList"] = array;
-//    helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-//    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

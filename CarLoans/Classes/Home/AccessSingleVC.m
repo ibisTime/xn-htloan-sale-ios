@@ -49,7 +49,7 @@
 
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632515";
-
+    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

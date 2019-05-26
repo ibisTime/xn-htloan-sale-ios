@@ -31,7 +31,7 @@
         return 8;
     }
     else if (section == 1){
-        return 2;
+        return 3;
     }
     return 1;
 }
@@ -73,7 +73,7 @@
         if(cell==nil){
             cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
         }
-        NSArray * arr = @[@"*代理人",@"*代理人身份证号"];
+        NSArray * arr = @[@"*代理人",@"*代理人身份证号",@"*抵押地点"];
         if (indexPath.row == 0) {
             NSString * str1 = self.model.carPledge[@"pledgeUser"];
             if (str1.length > 0) {
@@ -84,6 +84,12 @@
         if (indexPath.row == 1) {
             if (str2.length > 0) {
                 cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
+            }
+        }
+        NSString * str3 = self.model.carPledge[@"pledgeAddress"];
+        if (indexPath.row == 2) {
+            if (str3.length > 0) {
+                cell.nameTextField.text = self.model.carPledge[@"pledgeAddress"];
             }
         }
         

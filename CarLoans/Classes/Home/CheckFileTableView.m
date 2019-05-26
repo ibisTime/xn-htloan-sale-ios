@@ -24,15 +24,15 @@
     return self;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         return 8;
     }
-    if (section == 2) {
-        return self.FileArray.count;
-    }
+//    if (section == 2) {
+//        return self.FileArray.count;
+//    }
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -94,7 +94,7 @@
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         return 150;
     }
     return 50;
@@ -108,7 +108,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 2) {
+    if (section == 1) {
         return 100;
     }
     return 0.01;
@@ -124,7 +124,7 @@
     [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"delect"];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section == 2) {
+    if (section == 1) {
         UIView *headView = [[UIView alloc]init];
         UIButton *initiateButton = [UIButton buttonWithTitle:@"确认" titleColor:[UIColor whiteColor] backgroundColor:MainColor titleFont:18];
         initiateButton.frame = CGRectMake(15, 30, SCREEN_WIDTH - 30, 50);

@@ -31,7 +31,20 @@
     self.array = [NSMutableArray arrayWithArray:array1];
     self.baseModel = [BaseModel new];
     self.baseModel.ModelDelegate = self;
-    [self initTableView];
+//    [self initTableView];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }else{
+        http.parameters[@"code"] = self.model.code;
+    }
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)initTableView {

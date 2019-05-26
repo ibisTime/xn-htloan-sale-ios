@@ -11,5 +11,5 @@
 @interface InputInformationMortgageVC : BaseViewController
 
 @property (nonatomic , strong)AccessSingleModel *model;
-
+@property (nonatomic,strong) NSString * code;
 @end

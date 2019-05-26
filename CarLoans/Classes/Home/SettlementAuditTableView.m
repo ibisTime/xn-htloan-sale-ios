@@ -77,20 +77,20 @@
     }
 
     SettlementAuditModel *model = self.model[indexPath.row];
-    if ([model.curNodeCode isEqualToString:@"003_02"]) {
+    if ([model.curNodeCode isEqualToString:@"j2"]) {
         cell.button.hidden = NO;
         [cell.button setTitle:@"清欠催收部审核" forState:(UIControlStateNormal)];
         
     }
-    else if ([model.curNodeCode isEqualToString:@"003_03"]) {
+    else if ([model.curNodeCode isEqualToString:@"j3"]) {
         cell.button.hidden = NO;
         [cell.button setTitle:@"驻行人员审核" forState:(UIControlStateNormal)];
     }
-    else if ([model.curNodeCode isEqualToString:@"003_04"]) {
+    else if ([model.curNodeCode isEqualToString:@"j4"]) {
         cell.button.hidden = NO;
         [cell.button setTitle:@"总经理审核" forState:(UIControlStateNormal)];
     }
-    else if ([model.curNodeCode isEqualToString:@"003_05"]) {
+    else if ([model.curNodeCode isEqualToString:@"j5"]) {
         cell.button.hidden = NO;
         [cell.button setTitle:@"财务审核" forState:(UIControlStateNormal)];
     }
@@ -129,7 +129,7 @@
 {
 //    SettlementAuditModel *model = self.model[indexPath.row];
     return 350;
-//    if ([model.curNodeCode  isEqualToString:@"003_03"]) {
+//    if ([model.curNodeCode  isEqualToString:@"j3"]) {
 //        return 295;
 //    }else
 //    {

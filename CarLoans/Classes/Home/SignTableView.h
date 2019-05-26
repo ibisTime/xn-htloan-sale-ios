@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SignTableView : TLTableView<UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic,strong) NSMutableArray<SignModel *> * model;
+@property (nonatomic,strong) NSMutableArray<SurveyModel *> * model;
 @end
 
 NS_ASSUME_NONNULL_END

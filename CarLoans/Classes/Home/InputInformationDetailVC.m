@@ -22,7 +22,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"详情";
-    [self initTableView];
+    [self loaddetails];
+}
+-(void)loaddetails{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }else
+        http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);
+        self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)initTableView {
@@ -30,6 +45,7 @@
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
+//    [self.view addSubview:self.tableView];
     [self.view addSubview:self.tableView];
 }
 

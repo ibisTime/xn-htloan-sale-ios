@@ -116,16 +116,25 @@
             if(cell==nil){
                 cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
             }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             NSArray * arr = @[@"*抵押地点",@"*代理人",@"*代理人身份证号"];
             cell.name = arr[indexPath.row - 4];
             cell.nameTextField.tag = 1000+indexPath.row;
+            if (indexPath.row == 4) {
+                NSString * str = self.model.carPledge[@"pledgeAddress"];
+                if (str.length > 0) {
+                    cell.nameTextField.text = self.model.carPledge[@"pledgeAddress"];
+                }
+            }
             if (indexPath.row == 5) {
-                if (self.model.carPledge[@"pledgeUser"]) {
+                NSString * str = self.model.carPledge[@"pledgeUser"];
+                if (str.length > 0) {
                     cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
                 }
             }
             if (indexPath.row == 6) {
-                if (self.model.carPledge[@"pledgeUserIdCard"]) {
+                NSString * str = self.model.carPledge[@"pledgeUser"];
+                if (str.length > 0) {
                     cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
                 }
             }

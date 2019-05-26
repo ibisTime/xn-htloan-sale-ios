@@ -57,4 +57,5 @@
 -(NSString *)setCompanyFullName:(NSString *)fullName;
 -(NSString *)setCompanyCode:(NSString *)code;
 -(void)ReturnsEnterLocation:(NSString *)parentKey;
+-(void)AlterImageByUrl:(NSString *)url;
 @end

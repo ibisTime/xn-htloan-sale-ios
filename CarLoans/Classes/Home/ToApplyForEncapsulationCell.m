@@ -15,9 +15,9 @@
 #import "ToApplyForEncapsulationCell.h"
 
 @implementation ToApplyForEncapsulationCell
-{
-    UIImageView *chooseImg;
-}
+//{
+//    UIImageView *chooseImg;
+//}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -49,9 +49,9 @@
         chooseLbl.text = @"请选择";
         [self addSubview:chooseLbl];
         
-        chooseImg = [[UIImageView alloc]initWithFrame:CGRectMake(chooseLbl.xx + 9, 40, 6, 12)];
-        chooseImg.image = kImage(@"跳转");
-        [self addSubview:chooseImg];
+        self.chooseImg = [[UIImageView alloc]initWithFrame:CGRectMake(chooseLbl.xx + 9, 40, 6, 12)];
+        self.chooseImg.image = kImage(@"跳转");
+        [self addSubview:self.chooseImg];
         
         UILabel *showLbl = [UILabel labelWithFrame:CGRectMake(15, 39, SCREEN_WIDTH - 137, 14) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#333333")];
         self.showLbl = showLbl;
@@ -73,7 +73,7 @@
     if (type == InputType)
     {
         self.chooseLbl.hidden = YES;
-        chooseImg.hidden = YES;
+        self.chooseImg.hidden = YES;
         self.showLbl.hidden = YES;
         self.inputTextField.hidden = NO;
         
@@ -81,14 +81,14 @@
     else if (type == ChooseType)
     {
         self.chooseLbl.hidden = NO;
-        chooseImg.hidden = NO;
+        self.chooseImg.hidden = NO;
         self.showLbl.hidden = YES;
         self.inputTextField.hidden = YES;
     }
     else
     {
         self.chooseLbl.hidden = YES;
-        chooseImg.hidden = YES;
+        self.chooseImg.hidden = YES;
         self.showLbl.hidden = NO;
         self.inputTextField.hidden = YES;
     }

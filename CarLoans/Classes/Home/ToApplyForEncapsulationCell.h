@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, UIType) {
 @property (nonatomic , strong)UILabel *chooseLbl;
 
 @property (nonatomic , copy)NSString *bottomStr;
+@property (nonatomic,strong) UIImageView *chooseImg;;
 
 @end
 

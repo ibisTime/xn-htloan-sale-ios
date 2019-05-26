@@ -24,7 +24,10 @@
     self.view.backgroundColor = kWhiteColor;
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
-    http.parameters[@"code"] = self.model.code;
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }else
+        http.parameters[@"code"] = self.model.code;
     
     self.passBtn = [UIButton buttonWithTitle:@"通过" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];
     self.passBtn.tag = 1001;

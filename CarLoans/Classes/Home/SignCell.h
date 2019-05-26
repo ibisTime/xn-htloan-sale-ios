@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign)BOOL isCar;
 
 @property (nonatomic,assign) BOOL isFinancial;
-@property (nonatomic,strong) SignModel * signModel;
+@property (nonatomic,strong) SurveyModel * signModel;
 @end
 
 NS_ASSUME_NONNULL_END

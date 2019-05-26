@@ -12,7 +12,7 @@
 @interface ReceivesAuditVC : BaseViewController
 
 @property (nonatomic , strong)DataTransferModel *model;
-
+@property (nonatomic,strong) NSString * code;
 @property (nonatomic , assign)BOOL isGps;
 
 @property (nonatomic , strong)NSMutableArray <CadListModel *>*models;

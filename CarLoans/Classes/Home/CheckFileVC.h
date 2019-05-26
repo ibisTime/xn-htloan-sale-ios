@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckFileVC : BaseViewController
 @property (nonatomic,strong) AccessSingleModel * model;
+@property (nonatomic,strong) NSString * code;
 @end
 
 NS_ASSUME_NONNULL_END

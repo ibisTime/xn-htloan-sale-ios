@@ -12,6 +12,6 @@
 @interface SenderVC : BaseViewController
 
 @property (nonatomic , strong)DataTransferModel *model;
-
+@property (nonatomic,strong) NSString * code;
 @property (nonatomic,strong) NSString * state;
 @end

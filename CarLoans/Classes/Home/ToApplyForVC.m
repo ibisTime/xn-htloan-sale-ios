@@ -1577,7 +1577,7 @@
     if ([BaseModel isBlankString:self.model.loanInfo[@"periods"]] == NO) {
         
         right1Label1.text = [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]];
-        right1Label2.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"bankRate"] floatValue]]];
+        right1Label2.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.4f",[self.model.loanInfo[@"bankRate"] floatValue]]];
         right1Label4.text = [BaseModel convertNull:self.model.loanInfo[@"loanProductName"]];
         right1Label5.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000]];
         right1Label6.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"authFee"] floatValue]/1000]];
