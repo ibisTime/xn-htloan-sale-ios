@@ -71,7 +71,7 @@
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"*档案存放位置";
-        cell.detailsLabel.text = self.location;
+        cell.detailsLabel.text = self.filelocation;
         return cell;
     }
     if (indexPath.section == 2) {

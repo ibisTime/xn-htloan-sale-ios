@@ -37,6 +37,7 @@
     TLNetworking *http = [TLNetworking new];
     http.code = @"630036";
     http.parameters[@"parentKey"] = @"cdbiz_status";
+    
     [http postWithSuccess:^(id responseObject) {
         
         self.tableView.dataArray = responseObject[@"data"];
@@ -69,6 +70,7 @@
     helper.code = @"632515";
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+    helper.parameters[@"isMy"] = @"1";
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

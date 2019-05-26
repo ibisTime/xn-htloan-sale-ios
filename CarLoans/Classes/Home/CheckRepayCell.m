@@ -78,7 +78,7 @@
             
             _InformationLabel = [UILabel labelWithFrame:CGRectMake(115 , 70 + i % k * 35, SCREEN_WIDTH - 130, 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
             _InformationLabel.tag = 1000000 + i;
-            [self.contentView addSubview:_InformationLabel];
+            [self addSubview:_InformationLabel];
         }
         _button = [UIButton buttonWithTitle:@"提前还款申请" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
         _button.frame =CGRectMake(SCREEN_WIDTH - 230, 295, 100, 30);
@@ -219,22 +219,6 @@
     _codeLabel.text = [NSString stringWithFormat:@"%@",ConfirmrepayModel.code];
     _stateLabel.text = [[BaseModel user]note:ConfirmrepayModel.curNodeCode];
     
-    //    NSArray *nameArray = @[
-    //                           @"业务编号",
-    //                           @"贷款人",
-    //                           @"手机号",
-    //                           @"贷款银行",
-    //                           @"贷款金额（元）",
-    //                           @"贷款期数",
-    //                           @"剩余期数",
-    //                           @"还款日",
-    //                           @"月供（元）",
-    //                           @"剩余欠款(元)",
-    //                           @"未还清收总成本(元)",
-    //                           @"逾期金额(元)",
-    //                           @"累计逾期期数",
-    //                           @"实际逾期期数",
-    //                           @"放款日期"];
     NSArray *nameArray = @[
                            @"业务编号",
                            @"贷款人",
@@ -242,27 +226,7 @@
                            @"当前期数",
                            @"本月还款日",
                            @"月供"];
-    //    NSString *bizType;
-    
-    
-    //    NSArray *InformationArray = @[
-    //                                  [NSString stringWithFormat:@"%@",repayModel.code],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.user[@"realName"]],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.user[@"mobile"]],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.loanBankName],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.loanAmount floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.periods],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.restPeriods],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.monthDatetime],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.monthAmount floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.restAmount floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.restTotalCost floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%.2f",[repayModel.overdueAmount floatValue]/1000],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.totalOverdueCount],
-    //                                  [NSString stringWithFormat:@"%@",repayModel.curOverdueCount],
-    //                                  [repayModel.bankFkDatetime convertToDetailDate]
-    //                                  ];
-    
+ 
     NSArray *InformationArray = @[
                                   [NSString stringWithFormat:@"%@",ConfirmrepayModel.code],
                                   [NSString stringWithFormat:@"%@",ConfirmrepayModel.user[@"realName"]],
@@ -274,8 +238,10 @@
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
+        nameLabel.backgroundColor = kClearColor;
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
         InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+        InformationLabel.backgroundColor = kClearColor;
     }
     
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 280,SCREEN_WIDTH, 1)];

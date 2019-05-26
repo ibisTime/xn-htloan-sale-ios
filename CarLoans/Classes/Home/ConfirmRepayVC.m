@@ -75,8 +75,6 @@
     self.tableView = [[ConfirmRepayTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
-    
-//    [_tableView setEditing:YES animated:YES];
     [self.view addSubview:self.tableView];
 }
 #pragma mark -- 接收到通知

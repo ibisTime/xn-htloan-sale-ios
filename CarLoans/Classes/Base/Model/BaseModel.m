@@ -105,6 +105,9 @@
     else if (object==nil){
         return @"";
     }
+    else if ([object isEqualToString:@"0.00"]){
+        return @"";
+    }
     return object;
 
 }
@@ -200,6 +203,30 @@
     }
     [self CustomBouncedView:array1 setState:@""];
 }
+-(void)ReturnsEnterLocation:(NSString *)parentKey{
+    NSMutableArray *dataArray = [NSMutableArray array];
+    NSArray *array = [USERDEFAULTS objectForKey:ENTERLOCATION];
+    for (int i = 0; i < array.count; i ++) {
+//        if ([array[i][@"parentKey"] isEqualToString:parentKey]) {
+            [dataArray addObject:array[i]];
+//        }
+    }
+    NSMutableArray *array1 = [NSMutableArray array];
+    for (int i = 0; i < dataArray.count; i ++) {
+        [array1 addObject:dataArray[i]];
+    }
+    [self CustomBouncedView:array1 setState:@"1"];
+}
+-(NSString *)ReturnEnterNameByCode:(NSString *)code{
+    NSString * name;
+    NSArray *array = [USERDEFAULTS objectForKey:ENTERLOCATION];
+    for (int i = 0; i < array.count; i++) {
+        if ([array[i][@"code"] isEqualToString:code]) {
+            name = array[i][@"name"];
+        }
+    }
+    return name;
+}
 
 //弹框
 -(void)CustomBouncedView:(NSMutableArray *)nameArray setState:(NSString *)state
@@ -207,7 +234,13 @@
     NSMutableArray *dvalueArray = [NSMutableArray array];
     if ([state isEqualToString:@"100"]) {
         dvalueArray = nameArray;
-    }else
+    }
+    else if ([state isEqualToString:@"1"]){
+        for (int i = 0; i < nameArray.count ; i ++) {
+            [dvalueArray addObject:nameArray[i][@"name"]];
+        }
+    }
+    else
     {
         for (int i = 0; i < nameArray.count ; i ++) {
             [dvalueArray addObject:nameArray[i][@"dvalue"]];

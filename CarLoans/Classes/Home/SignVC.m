@@ -105,39 +105,13 @@
 
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
-//    NSString *videoURL = @"http://www.51ios.net/archives/784";
-    
-//    MPMoviePlayerController * Movie = [[MPMoviePlayerController alloc]initWithContentURL:[NSURL URLWithString:videoURL]];
-//    Movie.shouldAutoplay = NO;
-//    [self.navigationController pushViewController:Movie animated:YES];
-    
-    
-    
-//    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     // 3、配置媒体播放控制器
     AVPlayerViewController *_playerViewController = [[AVPlayerViewController alloc]  init];
     // 设置媒体源数据
     NSString*  urlStr = [NSString stringWithFormat:@"%@",self.model[index].videoUrl];
-//    NSString* Str = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
     NSURL *url;
     url = [NSURL URLWithString:urlStr];
-//    if ([urlStr containsString:@"myqcloud.com"]) {
-//
-//
-//    }else{
-//
-//        NSString* Str = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
-//
-//
-//        if ([[NSFileManager defaultManager] fileExistsAtPath:Str]) {
-//            urlStr = Str;
-//            url = [NSURL fileURLWithPath:urlStr];
-//        }else{
-//
-//            urlStr = [urlStr convertImageUrl];
-//            url = [NSURL URLWithString:urlStr];
-//        }
-//    }
+
     _playerViewController.player = [AVPlayer playerWithURL:url];
     // 设置拉伸模式
     _playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;

@@ -14,7 +14,7 @@
     NSInteger selectRow;
     NSMutableArray * FileArray;
     NSInteger selectNumber;
-    NSInteger locationCode;
+    NSString * locationCode;
 }
 @property (nonatomic,strong) InputTableView * tableView;
 @property (nonatomic,strong) NSMutableArray<FileModel *> * filemodels;
@@ -45,7 +45,7 @@
     self.tableView = [[InputTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.model = self.model;
-    self.tableView.location = [[BaseModel user]setParentKey:@"enter_location" setDkey:@"01"];
+    self.tableView.filelocation = [[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation];
     [self findFile];
     [self.view addSubview:self.tableView];
 }
@@ -66,7 +66,8 @@
     selectNumber = indexPath.section;
     if (indexPath.section == 1) {
         BaseModel *model = [BaseModel new];
-        [model ReturnsParentKeyAnArray:@"enter_location"];
+//        [model ReturnsParentKeyAnArray:@"enter_location"];
+        [model ReturnsEnterLocation:@""];
         model.ModelDelegate = self;
     }
     if (indexPath.section == 2) {
@@ -81,8 +82,8 @@
     WGLog(@"%@",dic);
     if (selectNumber == 1)
     {
-        _tableView.location = Str;
-        locationCode = [dic[@"dkey"] integerValue];
+        _tableView.filelocation = Str;
+        locationCode = [NSString stringWithFormat:@"%@",dic[@"code"]];
     }
     
     [self.tableView reloadData];
@@ -120,7 +121,7 @@
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632134";
     http.parameters[@"code"] = self.model.code;
-    http.parameters[@"enterLocation"] = [NSString stringWithFormat:@"%ld", locationCode];
+    http.parameters[@"enterLocation"] = [NSString stringWithFormat:@"%@", locationCode];
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     [http postWithSuccess:^(id responseObject) {
         NSNotification *notification =[NSNotification notificationWithName:ADDADPEOPLENOTICE object:nil userInfo:nil];

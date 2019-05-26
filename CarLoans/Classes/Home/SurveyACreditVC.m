@@ -15,7 +15,7 @@
     NSInteger bizType;
 
     NSMutableArray *peopleArray;
-
+    NSString * speciesStr;
     
 }
 
@@ -311,13 +311,16 @@
     loanBankCode = self.model.loanBankCode;
     if ([_model.bizType isEqualToString:@"0"]) {
         _tableView.speciesStr = @"新车";
+        speciesStr = @"新车";
 
     }else if([_model.bizType isEqualToString:@"1"])
     {
         _tableView.speciesStr = @"二手车";
+        speciesStr = @"二手车";
     }else
     {
         _tableView.speciesStr = @"";
+        speciesStr = @"";
     }
 //    _tableView.secondCarReport = self.model.secondCarReport;
 //    _tableView.idNoFront = self.model.car
@@ -562,17 +565,26 @@
             model.ModelDelegate = self;
         }
     }
-    if (indexPath.section == 4) {
-        selectRow = indexPath.row;
-        ADPeopleVC *vc = [[ADPeopleVC alloc]init];
-        vc.dataDic = self.tableView.peopleAray[indexPath.row];
-        vc.selectRow = indexPath.row;
-//        if (indexPath.row == 1234) {
-//            vc.isFirstEntry = YES;
-//        }
-        vc.state = self.state;
-        [self.navigationController pushViewController:vc animated:YES];
+    if ([speciesStr isEqualToString:@"新车"] || [speciesStr isEqualToString:@""]) {
+        if (indexPath.section == 2) {
+            selectRow = indexPath.row;
+            ADPeopleVC *vc = [[ADPeopleVC alloc]init];
+            vc.dataDic = self.tableView.peopleAray[indexPath.row];
+            vc.selectRow = indexPath.row;
+            vc.state = self.state;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }else{
+        if (indexPath.section == 4) {
+            selectRow = indexPath.row;
+            ADPeopleVC *vc = [[ADPeopleVC alloc]init];
+            vc.dataDic = self.tableView.peopleAray[indexPath.row];
+            vc.selectRow = indexPath.row;
+            vc.state = self.state;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
+    
 }
 
 //银行卡弹框
@@ -594,10 +606,12 @@
     if (selectNumber == 0)
     {
         _tableView.bankStr = Str;
+        
         loanBankCode = self.bankArray[sid][@"code"];
     }else
     {
         _tableView.speciesStr = Str;
+        speciesStr = Str;
         bizType = [dic[@"dkey"] integerValue];
         NSLog(@"%ld",bizType);
     }

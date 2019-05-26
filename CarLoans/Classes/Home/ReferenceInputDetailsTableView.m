@@ -106,11 +106,7 @@
         [cell addSubview:_photoBtn];
         
         UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-//        if (self.bankCreditReport.count > 0) {
-//            [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.bankCreditReport[0] convertImageUrl]]];
-//        }else{
-             [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
-//        }
+        [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
         [_photoBtn addSubview:photoImage];
         
         UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -122,11 +118,12 @@
         [cell addSubview:selectButton];
         if (self.secondCarReport.length > 0) {
             [selectButton addTarget:self action:@selector(SelectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-            _photoBtn.userInteractionEnabled = NO;
+            [_photoBtn addTarget:self action:@selector(showimage) forControlEvents:(UIControlEventTouchUpInside)];
+//            _photoBtn.userInteractionEnabled = NO;
             selectButton.hidden = NO;
         }else{
             [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-            _photoBtn.userInteractionEnabled = YES;
+//            _photoBtn.userInteractionEnabled = YES;
             selectButton.hidden = YES;
         }
         
@@ -176,6 +173,23 @@
 }
 -(void)SelectButtonClick:(UIButton *)sender{
     [self.ButtonDelegate selectButtonClick:sender];
+}
+-(void)showimage{
+    
+    NSMutableArray *muArray = [NSMutableArray array];
+    NSArray * arr = @[self.secondCarReport];
+    for (int i = 0; i < arr.count; i++) {
+        [muArray addObject:[arr[i] convertImageUrl]];
+    }
+    NSArray *seleteArray = muArray;
+    
+    if (muArray.count > 0) {
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+            return seleteArray;
+        }];
+        
+    }
 }
 -(void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString *)str
 {

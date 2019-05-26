@@ -7,9 +7,9 @@
 //
 
 #import "SettlementAuditTableView.h"
-#import "CustomerInvalidCell.h"
-#define CustomerInvalid @"CustomerInvalidCell"
-
+#import "SettlementAuditCell.h"
+#define SettlementAudit @"SettlementAuditCell"
+//#import "SettlementAuditCell.h"
 
 @interface SettlementAuditTableView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -24,7 +24,7 @@
     if (self = [super initWithFrame:frame style:style]) {
         self.dataSource = self;
         self.delegate = self;
-        [self registerClass:[CustomerInvalidCell class] forCellReuseIdentifier:CustomerInvalid];
+        [self registerClass:[SettlementAuditCell class] forCellReuseIdentifier:SettlementAudit];
 
     }
     return self;
@@ -50,9 +50,9 @@
 
 
     static NSString *CellIdentifier = @"Cell";
-    CustomerInvalidCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+    SettlementAuditCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
     if (cell == nil) {
-        cell = [[CustomerInvalidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[SettlementAuditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SettlementAudit];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
@@ -80,6 +80,7 @@
     if ([model.curNodeCode isEqualToString:@"003_02"]) {
         cell.button.hidden = NO;
         [cell.button setTitle:@"清欠催收部审核" forState:(UIControlStateNormal)];
+        
     }
     else if ([model.curNodeCode isEqualToString:@"003_03"]) {
         cell.button.hidden = NO;
@@ -97,6 +98,9 @@
     {
         cell.button.hidden = YES;
     }
+    [cell.button.titleLabel sizeToFit];
+    
+    cell.button.frame = CGRectMake(SCREEN_WIDTH - cell.button.titleLabel.width - 15, 310, cell.button.titleLabel.width, 30);
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     return cell;
 
@@ -124,7 +128,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    SettlementAuditModel *model = self.model[indexPath.row];
-    return 300;
+    return 350;
 //    if ([model.curNodeCode  isEqualToString:@"003_03"]) {
 //        return 295;
 //    }else

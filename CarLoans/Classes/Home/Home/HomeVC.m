@@ -677,6 +677,15 @@
     } failure:^(NSError *error) {
         
     }];
+    
+    TLNetworking * http3 = [TLNetworking new];
+    http3.isShowMsg = NO;
+    http3.code = @"632827";
+    [http3 postWithSuccess:^(id responseObject) {
+        [USERDEFAULTS setObject:responseObject[@"data"] forKey:ENTERLOCATION];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 

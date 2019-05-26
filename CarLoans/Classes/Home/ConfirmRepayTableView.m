@@ -50,9 +50,12 @@
     [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
     [cell.button1 addTarget:self action:@selector(buttonClick2:) forControlEvents:UIControlEventTouchUpInside];
     
+    
 //    UIView *backGroundView = [[UIView alloc]init];
-//    backGroundView.backgroundColor = kClearColor;
+//    backGroundView.backgroundColor = kWhiteColor;
 //    cell.selectedBackgroundView = backGroundView;
+//
+    cell.contentView.backgroundColor = kWhiteColor;
     
     
     

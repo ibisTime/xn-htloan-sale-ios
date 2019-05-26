@@ -26,7 +26,8 @@
         _allBtn.frame = CGRectMake(10, 0, 40, self.bounds.size.height);
         _allBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_allBtn setTitle:@"全选" forState:UIControlStateNormal];
-        [_allBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [_allBtn setTitleColor:MainColor forState:UIControlStateNormal];
+//        [_allBtn setImage:kImage(@"选中") forState:<#(UIControlState)#>]
     }
     return _allBtn;
 }
@@ -50,7 +51,7 @@
         _deleteBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         _deleteBtn.titleLabel.textAlignment = NSTextAlignmentRight;
         [_deleteBtn setTitle:@"确认还款" forState:UIControlStateNormal];
-        [_deleteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_deleteBtn setTitleColor:MainColor forState:UIControlStateNormal];
     }
     return _deleteBtn;
 }

@@ -61,6 +61,14 @@
 @property (nonatomic , copy)NSString *applyDatetime;
 @property (nonatomic , copy)NSString *curNodeCode;
 @property (nonatomic , copy)NSString *remark;
-
-
+@property (nonatomic,strong) NSDictionary * creditUser;
+@property (nonatomic,strong) NSDictionary * advance;
+@property (nonatomic,strong) NSString * cancelReason;
+@property (nonatomic,strong) NSString * saleUserCompanyName;
+@property (nonatomic,strong) NSString * saleUserDepartMentName;
+@property (nonatomic,strong) NSString * saleUserPostName;
+@property (nonatomic,strong) NSString * insideJobCompanyName;
+@property (nonatomic,strong) NSString * insideJobDepartMentName;
+@property (nonatomic,strong) NSString * insideJobPostName;
+@property (nonatomic,strong) NSString * insideJobName;
 @end

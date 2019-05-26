@@ -77,7 +77,7 @@
         cell.isInput = @"0";
         if ([BaseModel isBlankString:accessSingleModel.code] == NO) {
             NSArray *array = @[
-                               [NSString stringWithFormat:@"%@",accessSingleModel.applyUserName],
+                               [NSString stringWithFormat:@"%@",accessSingleModel.creditUser[@"userName"]],
                                [NSString stringWithFormat:@"%@",accessSingleModel.loanBankName],
                                [NSString stringWithFormat:@"%.2f",[accessSingleModel.loanAmount floatValue]/1000]
                                ];

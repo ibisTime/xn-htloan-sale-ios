@@ -89,7 +89,7 @@
     NSArray *array = @[@"003_02",@"003_03",@"003_04",@"003_05"];
     helper.parameters[@"curNodeCodeList"] = array;
     helper.parameters[@"refType"] = @"0";
-    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
+//    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
@@ -113,7 +113,7 @@
         NSArray *array = @[@"003_02",@"003_03",@"003_04",@"003_05"];
         helper.parameters[@"curNodeCodeList"] = array;
         helper.parameters[@"refType"] = @"0";
-        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
+//        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             NSMutableArray <SettlementAuditModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];

@@ -176,12 +176,73 @@
 //身份证
 -(void)UploadIdCardBtn:(UIButton *)sender
 {
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+//    if (self.idNoFront.length == 0) {
+//        if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+//
+//            [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+//        }
+//    }
+//    if (self.idNoReverse.length == 0){
+//        if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+//
+//            [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+//        }
+//    }
+//    else{
+        if (sender.tag == 50) {
+            if (self.idNoFront.length == 0) {
+                if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+                    
+                    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+                }
+            }
+            else{
+                NSMutableArray *muArray = [NSMutableArray array];
+                NSArray * arr = @[self.idNoFront];
+                for (int i = 0; i < arr.count; i++) {
+                    [muArray addObject:[arr[i] convertImageUrl]];
+                }
+                NSArray *seleteArray = muArray;
+                
+                if (muArray.count > 0) {
+                    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                    [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                        return seleteArray;
+                    }];
+                    
+                }
+            }
+            
+        }
+        else{
+            if (self.idNoReverse.length == 0){
+                if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+                    
+                    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+                }
+            }
+            else{
+                NSMutableArray *muArray = [NSMutableArray array];
+                NSArray * arr = @[self.idNoReverse];
+                for (int i = 0; i < arr.count; i++) {
+                    [muArray addObject:[arr[i] convertImageUrl]];
+                }
+                NSArray *seleteArray = muArray;
+                
+                if (muArray.count > 0) {
+                    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                    [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                        return seleteArray;
+                    }];
+                    
+                }
 
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
-
+            }
+            
+        }
     }
-}
+    
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -10,6 +10,7 @@
 #import "ApplyCancellationVC.h"
 #import "CustomerInvalidModel.h"
 #import "CustomerInvalidTabelView.h"
+#import "YeWuCheckVC.h"
 @interface CustomerInvalidVC ()<RefreshDelegate>
 @property (nonatomic , strong)NSMutableArray <CustomerInvalidModel *>*model;
 @property (nonatomic , strong)CustomerInvalidTabelView *tableView;
@@ -32,10 +33,6 @@
     [self.view addSubview:self.tableView];
 }
 
--(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
 
 -(void)navigativeView
 {
@@ -53,6 +50,19 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
+{
+//    if ([self.model[index].cancelNodeCode isEqualToString:@"i1"]) {
+//        YeWuCheckVC * vc = [YeWuCheckVC new];
+//        vc.model = self.model[index];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+    NSLog(@"%ld",index);
+}
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -62,11 +72,11 @@
 {
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632195";
-    NSArray *array = @[@"007_01",@"007_02",@"007_03",@"007_04",@"007_05"];
-    helper.parameters[@"curNodeCodeList"] = array;
-    helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
+    helper.code = @"632515";
+    NSArray *array = @[@"i1",@"i2",@"i3"];
+    helper.parameters[@"cancelNodeCodeList"] = array;
+//    helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
+//    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
@@ -102,7 +112,7 @@
 
     [self.tableView addLoadMoreAction:^{
 
-        NSArray *array = @[@"007_01",@"007_02",@"007_03",@"007_04",@"007_05"];
+        NSArray *array =  @[@"i1",@"i2",@"i3"];
         helper.parameters[@"curNodeCodeList"] = array;
         helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
         helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
@@ -131,14 +141,6 @@
     [self.tableView beginRefreshing];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

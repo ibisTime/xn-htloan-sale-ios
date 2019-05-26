@@ -241,6 +241,9 @@
 		1F651ABB227D7A0B00EFB78B /* AccessAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */; };
 		1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */; };
 		1F8E2DE52287E8BF0045D62B /* GPSSentitemsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */; };
+		3600B2342297D0BF002C4C18 /* YeWuCheckVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600B2332297D0BF002C4C18 /* YeWuCheckVC.m */; };
+		3600B2372297D107002C4C18 /* YeWuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600B2362297D107002C4C18 /* YeWuTableView.m */; };
+		3600B23A2297F170002C4C18 /* SettlementAuditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600B2392297F170002C4C18 /* SettlementAuditCell.m */; };
 		36294E4E22855B6C004C4479 /* AgentCheckVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E4D22855B6C004C4479 /* AgentCheckVC.m */; };
 		36294E5122855BA3004C4479 /* AgentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5022855BA3004C4479 /* AgentTableView.m */; };
 		36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5322856325004C4479 /* ToApplyForRightTableView9.m */; };
@@ -1013,6 +1016,12 @@
 		1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditTableView.m; sourceTree = "<group>"; };
 		1F8E2DE32287E8BF0045D62B /* GPSSentitemsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSSentitemsVC.h; sourceTree = "<group>"; };
 		1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSSentitemsVC.m; sourceTree = "<group>"; };
+		3600B2322297D0BF002C4C18 /* YeWuCheckVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YeWuCheckVC.h; sourceTree = "<group>"; };
+		3600B2332297D0BF002C4C18 /* YeWuCheckVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YeWuCheckVC.m; sourceTree = "<group>"; };
+		3600B2352297D107002C4C18 /* YeWuTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YeWuTableView.h; sourceTree = "<group>"; };
+		3600B2362297D107002C4C18 /* YeWuTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YeWuTableView.m; sourceTree = "<group>"; };
+		3600B2382297F170002C4C18 /* SettlementAuditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettlementAuditCell.h; sourceTree = "<group>"; };
+		3600B2392297F170002C4C18 /* SettlementAuditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettlementAuditCell.m; sourceTree = "<group>"; };
 		36294E4C22855B6C004C4479 /* AgentCheckVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentCheckVC.h; sourceTree = "<group>"; };
 		36294E4D22855B6C004C4479 /* AgentCheckVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentCheckVC.m; sourceTree = "<group>"; };
 		36294E4F22855BA3004C4479 /* AgentTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentTableView.h; sourceTree = "<group>"; };
@@ -3039,6 +3048,33 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		3600B22F2297D040002C4C18 /* YeWuCheck业务总监审核 */ = {
+			isa = PBXGroup;
+			children = (
+				3600B2312297D067002C4C18 /* View */,
+				3600B2302297D05B002C4C18 /* Controller */,
+			);
+			name = "YeWuCheck业务总监审核";
+			sourceTree = "<group>";
+		};
+		3600B2302297D05B002C4C18 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3600B2322297D0BF002C4C18 /* YeWuCheckVC.h */,
+				3600B2332297D0BF002C4C18 /* YeWuCheckVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3600B2312297D067002C4C18 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3600B2352297D107002C4C18 /* YeWuTableView.h */,
+				3600B2362297D107002C4C18 /* YeWuTableView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		3662016322924AAB0010C78A /* CheckRepay还款业务查询 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3637,6 +3673,8 @@
 				366201992292A1000010C78A /* DepartmentAuditTableView.m */,
 				366201A12292AF2A0010C78A /* ManagerAuditTableView.h */,
 				366201A22292AF2A0010C78A /* ManagerAuditTableView.m */,
+				3600B2382297F170002C4C18 /* SettlementAuditCell.h */,
+				3600B2392297F170002C4C18 /* SettlementAuditCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4279,6 +4317,7 @@
 		7A945554210EFE3600BDFD33 /* CustomerInvalid客户作废 */ = {
 			isa = PBXGroup;
 			children = (
+				3600B22F2297D040002C4C18 /* YeWuCheck业务总监审核 */,
 				7A13ADBA210F096D00B8F785 /* AccessSingle准入单 */,
 				7A13ADB0210F01F400B8F785 /* ApplyCancellation申请 */,
 				7A945557210EFE6E00BDFD33 /* Controller */,
@@ -5647,9 +5686,11 @@
 				36E52D102289158300C18806 /* MultiSelectHeaderView.m in Sources */,
 				7A0F8FC9211D70E500BA8358 /* GPSInstallationDetailsModel.m in Sources */,
 				7A13AEC421104E4400B8F785 /* QNCrc32.m in Sources */,
+				3600B2372297D107002C4C18 /* YeWuTableView.m in Sources */,
 				36F9E72D2282C5D7009DAC65 /* TransferCell.m in Sources */,
 				7A0592D420FED6B700075FE8 /* SurveyWTGVC.m in Sources */,
 				7A3582672112A9BE006FB5B5 /* FaceSignMQTableView.m in Sources */,
+				3600B2342297D0BF002C4C18 /* YeWuCheckVC.m in Sources */,
 				7AABE36421393F3A00283BC7 /* HistoryUserDetailsVC.m in Sources */,
 				7A13AE1B210F26A100B8F785 /* IQUIScrollView+Additions.m in Sources */,
 				7A13AE3F21100E2100B8F785 /* SurverCertificateCell.m in Sources */,
@@ -5665,6 +5706,7 @@
 				1F151A912272AB14002B7EDA /* ApplyTableView1.m in Sources */,
 				1F1EF2B82265D37300EADA25 /* RepaymentPlanTableView.m in Sources */,
 				7A945546210EB14F00BDFD33 /* PhotoView.m in Sources */,
+				3600B23A2297F170002C4C18 /* SettlementAuditCell.m in Sources */,
 				36620172229255DC0010C78A /* CheckRepayCell.m in Sources */,
 				7A13AEB521104E4300B8F785 /* QNHijackingDetectWrapper.m in Sources */,
 				36C02E00227FFFB0007EC7CF /* ReFinancialTableView.m in Sources */,

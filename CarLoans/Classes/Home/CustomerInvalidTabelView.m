@@ -49,9 +49,18 @@
     if (self.model.count > 0) {
         cell.model = self.model[indexPath.row];
     }
+//    [[BaseModel user]note:self.model[indexPath.row].cancelNodeCode];
+    [cell.button setTitle:[[BaseModel user]note:self.model[indexPath.row].cancelNodeCode] forState:(UIControlStateNormal)];
+    cell.button.tag = indexPath.row;
+    [cell.button addTarget:self action:@selector(clickbutton:) forControlEvents:(UIControlEventTouchUpInside)];
+    cell.hidden = NO;
     return cell;
 }
-
+-(void)clickbutton:(UIButton *)sender{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"select"];
+    }
+}
 //添加证信人
 -(void)photoBtnClick:(UIButton *)sender
 {
@@ -71,7 +80,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 275;
+    return 380;
 }
 
 #pragma mark -- 区头高度

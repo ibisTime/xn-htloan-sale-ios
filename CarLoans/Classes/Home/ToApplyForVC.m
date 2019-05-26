@@ -479,7 +479,6 @@
 //        http.parameters[@"backRate"] = right1Label8.text;
         //   前置利率
 //        http.parameters[@"preRate"] = right1Label9.text;
-        
         //   开票价格
         http.parameters[@"invoicePrice"] = [NSString stringWithFormat:@"%.f",[right1Label7.text  floatValue]*1000];
         //   首付金额
@@ -517,6 +516,7 @@
                 return;
             }
         }
+        
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = NO;
         http.code = @"632531";
@@ -837,7 +837,6 @@
         http.parameters[@"code"] = self.model.code;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"dealType"] = @(1);
-    
         // 配偶学历
         http.parameters[@"education"] = [_baseModel setParentKey:@"education" setDvalue:right7Label4.text];
         // 省市区
@@ -854,7 +853,6 @@
         http.parameters[@"companyAddress"] = right7Label9.text;
         // 工作单位电话
         http.parameters[@"companyContactNo"] = right7Label10.text;
-        
         http.parameters[@"guaAssetPdf"] = [_guaAssetPdf componentsJoinedByString:@"||"];
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];
@@ -1574,25 +1572,25 @@
     self.rightTableView9.frame = CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight);
     
     right1Label0.text = [NSString stringWithFormat:@"%@",self.model.loanBankName];
-    right1Label3.text = [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000];
+    right1Label3.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000]];
     
     if ([BaseModel isBlankString:self.model.loanInfo[@"periods"]] == NO) {
         
         right1Label1.text = [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]];
-        right1Label2.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"bankRate"] floatValue]];
+        right1Label2.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"bankRate"] floatValue]]];
         right1Label4.text = [BaseModel convertNull:self.model.loanInfo[@"loanProductName"]];
-        right1Label5.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000];
-        right1Label6.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"authFee"] floatValue]/1000];
-        right1Label7.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"invoicePrice"] floatValue]/1000];
-        right1Label8.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"sfAmount"] floatValue]/1000];
-        right1Label9.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"sfRate"] floatValue]];
+        right1Label5.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000]];
+        right1Label6.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"authFee"] floatValue]/1000]];
+        right1Label7.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"invoicePrice"] floatValue]/1000]];
+        right1Label8.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"sfAmount"] floatValue]/1000]];
+        right1Label9.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"sfRate"] floatValue]]];
         right1Label10.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isFinacing];
         right1Label11.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isAdvanceFund];
         right1Label12.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isGpsAz];
         right1Label13.text = [_baseModel setParentKey:@"can_or_no" setDkey:self.model.isPlatInsure];
-        right1Label14.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"monthDeposit"] floatValue]/1000];
-        right1Label15.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"teamFee"] floatValue]/1000];
-        right1Label16.text = [NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"otherFee"] floatValue]/1000];
+        right1Label14.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"monthDeposit"] floatValue]/1000]];
+        right1Label15.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"teamFee"] floatValue]/1000]];
+        right1Label16.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"otherFee"] floatValue]/1000]];
         
         [self.rightTableView1 reloadData];
     }
@@ -1611,11 +1609,11 @@
         right2Label7.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carColor"]];
         right2Label8.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carFrameNo"]];
         right2Label9.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carEngineNo"]];
-        right2Label10.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000];
+        right2Label10.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000]];
         right2Label11.text = [_baseModel setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]];
-        right2Label12.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"carDealerSubsidy"] floatValue]/1000];
+        right2Label12.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"carDealerSubsidy"] floatValue]/1000]];
         right2Label13.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"oilSubsidyKil"]];
-        right2Label14.text = [NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"oilSubsidy"] floatValue]/1000];
+        right2Label14.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"oilSubsidy"] floatValue]/1000]];
         right2Label15.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"settleAddress"]];
         
     }
@@ -1638,7 +1636,9 @@
             if ([creditUser[@"gender"] integerValue] != 0) {
                 right3Label3.text = [_baseModel setParentKey:@"gender" setDkey:creditUser[@"gender"]];
                 right3Label4.text = [NSString stringWithFormat:@"%ld",[creditUser[@"age"] integerValue]];
-//                right3Label5.text = [NSString stringWithFormat:@"%@"]
+                right3Label5.text = [NSString stringWithFormat:@"%@",creditUser[@"englishName"]];
+                right3Label6.text = [NSString stringWithFormat:@"%@",creditUser[@"authref"]];
+                right3Label7.text = [NSString stringWithFormat:@"%@",creditUser[@"statdate"]];
                 right3Label8.text = creditUser[@"nation"];
                 right3Label9.text = [_baseModel setParentKey:@"politics" setDkey:creditUser[@"political"]];
                 right3Label10.text = [_baseModel setParentKey:@"education" setDkey:creditUser[@"education"]];
@@ -1692,7 +1692,7 @@
                 right4Label0.text = [_baseModel setParentKey:@"marry_state" setDkey:creditUser[@"marryState"]];
                 right4Label1.text = [NSString stringWithFormat:@"%ld",[creditUser[@"familyNumber"] integerValue]];
                 right4Label2.text = creditUser[@"familyPhone"];
-                right4Label3.text = [NSString stringWithFormat:@"%.2f",[creditUser[@"familyMainAsset"] floatValue]/1000];
+                right4Label3.text =[BaseModel convertNull: [NSString stringWithFormat:@"%.2f",[creditUser[@"familyMainAsset"] floatValue]/1000]];
                 right4Label4.text = creditUser[@"mainAssetInclude"];
                 right4Label5.text = [NSString stringWithFormat:@"%@ %@ %@",creditUser[@"birthAddressProvince"],creditUser[@"birthAddressCity"],creditUser[@"birthAddressArea"]];
                 self.province3 = creditUser[@"birthAddressProvince"];
@@ -1708,6 +1708,7 @@
                 self.area4 = creditUser[@"birthAddressArea"];
                 right4Label9.text = creditUser[@"nowAddress"];
                 right4Label10.text = creditUser[@"nowPostCode"];
+                right4Label11.text = [NSString stringWithFormat:@"%@", creditUser[@"nowAddressDate"]];
                 
                 if ([creditUser[@"nowHouseType"] isEqualToString:@"0"]) {
                     right4Label12.text = @"自有";
@@ -1722,15 +1723,18 @@
             right5Label0.text = [_baseModel setParentKey:@"work_belong_industry" setDkey:creditUser[@"workBelongIndustry"]];
             right5Label1.text = [_baseModel setParentKey:@"work_company_property" setDkey:creditUser[@"workCompanyProperty"]];
             right5Label2.text = creditUser[@"companyName"];
-            
-            right5Label4.text = creditUser[@"companyAddress"];
+            [BaseModel convertNull:
+            right5Label3.text = [NSString stringWithFormat:@"%@ %@ %@",[BaseModel convertNull:creditUser[@"companyProvince"]],[BaseModel convertNull:creditUser[@"companyCity"]],[BaseModel convertNull:creditUser[@"companyArea"]]]];
+            right5Label4.text =  creditUser[@"companyAddress"];
             right5Label5.text = creditUser[@"companyContactNo"];
             right5Label6.text = creditUser[@"workDatetime"];
             right5Label7.text = creditUser[@"position"];
-            right5Label8.text = [NSString stringWithFormat:@"%.2f",[creditUser[@"monthIncome"]  floatValue]/1000];
+            right5Label8.text =[BaseModel convertNull: [NSString stringWithFormat:@"%.2f",[creditUser[@"monthIncome"]  floatValue]/1000]];
+            
+            
             right5Label9.text = creditUser[@"otherWorkNote"];
             right5Label10.text = creditUser[@"employeeQuantity"];
-            right5Label11.text = [NSString stringWithFormat:@"%.2f",[creditUser[@"enterpriseMonthOutput"] floatValue]/1000];
+            right5Label11.text =[BaseModel convertNull: [NSString stringWithFormat:@"%.2f",[creditUser[@"enterpriseMonthOutput"] floatValue]]];
             
                 
                 
