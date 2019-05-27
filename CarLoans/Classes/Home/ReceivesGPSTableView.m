@@ -40,10 +40,10 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         if ([_model.sendType isEqualToString:@"1"]) {
-            return 9;
+            return 8;
         }
         else{
-            return 11;
+            return 10;
         }
     }
     NSArray * array = _model.gpsApply[@"gpsList"];

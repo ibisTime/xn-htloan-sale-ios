@@ -89,9 +89,8 @@
     _nameLbl2.text = [NSString stringWithFormat:@"角色名称：%@",dataDic[@"loginName"]];
     _companyLbl.numberOfLines = 2;
     _companyLbl.frame = CGRectMake(_headImg.xx + 13.5, 86.5, SCREEN_WIDTH - 13.5 - 30 - _headImg.xx , 16.5);
-    _companyLbl.text = [NSString stringWithFormat:@"%@-%@-%@",dataDic[@"companyName"],dataDic[@"departmentName"],dataDic[@"postName"]];
+    _companyLbl.text = [NSString stringWithFormat:@"%@-%@-%@",[BaseModel convertNull: dataDic[@"companyName"]],[BaseModel convertNull:dataDic[@"departmentName"]],[BaseModel convertNull:dataDic[@"postName"]]];
     [_companyLbl sizeToFit];
-    
     UILabel *label1 = [self.view viewWithTag:100];
     UILabel *label2 = [self.view viewWithTag:101];
     label1.text = dataDic[@"loginName"];
@@ -101,7 +100,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的";
-    
     UILabel *titleLbl = [UILabel labelWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:Font(16) textColor:kWhiteColor];
     titleLbl.text = @"我的";
     [self.view addSubview:titleLbl];
@@ -110,6 +108,8 @@
     
     topImage.image = kImage(@"个人中心");
     [self.view addSubview:topImage];
+    
+    [@"123" isPhoneNum];
     
     
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15 , kNavigationBarHeight, SCREEN_WIDTH - 30, 140 )];

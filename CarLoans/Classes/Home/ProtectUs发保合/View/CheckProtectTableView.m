@@ -50,8 +50,8 @@
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
                               [BaseModel convertNull:[[BaseModel user]note:self.model.fbhgpsNode]],
-                              @"保单开始日期",
-                              @"保单到期日期"];
+                              [BaseModel convertNull:[self.model.carInfoRes[@"policyDatetime"] convertDate]],
+                              [BaseModel convertNull:[self.model.carInfoRes[@"policyDueDate"] convertDate]]];
         
         cell.TextFidStr = rightAry[indexPath.row];
         

@@ -257,13 +257,13 @@
         _button.tag = 1002;
         _button.hidden = NO;
     }
-//    else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d4"]){
+    else if ([gpsInstallationModel.fbhgpsNode isEqualToString:@"d4"]){
 //        [_button setTitle:@"安装完成" forState:(UIControlStateNormal)];
 //        
 //        kViewBorderRadius(_button, 5, 1, MainColor);
 //        _button.hidden = NO;
-////        _button.enabled = NO;
-//    }
+        _button.enabled = YES;
+    }
     
 //    _button.frame = CGRectMake(SCREEN_WIDTH - 115, line.yy + 10, 100, 30);
 //    kViewBorderRadius(_button, 5, 1, MainColor);

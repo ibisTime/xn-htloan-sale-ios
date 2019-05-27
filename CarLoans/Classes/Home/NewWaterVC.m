@@ -167,7 +167,7 @@
         if ([BaseModel isBlankString:self.waterDic[@"code"]] == YES) {
             http.code = @"632490";
             http.parameters[@"bizCode"] = self.model.code;
-            http.parameters[@"creditUserCode"] = self.model.creditUserList[selectrow - 1][@"code"];
+            http.parameters[@"creditUserCode"] = self.model.creditUserList[selectrow][@"code"];
         }else
         {
             http.code = @"632492";
@@ -236,9 +236,12 @@
 
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
 {
+    if (_SelectTag == 10000) {
+        selectrow = sid;
+    }
     UILabel *label = [self.view viewWithTag:_SelectTag];
     label.text = Str;
-    selectrow = sid;
+   
 }
 
 /*

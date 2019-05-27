@@ -24,6 +24,7 @@
         _nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 120, 50)];
         _nameTextField.font = HGfont(14);
         _nameTextField.textAlignment = NSTextAlignmentRight;
+//        _nameTextField.backgroundColor = [UIColor redColor];
         [_nameTextField setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
     }
     return _nameTextField;
@@ -104,10 +105,16 @@
     if ([isInput isEqualToString:@"0"]) {
         _nameTextField.enabled = NO;
     }
+    if ([isInput isEqualToString:@"1"]) {
+        _nameTextField.enabled = NO;
+        _nameTextField.hidden = YES;
+        _nameTextLabel.hidden = NO;
+    }
 }
 
 -(void)setTextFidStr:(NSString *)TextFidStr
 {
+//    _nameTextLabel.numberOfLines = 2;
     _nameTextField.text = [BaseModel convertNull:TextFidStr];
     _nameTextLabel.text = [BaseModel convertNull:TextFidStr];
 }

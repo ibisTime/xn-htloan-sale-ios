@@ -87,8 +87,13 @@
 
 -(void)Confirm:(UIButton *)sender{
     NSMutableArray * array = [NSMutableArray array];
+    NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     for (int i = 0; i < GPSArray.count; i++) {
-        [array addObject:GPSArray[i][@"code"]];
+        [dic setObject:GPSArray[i][@"code"] forKey:@"code"];
+        [dic setObject:GPSArray[i][@"gpsType"] forKey:@"gpsType"];
+        [dic setObject:GPSArray[i][@"updater"] forKey:@"updater"];
+        
+        [array addObject:dic];
     }
     if (array.count == 0) {
         [TLAlert alertWithMsg:@"请选择GPS"];

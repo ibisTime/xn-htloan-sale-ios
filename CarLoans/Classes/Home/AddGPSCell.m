@@ -55,7 +55,7 @@
         UILabel *label1 = [self viewWithTag:100 + i];
         
         NSArray *detailsArray = @[
-                                  [NSString stringWithFormat:@"%@",[taskDic[@"gpsType"] isEqualToString:@"1"]?@"有线":@"无线"],
+                                  [NSString stringWithFormat:@"%@",[taskDic[@"gpsTypeStr"] isEqualToString:@"1"]?@"有线":@"无线"],
                                   [NSString stringWithFormat:@"%@",taskDic[@"gpsDevNo"]]
                                   ];
         label1.text = detailsArray[i];

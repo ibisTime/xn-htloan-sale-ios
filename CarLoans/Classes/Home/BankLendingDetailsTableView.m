@@ -78,6 +78,8 @@
                                   [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]
                                   ];
         cell.TextFidStr = detailsArray[indexPath.row];
+        cell.isInput = @"1";
+//        cell.textLabel.numberOfLines = 2;
         return cell;
     }
     if (indexPath.section == 1) {

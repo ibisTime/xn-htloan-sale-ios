@@ -16,6 +16,8 @@
 @property (nonatomic,strong) NSMutableArray * gpsarray;
 @property (nonatomic,strong) NSMutableArray * gpschoosearray;
 @property (nonatomic,strong) NSString * code;
+@property (nonatomic,strong) NSString * gpsType;
+@property (nonatomic,strong) NSString * updater;
 @end
 
 @implementation ChooseGPSVC
@@ -89,6 +91,8 @@
         UILabel * label = [self.view viewWithTag:1001];
         label.text = Str;
         self.code = dic[@"code"];
+        self.gpsType = dic[@"gpsType"];
+        self.updater = dic[@"updater"];
     }
 }
 
@@ -103,7 +107,7 @@
         [TLAlert alertWithMsg:@"请选择GPS设备号"];
         return;
     }
-    NSDictionary *dataDic  = @{@"gpsType":cell2.text,@"gpsDevNo":cell3.text,@"code":self.code};
+    NSDictionary *dataDic  = @{@"gpsTypeStr":cell2.text,@"gpsDevNo":cell3.text,@"code":self.code,@"gpsType":self.gpsType,@"updater":self.updater};
         NSNotification *notification =[NSNotification notificationWithName:ADDADPEOPLENOTICE object:nil userInfo:dataDic];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
         [self.navigationController popViewControllerAnimated:YES];
