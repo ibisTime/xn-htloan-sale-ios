@@ -9,7 +9,8 @@
 #ifndef APICodeMacro_h
 #define APICodeMacro_h
 
-
+//新疆
+//#define APPURL @"http://39.104.89.43:2601/forward-service/api"
 //研发
 #define APPURL @"http://120.26.6.213:2401/forward-service/api"
 //测试
