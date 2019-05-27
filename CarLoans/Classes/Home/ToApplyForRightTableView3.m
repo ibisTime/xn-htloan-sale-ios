@@ -59,7 +59,7 @@
             cell.type = InputType;
             cell.inputTextField.tag = 30000 + indexPath.row;
             if (indexPath.row == 4) {
-                cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+//                cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
             }
         }else if (indexPath.row >= 0 && indexPath.row <= 4)
         {

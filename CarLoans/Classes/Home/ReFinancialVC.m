@@ -314,7 +314,7 @@
         NSMutableArray *array = [NSMutableArray array];
         
         for (int i = 0; i < LoanProductsArray.count; i ++) {
-            NSString * str = [NSString stringWithFormat:@"%@-%@",LoanProductsArray[i][@"bankName"],LoanProductsArray[i][@"bankcardNumber"]];
+            NSString * str = [NSString stringWithFormat:@"%@\n%@",LoanProductsArray[i][@"bankName"],LoanProductsArray[i][@"bankcardNumber"]];
             [array addObject:str];
         }
         self.bankarray = array;
@@ -325,7 +325,8 @@
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid{
     self.bancode = LoanProductsArray[sid][@"code"];
     ChooseCell * cell = [self.view viewWithTag:1050];
-    cell.details = Str;
+    NSString * str = [NSString stringWithFormat:@"%@-%@",LoanProductsArray[sid][@"bankName"],LoanProductsArray[sid][@"bankcardNumber"]];
+    cell.details = str;
     NSLog(@"%@",self.bancode);
 }
 -(void)confirm:(UIButton *)sender{

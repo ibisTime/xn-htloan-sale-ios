@@ -95,7 +95,10 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"];
-        cell.selectStr = @"红卡照片";
+        if (cell.collectDataArray.count > 0) {
+            cell.selectStr = @"红卡照片";
+        }
+        
         return cell;
     }
     

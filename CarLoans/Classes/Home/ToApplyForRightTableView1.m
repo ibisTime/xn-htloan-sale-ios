@@ -55,7 +55,7 @@
     if (indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 13 || indexPath.row == 10  || indexPath.row == 11 || indexPath.row == 12 ) {
         cell.type = ChooseType;
         cell.chooseLbl.tag = 10000 + indexPath.row;
-    }else if (indexPath.row == 3 ||indexPath.row == 7||indexPath.row == 8 || indexPath.row == 14 || indexPath.row == 15 || indexPath.row == 16)
+    }else if (indexPath.row == 5 ||indexPath.row == 6 ||indexPath.row == 3 ||indexPath.row == 7||indexPath.row == 8 || indexPath.row == 14 || indexPath.row == 15 || indexPath.row == 16)
     {
         cell.type = InputType;
         cell.inputTextField.tag = 10000 + indexPath.row;
@@ -67,7 +67,7 @@
             cell.inputTextField.delegate = self;
         }
         
-        cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+//        cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     else
     {

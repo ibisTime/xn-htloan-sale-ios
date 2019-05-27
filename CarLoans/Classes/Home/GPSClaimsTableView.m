@@ -46,6 +46,8 @@
     GPSClaimsCell *cell = [tableView dequeueReusableCellWithIdentifier:GPSClaims forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.gpsclaimsModel = self.model[indexPath.row];
+    cell.button.tag = indexPath.row;
+    [cell.button addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     if (self.model[indexPath.row].status == 0) {
         cell.button.hidden = NO;
     }
@@ -71,7 +73,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 195;
+    return 205;
 }
 
 #pragma mark -- 区头高度

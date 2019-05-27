@@ -78,7 +78,7 @@
                               [BaseModel convertNull:self.model.loanBankName],
                               bizType,
                               [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
-                              [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]],
+                              [NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"loan_period" setDkey:[NSString stringWithFormat:@"%@", self.model.loanInfo[@"periods"]]]],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
                               [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];

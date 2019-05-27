@@ -37,7 +37,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 16;
+    return 17;
 }
 
 #pragma mark -- tableView
@@ -59,7 +59,7 @@
 //        cell.backgroundColor = kBackgroundColor;
 //        cell.nameLbl.textColor = kHexColor(@"#666666");
 //    }
-    NSArray *array = @[@"基本信息",@"征信列表",@"面签",@"贷款车辆信息",@"申请人基本信息",@"工作情况",@"其他基本信息",@"配偶信息",@"财务垫资",@"银行放款",@"车辆抵押",@"发保合",@"GPS安装列表",@"流转日志",@"还款计划",@"附件池"];
+    NSArray *array = @[@"基本信息",@"征信列表",@"面签",@"贷款车辆信息",@"申请人基本信息",@"工作情况",@"其他基本信息",@"共还人信息",@"担保人信息",@"财务垫资",@"银行放款",@"车辆抵押",@"发保合",@"GPS安装列表",@"流转日志",@"还款计划",@"附件池"];
     cell.nameLbl.text = array[indexPath.row];
     
     if (cell.height < 40) {
@@ -147,7 +147,23 @@
     
     
     
-    return 40;
+//    return 40;
+    if (indexPath.row != 7 && indexPath.row != 8) {
+        return 40;
+    }
+    for (int i = 0; i < self.model.creditUserList.count; i ++) {
+        if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"2"]) {
+            if (indexPath.row == 7) {
+                return 40;
+            }
+        }
+        if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"3"]) {
+            if (indexPath.row == 8) {
+                return 40;
+            }
+        }
+    }
+    return 0;
 }
 
 #pragma mark -- 区头高度

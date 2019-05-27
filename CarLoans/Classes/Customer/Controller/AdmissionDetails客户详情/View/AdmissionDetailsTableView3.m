@@ -105,7 +105,7 @@
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNull:[NSString stringWithFormat:@"%@",[self.model.bizType isEqualToString:@"1"]?@"二手车":@"新车" ]],
-                             [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]],
+                             [NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"loan_period" setDkey:[NSString stringWithFormat:@"%@", self.model.loanInfo[@"periods"]]]],
                              [BaseModel convertNull: self.model.loanInfo[@"loanProductName"]] ,
                              [self.model.isAdvanceFund isEqualToString:@"1"]?@"是":@"否",
                              [self.model.isFinacing isEqualToString:@"1"]?@"是":@"否",

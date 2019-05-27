@@ -156,14 +156,14 @@
         UITextField *textField = [self.view viewWithTag:10001];
         UITextField *textField1 = [self.view viewWithTag:10002];
         
-        if (self.RedCardArray.count == 0) {
-            [TLAlert alertWithInfo:@"请上传红卡照片"];
-            return;
-        }
-        if (self.specialQuatoPic.length == 0) {
-            [TLAlert alertWithInfo:@"请上传专项额度核定申请表"];
-            return;
-        }
+//        if (self.RedCardArray.count == 0) {
+//            [TLAlert alertWithInfo:@"请上传红卡照片"];
+//            return;
+//        }
+//        if (self.specialQuatoPic.length == 0) {
+//            [TLAlert alertWithInfo:@"请上传专项额度核定申请表"];
+//            return;
+//        }
         if ([self.addressLabel.text isEqualToString:@""]) {
             [TLAlert alertWithInfo:@"请选择地址"];
             return;

@@ -67,7 +67,7 @@
         }
         cell.topLbl.text = [TopModel user].ary7[indexPath.row];
         if (indexPath.row == 7||indexPath.row == 11||indexPath.row == 12) {
-            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+//            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
         }
         
         return cell;

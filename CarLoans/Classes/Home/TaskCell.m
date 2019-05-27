@@ -59,21 +59,7 @@
         self.selectButton.frame = self.selectButton.frame = CGRectMake(SCREEN_WIDTH - 45, 15, 30, 30);
         [self.selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
         
-        [self addSubview:self.selectButton];
-        
-//        [self addSubview:self.nameLbl];
-//        [self addSubview:self.photoBtn];
-//        
-//        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
-//        lineView.backgroundColor = LineBackColor;
-//        [self addSubview:lineView];
-//        
-//        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_WIDTH/3 + 79, SCREEN_WIDTH, 1)];
-//        lineView1.backgroundColor = LineBackColor;
-//        [self addSubview:lineView1];
-//        
-//        
-//        
+        [self addSubview:self.selectButton];     
     }
     return self;
 }
@@ -98,8 +84,6 @@
     _photoBtn.frame = CGRectMake(15, 60 , SCREEN_WIDTH - 30, 110);
     [_photoBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     [self addSubview:_photoBtn];
-
-    
 }
 //-(void)setTaskArray:(NSArray *)TaskArray{
 //    NSArray *nameArray = @[@"任务名称:",

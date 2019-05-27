@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"审核发报合";
+    self.title = @"审核发保合";
     self.view.backgroundColor = kWhiteColor;
     [self initTable];
     

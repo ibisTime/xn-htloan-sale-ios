@@ -11,6 +11,7 @@
 #import "GPSClaimsModel.h"
 #import "ClaimsVC.h"
 #import "GPSClaimsDetailsVC.h"
+#import "CheckInputGPS.h"
 @interface GPSClaimsVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)NSMutableArray <GPSClaimsModel *>*model;
@@ -54,7 +55,11 @@
     vc.model = self.model[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
+    CheckInputGPS * vc = [CheckInputGPS new];
+    vc.model = self.model[index];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 -(void)navigativeView
 {
     self.title = @"GPS申领";

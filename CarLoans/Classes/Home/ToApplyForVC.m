@@ -619,7 +619,7 @@
         //   家庭紧急联系人信息1 性别
         http.parameters[@"emergencySex1"] =[_baseModel setParentKey:@"gender" setDvalue: right3Label19.text];
         //   家庭紧急联系人信息1 与申请人关系
-        http.parameters[@"emergencyRelation1"] = [_baseModel setParentKey:@"credit_user_relation" setDvalue:right3Label20.text];
+        http.parameters[@"emergencyRelation1"] = [_baseModel setParentKey:@"credit_contacts_relation" setDvalue:right3Label20.text];
         //   家庭紧急联系人信息1 手机号码
         if (right3Label21.text.length != 11) {
             [TLAlert alertWithInfo:@"家庭紧急联系人信息1手机号不正确"];
@@ -633,7 +633,7 @@
         //   家庭紧急联系人信息2 性别
         http.parameters[@"emergencySex2"] = [_baseModel setParentKey:@"gender" setDvalue:right3Label23.text];
         //   家庭紧急联系人信息2 与申请人关系
-        http.parameters[@"emergencyRelation2"] = [_baseModel setParentKey:@"credit_user_relation" setDvalue:right3Label24.text];
+        http.parameters[@"emergencyRelation2"] = [_baseModel setParentKey:@"credit_contacts_relation" setDvalue:right3Label24.text];
         //   家庭紧急联系人信息2 手机号码
         if (right3Label25.text.length != 11) {
             [TLAlert alertWithInfo:@"家庭紧急联系人信息2手机号不正确"];
@@ -661,7 +661,7 @@
         http.code = @"632533";
         http.parameters[@"code"] = self.model.code;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-        http.parameters[@"dealType"] = @(1);
+        http.parameters[@"dealType"] = @"1";
         // 婚姻状况
         http.parameters[@"marryState"] = [_baseModel setParentKey:@"marry_state" setDvalue:right4Label0.text];
         // 家庭人口
@@ -1122,6 +1122,9 @@
                 datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
                 [datepicker show];
             }
+            if (indexPath.row == 7) {
+                [_baseModel ReturnsParentKeyAnArray:@"position"];
+            }
         }
     }
     
@@ -1389,7 +1392,7 @@
     http.isShowMsg = YES;
     http.code = @"632497";
     http.parameters[@"bizCode"] = self.model.code;
-    http.parameters[@"creditUserCode"] = self.model.creditUser[@"code"];
+//    http.parameters[@"creditUserCode"] = self.model.creditUser[@"code"];
     [http postWithSuccess:^(id responseObject) {
         
         self.rightTableView8.WaterArray = responseObject[@"data"];
@@ -1576,7 +1579,7 @@
     
     if ([BaseModel isBlankString:self.model.loanInfo[@"periods"]] == NO) {
         
-        right1Label1.text = [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]];
+        right1Label1.text = [NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"loan_period" setDkey:[NSString stringWithFormat:@"%@", self.model.loanInfo[@"periods"]]]];
         right1Label2.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.4f",[self.model.loanInfo[@"bankRate"] floatValue]]];
         right1Label4.text = [BaseModel convertNull:self.model.loanInfo[@"loanProductName"]];
         right1Label5.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000]];
@@ -1677,24 +1680,24 @@
                 right3Label17.text = [creditUser[@"isHouseProperty"] isEqualToString:@"1"]?@"有":@"无";
                 
                 right3Label18.text = creditUser[@"emergencyName1"];
-                right3Label20.text = [_baseModel setParentKey:@"credit_user_relation" setDkey:creditUser[@"emergencyRelation1"]];
+                right3Label20.text = [_baseModel setParentKey:@"credit_contacts_relation" setDkey:creditUser[@"emergencyRelation1"]];
                 right3Label19.text = [_baseModel setParentKey:@"gender" setDkey:creditUser[@"emergencySex1"]];
                 right3Label21.text = creditUser[@"emergencyMobile1"];
                 right3Label22.text = creditUser[@"emergencyName2"];
-                right3Label24.text = [_baseModel setParentKey:@"credit_user_relation" setDkey:creditUser[@"emergencyRelation2"]];
+                right3Label24.text = [_baseModel setParentKey:@"credit_contacts_relation" setDkey:creditUser[@"emergencyRelation2"]];
                 right3Label23.text = [_baseModel setParentKey:@"gender" setDkey:creditUser[@"emergencySex2"]];
                 right3Label25.text = creditUser[@"emergencyMobile2"];
             }
             
             
             
-            if ([creditUser[@"marryState"] integerValue] != 0) {
+//            if ([creditUser[@"marryState"] integerValue] != 0) {
                 right4Label0.text = [_baseModel setParentKey:@"marry_state" setDkey:creditUser[@"marryState"]];
-                right4Label1.text = [NSString stringWithFormat:@"%ld",[creditUser[@"familyNumber"] integerValue]];
+                right4Label1.text = [BaseModel convertNull:[NSString stringWithFormat:@"%@",creditUser[@"familyNumber"]]];
                 right4Label2.text = creditUser[@"familyPhone"];
                 right4Label3.text =[BaseModel convertNull: [NSString stringWithFormat:@"%.2f",[creditUser[@"familyMainAsset"] floatValue]/1000]];
                 right4Label4.text = creditUser[@"mainAssetInclude"];
-                right4Label5.text = [NSString stringWithFormat:@"%@ %@ %@",creditUser[@"birthAddressProvince"],creditUser[@"birthAddressCity"],creditUser[@"birthAddressArea"]];
+                right4Label5.text = [NSString stringWithFormat:@"%@ %@ %@",[BaseModel convertNull: creditUser[@"birthAddressProvince"]],[BaseModel convertNull:creditUser[@"birthAddressCity"]],[BaseModel convertNull:creditUser[@"birthAddressArea"]]];
                 self.province3 = creditUser[@"birthAddressProvince"];
                 self.city3 = creditUser[@"birthAddressCity"];
                 self.area3 = creditUser[@"birthAddressArea"];
@@ -1702,13 +1705,13 @@
                 right4Label6.text = creditUser[@"birthAddress"];
                 right4Label7.text = creditUser[@"birthPostCode"];
                 
-                right4Label8.text = [NSString stringWithFormat:@"%@ %@ %@",creditUser[@"nowAddressProvince"],creditUser[@"nowAddressCity"],creditUser[@"nowAddressArea"]];
+                right4Label8.text = [NSString stringWithFormat:@"%@ %@ %@",[BaseModel convertNull:creditUser[@"nowAddressProvince"]],[BaseModel convertNull:creditUser[@"nowAddressCity"]],[BaseModel convertNull:creditUser[@"nowAddressArea"]]];
                 self.province4 = creditUser[@"nowAddressProvince"];
                 self.city4 = creditUser[@"birthAddressCity"];
                 self.area4 = creditUser[@"birthAddressArea"];
                 right4Label9.text = creditUser[@"nowAddress"];
                 right4Label10.text = creditUser[@"nowPostCode"];
-                right4Label11.text = [NSString stringWithFormat:@"%@", creditUser[@"nowAddressDate"]];
+                right4Label11.text = [NSString stringWithFormat:@"%@", [BaseModel convertNull:creditUser[@"nowAddressDate"]]];
                 
                 if ([creditUser[@"nowHouseType"] isEqualToString:@"0"]) {
                     right4Label12.text = @"自有";
@@ -1716,7 +1719,7 @@
                 {
                     right4Label12.text = @"租用";
                 }
-            }
+//            }
             
             
 //            if ([BaseModel isBlankString:creditUser[@"workBelongIndustry"]] == NO) {

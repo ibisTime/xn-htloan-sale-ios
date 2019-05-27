@@ -95,7 +95,7 @@
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
                                   [BaseModel convertNull:[[BaseModel user]note:self.model.fbhgpsNode]],
-                                  [BaseModel convertNull:self.model.carInfoRes[@"vehicleCompanyName"]]];
+                                  [BaseModel convertNull:[[BaseModel user]setCompanyCode: self.model.carInfoRes[@"vehicleCompanyName"]]]];
             
             cell.TextFidStr = rightAry[indexPath.row];
             cell.nameTextField.hidden = YES;
@@ -114,7 +114,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.name = @"*垫资金额";
             cell.nameText = @"请输入垫资金额";
-            cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+//            cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
             cell.symbolLabel.hidden = YES;
             cell.tag = 1000 + indexPath.row;
             return cell;

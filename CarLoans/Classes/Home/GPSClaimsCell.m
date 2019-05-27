@@ -55,12 +55,12 @@
             [self addSubview:_InformationLabel];
         }
 
-        UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 184, SCREEN_WIDTH, 1)];
+        UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 164, SCREEN_WIDTH, 1)];
         lineView2.backgroundColor = LineBackColor;
         [self addSubview:lineView2];
 
         _button = [UIButton buttonWithTitle:@"录入" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
-        _button.frame = CGRectMake(SCREEN_WIDTH - 115, 185, 100, 30);
+        _button.frame = CGRectMake(SCREEN_WIDTH - 115, 170, 100, 30);
 
         kViewBorderRadius(_button, 5, 1, MainColor);
         [self addSubview:_button];

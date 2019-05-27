@@ -49,27 +49,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-
-//    static NSString *CellIdentifier = @"Cell";
-//    GPSClaimsCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-//    if (cell == nil) {
-//        cell = [[GPSClaimsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    }
-//
-//    cell.button.tag = indexPath.row;
-//    cell.gpsInstallationModel = self.model[indexPath.row];
-//    GPSInstallationModel *model = [GPSInstallationModel new];
-//    model = self.model[indexPath.row];
-//    cell.gpsInstallationModel = model;
-//    [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-//
-//    if ([model.advanfCurNodeCode isEqualToString:@"002_09"] || [model.advanfCurNodeCode isEqualToString:@"002_12"]) {
-//        cell.button.hidden = NO;
-//    }else
-//    {
-//        cell.button.hidden = YES;
-//    }
     
     InformationCell * cell = [tableView dequeueReusableCellWithIdentifier:Information forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

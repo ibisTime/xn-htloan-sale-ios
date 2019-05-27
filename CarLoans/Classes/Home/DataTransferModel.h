@@ -42,6 +42,9 @@
 @property (nonatomic , strong) NSDictionary *gpsApply;
 @property (nonatomic , copy) NSString *carFrameNo;
 @property (nonatomic , copy) NSString *filelist;
+@property (nonatomic,strong) NSString * applyWiredCount;
+@property (nonatomic,strong) NSString * applyWirelessCount;
+@property (nonatomic,strong) NSArray * gpsList;
 
 /*
  bizCode: "GA201905231738120404713"

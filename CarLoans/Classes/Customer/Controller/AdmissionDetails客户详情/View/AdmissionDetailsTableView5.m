@@ -85,15 +85,16 @@
         }
     }
 //    right3Label12.text = [dvalueArray componentsJoinedByString:@","];
+//    [[BaseModel user]setParentKey:@"work_belong_industry" setDkey: self.model.creditUser[@"workBelongIndustry"]];
     
     NSArray *bottomArray = @[[BaseModel convertNull:self.model.creditUser[@"companyName"]],
                              [BaseModel convertNull:self.model.creditUser[@"companyAddress"]],
-                             [BaseModel convertNull:self.model.creditUser[@"workBelongIndustry"]],
+                             [BaseModel convertNull: [[BaseModel user]setParentKey:@"work_belong_industry" setDkey: self.model.creditUser[@"workBelongIndustry"]]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"work_company_property" setDkey:self.model.creditUser[@"workCompanyProperty"]]],
                              [BaseModel convertNull:[dvalueArray componentsJoinedByString:@","]],
-                             [BaseModel convertNull:self.model.creditUser[@"workProfession"]],
+                             [BaseModel convertNull:[[BaseModel user]setParentKey:@"work_profession" setDkey:self.model.creditUser[@"workProfession"]]],
                              [BaseModel convertNull:self.model.creditUser[@"postTitle"]],
-                             [NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"monthIncome"] floatValue]/1000],
+                             [BaseModel convertNull: [NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"monthIncome"]  floatValue]/1000]],
                              [BaseModel convertNull:self.model.creditUser[@"workDatetime"]],
                              [BaseModel convertNull:self.model.creditUser[@"otherWorkNote"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);

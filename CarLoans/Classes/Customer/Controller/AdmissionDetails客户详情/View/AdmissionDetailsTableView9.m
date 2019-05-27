@@ -76,15 +76,15 @@
                           @"垫资说明"];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"gpsFee"] floatValue]/1000],
-                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000],
-                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"monthDeposit"] floatValue]/1000],
-                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"otherFee"] floatValue]/1000],
-                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"companyFee"] floatValue]/1000],
-                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"teamFee"] floatValue]/1000],
-                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000],
+    NSArray *bottomArray = @[[BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"gpsFee"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"monthDeposit"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"otherFee"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"companyFee"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"teamFee"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000]],
                              [BaseModel convertNull:[self.model.advance[@"advanceFundDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
-                             [NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"advanceFundAmount"] floatValue]/1000],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"advanceFundAmount"] floatValue]/1000]],
                              @"",
                              [BaseModel convertNull:self.model.advance[@"advanceNote"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);

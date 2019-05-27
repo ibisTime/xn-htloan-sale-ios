@@ -42,7 +42,6 @@
     [self.view addSubview:self.tableView];
 }
 -(void)confirm:(UIButton *)sender{
-//     InputBoxCell  * cell1 = [self.view viewWithTag:1000];
      InputBoxCell  * cell2 = [self.view viewWithTag:1000];
      InputBoxCell  * cell3 = [self.view viewWithTag:1001];
     if (self.model) {

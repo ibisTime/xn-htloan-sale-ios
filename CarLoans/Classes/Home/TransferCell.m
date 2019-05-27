@@ -153,7 +153,7 @@
                              [NSString stringWithFormat:@"%@",dataTransferModel.saleUserName],
                              [NSString stringWithFormat:@"%@",dataTransferModel.insideJobName],
                              state];
-        [_button setTitle:@"补件" forState:(UIControlStateNormal)];
+        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
     }
     
     _lineView.frame = CGRectMake(0, 70 + 35 * nameArray.count, SCREEN_WIDTH, 1);

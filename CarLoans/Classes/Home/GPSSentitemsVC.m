@@ -12,6 +12,7 @@
 #import "DataTransferModel.h"
 #import "SenderVC.h"
 #import "ReceivesAuditVC.h"
+#import "SenderGPSVC.h"
 @interface GPSSentitemsVC ()<RefreshDelegate>
 @property (nonatomic , strong)DataTransferTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
@@ -60,7 +61,7 @@
 {
     DataTransferModel *model = self.model[index];
     if ([model.status isEqualToString:@"0"] || [model.status isEqualToString:@"3"]) {
-        SenderVC *vc = [[SenderVC alloc]init];
+        SenderGPSVC *vc = [[SenderGPSVC alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }else
@@ -76,7 +77,6 @@
 
 -(void)LoadData
 {
-    
     CarLoansWeakSelf;
     
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];

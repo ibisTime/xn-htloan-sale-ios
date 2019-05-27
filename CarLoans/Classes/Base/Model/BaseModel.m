@@ -108,6 +108,7 @@
     else if ([object isEqualToString:@"0.00"]){
         return @"";
     }
+    
     return object;
 
 }
@@ -238,6 +239,11 @@
     else if ([state isEqualToString:@"1"]){
         for (int i = 0; i < nameArray.count ; i ++) {
             [dvalueArray addObject:nameArray[i][@"name"]];
+        }
+    }
+    else if ([state isEqualToString:@"666"]){
+        for (int i = 0; i < nameArray.count ; i ++) {
+            [dvalueArray addObject:nameArray[i][@"gpsDevNo"]];
         }
     }
     else

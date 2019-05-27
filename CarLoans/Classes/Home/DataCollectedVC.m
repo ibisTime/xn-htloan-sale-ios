@@ -12,7 +12,7 @@
 #import "SenderVC.h"
 #import "ReceivesAuditVC.h"
 #import "CadListModel.h"
-
+#import "AdmissionDetailsVC.h"
 @interface DataCollectedVC ()<RefreshDelegate>
 @property (nonatomic , strong)DataTransferTableView *tableView;
 
@@ -76,9 +76,9 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    DataCollectedVC *vc = [DataCollectedVC new];
-
-
+//    DataCollectedVC *vc = [DataCollectedVC new];
+    AdmissionDetailsVC * vc = [[AdmissionDetailsVC alloc]init];
+    vc.code = self.models[indexPath.row].bizCode;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

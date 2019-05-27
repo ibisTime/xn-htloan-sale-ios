@@ -154,11 +154,11 @@
       
     }else
     {
-        if (index == 5) {
+        if (index == 6) {
             NSLog(@"%ld",sender.tag);
             [self.bankPicArray removeObjectAtIndex:sender.tag-1000];
             [self.tableView reloadData];
-        }else{
+        }else if(index == 7){
             NSLog(@"%ld",sender.tag);
             [self.CompanyPicArray removeObjectAtIndex:sender.tag-1000];
             [self.tableView reloadData];

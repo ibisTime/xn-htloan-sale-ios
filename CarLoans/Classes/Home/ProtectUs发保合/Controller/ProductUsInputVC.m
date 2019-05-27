@@ -95,7 +95,7 @@
     _carHgzPic = [NSMutableArray array];
     _carSettleOtherPdf = [NSMutableArray array];
     
-    self.title=@"录入发报合";
+    self.title=@"录入发保合";
     [self initTable];
     
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 20, 50)];

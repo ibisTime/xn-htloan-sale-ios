@@ -11,6 +11,7 @@
 #import "DataTransferModel.h"
 #import "SenderVC.h"
 #import "ReceivesAuditVC.h"
+#import "ReceivesGPSVC.h"
 @interface GPSCollectedVC ()<RefreshDelegate>
 @property (nonatomic , strong)DataTransferTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
@@ -74,8 +75,8 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else
     {
-        ReceivesAuditVC *vc = [[ReceivesAuditVC alloc]init];
-        vc.isGps = YES;
+        ReceivesGPSVC *vc = [[ReceivesGPSVC alloc]init];
+//        vc.isGps = YES;
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }

@@ -8,7 +8,9 @@
 
 #import "NewWaterVC.h"
 #import "NewWaterTableView.h"
-@interface NewWaterVC ()<RefreshDelegate,BaseModelDelegate>
+@interface NewWaterVC ()<RefreshDelegate,BaseModelDelegate>{
+    NSInteger selectrow;
+}
 @property (nonatomic , strong)TLImagePicker *imagePicker;
 @property (nonatomic , strong)NewWaterTableView *tableView;
 @property (nonatomic , assign)NSInteger SelectTag;
@@ -165,7 +167,7 @@
         if ([BaseModel isBlankString:self.waterDic[@"code"]] == YES) {
             http.code = @"632490";
             http.parameters[@"bizCode"] = self.model.code;
-            http.parameters[@"creditUserCode"] = self.model.creditUserList[0][@"code"];
+            http.parameters[@"creditUserCode"] = self.model.creditUserList[selectrow - 1][@"code"];
         }else
         {
             http.code = @"632492";
@@ -236,6 +238,7 @@
 {
     UILabel *label = [self.view viewWithTag:_SelectTag];
     label.text = Str;
+    selectrow = sid;
 }
 
 /*

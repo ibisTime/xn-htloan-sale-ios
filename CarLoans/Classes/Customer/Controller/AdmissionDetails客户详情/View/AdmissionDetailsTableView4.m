@@ -106,9 +106,10 @@
         dic = self.model.creditUserList[0];
     }
     
+    
     NSArray *bottomArray = @[[BaseModel convertNull: self.model.creditUser[@"userName"]],
-                             [BaseModel convertNull: self.model.creditUser[@"gender"]],
-                             [NSString stringWithFormat:@"%@",self.model.creditUser[@"age"]],
+                             [NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"gender" setDkey:self.model.creditUser[@"gender"]]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@", self.model.creditUser[@"age"]]],
                              [BaseModel convertNull: self.model.creditUser[@"idNo"]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"marry_state" setDkey:self.model.creditUser[@"marryState"]]],
                              [BaseModel convertNull: self.model.creditUser[@"nation"]],

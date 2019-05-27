@@ -71,7 +71,7 @@
             cell.type = InputType;
             cell.inputTextField.tag = 20000 + indexPath.row;
             if ( indexPath.row == 10||indexPath.row == 12|| indexPath.row == 13|| indexPath.row == 14) {
-                cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+//                cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
             }
         }
         if (indexPath.row == 0) {
