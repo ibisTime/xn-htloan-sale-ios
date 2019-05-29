@@ -110,16 +110,26 @@
         cell.idNoReverse = self.idNoReverse;
         return cell;
     }
-    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
+//    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
+    static NSString *rid=@"cell098";
+    TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    if(cell==nil){
+        cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"补充说明"];
-
+    NSArray *nameArray = @[@"补充说明",@"*审核说明"];
+    
     if (indexPath.row == 0) {
+        cell.isInput = @"1";
         cell.TextFidStr = self.model.carPledge[@"pledgeSupplementNote"];
+    }
+    if (indexPath.row == 1) {
+//        cell.isInput = @"1";
+        cell.nameTextField.placeholder = @"请输入";
     }
     
     cell.name = nameArray[indexPath.row];
-    cell.nameTextField.tag = 1000 + indexPath.row;
+    cell.nameTextField.tag = 6000 + indexPath.row;
     return cell;
     
     

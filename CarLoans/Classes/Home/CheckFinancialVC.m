@@ -21,7 +21,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initTableView];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+//    [self initTableView];
     
     self.passBtn = [UIButton buttonWithTitle:@"确认" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];
     self.passBtn.tag = 1000;

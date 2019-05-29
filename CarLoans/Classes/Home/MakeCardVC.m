@@ -56,7 +56,7 @@
     {
         MakeCardEntryVC *vc = [MakeCardEntryVC new];
         vc.model = self.model[index];
-        vc.title = @"录入";
+        vc.title = @"录入卡号";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -75,7 +75,7 @@
     CarLoansWeakSelf;
     
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"632115";
+    helper.code = @"632515";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"makeCardNodeList"] = self.makeCardNodeList;

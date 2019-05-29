@@ -95,9 +95,14 @@
     self.tableView = [[SenderGPSTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.cardStr = [NSMutableString string];
-    
     self.tableView.backgroundColor = kBackgroundColor;
+    
     self.tableView.model = self.model;
+    if ([self.model.status isEqualToString:@"3"]) {
+        self.tableView.distributionStr = [self.model.sendType isEqualToString:@"1"]?@"线下":@"快递";
+        self.tableView.date = [self.model.sendDatetime convertDateWithFormat:@"yyyy-MM-dd"];
+        self.tableView.tempRemark = [BaseModel convertNull: self.model.sendNote];
+    }
     [self.view addSubview:self.tableView];
 }
 
@@ -105,33 +110,6 @@
 {
     
     if ([self.tableView.distributionStr isEqualToString:@"快递"]) {
-        
-//        if (indexPath.section == 1) {
-//            self.tableView.cardList = [NSMutableArray array];
-//            NSString *data1 = self.tableView.distributionStr;
-//            NSString *data2 = self.tableView.CourierCompanyStr;
-//            NSString *data3 = self.tableView.kuaidField.text;
-//            NSString *data4 = self.tableView.remarkKuaiField.text;
-//            NSString *data5 = self.tableView.date;
-//
-//            [self initTableView];
-//
-//            self.tableView.distributionStr = data1;
-//            self.tableView.CourierCompanyStr = data2;
-//            self.tableView.tempdan = data3;
-//            self.tableView.tempRemark = data4;
-//            self.tableView.tempDate = data5;
-//            [self.tableView reloadData];
-//            BaseModel *model = [BaseModel new];
-//            model.ModelDelegate = self;
-//            NSMutableArray *array = [NSMutableArray array];
-//            for (CadListModel *model in self.models) {
-//                [array addObject:[NSString stringWithFormat:@"%@-%@份",model.name,model.number]];
-//            }
-//            [model CustomBounced:array setState:@"100" isSign:NO];
-//
-//            return;
-//        }
         if (indexPath.section == 1) {
             
             if (indexPath.row == 0) {
@@ -171,75 +149,7 @@
                 [self selectTime];
             }
         }
-//        else{
-//
-//            if (indexPath.section == 1) {
-//                self.tableView.cardList = [NSMutableArray array];
-//                [self initTableView];
-//                BaseModel *model = [BaseModel new];
-//                model.ModelDelegate = self;
-//                NSMutableArray *array = [NSMutableArray array];
-//                for (CadListModel *model in self.models) {
-//                    [array addObject:[NSString stringWithFormat:@"%@-%@份",model.vname,model.number]];
-//                }
-//                //                [NSThread sleepForTimeInterval:1];
-//                [model CustomBounced:array setState:@"100" isSign:NO];
-//                //                [model CustomBouncedView:array setState:@"100"];
-//                return;
-//
-//
-//                UIView *mengView = [UIView new];
-//                self.mengView = mengView;
-//                mengView.backgroundColor = [UIColor blackColor];
-//                mengView.frame = self.view.bounds;
-//                mengView.alpha = 0.85;
-//                [self.view addSubview:mengView];
-//                self.selectTableView = [[UITableView alloc] initWithFrame:CGRectMake(50, 50, SCREEN_WIDTH-100, self.models.count *40) style:(UITableViewStylePlain)];
-//                self.selectTableView.dataSource = self;
-//                self.selectTableView.delegate = self;
-//
-//                self.selectTableView.contentInset = UIEdgeInsetsMake(0, 0, -kTabBarHeight, 0);
-//                self.selectTableView.backgroundColor = kBackgroundColor;
-//                [self.mengView addSubview:self.selectTableView];
-//
-//                return;
-//
-//                UIView *view = [[UIView alloc]init];
-//                self.centerView = view;
-//                view.frame = CGRectMake(50, 100, SCREEN_WIDTH-100, self.models.count *30);
-//                view.backgroundColor = kWhiteColor;
-//                view.layer.borderWidth = 1.0;
-//                view.layer.borderColor = kLineColor.CGColor;
-//                //                [mengView addSubview:view];
-//                view.layer.cornerRadius = 5;
-//                view.clipsToBounds = YES;
-//                UILabel* firstLabl = [UILabel labelWithBackgroundColor:kWhiteColor textColor:kBlackColor font:16];
-//                firstLabl.frame = CGRectMake(50, 20, 100, 40);
-//                firstLabl.text = @"选择";
-//                [view addSubview:firstLabl];
-//
-//                for (int i = 0; i < self.models.count; i++) {
-//                    UIImageView *rightImg = [[UIImageView alloc] init];
-//                    rightImg.tag = 1000+i;
-//                    //                rightImg.contentMode = UIViewContentModeScaleToFill;
-//                    rightImg.frame = CGRectMake(120, 0+i*30, 14, 12);
-//                    rightImg.image = kImage(@"打勾");
-//                    rightImg.hidden = YES;
-//
-//                    UILabel* secondLabl = [UILabel labelWithBackgroundColor:kWhiteColor textColor:kBlackColor font:16];
-//                    secondLabl.userInteractionEnabled = YES;
-//                    secondLabl.tag = 10000+i;
-//
-//                    UITapGestureRecognizer *t = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseCad:)];
-//                    [secondLabl addGestureRecognizer:t];
-//                    secondLabl.frame = CGRectMake(50, 80+i*30, 200, 30);
-//                    secondLabl.text =self.models[i].vname;
-//                    [secondLabl addSubview:rightImg];
-//
-//                    [view addSubview:secondLabl];
-//                }
-//            }
-//        }
+
         
     }
     

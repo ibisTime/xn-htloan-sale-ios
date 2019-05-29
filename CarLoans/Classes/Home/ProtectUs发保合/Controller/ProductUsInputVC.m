@@ -96,7 +96,16 @@
     _carSettleOtherPdf = [NSMutableArray array];
     
     self.title=@"录入发保合";
-    [self initTable];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTable];
+    } failure:^(NSError *error) {
+        
+    }];
+//    [self initTable];
     
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 20, 50)];
     view.backgroundColor = kNavBarBackgroundColor;

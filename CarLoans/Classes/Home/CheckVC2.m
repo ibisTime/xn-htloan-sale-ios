@@ -23,7 +23,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self inittableview];
+//    [self inittableview];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self inittableview];
+    } failure:^(NSError *error) {
+        
+    }];
     TaskArray = [NSMutableArray array];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDADPEOPLENOTICE object:nil];
     self.passBtn = [UIButton buttonWithTitle:@"通过" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];

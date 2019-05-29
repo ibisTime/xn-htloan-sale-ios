@@ -277,4 +277,5 @@
 @property (nonatomic,strong) NSString * cardPostProvince;
 @property (nonatomic,strong) NSString * cardPostCity;
 @property (nonatomic,strong) NSString * cardPostArea;
+@property (nonatomic,strong) NSArray * repointList;
 @end

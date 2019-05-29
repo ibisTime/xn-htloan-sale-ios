@@ -302,9 +302,18 @@
     _CompanyContractArray = [NSMutableArray array];
     _MoneyArray = [NSMutableArray array];
     _otherArray = [NSMutableArray array];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
 
     [self navigativeView];
-    [self initTableView];
+//    [self initTableView];
     [self FaceToFaceContent];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadEndMovieUrlOut) name:@"KsingOut" object:nil];
 }

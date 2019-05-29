@@ -136,13 +136,11 @@
                              ];
         }
         if (indexPath.row ==8) {
-            if (cadArray.count>1) {
-                
+            if (cadArray.count>=1) {
                 for (int i = 0; i < cadArray.count; i++) {
                     CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
                     fild.backgroundColor = kLineColor;
                     fild.font = [UIFont systemFontOfSize:13];
-                    
                     fild.contentLab.text = cadArray[i];
                     [cell addSubview:fild];
                     fild.enabled = NO;

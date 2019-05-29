@@ -19,7 +19,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initTableView];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+//    [self initTableView];
     self.title = @"面签审核";
     [self FaceToFaceContent];
 }

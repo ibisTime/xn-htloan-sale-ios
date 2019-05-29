@@ -98,8 +98,9 @@
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
     if ([self.model.status isEqualToString:@"3"]) {
+        
         self.tableView.distributionStr = [self.model.sendType isEqualToString:@"2"]?@"快递":@"线下";
-        self.tableView.CourierCompanyStr =[BaseModel convertNull: self.model.logisticsCompany];
+        self.tableView.CourierCompanyStr =[BaseModel convertNull:[[BaseModel user]setParentKey:@"kd_company" setDkey:self.model.logisticsCompany]];
         self.tableView.tempdan = [BaseModel convertNull: self.model.logisticsCode];
         self.tableView.tempRemark = [BaseModel convertNull: self.model.sendNote];
         self.tableView.date = [self.model.sendDatetime convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -117,6 +118,7 @@
         }
         
         self.tableView.cardList = array;
+        self.fileIdList = [NSMutableArray arrayWithArray:[self.model.filelist componentsSeparatedByString:@","]];
     }
     [self.view addSubview:self.tableView];
 }
@@ -430,9 +432,13 @@
      }
     
     if ([self.tableView.distributionStr isEqualToString:@"快递"]) {
-        http.parameters[@"logisticsCompany"] = dkey;
+        if (dkey.length == 0) {
+            http.parameters[@"logisticsCompany"] = self.model.logisticsCompany;
+        }else
+            http.parameters[@"logisticsCompany"] = dkey;
         http.parameters[@"logisticsCode"] = self.tableView.kuaidField.text;
     }
+    
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"发件成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

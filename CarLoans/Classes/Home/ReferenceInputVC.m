@@ -24,7 +24,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"录入征信结果";
-    [self initTableView];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.surveyModel.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.surveyModel = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+//    [self initTableView];
     [self cdbiz_statusLoadData];
     _creditList = [NSMutableArray array];
     for (int i = 0; i < self.surveyModel.creditUserList.count; i ++) {

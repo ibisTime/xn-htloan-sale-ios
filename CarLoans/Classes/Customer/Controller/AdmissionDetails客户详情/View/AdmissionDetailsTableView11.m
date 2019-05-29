@@ -35,13 +35,13 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 16;
+    return 17;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2 || indexPath.row == 9 || indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 || indexPath.row == 14 ) {
+    if (indexPath.row == 2 || indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 || indexPath.row == 14 || indexPath.row == 15 ) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
@@ -55,27 +55,27 @@
             }
             cell.selectStr = @"抵押代理人身份证复印件";
         }
-        if (indexPath.row == 9) {
+        if (indexPath.row == 10) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_regcerti"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"机动车登记证书";
         }
-        if (indexPath.row == 10) {
+        if (indexPath.row == 11) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_pd"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"批单";
         }
-        if (indexPath.row == 11) {
+        if (indexPath.row == 12) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_key"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"车钥匙";
         }
-        if (indexPath.row == 12) {
+        if (indexPath.row == 13) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_big_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"大本扫描件";
         }
-        if (indexPath.row == 13) {
+        if (indexPath.row == 14) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"车辆行驶证扫描件";
         }
-        if (indexPath.row == 14) {
+        if (indexPath.row == 15) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"duty_paid_prove_smj"]componentsSeparatedByString:@"||"];
             cell.selectStr = @"完税证明扫描件";
         }
@@ -89,13 +89,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"抵押代理人",@"抵押代理人身份证",@"",@"抵押地点",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间"];
+    NSArray *topArray = @[@"抵押代理人",@"抵押代理人身份证",@"",@"抵押地点",@"抵押时间",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间"];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNull:self.model.carPledge[@"pledgeUser"]],
                              [BaseModel convertNull:self.model.carPledge[@"pledgeUserIdCard"]],
                              @"",
                              [BaseModel convertNull:self.model.carPledge[@"pledgeAddress"]],
+                             [BaseModel convertNull:[self.model.carPledge[@"pledgeDatetime"] convertDate]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBillDate"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBankDate"]]],
                             [BaseModel convertNull: [NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayCompanyDate"]]],
@@ -107,7 +108,7 @@
                              @"",
                              @"",
                              @"",
-                             @"提交时间"];
+                             [BaseModel convertNull:[self.model.carPledge[@"pledgeBankCommitDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];
@@ -131,22 +132,22 @@
         case 2:
             return [self returnheight:@[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_reverse"]]]];
             break;
-            case 9:
+            case 10:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_regcerti"] componentsSeparatedByString:@"||"]];
             break;
-            case 10:
+            case 11:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_pd"] componentsSeparatedByString:@"||"]];
             break;
-            case 11:
+            case 12:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_key"] componentsSeparatedByString:@"||"]];
             break;
-            case 12:
-            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"]];
-            break;
             case 13:
-            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"]];
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_big_smj"] componentsSeparatedByString:@"||"]];
             break;
             case 14:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"]];
+            break;
+            case 15:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"duty_paid_prove_smj"]componentsSeparatedByString:@"||"]];
             break;
             

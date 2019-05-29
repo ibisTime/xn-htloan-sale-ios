@@ -25,7 +25,16 @@
     [super viewDidLoad];
     self.title = @"审核发保合";
     self.view.backgroundColor = kWhiteColor;
-    [self initTable];
+//    [self initTable];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTable];
+    } failure:^(NSError *error) {
+        
+    }];
     
     self.passBtn = [UIButton buttonWithTitle:@"通过" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];
     self.passBtn.tag = 1001;

@@ -145,7 +145,7 @@
              [NSString stringWithFormat:@"%@",bizType],
              [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
              [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
-             [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
+             [NSString stringWithFormat:@"%@-%@",surveyModel.loanBankName,surveyModel.repointList[0][@"subbranch"]],
               [NSString stringWithFormat:@"%@",surveyModel.insideJobName],
              [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
 

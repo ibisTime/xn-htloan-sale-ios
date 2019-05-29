@@ -525,6 +525,10 @@
     UITextField *textField4 = [self.view viewWithTag:1005];//代理人
     UITextField *textField5 = [self.view viewWithTag:1006];//代理身份证号
     
+    if (self.policyDatetime.length == 0) {
+        [TLAlert alertWithInfo:@"请输入落户日期"];
+        return;
+    }
     
     if (textField1.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入落户地点"];
@@ -532,6 +536,10 @@
     }
     if (textField2.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入车牌号"];
+        return;
+    }
+    if (self.policyDueDate.length == 0) {
+        [TLAlert alertWithInfo:@"请输入抵押日期"];
         return;
     }
     if (textField3.text.length == 0) {
@@ -556,7 +564,7 @@
     }
    
     if (self.BankVideoArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传绿大本扫描件图片"];
+        [TLAlert alertWithInfo:@"请上传大本扫描件图片"];
         return;
     }
     if (self.CompanyVideoArray.count == 0) {

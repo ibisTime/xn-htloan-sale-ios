@@ -23,7 +23,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"征信审核";
-    [self initTableView];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.surveyModel.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.surveyModel = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+//    [self initTableView];
     [self cdbiz_statusLoadData];
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];

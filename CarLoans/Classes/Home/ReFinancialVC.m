@@ -30,7 +30,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initTableView];
+//    [self initTableView];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
     _baseModel = [BaseModel new];
     _baseModel.ModelDelegate = self;
     self.bankarray = [NSMutableArray array];

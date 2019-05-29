@@ -43,7 +43,7 @@
 }
 
 - (void)initTableView {
-    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView = [[DataTransferTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 50 - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.state = @"gps";
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;

@@ -163,12 +163,30 @@
     _button.frame = CGRectMake(SCREEN_WIDTH - 115, 70 + 35 * nameArray.count + 10, 100, 30);
     
 
+//    for (int i = 0; i < nameArray.count; i ++ ) {
+//        UILabel *nameLabel = [self viewWithTag:100000 + i];
+//        nameLabel.text = nameArray[i];
+//        
+//        UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+//        InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+//    }
+    
+    for (int i = 0; i < 11; i ++) {
+        UILabel *nameLabel = [self viewWithTag:100000 + i];
+        nameLabel.hidden = YES;
+        
+        UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.hidden = YES;
+    }
+    
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
+        nameLabel.hidden = NO;
         
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
         InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+        InformationLabel.hidden = NO;
     }
 }
 -(void)setGpsmodel:(DataTransferModel *)gpsmodel{
@@ -179,10 +197,12 @@
     NSString *state;
     if ([gpsmodel.status isEqualToString:@"0"]) {
         state = @"待发件";
+        [_button setTitle:@"发件" forState:(UIControlStateNormal)];
         _button.hidden = NO;
     }else if ([gpsmodel.status isEqualToString:@"1"])
     {
         state = @"已发件待收件";
+        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
         _button.hidden = NO;
     }else if ([gpsmodel.status isEqualToString:@"2"])
     {
@@ -192,6 +212,7 @@
     }else
     {
         state = @"已收件待补件";
+        [_button setTitle:@"补件" forState:(UIControlStateNormal)];
         _button.hidden = NO;
     }
     if (!gpsmodel.sendType) {
@@ -207,7 +228,7 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",gpsmodel.gpsApply[@"applyWiredCount"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",gpsmodel.gpsApply[@"applyWirelessCount"]]],
                              state];
-        [_button setTitle:@"发件" forState:(UIControlStateNormal)];
+        
         //        线下
     }
     if ([gpsmodel.sendType isEqualToString:@"1"]){
@@ -227,7 +248,7 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",gpsmodel.gpsApply[@"applyWiredCount"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",gpsmodel.gpsApply[@"applyWirelessCount"]]],
                              state];
-        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
+        
     }
     if ([gpsmodel.sendType isEqualToString:@"2"]) {
         nameArray = @[
@@ -251,12 +272,19 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",gpsmodel.gpsApply[@"applyWiredCount"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",gpsmodel.gpsApply[@"applyWirelessCount"]]],
                              state];
-        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
+        
     }
     
     _lineView.frame = CGRectMake(0, 70 + 35 * nameArray.count, SCREEN_WIDTH, 1);
     _button.frame = CGRectMake(SCREEN_WIDTH - 115, 70 + 35 * nameArray.count + 10, 100, 30);
     
+    for (int i = 0; i < 11; i ++) {
+        UILabel *nameLabel = [self viewWithTag:100000 + i];
+        nameLabel.hidden = YES;
+        
+        UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.hidden = YES;
+    }
     
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];

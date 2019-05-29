@@ -48,6 +48,7 @@
     http.parameters[@"code"] = self.model[index].code;
     
     [http postWithSuccess:^(id responseObject) {
+//        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
     
         if ([_model[index].curNodeCode isEqualToString:@"b1"] || [_model[index].curNodeCode isEqualToString:@"b1x"])
         {
@@ -59,42 +60,42 @@
             AccessAuditVC *vc = [AccessAuditVC new];
             vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
             vc.code = @"632140";
-            vc.model = self.model[index];
+            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([_model[index].curNodeCode isEqualToString:@"b3"])
         {
             AccessAuditVC *vc = [AccessAuditVC new];
             vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
             vc.code = @"632121";
-            vc.model = self.model[index];
+            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([_model[index].curNodeCode isEqualToString:@"b4"])
         {
             AccessAuditVC *vc = [AccessAuditVC new];
             vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
             vc.code = @"632138";
-            vc.model = self.model[index];
+            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([_model[index].curNodeCode isEqualToString:@"b5"])
         {
             AccessAuditVC *vc = [AccessAuditVC new];
             vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
             vc.code = @"632122";
-            vc.model = self.model[index];
+            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([_model[index].curNodeCode isEqualToString:@"b6"])
         {
             AccessAuditVC *vc = [AccessAuditVC new];
             vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
             vc.code = @"632139";
-            vc.model = self.model[index];
+            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([_model[index].curNodeCode isEqualToString:@"b7"])
         {
             AccessAuditVC *vc = [AccessAuditVC new];
             vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
             vc.code = @"632143";
-            vc.model = self.model[index];
+            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.navigationController pushViewController:vc animated:YES];
         }
         else if ([_model[index].curNodeCode isEqualToString:@"b8"])
@@ -102,7 +103,7 @@
             AccessAuditVC *vc = [AccessAuditVC new];
             vc.title = [[BaseModel user]note:self.model[index].curNodeCode];
             vc.code = @"632540";
-            vc.model = self.model[index];
+            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.navigationController pushViewController:vc animated:YES];
         }
     

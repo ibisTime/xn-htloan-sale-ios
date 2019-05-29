@@ -91,7 +91,7 @@
             }
             if (indexPath.row == 7) {
                 cell.collectDataArray = self.interview_pic_apply;
-                cell.selectStr = @"面签照片";
+                cell.selectStr = @"手持授权书照片";
             }
             if (indexPath.row == 9) {
                 cell.collectDataArray = self.bank_report_apply;
@@ -109,7 +109,7 @@
             }
             if (indexPath.row == 7) {
                 cell.collectDataArray = self.interview_pic_gh;
-                cell.selectStr = @"面签照片";
+                cell.selectStr = @"手持授权书照片";
             }
             if (indexPath.row == 9) {
                 

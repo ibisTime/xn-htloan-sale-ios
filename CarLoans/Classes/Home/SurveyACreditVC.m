@@ -92,11 +92,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发起征信";
+    
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
 
     peopleArray = [NSMutableArray array];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDADPEOPLENOTICE object:nil];
-    [self initTableView];
+    
     self.secondCarReport = @"";
     self.tableView.secondCarReport = @"";
     [SVProgressHUD show];

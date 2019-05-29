@@ -1110,9 +1110,9 @@
             }
             if (indexPath.row == 6) {
                 //开始时间
-                WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+                WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
                     
-                    NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+                    NSString *date = [selectDate stringWithFormat:@"yyyy-MM"];
                     UILabel *right1Label1 = [self.view viewWithTag:_SelectTag];
                     right1Label1.text = date;
 
