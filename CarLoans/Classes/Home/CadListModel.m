@@ -9,5 +9,9 @@
 #import "CadListModel.h"
 
 @implementation CadListModel
++(NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID": @"id"};
+}
 
 @end

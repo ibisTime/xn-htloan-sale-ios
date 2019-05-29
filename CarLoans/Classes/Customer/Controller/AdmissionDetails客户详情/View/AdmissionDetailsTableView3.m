@@ -160,16 +160,18 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 26) {
+        NSArray * array = [[self FindUrlByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"];
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = (array.count + 0.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
     if (indexPath.row == 27) {
+        NSArray * array = [[self FindUrlByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"];
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = (array.count + 0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }

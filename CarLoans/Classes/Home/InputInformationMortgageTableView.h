@@ -8,9 +8,22 @@
 
 #import "TLTableView.h"
 #import "AccessSingleModel.h"
-@interface InputInformationMortgageTableView : TLTableView
+#import "UploadIdCardCell.h"
+@protocol SelectButtonDelegate <NSObject>
+
+-(void)selectButtonClick:(UIButton *)sender;
+
+@end
+
+@interface InputInformationMortgageTableView : TLTableView<UploadIdCardDelegate>
+@property (nonatomic,weak) id<SelectButtonDelegate> AgentDelegate;
 @property (nonatomic , strong)AccessSingleModel *model;
 @property (nonatomic , copy)NSString *date;
 //绿大本扫描件
 @property (nonatomic , strong)NSArray *GreenBigBenArray;
+
+//    身份证正面
+@property (nonatomic , copy)NSString *idNoFront;
+//    身份证反面
+@property (nonatomic , copy)NSString *idNoReverse;
 @end

@@ -57,7 +57,7 @@
     self.tableView = [[CheckFileTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.model = self.model;
-    self.tableView.location = [[BaseModel user]setParentKey:@"enter_location" setDkey:self.model.enterLocation];
+    self.tableView.location = [[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation];
     [self findFile];
     [self.view addSubview:self.tableView];
 }

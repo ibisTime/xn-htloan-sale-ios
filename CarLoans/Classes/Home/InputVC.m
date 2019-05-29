@@ -57,6 +57,7 @@
     self.tableView.refreshDelegate = self;
     self.tableView.model = self.model;
     self.tableView.filelocation = [[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation];
+    locationCode = self.model.enterLocation;
     [self findFile];
     [self.view addSubview:self.tableView];
 }

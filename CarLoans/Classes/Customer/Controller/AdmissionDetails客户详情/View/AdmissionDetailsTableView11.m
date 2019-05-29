@@ -124,14 +124,47 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1 || indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 ) {
-        float numberToRound;
-        int result;
-        numberToRound = (2.0)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+    switch (indexPath.row) {
+        case 1:
+            return [self returnheight:@[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_reverse"]]]];
+            break;
+            case 8:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_regcerti"] componentsSeparatedByString:@"||"]];
+            break;
+            case 9:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_pd"] componentsSeparatedByString:@"||"]];
+            break;
+            case 10:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_key"] componentsSeparatedByString:@"||"]];
+            break;
+            case 11:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"]];
+            break;
+            case 12:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"]];
+            break;
+            case 13:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"duty_paid_prove_smj"]componentsSeparatedByString:@"||"]];
+            break;
+            
+        default:
+            break;
     }
+//    if (indexPath.row == 1 || indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 ) {
+//        float numberToRound;
+//        int result;
+//        numberToRound = (2.0)/3.0;
+//        result = (int)ceilf(numberToRound);
+//        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+//    }
     return _cell.bottomLbl.yy ;
+}
+-(float)returnheight:(NSArray *)array{
+    float numberToRound;
+    int result;
+    numberToRound = (array.count)/3.0;
+    result = (int)ceilf(numberToRound);
+    return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
 }
 
 #pragma mark -- 区头高度

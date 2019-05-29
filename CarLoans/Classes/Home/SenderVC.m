@@ -51,6 +51,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.t
     self.title = @"发件";
+    self.cadList = [NSMutableArray array];
+    self.fileIdList = [NSMutableArray array];
     
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632156";
@@ -61,15 +63,15 @@
     }
     [http postWithSuccess:^(id responseObject) {
         self.model = [DataTransferModel mj_objectWithKeyValues:responseObject[@"data"]];
-        [self initTableView];
+        [self loadCadList];
+        
     } failure:^(NSError *error) {
         
     }];
     
     
-    [self loadCadList];
-    self.cadList = [NSMutableArray array];
-    self.fileIdList = [NSMutableArray array];
+    
+    
 }
 
 - (void)loadCadList
@@ -82,7 +84,7 @@
     
     [http postWithSuccess:^(id responseObject) {
         self.models = [CadListModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-        WGLog(@"%@",responseObject);
+        [self initTableView];
     } failure:^(NSError *error) {
         
     }];
@@ -95,6 +97,28 @@
 
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
+    if ([self.model.status isEqualToString:@"3"]) {
+        self.tableView.distributionStr = [self.model.sendType isEqualToString:@"2"]?@"快递":@"线下";
+        self.tableView.CourierCompanyStr =[BaseModel convertNull: self.model.logisticsCompany];
+        self.tableView.tempdan = [BaseModel convertNull: self.model.logisticsCode];
+        self.tableView.tempRemark = [BaseModel convertNull: self.model.sendNote];
+        self.tableView.date = [self.model.sendDatetime convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSArray * dataarr = [self.model.filelist componentsSeparatedByString:@","];
+//        BaseModel *model = [BaseModel new];
+//        model.ModelDelegate = self;
+        NSMutableArray *array = [NSMutableArray array];
+        for (CadListModel *model in self.models) {
+            for (int i = 0; i < dataarr.count; i ++) {
+                if ([model.ID isEqualToString:dataarr[i]]) {
+                    [self.cadList addObject:model.ID];
+                    [self.fileIdList addObject:model.ID];
+                    [array addObject:[NSString stringWithFormat:@"%@-%@份",model.vname,model.number]];
+                }
+            }
+        }
+        
+        self.tableView.cardList = array;
+    }
     [self.view addSubview:self.tableView];
 }
 
@@ -123,7 +147,7 @@
             model.ModelDelegate = self;
             NSMutableArray *array = [NSMutableArray array];
             for (CadListModel *model in self.models) {
-                [array addObject:[NSString stringWithFormat:@"%@-%@份",model.name,model.number]];
+                [array addObject:[NSString stringWithFormat:@"%@-%@份",model.vname,model.number]];
             }
             [model CustomBounced:array setState:@"100" isSign:NO];
 
@@ -249,7 +273,7 @@
     for (SelectedListModel *model in arr) {
 //        for (CadListModel *m in self.models) {
 //            if ([model.title isEqualToString:[NSString stringWithFormat:@"%@-%@份",m.name,m.number]]) {
-                [self.fileIdList addObject:self.models[model.sid].id];
+                [self.fileIdList addObject:self.models[model.sid].ID];
                 [arr1 addObject:[NSString stringWithFormat:@"%@",model.title]];
 //
 //            }
@@ -466,10 +490,10 @@
     self.tableView.cardStr = [NSString stringWithFormat:@"%@,%@",self.tableView.cardStr, self.models[indexPath.row].name];
     [self.tableView reloadData];
     //
-    if ([self.fileIdList containsObject:self.models[indexPath.row].id]) {
+    if ([self.fileIdList containsObject:self.models[indexPath.row].ID]) {
         return;
     }else{
-        [self.fileIdList addObject:self.models[indexPath.row].id];
+        [self.fileIdList addObject:self.models[indexPath.row].ID];
 
     }
     

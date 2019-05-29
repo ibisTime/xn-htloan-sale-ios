@@ -196,6 +196,7 @@
 @property (nonatomic , strong)NSDictionary *brandDic;
 @property (nonatomic , strong)NSDictionary *carsDic;
 @property (nonatomic , strong)NSDictionary *modelsDic;
+@property (nonatomic,strong) NSString * belongcode;
 @end
 
 @implementation ToApplyForVC
@@ -414,7 +415,7 @@
 
 -(void)applyBtnClick
 {
-    
+
     [TLAlert alertWithTitle:@"提示" msg:@"请确保每个页面都已保存" confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
         
     } confirm:^(UIAlertAction *action) {
@@ -546,7 +547,7 @@
         //   市场指导价
         http.parameters[@"originalPrice"] = [NSString stringWithFormat:@"%.f",[right2Label10.text floatValue]*1000];
         //   所属区域
-        http.parameters[@"region"] = [_baseModel setParentKey:@"region" setDvalue:right2Label11.text];
+        http.parameters[@"region"] = [_baseModel setParentKey:@"region_belong" setDvalue:right2Label11.text];
         //   厂家贴息
         http.parameters[@"carDealerSubsidy"] = [NSString stringWithFormat:@"%.f",[right2Label12.text floatValue]*1000];
         //   油补公里数
@@ -989,7 +990,7 @@
         }
 
         if (indexPath.row == 11) {
-            [_baseModel ReturnsParentKeyAnArray:@"region"];
+            [_baseModel ReturnsParentKeyAnArray:@"belong"];
 //            [self.pickView showInView:self.view];
         }
     }
@@ -1295,9 +1296,6 @@
         .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
         .LeeClickBackgroundClose(YES)
         .LeeShow();
-        
-        
-        //                [_baseModel CustomBouncedView:array setState:@"100"];
     } failure:^(NSError *error) {
         
     }];
@@ -1319,14 +1317,56 @@
         right1Label14.text = [NSString stringWithFormat:@"%.2f",(([self.model.loanAmount  floatValue]/1000)*([LoanProductsDic[@"wanFactor"] floatValue] / 1000))/10000];
         
     }
+    if (_SelectTag == 20011) {
+        [self alertarea:dic[@"dkey"]];
+        self.belongcode = dic[@"dkey"];
+    }
     if (_SelectTag == 40000) {
         right4Label0.text = Str;
     }
 
     UILabel *right1Label1 = [self.view viewWithTag:_SelectTag];
     right1Label1.text = Str;
-    
-    
+}
+-(void)alertarea:(NSString *)code{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630038";
+    http.showView = self.view;
+    http.parameters[@"key"] = code;
+    [http postWithSuccess:^(id responseObject) {
+        NSArray * dvalueArray = responseObject[@"data"];
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0;  i < dvalueArray.count; i ++) {
+            [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",dvalueArray[i][@"dvalue"]]]];
+        }
+        SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 300, 0) style:UITableViewStylePlain];
+        view.isSingle = YES;
+        view.array = array;
+        view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+            [LEEAlert closeWithCompletionBlock:^{
+                NSLog(@"选中的%@" , array);
+//                NSInteger sid = array[0][@"sid"];
+                SelectedListModel * model = array[0];
+                NSInteger sid = model.sid;
+                UILabel *right1Label1 = [self.view viewWithTag:_SelectTag];
+                right1Label1.text = dvalueArray[sid][@"dvalue"];
+                if (dvalueArray.count > 0) {
+                    self.belongcode = dvalueArray[sid][@"dkey"];
+                }
+            }];
+        };
+        [LEEAlert alert].config
+        .LeeTitle(@"选择")
+        .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+        .LeeCustomView(view)
+        .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+        .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+        .LeeClickBackgroundClose(YES)
+        .LeeShow();
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 -(void)LoanBank
@@ -1353,6 +1393,7 @@
     http.code = @"632177";
     http.parameters[@"status"] = @"2";
     http.parameters[@"type"] = self.model.bizType;
+    http.parameters[@"loanBank"] = self.model.loanBank;
     [http postWithSuccess:^(id responseObject) {
         LoanProductsArray = responseObject[@"data"];
         NSMutableArray *array = [NSMutableArray array];
@@ -1613,7 +1654,9 @@
         right2Label8.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carFrameNo"]];
         right2Label9.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carEngineNo"]];
         right2Label10.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"originalPrice"] floatValue]/1000]];
-        right2Label11.text = [_baseModel setParentKey:@"region" setDkey:self.model.carInfoRes[@"region"]];
+//        [_baseModel setParentKey:@"region_belong" setDvalue:right2Label11.text];
+//        //   厂家贴息
+        right2Label11.text = [_baseModel setParentKey:@"region_belong" setDkey:self.model.carInfoRes[@"region"]];
         right2Label12.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"carDealerSubsidy"] floatValue]/1000]];
         right2Label13.text = [NSString stringWithFormat:@"%@",self.model.carInfoRes[@"oilSubsidyKil"]];
         right2Label14.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"oilSubsidy"] floatValue]/1000]];

@@ -27,7 +27,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return self.model.bizLogs.count;
 }
 
 #pragma mark -- 行数
@@ -50,10 +50,16 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"操作人",@"开始时间",@"结束时间",@"花费时长",@"审核意见",@"当前节点"];
+    NSArray *topArray = @[@"操作人",@"开始时间",@"结束时间",@"花费时长",@"审核意见",@"操作节点"];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[@"客户",@"2019-01-17 16：28：24",@"2019-01-17 16：28：24",@"2018-12-12",@"",@""];
+    NSArray *bottomArray = @[[BaseModel convertNull: self.model.bizLogs[indexPath.section][@"operatorName"]],
+                             [self.model.bizLogs[indexPath.section][@"startDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                             [self.model.bizLogs[indexPath.section][@"endDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                             [BaseModel convertNull:self.model.bizLogs[indexPath.section][@"speedTime"]],
+                             [BaseModel convertNull:self.model.bizLogs[indexPath.section][@"dealNote"]],
+                             [[BaseModel user]note:self.model.bizLogs[indexPath.section][@"dealNode"]]
+    ];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];

@@ -76,13 +76,13 @@
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNull:self.model.bankLoan[@"repayBankcardNumber"]],
-                             @"2018-12-13",
+                             [BaseModel convertNull:self.model.bankLoan[@"bankFkDate"]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBillDate"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBankDate"]]],
-                             @"25",
-                             @"2019-01-25",
-                             @"188888.00",
-                             @"银行服务费",
-                             @"2018-11-30",
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayCompanyDate"]]],
+                             [BaseModel convertNull:self.model.bankLoan[@"repayFirstMonthDatetime"]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.bankLoan[@"repayFirstMonthAmount"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.bankLoan[@"repayMonthAmount"] floatValue]/1000]],
                              [BaseModel convertNull:self.model.bankLoan[@"receiptBankcardNumber"]],
                              @""];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
@@ -107,7 +107,7 @@
     if (indexPath.row == 9) {
         float numberToRound;
         int result;
-        numberToRound = (4.0)/3.0;
+        numberToRound = ([self.model.bankLoan[@"receiptPdf"] componentsSeparatedByString:@"||"].count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }

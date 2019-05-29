@@ -16,6 +16,7 @@
         [self addSubview:self.allBtn];
 //        [self addSubview:self.readBtn];
         [self addSubview:self.deleteBtn];
+        [self addSubview:self.delayBtn];
     }
     return self;
 }
@@ -47,13 +48,26 @@
 - (UIButton *)deleteBtn{
     if (!_deleteBtn) {
         self.deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteBtn.frame = CGRectMake(self.bounds.size.width - 100, 0, 100, self.bounds.size.height);
+        _deleteBtn.frame = CGRectMake(self.bounds.size.width - 115, 17.5, 100, 40);
         _deleteBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         _deleteBtn.titleLabel.textAlignment = NSTextAlignmentRight;
-        [_deleteBtn setTitle:@"确认还款" forState:UIControlStateNormal];
+        [_deleteBtn setTitle:@"人工确认还款" forState:UIControlStateNormal];
         [_deleteBtn setTitleColor:MainColor forState:UIControlStateNormal];
+        kViewBorderRadius(_deleteBtn, 3, 1, MainColor);
     }
     return _deleteBtn;
+}
+-(UIButton *)delayBtn{
+    if (!_delayBtn) {
+        self.delayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _delayBtn.frame = CGRectMake(self.bounds.size.width - 230, 17.5, 100, 40);
+        _delayBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _delayBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+        [_delayBtn setTitle:@"人工确认逾期" forState:UIControlStateNormal];
+        [_delayBtn setTitleColor:MainColor forState:UIControlStateNormal];
+        kViewBorderRadius(_delayBtn, 3, 1, MainColor);
+    }
+    return _delayBtn;
 }
 
 @end

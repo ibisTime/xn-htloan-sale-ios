@@ -24,7 +24,7 @@
     return self;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
@@ -32,6 +32,9 @@
     }
     else if (section == 1){
         return 3;
+    }
+    if (section == 3) {
+        return 1;
     }
     return 1;
 }
@@ -97,23 +100,38 @@
         cell.nameTextField.tag = indexPath.row + 10000;
         return cell;
     }
-    UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
+    if (indexPath.section == 2) {
+        UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.nameLbl.text = @"*代理人身份证";
+        cell.nameArray = @[@"代理人身份证正面",@"代理人身份证反面"];
+        cell.IdCardDelegate = self;
+        cell.idNoFront = self.idNoFront;
+        cell.idNoReverse = self.idNoReverse;
+        return cell;
+    }
+    TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.nameLbl.text = @"*代理人身份证";
-    cell.nameArray = @[@"代理人身份证正面",@"代理人身份证反面"];
-    cell.IdCardDelegate = self;
-    cell.idNoFront = self.idNoFront;
-    cell.idNoReverse = self.idNoReverse;
+    NSArray *nameArray = @[@"补充说明"];
+
+    if (indexPath.row == 0) {
+        cell.TextFidStr = self.model.carPledge[@"pledgeSupplementNote"];
+    }
+    
+    cell.name = nameArray[indexPath.row];
+    cell.nameTextField.tag = 1000 + indexPath.row;
     return cell;
+    
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0 || indexPath.section == 1) {
+    if (indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 3) {
         return 50;
     }
     return SCREEN_WIDTH/3 + 70;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 2) {
+    if (section == 3) {
         return 100;
     }
     return 0.01;
@@ -122,7 +140,7 @@
     return 0.01;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section == 2) {
+    if (section == 3) {
         UIView *headView = [[UIView alloc]init];
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -153,11 +171,59 @@
 //身份证
 -(void)UploadIdCardBtn:(UIButton *)sender
 {
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-        
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+    if (sender.tag == 50) {
+        if (self.idNoFront.length > 0) {
+            NSMutableArray *muArray = [NSMutableArray array];
+            NSArray * arr = @[self.idNoFront];
+            for (int i = 0; i < arr.count; i++) {
+                [muArray addObject:[arr[i] convertImageUrl]];
+            }
+            NSArray *seleteArray = muArray;
+            
+            if (muArray.count > 0) {
+                UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                    return seleteArray;
+                }];
+                
+            }
+        }
+        else{
+            if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+                
+                [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+                
+            }
+        }
         
     }
+    else if (sender.tag == 51) {
+        if (self.idNoReverse.length > 0) {
+            NSMutableArray *muArray = [NSMutableArray array];
+            NSArray * arr = @[self.idNoReverse];
+            for (int i = 0; i < arr.count; i++) {
+                [muArray addObject:[arr[i] convertImageUrl]];
+            }
+            NSArray *seleteArray = muArray;
+            
+            if (muArray.count > 0) {
+                UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                    return seleteArray;
+                }];
+                
+            }
+        }
+        else{
+            if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+                
+                [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+                
+            }
+        }
+        
+    }
+    
 }
 
 -(void)SelectButtonClick:(UIButton *)sender

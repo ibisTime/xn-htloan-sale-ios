@@ -14,7 +14,7 @@
 
 @property (nonatomic ,copy) NSString *updaterName;
 
-@property (nonatomic ,copy) NSString *id;
+@property (nonatomic ,copy) NSString *ID;
 
 @property (nonatomic ,copy) NSString *no;
 

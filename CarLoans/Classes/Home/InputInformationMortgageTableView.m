@@ -18,6 +18,8 @@
 #import "SurverCertificateCell.h"
 #define SurverCertificate1 @"SurverCertificateCell"
 
+#define UploadIdCard @"UploadIdCardCell"
+
 @interface InputInformationMortgageTableView ()<UITableViewDataSource,UITableViewDelegate,CustomCollectionDelegate>
 
 @end
@@ -33,7 +35,7 @@
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField1];
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CollectionView];
         [self registerClass:[SurverCertificateCell class] forCellReuseIdentifier:SurverCertificate1];
-
+        [self registerClass:[UploadIdCardCell class] forCellReuseIdentifier:UploadIdCard];
     }
     return self;
 }
@@ -41,7 +43,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 4;
 }
 
 #pragma mark -- 行数
@@ -50,6 +52,8 @@
 
     if (section == 0) {
         return 8;
+    }if (section == 1) {
+        return 3;
     }
     return 1;
 }
@@ -86,6 +90,47 @@
         cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
     }
+    if (indexPath.section == 1){
+        static NSString *rid=@"cell12";
+        TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        if(cell==nil){
+            cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
+        }
+        NSArray * arr = @[@"*代理人",@"*代理人身份证号",@"*抵押地点"];
+        if (indexPath.row == 0) {
+            NSString * str1 = self.model.carPledge[@"pledgeUser"];
+            if (str1.length > 0) {
+                cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
+            }
+        }
+        NSString * str2 = self.model.carPledge[@"pledgeUserIdCard"];
+        if (indexPath.row == 1) {
+            if (str2.length > 0) {
+                cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
+            }
+        }
+        NSString * str3 = self.model.carPledge[@"pledgeAddress"];
+        if (indexPath.row == 2) {
+            if (str3.length > 0) {
+                cell.nameTextField.text = self.model.carPledge[@"pledgeAddress"];
+            }
+        }
+        
+        cell.name = arr[indexPath.row];
+        cell.nameTextField.tag = indexPath.row + 20000;
+        return cell;
+    }
+    if (indexPath.section == 2) {
+        UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.nameLbl.text = @"*代理人身份证";
+        cell.nameArray = @[@"代理人身份证正面",@"代理人身份证反面"];
+        cell.IdCardDelegate = self;
+        cell.idNoFront = self.idNoFront;
+        cell.idNoReverse = self.idNoReverse;
+        return cell;
+    }
+    
     TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *nameArray = @[@"*车辆抵押补充说明"];
@@ -128,8 +173,11 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if (indexPath.section == 2) {
+        return SCREEN_WIDTH/3 + 70;
+    }
     return 50;
+    
 
 }
 
@@ -143,7 +191,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 3) {
         return 100;
     }
     return 0.01;
@@ -158,7 +206,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
 
-    if (section == 1) {
+    if (section == 3) {
         UIView *headView = [[UIView alloc]init];
 
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -185,5 +233,19 @@
     }
 }
 
+#pragma mark - UploadIdCardDelegate
+//身份证
+-(void)UploadIdCardBtn:(UIButton *)sender
+{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+        
+    }
+}
 
+-(void)SelectButtonClick:(UIButton *)sender
+{
+    [_AgentDelegate selectButtonClick:sender];
+}
 @end

@@ -10,6 +10,7 @@
 #import "CheckRepayTableView.h"
 #import "RepayPlanVC.h"
 #import "ForwardRepayVC.h"
+#import "CheckRepayDetailsVC.h"
 @interface CheckRepayVC ()<RefreshDelegate>
 @property (nonatomic,strong) CheckRepayTableView * tableView;
 @property (nonatomic , strong)NSMutableArray <RepayModel *>*model;
@@ -42,15 +43,14 @@
 
 -(void)LoadData
 {
-    
     CarLoansWeakSelf;
     
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"630520";
+    helper.code = @"630522";
 //    helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
 //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"curNodeCode"] = @"j1";
-//    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.parameters[@"refType"] = @"0";
     helper.isList = NO;
     helper.isCurrency = YES;
@@ -120,5 +120,10 @@
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CheckRepayDetailsVC * vc = [CheckRepayDetailsVC new];
+    vc.code = self.model[indexPath.row].code;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

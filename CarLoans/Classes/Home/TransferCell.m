@@ -70,10 +70,12 @@
     NSString *state;
     if ([dataTransferModel.status isEqualToString:@"0"]) {
         state = @"待发件";
+        [_button setTitle:@"发件" forState:(UIControlStateNormal)];
         _button.hidden = NO;
     }else if ([dataTransferModel.status isEqualToString:@"1"])
     {
         state = @"已发件待收件";
+        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
         _button.hidden = NO;
     }else if ([dataTransferModel.status isEqualToString:@"2"])
     {
@@ -83,6 +85,7 @@
     }else
     {
         state = @"已收件待补件";
+        [_button setTitle:@"补件" forState:(UIControlStateNormal)];
         _button.hidden = NO;
     }
 //    待发件
@@ -101,7 +104,7 @@
                              [NSString stringWithFormat:@"%@",dataTransferModel.saleUserName],
                              [NSString stringWithFormat:@"%@",dataTransferModel.insideJobName],
                              state];
-        [_button setTitle:@"发件" forState:(UIControlStateNormal)];
+//        [_button setTitle:@"发件" forState:(UIControlStateNormal)];
 //        线下
     }else if ([dataTransferModel.sendType isEqualToString:@"1"]){
         nameArray = @[
@@ -124,7 +127,7 @@
                              [NSString stringWithFormat:@"%@",dataTransferModel.saleUserName],
                              [NSString stringWithFormat:@"%@",dataTransferModel.insideJobName],
                              state];
-        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
+//        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
     }
 //    快递
     if ([dataTransferModel.sendType isEqualToString:@"2"]) {
@@ -153,7 +156,7 @@
                              [NSString stringWithFormat:@"%@",dataTransferModel.saleUserName],
                              [NSString stringWithFormat:@"%@",dataTransferModel.insideJobName],
                              state];
-        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
+//        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
     }
     
     _lineView.frame = CGRectMake(0, 70 + 35 * nameArray.count, SCREEN_WIDTH, 1);
@@ -248,7 +251,7 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",gpsmodel.gpsApply[@"applyWiredCount"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",gpsmodel.gpsApply[@"applyWirelessCount"]]],
                              state];
-        [_button setTitle:@"补件" forState:(UIControlStateNormal)];
+        [_button setTitle:@"收件" forState:(UIControlStateNormal)];
     }
     
     _lineView.frame = CGRectMake(0, 70 + 35 * nameArray.count, SCREEN_WIDTH, 1);

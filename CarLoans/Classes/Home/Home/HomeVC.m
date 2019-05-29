@@ -128,7 +128,7 @@
         cell.nameLbl.text = array[indexPath.row];
     }
     if (indexPath.section == 3) {
-        NSArray *array = @[@"业务作废",@"GPS申领",@"面签管理"];
+        NSArray *array = @[@"客户作废",@"GPS申领",@"面签管理"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }

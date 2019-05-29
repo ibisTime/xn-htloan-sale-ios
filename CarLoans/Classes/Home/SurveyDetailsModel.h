@@ -28,5 +28,5 @@
 @property (nonatomic , copy)NSString *budgetCode;
 @property (nonatomic , copy)NSString *applyDatetime;
 @property (nonatomic , copy)NSString *loanBank;
-
+@property (nonatomic,strong) NSString * sendType;
 @end

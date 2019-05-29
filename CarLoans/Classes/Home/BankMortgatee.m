@@ -526,23 +526,23 @@
     UITextField *textField5 = [self.view viewWithTag:1006];//代理身份证号
     
     
-    if ([textField1.text isEqualToString:@""]) {
+    if (textField1.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入落户地点"];
         return;
     }
-    if ([textField2.text isEqualToString:@""]) {
+    if (textField2.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入车牌号"];
         return;
     }
-    if ([textField3.text isEqualToString:@""]) {
+    if (textField3.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入抵押地点"];
         return;
     }
-    if ([textField4.text isEqualToString:@""]) {
+    if (textField4.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入代理人姓名"];
         return;
     }
-    if ([textField5.text isEqualToString:@""]) {
+    if (textField5.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入代理人身份证号"];
         return;
     }

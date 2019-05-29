@@ -253,7 +253,7 @@
     for (SelectedListModel *model in arr) {
         //        for (CadListModel *m in self.models) {
         //            if ([model.title isEqualToString:[NSString stringWithFormat:@"%@-%@份",m.name,m.number]]) {
-        [self.fileIdList addObject:self.models[model.sid].id];
+        [self.fileIdList addObject:self.models[model.sid].ID];
         [arr1 addObject:[NSString stringWithFormat:@"%@",model.title]];
         //
         //            }
@@ -470,10 +470,10 @@
     self.tableView.cardStr = [NSString stringWithFormat:@"%@,%@",self.tableView.cardStr, self.models[indexPath.row].name];
     [self.tableView reloadData];
     //
-    if ([self.fileIdList containsObject:self.models[indexPath.row].id]) {
+    if ([self.fileIdList containsObject:self.models[indexPath.row].ID]) {
         return;
     }else{
-        [self.fileIdList addObject:self.models[indexPath.row].id];
+        [self.fileIdList addObject:self.models[indexPath.row].ID];
         
     }
     

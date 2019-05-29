@@ -41,10 +41,11 @@
 
 - (BottomView *)bottom_view{
     if (!_bottom_view) {
-        self.bottom_view = [[BottomView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, SCREEN_WIDTH, 50)];
+        self.bottom_view = [[BottomView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, SCREEN_WIDTH, 75)];
         _bottom_view.backgroundColor = [UIColor whiteColor];
         [_bottom_view.deleteBtn addTarget:self action:@selector(deleteData) forControlEvents:UIControlEventTouchUpInside];
         [_bottom_view.allBtn addTarget:self action:@selector(tapAllBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottom_view.delayBtn addTarget:self action:@selector(delayData) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _bottom_view;
 }
@@ -167,7 +168,7 @@
             http.parameters[@"code"] = self.model[index].code;
             http.parameters[@"way"] = @"1";
             [http postWithSuccess:^(id responseObject) {
-                
+                [TLAlert alertWithMsg:@"推送已发送"];
             } failure:^(NSError *error) {
                 
             }];
@@ -182,6 +183,7 @@
             http.parameters[@"code"] = self.model[index].code;
             http.parameters[@"way"] = @"0";
             [http postWithSuccess:^(id responseObject) {
+                [TLAlert alertWithMsg:@"短信已发送"];
                 
             } failure:^(NSError *error) {
                 
@@ -205,7 +207,7 @@
             }
             //添加底部视图
             CGRect frame = self.bottom_view.frame;
-            frame.origin.y -= 50;
+            frame.origin.y -= 75;
             [UIView animateWithDuration:0.5 animations:^{
                 self.bottom_view.frame = frame;
                 [self.view addSubview:self.bottom_view];
@@ -218,7 +220,7 @@
 
             [UIView animateWithDuration:0.5 animations:^{
                 CGPoint point = self.bottom_view.center;
-                point.y      += 50;
+                point.y      += 75;
                 self.bottom_view.center   = point;
 
             } completion:^(BOOL finished) {
@@ -278,6 +280,22 @@
         return;
     }
 
+}
+-(void)delayData{
+    if (self.deleteArray.count >0) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"630537";
+        http.parameters[@"codeList"] = self.deleteArray;
+        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+        [http postWithSuccess:^(id responseObject) {
+            [self LoadData];
+        } failure:^(NSError *error) {
+            
+        }];
+    }else{
+        [TLAlert alertWithMsg:@"至少选中一条数据"];
+        return;
+    }
 }
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.btn.selected) {

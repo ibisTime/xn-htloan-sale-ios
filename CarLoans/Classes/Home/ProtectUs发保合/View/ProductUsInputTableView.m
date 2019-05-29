@@ -153,12 +153,46 @@
     if (indexPath.section == 0 || indexPath.section == 1) {
         return 50;
     }else{
-        float numberToRound;
-        int result;
-        numberToRound = (self.bankCreditReport.count + 1.0)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
+        switch (indexPath.section) {
+            case 2:{
+                float numberToRound;
+                int result;
+                numberToRound = (self.carInvoice.count + 1.0)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
+            }
+                break;
+            case 3:{
+                float numberToRound;
+                int result;
+                numberToRound = (self.carJqx.count + 1.0)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
+            }
+                break;
+            case 4:{
+                float numberToRound;
+                int result;
+                numberToRound = (self.carSyx.count + 1.0)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
+            }
+                break;
+            case 5:{
+                float numberToRound;
+                int result;
+                numberToRound = (self.carHgzPic.count + 1.0)/3.0;
+                result = (int)ceilf(numberToRound);
+                return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
     }
+    return 50;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;

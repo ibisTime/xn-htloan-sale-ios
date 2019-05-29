@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 10;
+    return 9;
 }
 
 #pragma mark -- tableView
@@ -48,7 +48,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"业务编号",@"客户姓名",@"业务公司",@"业务团队",@"信贷专员",@"业务内勤",@"贷款金额",@"贷款银行",@"档案存放位置",@"档案目录"];
+    NSArray *topArray = @[@"业务编号",@"客户姓名",@"业务公司",@"业务团队",@"信贷专员",@"业务内勤",@"贷款金额",@"贷款银行",@"档案存放位置"];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNullReturnStr:self.model.code],
@@ -57,10 +57,10 @@
                              [BaseModel convertNullReturnStr:_model.saleUserDepartMentName],
                              [BaseModel convertNullReturnStr:_model.saleUserName],
                              [BaseModel convertNullReturnStr:_model.insideJobName],
-                             [NSString stringWithFormat:@"%.2f万",[_model.loanAmount floatValue]/10000],
+                             [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/10000],
                              [BaseModel convertNullReturnStr:_model.loanBankName],
-                             @"",
-                             @""];
+                             [BaseModel convertNull:[[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation]]
+                             ];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];

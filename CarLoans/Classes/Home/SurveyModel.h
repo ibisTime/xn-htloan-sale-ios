@@ -273,4 +273,5 @@
 @property (nonatomic,strong) NSString * cardPostAddress;
 @property (nonatomic,strong) NSArray * repayPlanList;
 @property (nonatomic,strong) NSString * intevDateTime;
+@property (nonatomic,strong) NSString * enterLocation;
 @end

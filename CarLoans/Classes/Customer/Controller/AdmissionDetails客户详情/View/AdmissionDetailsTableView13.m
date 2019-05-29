@@ -102,22 +102,25 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    for (int i = 0; i < self.model.budgetOrderGps.count; i ++) {
+        if (indexPath.section == i) {
     if (indexPath.row == 5) {
-        float numberToRound;
-        int result;
-        numberToRound = (4.0)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+        return [self returnheight:[self.model.budgetOrderGps[i][@"devPhotos"] componentsSeparatedByString:@"||"]];
     }
     if (indexPath.row == 6) {
-        float numberToRound;
-        int result;
-        numberToRound = (4.0)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+        return [self returnheight:[self.model.budgetOrderGps[i][@"azPhotos"] componentsSeparatedByString:@"||"]];
     }
-
+            
+        }
+    }
     return _cell.bottomLbl.yy ;
+}
+-(float)returnheight:(NSArray *)array{
+    float numberToRound;
+    int result;
+    numberToRound = (array.count)/3.0;
+    result = (int)ceilf(numberToRound);
+    return  result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
 }
 
 #pragma mark -- 区头高度

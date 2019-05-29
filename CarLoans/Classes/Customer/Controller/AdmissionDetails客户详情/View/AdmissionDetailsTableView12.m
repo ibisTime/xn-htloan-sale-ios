@@ -35,13 +35,13 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 9;
+    return 8;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 8) {
+    if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 ||  indexPath.row == 7) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
@@ -60,12 +60,8 @@
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_syx"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"商业险";
         }
-        if (indexPath.row == 6) {
-            cell.collectDataArray = @[@"",@"",@"",@"",@"",@"",@"",@""];
-            cell.selectStr = @"其他资料";
-        }
         if (indexPath.row == 8) {
-            cell.collectDataArray = @[@"",@"",@"",@"",@"",@"",@"",@""];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"绿大本扫描件";
         }
         
@@ -82,13 +78,13 @@
     NSArray *topArray = @[@"保单日期",
                           @"保单到期日",
                           @"落户日期",
-                          @"",@"",@"",@"",@"抵押日期",@""];
+                          @"",@"",@"",@"抵押日期",@""];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[
-                             [BaseModel convertNull:[self.model.carInfoRes[@"policyDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
-                             [BaseModel convertNull:[self.model.carInfoRes[@"policyDueDate"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
-                             [BaseModel convertNull:[self.model.carInfoRes[@"carSettleDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
+                             [BaseModel convertNull:[self.model.carInfoRes[@"policyDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
+                             [BaseModel convertNull:[self.model.carInfoRes[@"policyDueDate"] convertDateWithFormat:@"yyyy-MM-dd"]],
+                             [BaseModel convertNull:[self.model.carInfoRes[@"carSettleDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              @"",@"",@"",@"",
                              @"2018-12-19",
                              @""];
@@ -111,14 +107,30 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 8) {
-        float numberToRound;
-        int result;
-        numberToRound = (8.0)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+    switch (indexPath.row) {
+        case 3:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_invoice"] componentsSeparatedByString:@"||"]];
+            break;
+        case 4:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_jqx"] componentsSeparatedByString:@"||"]];
+            break;
+        case 5:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_syx"] componentsSeparatedByString:@"||"]];
+            break;
+        case 7:
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"]];
+            break;
+        default:
+            break;
     }
     return _cell.bottomLbl.yy ;
+}
+-(float)returnheight:(NSArray *)array{
+    float numberToRound;
+    int result;
+    numberToRound = (array.count)/3.0;
+    result = (int)ceilf(numberToRound);
+    return  result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
 }
 
 #pragma mark -- 区头高度

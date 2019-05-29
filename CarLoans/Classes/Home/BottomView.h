@@ -27,4 +27,6 @@
  */
 @property (nonatomic ,strong) UIButton *deleteBtn;
 
+@property (nonatomic,strong) UIButton * delayBtn;
+
 @end

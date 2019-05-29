@@ -38,7 +38,7 @@
         cell.repayModel = self.model[indexPath.row];
     }
     NSLog(@"%ld",cell.button.tag);
-    cell.button.hidden = NO;
+    cell.button.hidden = YES;
     cell.button1.hidden = NO;
     cell.button.frame =CGRectMake(SCREEN_WIDTH - 230, 245, 100, 30);
     cell.button1.frame = CGRectMake(SCREEN_WIDTH - 115, 245, 100, 30);

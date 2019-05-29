@@ -10,7 +10,7 @@
 #import "InputInformationMortgageTableView.h"
 #import "WSDatePickerView.h"
 @interface InputInformationMortgageVC ()
-<RefreshDelegate>
+<RefreshDelegate,SelectButtonDelegate>
 {
     NSInteger isSelect;
     NSString *date;
@@ -22,6 +22,11 @@
 @property (nonatomic , strong)NSMutableArray *GreenBigBenArray;
 
 @property (nonatomic , strong)TLImagePicker *imagePicker;
+
+//    身份证正面
+@property (nonatomic , copy)NSString *idNoFront;
+//    身份证反面
+@property (nonatomic , copy)NSString *idNoReverse;
 
 @property (nonatomic , strong)InputInformationMortgageTableView *tableView;
 @end
@@ -60,14 +65,37 @@
 
 -(void)setImage:(UIImage *)image setData:(NSString *)data
 {
-
-    [self.GreenBigBenArray addObject:data];
-    self.tableView.GreenBigBenArray = self.GreenBigBenArray;
+    if (self.selectInt == 1) {
+        [self.GreenBigBenArray addObject:data];
+        self.tableView.GreenBigBenArray = self.GreenBigBenArray;
+    }
+    
+    
+    if (self.selectInt == 50)
+    {
+        self.idNoFront = data;
+        self.tableView.idNoFront = self.idNoFront;
+    }else if (self.selectInt == 51)
+    {
+        self.idNoReverse = data;
+        self.tableView.idNoReverse = self.idNoReverse;
+    }
     [self.tableView reloadData];
-
 }
 
-
+-(void)selectButtonClick:(UIButton *)sender{
+    if (sender.tag == 5000) {
+        
+        
+        _idNoFront = @"";
+        self.tableView.idNoFront = _idNoFront;
+    }else
+    {
+        _idNoReverse = @"";
+        self.tableView.idNoReverse = _idNoReverse;
+    }
+    [self.tableView reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -87,6 +115,16 @@
         NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);
         self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
         [self initTableView];
+        for (int i = 0; i < self.model.attachments.count; i ++) {
+            if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_front"]) {
+                self.idNoFront = self.model.attachments[i][@"url"];
+                self.tableView.idNoFront = self.model.attachments[i][@"url"];
+            }
+            if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_reverse"]) {
+                self.idNoReverse = self.model.attachments[i][@"url"];
+                self.tableView.idNoReverse = self.model.attachments[i][@"url"];
+            }
+        }
     } failure:^(NSError *error) {
         
     }];
@@ -94,6 +132,7 @@
 - (void)initTableView {
     self.tableView = [[InputInformationMortgageTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
+    self.tableView.AgentDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
@@ -118,11 +157,41 @@
     {
         [self confirmButtonClick];
     }
+    if ([state isEqualToString:@"IDCard"])
+    {
+        self.selectInt = index;
+        [self.imagePicker picker];
+        [self.tableView reloadData];
+    }
 }
 
 -(void)confirmButtonClick
 {
     UITextField *textField2 = [self.view viewWithTag:1000];
+    UITextField * t = [self.view viewWithTag:20000];
+    UITextField * t1 = [self.view viewWithTag:20001];
+    UITextField * t2 = [self.view viewWithTag:20002];
+    if (t.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入代理人姓名"];
+        return;
+    }
+    if (t1.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入代理人身份证号码"];
+        return;
+    }
+    if (t2.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入抵押地点"];
+        return;
+    }
+    if (self.idNoFront.length == 0) {
+        [TLAlert alertWithInfo:@"请选择代理人身份证正面"];
+        return;
+    }
+    if (self.idNoReverse.length == 0) {
+        [TLAlert alertWithInfo:@"请选择代理人身份证反面"];
+        return;
+    }
+    
     if (textField2.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入车辆抵押补充说明"];
         return;
@@ -133,6 +202,11 @@
         http.parameters[@"code"] = _model.code;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"supplementNote"] = textField2.text;
+        http.parameters[@"pledgeUserIdCardFront"] = self.idNoFront;
+        http.parameters[@"pledgeUserIdCardReverse"] = self.idNoReverse;
+        http.parameters[@"pledgeUser"] = t.text;
+        http.parameters[@"pledgeUserIdCard"] = t1.text;
+        http.parameters[@"pledgeAddress"] = t2.text;
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"提交成功"];
             NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

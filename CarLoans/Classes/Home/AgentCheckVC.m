@@ -63,14 +63,12 @@
     [super viewDidLoad];
     self.title = @"内勤确认";
     [self inittableview];
+    [self loaddetails];
 }
 -(void)inittableview{
     self.tableView = [[AgentTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
-//    self.tableView.model = self.model;
-    [self loaddetails];
     self.tableView.AgentDelegate = self;
-//    [self.view addSubview:self.tableView];
 }
 -(void)loaddetails{
     TLNetworking * http = [[TLNetworking alloc]init];
@@ -94,7 +92,7 @@
             }
         }
         [self.view addSubview:self.tableView];
-//        [self.tableView reloadData];
+//        [self.tableView reloadData]; _code    __NSCFString *    @"CB201905271032542134144"    0x000000017064d0b0
     } failure:^(NSError *error) {
         
     }];
@@ -128,12 +126,17 @@
 -(void)confirm{
     UITextField * text1 = [self.view viewWithTag:10000];
     UITextField * text2 = [self.view viewWithTag:10001];
+    UITextField * text3 = [self.view viewWithTag:10002];
     if (text1.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入代理人姓名"];
         return;
     }
     if (text2.text.length == 0) {
         [TLAlert alertWithInfo:@"请输入代理人身份证号码"];
+        return;
+    }
+    if (text3.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入抵押地点"];
         return;
     }
     if (self.idNoFront.length == 0) {
@@ -153,6 +156,8 @@
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"pledgeUserIdCardFront"] = self.idNoFront;
     http.parameters[@"pledgeUserIdCardReverse"] = self.idNoReverse;
+    http.parameters[@"pledgeAddress"] = text3.text;
+    
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithInfo:@"确认成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

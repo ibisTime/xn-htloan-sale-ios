@@ -92,7 +92,7 @@
             
             for (int i = 0; i <idArr.count; i++) {
                 for (CadListModel*mode in self.models) {
-                    if ([idArr[i] isEqualToString:mode.id]) {
+                    if ([idArr[i] isEqualToString:mode.ID]) {
                         [cadArray addObject:[NSString stringWithFormat:@"%@-%@份",mode.vname,mode.number]];
                     }
                 }

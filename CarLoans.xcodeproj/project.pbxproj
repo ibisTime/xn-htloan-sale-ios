@@ -249,6 +249,8 @@
 		36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5322856325004C4479 /* ToApplyForRightTableView9.m */; };
 		36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E56228592F7004C4479 /* CheckCarTableView.m */; };
 		36294E5A22859313004C4479 /* CheckCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36294E5922859313004C4479 /* CheckCarVC.m */; };
+		3637A3F6229D1E2E005CD19B /* CheckRepayDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3637A3F5229D1E2E005CD19B /* CheckRepayDetailsVC.m */; };
+		3637A3F9229D2106005CD19B /* CheckRepayDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3637A3F8229D2106005CD19B /* CheckRepayDetailsTableView.m */; };
 		36401C222293D59600580033 /* AddPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36401C212293D59600580033 /* AddPeopleCell.m */; };
 		3650426E229A4D470040383C /* SignVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3650426D229A4D470040383C /* SignVideoVC.m */; };
 		36504271229A4D5E0040383C /* SignVideoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36504270229A4D5E0040383C /* SignVideoTableView.m */; };
@@ -1044,6 +1046,10 @@
 		36294E56228592F7004C4479 /* CheckCarTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarTableView.m; sourceTree = "<group>"; };
 		36294E5822859313004C4479 /* CheckCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckCarVC.h; sourceTree = "<group>"; };
 		36294E5922859313004C4479 /* CheckCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckCarVC.m; sourceTree = "<group>"; };
+		3637A3F4229D1E2E005CD19B /* CheckRepayDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayDetailsVC.h; sourceTree = "<group>"; };
+		3637A3F5229D1E2E005CD19B /* CheckRepayDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckRepayDetailsVC.m; sourceTree = "<group>"; };
+		3637A3F7229D2106005CD19B /* CheckRepayDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayDetailsTableView.h; sourceTree = "<group>"; };
+		3637A3F8229D2106005CD19B /* CheckRepayDetailsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckRepayDetailsTableView.m; sourceTree = "<group>"; };
 		36401C202293D59600580033 /* AddPeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPeopleCell.h; sourceTree = "<group>"; };
 		36401C212293D59600580033 /* AddPeopleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPeopleCell.m; sourceTree = "<group>"; };
 		3650426C229A4D470040383C /* SignVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignVideoVC.h; sourceTree = "<group>"; };
@@ -3130,6 +3136,8 @@
 			children = (
 				3662016622924AF10010C78A /* CheckRepayVC.h */,
 				3662016722924AF10010C78A /* CheckRepayVC.m */,
+				3637A3F4229D1E2E005CD19B /* CheckRepayDetailsVC.h */,
+				3637A3F5229D1E2E005CD19B /* CheckRepayDetailsVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -3141,6 +3149,8 @@
 				3662016A22924BA40010C78A /* CheckRepayTableView.m */,
 				36620170229255DC0010C78A /* CheckRepayCell.h */,
 				36620171229255DC0010C78A /* CheckRepayCell.m */,
+				3637A3F7229D2106005CD19B /* CheckRepayDetailsTableView.h */,
+				3637A3F8229D2106005CD19B /* CheckRepayDetailsTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -5835,6 +5845,7 @@
 				7AB29E7420FD8EB30014FCB3 /* TLAlert.m in Sources */,
 				B834137D21D0786100A63D3B /* SelectedCell.m in Sources */,
 				1F1EF2DD2266D6EB00EADA25 /* AdmissionDetailsTableView7.m in Sources */,
+				3637A3F9229D2106005CD19B /* CheckRepayDetailsTableView.m in Sources */,
 				7AB29E6F20FD8EB30014FCB3 /* NSString+MJExtension.m in Sources */,
 				1F1EF2292265C07000EADA25 /* AdmissionDetailsTableView.m in Sources */,
 				7AB29E8B20FD8EB30014FCB3 /* CDCommon.m in Sources */,
@@ -5937,6 +5948,7 @@
 				7A945561210EFF5000BDFD33 /* GPSClaimsVC.m in Sources */,
 				7A35828121130625006FB5B5 /* UIView+Extension.m in Sources */,
 				1F651A3F2275B15200EFB78B /* ToApplyForRightTableView3.m in Sources */,
+				3637A3F6229D1E2E005CD19B /* CheckRepayDetailsVC.m in Sources */,
 				36B28A85227F003E00A8C07D /* CheckProtectTableView.m in Sources */,
 				7A0592C220FDF0F400075FE8 /* ADPeopleVC.m in Sources */,
 				7AB29E7F20FD8EB30014FCB3 /* SignFinishView.m in Sources */,

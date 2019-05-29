@@ -55,18 +55,10 @@
 //    cell.isGps = YES;
     cell.gpsInstallationModel = self.model[indexPath.row];
     cell.button.tag = indexPath.row;
-    
-//    if ([cell.button.titleLabel.text isEqualToString:@"录入GPS"]) {
-//        [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
-//    }
-//    else if ([cell.button.titleLabel.text isEqualToString:@"审核GPS"]) {
-//        [cell.button addTarget:self action:@selector(buttonClick2:) forControlEvents:(UIControlEventTouchUpInside)];
-//    }
-//    else if ([cell.button.titleLabel.text isEqualToString:@"重新录入"]) {
-//        [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
-//    }
-    
     [cell.button addTarget:self action:@selector(buttonClick1:) forControlEvents:(UIControlEventTouchUpInside)];
+    if ([self.model[indexPath.row].fbhgpsNode isEqualToString:@"d4"]) {
+        cell.button.hidden = YES;
+    }
     return cell;
 
 
