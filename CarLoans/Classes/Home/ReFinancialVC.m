@@ -331,21 +331,39 @@
 }
 -(void)confirm:(UIButton *)sender{
     InputBoxCell * cell = [self.view viewWithTag:1010];
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = self.code;
-    self.carInvoicestr = [self.carInvoice componentsJoinedByString:@"||"];
-    http.parameters[@"advanceFundAmount"] = [NSString stringWithFormat:@"%.f", [cell.nameTextField.text floatValue] * 1000];
-    http.parameters[@"advanceFundDatetime"] = self.policyDatetime;
-    http.parameters[@"billPdf"] = self.carInvoicestr;
-    http.parameters[@"code"] = self.model.code;
-    http.parameters[@"advanceCardCode"] = self.bancode;
-    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    [http postWithSuccess:^(id responseObject) {
-        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
-        [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSError *error) {
-        
-    }];
+    if (cell.nameTextField.text.length == 0) {
+        [TLAlert alertWithMsg:@"请输入垫资金额"];
+        return;
+    }
+    if (self.policyDatetime.length == 0) {
+        [TLAlert alertWithMsg:@"请选择垫资日期"];
+        return;
+    }
+    if (self.carInvoicestr.length == 0) {
+        [TLAlert alertWithMsg:@"请上传水单"];
+        return;
+    }
+    if (self.bancode.length == 0) {
+        [TLAlert alertWithMsg:@"请选择垫资账号"];
+        return;
+    }else{
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = self.code;
+        self.carInvoicestr = [self.carInvoice componentsJoinedByString:@"||"];
+        http.parameters[@"advanceFundAmount"] = [NSString stringWithFormat:@"%.f", [cell.nameTextField.text floatValue] * 1000];
+        http.parameters[@"advanceFundDatetime"] = self.policyDatetime;
+        http.parameters[@"billPdf"] = self.carInvoicestr;
+        http.parameters[@"code"] = self.model.code;
+        http.parameters[@"advanceCardCode"] = self.bancode;
+        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+        [http postWithSuccess:^(id responseObject) {
+            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+    
 }
 @end

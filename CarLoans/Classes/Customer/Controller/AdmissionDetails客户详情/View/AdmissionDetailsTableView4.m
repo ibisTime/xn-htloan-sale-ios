@@ -36,7 +36,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 27;
+    return 24;
 }
 
 #pragma mark -- tableView
@@ -59,10 +59,14 @@
             cell.selectStr = @"家访照片";
         }
         
-        if (indexPath.row == 26) {
-            cell.collectDataArray = @[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_reverse"]]];
-            cell.selectStr = @"抵押代理人身份证复印件";
-        }
+//        if (indexPath.row == 26) {
+//            NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"];
+//            if (str.length > 0) {
+//                cell.collectDataArray = @[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_reverse"]]];
+//            }
+//
+//            cell.selectStr = @"抵押代理人身份证复印件";
+//        }
         
         return cell;
         
@@ -96,10 +100,7 @@
                           @"手机号码",
                           @"联系人2姓名",
                           @"与申请人关系",
-                          @"手机号码",
-                          @"抵押代理人",
-                          @"抵押地点",
-                          @""];
+                          @"手机号码"];
     cell.topLbl.text = topArray[indexPath.row];
     NSDictionary * dic = [[NSDictionary alloc]init];
     if (self.model.creditUserList.count > 0) {
@@ -108,18 +109,18 @@
     
     
     NSArray *bottomArray = @[[BaseModel convertNull: self.model.creditUser[@"userName"]],
-                             [NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"gender" setDkey:self.model.creditUser[@"gender"]]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"gender" setDkey:self.model.creditUser[@"gender"]]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@", self.model.creditUser[@"age"]]],
                              [BaseModel convertNull: self.model.creditUser[@"idNo"]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"marry_state" setDkey:self.model.creditUser[@"marryState"]]],
                              [BaseModel convertNull: self.model.creditUser[@"nation"]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"education" setDkey:self.model.creditUser[@"education"]]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"politics" setDkey:self.model.creditUser[@"political"]]],
-                             [NSString stringWithFormat:@"%@", self.model.creditUser[@"familyNumber"]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@", self.model.creditUser[@"familyNumber"]]],
                              [BaseModel convertNull: self.model.creditUser[@"familyPhone"]],
-                             [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.creditUser[@"nowAddressProvince"],self.model.creditUser[@"nowAddressCity"],self.model.creditUser[@"nowAddressArea"],self.model.creditUser[@"nowAddress"]],
+                             [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:self.model.creditUser[@"nowAddressProvince"]],[BaseModel convertNull:self.model.creditUser[@"nowAddressCity"]],[BaseModel convertNull:self.model.creditUser[@"nowAddressArea"]],[BaseModel convertNull:self.model.creditUser[@"nowAddress"]]],
                              [BaseModel convertNull:self.model.creditUser[@"nowPostCode"]],
-                             [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.creditUser[@"birthAddressProvince"],self.model.creditUser[@"birthAddressCity"],self.model.creditUser[@"birthAddressArea"],self.model.creditUser[@"nowAddress"]],
+                             [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:self.model.creditUser[@"birthAddressProvince"]],[BaseModel convertNull:self.model.creditUser[@"birthAddressCity"]],[BaseModel convertNull:self.model.creditUser[@"birthAddressArea"]],[BaseModel convertNull:self.model.creditUser[@"nowAddress"]]],
                              [BaseModel convertNull:self.model.creditUser[@"birthPostCode"]],
                              @"10000.00",
                              [BaseModel convertNull:self.model.creditUser[@"mainAssetInclude"]],
@@ -130,10 +131,7 @@
                              [BaseModel convertNull:dic[@"emergencyMobile1"]],
                              [BaseModel convertNull:dic[@"emergencyName2"]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"credit_contacts_relation" setDkey:dic[@"emergencyRelation2"]]],
-                             [BaseModel convertNull:dic[@"emergencyMobile2"]],
-                             [BaseModel convertNull:self.model.carPledge[@"pledgeUser"]],
-                             [BaseModel convertNull:self.model.carPledge[@"pledgeAddress"]],
-                             @""];
+                             [BaseModel convertNull:dic[@"emergencyMobile2"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];
@@ -158,23 +156,23 @@
         int result;
         numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"house_picture_apply"] componentsSeparatedByString:@"||"].count)/3.0;
         result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 45;
     }
     if (indexPath.row == 16) {
         float numberToRound;
         int result;
         numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"house_contract"] componentsSeparatedByString:@"||"].count)/3.0;
         result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 45;
     }
 
-    if (indexPath.row == 26) {
-        float numberToRound;
-        int result;
-        numberToRound = (2.0)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
-    }
+//    if (indexPath.row == 26) {
+//        float numberToRound;
+//        int result;
+//        numberToRound = (2.0)/3.0;
+//        result = (int)ceilf(numberToRound);
+//        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
+//    }
     return _cell.bottomLbl.yy ;
 }
 

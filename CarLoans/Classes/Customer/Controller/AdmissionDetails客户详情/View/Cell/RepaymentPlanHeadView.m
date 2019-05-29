@@ -33,7 +33,7 @@
         [backView addSubview:priceLbl];
         
         UILabel *introduceLbl = [UILabel labelWithFrame:CGRectMake(0, priceLbl.yy, (SCREEN_WIDTH - 107) - 30, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:Font(12) textColor:kWhiteColor];
-        introduceLbl.text = @"（包含利息及费用53.67）";
+        introduceLbl.text = @"（已包含利息）";
         introduceLbl.alpha= 0.8;
         [backView addSubview:introduceLbl];
         

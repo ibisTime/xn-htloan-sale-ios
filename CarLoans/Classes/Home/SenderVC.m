@@ -103,9 +103,8 @@
         self.tableView.tempdan = [BaseModel convertNull: self.model.logisticsCode];
         self.tableView.tempRemark = [BaseModel convertNull: self.model.sendNote];
         self.tableView.date = [self.model.sendDatetime convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
         NSArray * dataarr = [self.model.filelist componentsSeparatedByString:@","];
-//        BaseModel *model = [BaseModel new];
-//        model.ModelDelegate = self;
         NSMutableArray *array = [NSMutableArray array];
         for (CadListModel *model in self.models) {
             for (int i = 0; i < dataarr.count; i ++) {

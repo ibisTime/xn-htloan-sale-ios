@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 8;
+    return 7;
 }
 
 #pragma mark -- tableView
@@ -78,7 +78,7 @@
     NSArray *topArray = @[@"保单日期",
                           @"保单到期日",
                           @"落户日期",
-                          @"",@"",@"",@"抵押日期",@""];
+                          @"",@"",@"",@""];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[
@@ -86,7 +86,6 @@
                              [BaseModel convertNull:[self.model.carInfoRes[@"policyDueDate"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              [BaseModel convertNull:[self.model.carInfoRes[@"carSettleDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              @"",@"",@"",@"",
-                             @"2018-12-19",
                              @""];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;

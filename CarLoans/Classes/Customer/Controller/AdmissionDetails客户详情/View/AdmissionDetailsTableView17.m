@@ -64,7 +64,7 @@
                              [BaseModel convertNull:dic[@"mobile"]],
                              [BaseModel convertNull:dic[@"idNo"]],
                              [BaseModel convertNull:dic[@"gender"]],
-                             [NSString stringWithFormat:@"%@",dic[@"age"]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",dic[@"age"]]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"education" setDkey:dic[@"education"]]],
                              [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:dic[@"birthAddressProvince"]],[BaseModel convertNull:dic[@"birthAddressCity"]],[BaseModel convertNull:dic[@"birthAddressArea"]],[BaseModel convertNull:dic[@"birthAddress"]]],
                              [BaseModel convertNull:dic[@"birthPostCode"]],

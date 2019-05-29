@@ -321,7 +321,7 @@
             {
                 ProtectUsVC *vc = [ProtectUsVC new];
                 vc.hidesBottomBarWhenPushed = YES;
-                vc.curNodeCodeList = @[@"c1",@"c2",@"c1x",@"c3"];
+                vc.curNodeCodeList = @[@"c1",@"c2",@"c1x"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

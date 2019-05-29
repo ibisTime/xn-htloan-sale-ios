@@ -670,7 +670,7 @@
         // 家庭电话
         http.parameters[@"familyPhone"] = right4Label2.text;
         // 家庭主要财产
-        http.parameters[@"familyMainAsset"] = @([right4Label3.text floatValue]*1000);
+        http.parameters[@"familyMainAsset"] = [NSString stringWithFormat:@"%.f",[right4Label3.text floatValue]*1000];
         // 主要财产包括说明
         http.parameters[@"mainAssetInclude"] = right4Label4.text;
         //  户籍地（省市区）

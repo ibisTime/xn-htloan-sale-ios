@@ -31,13 +31,13 @@
     [self initTableView];
     [self LoadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
-//    if (self.curNodeCodeList.count > 1) {
+    if ([self.title isEqualToString:@"征信发起"]) {
         UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
         negativeSpacer.width = -10;
         self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
         [self.RightButton setTitle:@"发起征信" forState:(UIControlStateNormal)];
         [self.RightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
-//    }
+    }
 }
 
 -(void)rightButtonClick

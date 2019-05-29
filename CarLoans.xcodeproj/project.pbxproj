@@ -286,6 +286,10 @@
 		36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAB22819AF800FE0431 /* InputLendingDetailsTableView.m */; };
 		36932BAF2281B26600FE0431 /* ConfirmLendingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */; };
 		36932BB22281B27D00FE0431 /* ConfirmLendingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BB12281B27D00FE0431 /* ConfirmLendingTableView.m */; };
+		36974D4D229E264000B2B1D3 /* DataDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36974D4C229E264000B2B1D3 /* DataDetailsVC.m */; };
+		36974D50229E265800B2B1D3 /* DataDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36974D4F229E265800B2B1D3 /* DataDetailsTableView.m */; };
+		36974D53229E35A100B2B1D3 /* GPSDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36974D52229E35A100B2B1D3 /* GPSDetailsTableView.m */; };
+		36974D56229E35B400B2B1D3 /* GPSDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36974D55229E35B400B2B1D3 /* GPSDetailsVC.m */; };
 		36B28A6E227E9C4000A8C07D /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */; };
 		36B28A6F227E9C4000A8C07D /* ILiveLogReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */; };
 		36B28A70227E9C4000A8C07D /* TILLiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */; };
@@ -1124,6 +1128,14 @@
 		36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmLendingVC.m; sourceTree = "<group>"; };
 		36932BB02281B27D00FE0431 /* ConfirmLendingTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmLendingTableView.h; sourceTree = "<group>"; };
 		36932BB12281B27D00FE0431 /* ConfirmLendingTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmLendingTableView.m; sourceTree = "<group>"; };
+		36974D4B229E264000B2B1D3 /* DataDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataDetailsVC.h; sourceTree = "<group>"; };
+		36974D4C229E264000B2B1D3 /* DataDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataDetailsVC.m; sourceTree = "<group>"; };
+		36974D4E229E265800B2B1D3 /* DataDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataDetailsTableView.h; sourceTree = "<group>"; };
+		36974D4F229E265800B2B1D3 /* DataDetailsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataDetailsTableView.m; sourceTree = "<group>"; };
+		36974D51229E35A100B2B1D3 /* GPSDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSDetailsTableView.h; sourceTree = "<group>"; };
+		36974D52229E35A100B2B1D3 /* GPSDetailsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSDetailsTableView.m; sourceTree = "<group>"; };
+		36974D54229E35B400B2B1D3 /* GPSDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSDetailsVC.h; sourceTree = "<group>"; };
+		36974D55229E35B400B2B1D3 /* GPSDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSDetailsVC.m; sourceTree = "<group>"; };
 		36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveSDK.framework; sourceTree = "<group>"; };
 		36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveLogReport.framework; sourceTree = "<group>"; };
 		36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TILLiveSDK.framework; sourceTree = "<group>"; };
@@ -3325,6 +3337,37 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		36974D48229E25FC00B2B1D3 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				36974D4A229E261500B2B1D3 /* View */,
+				36974D49229E260700B2B1D3 /* Controller */,
+			);
+			name = Details;
+			sourceTree = "<group>";
+		};
+		36974D49229E260700B2B1D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				36974D4B229E264000B2B1D3 /* DataDetailsVC.h */,
+				36974D4C229E264000B2B1D3 /* DataDetailsVC.m */,
+				36974D54229E35B400B2B1D3 /* GPSDetailsVC.h */,
+				36974D55229E35B400B2B1D3 /* GPSDetailsVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		36974D4A229E261500B2B1D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36974D51229E35A100B2B1D3 /* GPSDetailsTableView.h */,
+				36974D52229E35A100B2B1D3 /* GPSDetailsTableView.m */,
+				36974D4E229E265800B2B1D3 /* DataDetailsTableView.h */,
+				36974D4F229E265800B2B1D3 /* DataDetailsTableView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		36B28A6A227E9C3F00A8C07D /* ILiveSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -4518,6 +4561,7 @@
 		7A945569210EFFCD00BDFD33 /* DataTransfer资料传递 */ = {
 			isa = PBXGroup;
 			children = (
+				36974D48229E25FC00B2B1D3 /* Details */,
 				7A94556D210EFFFE00BDFD33 /* DataTransferVC.h */,
 				7A94556E210EFFFE00BDFD33 /* DataTransferVC.m */,
 				7A0F8E86211A917900BA8358 /* ReceivesAudit收件审核 */,
@@ -5641,6 +5685,7 @@
 				7AB29E8720FD8EB30014FCB3 /* TLPageDataHelper.m in Sources */,
 				7A0F8E822119C2F100BA8358 /* SettlementAuditDetailsVC.m in Sources */,
 				7A13AEC821104E4400B8F785 /* QNPHAssetResource.m in Sources */,
+				36974D50229E265800B2B1D3 /* DataDetailsTableView.m in Sources */,
 				7A13AEBA21104E4300B8F785 /* QNRefresher.m in Sources */,
 				7AABE35E213921E300283BC7 /* InputInformationMortgageVC.m in Sources */,
 				36C02E03227FFFC6007EC7CF /* ReFinancialVC.m in Sources */,
@@ -5731,6 +5776,7 @@
 				B820200D21CBADC700237E01 /* FaceSignVC2.m in Sources */,
 				1F151A942272AB14002B7EDA /* ApplyTableView2.m in Sources */,
 				1F651A4B2275B16A00EFB78B /* ToApplyForRightTableView7.m in Sources */,
+				36974D56229E35B400B2B1D3 /* GPSDetailsVC.m in Sources */,
 				366201AF2292C3EF0010C78A /* CancelMortgageCell.m in Sources */,
 				1F651A392275B14700EFB78B /* ToApplyForRightTableView1.m in Sources */,
 				1F1EF1D12264549E00EADA25 /* CustomerVC.m in Sources */,
@@ -5850,6 +5896,7 @@
 				1F1EF2292265C07000EADA25 /* AdmissionDetailsTableView.m in Sources */,
 				7AB29E8B20FD8EB30014FCB3 /* CDCommon.m in Sources */,
 				1F151A982272AB14002B7EDA /* ApplyTableView9.m in Sources */,
+				36974D4D229E264000B2B1D3 /* DataDetailsVC.m in Sources */,
 				7A13AEC021104E4400B8F785 /* QNPipeline.m in Sources */,
 				36E6FF1D2286B14000CD2744 /* InputTableView.m in Sources */,
 				7A0F8E792119B9FE00BA8358 /* SettlementAuditVC.m in Sources */,
@@ -6026,6 +6073,7 @@
 				36C02DE0227FCDB2007EC7CF /* CheckFinancialVC.m in Sources */,
 				7A13AE33210FFC8C00B8F785 /* CreditReportingPersonInformationCell.m in Sources */,
 				7A13AEAC21104E4300B8F785 /* QNIpModel.m in Sources */,
+				36974D53229E35A100B2B1D3 /* GPSDetailsTableView.m in Sources */,
 				1F151A862272AB14002B7EDA /* DetailsTableView5.m in Sources */,
 				7AB29E6B20FD8EB30014FCB3 /* NSObject+MJClass.m in Sources */,
 				7AB29E9020FD8EB30014FCB3 /* NSString+Date.m in Sources */,

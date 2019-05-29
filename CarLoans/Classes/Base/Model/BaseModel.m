@@ -397,8 +397,6 @@
         arr = [url componentsSeparatedByString:@"||"];
     }else
         arr = @[url];
-    
-//    NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
     for (int i = 0; i < arr.count; i++) {
         [muArray addObject:[arr[i] convertImageUrl]];
     }

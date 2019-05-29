@@ -59,7 +59,7 @@
         lineView2.backgroundColor = LineBackColor;
         [self addSubview:lineView2];
 
-        _button = [UIButton buttonWithTitle:@"录入" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
+        _button = [UIButton buttonWithTitle:@"审核" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
         _button.frame = CGRectMake(SCREEN_WIDTH - 115, 170, 100, 30);
 
         kViewBorderRadius(_button, 5, 1, MainColor);

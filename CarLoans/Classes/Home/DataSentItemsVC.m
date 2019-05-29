@@ -12,6 +12,7 @@
 #import "SenderVC.h"
 #import "ReceivesAuditVC.h"
 #import "CadListModel.h"
+#import "DataDetailsVC.h"
 @interface DataSentItemsVC ()<RefreshDelegate>
 @property (nonatomic , strong)DataTransferTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
@@ -69,9 +70,9 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-//    CustomerDetailsVC *vc = [CustomerDetailsVC new];
-//    vc.model = self.model[indexPath.row];
-//    [self.navigationController pushViewController:vc animated:YES];
+    DataDetailsVC *vc = [DataDetailsVC new];
+    vc.code = self.model[indexPath.row].code;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index

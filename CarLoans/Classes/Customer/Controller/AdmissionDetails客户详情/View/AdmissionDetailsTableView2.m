@@ -37,7 +37,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 11;
+    return 12;
 }
 
 #pragma mark -- tableView
@@ -55,18 +55,28 @@
         if ([dataDic[@"loanRole"] isEqualToString:@"1"]) {
             [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_apply convertImageUrl]] forState:UIControlStateNormal];
             [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_apply convertImageUrl]] forState:UIControlStateNormal];
+            cell.button1.tag = 100;
+            cell.button2.tag = 101;
         }
         if ([dataDic[@"loanRole"] isEqualToString:@"2"]) {
             [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gh convertImageUrl]] forState:UIControlStateNormal];
             [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gh convertImageUrl]] forState:UIControlStateNormal];
+            cell.button1.tag = 102;
+            cell.button2.tag = 103;
         }
         if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
             [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gua convertImageUrl]] forState:UIControlStateNormal];
             [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gua convertImageUrl]] forState:UIControlStateNormal];
+            cell.button1.tag = 104;
+            cell.button2.tag = 105;
         }
+        
+        [cell.button1 addTarget:self action:@selector(buttonclick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [cell.button2 addTarget:self action:@selector(buttonclick:) forControlEvents:(UIControlEventTouchUpInside)];
+        
         return cell;
     }
-    if (indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 9) {
+    if (indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 9 || indexPath.row == 10) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
@@ -84,9 +94,12 @@
                 cell.selectStr = @"面签照片";
             }
             if (indexPath.row == 9) {
-                
                 cell.collectDataArray = self.bank_report_apply;
                 cell.selectStr = @"征信报告";
+            }
+            if (indexPath.row == 10) {
+                cell.collectDataArray = self.data_report_apply;
+                cell.selectStr = @"申请人大数据报告";
             }
         }
         if ([dataDic[@"loanRole"] isEqualToString:@"2"]) {
@@ -103,6 +116,10 @@
                 cell.collectDataArray = self.bank_report_gh;
                 cell.selectStr = @"征信报告";
             }
+            if (indexPath.row == 10) {
+                cell.collectDataArray = self.data_report_gh;
+                cell.selectStr = @"共还人大数据报告";
+            }
         }
         if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
             if (indexPath.row == 6) {
@@ -111,12 +128,16 @@
             }
             if (indexPath.row == 7) {
                 cell.collectDataArray = self.interview_pic_gua;
-                cell.selectStr = @"面签照片";
+                cell.selectStr = @"手持授权书照片";
             }
             if (indexPath.row == 9) {
                 
                 cell.collectDataArray = self.bank_report_gua;
                 cell.selectStr = @"征信报告";
+            }
+            if (indexPath.row == 10) {
+                cell.collectDataArray = self.data_report_gua;
+                cell.selectStr = @"担保人大数据报告";
             }
         }
         
@@ -134,7 +155,7 @@
     }
     _cell = cell;
 
-    NSArray *topArray = @[@"姓名",@"于借贷人关系",@"贷款人角色",@"手机号",@"身份证号",@"",@"",@"",@"信用卡使用占比",@"",@"征信结果说明"];
+    NSArray *topArray = @[@"姓名",@"与借贷人关系",@"贷款人角色",@"手机号",@"身份证号",@"",@"",@"",@"信用卡使用占比",@"",@"",@"征信报告说明"];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNullReturnStr:dataDic[@"userName"]],
@@ -145,7 +166,8 @@
                              @"",
                              @"",
                              @"",
-                             [NSString stringWithFormat:@"%.2f",[dataDic[@"creditCardOccupation"] floatValue]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[dataDic[@"creditCardOccupation"] floatValue]]],
+                             @"",
                              @"",
                              [BaseModel convertNullReturnStr:dataDic[@"bankCreditResultRemark"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
@@ -155,7 +177,31 @@
     return cell;
 }
 
-
+-(void)buttonclick:(UIButton *)sender{
+    switch (sender.tag) {
+        case 100:
+            [[BaseModel user]AlterImageByUrl:self.id_no_front_apply];
+            break;
+        case 101:
+            [[BaseModel user]AlterImageByUrl:self.id_no_reverse_apply];
+            break;
+        case 102:
+            [[BaseModel user]AlterImageByUrl:self.id_no_front_gh];
+            break;
+        case 103:
+            [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gh];
+            break;
+        case 104:
+            [[BaseModel user]AlterImageByUrl:self.id_no_front_gua];
+            break;
+        case 105:
+            [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gua];
+            break;
+            
+        default:
+            break;
+    }
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -182,6 +228,9 @@
             
             array = self.bank_report_apply;
         }
+        if (indexPath.row == 10) {
+            array = self.data_report_apply;
+        }
     }
     if ([dataDic[@"loanRole"] isEqualToString:@"2"]) {
         if (indexPath.row == 6) {
@@ -197,6 +246,9 @@
             array = self.bank_report_gh;
             
         }
+        if (indexPath.row == 10) {
+            array = self.data_report_gh;
+        }
     }
     if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
         if (indexPath.row == 6) {
@@ -210,6 +262,9 @@
         if (indexPath.row == 9) {
             
             array = self.bank_report_gua;
+        }
+        if (indexPath.row == 10) {
+            array = self.data_report_gua;
         }
     }
     
@@ -235,6 +290,14 @@
     }
     if (indexPath.row == 9) {
 
+        float numberToRound;
+        int result;
+        numberToRound = (array.count)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
+    }
+    if (indexPath.row == 10) {
+        
         float numberToRound;
         int result;
         numberToRound = (array.count)/3.0;

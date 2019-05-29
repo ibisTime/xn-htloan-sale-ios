@@ -75,7 +75,7 @@
             NSArray *bottomArray = @[[BaseModel convertNull:self.model.budgetOrderGps[i][@"gpsDevNo"]],
                                      [self.model.budgetOrderGps[i][@"gpsType"] isEqualToString:@"1"]?@"有线":@"无线",
                                      [BaseModel convertNull:self.model.budgetOrderGps[i][@"azLocation"]],
-                                     [BaseModel convertNull:[self.model.budgetOrderGps[i][@"azDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH-mm"]],
+                                     [BaseModel convertNull:[self.model.budgetOrderGps[i][@"azDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                                      [BaseModel convertNull:self.model.budgetOrderGps[i][@"azUser"]],
                                      @"",
                                      @"",

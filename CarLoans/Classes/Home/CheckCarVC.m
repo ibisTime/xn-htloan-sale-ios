@@ -60,7 +60,7 @@
         http.parameters[@"code"] = self.model.code;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"pledgeBankCommitDatetime"] = self.checktime;
-        http.parameters[@"pledgeBankCommitNot"] = [BaseModel convertNull:text.text];
+        http.parameters[@"pledgeBankCommitNote"] = [BaseModel convertNull:text.text];
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithInfo:@"确认成功"];
             NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];

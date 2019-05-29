@@ -146,7 +146,6 @@
                     fild.contentLab.text = cadArray[i];
                     [cell addSubview:fild];
                     fild.enabled = NO;
-                    
                 }
                 
             }

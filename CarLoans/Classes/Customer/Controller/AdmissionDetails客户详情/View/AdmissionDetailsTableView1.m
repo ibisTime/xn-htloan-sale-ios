@@ -57,7 +57,7 @@
                              [BaseModel convertNullReturnStr:_model.saleUserDepartMentName],
                              [BaseModel convertNullReturnStr:_model.saleUserName],
                              [BaseModel convertNullReturnStr:_model.insideJobName],
-                             [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/10000],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000]],
                              [BaseModel convertNullReturnStr:_model.loanBankName],
                              [BaseModel convertNull:[[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation]]
                              ];

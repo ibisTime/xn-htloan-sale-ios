@@ -112,9 +112,17 @@
         return 53;
     }
     
+//    num = self.housePictureApply.count;
+//}
+//float numberToRound;
+//int result;
+//numberToRound = (1.0 + num)/3.0;
+//result = (int)ceilf(numberToRound);
+//return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+
     float numberToRound;
     int result;
-    numberToRound = (1.0)/3.0;
+    numberToRound = (1.0 + self.otherPic.count)/3.0;
     result = (int)ceilf(numberToRound);
     return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
 }

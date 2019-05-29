@@ -13,6 +13,7 @@
 #import "SenderVC.h"
 #import "ReceivesAuditVC.h"
 #import "SenderGPSVC.h"
+#import "GPSDetailsVC.h"
 @interface GPSSentitemsVC ()<RefreshDelegate>
 @property (nonatomic , strong)DataTransferTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <DataTransferModel *>*model;
@@ -52,9 +53,11 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    GPSCollectedVC *vc = [GPSCollectedVC new];
+    GPSDetailsVC * vc= [GPSDetailsVC new];
+    vc.code = self.model[indexPath.row].code;
     [self.navigationController pushViewController:vc animated:YES];
+//    GPSCollectedVC *vc = [GPSCollectedVC new];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index

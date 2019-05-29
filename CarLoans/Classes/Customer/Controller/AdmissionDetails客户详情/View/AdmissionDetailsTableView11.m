@@ -35,45 +35,47 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 15;
+    return 16;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1 || indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 ) {
+    if (indexPath.row == 2 || indexPath.row == 9 || indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 || indexPath.row == 14 ) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 1) {
-            
-            cell.collectDataArray = @[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_reverse"]]];
+        if (indexPath.row == 2) {
+            NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"];
+            if (str.length > 0) {
+                cell.collectDataArray = @[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_reverse"]]];
+            }
             cell.selectStr = @"抵押代理人身份证复印件";
         }
-        if (indexPath.row == 8) {
+        if (indexPath.row == 9) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_regcerti"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"机动车登记证书";
         }
-        if (indexPath.row == 9) {
+        if (indexPath.row == 10) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_pd"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"批单";
         }
-        if (indexPath.row == 10) {
+        if (indexPath.row == 11) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_key"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"车钥匙";
         }
-        if (indexPath.row == 11) {
+        if (indexPath.row == 12) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_big_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"大本扫描件";
         }
-        if (indexPath.row == 12) {
+        if (indexPath.row == 13) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"车辆行驶证扫描件";
         }
-        if (indexPath.row == 13) {
+        if (indexPath.row == 14) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"duty_paid_prove_smj"]componentsSeparatedByString:@"||"];
             cell.selectStr = @"完税证明扫描件";
         }
@@ -87,12 +89,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"抵押代理人",@"",@"抵押地点",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间"];
+    NSArray *topArray = @[@"抵押代理人",@"抵押代理人身份证",@"",@"抵押地点",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间"];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNull:self.model.carPledge[@"pledgeUser"]],
+                             [BaseModel convertNull:self.model.carPledge[@"pledgeUserIdCard"]],
                              @"",
-                             [BaseModel convertNull:self.model.carInfoRes[@"settleAddress"]],
+                             [BaseModel convertNull:self.model.carPledge[@"pledgeAddress"]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBillDate"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBankDate"]]],
                             [BaseModel convertNull: [NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayCompanyDate"]]],
@@ -125,25 +128,25 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case 1:
+        case 2:
             return [self returnheight:@[[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_front"]],[BaseModel convertNull:[[BaseModel user]FindUrlWithModel:self.model ByKname:@"pledge_user_id_card_reverse"]]]];
             break;
-            case 8:
+            case 9:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_regcerti"] componentsSeparatedByString:@"||"]];
             break;
-            case 9:
+            case 10:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_pd"] componentsSeparatedByString:@"||"]];
             break;
-            case 10:
+            case 11:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_key"] componentsSeparatedByString:@"||"]];
             break;
-            case 11:
+            case 12:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"]];
             break;
-            case 12:
+            case 13:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"]];
             break;
-            case 13:
+            case 14:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"duty_paid_prove_smj"]componentsSeparatedByString:@"||"]];
             break;
             

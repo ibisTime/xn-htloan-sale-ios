@@ -89,8 +89,8 @@
                                   [NSString stringWithFormat:@"%@",_model.userName],
                                   [NSString stringWithFormat:@"%@",_model.bizCode],
                                   [NSString stringWithFormat:@"%@",_model.teamName],
-                                  [NSString stringWithFormat:@"%@",_model.applyWiredCount],
-                                  [NSString stringWithFormat:@"%@", _model.applyWirelessCount]
+                                  [NSString stringWithFormat:@"%@",_model.gpsApply[@"applyWiredCount"]],
+                                  [NSString stringWithFormat:@"%@",_model.gpsApply[@"applyWirelessCount"]]
                                   ];
 //        if ([cell.name isEqualToString:@"参考材料清单"]) {
 //            self.distributionStr = @"参考材料清单";
@@ -158,6 +158,10 @@
             }else{
                 fild.text = temp3;
             }
+            
+            UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
+            view.backgroundColor = kLineColor;
+            [cell addSubview:view];
             return cell;
         }
         if (indexPath.section == 3) {
@@ -215,7 +219,9 @@
         }else{
             fild.text = temp1;
         }
-        
+        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
+        view.backgroundColor = kLineColor;
+        [cell addSubview:view];
         return cell;
     }else
     {
@@ -258,14 +264,17 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"发货说明" titleWidth:80 placeholder:@"选填"];
+        fild.leftLbl.font = Font(14);
         fild.textAlignment = NSTextAlignmentRight;
-        
         fild.backgroundColor = kWhiteColor;
         fild.font = [UIFont systemFontOfSize:14];
         [cell addSubview:fild];
         fild.tag = 10002;
         self.remarkField = fild;
         fild.text = temp2;
+        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
+        view.backgroundColor = kLineColor;
+        [cell addSubview:view];
         //        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
         //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //        cell.isInput = @"1";
@@ -294,11 +303,11 @@
     }
     if ([_distributionStr isEqualToString:@"快递"]) {
         if (indexPath.section == 4) {
-            return 90;
+            return 50;
         }
     }else{
         if (indexPath.section == 2) {
-            return 90;
+            return 50;
         }
     }
     return 50;

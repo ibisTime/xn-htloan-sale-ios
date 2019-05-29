@@ -54,11 +54,11 @@
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNull: self.model.bizLogs[indexPath.section][@"operatorName"]],
-                             [self.model.bizLogs[indexPath.section][@"startDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"],
-                             [self.model.bizLogs[indexPath.section][@"endDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                             [BaseModel convertNull:[self.model.bizLogs[indexPath.section][@"startDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"]],
+                             [BaseModel convertNull:[self.model.bizLogs[indexPath.section][@"endDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm:ss"]],
                              [BaseModel convertNull:self.model.bizLogs[indexPath.section][@"speedTime"]],
                              [BaseModel convertNull:self.model.bizLogs[indexPath.section][@"dealNote"]],
-                             [[BaseModel user]note:self.model.bizLogs[indexPath.section][@"dealNode"]]
+                             [BaseModel convertNull:[[BaseModel user]note:self.model.bizLogs[indexPath.section][@"dealNode"]]]
     ];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;

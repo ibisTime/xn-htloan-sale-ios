@@ -80,7 +80,7 @@
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
                               [BaseModel convertNull:[[BaseModel user]note:self.model.makeCardNode]],
-                              [BaseModel convertNull:self.model.cardPostAddress]];
+                              [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:self.model.cardPostProvince],[BaseModel convertNull:self.model.cardPostCity],[BaseModel convertNull:self.model.cardPostArea],[BaseModel convertNull:self.model.cardPostAddress]]];
         
         cell.TextFidStr = rightAry[indexPath.row];
         cell.nameTextField.hidden = YES;

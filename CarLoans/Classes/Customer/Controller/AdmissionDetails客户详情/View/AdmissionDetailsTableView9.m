@@ -83,7 +83,7 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"companyFee"] floatValue]/1000]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"teamFee"] floatValue]/1000]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000]],
-                             [BaseModel convertNull:[self.model.advance[@"advanceFundDatetime"] convertDateWithFormat:@"yyyy-MM-dd HH:mm"]],
+                             [BaseModel convertNull:[self.model.advance[@"advanceFundDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.advance[@"advanceFundAmount"] floatValue]/1000]],
                              @"",
                              [BaseModel convertNull:self.model.advance[@"advanceNote"]]];
