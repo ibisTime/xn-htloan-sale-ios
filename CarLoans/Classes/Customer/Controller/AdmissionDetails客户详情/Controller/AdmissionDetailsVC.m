@@ -237,23 +237,42 @@
                 self.tableView2.data_report_apply = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
 //            担保人图片
-            if ([attachment[@"kname"] isEqualToString:@"id_no_front_gua"]) {
-                self.tableView2.id_no_front_gua = attachment[@"url"];
+            if ([attachment[@"kname"] isEqualToString:@"id_no_front_gua0"]) {
+                self.tableView2.id_no_front_gua0 = attachment[@"url"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"id_no_reverse_gua"]) {
-                self.tableView2.id_no_reverse_gua = attachment[@"url"];
+            if ([attachment[@"kname"] isEqualToString:@"id_no_reverse_gua0"]) {
+                self.tableView2.id_no_reverse_gua0 = attachment[@"url"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"auth_pdf_gua"]) {
-                self.tableView2.auth_pdf_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            if ([attachment[@"kname"] isEqualToString:@"auth_pdf_gua0"]) {
+                self.tableView2.auth_pdf_gua0 = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"interview_pic_gua"]) {
-                self.tableView2.interview_pic_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            if ([attachment[@"kname"] isEqualToString:@"interview_pic_gua0"]) {
+                self.tableView2.interview_pic_gua0 = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"bank_report_gua"]) {
-                self.tableView2.bank_report_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            if ([attachment[@"kname"] isEqualToString:@"bank_report_gua0"]) {
+                self.tableView2.bank_report_gua0 = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"data_report_gua"]) {
-                self.tableView2.data_report_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            if ([attachment[@"kname"] isEqualToString:@"data_report_gua0"]) {
+                self.tableView2.data_report_gua0 = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            
+            if ([attachment[@"kname"] isEqualToString:@"id_no_front_gua1"]) {
+                self.tableView2.id_no_front_gua1 = attachment[@"url"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"id_no_reverse_gua1"]) {
+                self.tableView2.id_no_reverse_gua1 = attachment[@"url"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"auth_pdf_gua1"]) {
+                self.tableView2.auth_pdf_gua1 = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"interview_pic_gua1"]) {
+                self.tableView2.interview_pic_gua1 = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"bank_report_gua1"]) {
+                self.tableView2.bank_report_gua1 = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            }
+            if ([attachment[@"kname"] isEqualToString:@"data_report_gua1"]) {
+                self.tableView2.data_report_gua1 = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
             
 //            共还人图片

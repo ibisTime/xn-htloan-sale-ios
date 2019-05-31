@@ -77,11 +77,22 @@
     return cell;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-    NSString * resultStr = textField.text;
-    UITextField * text = [self viewWithTag:10000+ 3];
-    NSString * str = [NSString stringWithFormat:@"%.4f",[resultStr floatValue] / ([resultStr floatValue] + [text.text floatValue]) ];
-    UITextField * text1 = [self viewWithTag:10000+ 9];
-    text1.text = [NSString stringWithFormat:@"%.4f",[str floatValue] * 100];
+    
+    if (textField.tag == 10008) {
+        NSString * resultStr = textField.text;
+        UITextField * text = [self viewWithTag:10000+ 3];
+        NSString * str = [NSString stringWithFormat:@"%.4f",[resultStr floatValue] / ([resultStr floatValue] + [text.text floatValue]) ];
+        UITextField * text1 = [self viewWithTag:10000+ 9];
+        text1.text = [NSString stringWithFormat:@"%.4f",[str floatValue] * 100];
+    }
+    if (textField.tag == 10003) {
+        NSString * resultStr = textField.text;
+        UITextField * text = [self viewWithTag:10000+ 8];
+        NSString * str = [NSString stringWithFormat:@"%.4f",[text.text floatValue] / ([resultStr floatValue] + [text.text floatValue]) ];
+        UITextField * text1 = [self viewWithTag:10000+ 9];
+        text1.text = [NSString stringWithFormat:@"%.4f",[str floatValue] * 100];
+    }
+    
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{

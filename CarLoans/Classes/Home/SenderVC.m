@@ -126,7 +126,36 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+//    if (indexPath.section == 0) {
+//        if (indexPath.row == 7) {
+//            self.tableView.cardList = [NSMutableArray array];
+//            NSString *data1 = self.tableView.distributionStr;
+//            NSString *data2 = self.tableView.CourierCompanyStr;
+//            NSString *data3 = self.tableView.kuaidField.text;
+//            NSString *data4 = self.tableView.remarkKuaiField.text;
+//            NSString *data5 = self.tableView.date;
+//            
+//            [self initTableView];
+//            
+//            self.tableView.distributionStr = data1;
+//            self.tableView.CourierCompanyStr = data2;
+//            self.tableView.tempdan = data3;
+//            self.tableView.tempRemark = data4;
+//            self.tableView.tempDate = data5;
+//            [self.tableView reloadData];
+//            BaseModel *model = [BaseModel new];
+//            model.ModelDelegate = self;
+//            NSMutableArray *array = [NSMutableArray array];
+//            for (CadListModel *model in self.models) {
+//                [array addObject:[NSString stringWithFormat:@"%@-%@份",model.vname,model.number]];
+//            }
+//            [model CustomBounced:array setState:@"100" isSign:NO];
+//            
+//            return;
+//        }
+//    }
     if ([self.tableView.distributionStr isEqualToString:@"快递"]) {
+       
 
         if (indexPath.section == 1) {
             self.tableView.cardList = [NSMutableArray array];

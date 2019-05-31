@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray * carInvoice;//发票
 @property (nonatomic,strong) NSArray * carHgzPic;//合格证
 
+@property (nonatomic,strong) NSString * policyDatetime;
+@property (nonatomic,strong) NSString * policyDueDate;
+
 @property (nonatomic , strong)TextFieldCell *cell;
 @end
 

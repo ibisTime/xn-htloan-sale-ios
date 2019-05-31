@@ -28,4 +28,5 @@
 
 @property (nonatomic , strong)UISwitch *switchUser;
 
+@property (nonatomic,copy) NSString * text;
 @end

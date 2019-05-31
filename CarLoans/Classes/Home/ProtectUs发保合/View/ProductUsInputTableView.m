@@ -76,6 +76,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //            cell.delegate = self;
             cell.name = @"*保单开始日期";
+            cell.details = self.policyDatetime;
             cell.tag = 1000 + indexPath.row;
             return cell;
         }
@@ -85,6 +86,7 @@
             //            cell.delegate = self;
             cell.name = @"*保单到期日期";
             cell.tag = 1000 + indexPath.row;
+            cell.details = self.policyDueDate;
             return cell;
         }
     }

@@ -84,6 +84,13 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
+    NSString * insideJob = dataDic[@"userId"];
+    if (insideJob.length == 0) {
+        [TLAlert alertWithMsg:@"请选择派单人员"];
+        return;
+    }
+    else{
+        
     TLNetworking *http = [TLNetworking new];
     http.code = @"632119";
     http.showView = self.view;
@@ -102,6 +109,7 @@
     } failure:^(NSError *error) {
         WGLog(@"%@",error);
     }];
+    }
 }
 
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid

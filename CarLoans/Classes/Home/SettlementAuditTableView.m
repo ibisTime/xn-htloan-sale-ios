@@ -100,7 +100,7 @@
     }
     [cell.button.titleLabel sizeToFit];
     
-    cell.button.frame = CGRectMake(SCREEN_WIDTH - cell.button.titleLabel.width - 15, 310, cell.button.titleLabel.width, 30);
+    cell.button.frame = CGRectMake(SCREEN_WIDTH - cell.button.titleLabel.width - 25, 350, cell.button.titleLabel.width + 20, 30);
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     return cell;
 
@@ -128,7 +128,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    SettlementAuditModel *model = self.model[indexPath.row];
-    return 350;
+    return 390;
 //    if ([model.curNodeCode  isEqualToString:@"j3"]) {
 //        return 295;
 //    }else

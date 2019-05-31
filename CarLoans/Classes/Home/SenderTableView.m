@@ -14,7 +14,7 @@
 
 #import "ChooseCell.h"
 #define Choose @"ChooseCell"
-
+#import "FiledCell.h"
 @interface SenderTableView ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -60,9 +60,13 @@
     if (section == 0) {
         return 8;
     }
+    if (section == 1) {
+        return self.cardList.count + 1;
+    }
     if (section == 2) {
         return 2;
     }
+    
     return 1;
 }
 
@@ -94,31 +98,24 @@
         return cell;
     }
     if (indexPath.section == 1) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH-30, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
-        nameLabel.text = self.cardStr;
-        kViewRadius(nameLabel, 5);
-        nameLabel.text = @"请选择材料清单";
-        
-       
-        [cell addSubview:nameLabel];
-        if (self.cardList.count>0) {
+        if (indexPath.row == 0) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            for (int i = 0; i < self.cardList.count; i++) {
-                CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
-                fild.backgroundColor = kLineColor;
-                fild.font = [UIFont systemFontOfSize:13];
-                fild.text = self.cardList[i];
-                
-                [cell addSubview:fild];
-                fild.enabled = NO;
-                
-            }
-            
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 10, SCREEN_WIDTH-30, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:BackColor font:HGfont(13) textColor:[UIColor blackColor]];
+            nameLabel.text = self.cardStr;
+            kViewRadius(nameLabel, 5);
+            nameLabel.text = @"请选择材料清单";
+            [cell addSubview:nameLabel];
+            return cell;
         }
-        
+        static NSString *rid=@"filed";
+        FiledCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        if(cell==nil){
+            cell=[[FiledCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.filedname = self.cardList[indexPath.row - 1];
         return cell;
     }
 
@@ -172,7 +169,7 @@
         if (self.remarkKuaiField.text.length > 0) {
             temp1  = self.remarkKuaiField.text;
         }
-        TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"备注" titleWidth:80 placeholder:@"选填"];
+        TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"发货备注" titleWidth:80 placeholder:@"选填"];
         fild.textAlignment = NSTextAlignmentRight;
         fild.backgroundColor = kWhiteColor;
         fild.font = [UIFont systemFontOfSize:14];
@@ -204,7 +201,7 @@
         }
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"备注" titleWidth:80 placeholder:@"选填"];
+        TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"发货备注" titleWidth:80 placeholder:@"选填"];
         fild.textAlignment = NSTextAlignmentRight;
 
         fild.backgroundColor = kWhiteColor;
@@ -213,12 +210,6 @@
         fild.tag = 10002;
         self.remarkField = fild;
         fild.text = temp2;
-//        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField1 forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.isInput = @"1";
-//        cell.name = @"备注";
-//        cell.nameText = @"选填";
-//        cell.nameTextField.tag = 1001;
         return cell;
     }
 
@@ -238,7 +229,8 @@
 {
     if (indexPath.section == 1) {
 //        return 60;
-            return self.cardList .count *40+50;
+//            return self.cardList .count *40+50;
+        return 40;
         
     }
     return 50;

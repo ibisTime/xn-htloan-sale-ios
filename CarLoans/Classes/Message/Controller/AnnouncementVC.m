@@ -44,7 +44,7 @@
 -(void)loadData{
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"805305";
+    helper.code = @"632725";
 
     helper.isList = NO;
     helper.isCurrency = YES;

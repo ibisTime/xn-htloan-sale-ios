@@ -86,6 +86,8 @@
     }];
     
     [self.tableView addLoadMoreAction:^{
+        helper.parameters[@"curNodeCode"] = @"j6";
+        helper.parameters[@"refType"] = @"0";
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);
             //去除没有的币种

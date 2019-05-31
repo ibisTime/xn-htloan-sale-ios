@@ -119,6 +119,29 @@
     kViewRadius(self.button, 3);
     [self.view addSubview:self.button];
     
+   
+}
+
+
+-(void)initTable{
+    self.tableView = [[ProductUsInputTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 70) style:(UITableViewStyleGrouped)];
+    self.tableView.refreshDelegate = self;
+    self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.model = self.model;
+    [self.view addSubview:self.tableView];
+    
+    if (![self.model.carInfoRes[@"policyDatetime"] isEqualToString:@""]) {
+        self.tableView.policyDatetime = [self.model.carInfoRes[@"policyDatetime"] convertDate];
+        self.policyDatetime = [self.model.carInfoRes[@"policyDatetime"] convertDate];
+        [self.tableView reloadData];
+    }
+    if (![self.model.carInfoRes[@"policyDueDate"] isEqualToString:@""]) {
+        self.tableView.policyDueDate = [self.model.carInfoRes[@"policyDueDate"] convertDate];
+        self.policyDueDate = [self.model.carInfoRes[@"policyDueDate"] convertDate];
+        [self.tableView reloadData];
+    }
+    
+    
     NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"];
     if (str.length > 0) {
         self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
@@ -146,15 +169,6 @@
         self.tableView.carSyx = [str3 componentsSeparatedByString:@"||"];
         [self.tableView reloadData];
     }
-}
-
-
--(void)initTable{
-    self.tableView = [[ProductUsInputTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 70) style:(UITableViewStyleGrouped)];
-    self.tableView.refreshDelegate = self;
-    self.tableView.backgroundColor = kBackgroundColor;
-    self.tableView.model = self.model;
-    [self.view addSubview:self.tableView];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
@@ -284,9 +298,11 @@
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
                 
                 NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
-                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
-                cell.details = date;
+//                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
+//                cell.details = date;
+                self.tableView.policyDatetime = date;
                 self.policyDatetime = date;
+                [self.tableView reloadData];
             }];
             datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
             datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
@@ -297,9 +313,11 @@
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
                 
                 NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
-                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
-                cell.details = date;
+//                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
+//                cell.details = date;
+                self.tableView.policyDueDate = date;
                 self.policyDueDate = date;
+                [self.tableView reloadData];
             }];
             datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
             datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色

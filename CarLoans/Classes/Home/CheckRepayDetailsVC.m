@@ -36,6 +36,9 @@
     self.tableView.model = self.model;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];
+    
+    NSLog(@"overdueAmounttttt");
+    NSLog(@"overdueAmounttttt = %.2f",[self.model.overdueAmount floatValue]/1000);
 }
 
 @end

@@ -43,20 +43,21 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSArray *nameArray = @[@"贷款人",@"手机号",@"身份证号",@"贷款金额(元)",@"是否提前还款",@"总期数",@"剩余期数",@"逾期金额",@"剩余欠款",@"未还清收成本",@"未还代偿款"];
         cell.name = nameArray[indexPath.row];
-        NSArray * textarray = @[[NSString stringWithFormat:@"%@",self.model.realName],
-                                [NSString stringWithFormat:@"%@",self.model.user[@"mobile"]],
-                                [NSString stringWithFormat:@"%@",self.model.user[@"idNo"]],
+        NSArray * textarray = @[
+                                [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.realName]],
+                                [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.user[@"mobile"]]],
+                                [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.user[@"idNo"]]],
                                 [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                                 [self.model.isAdvanceSettled isEqualToString:@"1"]?@"是":@"否",
-                                [NSString stringWithFormat:@"%@",self.model.periods],
-                                [NSString stringWithFormat:@"%@",self.model.restPeriods],
-                                [NSString stringWithFormat:@"%@",self.model.overdueAmount],
+                                [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.periods]],
+                                [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.restPeriods]],
+                                [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.overdueAmount]],
                                 [NSString stringWithFormat:@"%.2f",[self.model.restAmount floatValue]/1000 ],
                                 [NSString stringWithFormat:@"%.2f",[self.model.restTotalCost floatValue]/1000 ],
                                 [NSString stringWithFormat:@"%.2f",[self.model.unRepayTotalAmount floatValue]/1000 ],
                                 ];
         
-        cell.TextFidStr = textarray[indexPath.row];
+        cell.text = textarray[indexPath.row];
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;
         return cell;
@@ -109,10 +110,14 @@
         cell.nameTextLabel.hidden = YES;
     }
     if (indexPath.row == 1) {
+        cell.nameTextField.placeholder = @"请输入扣除违约金额";
         cell.nameTextField.delegate = self;
     }
     if (indexPath.row == 2) {
         cell.nameTextField.enabled = NO;
+    }
+    if (indexPath.row == 3) {
+        cell.nameTextField.placeholder = @"请输入审核意见";
     }
     return cell;
 }

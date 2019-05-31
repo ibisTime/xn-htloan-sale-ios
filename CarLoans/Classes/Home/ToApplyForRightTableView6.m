@@ -90,6 +90,7 @@
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
         
         weakSelf.returnAryBlock(imgAry, name);
+        weakSelf.mateAssetPdf = imgAry;
         [self reloadData];
         
     };

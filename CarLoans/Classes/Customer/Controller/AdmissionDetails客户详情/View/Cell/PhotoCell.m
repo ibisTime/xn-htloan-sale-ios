@@ -49,13 +49,15 @@
 
 -(void)setCollectDataArray:(NSArray *)collectDataArray
 {
-    array = collectDataArray;
-    float numberToRound;
-    int result;
-    numberToRound = (array.count + 0.0)/3.0;
-    result = (int)ceilf(numberToRound);
-    _collectionView.frame = CGRectMake(0, 32, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
-    [self.collectionView reloadData];
+    if (![collectDataArray[0] isEqualToString:@""]) {
+        array = collectDataArray;
+        float numberToRound;
+        int result;
+        numberToRound = (array.count + 0.0)/3.0;
+        result = (int)ceilf(numberToRound);
+        _collectionView.frame = CGRectMake(0, 32, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
+        [self.collectionView reloadData];
+    }
 }
 
 

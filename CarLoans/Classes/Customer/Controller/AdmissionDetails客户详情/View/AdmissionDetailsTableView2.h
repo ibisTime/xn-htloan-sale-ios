@@ -20,12 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray * data_report_apply;
 
 
-@property (nonatomic , strong)NSString *id_no_front_gua;
-@property (nonatomic , strong)NSString *id_no_reverse_gua;
-@property (nonatomic , strong)NSArray *auth_pdf_gua;
-@property (nonatomic , strong)NSArray *interview_pic_gua;
-@property (nonatomic , strong)NSArray *bank_report_gua;
-@property (nonatomic,strong) NSArray * data_report_gua;
+@property (nonatomic , strong)NSString *id_no_front_gua0;
+@property (nonatomic , strong)NSString *id_no_reverse_gua0;
+@property (nonatomic , strong)NSArray *auth_pdf_gua0;
+@property (nonatomic , strong)NSArray *interview_pic_gua0;
+@property (nonatomic , strong)NSArray *bank_report_gua0;
+@property (nonatomic,strong) NSArray * data_report_gua0;
+
+@property (nonatomic , strong)NSString *id_no_front_gua1;
+@property (nonatomic , strong)NSString *id_no_reverse_gua1;
+@property (nonatomic , strong)NSArray *auth_pdf_gua1;
+@property (nonatomic , strong)NSArray *interview_pic_gua1;
+@property (nonatomic , strong)NSArray *bank_report_gua1;
+@property (nonatomic,strong) NSArray * data_report_gua1;
 
 @property (nonatomic , strong)NSString *id_no_front_gh;
 @property (nonatomic , strong)NSString *id_no_reverse_gh;

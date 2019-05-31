@@ -43,7 +43,7 @@
         
         
         _button = [UIButton buttonWithTitle:@"审核" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
-        _button.frame = CGRectMake(SCREEN_WIDTH - 115, 340, 100, 30);
+        _button.frame = CGRectMake(SCREEN_WIDTH - 115, 300, 100, 30);
         kViewBorderRadius(_button, 5, 1, MainColor);
         [self addSubview:_button];
         //        _button.hidden = YES;
@@ -55,13 +55,13 @@
         
         
         
-        for (int i = 0; i < 7; i ++) {
-            _nameLabel = [UILabel labelWithFrame:CGRectMake(15 , 70 + i % 7 * 35, 100, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:GaryTextColor];
+        for (int i = 0; i < 8; i ++) {
+            _nameLabel = [UILabel labelWithFrame:CGRectMake(15 , 70 + i % 8 * 35, 100, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:GaryTextColor];
             //            _nameLabel.text = nameArray[i];
             _nameLabel.tag = 100000 + i;
             [self addSubview:_nameLabel];
             
-            _InformationLabel = [UILabel labelWithFrame:CGRectMake(115 , 70 + i % 7 * 35, SCREEN_WIDTH - 130, 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
+            _InformationLabel = [UILabel labelWithFrame:CGRectMake(115 , 70 + i % 8 * 35, SCREEN_WIDTH - 130, 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
             _InformationLabel.tag = 1000000 + i;
             [self addSubview:_InformationLabel];
         }
@@ -78,10 +78,11 @@
                            @"业务种类",
                            @"客户姓名",
                            @"贷款金额",
-                           @"剩余金额",
-                           @"贷款银行",
-                           @"是否提前还款",
-                           @"申请时间"];
+                           @"剩余欠款",
+                           @"未还清收成本",
+                           @"未还代偿金额",
+                           @"扣除履约保证金",
+                           @"是否提前还款"];
     NSString *bizType;
     if ([settlementAuditModel.bizType integerValue] == 0) {
         bizType = @"新车";
@@ -94,17 +95,19 @@
     NSArray *InformationArray = @[
                                   bizType,
                                   [NSString stringWithFormat:@"%@",settlementAuditModel.realName],
-                                  [NSString stringWithFormat:@"¥%.2f",[settlementAuditModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"¥%.2f",[settlementAuditModel.restAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",settlementAuditModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@",[settlementAuditModel.isAdvanceSettled isEqualToString:@"1"]?@"是":@"否"],
-                                  [NSString stringWithFormat:@"%@",[settlementAuditModel.budgetOrder[@"applyDatetime"] convertToDetailDate]]];
+                                  [NSString stringWithFormat:@"%.2f",[settlementAuditModel.loanAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%.2f",[settlementAuditModel.restAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%.2f",[settlementAuditModel.restTotalCost floatValue]/1000],
+                                  [NSString stringWithFormat:@"%.2f",[settlementAuditModel.unRepayTotalAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%.2f",[settlementAuditModel.cutLyDeposit floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@",[settlementAuditModel.isAdvanceSettled isEqualToString:@"1"]?@"是":@"否"]
+                                  ];
     
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-        InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+        InformationLabel.text = InformationArray[i];
     }
     
 }

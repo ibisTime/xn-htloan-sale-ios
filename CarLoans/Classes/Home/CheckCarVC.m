@@ -27,6 +27,35 @@
     self.tableView.refreshDelegate = self;
     self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
+    
+    for (int i = 0; i < self.model.attachments.count; i ++) {
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_front"]) {
+            self.tableView.idNoFront = self.model.attachments[i][@"url"];
+        }
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_reverse"]) {
+            self.tableView.idNoReverse = self.model.attachments[i][@"url"];
+        }
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"car_big_smj"]) {
+            self.tableView.BankVideoArray = [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+        }
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"car_key"]) {
+            self.tableView.CompanyVideoArray = [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+        }
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"car_pd"]) {
+            self.tableView.OtherVideoArray = [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+        }
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"car_regcerti"]) {
+            self.tableView.BankSignArray = [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+        }
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"car_xsz_smj"]) {
+            self.tableView.BankContractArray = [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+        }
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"duty_paid_prove_smj"]) {
+            self.tableView.CompanyContractArray = [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 -(void)loaddetails{
     TLNetworking * http = [[TLNetworking alloc]init];
@@ -36,8 +65,8 @@
     }else
         http.parameters[@"code"] = self.model.code;
     [http postWithSuccess:^(id responseObject) {
-        NSLog(@"%@",[AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]]);
-        self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        NSLog(@"%@",[SurveyModel mj_objectWithKeyValues:responseObject[@"data"]]);
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
         [self inittable];
     } failure:^(NSError *error) {
         
@@ -73,7 +102,7 @@
     }
 }
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
+    if (indexPath.section == 8) {
         if (indexPath.row == 0) {
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
                 

@@ -85,7 +85,7 @@
 {
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-    helper.code = @"630520";
+    helper.code = @"630522";
     NSArray *array = @[@"j2",@"j3",@"j4",@"j5"];
     helper.parameters[@"curNodeCodeList"] = array;
     helper.parameters[@"refType"] = @"0";

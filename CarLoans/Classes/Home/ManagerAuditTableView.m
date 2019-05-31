@@ -57,7 +57,7 @@
                                 [NSString stringWithFormat:@"%.2f",[self.model.unRepayTotalAmount floatValue]/1000 ],
                                 ];
         
-        cell.TextFidStr = textarray[indexPath.row];
+        cell.text = textarray[indexPath.row];
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;
         return cell;
@@ -113,11 +113,12 @@
                             @"",
                             @""];
     
-    cell.TextFidStr = textarray[indexPath.row];
+    cell.text = textarray[indexPath.row];
     cell.nameTextField.tag = 100000 + indexPath.row;
     if (indexPath.row == 5) {
         cell.nameTextField.hidden = NO;
         cell.nameTextLabel.hidden = YES;
+        cell.nameTextField.placeholder = @"请输入审核意见";
     }else{
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;

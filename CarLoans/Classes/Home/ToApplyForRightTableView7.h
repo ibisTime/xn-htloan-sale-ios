@@ -14,6 +14,7 @@ typedef void (^ReturnAryBlock)(NSArray *imgAry,NSString *name);
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic, copy) ReturnAryBlock returnAryBlock;
 @property (nonatomic , strong)NSArray *otherPic;
+@property (nonatomic , strong)NSArray *otherPic1;
 @end
 
 NS_ASSUME_NONNULL_END

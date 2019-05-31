@@ -63,7 +63,7 @@
                             [BaseModel convertNull:[self.model.bankFkDatetime convertDate]],
                             [[BaseModel user]note:self.model.curNodeCode]
                             ];
-    cell.TextFidStr = infoarray[indexPath.row];
+    cell.text = infoarray[indexPath.row];
     return cell;
 }
 

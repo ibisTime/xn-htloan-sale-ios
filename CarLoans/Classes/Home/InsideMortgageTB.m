@@ -44,7 +44,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section ==0) {
-        return 8;
+        return 9;
     }
     else if (section == 1){
         return 7;
@@ -59,7 +59,7 @@
     if (indexPath.section == 0) {
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务类型",@"业务归属",@"指派归属",@"当前状态"];
+        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务类型",@"业务团队",@"业务归属",@"指派归属",@"当前状态"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSString *bizType;
@@ -76,6 +76,7 @@
                                   [NSString stringWithFormat:@"%@",_model.loanBankName],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",bizType],
+                                  [BaseModel convertNull:self.model.teamName],
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
                                   [[BaseModel user]note:_model.curNodeCode]
@@ -98,6 +99,7 @@
             if(cell==nil){
                 cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
             }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             NSArray * arr = @[@"*落户地点",@"*车牌号"];
             cell.name = arr[indexPath.row - 1];
             cell.nameTextField.tag = 1000+indexPath.row;
@@ -154,6 +156,7 @@
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CarSettledUpdataPhoto forIndexPath:indexPath];
         cell.delegate = self;
         cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
         switch (indexPath.section) {
             case 3:
             {
@@ -227,9 +230,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section < 5)
-//    {
-        if (indexPath.section == 0 || indexPath.section == 1) {
+    if (indexPath.section == 0 || indexPath.section == 1) {
             return 50;
         }
         if (indexPath.section == 2) {
@@ -256,9 +257,6 @@
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/4 + 30) + 15;
         }
-//    }
-//    else
-//    {
         if (indexPath.section == 6) {
             float numberToRound;
             int result;

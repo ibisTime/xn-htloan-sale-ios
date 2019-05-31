@@ -119,4 +119,8 @@
     _nameTextLabel.text = [BaseModel convertNull:TextFidStr];
 }
 
+-(void)setText:(NSString *)text{
+    _nameTextField.text = text;
+    _nameTextLabel.text = text;
+}
 @end

@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *createDatetime;
 @property (nonatomic,strong) NSString * refNode;
 @property (nonatomic,strong) NSString * bizCode;
+@property (nonatomic,copy) NSString * updateDatetime;
 //bizOrderType = "\U51c6\U5165\U5355";
 //bizType = 0;
 //dealNode = "002_01";

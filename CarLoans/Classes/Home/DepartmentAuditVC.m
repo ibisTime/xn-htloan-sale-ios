@@ -47,7 +47,7 @@
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"630550";
     http.parameters[@"code"] = self.model.code;
-    http.parameters[@"cutLyDeposit"] = [NSString stringWithFormat:@"%.2f",[text1.text floatValue] * 1000];
+    http.parameters[@"cutLyDeposit"] = [NSString stringWithFormat:@"%.f",[text1.text floatValue] * 1000];
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"remark"] = text3.text;
     [http postWithSuccess:^(id responseObject) {

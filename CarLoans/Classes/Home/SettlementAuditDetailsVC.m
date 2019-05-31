@@ -70,7 +70,7 @@
 //    self.proveArray = [NSMutableArray array];
     self.proveDataArray = [NSMutableArray array];
     [self initTableView];
-    self.title = @"审核";
+//    self.title = @"审核";
     _date = @"";
 
 }
@@ -98,7 +98,7 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-    UITextField *textFid1 = [self.view viewWithTag:1000];
+    UITextField *textFid1 = [self.view viewWithTag:100002];
     if ([_date isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请选择时间"];
         return;
@@ -123,7 +123,7 @@
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"settleDatetime"] = _date;
     NSString *settlePdf = [_proveDataArray componentsJoinedByString:@"||"];
-    http.parameters[@"settlePdf"] = settlePdf;
+    http.parameters[@"settleAttach"] = settlePdf;
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"提交成功"];
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
@@ -137,7 +137,7 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
             _date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
             self.tableView.date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm"];

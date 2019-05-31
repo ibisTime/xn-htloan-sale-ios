@@ -26,13 +26,26 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    NSMutableArray * dic = [NSMutableArray array];
+    for (int i = 0; i < self.model.creditUserList.count; i ++) {
+        if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"3"]) {
+            [dic addObject:self.model.creditUserList[i]];
+        }
+    }
+    NSLog(@"%@",dic);
+    return 2 * dic.count;
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
+        return 11;
+    }
+    if (section == 1) {
+        return 1;
+    }
+    if (section == 2) {
         return 11;
     }
     return 1;
@@ -42,17 +55,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        // 定义cell标识  每个cell对应一个自己的标识
         NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-        // 通过不同标识创建cell实例
         ToApplyForEncapsulationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
         if (!cell) {
             cell = [[ToApplyForEncapsulationCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-//        NSArray *topArray = @[@"*姓名",@"*与主贷人关系",@"*手机号",@"*身份证号",@"*学历",@"*户籍地（省市区）",@"*户籍地（详细地址）",@"*户籍地邮编",@"*工作单位名称",@"*工作单位地址",@"*工作单位电话"];
         if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 ) {
             cell.type = ShowType;
             cell.showLbl.tag = 70000 + indexPath.row;
@@ -66,35 +74,87 @@
             cell.inputTextField.tag = 70000 + indexPath.row;
         }
         cell.topLbl.text = [TopModel user].ary7[indexPath.row];
-        if (indexPath.row == 7||indexPath.row == 11||indexPath.row == 12) {
-//            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
-        }
-        
         return cell;
     }
-    // 定义cell标识  每个cell对应一个自己的标识
-    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-    // 通过不同标识创建cell实例
-    ToApplyForUpdateImgCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
-    if (!cell) {
-        cell = [[ToApplyForUpdateImgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    if (indexPath.section == 1) {
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+        ToApplyForUpdateImgCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[ToApplyForUpdateImgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        NSArray *topArray = @[@"担保人1其他资料"];
+        cell.name = topArray[indexPath.row];
+        
+        cell.muArray = [NSMutableArray array];
+        cell.muArray = [NSMutableArray arrayWithArray:self.otherPic];
+        
+        MJWeakSelf;
+        cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
+            
+            weakSelf.returnAryBlock(imgAry, name);
+            if ([name isEqualToString:@"担保人1其他资料"]) {
+                weakSelf.otherPic = imgAry;
+            }
+            if ([name isEqualToString:@"担保人2其他资料"]) {
+                weakSelf.otherPic1 = imgAry;
+            }
+            
+            [self reloadData];
+        };
+        return cell;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *topArray = @[@"其他资料"];
-    cell.name = topArray[indexPath.row];
-    
-    cell.muArray = [NSMutableArray array];
-    cell.muArray = [NSMutableArray arrayWithArray:self.otherPic];
-    
-    MJWeakSelf;
-    cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
+    if (indexPath.section == 2) {
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+        ToApplyForEncapsulationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[ToApplyForEncapsulationCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 ) {
+            cell.type = ShowType;
+            cell.showLbl.tag = 71000 + indexPath.row;
+        }else if (indexPath.row == 4 || indexPath.row == 5)
+        {
+            cell.type = ChooseType;
+            cell.chooseLbl.tag = 71000 + indexPath.row;
+        }else
+        {
+            cell.type = InputType;
+            cell.inputTextField.tag = 71000 + indexPath.row;
+        }
+        cell.topLbl.text = [TopModel user].ary7[indexPath.row];
+        return cell;
         
-        weakSelf.returnAryBlock(imgAry, name);
+    }
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+        ToApplyForUpdateImgCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[ToApplyForUpdateImgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        NSArray *topArray = @[@"担保人2其他资料"];
+        cell.name = topArray[indexPath.row];
         
-        [self reloadData];
-    };
-    return cell;
+        cell.muArray = [NSMutableArray array];
+        cell.muArray = [NSMutableArray arrayWithArray:self.otherPic1];
+        
+        MJWeakSelf;
+        cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
+            
+            weakSelf.returnAryBlock(imgAry, name);
+            if ([name isEqualToString:@"担保人1其他资料"]) {
+                weakSelf.otherPic = imgAry;
+            }
+            if ([name isEqualToString:@"担保人2其他资料"]) {
+                weakSelf.otherPic1 = imgAry;
+            }
+            [self reloadData];
+        };
+        return cell;
+    
+    
+    
 }
 
 
@@ -109,18 +169,9 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 || indexPath.section == 2) {
         return 53;
     }
-    
-//    num = self.housePictureApply.count;
-//}
-//float numberToRound;
-//int result;
-//numberToRound = (1.0 + num)/3.0;
-//result = (int)ceilf(numberToRound);
-//return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
-
     float numberToRound;
     int result;
     numberToRound = (1.0 + self.otherPic.count)/3.0;

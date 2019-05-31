@@ -48,7 +48,7 @@
 {
     if ([BaseModel isBlankString:models.title] == NO) {
         nameLbl.text = models.title;
-        timeLbl.text= [models.createDatetime convertToDetailDate];
+        timeLbl.text= [models.updateDatetime convertToDetailDate];
         typeLbl.text = @"系统公告";
     }else
     {

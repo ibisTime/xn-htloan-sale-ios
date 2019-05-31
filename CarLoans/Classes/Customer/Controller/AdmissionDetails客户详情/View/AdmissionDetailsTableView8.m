@@ -77,6 +77,7 @@
     cell.selectStr = array[indexPath.row];
     
     if (indexPath.row == 3) {
+        
         cell.collectDataArray = self.bank_photo;
     }
     if (indexPath.row == 4) {

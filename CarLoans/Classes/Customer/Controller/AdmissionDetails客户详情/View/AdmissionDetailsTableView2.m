@@ -65,10 +65,19 @@
             cell.button2.tag = 103;
         }
         if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
-            [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gua convertImageUrl]] forState:UIControlStateNormal];
-            [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gua convertImageUrl]] forState:UIControlStateNormal];
-            cell.button1.tag = 104;
-            cell.button2.tag = 105;
+            if (indexPath.section == 2) {
+                [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gua0 convertImageUrl]] forState:UIControlStateNormal];
+                [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gua0 convertImageUrl]] forState:UIControlStateNormal];
+                cell.button1.tag = 104;
+                cell.button2.tag = 105;
+            }
+            if (indexPath.section == 3) {
+                [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gua1 convertImageUrl]] forState:UIControlStateNormal];
+                [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gua1 convertImageUrl]] forState:UIControlStateNormal];
+                cell.button1.tag = 106;
+                cell.button2.tag = 107;
+            }
+            
         }
         
         [cell.button1 addTarget:self action:@selector(buttonclick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -86,59 +95,111 @@
         
         if ([dataDic[@"loanRole"] isEqualToString:@"1"]) {
             if (indexPath.row == 6) {
-                cell.collectDataArray = self.auth_pdf_apply;
+                if (![self.auth_pdf_apply[0] isEqualToString:@""]) {
+                    cell.collectDataArray = self.auth_pdf_apply;
+                    
+                }
                 cell.selectStr = @"征信查询授权书";
             }
             if (indexPath.row == 7) {
+                if (![self.interview_pic_apply[0] isEqualToString:@""]) {
                 cell.collectDataArray = self.interview_pic_apply;
-                cell.selectStr = @"手持授权书照片";
+                }
+                 cell.selectStr = @"手持授权书照片";
             }
             if (indexPath.row == 9) {
+                if (![self.bank_report_apply[0] isEqualToString:@""]) {
                 cell.collectDataArray = self.bank_report_apply;
+                }
                 cell.selectStr = @"征信报告";
             }
             if (indexPath.row == 10) {
+                if (![self.data_report_apply[0] isEqualToString:@""]) {
                 cell.collectDataArray = self.data_report_apply;
+                }
                 cell.selectStr = @"申请人大数据报告";
             }
         }
         if ([dataDic[@"loanRole"] isEqualToString:@"2"]) {
             if (indexPath.row == 6) {
+                if (![self.auth_pdf_gh[0] isEqualToString:@""]) {
                 cell.collectDataArray = self.auth_pdf_gh;
+                }
                 cell.selectStr = @"征信查询授权书";
             }
             if (indexPath.row == 7) {
+                if (![self.interview_pic_gh[0] isEqualToString:@""]) {
                 cell.collectDataArray = self.interview_pic_gh;
+                }
                 cell.selectStr = @"手持授权书照片";
             }
             if (indexPath.row == 9) {
-                
+                if (![self.bank_report_gh[0] isEqualToString:@""]) {
                 cell.collectDataArray = self.bank_report_gh;
+                }
                 cell.selectStr = @"征信报告";
             }
             if (indexPath.row == 10) {
+                if (![self.data_report_gh[0] isEqualToString:@""]) {
                 cell.collectDataArray = self.data_report_gh;
+                }
                 cell.selectStr = @"共还人大数据报告";
             }
         }
         if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
-            if (indexPath.row == 6) {
-                cell.collectDataArray = self.auth_pdf_gua;
-                cell.selectStr = @"征信查询授权书";
+            if (indexPath.section == 2) {
+                if (indexPath.row == 6) {
+                    if (![self.auth_pdf_gua0[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.auth_pdf_gua0;
+                    }
+                    cell.selectStr = @"征信查询授权书";
+                }
+                if (indexPath.row == 7) {
+                    if (![self.interview_pic_gua0[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.interview_pic_gua0;
+                    }
+                    cell.selectStr = @"手持授权书照片";
+                }
+                if (indexPath.row == 9) {
+                    if (![self.bank_report_gua0[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.bank_report_gua0;
+                    }
+                    cell.selectStr = @"征信报告";
+                }
+                if (indexPath.row == 10) {
+                    if (![self.data_report_gua0[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.data_report_gua0;
+                    }
+                    cell.selectStr = @"担保人大数据报告";
+                }
             }
-            if (indexPath.row == 7) {
-                cell.collectDataArray = self.interview_pic_gua;
-                cell.selectStr = @"手持授权书照片";
+            if (indexPath.section == 3) {
+                if (indexPath.row == 6) {
+                    if (![self.auth_pdf_gua1[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.auth_pdf_gua1;
+                    }
+                    cell.selectStr = @"征信查询授权书";
+                }
+                if (indexPath.row == 7) {
+                    if (![self.interview_pic_gua1[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.interview_pic_gua1;
+                    }
+                    cell.selectStr = @"手持授权书照片";
+                }
+                if (indexPath.row == 9) {
+                    if (![self.bank_report_gua1[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.bank_report_gua1;
+                    }
+                    cell.selectStr = @"征信报告";
+                }
+                if (indexPath.row == 10) {
+                    if (![self.data_report_gua1[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.data_report_gua1;
+                    }
+                    cell.selectStr = @"担保人大数据报告";
+                }
             }
-            if (indexPath.row == 9) {
-                
-                cell.collectDataArray = self.bank_report_gua;
-                cell.selectStr = @"征信报告";
-            }
-            if (indexPath.row == 10) {
-                cell.collectDataArray = self.data_report_gua;
-                cell.selectStr = @"担保人大数据报告";
-            }
+            
         }
         
         
@@ -192,10 +253,16 @@
             [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gh];
             break;
         case 104:
-            [[BaseModel user]AlterImageByUrl:self.id_no_front_gua];
+            [[BaseModel user]AlterImageByUrl:self.id_no_front_gua0];
             break;
         case 105:
-            [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gua];
+            [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gua0];
+            break;
+        case 106:
+            [[BaseModel user]AlterImageByUrl:self.id_no_front_gua1];
+            break;
+        case 107:
+            [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gua1];
             break;
             
         default:
@@ -219,53 +286,132 @@
     if ([dataDic[@"loanRole"] isEqualToString:@"1"]) {
         if (indexPath.row == 6) {
             array = self.auth_pdf_apply;
+            NSString * str = array[0];
+            if (str.length == 0) {
+                return 50;
+            }
         }
         if (indexPath.row == 7) {
             array = self.interview_pic_apply;
-        
+            NSString * str = array[0];
+            if (str.length == 0) {
+                return 50;
+            }
         }
         if (indexPath.row == 9) {
-            
             array = self.bank_report_apply;
+            NSString * str = array[0];
+            if (str.length == 0) {
+                return 50;
+            }
         }
         if (indexPath.row == 10) {
             array = self.data_report_apply;
+            NSString * str = array[0];
+            if (str.length == 0) {
+                return 50;
+            }
         }
     }
     if ([dataDic[@"loanRole"] isEqualToString:@"2"]) {
         if (indexPath.row == 6) {
             array = self.auth_pdf_gh;
-            
+            NSString * str = array[0];
+            if (str.length == 0) {
+                return 50;
+            }
         }
         if (indexPath.row == 7) {
             array = self.interview_pic_gh;
-        
+            NSString * str = array[0];
+            if (str.length == 0) {
+                return 50;
+            }
         }
         if (indexPath.row == 9) {
             
             array = self.bank_report_gh;
-            
+            NSString * str = array[0];
+            if (str.length == 0) {
+                return 50;
+            }
         }
         if (indexPath.row == 10) {
             array = self.data_report_gh;
+            NSString * str = array[0];
+            if (str.length == 0) {
+                return 50;
+            }
         }
     }
     if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
-        if (indexPath.row == 6) {
-            array = self.auth_pdf_gua;
-            
+        if (indexPath.section == 2) {
+            if (indexPath.row == 6) {
+                array = self.auth_pdf_gua0;
+                NSString * str = array[0];
+                if (str.length == 0) {
+                    return 50;
+                }
+                
+            }
+            if (indexPath.row == 7) {
+                array = self.interview_pic_gua0;
+                NSString * str = array[0];
+                if (str.length == 0) {
+                    return 50;
+                }
+                
+            }
+            if (indexPath.row == 9) {
+                
+                array = self.bank_report_gua0;
+                NSString * str = array[0];
+                if (str.length == 0) {
+                    return 50;
+                }
+            }
+            if (indexPath.row == 10) {
+                array = self.data_report_gua0;
+                NSString * str = array[0];
+                if (str.length == 0) {
+                    return 50;
+                }
+            }
         }
-        if (indexPath.row == 7) {
-            array = self.interview_pic_gua;
-            
+        if (indexPath.section == 3) {
+            if (indexPath.row == 6) {
+                array = self.auth_pdf_gua1;
+                NSString * str = array[0];
+                if (str.length == 0) {
+                    return 50;
+                }
+                
+            }
+            if (indexPath.row == 7) {
+                array = self.interview_pic_gua1;
+                NSString * str = array[0];
+                if (str.length == 0) {
+                    return 50;
+                }
+                
+            }
+            if (indexPath.row == 9) {
+                
+                array = self.bank_report_gua1;
+                NSString * str = array[0];
+                if (str.length == 0) {
+                    return 50;
+                }
+            }
+            if (indexPath.row == 10) {
+                array = self.data_report_gua1;
+                NSString * str = array[0];
+                if (str.length == 0) {
+                    return 50;
+                }
+            }
         }
-        if (indexPath.row == 9) {
-            
-            array = self.bank_report_gua;
-        }
-        if (indexPath.row == 10) {
-            array = self.data_report_gua;
-        }
+        
     }
     
     
