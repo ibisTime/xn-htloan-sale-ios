@@ -39,7 +39,9 @@
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    if ([self.model.bizType isEqualToString:@"1"]) {
+        return 30;
+    }
     return 28;
 }
 
@@ -61,13 +63,36 @@
             cell.collectDataArray = [[self FindUrlByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"合格证照片";
         }
-//        if (indexPath.row == 29) {
-//            cell.collectDataArray = @[@"",@"",@"",@""];
-//            cell.selectStr = @"车辆价格核实报告";
-//        }
+        return cell;
+    }
+    if (indexPath.row == 28) {
+        static NSString *CellIdentifier = @"PhotoCell123";
+        PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+        if (cell == nil) {
+            cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        if (indexPath.row == 28) {
+            cell.collectDataArray =  [[self FindUrlByKname:@"second_car_report"] componentsSeparatedByString:@"||"];
+            cell.selectStr = @"二手车评估报告";
+        }
+        return cell;
+    }
+    if (indexPath.row == 29) {
+        static NSString *CellIdentifier = @"AdmiissionDetailsIDCardCellCell";
+        AdmiissionDetailsIDCardCellCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+        
+        if (cell == nil) {
+            cell = [[AdmiissionDetailsIDCardCellCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.topLbl.text = @"行驶证正反照片";
+            [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[[self FindUrlByKname:@"drive_license_front"] convertImageUrl]] forState:UIControlStateNormal];
+            [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[[self FindUrlByKname:@"drive_license_reverse"] convertImageUrl]] forState:UIControlStateNormal];
+            cell.button1.tag = 100;
+            cell.button2.tag = 101;
         
         return cell;
-        
     }
     static NSString *CellIdentifier = @"Cell";
     AdmissionInformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
@@ -77,7 +102,7 @@
     }
     _cell = cell;
     NSArray *topArray = @[@"业务种类",
-                          @"贷款期限",
+                          @"贷款期限(月)",
                           @"贷款产品",
                           @"是否垫资",
                           @"是否融资",
@@ -105,10 +130,10 @@
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNull:[NSString stringWithFormat:@"%@",[self.model.bizType isEqualToString:@"1"]?@"二手车":@"新车" ]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"loan_period" setDkey:[NSString stringWithFormat:@"%@", self.model.loanInfo[@"periods"]]]]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@", self.model.loanInfo[@"periods"]]],
                              [BaseModel convertNull: self.model.loanInfo[@"loanProductName"]] ,
-                             [self.model.isAdvanceFund isEqualToString:@"1"]?@"是":@"否",
-                             [self.model.isFinacing isEqualToString:@"1"]?@"是":@"否",
+                             [self.model.isAdvanceFund isEqualToString:@"1"]?@"是":[self.model.isAdvanceFund isEqualToString:@"0"]?@"否":@"",
+                             [self.model.isFinacing isEqualToString:@"1"]?@"是":[self.model.isAdvanceFund isEqualToString:@"0"]?@"否":@"",
                              [BaseModel convertNull:[[BaseModel user] setParentKey:@"region_belong" setDkey:self.model.carInfoRes[@"region"]]],
                              [BaseModel convertNull:[[BaseModel user]setCompanyCode:self.model.carInfoRes[@"vehicleCompanyName"]]],
                              [BaseModel convertNull:self.model.carInfoRes[@"invoiceCompany"]],
@@ -175,13 +200,22 @@
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }
-//    if (indexPath.row == 28) {
-//        float numberToRound;
-//        int result;
-//        numberToRound = (4.0)/3.0;
-//        result = (int)ceilf(numberToRound);
-//        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
-//    }
+    if (indexPath.row == 28) {
+        NSArray * array = [[self FindUrlByKname:@"second_car_report"] componentsSeparatedByString:@"||"];
+        float numberToRound;
+        int result;
+        numberToRound = (array.count + 0)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
+    }
+    if (indexPath.row == 29) {
+        NSArray * array = @[@"",@""];
+        float numberToRound;
+        int result;
+        numberToRound = (array.count + 0)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
+    }
     return _cell.bottomLbl.yy ;
 }
 

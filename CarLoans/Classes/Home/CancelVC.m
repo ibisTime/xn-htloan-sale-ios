@@ -36,8 +36,8 @@
 -(void)selectTime
 {
     WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
-        self.tableView.date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-        date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+        self.tableView.date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+        date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
         NSLog(@"%@",self.tableView.date);
         [self.tableView reloadData];
         

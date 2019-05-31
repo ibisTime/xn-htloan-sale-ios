@@ -233,7 +233,7 @@
                                   [NSString stringWithFormat:@"%@",ConfirmrepayModel.periods],
                                   [NSString stringWithFormat:@"%@",ConfirmrepayModel.curPeriods],
                                   [NSString stringWithFormat:@"%@",[ConfirmrepayModel.repayDatetime convertDate]],
-                                  [NSString stringWithFormat:@"%.2f",[ConfirmrepayModel.repayBiz[@"monthAmount"] floatValue]/1000]
+                                  [NSString stringWithFormat:@"%.2f",[ConfirmrepayModel.repayAmount floatValue]/1000]
                                   ];
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];

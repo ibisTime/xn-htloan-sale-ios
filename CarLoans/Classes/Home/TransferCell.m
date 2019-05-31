@@ -289,9 +289,10 @@
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
-        
+        nameLabel.hidden = NO;
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
         InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+        InformationLabel.hidden = NO;
     }
 }
 

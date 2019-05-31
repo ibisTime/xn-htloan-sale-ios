@@ -8,6 +8,14 @@
 
 #import "AdmissionDetailsTableView16.h"
 #import "AttachmentPoolCell.h"
+
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import "SelVideoPlayer.h"
+#import "SelPlayerConfiguration.h"
+#import <Masonry.h>
+#import <AVKit/AVKit.h>
 @interface AdmissionDetailsTableView16 ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -51,7 +59,7 @@
     NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
     
     
-    cell.array = @[[NSString stringWithFormat:@"编号：%@",str1],[NSString stringWithFormat:@"附件类型：%@",str2],[BaseModel convertNull: [NSString stringWithFormat: @"资源类型：%@",str3]],[NSString stringWithFormat:@"资源数量：%ld张",arr.count]];
+    cell.array = @[[NSString stringWithFormat:@"编号：%@",str1],[NSString stringWithFormat:@"附件类型：%@",str2],[BaseModel convertNull: [NSString stringWithFormat: @"资源类型：%@",str3]],[NSString stringWithFormat:@"资源数量：%d张",arr.count]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -96,21 +104,64 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    NSMutableArray *muArray = [NSMutableArray array];
-    NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
-    for (int i = 0; i < arr.count; i++) {
-        [muArray addObject:[arr[i] convertImageUrl]];
-    }
-    NSArray *seleteArray = muArray;
-    
-    if (muArray.count > 0) {
-        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-        [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
-            return seleteArray;
-        }];
+    if ([self.model.attachments[indexPath.row][@"attachType"] isEqualToString:@"图片"]) {
+        NSMutableArray *muArray = [NSMutableArray array];
+        NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
+        for (int i = 0; i < arr.count; i++) {
+            [muArray addObject:[arr[i] convertImageUrl]];
+        }
+        NSArray *seleteArray = muArray;
         
+        if (muArray.count > 0) {
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                return seleteArray;
+            }];
+            
+        }
+    }else{
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        // 3、配置媒体播放控制器
+        AVPlayerViewController *_playerViewController = [[AVPlayerViewController alloc]  init];
+        // 设置媒体源数据
+        NSString*  urlStr = [NSString stringWithFormat:@"%@",self.model.attachments[indexPath.row][@"url"]];
+        NSString* Str = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
+        NSURL *url;
+        if ([urlStr containsString:@"myqcloud.com"]) {
+            url = [NSURL URLWithString:urlStr];
+            
+        }else{
+            
+            NSString* Str = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(),urlStr];
+            
+            
+            if ([[NSFileManager defaultManager] fileExistsAtPath:Str]) {
+                urlStr = Str;
+                url = [NSURL fileURLWithPath:urlStr];
+            }else{
+                
+                urlStr = [urlStr convertImageUrl];
+                url = [NSURL URLWithString:urlStr];
+            }
+        }
+        _playerViewController.player = [AVPlayer playerWithURL:url];
+        // 设置拉伸模式
+        _playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
+        // 设置是否显示媒体播放组件
+        _playerViewController.showsPlaybackControls = YES;
+        // 播放视频
+        [_playerViewController.player play];
+        // 设置媒体播放器视图大小
+        _playerViewController.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        [window.rootViewController presentViewController:_playerViewController animated:YES completion:nil];
     }
+    
+    
+    
+    
+    
+   
+    
     
 }
 

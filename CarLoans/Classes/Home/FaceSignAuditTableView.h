@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FaceSignAuditTableView : TLTableView
+@property (nonatomic , strong)SurveyModel *model;
 //银行视频
 @property (nonatomic , strong)NSArray *BankVideoArray;
 //公司视频

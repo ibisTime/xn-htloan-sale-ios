@@ -110,6 +110,7 @@
         if ([name isEqualToString:@"签约员与客户合影"]) {
             weakSelf.salerAndcustomer = imgAry;
         }
+        [self reloadData];
     };
     return cell;
 }
@@ -150,12 +151,16 @@
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
+    if (indexPath.row == 3) {
+        float numberToRound;
+        int result;
+        numberToRound = (self.salerAndcustomer.count + 1.0)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+    }
+    return 50;
     
-    float numberToRound;
-    int result;
-    numberToRound = (self.salerAndcustomer.count + 1.0)/3.0;
-    result = (int)ceilf(numberToRound);
-    return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+    
 }
 
 #pragma mark -- 区头高度

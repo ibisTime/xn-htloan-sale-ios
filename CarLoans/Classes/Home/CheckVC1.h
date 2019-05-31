@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CheckVC1 : BaseViewController
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic,strong) NSString * code;
+@property (nonatomic,strong) NSString * state;
 @end
 
 NS_ASSUME_NONNULL_END

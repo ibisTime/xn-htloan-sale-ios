@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckTableView1 : TLTableView<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)SurveyModel *model;
+@property (nonatomic,strong) NSString * state;
 @end
 
 NS_ASSUME_NONNULL_END

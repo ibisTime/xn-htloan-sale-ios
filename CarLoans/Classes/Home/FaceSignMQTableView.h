@@ -9,6 +9,7 @@
 #import "TLTableView.h"
 
 @interface FaceSignMQTableView : TLTableView
+@property (nonatomic , strong)SurveyModel *model;
 
 //银行视频
 @property (nonatomic , strong)NSArray *BankVideoArray;

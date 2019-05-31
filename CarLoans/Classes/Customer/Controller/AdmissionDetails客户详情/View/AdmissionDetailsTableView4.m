@@ -109,7 +109,7 @@
     
     
     NSArray *bottomArray = @[[BaseModel convertNull: self.model.creditUser[@"userName"]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"gender" setDkey:self.model.creditUser[@"gender"]]]],
+                             [BaseModel convertNull:self.model.creditUser[@"gender"]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@", self.model.creditUser[@"age"]]],
                              [BaseModel convertNull: self.model.creditUser[@"idNo"]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"marry_state" setDkey:self.model.creditUser[@"marryState"]]],
@@ -122,7 +122,7 @@
                              [BaseModel convertNull:self.model.creditUser[@"nowPostCode"]],
                              [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:self.model.creditUser[@"birthAddressProvince"]],[BaseModel convertNull:self.model.creditUser[@"birthAddressCity"]],[BaseModel convertNull:self.model.creditUser[@"birthAddressArea"]],[BaseModel convertNull:self.model.creditUser[@"nowAddress"]]],
                              [BaseModel convertNull:self.model.creditUser[@"birthPostCode"]],
-                             @"10000.00",
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"familyMainAsset"] floatValue]/1000]],
                              [BaseModel convertNull:self.model.creditUser[@"mainAssetInclude"]],
                              @"",
                              @"",

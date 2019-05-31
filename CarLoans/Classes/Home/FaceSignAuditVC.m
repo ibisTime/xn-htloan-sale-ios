@@ -25,12 +25,13 @@
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
         [self initTableView];
+        [self FaceToFaceContent];
     } failure:^(NSError *error) {
         
     }];
 //    [self initTableView];
     self.title = @"面签审核";
-    [self FaceToFaceContent];
+    
 }
 
 -(void)FaceToFaceContent{
@@ -38,36 +39,60 @@
         NSDictionary *dic = self.model.attachments[i];
         //        银行视频
         if ([dic[@"kname"] isEqualToString:@"bank_video"]) {
-            
+            NSString * str = dic[@"url"];
+            if (str.length != 0) {
             self.tableView.BankVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            }
         }
         //        公司视频
         if ([dic[@"kname"] isEqualToString:@"company_video"]) {
+            NSString * str = dic[@"url"];
+            if (str.length != 0) {
             self.tableView.CompanyVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            }
         }
         //        其他视频
         if ([dic[@"kname"] isEqualToString:@"other_video"]) {
-            self.tableView.OtherVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            NSString * str = dic[@"url"];
+            if (str.length != 0) {
+                self.tableView.OtherVideoArray = [NSMutableArray arrayWithArray:[dic[@"url"] componentsSeparatedByString:@"||"]];
+            }
+            
         }
         //        银行面签图片
         if ([dic[@"kname"] isEqualToString:@"bank_photo"]) {
+            NSString * str = dic[@"url"];
+            if (str.length != 0) {
             self.tableView.BankSignArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            }
         }
         //        银行合同
         if ([dic[@"kname"] isEqualToString:@"bank_contract"]) {
+            NSString * str = dic[@"url"];
+            if (str.length != 0) {
             self.tableView.BankContractArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            }
         }
         //        公司合同
         if ([dic[@"kname"] isEqualToString:@"company_contract"]) {
+            NSString * str = dic[@"url"];
+            if (str.length != 0) {
             self.tableView.CompanyContractArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            }
         }
         //        资金划转授权书
         if ([dic[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
+            NSString * str = dic[@"url"];
+            if (str.length != 0) {
             self.tableView.MoneyArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            }
         }
         //        面签其他资料
         if ([dic[@"kname"] isEqualToString:@"interview_other_pdf"]) {
+            NSString * str = dic[@"url"];
+            if (str.length != 0) {
             self.tableView.otherArray = [dic[@"url"] componentsSeparatedByString:@"||"].mutableCopy;
+            }
         }
 
         [self.tableView reloadData];
@@ -79,6 +104,7 @@
     self.tableView = [[FaceSignAuditTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
 }
 
@@ -86,10 +112,10 @@
 {
     
     UITextField *textField = [self.view viewWithTag:3000];
-    if ([textField.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入审核意见"];
-        return;
-    }
+//    if ([textField.text isEqualToString:@""]) {
+//        [TLAlert alertWithInfo:@"请输入审核意见"];
+//        return;
+//    }
     
     NSString *approveResult;
     if (index == 10000) {

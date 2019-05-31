@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 17;
+    return 18;
 }
 
 #pragma mark -- tableView
@@ -89,7 +89,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"抵押代理人",@"抵押代理人身份证",@"",@"抵押地点",@"抵押时间",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间"];
+    NSArray *topArray = @[@"抵押代理人",@"抵押代理人身份证",@"",@"抵押地点",@"抵押时间",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间",
+                          @"落户日期"];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNull:self.model.carPledge[@"pledgeUser"]],
@@ -108,7 +109,9 @@
                              @"",
                              @"",
                              @"",
-                             [BaseModel convertNull:[self.model.carPledge[@"pledgeBankCommitDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]]];
+                             [BaseModel convertNull:[self.model.carPledge[@"pledgeBankCommitDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
+                             [BaseModel convertNull:[self.model.carInfoRes[@"carSettleDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]]
+                             ];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];

@@ -77,7 +77,7 @@
         _imagePicker.allowsEditing = YES;
         _imagePicker.pickFinish = ^(NSDictionary *info){
             NSLog(@"%@",info);
-            if (self.selectInt < 3) {
+            if (self.selectInt <  4 && self.selectInt > 0) {
 
                 //2.文件的url
                 NSURL *url1=[info objectForKey:UIImagePickerControllerMediaURL];//视频路径
@@ -188,7 +188,7 @@
         return;
     }
     switch (self.selectInt) {
-        case 0:
+        case 1:
         {
 //            if (self.BankVideoArray.count == 0) {
 //                self.BankVideoArray = [NSMutableArray array];
@@ -198,7 +198,7 @@
             self.tableView.BankVideoArray = self.BankVideoArray;
         }
             break;
-        case 1:
+        case 2:
         {
 //            if (self.CompanyVideoArray.count ==0) {
 //                self.CompanyVideoArray = [NSMutableArray array];
@@ -209,7 +209,7 @@
             self.tableView.CompanyVideoArray = self.CompanyVideoArray;
         }
             break;
-        case 2:
+        case 3:
         {
 //            if (self.OtherVideoArray.count ==0) {
 //                self.OtherVideoArray = [NSMutableArray array];
@@ -233,7 +233,7 @@
 {
 
     switch (_selectInt) {
-        case 3:
+        case 4:
         {
 //            if (self.BankSignArray.count == 0) {
 //                self.BankSignArray = [NSMutableArray array];
@@ -242,7 +242,7 @@
             self.tableView.BankSignArray = self.BankSignArray;
         }
             break;
-        case 4:
+        case 5:
         {
 //            if (self.BankContractArray.count == 0) {
 //                self.BankContractArray = [NSMutableArray array];
@@ -252,7 +252,7 @@
 
         }
             break;
-        case 5:
+        case 6:
         {
 //            if (self.CompanyContractArray.count == 0) {
 //                self.CompanyContractArray = [NSMutableArray array];
@@ -262,7 +262,7 @@
 
         }
             break;
-        case 6:
+        case 7:
         {
 //            if (self.MoneyArray.count == 0) {
 //                self.MoneyArray = [NSMutableArray array];
@@ -272,7 +272,7 @@
 
         }
             break;
-        case 7:
+        case 8:
         {
 //            if (self.otherArray.count == 0) {
 //                self.otherArray = [NSMutableArray array];
@@ -308,13 +308,14 @@
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
         [self initTableView];
+        [self FaceToFaceContent];
     } failure:^(NSError *error) {
         
     }];
 
     [self navigativeView];
 //    [self initTableView];
-    [self FaceToFaceContent];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadEndMovieUrlOut) name:@"KsingOut" object:nil];
 }
 
@@ -392,7 +393,7 @@
 {
     self.selectInt = index;
     if ([state isEqualToString:@"add"]) {
-        if (index < 3) {
+        if (index < 4 && index > 0) {
             [self.imagePicker videoPicker];
         }else
         {
@@ -401,7 +402,7 @@
     }else
     {
         NSLog(@"删除 %ld",index);
-        if (index == 0)
+        if (index == 1)
         {
 //            [self.BankVideoArray removeObjectAtIndex:sender.tag - 1000];
             if (self.BankVideoArray.count > 0) {
@@ -409,7 +410,7 @@
 
             }
         }
-        else if (index == 1)
+        else if (index == 2)
         {
 //            [self.CompanyVideoArray removeObjectAtIndex:sender.tag - 1000];
             if (self.CompanyVideoArray.count > 0) {
@@ -417,7 +418,7 @@
 
             }
         }
-        else if (index == 2)
+        else if (index == 3)
         {
 
 //            [self.OtherVideoArray removeObjectAtIndex:sender.tag - 1000];
@@ -426,7 +427,7 @@
 
             }
         }
-        else if (index == 3)
+        else if (index == 4)
         {
             
             if (self.BankSignArray.count > 0) {
@@ -434,7 +435,7 @@
                 
             }
         }
-        else if (index == 4)
+        else if (index == 5)
         {
             
             if (self.BankContractArray.count > 0) {
@@ -442,7 +443,7 @@
                 
             }
         }
-        else if (index == 5)
+        else if (index == 6)
         {
             
             if (self.CompanyContractArray.count > 0) {
@@ -450,7 +451,7 @@
                 
             }
         }
-        else if (index == 6)
+        else if (index == 7)
         {
             
             if (self.MoneyArray.count > 0) {
@@ -458,7 +459,7 @@
                 
             }
         }
-        else if (index == 7)
+        else if (index == 8)
         {
             
             if (self.otherArray.count > 0) {
@@ -545,6 +546,7 @@
 - (void)initTableView {
     self.tableView = [[FaceSignMQTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
+    self.tableView.model = self.model;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];
 }

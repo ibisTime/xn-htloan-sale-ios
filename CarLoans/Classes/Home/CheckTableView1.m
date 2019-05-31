@@ -73,8 +73,14 @@
     }
     InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"审核意见";
-    cell.nameText = @"请输入审核意见";
+    if ([self.state isEqualToString:@"制单回录"]) {
+        cell.name = @"垫资说明";
+        cell.nameText = @"请输入垫资说明";
+    }else{
+        cell.name = @"审核意见";
+        cell.nameText = @"请输入审核意见";
+    }
+    
     cell.symbolLabel.hidden = YES;
     cell.tag = 400;
     return cell;

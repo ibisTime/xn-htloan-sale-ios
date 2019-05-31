@@ -145,6 +145,7 @@
         CheckVC1 * vc = [CheckVC1 new];
         vc.title = @"制单回录";
         vc.code = @"632463";
+        vc.state = @"制单回录";
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }

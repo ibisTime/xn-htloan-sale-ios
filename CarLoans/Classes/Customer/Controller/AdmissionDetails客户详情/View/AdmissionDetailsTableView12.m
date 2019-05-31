@@ -35,32 +35,32 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 7;
+    return 6;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 ||  indexPath.row == 7) {
+    if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 ||  indexPath.row == 5) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 3) {
+        if (indexPath.row == 2) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_invoice"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"发票";
         }
-        if (indexPath.row == 4) {
+        if (indexPath.row == 3) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_jqx"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"交强险";
         }
-        if (indexPath.row == 5) {
+        if (indexPath.row == 4) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_syx"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"商业险";
         }
-        if (indexPath.row == 8) {
+        if (indexPath.row == 5) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"绿大本扫描件";
         }
@@ -77,14 +77,12 @@
     _cell = cell;
     NSArray *topArray = @[@"保单日期",
                           @"保单到期日",
-                          @"落户日期",
                           @"",@"",@"",@""];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[
                              [BaseModel convertNull:[self.model.carInfoRes[@"policyDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              [BaseModel convertNull:[self.model.carInfoRes[@"policyDueDate"] convertDateWithFormat:@"yyyy-MM-dd"]],
-                             [BaseModel convertNull:[self.model.carInfoRes[@"carSettleDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              @"",@"",@"",@"",
                              @""];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
@@ -107,16 +105,16 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case 3:
+        case 2:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_invoice"] componentsSeparatedByString:@"||"]];
             break;
-        case 4:
+        case 3:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_jqx"] componentsSeparatedByString:@"||"]];
             break;
-        case 5:
+        case 4:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_syx"] componentsSeparatedByString:@"||"]];
             break;
-        case 7:
+        case 5:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"]];
             break;
         default:

@@ -58,7 +58,7 @@
 {
 
     if (section == 0) {
-        return 3;
+        return 8;
     }
     if (section == 2) {
         return 2;
@@ -73,12 +73,17 @@
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        NSArray *nameArray = @[@"客户姓名",@"业务编号",@"参考材料清单"];
+        NSArray *nameArray = @[@"客户姓名",@"业务编号",@"发件节点",@"收件节点",@"业务团队",@"信贷专员",@"内勤专员",@"参考材料清单"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSArray *detailsArray = @[
-                                  [NSString stringWithFormat:@"%@",_model.customerName],
-                                  [NSString stringWithFormat:@"%@",_model.bizCode],
+                                  [BaseModel convertNull:[NSString stringWithFormat:@"%@",_model.customerName]],
+                                  [BaseModel convertNull:[NSString stringWithFormat:@"%@",_model.bizCode]],
+                                  [BaseModel convertNull:[NSString stringWithFormat:@"%@",[[BaseModel user]note:self.model.fromNodeCode]]],
+                                  [BaseModel convertNull:[NSString stringWithFormat:@"%@",[[BaseModel user]note:self.model.toNodeCode]]],
+                                  [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.teamName]],
+                                  [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.saleUserName]],
+                                  [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.insideJobName]],
                                   @" "
                                   ];
         if ([cell.name isEqualToString:@"参考材料清单"]) {

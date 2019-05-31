@@ -168,7 +168,6 @@
                            @"业务编号",
                            @"客户姓名",
                            @"意向车型",
-                           @"意向金额",
                            @"生成时间"
                                   ];
     
@@ -177,7 +176,6 @@
                                   [NSString stringWithFormat:@"%@",signModel.code],
                                   [NSString stringWithFormat:@"%@",signModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:signModel.carInfoRes[@"carBrand"]],[BaseModel convertNull:signModel.carInfoRes[@"carSeries"]],[BaseModel convertNull:signModel.carInfoRes[@"carModel"]],[BaseModel convertNull:signModel.carInfoRes[@"carColor"]]],
-                                  [NSString stringWithFormat:@"%.2f",[signModel.carInfoRes[@"originalPrice"] floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",[signModel.intevDateTime convertDate]]
                                   ];
     for (int i = 0; i < nameArray.count; i ++ ) {

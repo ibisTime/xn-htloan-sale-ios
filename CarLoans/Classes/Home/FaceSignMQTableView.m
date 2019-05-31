@@ -11,6 +11,8 @@
 #define UploadVideo @"UploadVideoCell"
 #import "CollectionViewCell.h"
 #define CarSettledUpdataPhoto @"CollectionViewCell"
+#import "TextFieldCell.h"
+#define TextField @"TextFieldCell"
 @interface FaceSignMQTableView ()<UITableViewDataSource,UITableViewDelegate,CustomCollectiondelegate1,CustomCollectiondelegate>
 
 @end
@@ -24,7 +26,7 @@
         self.delegate = self;
         [self registerClass:[UploadVideoCell class] forCellReuseIdentifier:UploadVideo];
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CarSettledUpdataPhoto];
-
+        [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
 
     }
     return self;
@@ -33,19 +35,51 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 8;
+    return 9;
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 7;
+    }
     return 1;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < 3) {
+    if (indexPath.section == 0) {
+        TextFieldCell * cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        NSArray *nameArray = @[@"业务编号",@"客户姓名",@"贷款银行",@"贷款金额",@"业务类型",@"业务归属",@"指派归属"];
+        cell.name = nameArray[indexPath.row];
+        cell.isInput = @"0";
+        NSString *bizType;
+        if ([self.model.bizType integerValue] == 0) {
+            bizType = @"新车";
+        }
+        else
+        {
+            bizType = @"二手车";
+        }
+        
+        NSArray *rightAry = @[[BaseModel convertNull:self.model.code],
+                              [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
+                              [BaseModel convertNull:self.model.loanBankName],
+                              [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
+                              bizType,
+                              [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
+                              [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName]
+                              ];
+        
+        cell.TextFidStr = rightAry[indexPath.row];
+        cell.nameTextField.hidden = YES;
+        cell.nameTextLabel.hidden = NO;
+        return cell;
+    }
+    if (indexPath.section < 4 && indexPath.section >0) {
 //        static NSString *CellIdentifier = @"Cell";
         // 定义cell标识  每个cell对应一个自己的标识
         NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
@@ -57,9 +91,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
-        if (indexPath.section == 0) {
+        if (indexPath.section == 1) {
             cell.collectDataArray = self.BankVideoArray;
-        }else if (indexPath.section == 1)
+        }else if (indexPath.section == 2)
         {
             cell.collectDataArray = self.CompanyVideoArray;
         }else
@@ -86,32 +120,32 @@
     cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
 
     switch (indexPath.section) {
-        case 3:
+        case 4:
         {
             cell.collectDataArray = self.BankSignArray;
             
         }
             break;
-        case 4:
+        case 5:
         {
             cell.collectDataArray = self.BankContractArray;
 
         }
             break;
-        case 5:
+        case 6:
         {
             cell.collectDataArray = self.CompanyContractArray;
 
 
         }
             break;
-        case 6:
+        case 7:
         {
             cell.collectDataArray = self.MoneyArray;
 
         }
             break;
-        case 7:
+        case 8:
         {
             cell.collectDataArray = self.otherArray;
 
@@ -165,23 +199,26 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < 3)
+    if (indexPath.section == 0) {
+        return 50;
+    }
+    if (indexPath.section < 4 && indexPath.section > 0)
     {
-        if (indexPath.section == 0) {
+        if (indexPath.section == 1) {
             float numberToRound;
             int result;
             numberToRound = (_BankVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
         }
-        if (indexPath.section == 1) {
+        if (indexPath.section == 2) {
             float numberToRound;
             int result;
             numberToRound = (_CompanyVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/4 + 5) + 15;
         }
-        if (indexPath.section == 2) {
+        if (indexPath.section == 3) {
             float numberToRound;
             int result;
             numberToRound = (_OtherVideoArray.count + 1.0)/3.0;
@@ -191,35 +228,35 @@
     }
     else
     {
-        if (indexPath.section == 3) {
+        if (indexPath.section == 4) {
             float numberToRound;
             int result;
             numberToRound = (self.BankSignArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
         }
-        if (indexPath.section == 4) {
+        if (indexPath.section == 5) {
             float numberToRound;
             int result;
             numberToRound = (self.BankContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
         }
-        if (indexPath.section == 5) {
+        if (indexPath.section == 6) {
             float numberToRound;
             int result;
             numberToRound = (self.CompanyContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
         }
-        if (indexPath.section == 6) {
+        if (indexPath.section == 7) {
             float numberToRound;
             int result;
             numberToRound = (self.MoneyArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 45)/3 + 5) + 15;
         }
-        if (indexPath.section == 7) {
+        if (indexPath.section == 8) {
             float numberToRound;
             int result;
             numberToRound = (self.otherArray.count + 1.0)/3.0;
@@ -228,19 +265,22 @@
         }
         
     }
-    return SCREEN_WIDTH/3 + 15;
+    return 50;
 }
 
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    if (section > 0) {
+        return 50;
+    }
+    return 0.01;
 }
 
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 7) {
+    if (section == 8) {
         return 100;
     }
     return 0.01;
@@ -248,27 +288,31 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *headView = [[UIView alloc]init];
-
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-    backView.backgroundColor = [UIColor whiteColor];
-    [headView addSubview:backView];
-
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-    lineView.backgroundColor = LineBackColor;
-    [headView addSubview:lineView];
-
-    NSArray *array = @[@"*银行视频",@"*公司视频",@"其他视频",@"*银行面签图片",@"银行合同",@"公司合同",@"*资金划转授权书",@"其他资料"];
-    UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-    nameLabel.text = array[section];
-    [headView addSubview:nameLabel];
-
-    return headView;
+    if (section > 0) {
+        UIView *headView = [[UIView alloc]init];
+        
+        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+        backView.backgroundColor = [UIColor whiteColor];
+        [headView addSubview:backView];
+        
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+        lineView.backgroundColor = LineBackColor;
+        [headView addSubview:lineView];
+        
+        NSArray *array = @[@"*银行视频",@"*公司视频",@"其他视频",@"*银行面签图片",@"银行合同",@"公司合同",@"*资金划转授权书",@"其他资料"];
+        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
+        nameLabel.text = array[section - 1];
+        [headView addSubview:nameLabel];
+        
+        return headView;
+    }
+    return [UIView new];
+    
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 7) {
+    if (section == 8) {
         UIView *headView = [[UIView alloc]init];
 
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];

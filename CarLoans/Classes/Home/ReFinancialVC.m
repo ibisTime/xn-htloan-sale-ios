@@ -37,6 +37,175 @@
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
         [self initTableView];
+        NSString *idNoFront;
+        NSString *idNoReverse;
+        NSString *authPdf;
+        NSString *interviewPic;
+        NSString *xszFront;
+        NSString *secondCarReport;
+        NSString *xszReverse;
+        
+        NSMutableArray *array = [NSMutableArray array];
+        
+        for (int j = 0; j < self.model.creditUserList.count; j ++) {
+            NSDictionary *dataDic;
+            NSDictionary *creditUser = self.model.creditUserList[j];
+            if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"1"]) {
+                
+                for (int k = 0; k < self.model.attachments.count; k ++) {
+                    NSDictionary *attachments = self.model.attachments[k];
+                    if ([attachments[@"kname"] isEqualToString:@"id_no_front_apply"]) {
+                        idNoFront = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_apply"]) {
+                        idNoReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"auth_pdf_apply"]) {
+                        authPdf = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"interview_pic_apply"]) {
+                        interviewPic = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
+                        xszFront = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
+                        xszReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
+                        secondCarReport = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
+                        xszReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"interview_other_pdf"]) {
+                        secondCarReport = attachments[@"url"];
+                    }
+                }
+                
+                dataDic  = @{
+                             @"userName":[BaseModel convertNull:creditUser[@"userName"]],
+                             @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
+                             @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
+                             @"relation":[BaseModel convertNull:creditUser[@"relation"]],
+                             @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
+                             @"idFront":[BaseModel convertNull:idNoFront],
+                             @"idReverse":[BaseModel convertNull:idNoReverse],
+                             @"authPdf":[BaseModel convertNull:authPdf],
+                             @"interviewPic":[BaseModel convertNull:interviewPic],
+                             @"xszFront":[BaseModel convertNull:xszFront],
+                             @"xszReverse":[BaseModel convertNull:xszReverse],
+                             @"secondCarReport":[BaseModel convertNull:secondCarReport],
+                             @"advance_fund_amount_pdf":[BaseModel convertNull:xszReverse],
+                             @"interview_other_pdf":[BaseModel convertNull:secondCarReport]
+                             };
+                [array addObject:dataDic];
+            }
+            if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"2"]) {
+                
+                for (int k = 0; k < self.model.attachments.count; k ++) {
+                    NSDictionary *attachments = self.model.attachments[k];
+                    if ([attachments[@"kname"] isEqualToString:@"id_no_front_gh"]) {
+                        idNoFront = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_gh"]) {
+                        idNoReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"auth_pdf_gh"]) {
+                        authPdf = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"interview_pic_gh"]) {
+                        interviewPic = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
+                        xszFront = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
+                        xszReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
+                        secondCarReport = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
+                        xszReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"interview_other_pdf"]) {
+                        secondCarReport = attachments[@"url"];
+                    }
+                }
+                
+                dataDic  = @{
+                             @"userName":[BaseModel convertNull:creditUser[@"userName"]],
+                             @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
+                             @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
+                             @"relation":[BaseModel convertNull:creditUser[@"relation"]],
+                             @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
+                             @"idFront":[BaseModel convertNull:idNoFront],
+                             @"idReverse":[BaseModel convertNull:idNoReverse],
+                             @"authPdf":[BaseModel convertNull:authPdf],
+                             @"interviewPic":[BaseModel convertNull:interviewPic],
+                             @"xszFront":[BaseModel convertNull:xszFront],
+                             @"xszReverse":[BaseModel convertNull:xszReverse],
+                             @"secondCarReport":[BaseModel convertNull:secondCarReport],
+                             @"advance_fund_amount_pdf":[BaseModel convertNull:xszReverse],
+                             @"interview_other_pdf":[BaseModel convertNull:secondCarReport]
+                             };
+                [array addObject:dataDic];
+            }
+            
+            if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"3"]) {
+                for (int k = 0; k < self.model.attachments.count; k ++) {
+                    NSDictionary *attachments = self.model.attachments[k];
+                    if ([attachments[@"kname"] isEqualToString:@"id_no_front_gua"]) {
+                        idNoFront = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_gua"]) {
+                        idNoReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"auth_pdf_gua"]) {
+                        authPdf = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"interview_pic_gua"]) {
+                        interviewPic = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
+                        xszFront = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
+                        xszReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
+                        secondCarReport = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
+                        xszReverse = attachments[@"url"];
+                    }
+                    if ([attachments[@"kname"] isEqualToString:@"interview_other_pdf"]) {
+                        secondCarReport = attachments[@"url"];
+                    }
+                    
+                }
+                
+                dataDic  = @{
+                             @"userName":[BaseModel convertNull:creditUser[@"userName"]],
+                             @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
+                             @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
+                             @"relation":[BaseModel convertNull:creditUser[@"relation"]],
+                             @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
+                             @"idFront":[BaseModel convertNull:idNoFront],
+                             @"idReverse":[BaseModel convertNull:idNoReverse],
+                             @"authPdf":[BaseModel convertNull:authPdf],
+                             @"interviewPic":[BaseModel convertNull:interviewPic],
+                             @"xszFront":[BaseModel convertNull:xszFront],
+                             @"xszReverse":[BaseModel convertNull:xszReverse],
+                             @"secondCarReport":[BaseModel convertNull:secondCarReport],
+                             @"advance_fund_amount_pdf":[BaseModel convertNull:xszReverse],
+                             @"interview_other_pdf":[BaseModel convertNull:secondCarReport]
+                             };
+                [array addObject:dataDic];
+            }
+        }
+        self.tableView.peopleAray = array;
     } failure:^(NSError *error) {
         
     }];
@@ -44,175 +213,7 @@
     _baseModel.ModelDelegate = self;
     self.bankarray = [NSMutableArray array];
     
-    NSString *idNoFront;
-    NSString *idNoReverse;
-    NSString *authPdf;
-    NSString *interviewPic;
-    NSString *xszFront;
-    NSString *secondCarReport;
-    NSString *xszReverse;
-    
-    NSMutableArray *array = [NSMutableArray array];
-    
-    for (int j = 0; j < self.model.creditUserList.count; j ++) {
-        NSDictionary *dataDic;
-        NSDictionary *creditUser = self.model.creditUserList[j];
-        if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"1"]) {
-            
-            for (int k = 0; k < self.model.attachments.count; k ++) {
-                NSDictionary *attachments = self.model.attachments[k];
-                if ([attachments[@"kname"] isEqualToString:@"id_no_front_apply"]) {
-                    idNoFront = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_apply"]) {
-                    idNoReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"auth_pdf_apply"]) {
-                    authPdf = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"interview_pic_apply"]) {
-                    interviewPic = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
-                    xszFront = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
-                    xszReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
-                    secondCarReport = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
-                    xszReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"interview_other_pdf"]) {
-                    secondCarReport = attachments[@"url"];
-                }
-            }
-            
-            dataDic  = @{
-                         @"userName":[BaseModel convertNull:creditUser[@"userName"]],
-                         @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
-                         @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
-                         @"relation":[BaseModel convertNull:creditUser[@"relation"]],
-                         @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
-                         @"idFront":[BaseModel convertNull:idNoFront],
-                         @"idReverse":[BaseModel convertNull:idNoReverse],
-                         @"authPdf":[BaseModel convertNull:authPdf],
-                         @"interviewPic":[BaseModel convertNull:interviewPic],
-                         @"xszFront":[BaseModel convertNull:xszFront],
-                         @"xszReverse":[BaseModel convertNull:xszReverse],
-                         @"secondCarReport":[BaseModel convertNull:secondCarReport],
-                         @"advance_fund_amount_pdf":[BaseModel convertNull:xszReverse],
-                         @"interview_other_pdf":[BaseModel convertNull:secondCarReport]
-                         };
-            [array addObject:dataDic];
-        }
-        if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"2"]) {
-            
-            for (int k = 0; k < self.model.attachments.count; k ++) {
-                NSDictionary *attachments = self.model.attachments[k];
-                if ([attachments[@"kname"] isEqualToString:@"id_no_front_gh"]) {
-                    idNoFront = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_gh"]) {
-                    idNoReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"auth_pdf_gh"]) {
-                    authPdf = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"interview_pic_gh"]) {
-                    interviewPic = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
-                    xszFront = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
-                    xszReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
-                    secondCarReport = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
-                    xszReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"interview_other_pdf"]) {
-                    secondCarReport = attachments[@"url"];
-                }
-            }
-            
-            dataDic  = @{
-                         @"userName":[BaseModel convertNull:creditUser[@"userName"]],
-                         @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
-                         @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
-                         @"relation":[BaseModel convertNull:creditUser[@"relation"]],
-                         @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
-                         @"idFront":[BaseModel convertNull:idNoFront],
-                         @"idReverse":[BaseModel convertNull:idNoReverse],
-                         @"authPdf":[BaseModel convertNull:authPdf],
-                         @"interviewPic":[BaseModel convertNull:interviewPic],
-                         @"xszFront":[BaseModel convertNull:xszFront],
-                         @"xszReverse":[BaseModel convertNull:xszReverse],
-                         @"secondCarReport":[BaseModel convertNull:secondCarReport],
-                         @"advance_fund_amount_pdf":[BaseModel convertNull:xszReverse],
-                         @"interview_other_pdf":[BaseModel convertNull:secondCarReport]
-                         };
-            [array addObject:dataDic];
-        }
-        
-        if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"3"]) {
-            for (int k = 0; k < self.model.attachments.count; k ++) {
-                NSDictionary *attachments = self.model.attachments[k];
-                if ([attachments[@"kname"] isEqualToString:@"id_no_front_gua"]) {
-                    idNoFront = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"id_no_reverse_gua"]) {
-                    idNoReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"auth_pdf_gua"]) {
-                    authPdf = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"interview_pic_gua"]) {
-                    interviewPic = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"drive_license_front"]) {
-                    xszFront = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"drive_license_reverse"]) {
-                    xszReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"second_car_report"]) {
-                    secondCarReport = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"advance_fund_amount_pdf"]) {
-                    xszReverse = attachments[@"url"];
-                }
-                if ([attachments[@"kname"] isEqualToString:@"interview_other_pdf"]) {
-                    secondCarReport = attachments[@"url"];
-                }
-                
-            }
-            
-            dataDic  = @{
-                         @"userName":[BaseModel convertNull:creditUser[@"userName"]],
-                         @"mobile":[BaseModel convertNull:creditUser[@"mobile"]],
-                         @"loanRole":[BaseModel convertNull:creditUser[@"loanRole"]],
-                         @"relation":[BaseModel convertNull:creditUser[@"relation"]],
-                         @"idNo":[BaseModel convertNull:creditUser[@"idNo"]],
-                         @"idFront":[BaseModel convertNull:idNoFront],
-                         @"idReverse":[BaseModel convertNull:idNoReverse],
-                         @"authPdf":[BaseModel convertNull:authPdf],
-                         @"interviewPic":[BaseModel convertNull:interviewPic],
-                         @"xszFront":[BaseModel convertNull:xszFront],
-                         @"xszReverse":[BaseModel convertNull:xszReverse],
-                         @"secondCarReport":[BaseModel convertNull:secondCarReport],
-                         @"advance_fund_amount_pdf":[BaseModel convertNull:xszReverse],
-                         @"interview_other_pdf":[BaseModel convertNull:secondCarReport]
-                         };
-            [array addObject:dataDic];
-        }
-    }
-    self.tableView.peopleAray = array;
+   
     
     _carInvoice = [NSMutableArray array];
     self.passBtn = [UIButton buttonWithTitle:@"确认" titleColor:kWhiteColor backgroundColor:kNavBarBackgroundColor titleFont:14 cornerRadius:3];

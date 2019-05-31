@@ -421,7 +421,7 @@
             case 2:
             {
                 SignVC *vc = [SignVC  new];
-                vc.title = @"面签视频";
+                vc.title = @"面签管理";
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }

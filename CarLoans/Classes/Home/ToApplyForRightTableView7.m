@@ -92,6 +92,7 @@
         
         weakSelf.returnAryBlock(imgAry, name);
         
+        [self reloadData];
     };
     return cell;
 }

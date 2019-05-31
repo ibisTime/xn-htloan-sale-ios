@@ -48,6 +48,15 @@
     [self.UnpassBtn addTarget:self action:@selector(Confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.UnpassBtn];
     
+  
+    // Do any additional setup after loading the view.
+}
+-(void)initTable{
+    self.tableView = [[CheckProtectTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 70) style:(UITableViewStyleGrouped)];
+    self.tableView.refreshDelegate = self;
+    self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.model = self.model;
+    [self.view addSubview:self.tableView];
     
     NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"];
     if (str.length > 0) {
@@ -76,14 +85,6 @@
         self.tableView.carSyx = [str3 componentsSeparatedByString:@"||"];
         [self.tableView reloadData];
     }
-    // Do any additional setup after loading the view.
-}
--(void)initTable{
-    self.tableView = [[CheckProtectTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 70) style:(UITableViewStyleGrouped)];
-    self.tableView.refreshDelegate = self;
-    self.tableView.backgroundColor = kBackgroundColor;
-    self.tableView.model = self.model;
-    [self.view addSubview:self.tableView];
 }
 -(void)Confirm:(UIButton *)sender{
     

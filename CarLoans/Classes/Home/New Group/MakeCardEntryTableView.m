@@ -51,6 +51,9 @@
     if (section == 0) {
         return 9;
     }
+    if (section == 1) {
+        return 2;
+    }
     return 1;
 }
 
@@ -94,11 +97,22 @@
             cell=[[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"];
-        if (cell.collectDataArray.count > 0) {
-            cell.selectStr = @"红卡照片";
+        if (indexPath.row == 0) {
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"];
+            if ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"].count > 0) {
+                cell.topLbl.text = @"红卡照片";
+                cell.topLbl.font = Font(15);
+                cell.topLbl.textColor = kBlackColor;
         }
-        
+        }
+        if (indexPath.row == 1) {
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"special_quato_pic"] componentsSeparatedByString:@"||"];
+            if ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"special_quato_pic"] componentsSeparatedByString:@"||"].count > 0) {
+                cell.topLbl.text = @"专项额度核定申请表";
+                cell.topLbl.font = Font(15);
+                cell.topLbl.textColor = kBlackColor;
+        }
+        }
         return cell;
     }
     
@@ -140,11 +154,27 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        float numberToRound;
-        int result;
-        numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"].count)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+        if (indexPath.row == 0) {
+            float numberToRound;
+            int result;
+            numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"].count)/3.0;
+            result = (int)ceilf(numberToRound);
+            if ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"].count == 0) {
+                return 0.01;
+            }
+            return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+        }
+        if (indexPath.row == 1) {
+            float numberToRound;
+            int result;
+            numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"special_quato_pic"] componentsSeparatedByString:@"||"].count)/3.0;
+            result = (int)ceilf(numberToRound);
+            if ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"special_quato_pic"] componentsSeparatedByString:@"||"].count == 0) {
+                return 0.01;
+            }
+            return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+        }
+        
     }
     return 50;
 }
@@ -153,6 +183,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 1) {
+        return 10;
+    }
+    if (section == 2) {
         return 10;
     }
     return 0.01;

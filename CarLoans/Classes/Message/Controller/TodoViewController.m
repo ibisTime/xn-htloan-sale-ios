@@ -10,6 +10,8 @@
 #import "MessageTableView.h"
 #import "MessageDetailsVC.h"
 #import "TodoModel.h"
+//发起x征信
+#import "SurveyACreditVC.h"
 //录入征信信息
 #import "ReferenceInputVC.h"
 //征信审核
@@ -68,6 +70,9 @@
 #import "FaceSignMQVC.h"
 
 #import "MakeCardApplyVC.h"
+
+//
+#import "CheckFileVC.h"
 @interface TodoViewController ()<RefreshDelegate>
 @property (nonatomic , strong)MessageTableView *tableView;
 
@@ -124,7 +129,7 @@
     http.parameters[@"code"] = code;
     [http postWithSuccess:^(id responseObject) {
         weakSelf.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
-        if ([node isEqualToString:@"a2"] || [node isEqualToString:@"a1x"]) {
+        if ([node isEqualToString:@"a2"]) {
             ReferenceInputVC * vc = [ReferenceInputVC new];
             vc.surveyModel = weakSelf.model;
             vc.hidesBottomBarWhenPushed = YES;
@@ -134,6 +139,12 @@
         if ([node isEqualToString:@"a3"]) {
             CreditReviewVC * vc = [CreditReviewVC new];
             vc.surveyModel = weakSelf.model;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([node isEqualToString:@"a1x"]) {
+            SurveyACreditVC * vc = [SurveyACreditVC new];
+            vc.model = weakSelf.model;
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -233,7 +244,7 @@
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
-        if ([node isEqualToString:@"e1"] || [node isEqualToString:@"e7"]|| [node isEqualToString:@"f11"]|| [node isEqualToString:@"f2"] || [node isEqualToString:@"f2x"] || [node isEqualToString:@"f5"]|| [node isEqualToString:@"f5x"]|| [node isEqualToString:@"f7"]) {
+        if ([node isEqualToString:@"e1"] || [node isEqualToString:@"e1x"] || [node isEqualToString:@"e7"]|| [node isEqualToString:@"f11"]|| [node isEqualToString:@"f2"] || [node isEqualToString:@"f2x"] || [node isEqualToString:@"f5"]|| [node isEqualToString:@"f5x"]|| [node isEqualToString:@"f7"]) {
             SenderVC * vc = [SenderVC new];
             vc.code = messagecode;
             vc.hidesBottomBarWhenPushed = YES;
@@ -304,6 +315,12 @@
         if ( [node isEqualToString:@"f9"]){
             
             CheckCarVC * vc = [[CheckCarVC alloc]init];
+            vc.code = messagecode;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([node isEqualToString:@"f15"]) {
+            CheckFileVC * vc = [CheckFileVC new];
             vc.code = messagecode;
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
@@ -409,6 +426,8 @@
         }];
     }];
     [self.tableView addLoadMoreAction:^{
+        helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+        helper.parameters[@"status"] = @"0";
         
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);

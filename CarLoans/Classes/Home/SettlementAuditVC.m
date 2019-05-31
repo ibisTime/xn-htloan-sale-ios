@@ -89,6 +89,7 @@
     NSArray *array = @[@"j2",@"j3",@"j4",@"j5"];
     helper.parameters[@"curNodeCodeList"] = array;
     helper.parameters[@"refType"] = @"0";
+    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
 //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.isList = NO;
     helper.isCurrency = YES;
@@ -113,6 +114,7 @@
         NSArray *array = @[@"j2",@"j3",@"j4",@"j5"];
         helper.parameters[@"curNodeCodeList"] = array;
         helper.parameters[@"refType"] = @"0";
+        helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
 //        helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
         [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             NSLog(@" ==== %@",objs);

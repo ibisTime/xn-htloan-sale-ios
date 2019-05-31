@@ -92,17 +92,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发起征信";
-    
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"632516";
-    http.parameters[@"code"] = self.model.code;
-    [http postWithSuccess:^(id responseObject) {
-        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+    if (self.model.code.length > 0) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"632516";
+        http.parameters[@"code"] = self.model.code;
+        [http postWithSuccess:^(id responseObject) {
+            self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+            [self initTableView];
+        } failure:^(NSError *error) {
+            
+        }];
+    }else{
         [self initTableView];
-    } failure:^(NSError *error) {
-        
-    }];
-
+    }
     peopleArray = [NSMutableArray array];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDADPEOPLENOTICE object:nil];
@@ -577,16 +579,17 @@
     }
     if ([speciesStr isEqualToString:@"新车"] || [speciesStr isEqualToString:@""]) {
         if (indexPath.section == 2) {
-            selectRow = indexPath.row;
+            selectRow =  1234 + indexPath.row;
             ADPeopleVC *vc = [[ADPeopleVC alloc]init];
             vc.dataDic = self.tableView.peopleAray[indexPath.row];
             vc.selectRow = indexPath.row;
             vc.state = self.state;
+//            [self.tableView.peopleAray removeObjectAtIndex:indexPath.row];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }else{
         if (indexPath.section == 4) {
-            selectRow = indexPath.row;
+            selectRow = 1234 + indexPath.row;
             ADPeopleVC *vc = [[ADPeopleVC alloc]init];
             vc.dataDic = self.tableView.peopleAray[indexPath.row];
             vc.selectRow = indexPath.row;

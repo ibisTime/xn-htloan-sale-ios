@@ -282,7 +282,7 @@
     }
     self.cadList = arr1;
     self.tableView.cardList = arr1;
-    self.tableView.cardStr = [NSString stringWithFormat:@"%@",[self.cadList componentsJoinedByString:@","]];
+    self.tableView.cardStr = [self.cadList componentsJoinedByString:@","];
     [self.tableView reloadData];
 }
 - (void)chooseCad: (UITapGestureRecognizer *)ge

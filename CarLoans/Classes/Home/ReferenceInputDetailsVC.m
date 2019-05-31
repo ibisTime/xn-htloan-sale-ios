@@ -107,9 +107,12 @@
     {
         _bankResult = @"通过";
     }
-    else
+    else if([self.creditListDic[@"bankResult"] isEqualToString:@"0"])
     {
         _bankResult = @"不通过";
+    }
+    else{
+        _bankResult = @"";
     }
     self.tableView.bankResult = _bankResult;
     self.tableView.creditNote = self.creditListDic[@"creditNote"];

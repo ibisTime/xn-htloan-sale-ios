@@ -46,7 +46,7 @@
     
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
 //    helper.code = @"632965";
-    helper.code = @"632515";
+    helper.code = @"632957";
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
     helper.parameters[@"intevCurNodeCodeList"] = @[@"b03"];
@@ -112,27 +112,16 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
     
-    [self findUrlByModel:self.model[index]];
-    
-    
-//    // 3、配置媒体播放控制器
-//    AVPlayerViewController *_playerViewController = [[AVPlayerViewController alloc]  init];
-//    // 设置媒体源数据
-//    NSString*  urlStr = [NSString stringWithFormat:@"%@",self.model[index].videoUrl];
-//    NSURL *url;
-//    url = [NSURL URLWithString:urlStr];
-//
-//    _playerViewController.player = [AVPlayer playerWithURL:url];
-//    // 设置拉伸模式
-//    _playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
-//    // 设置是否显示媒体播放组件
-//    _playerViewController.showsPlaybackControls = YES;
-//    // 播放视频
-//    [_playerViewController.player play];
-//    // 设置媒体播放器视图大小
-//    _playerViewController.view.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-//    [self presentViewController:_playerViewController animated:YES completion:nil];
-    
+    TLNetworking *  http = [[TLNetworking alloc]init];
+    http.code = @"632516";
+    http.parameters[@"code"] = self.model[index].code;
+    [http postWithSuccess:^(id responseObject) {
+        SurveyModel * model =  [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self findUrlByModel:model];
+    } failure:^(NSError *error) {
+        
+    }];
+
 }
 -(void)findUrlByModel:(SurveyModel *)model{
     SignVideoVC * vc = [SignVideoVC new];

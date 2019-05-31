@@ -33,7 +33,7 @@
 // ====================   个人中心    ===================
 #define VERIFICATION_CODE_CODE @"630090"//发送验证码
 #define ModifyPhoneNumberURL @"805061"//修改手机号
-#define ChangePasswordURL @"805063"//修改密码
+#define ChangePasswordURL @"630053"//修改密码
 #define TopUpPaymentPassword @"805067"//充值支付密码
 #define ModifyTheNicknameURL @"805081"//修改昵称
 #define ShippingAddressURL @"805165"//收货地址

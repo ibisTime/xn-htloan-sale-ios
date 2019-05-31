@@ -456,8 +456,8 @@
         http.parameters[@"dealType"] = @(1);
         //    ===================  贷款信息  ===================
         //   贷款期限
-//        http.parameters[@"periods"] = right1Label1.text;
-        http.parameters[@"periods"] = [[BaseModel user]setParentKey:@"loan_period" setDvalue:right1Label1.text];
+        http.parameters[@"periods"] = right1Label1.text;
+//        http.parameters[@"periods"] = [[BaseModel user]setParentKey:@"loan_period" setDvalue:right1Label1.text];
         //   银行利率
         http.parameters[@"bankRate"] = right1Label2.text;
         //   贷款金额
@@ -583,7 +583,7 @@
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"dealType"] = @(1);
         //   性别
-        http.parameters[@"gender"] = [_baseModel setParentKey:@"gender" setDvalue:right3Label3.text];
+        http.parameters[@"gender"] = right3Label3.text;
         //   年龄
         http.parameters[@"age"] = right3Label4.text;
         //英文名
@@ -1620,7 +1620,7 @@
     
     if ([BaseModel isBlankString:self.model.loanInfo[@"periods"]] == NO) {
         
-        right1Label1.text = [NSString stringWithFormat:@"%@",[[BaseModel user]setParentKey:@"loan_period" setDkey:[NSString stringWithFormat:@"%@", self.model.loanInfo[@"periods"]]]];
+        right1Label1.text = [NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]];
         right1Label2.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.4f",[self.model.loanInfo[@"bankRate"] floatValue]]];
         right1Label4.text = [BaseModel convertNull:self.model.loanInfo[@"loanProductName"]];
         right1Label5.text = [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000]];

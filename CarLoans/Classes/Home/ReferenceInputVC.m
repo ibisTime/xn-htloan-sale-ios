@@ -22,23 +22,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view._code    __NSCFString *    @"CB201905301021222019597"    0x0000000280827d50
     self.title = @"录入征信结果";
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
     http.parameters[@"code"] = self.surveyModel.code;
     [http postWithSuccess:^(id responseObject) {
         self.surveyModel = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        
+        _creditList = [NSMutableArray array];
+        for (int i = 0; i < self.surveyModel.creditUserList.count; i ++) {
+            [_creditList addObject:self.surveyModel.creditUserList[i]];
+        }
+        
         [self initTableView];
     } failure:^(NSError *error) {
         
     }];
-//    [self initTableView];
+    
     [self cdbiz_statusLoadData];
-    _creditList = [NSMutableArray array];
-    for (int i = 0; i < self.surveyModel.creditUserList.count; i ++) {
-        [_creditList addObject:@""];
-    }
+    
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
@@ -85,14 +88,17 @@
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
     if ([state isEqualToString:@"录入"]) {
-        
-        
         [self ReferenceInputRow:index];
         
     }else
     {
         for (int i = 0; i < _creditList.count; i ++) {
             if ([BaseModel isBlankDictionary:_creditList[i]] == YES) {
+                [TLAlert alertWithInfo:[NSString stringWithFormat:@"请录入%@的征信结果",self.surveyModel.creditUserList[i][@"userName"]]];
+                return;
+            }
+            NSDictionary * dic = _creditList[i];
+            if (dic.count == 11) {
                 [TLAlert alertWithInfo:[NSString stringWithFormat:@"请录入%@的征信结果",self.surveyModel.creditUserList[i][@"userName"]]];
                 return;
             }

@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * curPeriods;
 @property (nonatomic,copy) NSString * repayDatetime;
 @property (nonatomic,strong) NSDictionary * repayBiz;
+@property (nonatomic,copy) NSString * repayAmount;
+
 @end
 
 NS_ASSUME_NONNULL_END

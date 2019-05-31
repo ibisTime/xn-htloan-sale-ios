@@ -202,7 +202,7 @@
     for (int i = 0; i < dataArray.count; i ++) {
         [array1 addObject:dataArray[i]];
     }
-    [self CustomBouncedView:array1 setState:@""];
+    [self CustomBouncedView:array1 setState:@"1001"];
 }
 -(void)ReturnsEnterLocation:(NSString *)parentKey{
     NSMutableArray *dataArray = [NSMutableArray array];
@@ -244,6 +244,11 @@
     else if ([state isEqualToString:@"666"]){
         for (int i = 0; i < nameArray.count ; i ++) {
             [dvalueArray addObject:nameArray[i][@"gpsDevNo"]];
+        }
+    }
+    else if ([state isEqualToString:@"1000"]){
+        for (int i = 0; i < nameArray.count ; i ++) {
+            [dvalueArray addObject:[NSString stringWithFormat:@"%@", nameArray[i][@"dkey"]]];
         }
     }
     else

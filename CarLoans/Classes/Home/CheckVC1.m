@@ -57,6 +57,7 @@
     self.tableView = [[CheckTableView1 alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 70)style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.model= self.model;
+    self.tableView.state = self.state;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];
 }
