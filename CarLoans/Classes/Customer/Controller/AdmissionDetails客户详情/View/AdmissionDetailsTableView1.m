@@ -58,7 +58,7 @@
                              [BaseModel convertNullReturnStr:_model.saleUserName],
                              [BaseModel convertNullReturnStr:_model.insideJobName],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000]],
-                             [BaseModel convertNullReturnStr:_model.loanBankName],
+                              [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                              [BaseModel convertNull:[[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation]]
                              ];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);

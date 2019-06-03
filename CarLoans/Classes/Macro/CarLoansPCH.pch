@@ -17,6 +17,7 @@
 #import "AppColorMacro.h"
 #import "AppMacro.h"
 #import "TLNetworking.h"
+#import "TLAlert.h"
 #import <SVProgressHUD.h>
 #import <SDWebImage/UIButton+WebCache.h>
 #import "BaseModel.h"

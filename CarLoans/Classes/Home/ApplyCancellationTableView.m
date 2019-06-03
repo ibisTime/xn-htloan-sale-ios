@@ -78,7 +78,7 @@
         if ([BaseModel isBlankString:accessSingleModel.code] == NO) {
             NSArray *array = @[
                                [NSString stringWithFormat:@"%@",accessSingleModel.creditUser[@"userName"]],
-                               [NSString stringWithFormat:@"%@",accessSingleModel.loanBankName],
+                               [NSString stringWithFormat:@"%@ %@",accessSingleModel.loanBankName,accessSingleModel.subbranchBankName],
                                [NSString stringWithFormat:@"%.2f",[accessSingleModel.loanAmount floatValue]/1000]
                                ];
             cell.TextFidStr = array[indexPath.row];

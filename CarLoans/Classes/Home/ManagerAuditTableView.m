@@ -81,7 +81,7 @@
         cell.rightarray = @[[NSString stringWithFormat:@"%@",self.model.repayPlanList[indexPath.row - 1][@"curPeriods"]],
                             [NSString stringWithFormat:@"%@",[self.model.repayPlanList[indexPath.row - 1][@"repayDatetime"] convertDate]],
                             [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"repayCapital"] floatValue]/1000],
-                            [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"payedAmount"] floatValue]/1000],
+                            [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"realRepayAmount"] floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"overdueAmount"] floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"overplusAmount"] floatValue]/1000]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

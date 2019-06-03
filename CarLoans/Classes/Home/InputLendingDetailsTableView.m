@@ -73,7 +73,7 @@
         
         NSArray *detailsArray = @[[NSString stringWithFormat:@"%@",_model.code],
                                   [NSString stringWithFormat:@"%@",_model.creditUser[@"userName"]],
-                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
                                   bizType,
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
@@ -105,23 +105,17 @@
                     cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
                 }
                     break;
-//                case 1:
-//                    cell.name = @"*账单还款日";
-//                    cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
-//                    break;
-//                case 2:
-//                    cell.name = @"*银行还款日";
-//                    cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
-//                    break;
-//                case 3:
-//                    cell.name = @"*公司还款日";
-//                    cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
-//                    break;
-                case 4:
+                case 4:{
                     cell.name = @"*首期月供金额";
+                    cell.nameTextField.keyboardType = UIKeyboardTypeDecimalPad;
+                }
+                    
                     break;
-                case 5:
+                case 5:{
                     cell.name = @"*每期月供金额";
+                    cell.nameTextField.keyboardType = UIKeyboardTypeDecimalPad;
+                }
+                    
                     break;
                 default:
                     break;

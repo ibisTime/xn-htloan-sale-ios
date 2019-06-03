@@ -30,6 +30,12 @@
     self.tableView.CompanyVideoArray = self.CompanyVideoArray;
     self.tableView.idreverse = self.idreverse;
     self.tableView.idfront = self.idfront;
+    self.tableView.other_video = self.other_video;
+    self.tableView.bank_photo = self.bank_photo;
+    self.tableView.bank_contract = self.bank_contract;
+    self.tableView.advance_fund_amount_pdf = self.advance_fund_amount_pdf;
+    self.tableView.interview_other_pdf = self.interview_other_pdf;
+    self.tableView.company_contract = self.company_contract;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];
 }

@@ -20,6 +20,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray * idfront;
 //身份证反面
 @property (nonatomic,strong) NSArray * idreverse;
+
+@property (nonatomic,strong) NSArray * other_video;
+
+@property (nonatomic,strong) NSArray * bank_photo;
+
+@property (nonatomic,strong) NSArray * bank_contract;
+
+@property (nonatomic,strong) NSArray * advance_fund_amount_pdf;
+
+@property (nonatomic,strong) NSArray * interview_other_pdf;
+@property (nonatomic,strong) NSArray * company_contract;
 @end
 
 NS_ASSUME_NONNULL_END

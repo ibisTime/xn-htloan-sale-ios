@@ -73,7 +73,7 @@
         NSArray *detailsArray = @[
                                   [NSString stringWithFormat:@"%@",_model.code],
                                   [NSString stringWithFormat:@"%@",_model.creditUser[@"userName"]],
-                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [BaseModel convertNull:self.model.teamName],
@@ -144,7 +144,12 @@
         }
     }
     else if (indexPath.section == 2) {
-        UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
+//        UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
+        static NSString *rid=@"UploadIdCardCell";
+        UploadIdCardCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        if(cell==nil){
+            cell=[[UploadIdCardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.nameLbl.text = @"*代理人身份证";
         cell.nameArray = @[@"身份证正面",@"身份证反面"];
@@ -153,7 +158,12 @@
         cell.idNoReverse = self.idNoReverse;
         return cell;
     }
-        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CarSettledUpdataPhoto forIndexPath:indexPath];
+    static NSString *rid=@"CollectionViewCell";
+    CollectionViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    if(cell==nil){
+        cell=[[CollectionViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    }
+//        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CarSettledUpdataPhoto forIndexPath:indexPath];
         cell.delegate = self;
         cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -241,42 +251,42 @@
             int result;
             numberToRound = (_BankVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 15;
+            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 20;
         }
         if (indexPath.section == 4) {
             float numberToRound;
             int result;
             numberToRound = (_CompanyVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 15;
+            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 20;
         }
         if (indexPath.section == 5) {
             float numberToRound;
             int result;
             numberToRound = (_OtherVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 15;
+            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 20;
         }
         if (indexPath.section == 6) {
             float numberToRound;
             int result;
             numberToRound = (self.BankSignArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 15;
+            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 20;
         }
         if (indexPath.section == 7) {
             float numberToRound;
             int result;
             numberToRound = (self.BankContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 15;
+            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 20;
         }
         if (indexPath.section == 8) {
             float numberToRound;
             int result;
             numberToRound = (self.CompanyContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 15;
+            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 20;
         }
 //        if (indexPath.section == 9) {
 //            float numberToRound;

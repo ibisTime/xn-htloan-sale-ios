@@ -49,7 +49,7 @@
     NSArray * infoarray = @[[BaseModel convertNull:self.model.code],
                             [BaseModel convertNull:self.model.user[@"realName"]],
                             [BaseModel convertNull:self.model.user[@"mobile"]],
-                            [BaseModel convertNull:self.model.loanBankName],
+                             [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                             [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.periods]],
                             [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.restPeriods]],
@@ -64,6 +64,7 @@
                             [[BaseModel user]note:self.model.curNodeCode]
                             ];
     cell.text = infoarray[indexPath.row];
+    cell.isInput = @"0";
     return cell;
 }
 

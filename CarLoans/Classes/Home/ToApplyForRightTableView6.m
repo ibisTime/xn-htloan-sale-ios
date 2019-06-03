@@ -66,8 +66,11 @@
             cell.type = InputType;
             cell.inputTextField.tag = 60000 + indexPath.row;
         }
-        if (indexPath.row == 7||indexPath.row == 10) {
-//            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+        if (indexPath.row == 7) {
+            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+        }
+        if (indexPath.row == 10) {
+            cell.inputTextField.keyboardType = UIKeyboardTypePhonePad;
         }
         cell.topLbl.text = [TopModel user].ary6[indexPath.row];
         return cell;

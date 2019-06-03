@@ -39,7 +39,7 @@
         cell.ConfirmrepayModel = self.model[indexPath.row];
     }
     NSLog(@"%ld",cell.button.tag);
-    cell.button.hidden = NO;
+    cell.button.hidden = YES;
     cell.button1.hidden = NO;
     
     cell.button.tag = indexPath.row;

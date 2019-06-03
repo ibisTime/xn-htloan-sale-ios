@@ -96,7 +96,7 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",model.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[model.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",model.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",model.loanBankName,model.subbranchBankName],
                                   [NSString stringWithFormat:@"%@",[model.applyDatetime convertToDetailDate]]];
 
     for (int i = 0; i < nameArray.count; i ++ ) {

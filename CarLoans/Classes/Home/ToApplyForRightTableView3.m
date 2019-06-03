@@ -92,7 +92,7 @@
         if (indexPath.row == 0 || indexPath.row == 3) {
             cell.type = InputType;
             cell.inputTextField.tag = 30018 + indexPath.row;
-            if (indexPath.row == 2) {
+            if (indexPath.row == 3) {
                 cell.inputTextField.keyboardType = UIKeyboardTypePhonePad;
             }
         }else
@@ -119,7 +119,7 @@
     if (indexPath.row == 0 || indexPath.row == 3) {
         cell.type = InputType;
         cell.inputTextField.tag = 30022 + indexPath.row;
-        if (indexPath.row == 2) {
+        if (indexPath.row == 3) {
             cell.inputTextField.keyboardType = UIKeyboardTypePhonePad;
         }
     }else

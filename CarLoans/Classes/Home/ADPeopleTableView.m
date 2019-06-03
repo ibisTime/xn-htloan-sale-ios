@@ -76,14 +76,14 @@
             if (str.length == 0) {
                 cell.TextFidStr = [BaseModel convertNull: _dataDic[@"mobile"]];
             }
-            cell.nameTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            cell.nameTextField.keyboardType = UIKeyboardTypePhonePad;
         }
         if (indexPath.row == 0) {
             NSString * str = cell.nameTextField.text;
             if (str.length == 0) {
                 cell.TextFidStr = [BaseModel convertNull: _dataDic[@"userName"]];
             }
-            cell.nameTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+//            cell.nameTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         }
         
         return cell;

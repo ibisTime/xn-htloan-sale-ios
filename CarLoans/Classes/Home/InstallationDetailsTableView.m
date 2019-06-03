@@ -47,7 +47,7 @@
         NSArray *detailsArray = @[
                                   [NSString stringWithFormat:@"%@", _model.applyUserName],
                                   [NSString stringWithFormat:@"%@", _model.code],
-                                  [NSString stringWithFormat:@"%@", _model.loanBankName]
+                                  [NSString stringWithFormat:@"%@ %@", _model.loanBankName,_model.subbranchBankName]
                                   ];
         cell.TextFidStr = detailsArray[indexPath.row];
         return cell;

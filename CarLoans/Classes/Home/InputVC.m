@@ -130,6 +130,10 @@
     }
 }
 -(void)input{
+    if (locationCode .length == 0) {
+        [TLAlert alertWithMsg:@"请选择存放位置"];
+        return;
+    }else{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632134";
     http.parameters[@"code"] = self.model.code;
@@ -142,6 +146,7 @@
     } failure:^(NSError *error) {
         
     }];
+    }
 }
 -(void)deleteFile : (NSInteger)index{
     if (self.filemodels.count > 0) {

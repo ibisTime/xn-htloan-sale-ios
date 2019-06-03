@@ -48,7 +48,7 @@
 
         //注册cell
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-        [self.contentView addSubview:self.collectionView];
+        [self addSubview:self.collectionView];
         NSLog(@"%@",self.collectDataArray);
     }
     return self;

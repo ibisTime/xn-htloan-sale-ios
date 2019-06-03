@@ -51,7 +51,7 @@
                                 [self.model.isAdvanceSettled isEqualToString:@"1"]?@"是":@"否",
                                 [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.periods]],
                                 [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.restPeriods]],
-                                [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.overdueAmount]],
+                                [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.overdueAmount floatValue]/1000]],
                                 [NSString stringWithFormat:@"%.2f",[self.model.restAmount floatValue]/1000 ],
                                 [NSString stringWithFormat:@"%.2f",[self.model.restTotalCost floatValue]/1000 ],
                                 [NSString stringWithFormat:@"%.2f",[self.model.unRepayTotalAmount floatValue]/1000 ],
@@ -81,7 +81,7 @@
         cell.rightarray = @[[NSString stringWithFormat:@"%@",self.model.repayPlanList[indexPath.row - 1][@"curPeriods"]],
                             [NSString stringWithFormat:@"%@",[self.model.repayPlanList[indexPath.row - 1][@"repayDatetime"] convertDate]],
                             [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"repayCapital"] floatValue]/1000],
-                            [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"payedAmount"] floatValue]/1000],
+                            [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"realRepayAmount"] floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"overdueAmount"] floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[self.model.repayPlanList[indexPath.row - 1][@"overplusAmount"] floatValue]/1000]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

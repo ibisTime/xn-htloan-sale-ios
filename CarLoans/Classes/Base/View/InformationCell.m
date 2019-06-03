@@ -145,7 +145,7 @@
              [NSString stringWithFormat:@"%@",bizType],
              [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
              [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
-             [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
+             [NSString stringWithFormat:@"%@ %@",surveyModel.loanBankName,surveyModel.subbranchBankName],
               [NSString stringWithFormat:@"%@",surveyModel.insideJobName],
              [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
 
@@ -227,7 +227,7 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",gpsInstallationModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[gpsInstallationModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",gpsInstallationModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",gpsInstallationModel.loanBankName,gpsInstallationModel.subbranchBankName],
                                   [NSString stringWithFormat:@"%@",gpsInstallationModel.insideJobName],
                                   [NSString stringWithFormat:@"%@",[gpsInstallationModel.applyDatetime convertToDetailDate]]];
     
@@ -310,7 +310,7 @@
                                       [NSString stringWithFormat:@"%@",bizType],
                                       [NSString stringWithFormat:@"%@",CarMortgageModel.creditUser[@"userName"]],
                                       [NSString stringWithFormat:@"%.2f",[CarMortgageModel.loanAmount floatValue]/1000],
-                                      [NSString stringWithFormat:@"%@",CarMortgageModel.loanBankName],
+                                      [NSString stringWithFormat:@"%@ %@",CarMortgageModel.loanBankName,CarMortgageModel.subbranchBankName],
                                       isAdvanceFund,
                                       [NSString stringWithFormat:@"%@",[CarMortgageModel.applyDatetime convertToDetailDate]]];
         
@@ -355,7 +355,7 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",accessSingleModel.applyUserName],
                                   [NSString stringWithFormat:@"%.2f",[accessSingleModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",accessSingleModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",accessSingleModel.loanBankName,accessSingleModel.subbranchBankName],
                                   isAdvanceFund,
                                   [NSString stringWithFormat:@"%@",[accessSingleModel.applyDatetime convertToDetailDate]]];
 
@@ -497,7 +497,7 @@
                                   [NSString stringWithFormat:@"%@",repayModel.code],
                                   [NSString stringWithFormat:@"%@",repayModel.user[@"realName"]],
                                   [NSString stringWithFormat:@"%@",repayModel.user[@"mobile"]],
-                                  [NSString stringWithFormat:@"%@",repayModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",repayModel.loanBankName,repayModel.subbranchBankName],
                                   [NSString stringWithFormat:@"%.2f",[repayModel.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@",repayModel.periods],
                                   [NSString stringWithFormat:@"%@",repayModel.restPeriods],

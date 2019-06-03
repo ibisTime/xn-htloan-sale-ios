@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * repayDatetime;
 @property (nonatomic,strong) NSDictionary * repayBiz;
 @property (nonatomic,copy) NSString * repayAmount;
-
+@property (nonatomic,copy) NSString * subbranchBankName;
 @end
 
 NS_ASSUME_NONNULL_END

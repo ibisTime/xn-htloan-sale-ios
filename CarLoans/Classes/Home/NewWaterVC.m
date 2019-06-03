@@ -152,12 +152,18 @@
         
         
         
+        
         for (int i = 0; i < [TopModel user].ary4.count; i ++) {
             NSString *name = [self WarningContent:[TopModel user].newWaterAry[i] CurrentTag:10000 + i];
             if (![name isEqualToString:@""]) {
                 [TLAlert alertWithInfo:name];
                 return;
             }
+        }
+        
+        if (_picArray.count == 0) {
+            [TLAlert alertWithMsg:@"请选择流水图片"];
+            return;
         }
         
         TLNetworking *http = [TLNetworking new];
@@ -214,7 +220,7 @@
     }
     else
     {
-        [_picArray removeObjectAtIndex:index - 10000];
+        [_picArray removeObjectAtIndex:index];
         _tableView.picArray = _picArray;
         [self.tableView reloadData];
     }

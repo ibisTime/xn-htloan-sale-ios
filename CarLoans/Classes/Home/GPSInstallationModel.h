@@ -48,4 +48,5 @@
 @property (nonatomic,copy) NSString * insideJobPostName;
 
 @property (nonatomic , copy)NSString *insideJob;
+@property (nonatomic,copy) NSString * subbranchBankName;
 @end

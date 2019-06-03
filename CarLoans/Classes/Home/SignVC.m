@@ -126,7 +126,7 @@
 -(void)findUrlByModel:(SurveyModel *)model{
     SignVideoVC * vc = [SignVideoVC new];
     NSMutableArray * arr = [NSMutableArray array];
-    NSArray * array = @[@"bank_video",@"company_video",@"id_no_front_apply",@"id_no_reverse_apply"];
+    NSArray * array = @[@"bank_video",@"company_video",@"other_video",@"id_no_front_apply",@"id_no_reverse_apply",@"bank_photo",@"bank_contract",@"advance_fund_amount_pdf",@"company_contract",@"interview_other_pdf"];
     for (int i = 0; i < model.attachments.count; i ++) {
         for (int j = 0; j < array.count; j ++) {
             if ([model.attachments[i][@"kname"] isEqualToString:array[j]]) {
@@ -149,12 +149,35 @@
                         }
                     }
                         break;
-                    case 2:
-                        vc.idfront = [model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+                    case 2:{
+                        if ([[NSString stringWithFormat:@"%@", model.attachments[i][@"url"]] containsString :@"http"]) {
+                            vc.other_video = [model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+                        }else{
+                            vc.other_video = [[NSString stringWithFormat:@"http://img.fhcdzx.com/%@",model.attachments[i][@"url"]] componentsSeparatedByString:@"||"];
+                        }
+                    }
                         break;
                     case 3:
+                        vc.idfront = [model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+                        break;
+                    case 4:
                         vc.idreverse = [model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
-                        
+                        break;
+                    case 5:
+                        vc.bank_photo = [model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+                        break;
+                    case 6:
+                        vc.bank_contract = [model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+                        break;
+                    case 7:
+                        vc.advance_fund_amount_pdf = [model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+                        break;
+                    case 8:
+                        vc.company_contract =[model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+                        break;
+                    case 9:
+                        vc.interview_other_pdf = [model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
+                        break;
                     default:
                         break;
                 }

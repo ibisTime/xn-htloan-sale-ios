@@ -877,8 +877,21 @@
         }];
     }
     if (self.SelectLeftRow == 6) {
+        NSMutableArray * array = [NSMutableArray array];
+        for (int i = 0; i < self.model.creditUserList.count; i++) {
+            if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"3"]) {
+                [array addObject:self.model.creditUserList[i]];
+            }
+        }
         for (int i = 0; i < [TopModel user].ary7.count; i ++) {
             name = [self WarningContent:[TopModel user].ary7[i] CurrentTag:70000 + i];
+            if (![name isEqualToString:@""]) {
+                [TLAlert alertWithInfo:name];
+                return;
+            }
+        }
+        for (int i = 0; i < [TopModel user].ary7.count; i ++) {
+            name = [self WarningContent:[TopModel user].ary7[i] CurrentTag:71000 + i];
             if (![name isEqualToString:@""]) {
                 [TLAlert alertWithInfo:name];
                 return;
@@ -891,16 +904,12 @@
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"dealType"] = @(1);
         
-        NSMutableArray * array = [NSMutableArray array];
-        for (int i = 0; i < self.model.creditUserList.count; i++) {
-            if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"3"]) {
-                [array addObject:self.model.creditUserList[i]];
-            }
-        }
+       
         NSDictionary * dic = [NSDictionary dictionary];
         NSDictionary * dic1 = [NSDictionary dictionary];
         for (int j = 0; j < array.count; j ++) {
             if (j == 0) {
+                if (_guaAssetPdf.count > 0) {
                 dic = @{@"code":array[0][@"code"],
                                        @"education":[_baseModel setParentKey:@"education" setDvalue:right7Label4.text],
                                        @"birthAddressProvince":self.province2,
@@ -913,20 +922,50 @@
                                        @"companyContactNo":right7Label10.text,
                                        @"guaAssetPdf":[_guaAssetPdf componentsJoinedByString:@"||"]
                                        };
+                }
+                else{
+                    dic = @{@"code":array[0][@"code"],
+                            @"education":[_baseModel setParentKey:@"education" setDvalue:right7Label4.text],
+                            @"birthAddressProvince":self.province2,
+                            @"birthAddressCity":self.city2,
+                            @"birthAddressArea":self.area2,
+                            @"birthAddress":right7Label6.text,
+                            @"birthPostCode":right7Label7.text,
+                            @"companyName":right7Label8.text,
+                            @"companyAddress":right7Label9.text,
+                            @"companyContactNo":right7Label10.text
+                            };
+                }
             }
             if (j == 1) {
-                dic1 = @{@"code":array[1][@"code"],
-                                       @"education":[_baseModel setParentKey:@"education" setDvalue:right7Label15.text],
-                                       @"birthAddressProvince":self.province6,
-                                       @"birthAddressCity":self.city6,
-                                       @"birthAddressArea":self.area6,
-                                       @"birthAddress":right7Label17.text,
-                                       @"birthPostCode":right7Label8.text,
-                                       @"companyName":right7Label19.text,
-                                       @"companyAddress":right7Label20.text,
-                                       @"companyContactNo":right7Label21.text,
-                                       @"guaAssetPdf":[_guaAssetPdf1 componentsJoinedByString:@"||"]
-                                       };
+                if (_guaAssetPdf1.count > 0) {
+                    dic1 = @{@"code":array[1][@"code"],
+                             @"education":[_baseModel setParentKey:@"education" setDvalue:right7Label15.text],
+                             @"birthAddressProvince":self.province6,
+                             @"birthAddressCity":self.city6,
+                             @"birthAddressArea":self.area6,
+                             @"birthAddress":right7Label17.text,
+                             @"birthPostCode":right7Label8.text,
+                             @"companyName":right7Label19.text,
+                             @"companyAddress":right7Label20.text,
+                             @"companyContactNo":right7Label21.text,
+                             @"guaAssetPdf":[_guaAssetPdf1 componentsJoinedByString:@"||"]
+                             };
+                }
+                else{
+                    dic1 = @{@"code":array[1][@"code"],
+                             @"education":[_baseModel setParentKey:@"education" setDvalue:right7Label15.text],
+                             @"birthAddressProvince":self.province6,
+                             @"birthAddressCity":self.city6,
+                             @"birthAddressArea":self.area6,
+                             @"birthAddress":right7Label17.text,
+                             @"birthPostCode":right7Label8.text,
+                             @"companyName":right7Label19.text,
+                             @"companyAddress":right7Label20.text,
+                             @"companyContactNo":right7Label21.text
+                             };
+                }
+                
             }
         }
         NSArray * guarantorList = [NSArray array];

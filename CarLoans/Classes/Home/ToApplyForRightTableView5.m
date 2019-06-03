@@ -65,8 +65,11 @@
             cell.type = InputType;
             cell.inputTextField.tag = 50000 + indexPath.row;
         }
-        if (indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 10 || indexPath.row == 11) {
-//            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+        if (indexPath.row == 5 ) {
+            cell.inputTextField.keyboardType = UIKeyboardTypeNamePhonePad;
+        }
+        if (indexPath.row == 8 || indexPath.row == 10 || indexPath.row == 11) {
+            cell.inputTextField.keyboardType = UIKeyboardTypeDecimalPad;
         }
         return cell;
     }

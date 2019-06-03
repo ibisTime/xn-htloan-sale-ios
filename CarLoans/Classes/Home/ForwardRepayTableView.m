@@ -63,7 +63,7 @@
                                       [NSString stringWithFormat:@"%@",self.model.code],
                                       [NSString stringWithFormat:@"%@",self.model.user[@"realName"]],
                                       [NSString stringWithFormat:@"%@",self.model.user[@"mobile"]],
-                                      [NSString stringWithFormat:@"%@",self.model.loanBankName],
+                                      [NSString stringWithFormat:@"%@ %@",self.model.loanBankName,self.model.subbranchBankName],
                                       [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                                       [NSString stringWithFormat:@"%@",self.model.periods],
                                       [NSString stringWithFormat:@"%@",self.model.restPeriods],

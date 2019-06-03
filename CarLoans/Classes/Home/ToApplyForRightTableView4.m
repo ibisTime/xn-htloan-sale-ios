@@ -65,10 +65,10 @@
             cell.inputTextField.tag = indexPath.row + 40000;
         }
         if (indexPath.row == 1 || indexPath.row == 3|| indexPath.row == 7|| indexPath.row == 10) {
-//            cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+            cell.inputTextField.keyboardType = UIKeyboardTypeDecimalPad;
         }
         if (indexPath.row == 2) {
-            cell.inputTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            cell.inputTextField.keyboardType = UIKeyboardTypeNamePhonePad;
         }
         return cell;
     }

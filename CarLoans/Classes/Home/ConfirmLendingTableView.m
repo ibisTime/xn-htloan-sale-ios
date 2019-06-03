@@ -70,7 +70,7 @@
         
         NSArray *detailsArray = @[[NSString stringWithFormat:@"%@",_model.code],
                                   [NSString stringWithFormat:@"%@",_model.creditUser[@"userName"]],
-                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
                                   bizType,
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
@@ -116,26 +116,6 @@
         cell.photoBtn.tag = indexPath.section;
         cell.collectDataArray = self.bankpic;
         return cell;
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//        UIButton *_photoBtn = [UIButton buttonWithTitle:@"收款凭证" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
-//        _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
-//        [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
-//            [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
-//        }];
-//
-//
-//        kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
-//
-//        [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-//        [cell addSubview:_photoBtn];
-//
-//        UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-//        [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
-//        [_photoBtn addSubview:photoImage];
-//
-//        return cell;
     }
     static NSString *rid=@"cell4";
     TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
@@ -152,7 +132,12 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 3) {
-        return 130;
+//        return 130;
+        float numberToRound;
+        int result;
+        numberToRound = (self.bankpic.count)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 45)/4 + 25) + 20;
     }
     else
         return 50;

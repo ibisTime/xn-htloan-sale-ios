@@ -70,7 +70,7 @@
         
         NSArray *detailsArray = @[[NSString stringWithFormat:@"%@",_model.code],
                                   [NSString stringWithFormat:@"%@",_model.creditUser[@"userName"]],
-                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
                                   bizType,
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],

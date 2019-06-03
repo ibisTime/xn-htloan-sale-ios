@@ -110,4 +110,5 @@
 @property (nonatomic,strong) NSArray * attachments;
 @property (nonatomic,copy) NSString * enterLocation;
 @property (nonatomic,strong) NSString * repayCardNumber;
+@property (nonatomic,copy) NSString * subbranchBankName;
 @end

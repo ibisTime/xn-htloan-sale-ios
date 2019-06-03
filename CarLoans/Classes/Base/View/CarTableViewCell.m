@@ -123,7 +123,7 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",surveyModel.loanBankName,surveyModel.subbranchBankName],
                                   [NSString stringWithFormat:@"%@",surveyModel.operatorName],
                                   [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
     
@@ -169,7 +169,7 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",accessSingleModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[accessSingleModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",accessSingleModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",accessSingleModel.loanBankName,accessSingleModel.subbranchBankName],
                                   isAdvanceFund,
                                   [NSString stringWithFormat:@"%@",[accessSingleModel.applyDatetime convertToDetailDate]]];
     

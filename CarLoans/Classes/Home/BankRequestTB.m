@@ -73,7 +73,7 @@
         NSArray *detailsArray = @[
                                   [NSString stringWithFormat:@"%@",_model.applyUserName],
                                   [NSString stringWithFormat:@"%@",_model.code],
-                                  [NSString stringWithFormat:@"%@",_model.loanBankName],
+                                   [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                                   [NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@" ,[_model.applyDatetime convertToDetailDate]
                                   ],

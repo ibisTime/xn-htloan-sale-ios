@@ -314,4 +314,6 @@
 @property (nonatomic,strong) NSString * enterNodeCode;
 
 @property (nonatomic,strong) NSString * repayCardNumber;
+
+@property (nonatomic,copy) NSString * subbranchBankName;
 @end

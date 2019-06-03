@@ -71,7 +71,7 @@
         
         NSArray *rightAry = @[[BaseModel convertNull:self.model.code],
                               [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
-                              [BaseModel convertNull:self.model.loanBankName],
+                              [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                               bizType,
                               [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],

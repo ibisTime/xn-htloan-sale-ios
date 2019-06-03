@@ -47,7 +47,12 @@
         return 150 * ((collectDataArray.count / 3) + 1);
     }
     if (indexPath.section == 2) {
-        return 150;
+        float numberToRound;
+        int result;
+        numberToRound = (_carInvoice.count + 1.0)/3.0;
+        result = (int)ceilf(numberToRound);
+        return result * ((SCREEN_WIDTH - 45)/3 + 25) + 20;
+//        return 150;
 //         NSArray * collectDataArray = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];
 //        return 180 * ((collectDataArray.count / 3) + 1);
     }
@@ -89,7 +94,7 @@
             
             NSArray *rightAry = @[[BaseModel convertNull:self.model.code],
                                   [NSString stringWithFormat:@"%@",self.model.creditUser[@"userName"]],
-                                  [BaseModel convertNull:self.model.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                                   [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000],
                                   bizType,
                                   [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.saleUserCompanyName,self.model.saleUserDepartMentName,self.model.saleUserPostName,self.model.saleUserName],
@@ -114,7 +119,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.name = @"*垫资金额";
             cell.nameText = @"请输入垫资金额";
-//            cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+            cell.nameTextField.keyboardType = UIKeyboardTypeDecimalPad;
             cell.symbolLabel.hidden = YES;
             cell.tag = 1000 + indexPath.row;
             return cell;
@@ -136,39 +141,25 @@
         return cell;
     }
     if (indexPath.section == 3) {
-        ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
+//        ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
+        static NSString *rid=@"choose";
+        ChooseCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        if(cell==nil){
+            cell=[[ChooseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"*垫资账号";
         cell.tag = 1050 + indexPath.row;
         return cell;
     }
-//    if (indexPath.section == 2){
+    
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         cell.selectStr = @"*水单";
         cell.collectDataArray = self.carInvoice;
         return cell;
-//        static NSString *rid=@"qwecell";
-//
-//        CollectionViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-//        if(cell==nil){
-//            cell=[[CollectionViewCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
-//        }
-//
-//        cell.delegate = self;
-//        cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
-//        cell.isEditor = NO;
-//        NSArray *array = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];//分隔符
-//        cell.collectDataArray = array;
-//        return cell;
-//    }
-//    CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.delegate = self;
-//    cell.selectStr = @"*水单";
-//    cell.collectDataArray = self.carInvoice;
-//    return cell;
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

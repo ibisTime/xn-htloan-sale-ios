@@ -101,7 +101,7 @@
 //        cell.nameText = @"请输入贷款金额";
 //        cell.nameTextField.placeholder = @"请输入贷款金额";
         cell.nameTextField.tag = 300;
-        cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+        cell.nameTextField.keyboardType = UIKeyboardTypeDecimalPad;
         return cell;
     }
 

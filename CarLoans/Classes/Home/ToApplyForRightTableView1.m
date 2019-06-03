@@ -74,6 +74,9 @@
         cell.type = ShowType;
         cell.showLbl.tag = 10000 + indexPath.row;
     }
+    if (indexPath.row == 3 || indexPath.row == 5 ||indexPath.row == 6 || indexPath.row == 7 ||indexPath.row == 8 || indexPath.row == 15 || indexPath.row == 15 ||indexPath.row == 16) {
+        cell.inputTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    }
     return cell;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{

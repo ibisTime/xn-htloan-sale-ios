@@ -57,6 +57,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary * dic = self.peopleAray;
+//    NSArray * namearray = @[@"GPS设备号",@"GPS类型",@"安装位置",@"安装时间",@"安装人员",@"备注"];
+    
     if (indexPath.section == 0) {
 //        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
 //        cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -64,7 +64,7 @@
             break;
         case 4:
         {
-            cell.TextFidStr = [BaseModel convertNull:self.model.loanBankName];
+            cell.TextFidStr = [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]];
         }
             break;
         case 5:

@@ -95,7 +95,7 @@
         {
             
             if (indexPath.row != 13) {
-//                cell.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+                cell.inputTextField.keyboardType = UIKeyboardTypeDecimalPad;
             }
             
             if (indexPath.row == 6) {
