@@ -106,8 +106,6 @@
 -(void)selectButtonClick:(UIButton *)sender
 {
     if (sender.tag == 5000) {
-
-
         _idNoFront = @"";
         self.tableView.idNoFront = _idNoFront;
     }else

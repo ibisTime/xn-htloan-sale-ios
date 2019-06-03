@@ -64,7 +64,7 @@
         NSArray *nameArray = @[@"客户姓名",@"业务编号",@"贷款银行",@"贷款金额",@"申请时间",@"信贷专员",@"内勤专员",@"抵押代理人",@"抵押地点",@"补充说明"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
-        NSString *isAdvanceFund;
+//        NSString *isAdvanceFund;
         
         NSArray *detailsArray = @[
                                   [NSString stringWithFormat:@"%@",_model.applyUserName],

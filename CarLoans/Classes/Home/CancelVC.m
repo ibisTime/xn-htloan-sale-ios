@@ -63,7 +63,7 @@
     http.parameters[@"operator"] =[USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"releaseDatetime"] = date;
     [http postWithSuccess:^(id responseObject) {
-        NSNotification *notification =[NSNotification notificationWithName:ADDADPEOPLENOTICE object:nil userInfo:nil];
+        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {

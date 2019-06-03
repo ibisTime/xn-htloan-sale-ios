@@ -1666,16 +1666,16 @@
             right3Label2.text = creditUser[@"idNo"];
             
 //            if ([creditUser[@"gender"] integerValue] != 0) {
-                right3Label3.text = [NSString stringWithFormat:@"%@",creditUser[@"gender"]];
-                right3Label4.text = [NSString stringWithFormat:@"%ld",[creditUser[@"age"] integerValue]];
-                right3Label5.text = [NSString stringWithFormat:@"%@",creditUser[@"englishName"]];
-                right3Label6.text = [NSString stringWithFormat:@"%@",creditUser[@"authref"]];
-                right3Label7.text = [NSString stringWithFormat:@"%@",creditUser[@"statdate"]];
-                right3Label8.text = creditUser[@"nation"];
-                right3Label9.text = [_baseModel setParentKey:@"politics" setDkey:creditUser[@"political"]];
-                right3Label10.text = [_baseModel setParentKey:@"education" setDkey:creditUser[@"education"]];
-                right3Label11.text = [_baseModel setParentKey:@"work_profession" setDkey:creditUser[@"workProfession"]];
-                right3Label12.text = creditUser[@"postTitle"];
+                right3Label3.text = [BaseModel convertNull:[NSString stringWithFormat:@"%@",creditUser[@"gender"]]];
+                right3Label4.text = [BaseModel convertNull:[NSString stringWithFormat:@"%ld",[creditUser[@"age"] integerValue]]];
+                right3Label5.text = [BaseModel convertNull:[NSString stringWithFormat:@"%@",creditUser[@"englishName"]]];
+                right3Label6.text = [BaseModel convertNull:[NSString stringWithFormat:@"%@",creditUser[@"authref"]]];
+                right3Label7.text = [BaseModel convertNull:[NSString stringWithFormat:@"%@",creditUser[@"statdate"]]];
+                right3Label8.text = [BaseModel convertNull:creditUser[@"nation"]];
+                right3Label9.text = [BaseModel convertNull:[_baseModel setParentKey:@"politics" setDkey:creditUser[@"political"]]];
+                right3Label10.text = [BaseModel convertNull:[_baseModel setParentKey:@"education" setDkey:creditUser[@"education"]]];
+                right3Label11.text = [BaseModel convertNull:[_baseModel setParentKey:@"work_profession" setDkey:creditUser[@"workProfession"]]];
+                right3Label12.text = [BaseModel convertNull:creditUser[@"postTitle"]];
                 
                 if ([creditUser[@"isDriceLicense"] isEqualToString:@"1"]) {
                     right3Label13.text = @"有";
@@ -1704,10 +1704,8 @@
                     }
                 }
                 right3Label15.text = [dvalueArray componentsJoinedByString:@","];
-                
-                right3Label16.text = [NSString stringWithFormat:@"%@",creditUser[@"otherIncomeNote"]];
+                right3Label16.text = [BaseModel convertNull:[NSString stringWithFormat:@"%@",creditUser[@"otherIncomeNote"]]];
                 right3Label17.text = [creditUser[@"isHouseProperty"] isEqualToString:@"1"]?@"有":@"无";
-                
                 right3Label18.text = creditUser[@"emergencyName1"];
                 right3Label20.text = [_baseModel setParentKey:@"credit_contacts_relation" setDkey:creditUser[@"emergencyRelation1"]];
                 right3Label19.text = [_baseModel setParentKey:@"gender" setDkey:creditUser[@"emergencySex1"]];
