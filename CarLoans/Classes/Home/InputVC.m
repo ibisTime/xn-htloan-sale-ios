@@ -39,7 +39,7 @@
     } failure:^(NSError *error) {
         
     }];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:ADDADPEOPLENOTICE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:LOADDATAPAGE object:nil];
 
 }
 - (void)InfoNotificationAction:(NSNotification *)notification
@@ -136,7 +136,7 @@
     http.parameters[@"enterLocation"] = [NSString stringWithFormat:@"%@", locationCode];
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     [http postWithSuccess:^(id responseObject) {
-        NSNotification *notification =[NSNotification notificationWithName:ADDADPEOPLENOTICE object:nil userInfo:nil];
+        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {

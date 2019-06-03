@@ -99,24 +99,26 @@
         }
         NSArray * arr = @[@"*代理人",@"*代理人身份证号",@"*抵押地点"];
         if (indexPath.row == 0) {
-            NSString * str1 = self.model.carPledge[@"pledgeUser"];
-            if (str1.length > 0) {
+            NSString * str1 = cell.nameTextField.text;
+            if (str1.length == 0) {
                 cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
             }
         }
-        NSString * str2 = self.model.carPledge[@"pledgeUserIdCard"];
+       
         if (indexPath.row == 1) {
-            if (str2.length > 0) {
+             NSString * str2 = cell.nameTextField.text;
+            if (str2.length == 0) {
                 cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
             }
         }
-        NSString * str3 = self.model.carPledge[@"pledgeAddress"];
+        
         if (indexPath.row == 2) {
-            if (str3.length > 0) {
+            NSString * str3 = cell.nameTextField.text;
+            if (str3.length == 0) {
                 cell.nameTextField.text = self.model.carPledge[@"pledgeAddress"];
             }
         }
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = arr[indexPath.row];
         cell.nameTextField.tag = indexPath.row + 20000;
         return cell;

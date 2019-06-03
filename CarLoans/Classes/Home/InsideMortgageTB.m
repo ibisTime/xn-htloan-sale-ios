@@ -123,20 +123,20 @@
             cell.name = arr[indexPath.row - 4];
             cell.nameTextField.tag = 1000+indexPath.row;
             if (indexPath.row == 4) {
-                NSString * str = self.model.carPledge[@"pledgeAddress"];
-                if (str.length > 0) {
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
                     cell.nameTextField.text = self.model.carPledge[@"pledgeAddress"];
                 }
             }
             if (indexPath.row == 5) {
-                NSString * str = self.model.carPledge[@"pledgeUser"];
-                if (str.length > 0) {
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
                     cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
                 }
             }
             if (indexPath.row == 6) {
-                NSString * str = self.model.carPledge[@"pledgeUser"];
-                if (str.length > 0) {
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
                     cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
                 }
             }

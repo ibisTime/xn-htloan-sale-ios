@@ -67,13 +67,25 @@
         cell.nameText = placeholderArray[indexPath.row];
         cell.nameTextField.tag = 20000 + indexPath.row;
 
-        if (self.dataDic.count > 0) {
-            NSArray *Array = @[_dataDic[@"userName"],_dataDic[@"mobile"]];
-            cell.TextFidStr = Array[indexPath.row];
-        }
+//        if (self.dataDic.count > 0) {
+//            NSArray *Array = @[_dataDic[@"userName"],_dataDic[@"mobile"]];
+//            cell.TextFidStr = Array[indexPath.row];
+//        }
         if (indexPath.row == 1) {
+            NSString * str = cell.nameTextField.text;
+            if (str.length == 0) {
+                cell.TextFidStr = [BaseModel convertNull: _dataDic[@"mobile"]];
+            }
             cell.nameTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         }
+        if (indexPath.row == 0) {
+            NSString * str = cell.nameTextField.text;
+            if (str.length == 0) {
+                cell.TextFidStr = [BaseModel convertNull: _dataDic[@"userName"]];
+            }
+            cell.nameTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        }
+        
         return cell;
     }
     if (indexPath.section == 1) {
@@ -99,9 +111,9 @@
         cell.name = @"*身份证号";
         cell.nameText = @"请输入身份证号";
         cell.nameTextField.tag = 20002;
-        NSString * str = _dataDic[@"idNo"];
-        if (str.length > 0) {
-            cell.TextFidStr = str;
+        NSString * str = cell.nameTextField.text;
+        if (str.length == 0) {
+            cell.TextFidStr = _dataDic[@"idNo"];
         }
         return cell;
     }

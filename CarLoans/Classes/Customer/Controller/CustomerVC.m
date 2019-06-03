@@ -68,7 +68,7 @@
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632515";
-    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
+//    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.parameters[@"isMy"] = @"1";
     helper.isList = NO;

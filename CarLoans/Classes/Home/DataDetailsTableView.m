@@ -45,6 +45,8 @@
     return 0.01;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
     if ([self.model.sendType isEqualToString:@"2"]) {
         static NSString *rid=@"cell";
         TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
@@ -73,6 +75,7 @@
                       ];
         cell.name = namearray[indexPath.row];
         cell.TextFidStr = infoarray[indexPath.row];
+        cell.isInput = @"0";
         if (indexPath.row == 9) {
             for (int i = 0; i < self.filearray.count; i++) {
                 CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
@@ -112,6 +115,7 @@
                       ];
         cell.name = namearray[indexPath.row];
         cell.TextFidStr = infoarray[indexPath.row];
+        cell.isInput = @"0";
         if (indexPath.row == 9) {
             for (int i = 0; i < self.filearray.count; i++) {
                 CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
@@ -145,6 +149,7 @@
                   ];
     cell.name = namearray[indexPath.row];
     cell.TextFidStr = infoarray[indexPath.row];
+    cell.isInput = @"0";
     if (indexPath.row == 9) {
         for (int i = 0; i < self.filearray.count; i++) {
             CLTextFiled *fild = [[CLTextFiled alloc] initWithFrame:CGRectMake(15, 50+i*40, SCREEN_WIDTH-30, 40) leftTitle:@"" titleWidth:10 placeholder:@""];

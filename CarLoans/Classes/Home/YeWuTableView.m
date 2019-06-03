@@ -76,6 +76,7 @@
                                 [NSString stringWithFormat:@"%@",[self.model.advance[@"advanceFundDatetime"] convertDate]],
                                 ];
         cell.TextFidStr = infoarray[indexPath.row];
+        cell.isInput = @"0";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
