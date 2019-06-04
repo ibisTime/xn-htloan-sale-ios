@@ -95,6 +95,7 @@
 {
 
     [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     
     
     TLNetworking *getUploadToken = [TLNetworking new];
@@ -106,6 +107,7 @@
 
         NSString *token = responseObject[@"data"][@"uploadToken"];
         [SVProgressHUD show];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
 //            builder.zone = [QNZone zone0];
         }];

@@ -112,6 +112,7 @@
     if(self.showView){
     
         [SVProgressHUD show];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     }
     if (self.isShowMsg) {
 //        [TLProgressHUD dismiss];

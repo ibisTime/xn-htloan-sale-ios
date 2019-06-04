@@ -83,8 +83,8 @@
             @autoreleasepool {
                 UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
                 NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
-                [SVProgressHUD showWithStatus:@"上传中"];
-                [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+//                [SVProgressHUD showWithStatus:@"上传中"];
+//                [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
                 //进行上传
                 TLUploadManager *manager = [TLUploadManager manager];
                 
@@ -406,11 +406,11 @@
 -(void)confirmButtonClick
 {
     
-    UITextField *textField1 = [self.view viewWithTag:1001];//落户地点
-    UITextField *textField2 = [self.view viewWithTag:1002];//车牌号
-    UITextField *textField3 = [self.view viewWithTag:1004];//抵押地点
-    UITextField *textField4 = [self.view viewWithTag:1005];//代理人
-    UITextField *textField5 = [self.view viewWithTag:1006];//代理身份证号
+    UITextField *textField1 = [self.view viewWithTag:10001];//落户地点
+    UITextField *textField2 = [self.view viewWithTag:10002];//车牌号
+    UITextField *textField3 = [self.view viewWithTag:10004];//抵押地点
+    UITextField *textField4 = [self.view viewWithTag:10005];//代理人
+    UITextField *textField5 = [self.view viewWithTag:10006];//代理身份证号
     
     if (self.policyDatetime.length == 0) {
         [TLAlert alertWithInfo:@"请输入落户日期"];
@@ -523,7 +523,7 @@
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
                 
                 NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
-                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
+                ChooseCell * cell = [self.view viewWithTag:10000 + indexPath.row];
                 cell.details = date;
                 self.policyDatetime = date;
                 
@@ -537,7 +537,7 @@
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
                 
                 NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
-                ChooseCell * cell = [self.view viewWithTag:1000 + indexPath.row];
+                ChooseCell * cell = [self.view viewWithTag:10000 + indexPath.row];
                 cell.details = date;
                 self.policyDueDate = date;
                 

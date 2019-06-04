@@ -15,6 +15,7 @@
 + (void)alertWithInfo:(NSString *)msg {
     
     [SVProgressHUD showInfoWithStatus:msg];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
 //    [SVProgressHUD dismissWithDelay:2.0];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
@@ -31,6 +32,7 @@
 + (void)alertWithError:(NSString *)msg {
     
     [SVProgressHUD showErrorWithStatus:msg];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
     });;
@@ -42,6 +44,7 @@
 + (void)alertWithSucces:(NSString *)msg {
     
     [SVProgressHUD showSuccessWithStatus:msg];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
     });

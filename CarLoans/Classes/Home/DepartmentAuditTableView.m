@@ -9,6 +9,7 @@
 #import "DepartmentAuditTableView.h"
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
+#define textfield111 @"TextFieldCell"
 #import "RepayPlanCell.h"
 @implementation DepartmentAuditTableView
 
@@ -18,6 +19,7 @@
         self.delegate = self;
         self.dataSource = self;
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
+        [self registerClass:[TextFieldCell class] forCellReuseIdentifier:textfield111];
     }
     return self;
 }
@@ -87,7 +89,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    static NSString *rid=@"TextFieldCell123";
+//    TextFieldCell * cell = [tableView dequeueReusableCellWithIdentifier:textfield111 forIndexPath:indexPath];
+    static NSString *rid=@"Cell123";
     TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
     if(cell==nil){
         cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
@@ -95,14 +98,9 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *nameArray = @[@"可退押金金额",@"扣除违约金额",@"实际退款金额",@"*审核意见"];
     cell.name = nameArray[indexPath.row];
-    NSArray * textarray = @[[NSString stringWithFormat:@"%.2f", [self.model.retreatDeposit floatValue]/1000],
-                            @"",
-                            @"",
-                            @""];
-    
-    cell.TextFidStr = textarray[indexPath.row];
     cell.nameTextField.tag = 100000 + indexPath.row;
     if (indexPath.row == 0) {
+        cell.TextFidStr = [NSString stringWithFormat:@"%.2f", [self.model.retreatDeposit floatValue]/1000];
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;
     }else{
@@ -144,15 +142,6 @@
         [initiateButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         initiateButton.tag = 100;
         [headView addSubview:initiateButton];
-        
-        
-//        UIButton *saveButton = [UIButton buttonWithTitle:@"不通过" titleColor:[UIColor whiteColor] backgroundColor:MainColor titleFont:18];
-//        saveButton.frame = CGRectMake(SCREEN_WIDTH/2 + 15, 15, SCREEN_WIDTH/2 - 30, 50);
-//        kViewRadius(saveButton, 5);
-//        [saveButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-//        saveButton.tag = 101;
-//        [headView addSubview:saveButton];
-        
         return headView;
     }
     return [UIView new];
@@ -161,7 +150,6 @@
     UITextField * text = [self viewWithTag:100000];
     UITextField * text1 = [self viewWithTag:100001];
     UITextField * text2 = [self viewWithTag:100002];
-//    UITextField * text3 = [self viewWithTag:100003];
     text2.text =[NSString stringWithFormat:@"%.2f", [text.text floatValue] - [text1.text floatValue]];
 }
 -(void)confirmButtonClick:(UIButton *)sender{

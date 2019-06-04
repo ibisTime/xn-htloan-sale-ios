@@ -91,7 +91,7 @@
             ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.name = @"*落户日期";
-            cell.tag = 1000 + indexPath.row;
+            cell.tag = 10000 + indexPath.row;
             return cell;
         }
         else if (indexPath.row == 1 || indexPath.row == 2){
@@ -103,14 +103,14 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             NSArray * arr = @[@"*落户地点",@"*车牌号"];
             cell.name = arr[indexPath.row - 1];
-            cell.nameTextField.tag = 1000+indexPath.row;
+            cell.nameTextField.tag = 10000+indexPath.row;
             return cell;
         }
         else if (indexPath.row == 3){
             ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.name = @"*抵押日期";
-            cell.tag = 1000 + indexPath.row;
+            cell.tag = 10000 + indexPath.row;
             return cell;
         }
         else if (indexPath.row == 4 || indexPath.row == 5|| indexPath.row == 6){
@@ -122,7 +122,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             NSArray * arr = @[@"*抵押地点",@"*代理人",@"*代理人身份证号"];
             cell.name = arr[indexPath.row - 4];
-            cell.nameTextField.tag = 1000+indexPath.row;
+            cell.nameTextField.tag = 10000+indexPath.row;
             if (indexPath.row == 4) {
                 NSString * str = cell.nameTextField.text;
                 if (str.length == 0) {

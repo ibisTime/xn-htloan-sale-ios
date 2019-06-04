@@ -82,16 +82,12 @@
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ( [model.curNodeCode isEqualToString:@"002_33"]){
-        //        InsideSureVC *vc = [[InsideSureVC alloc] init];
-        //驻行抵押申请
         insideMortgatee *vc = [[insideMortgatee alloc]init];
         
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ( [model.curNodeCode isEqualToString:@"002_34"]){
         InsideSureVC *vc = [[InsideSureVC alloc] init];
-        //内勤确认
-        //        insideMortgatee *vc = [[insideMortgatee alloc]init];
         vc.model = self.model[index];
         [self.navigationController pushViewController:vc animated:YES];
     }
