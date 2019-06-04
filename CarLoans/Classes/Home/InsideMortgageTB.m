@@ -28,6 +28,7 @@
         self.delegate = self;
         [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:CarSettledUpdataPhoto];
         [self registerClass:[TextFieldCell class] forCellReuseIdentifier:TextField];
+//        [self registerClass:[CollectionViewCell class] forCellReuseIdentifier:@"CollectionViewCell"];
         [self registerClass:[ChooseCell class] forCellReuseIdentifier:Choose];
         [self registerClass:[UploadIdCardCell class] forCellReuseIdentifier:UploadIdCard];
     }
@@ -145,11 +146,13 @@
     }
     else if (indexPath.section == 2) {
 //        UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
-        static NSString *rid=@"UploadIdCardCell";
-        UploadIdCardCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-        if(cell==nil){
-            cell=[[UploadIdCardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
-        }
+//        static NSString *rid=@"UploadIdCardCell";
+//        UploadIdCardCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+//        if(cell==nil){
+//            cell=[[UploadIdCardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+//        }
+        UploadIdCardCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.nameLbl.text = @"*代理人身份证";
         cell.nameArray = @[@"身份证正面",@"身份证反面"];
@@ -158,12 +161,12 @@
         cell.idNoReverse = self.idNoReverse;
         return cell;
     }
-    static NSString *rid=@"CollectionViewCell";
-    CollectionViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-    if(cell==nil){
-        cell=[[CollectionViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
-    }
-//        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CarSettledUpdataPhoto forIndexPath:indexPath];
+//    static NSString *rid=@"CollectionViewCell";
+//    CollectionViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+//    if(cell==nil){
+//        cell=[[CollectionViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+//    }
+        CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CarSettledUpdataPhoto forIndexPath:indexPath];
         cell.delegate = self;
         cell.selectStr = [NSString stringWithFormat:@"%ld",indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -84,6 +84,7 @@
                 UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
                 NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
                 [SVProgressHUD showWithStatus:@"上传中"];
+                [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
                 //进行上传
                 TLUploadManager *manager = [TLUploadManager manager];
                 
@@ -400,7 +401,6 @@
     }
     return _alertCtrl;
 }
-
 
 
 -(void)confirmButtonClick
