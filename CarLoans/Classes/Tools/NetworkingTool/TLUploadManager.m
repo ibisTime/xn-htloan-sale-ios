@@ -95,6 +95,8 @@
 {
 
     [SVProgressHUD show];
+    
+    
     TLNetworking *getUploadToken = [TLNetworking new];
 
     getUploadToken.showView = showView;
@@ -103,7 +105,6 @@
     [getUploadToken postWithSuccess:^(id responseObject) {
 
         NSString *token = responseObject[@"data"][@"uploadToken"];
-
         [SVProgressHUD show];
         QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
 //            builder.zone = [QNZone zone0];

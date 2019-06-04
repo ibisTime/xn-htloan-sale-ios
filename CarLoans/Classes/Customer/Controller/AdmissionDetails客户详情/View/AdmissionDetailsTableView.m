@@ -150,19 +150,21 @@
 //    return 40;
     if (indexPath.row != 7 && indexPath.row != 8) {
         return 40;
-    }
-    for (int i = 0; i < self.model.creditUserList.count; i ++) {
-        if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"2"]) {
-            if (indexPath.row == 7) {
-                return 40;
+    }else if(indexPath.row == 7 || indexPath.row == 8){
+        for (int i = 0; i < self.model.creditUserList.count; i ++) {
+            if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"2"]) {
+                if (indexPath.row == 7) {
+                    return 40;
+                }
+            }
+            if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"3"]) {
+                if (indexPath.row == 8) {
+                    return 40;
+                }
             }
         }
-        if ([self.model.creditUserList[i][@"loanRole"] isEqualToString:@"3"]) {
-            if (indexPath.row == 8) {
-                return 40;
-            }
-        }
     }
+    
     return 0;
 }
 
