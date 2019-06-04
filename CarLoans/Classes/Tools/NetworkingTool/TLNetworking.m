@@ -223,14 +223,14 @@
 //              }];
 //              return;
 //          }
-          
-          [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
+          if ([responseObject[@"errorInfo"] isEqualToString:@""]) {
+              [TLAlert alertWithInfo:@"操作失败"];
+          }
+          else
+              [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
       }
       
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       
-       
-       
        [TLAlert alertWithInfo:@"网络异常"];
 
        if(failure) {

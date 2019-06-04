@@ -80,7 +80,7 @@
         _imagePicker.pickFinish = ^(NSDictionary *info){
             NSLog(@"%@",info);
 
-            
+            @autoreleasepool {
                 UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
                 NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
                 [SVProgressHUD showWithStatus:@"上传中"];
@@ -96,6 +96,8 @@
                 } failure:^(NSError *error) {
                     
                 }];
+            }
+            
         };
         }
 
@@ -233,6 +235,7 @@
         default:
             break;
     }
+    
     [self.tableView reloadData];
     
 }
@@ -240,18 +243,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"录入抵押信息";
-    // Do any additional setup after loading the view.
-    _BankVideoArray = [NSMutableArray array];
-    _CompanyVideoArray = [NSMutableArray array];
-    _OtherVideoArray = [NSMutableArray array];
-    _BankVideoDataArray = [NSMutableArray array];
-    _CompanyVideoDataArray = [NSMutableArray array];
-    _OtherVideoDataArray = [NSMutableArray array];
-    _BankSignArray = [NSMutableArray array];
-    _BankContractArray = [NSMutableArray array];
-    _CompanyContractArray = [NSMutableArray array];
-    _MoneyArray = [NSMutableArray array];
-    _otherArray = [NSMutableArray array];
+    @autoreleasepool {
+        _BankVideoArray = [NSMutableArray array];
+        _CompanyVideoArray = [NSMutableArray array];
+        _OtherVideoArray = [NSMutableArray array];
+        _BankVideoDataArray = [NSMutableArray array];
+        _CompanyVideoDataArray = [NSMutableArray array];
+        _OtherVideoDataArray = [NSMutableArray array];
+        _BankSignArray = [NSMutableArray array];
+        _BankContractArray = [NSMutableArray array];
+        _CompanyContractArray = [NSMutableArray array];
+        _MoneyArray = [NSMutableArray array];
+        _otherArray = [NSMutableArray array];
+    }
+    
     
     [self initTableView];
     [self loaddetails];
@@ -279,89 +284,11 @@
             }
         }
         [self.view addSubview:self.tableView];
-        //        [self.tableView reloadData];
     } failure:^(NSError *error) {
         
     }];
 }
-//- (void)loadHistoryList
-//{
-//    TLNetworking *http = [TLNetworking new];
-//    http.code = @"632146";
-//    http.parameters[@"code"] = _model.code;
-//
-//    http.showView = self.view;
-//    //    [_interviewPicArray componentsJoinedByString:@"||"]
-//    [http postWithSuccess:^(id responseObject) {
-//        NSLog(@"%@",responseObject);
-//        http.parameters[@"bankVideo"] = [_BankVideoDataArray componentsJoinedByString:@"||"];
-//        http.parameters[@"companyVideo"] = [_CompanyVideoDataArray componentsJoinedByString:@"||"];
-//
-//        http.parameters[@"otherVideo"] = [_OtherVideoDataArray componentsJoinedByString:@"||"];
-//        http.parameters[@"bankPhoto"] = Str1;
-//        http.parameters[@"bankContract"] = Str2;
-//        http.parameters[@"companyContract"] = Str3;
-//        http.parameters[@"advanceFundAmountPdf"] = Str4;
-//        http.parameters[@"interviewOtherPdf"] = Str5;
-//        self.BankVideoDataArray = [responseObject[@"data"][@"bankVideo"] componentsSeparatedByString:@"||"].mutableCopy;
-//        self.CompanyVideoDataArray = [responseObject[@"data"][@"companyVideo"] componentsSeparatedByString:@"||"].mutableCopy;
-//        self.OtherVideoDataArray = [responseObject[@"data"][@"otherVideo"] componentsSeparatedByString:@"||"].mutableCopy;
-//        self.BankSignArray = [responseObject[@"data"][@"bankPhoto"] componentsSeparatedByString:@"||"].mutableCopy;
-//        self.BankContractArray = [responseObject[@"data"][@"bankContract"] componentsSeparatedByString:@"||"].mutableCopy;
-//        self.CompanyContractArray = [responseObject[@"data"][@"companyContract"] componentsSeparatedByString:@"||"].mutableCopy;
-//        self.MoneyArray = [responseObject[@"data"][@"advanceFundAmountPdf"] componentsSeparatedByString:@"||"].mutableCopy;
-//        self.otherArray = [responseObject[@"data"][@"interviewOtherPdf"] componentsSeparatedByString:@"||"].mutableCopy;
-//        NSString *str = self.BankSignArray[0];
-//        if ([str isEqualToString:@""]) {
-//            self.BankSignArray = [NSMutableArray array];
-//        }
-//        NSString *str1 = self.BankContractArray[0];
-//        if ([str1 isEqualToString:@""]) {
-//            self.BankContractArray = [NSMutableArray array];
-//        }
-//        NSString *str2 = self.CompanyContractArray[0];
-//        if ([str2 isEqualToString:@""]) {
-//            self.CompanyContractArray = [NSMutableArray array];
-//        }
-//        NSString *str3 = self.otherArray[0];
-//        if ([str3 isEqualToString:@""]) {
-//            self.otherArray = [NSMutableArray array];
-//        }
-//        NSString *str4 = self.MoneyArray[0];
-//        if ([str4 isEqualToString:@""]) {
-//            self.MoneyArray = [NSMutableArray array];
-//        }
-//
-//        NSString *str5 = self.BankVideoDataArray[0];
-//        if ([str5 isEqualToString:@""]) {
-//            self.BankVideoDataArray = [NSMutableArray array];
-//        }
-//        NSString *str6 = self.CompanyVideoDataArray[0];
-//        if ([str6 isEqualToString:@""]) {
-//            self.CompanyVideoDataArray = [NSMutableArray array];
-//        }
-//        NSString *str7 = self.OtherVideoDataArray[0];
-//        if ([str7 isEqualToString:@""]) {
-//            self.OtherVideoDataArray = [NSMutableArray array];
-//        }
-//        self.BankVideoArray = self.BankVideoDataArray.mutableCopy;
-//        self.CompanyVideoArray = self.CompanyVideoDataArray.mutableCopy;
-//        self.OtherVideoArray = self.OtherVideoDataArray.mutableCopy;
-//
-//        self.tableView.BankVideoArray = self.BankVideoDataArray;
-//        self.tableView.CompanyVideoArray = self.CompanyVideoDataArray;
-//        self.tableView.OtherVideoArray = self.OtherVideoDataArray;
-//        self.tableView.BankSignArray = self.BankSignArray;
-//        self.tableView.BankContractArray = self.BankContractArray;
-//        self.tableView.CompanyContractArray = self.CompanyContractArray;
-//        self.tableView.MoneyArray = self.MoneyArray;
-//        self.tableView.otherArray = self.otherArray;
-//        [self.tableView reloadData];
-//    } failure:^(NSError *error) {
-//
-//    }];
-//
-//}
+
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
 {
     self.selectInt = index;
@@ -448,47 +375,7 @@
         [self confirmButtonClick];
         return;
     }
-//    TLNetworking *http = [TLNetworking new];
-//    http.code = @"632123";
-//    http.showView = self.view;
-//    //    [_interviewPicArray componentsJoinedByString:@"||"]
-//    http.parameters[@"code"] = _model.code;
-//    // http.parameters[@"code"] = _model.code; 车牌号
-//
-//    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-//    http.parameters[@"bankVideo"] = [_BankVideoDataArray componentsJoinedByString:@"||"];
-//    http.parameters[@"companyVideo"] = [_CompanyVideoDataArray componentsJoinedByString:@"||"];
-//    if (sender.tag == 10001) {
-//        http.parameters[@"isSend"] = @"0";
-//
-//    }else{
-//        http.parameters[@"isSend"] = @"1";
-//
-//    }
-//
-//    http.parameters[@"otherVideo"] = [_OtherVideoDataArray componentsJoinedByString:@"||"];
-//    http.parameters[@"bankPhoto"] = [self.BankSignArray componentsJoinedByString:@"||"];
-//    http.parameters[@"bankContract"] = [self.BankContractArray componentsJoinedByString:@"||"];;
-//    http.parameters[@"companyContract"] = [self.CompanyContractArray componentsJoinedByString:@"||"];;
-//    http.parameters[@"advanceFundAmountPdf"] = [self.MoneyArray componentsJoinedByString:@"||"];;
-//    http.parameters[@"interviewOtherPdf"] = [self.otherArray componentsJoinedByString:@"||"];;
-//    http.parameters[@"pledgeUserIdCardFront"] = self.AgentidNoFront;
-//    http.parameters[@"pledgeUserIdCardReverse"] = self.AgentidNoReverse;
-//
-//    [http postWithSuccess:^(id responseObject) {
-//        if (sender.tag == 10001) {
-//            [TLAlert alertWithSucces:@"保存成功"];
-//
-//        }else{
-//            [TLAlert alertWithSucces:@"面签成功"];
-//            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
-//            [[NSNotificationCenter defaultCenter] postNotification:notification];
-//        }
-//
-//        [self.navigationController popViewControllerAnimated:YES];
-//    } failure:^(NSError *error) {
-//        WGLog(@"%@",error);
-//    }];
+
 }
 
 

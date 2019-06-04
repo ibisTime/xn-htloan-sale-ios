@@ -26,6 +26,7 @@
 #import "AdmissionDetailsTableView15.h"
 #import "AdmissionDetailsTableView16.h"
 #import "AdmissionDetailsTableView17.h"
+#import "RepaymentPlanHeadView.h"
 @interface AdmissionDetailsVC ()<RefreshDelegate>
 @property (nonatomic , strong)AdmissionDetailsTableView *tableView;
 
@@ -47,6 +48,7 @@
 @property (nonatomic , strong)AdmissionDetailsTableView16 *tableView16;
 @property (nonatomic , strong)AdmissionDetailsTableView17 *tableView17;
 
+@property (nonatomic,strong) RepaymentPlanHeadView * topView;
 @end
 @implementation AdmissionDetailsVC
 
@@ -166,6 +168,10 @@
     self.tableView15.tag = 116;
     [self.view addSubview:self.tableView15];
     
+    _topView = [[RepaymentPlanHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 107, 114 + 20)];
+    self.tableView15.tableHeaderView = _topView;
+    
+    
     self.tableView16 = [[AdmissionDetailsTableView16 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView16.refreshDelegate = self;
     self.tableView16.backgroundColor = kWhiteColor;
@@ -212,6 +218,8 @@
         self.tableView14.model = self.model;
         self.tableView15.model = self.model;
         self.tableView16.model = self.model;
+        
+        self.topView.price = self.model.restAmount;
         
 //        self.tableView15.tableHeaderView
         

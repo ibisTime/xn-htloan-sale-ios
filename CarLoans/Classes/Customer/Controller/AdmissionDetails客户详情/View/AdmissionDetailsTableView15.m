@@ -11,7 +11,7 @@
 #import "AdmissionDetailsRepaymentPlanCell.h"
 #import "RepaymentPlanHeadView.h"
 @interface AdmissionDetailsTableView15 ()<UITableViewDataSource,UITableViewDelegate>
-
+//@property (nonatomic,strong) RepaymentPlanHeadView * topView;
 @end
 @implementation AdmissionDetailsTableView15
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
@@ -20,8 +20,8 @@
         self.dataSource = self;
         self.delegate = self;
         [self registerClass:[AdmissionDetailsRepaymentPlanCell class] forCellReuseIdentifier:@"RepaymentPlanCell"];
-//        RepaymentPlanHeadView *topView = [[RepaymentPlanHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 107, 114 + 20)];
-//        self.tableHeaderView = topView;
+//        _topView = [[RepaymentPlanHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 107, 114 + 20)];
+//        self.tableHeaderView = _topView;
     }
     return self;
 }
@@ -42,8 +42,6 @@
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-//    AdmissionDetailsRepaymentPlanCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RepaymentPlanCell" forIndexPath:indexPath];
     static NSString *rid=@"RepaymentPlanCell";
     AdmissionDetailsRepaymentPlanCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
     if(cell==nil){

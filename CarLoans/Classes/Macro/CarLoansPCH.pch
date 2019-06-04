@@ -51,6 +51,7 @@
 #define TOKEN_ID @"token_id"
 #define USER_ID @"user_id"
 #define USERDATA @"USERDATA"
+#define DEPARTMENTCODE @"departmentCode"
 #define ROLECODE @"roleCode"
 #define ROSTCODE @"postCode"
 #define TEAMCODE @"teamCode"

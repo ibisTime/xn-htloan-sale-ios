@@ -87,7 +87,7 @@
     
     TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"审核意见";
+    cell.name = @"*审核意见";
     cell.nameText = @"请输入审核意见";
     cell.nameTextField.tag = 3000;
     return cell;

@@ -537,7 +537,8 @@
         //   首付金额
         http.parameters[@"sfAmount"] = [NSString stringWithFormat:@"%.f",[right1Label8.text floatValue]*1000];
         //   首付比例.f
-        http.parameters[@"sfRate"] = [NSString stringWithFormat:@"%ld",[right1Label9.text integerValue]];
+//        http.parameters[@"sfRate"] = [NSString stringWithFormat:@"%ld",[right1Label9.text integerValue]];
+        http.parameters[@"sfRate"] = right1Label9.text;
         //   是否融资
         http.parameters[@"isFinacing"] = [self CanOrNo:right1Label10.text];
         //   是否垫资

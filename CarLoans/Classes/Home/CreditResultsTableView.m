@@ -109,7 +109,7 @@
     
     TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"征信结果说明";
+    cell.name = @"*征信结果说明";
     cell.nameText = @"请输入说明";
     cell.isInput = 0;
     cell.TextFidStr = self.dataDic[@"bankCreditResultRemark"];

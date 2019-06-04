@@ -122,7 +122,7 @@
         cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"卡号";
+    cell.name = @"*卡号";
     cell.nameText = @"请输入卡号";
     cell.nameTextField.tag = 10000;
     cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;

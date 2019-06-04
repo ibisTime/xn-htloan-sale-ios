@@ -52,10 +52,10 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
-        return 5;
+        return 4;
     }else
     {
-        return 7;
+        return 6;
     }
 }
 
@@ -315,13 +315,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
-        if (section == 4) {
+        if (section == 3) {
             return 100;
         }
         return 0.01;
     }else
     {
-        if (section == 6) {
+        if (section == 5) {
             return 100;
         }
         return 0.01;
@@ -348,21 +348,7 @@
 
             return headView;
         }
-//        else if (section == 3){
-//            UIView *headView = [[UIView alloc]init];
-//
-//            UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-//            backView.backgroundColor = [UIColor whiteColor];
-//            [headView addSubview:backView];
-//
-//            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-//            lineView.backgroundColor = LineBackColor;
-//            [headView addSubview:lineView];
-//            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-//            nameLabel.text = @"*行驶证";
-//            [headView addSubview:nameLabel];
-//            return headView;
-//        }
+
     }
 
     return nil;
@@ -371,7 +357,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
-        if (section == 4) {
+        if (section == 3) {
             UIView *headView = [[UIView alloc]init];
 
 
@@ -394,7 +380,7 @@
         }
     }else
     {
-        if (section == 6) {
+        if (section == 5) {
             UIView *headView = [[UIView alloc]init];
 
 

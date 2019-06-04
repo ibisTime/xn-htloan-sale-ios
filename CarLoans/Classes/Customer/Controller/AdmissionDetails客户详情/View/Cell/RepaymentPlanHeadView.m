@@ -29,7 +29,8 @@
         [backView addSubview:remainingLbl];
         
         UILabel *priceLbl = [UILabel labelWithFrame:CGRectMake(0, remainingLbl.yy, (SCREEN_WIDTH - 107) - 30, 45) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:Font(28) textColor:kWhiteColor];
-        priceLbl.text = @"2890.00";
+        priceLbl.text = [BaseModel convertNull:self.price];
+        priceLbl.tag = 1001;
         [backView addSubview:priceLbl];
         
         UILabel *introduceLbl = [UILabel labelWithFrame:CGRectMake(0, priceLbl.yy, (SCREEN_WIDTH - 107) - 30, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:Font(12) textColor:kWhiteColor];
@@ -39,5 +40,9 @@
         
     }
     return self;
+}
+-(void)setPrice:(NSString *)price{
+    UILabel * label = [self viewWithTag:1001];
+    label.text = [NSString stringWithFormat:@"%.2f",[price floatValue]/1000];
 }
 @end

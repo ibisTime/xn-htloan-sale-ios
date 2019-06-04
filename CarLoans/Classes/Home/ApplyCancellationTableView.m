@@ -87,7 +87,7 @@
     }
     TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"作废原因";
+    cell.name = @"*作废原因";
     cell.nameText = @"请输入作废原因";
     cell.nameTextField.tag = 100;
     return cell;

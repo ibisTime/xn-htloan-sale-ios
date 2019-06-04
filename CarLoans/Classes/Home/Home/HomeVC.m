@@ -642,6 +642,7 @@
     [USERDEFAULTS setObject:dict[@"roleCode"] forKey:ROLECODE];
     [USERDEFAULTS setObject:dict[@"postCode"] forKey:ROSTCODE];
     [USERDEFAULTS setObject:dict[@"teamCode"] forKey:TEAMCODE];
+    [USERDEFAULTS setObject:dict[@"departmentCode"] forKey:DEPARTMENTCODE];
 }
 
 - (void)didReceiveMemoryWarning {

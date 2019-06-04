@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RepaymentPlanHeadView : UIView
-
+@property (nonatomic,strong) NSString * price;
 @end
 
 NS_ASSUME_NONNULL_END

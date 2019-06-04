@@ -31,7 +31,7 @@
         _imagePicker.allowsEditing = YES;
         _imagePicker.pickFinish = ^(NSDictionary *info){
             UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
-            NSData *imgData = UIImageJPEGRepresentation(image, 0.1);
+            NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
             TLUploadManager *manager = [TLUploadManager manager];
             manager.imgData = imgData;
             manager.image = image;
@@ -70,7 +70,7 @@
         layout.itemSize = CGSizeMake((SCREEN_WIDTH - 107 - 45)/3  , (SCREEN_WIDTH - 107 - 45)/3);
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 32, SCREEN_WIDTH - 107, (SCREEN_WIDTH - 107 - 45)/3 + 15) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH - 107, (SCREEN_WIDTH - 107 - 45)/3 + 15) collectionViewLayout:layout];
 //        _collectionView.backgroundColor = [UIColor redColor];
         _collectionView.delegate = self;
         _collectionView.scrollEnabled = NO;
@@ -79,7 +79,7 @@
         _collectionView.showsHorizontalScrollIndicator = NO;
         [_collectionView setBackgroundColor:[UIColor whiteColor]];
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-        [self.contentView addSubview:self.collectionView];
+        [self addSubview:self.collectionView];
         
         _muArray = [NSMutableArray array];
 //        NSLog(@"%@",self.collectDataArray);
@@ -95,7 +95,7 @@
     int result;
     numberToRound = (_muArray.count + 1.0)/3.0;
     result = (int)ceilf(numberToRound);
-    _collectionView.frame = CGRectMake(0, 32, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
+    _collectionView.frame = CGRectMake(0, 40, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
     
 //    [_muArray addObjectsFromArray:_muArray];
     [self.collectionView reloadData];
@@ -152,6 +152,7 @@
 {
     _name = name;
     self.topLbl.text = name;
+    
 }
 
 
@@ -165,7 +166,7 @@
     int result;
     numberToRound = (_muArray.count + 1.0)/3.0;
     result = (int)ceilf(numberToRound);
-    _collectionView.frame = CGRectMake(0, 32, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
+    _collectionView.frame = CGRectMake(0, 40, SCREEN_WIDTH - 107, result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ));
     [self.collectionView reloadData];
 }
 

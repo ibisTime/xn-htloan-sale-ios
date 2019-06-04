@@ -45,7 +45,8 @@
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632725";
-
+    helper.parameters[@"status"] = @"1";
+    helper.parameters[@"publishDepartmentCode"] = [USERDEFAULTS objectForKey:DEPARTMENTCODE];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

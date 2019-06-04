@@ -151,7 +151,7 @@
         cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"*信用卡使用占比（%）",@"征信报告说明"];
+    NSArray *nameArray = @[@"*信用卡使用占比（%）",@"*征信报告说明"];
     cell.name = nameArray[indexPath.row];
     self.cell = cell;
     NSArray *placArray = @[@"请输入使用占比",@"请输入说明"];

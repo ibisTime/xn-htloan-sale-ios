@@ -51,7 +51,7 @@
                                 [self.model.isAdvanceSettled isEqualToString:@"1"]?@"是":@"否",
                                 [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.periods]],
                                 [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.restPeriods]],
-                                [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.overdueAmount floatValue]/1000]],
+                                [NSString stringWithFormat:@"%.2f",[self.model.overdueAmount floatValue]/1000],
                                 [NSString stringWithFormat:@"%.2f",[self.model.restAmount floatValue]/1000 ],
                                 [NSString stringWithFormat:@"%.2f",[self.model.restTotalCost floatValue]/1000 ],
                                 [NSString stringWithFormat:@"%.2f",[self.model.unRepayTotalAmount floatValue]/1000 ],
@@ -87,13 +87,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    static NSString *rid=TextField;
+    static NSString *rid=@"TextFieldCell123";
     TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
     if(cell==nil){
         cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"可退押金金额",@"扣除违约金额",@"实际退款金额",@"审核意见"];
+    NSArray *nameArray = @[@"可退押金金额",@"扣除违约金额",@"实际退款金额",@"*审核意见"];
     cell.name = nameArray[indexPath.row];
     NSArray * textarray = @[[NSString stringWithFormat:@"%.2f", [self.model.retreatDeposit floatValue]/1000],
                             @"",

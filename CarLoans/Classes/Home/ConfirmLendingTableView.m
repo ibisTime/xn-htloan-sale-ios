@@ -135,7 +135,7 @@
 //        return 130;
         float numberToRound;
         int result;
-        numberToRound = (self.bankpic.count)/3.0;
+        numberToRound = (self.bankpic.count + 1)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 45)/4 + 25) + 20;
     }

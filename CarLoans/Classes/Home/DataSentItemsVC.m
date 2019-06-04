@@ -110,7 +110,7 @@
     helper.code = @"632155";
     helper.parameters[@"type"] = @"1";
     helper.parameters[@"statusList"] = @[@"0",@"3"];
-//    helper.parameters[@"receiver"] = [USERDEFAULTS objectForKey:USER_ID];;
+    helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

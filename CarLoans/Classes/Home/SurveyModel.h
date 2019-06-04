@@ -277,6 +277,8 @@
 @property (nonatomic,strong) NSString * cardPostProvince;
 @property (nonatomic,strong) NSString * cardPostCity;
 @property (nonatomic,strong) NSString * cardPostArea;
+@property (nonatomic,copy) NSString * cardPostCode;
+@property (nonatomic,copy) NSString * repayCardNumber;
 @property (nonatomic,strong) NSArray * repointList;
 
 
@@ -313,7 +315,9 @@
 
 @property (nonatomic,strong) NSString * enterNodeCode;
 
-@property (nonatomic,strong) NSString * repayCardNumber;
+//@property (nonatomic,strong) NSString * repayCardNumber;
 
 @property (nonatomic,copy) NSString * subbranchBankName;
+
+@property (nonatomic,copy) NSString * restAmount;
 @end
