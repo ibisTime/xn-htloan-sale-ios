@@ -65,7 +65,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"单位名称",@"单位地址",@"所属行业",@"单位经济性质",@"主要收入来源",@"职业",@"职称",@"月收入(元)",@"何时进入现单位工作",@"工作描述及还款来源分析"];
+    NSArray *topArray = @[@"单位名称",@"单位地址",@"单位电话",@"所属行业",@"单位经济性质",@"职业",@"职称",@"月收入(元)",@"何时进入现单位工作",@"工作描述及还款来源分析",@"员工数量",@"企业月产值(万元)"];
     
     cell.topLbl.text = topArray[indexPath.row];
     NSMutableArray *dataArray = [NSMutableArray array];
@@ -84,19 +84,23 @@
             }
         }
     }
-//    right3Label12.text = [dvalueArray componentsJoinedByString:@","];
-//    [[BaseModel user]setParentKey:@"work_belong_industry" setDkey: self.model.creditUser[@"workBelongIndustry"]];
-    
+   
+ 
     NSArray *bottomArray = @[[BaseModel convertNull:self.model.creditUser[@"companyName"]],
-                             [BaseModel convertNull:self.model.creditUser[@"companyAddress"]],
+                             [NSString stringWithFormat:@"%@ %@ %@ %@",[BaseModel convertNull:self.model.creditUser[@"companyProvince"]],[BaseModel convertNull:self.model.creditUser[@"companyCity"]],[BaseModel convertNull:self.model.creditUser[@"companyArea"]],[BaseModel convertNull:self.model.creditUser[@"companyAddress"]]],
+                             [BaseModel convertNull:self.model.creditUser[@"companyContactNo"]],
                              [BaseModel convertNull: [[BaseModel user]setParentKey:@"work_belong_industry" setDkey: self.model.creditUser[@"workBelongIndustry"]]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"work_company_property" setDkey:self.model.creditUser[@"workCompanyProperty"]]],
-                             [BaseModel convertNull:[dvalueArray componentsJoinedByString:@","]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"work_profession" setDkey:self.model.creditUser[@"workProfession"]]],
+                             
                              [BaseModel convertNull:self.model.creditUser[@"postTitle"]],
                              [BaseModel convertNull: [NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"monthIncome"]  floatValue]/1000]],
                              [BaseModel convertNull:self.model.creditUser[@"workDatetime"]],
-                             [BaseModel convertNull:self.model.creditUser[@"otherWorkNote"]]];
+                             [BaseModel convertNull:self.model.creditUser[@"otherWorkNote"]],
+                             [BaseModel convertNull:self.model.creditUser[@"employeeQuantity"]],
+                             [BaseModel convertNull:self.model.creditUser[@"enterpriseMonthOutput"]]
+                             ];
+    
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
     cell.bottomLbl.text = bottomArray[indexPath.row];
