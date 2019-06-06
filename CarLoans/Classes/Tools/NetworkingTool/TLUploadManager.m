@@ -138,7 +138,6 @@
         if (failure) {
             failure(error);
         }
-        
         [SVProgressHUD dismiss];
     }];
 
