@@ -48,9 +48,6 @@
         if (self.isGps == YES) {
             k = 13;
         }else{
-//            if (self.isFinancial == YES) {
-//                k = 100;
-//            }else
                 k = 11;
         }
         if (self.isCar == YES) {
@@ -79,9 +76,9 @@
         }else if(k == 11)
         {
             
-            UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 279+70+90, SCREEN_WIDTH, 1)];
-            lineView2.backgroundColor = LineBackColor;
-            [self addSubview:lineView2];
+//            UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 279+70+90, SCREEN_WIDTH, 1)];
+//            lineView2.backgroundColor = LineBackColor;
+//            [self addSubview:lineView2];
             _button = [UIButton buttonWithTitle:@"提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:14];
 //            _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290+60+90, 100, 30);
             _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290, 100, 30);

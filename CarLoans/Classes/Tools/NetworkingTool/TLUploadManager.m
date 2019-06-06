@@ -134,10 +134,11 @@
         } option:nil];
 
     } failure:^(NSError *error) {
-
+        [TLAlert alertWithError:@"上传失败"];
         if (failure) {
             failure(error);
         }
+        
         [SVProgressHUD dismiss];
     }];
 

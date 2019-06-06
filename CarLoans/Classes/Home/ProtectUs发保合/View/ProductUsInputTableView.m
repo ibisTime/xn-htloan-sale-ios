@@ -115,20 +115,17 @@
         cell.collectDataArray = self.carSyx;
         return cell;
     }
-//    if (indexPath.section == 5) {
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        cell.selectStr = @"绿大本扫描件";
+    if ([self.model.bizType isEqualToString:@"1"]) {
+        cell.selectStr = @"绿大本";
+    }else if([self.model.bizType isEqualToString:@"0"]){
+        cell.selectStr = @"合格证";
+    }
         cell.collectDataArray = self.carHgzPic;
         return cell;
-//    }
-//    CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.delegate = self;
-//    cell.selectStr = @"其它资料";
-//    cell.collectDataArray = self.carSettleOtherPdf;
-//    return cell;
+
 
 }
 
@@ -227,7 +224,14 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
-        NSArray *array = @[@"*发票",@"*交强险",@"*商业险",@"*绿大本扫描件"];
+        NSArray *array = [NSArray array];
+        if ([self.model.bizType isEqualToString:@"1"]) {
+            array = @[@"*发票",@"*交强险",@"*商业险",@"绿大本"];
+        }
+        else if ([self.model.bizType isEqualToString:@"0"]){
+            array = @[@"*发票",@"*交强险",@"*商业险",@"*合格证"];
+        }
+        
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];
@@ -254,7 +258,12 @@
             [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:102 selectRowState:@"add"];
         }
     }
-    else if ([str isEqualToString:@"绿大本扫描件"]) {
+    else if ([str isEqualToString:@"绿大本"]) {
+        if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+            [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:103 selectRowState:@"add"];
+        }
+    }
+    else if ([str isEqualToString:@"合格证"]) {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
             [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:103 selectRowState:@"add"];
         }
@@ -286,7 +295,12 @@
            [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos3"];
         }
     }
-    else if ([str isEqualToString:@"绿大本扫描件"]) {
+    else if ([str isEqualToString:@"绿大本"]) {
+        if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+            [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos4"];
+        }
+    }
+    else if ([str isEqualToString:@"合格证"]) {
         if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
             [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"DeletePhotos4"];
         }

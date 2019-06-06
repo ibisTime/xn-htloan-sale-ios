@@ -74,6 +74,7 @@
 -(void)setModel:(SurveyModel *)model
 {
     _model = model;
+    stateLbl.text = [[BaseModel user]note:model.curNodeCode];
     codeLbl.text = model.code;
     
     nameLbl.text = model.creditUser[@"userName"];
@@ -99,11 +100,12 @@
 
 -(void)setDataArray:(NSArray *)dataArray
 {
-    for (int i = 0; i < dataArray.count; i ++) {
-        if ([dataArray[i][@"dkey"] isEqualToString:_model.status]) {
-            stateLbl.text = dataArray[i][@"dvalue"];
-        }
-    }
+    
+//    for (int i = 0; i < dataArray.count; i ++) {
+//        if ([dataArray[i][@"dkey"] isEqualToString:_model.status]) {
+//            stateLbl.text = dataArray[i][@"dvalue"];
+//        }
+//    }
 }
 
 @end

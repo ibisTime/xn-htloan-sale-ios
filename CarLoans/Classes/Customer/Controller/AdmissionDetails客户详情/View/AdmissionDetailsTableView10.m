@@ -35,20 +35,20 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 10;
+    return 14;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 9) {
+    if (indexPath.row == 13) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 9) {
+        if (indexPath.row == 13) {
             cell.collectDataArray = [self.model.bankLoan[@"receiptPdf"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"收款凭证";
         }
@@ -63,19 +63,26 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"卡号",
+    NSArray *topArray = @[@"收款银行",
+                          @"收款卡号",
+                          @"还款银行",
+                          @"还款卡号",
                           @"放款日期",
-                          @"银行账单日",
+                          @"账单还款日",
                           @"银行还款日",
                           @"公司还款日",
                           @"首期还款日期",
                           @"首期月供金额",
                           @"每期月供金额",
                           @"收款账号",
+                          @"提交时间",
                           @""];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[[BaseModel convertNull:self.model.bankLoan[@"repayBankcardNumber"]],
+    NSArray *bottomArray = @[[NSString stringWithFormat:@"%@ %@",[BaseModel convertNull: self.model.bankLoan[@"receiptBankName"]],[BaseModel convertNull:self.model.bankLoan[@"receiptSubbranch"]]],
+                             [BaseModel convertNull:self.model.bankLoan[@"receiptBankcardNumber"]],
+                             [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull: self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
+                             [BaseModel convertNull:self.model.bankLoan[@"repayBankcardNumber"]],
                              [BaseModel convertNull:self.model.bankLoan[@"bankFkDate"]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBillDate"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBankDate"]]],
@@ -84,6 +91,7 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.bankLoan[@"repayFirstMonthAmount"] floatValue]/1000]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.bankLoan[@"repayMonthAmount"] floatValue]/1000]],
                              [BaseModel convertNull:self.model.bankLoan[@"receiptBankcardNumber"]],
+                             [BaseModel convertNull:[self.model.bankLoan[@"bankCommitDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              @""];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
     cell.bottomLbl.numberOfLines = 0;
@@ -104,7 +112,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 9) {
+    if (indexPath.row == 13) {
         float numberToRound;
         int result;
         numberToRound = ([self.model.bankLoan[@"receiptPdf"] componentsSeparatedByString:@"||"].count)/3.0;

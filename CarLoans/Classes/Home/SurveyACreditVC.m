@@ -61,11 +61,9 @@
             [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
                 WGLog(@"%@",key);
                 [weakSelf setImage:image setData:key];
-
             } failure:^(NSError *error) {
-
+                [TLAlert alertWithInfo:@"上传失败"];
             }];
-
         };
     }
     return _imagePicker;

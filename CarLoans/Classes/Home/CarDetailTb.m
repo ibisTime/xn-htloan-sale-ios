@@ -107,7 +107,7 @@
     else if (indexPath.section ==3){
         SurverCertificateCell *cell = [tableView dequeueReusableCellWithIdentifier:SurverCertificate forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *array = @[@"机动车登记证书",@"批单",@"车钥匙",@"大本扫描件",@"车辆驾驶证扫描件",@"完税证明扫描件"];
+        NSArray *array = @[@"机动车登记证书",@"批单",@"车钥匙",@"绿大本",@"车辆驾驶证",@"完税证明"];
         cell.name = array[indexPath.row];
         switch (indexPath.row) {
             case 0:

@@ -37,7 +37,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 10;
+    return 12;
 }
 
 #pragma mark -- tableView
@@ -50,7 +50,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"姓名",@"手机号",@"身份证号",@"性别",@"年龄",@"学历",@"户籍地地址",@"户籍地邮编",@"工作单位名称",@"工作单位地址",@"工作f单位电话"];
+    NSArray *topArray = @[@"姓名",@"与主贷人关系",@"手机号",@"身份证号",@"性别",@"年龄",@"学历",@"户籍地地址",@"户籍地邮编",@"工作单位名称",@"工作单位地址",@"工作单位电话"];
     cell.topLbl.text = topArray[indexPath.row];
     NSDictionary  * dic = [[NSDictionary alloc]init];
     for (int i = 0; i < self.model.creditUserList.count; i ++) {
@@ -61,6 +61,7 @@
     
     
     NSArray *bottomArray = @[[BaseModel convertNull:dic[@"userName"]],
+                             [BaseModel convertNull:[[BaseModel user] setParentKey:@"credit_user_relation" setDkey:dic[@"relation"]]],
                              [BaseModel convertNull:dic[@"mobile"]],
                              [BaseModel convertNull:dic[@"idNo"]],
                              [BaseModel convertNull:dic[@"gender"]],

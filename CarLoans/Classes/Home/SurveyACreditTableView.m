@@ -160,8 +160,9 @@
             selectButton.hidden= NO;
             [cell addSubview:selectButton];
             if (self.secondCarReport.length > 0) {
+                [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
                  [selectButton addTarget:self action:@selector(SelectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-                _photoBtn.userInteractionEnabled = NO;
+                _photoBtn.userInteractionEnabled = YES;
                 selectButton.hidden = NO;
             }else{
                 [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -222,7 +223,8 @@
 -(void)appraisalReportBtnClick:(UIButton *)sender
 {
     if (self.secondCarReport.length > 0) {
-        return;
+//        return;
+        [[BaseModel user]AlterImageByUrl:self.secondCarReport];
     }
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
         [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:0 selectRowState:@"add"];
@@ -423,10 +425,31 @@
 //身份证
 -(void)UploadIdCardBtn:(UIButton *)sender
 {
-    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
-        
-        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
-        
+    NSLog(@"sender %ld",sender.tag);
+    if (sender.tag == 50) {
+        if (self.xszFront.length > 0) {
+            [[BaseModel user]AlterImageByUrl:self.xszFront];
+        }
+        else{
+            if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+                
+                [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+                
+            }
+        }
     }
+    if (sender.tag == 51) {
+        if (self.xszReverse.length > 0) {
+            [[BaseModel user]AlterImageByUrl:self.xszReverse];
+        }
+        else{
+            if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+                
+                [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"IDCard"];
+                
+            }
+        }
+    }
+    
 }
 @end

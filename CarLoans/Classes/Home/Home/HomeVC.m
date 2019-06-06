@@ -687,6 +687,16 @@
     } failure:^(NSError *error) {
         
     }];
+    
+    
+    TLNetworking * http4 = [TLNetworking new];
+    http4.code = @"632007";
+    [http4 postWithSuccess:^(id responseObject) {
+        [USERDEFAULTS setObject:responseObject[@"data"] forKey:ADVANCECARD];
+    } failure:^(NSError *error) {
+        
+    }];
+    
 }
 
 

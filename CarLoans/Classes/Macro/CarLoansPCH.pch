@@ -61,6 +61,7 @@
 #define BOUNCEDDATA @"BouncedData"
 #define COMPANYNODE @"CompanyNode"
 #define ENTERLOCATION @"EnterLocation"
+#define ADVANCECARD @"advanceCardCode"
 #import "NSString+Check.h"
 #import "SurveyModel.h"
 #define ADDADPEOPLENOTICE @"ADDADPEOPLENOTICE"

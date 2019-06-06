@@ -35,7 +35,7 @@
         if ([self.model.attachments[i][@"kname"] isEqualToString:@"pledge_user_id_card_reverse"]) {
             self.tableView.idNoReverse = self.model.attachments[i][@"url"];
         }
-        if ([self.model.attachments[i][@"kname"] isEqualToString:@"car_big_smj"]) {
+        if ([self.model.attachments[i][@"kname"] isEqualToString:@"green_big_smj"]) {
             self.tableView.BankVideoArray = [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
         }
         if ([self.model.attachments[i][@"kname"] isEqualToString:@"car_key"]) {

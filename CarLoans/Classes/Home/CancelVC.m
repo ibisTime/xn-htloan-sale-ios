@@ -18,7 +18,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initTableView];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630521";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }
+    else{
+        http.parameters[@"code"] = self.model.code;
+    }
+    
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SettlementAuditModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
     
     UIButton * button = [UIButton buttonWithTitle:@"确认" titleColor:kWhiteColor backgroundColor:MainColor titleFont:18 cornerRadius:3];
     [button addTarget:self action:@selector(click) forControlEvents:(UIControlEventTouchUpInside)];
@@ -35,7 +49,7 @@
 
 -(void)selectTime
 {
-    WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute CompleteBlock:^(NSDate *selectDate) {
+    WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
         self.tableView.date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
         date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
         NSLog(@"%@",self.tableView.date);

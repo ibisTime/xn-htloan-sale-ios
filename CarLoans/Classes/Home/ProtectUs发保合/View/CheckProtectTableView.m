@@ -80,10 +80,11 @@
         }
         if (indexPath.row == 3) {
             cell.collectDataArray = self.carHgzPic;
-            cell.selectStr = @"绿大本扫描件";
+            if ([self.model.bizType isEqualToString: @"1"]) {
+                cell.selectStr = @"绿大本";
+            }else
+                cell.selectStr = @"合格证";
         }
-//        cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"red_card_pic"] componentsSeparatedByString:@"||"];
-//        cell.selectStr = @"红卡照片";
         return cell;
     }
     

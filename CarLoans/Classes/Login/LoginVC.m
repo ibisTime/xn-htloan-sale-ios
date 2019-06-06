@@ -57,10 +57,11 @@
 {
     if (sender.tag == 100) {
         ChangePasswordVC *vc = [ChangePasswordVC new];
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-        vc.state = @"100";
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-        [self presentViewController:nav animated:YES completion:nil];
+//        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//        vc.state = @"100";
+//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+//        [self presentViewController:nav animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
 
     }
     else

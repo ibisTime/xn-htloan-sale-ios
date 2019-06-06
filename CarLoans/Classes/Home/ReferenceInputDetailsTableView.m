@@ -157,7 +157,7 @@
     NSArray *placArray = @[@"请输入使用占比",@"请输入说明"];
     cell.nameText = placArray[indexPath.row];
     if (indexPath.row == 0) {
-        cell.nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+        cell.nameTextField.keyboardType = UIKeyboardTypeDecimalPad;
         if ([cell.nameTextField.text isEqualToString:@""] && [self.creditCardOccupation floatValue] != 0) {
             cell.nameTextField.text =[NSString stringWithFormat:@"%.f", [self.creditCardOccupation floatValue] * 100];
         }

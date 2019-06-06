@@ -80,7 +80,7 @@
 {
     UIImageView *image = [self viewWithTag:500];
     UIButton *btn = [self viewWithTag:5000];
-    if ([BaseModel isBlankString:idNoFront] == NO) {
+    if (idNoFront.length > 0) {
         btn.hidden = NO;
         image.hidden = NO;
         [image sd_setImageWithURL:[NSURL URLWithString:[idNoFront convertImageUrl]]];
@@ -96,7 +96,7 @@
 {
     UIImageView *image = [self viewWithTag:501];
     UIButton *btn = [self viewWithTag:5001];
-    if ([BaseModel isBlankString:idNoReverse] == NO) {
+    if (idNoReverse.length > 0) {
         btn.hidden = NO;
         image.hidden = NO;
         [image sd_setImageWithURL:[NSURL URLWithString:[idNoReverse convertImageUrl]]];

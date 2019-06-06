@@ -37,7 +37,7 @@
                 [weakSelf setImage:image setData:key];
                 
             } failure:^(NSError *error) {
-                
+                [TLAlert alertWithInfo:@"上传失败"];
             }];
         };
     }

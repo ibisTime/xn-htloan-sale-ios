@@ -82,6 +82,8 @@
                                   [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]
                                   ];
         cell.TextFidStr = detailsArray[indexPath.row];
+//        cell.nameTextField.textColor = kBlackColor;
+        [cell.nameTextField setTextColor:kBlackColor];
         return cell;
     }
     

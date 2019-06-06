@@ -101,7 +101,8 @@
     }else if ( [model.curNodeCode isEqualToString:@"f9"]){
         
         CheckCarVC * vc = [[CheckCarVC alloc]init];
-        vc.model = self.model[index];
+//        vc.model = self.model[index];
+        vc.code = self.model[index].code;
         [self.navigationController pushViewController:vc animated:YES];
     }
 

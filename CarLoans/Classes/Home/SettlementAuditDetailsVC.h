@@ -10,4 +10,5 @@
 #import "SettlementAuditModel.h"
 @interface SettlementAuditDetailsVC : BaseViewController
 @property (nonatomic , strong)SettlementAuditModel *model;
+@property (nonatomic,strong) NSString * code;
 @end

@@ -357,6 +357,16 @@
     }
     return dkey;
 }
+-(NSString *)ReturnBankcardNumberByCode:(NSString *)code{
+    NSString * name;
+    NSArray *array = [USERDEFAULTS objectForKey:ADVANCECARD];
+    for (int i = 0; i < array.count; i++) {
+        if ([array[i][@"code"] isEqualToString:code]) {
+            name =[NSString stringWithFormat:@"%@ %@ %@",array[i][@"bankName"],array[i][@"subbranch"],array[i][@"bankcardNumber"]];
+        }
+    }
+    return name;
+}
 + (NSString *)getCurrentTime {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     // yyyy-MM-dd 可自定义，也可以换成 yyyy-MM-dd HH:MM:SS

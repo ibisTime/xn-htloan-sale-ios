@@ -40,45 +40,45 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([self.model.bizType isEqualToString:@"1"]) {
-        return 30;
+        return 35;
     }
-    return 28;
+    return 33;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 26 || indexPath.row == 27 ) {
+    if (indexPath.row == 31 || indexPath.row == 32 ) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 26) {
+        if (indexPath.row == 31) {
             cell.collectDataArray =  [[self FindUrlByKname:@"car_pic"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"车辆照片";
         }
-        if (indexPath.row == 27) {
+        if (indexPath.row == 32) {
             cell.collectDataArray = [[self FindUrlByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"合格证照片";
         }
         return cell;
     }
-    if (indexPath.row == 28) {
+    if (indexPath.row == 33) {
         static NSString *CellIdentifier = @"PhotoCell123";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 28) {
+        if (indexPath.row == 33) {
             cell.collectDataArray =  [[self FindUrlByKname:@"second_car_report"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"二手车评估报告";
         }
         return cell;
     }
-    if (indexPath.row == 29) {
+    if (indexPath.row == 34) {
         static NSString *CellIdentifier = @"AdmiissionDetailsIDCardCellCell";
         AdmiissionDetailsIDCardCellCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         
@@ -103,9 +103,12 @@
     _cell = cell;
     NSArray *topArray = @[@"业务种类",
                           @"贷款期限",
+                          @"银行利率",
                           @"贷款产品",
                           @"是否垫资",
                           @"是否融资",
+                          @"是否安装GPS",
+                          @"是否我司续保",
                           @"所属区域",
                           @"机动车销售公司",
                           @"开票单位",
@@ -119,6 +122,9 @@
                           @"GPS费用(元)",
                           @"公证费(元)",
                           @"其他费用(元)",
+                          @"油补公里数",
+                          @"油补(元)",
+                          @"厂家贴息",
                           @"车辆类型",
                           @"车辆品牌",
                           @"车系",
@@ -130,10 +136,13 @@
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNull:[NSString stringWithFormat:@"%@",[self.model.bizType isEqualToString:@"1"]?@"二手车":@"新车" ]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%@", self.model.loanInfo[@"periods"]]],
+                             [BaseModel convertNull:[[BaseModel user]setParentKey:@"loan_period" setDkey:[NSString stringWithFormat:@"%@",self.model.loanInfo[@"periods"]]]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%@", self.model.loanInfo[@"bankRate"]]],
                              [BaseModel convertNull: self.model.loanInfo[@"loanProductName"]] ,
                              [self.model.isAdvanceFund isEqualToString:@"1"]?@"是":[self.model.isAdvanceFund isEqualToString:@"0"]?@"否":@"",
                              [self.model.isFinacing isEqualToString:@"1"]?@"是":[self.model.isAdvanceFund isEqualToString:@"0"]?@"否":@"",
+                             [self.model.isGpsAz isEqualToString:@"1"]?@"是":[self.model.isGpsAz isEqualToString:@"0"]?@"否":@"",
+                             [self.model.isPlatInsure isEqualToString:@"1"]?@"是":[self.model.isPlatInsure isEqualToString:@"0"]?@"否":@"",
                              [BaseModel convertNull:[[BaseModel user] setParentKey:@"region_belong" setDkey:self.model.carInfoRes[@"region"]]],
                              [BaseModel convertNull:[[BaseModel user]setCompanyCode:self.model.carInfoRes[@"vehicleCompanyName"]]],
                              [BaseModel convertNull:self.model.carInfoRes[@"invoiceCompany"]],
@@ -147,6 +156,10 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"gpsFee"] floatValue]/1000]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"authFee"] floatValue]/1000]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"otherFee"] floatValue]/1000]],
+                             [BaseModel convertNull:self.model.carInfoRes[@"oilSubsidyKil"]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"oilSubsidy"] floatValue]/1000]],
+                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.carInfoRes[@"carDealerSubsidy"] floatValue]/1000]],
+                             
                              [BaseModel convertNull: [[BaseModel user]setParentKey:@"car_type" setDkey:self.model.carInfoRes[@"carType"]]],
                              [BaseModel convertNull:self.model.carInfoRes[@"carBrand"]],
                              [BaseModel convertNull:self.model.carInfoRes[@"carSeries"]],
@@ -184,7 +197,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 26) {
+    if (indexPath.row == 31) {
         NSArray * array = [[self FindUrlByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"];
         float numberToRound;
         int result;
@@ -192,7 +205,7 @@
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
     }
-    if (indexPath.row == 27) {
+    if (indexPath.row == 32) {
         NSArray * array = [[self FindUrlByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"];
         float numberToRound;
         int result;
@@ -200,15 +213,18 @@
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
     }
-    if (indexPath.row == 28) {
-        NSArray * array = [[self FindUrlByKname:@"second_car_report"] componentsSeparatedByString:@"||"];
-        float numberToRound;
-        int result;
-        numberToRound = (array.count + 0)/3.0;
-        result = (int)ceilf(numberToRound);
-        return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
+    if (indexPath.row == 33) {
+        if ([self.model.bizType isEqualToString:@"1"]) {
+            NSArray * array = [[self FindUrlByKname:@"second_car_report"] componentsSeparatedByString:@"||"];
+            float numberToRound;
+            int result;
+            numberToRound = (array.count + 0)/3.0;
+            result = (int)ceilf(numberToRound);
+            return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
+        }
+        return 0;
     }
-    if (indexPath.row == 29) {
+    if (indexPath.row == 34) {
         NSArray * array = @[@"",@""];
         float numberToRound;
         int result;

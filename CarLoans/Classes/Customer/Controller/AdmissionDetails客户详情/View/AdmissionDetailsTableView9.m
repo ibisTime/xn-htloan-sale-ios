@@ -35,20 +35,20 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 11;
+    return 12;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 9) {
+    if (indexPath.row == 10) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 9) {
+        if (indexPath.row == 10) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"advance_bill_pdf"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"水单";
         }
@@ -72,6 +72,7 @@
                           @"银行服务费",
                           @"垫资日期",
                           @"垫资金额",
+                          @"垫资账号",
                           @"",
                           @"垫资说明"];
     cell.topLbl.text = topArray[indexPath.row];
@@ -85,6 +86,7 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.carInfoRes[@"bankFee"] floatValue]/1000]],
                              [BaseModel convertNull:[self.model.advance[@"advanceFundDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.advance[@"advanceFundAmount"] floatValue]/1000]],
+                             [BaseModel convertNull:[[BaseModel user]ReturnBankcardNumberByCode:self.model.advance[@"advanceCardCode"]]],
                              @"",
                              [BaseModel convertNull:self.model.advance[@"advanceNote"]]];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);
@@ -106,7 +108,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 9) {
+    if (indexPath.row == 10) {
         float numberToRound;
         int result;
         numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"advance_bill_pdf"] componentsSeparatedByString:@"||"].count)/3.0;

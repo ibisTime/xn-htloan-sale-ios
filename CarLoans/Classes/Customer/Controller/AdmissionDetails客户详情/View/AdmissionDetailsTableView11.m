@@ -69,15 +69,15 @@
         }
         if (indexPath.row == 13) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_big_smj"] componentsSeparatedByString:@"||"];
-            cell.selectStr = @"大本扫描件";
+            cell.selectStr = @"绿大本";
         }
         if (indexPath.row == 14) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"];
-            cell.selectStr = @"车辆行驶证扫描件";
+            cell.selectStr = @"车辆行驶证";
         }
         if (indexPath.row == 15) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"duty_paid_prove_smj"]componentsSeparatedByString:@"||"];
-            cell.selectStr = @"完税证明扫描件";
+            cell.selectStr = @"完税证明";
         }
         return cell;
         
@@ -89,7 +89,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"抵押代理人",@"抵押代理人身份证",@"",@"抵押地点",@"抵押时间",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"提交时间",
+    NSArray *topArray = @[@"抵押代理人",@"抵押代理人身份证",@"",@"抵押地点",@"抵押时间",@"银行账单日",@"银行还款日",@"公司还款日",@"补充说明",@"车牌号",@"",@"",@"",@"",@"",@"",@"车辆抵押提交时间",
                           @"落户日期"];
     cell.topLbl.text = topArray[indexPath.row];
     
@@ -109,7 +109,7 @@
                              @"",
                              @"",
                              @"",
-                             [BaseModel convertNull:[self.model.carPledge[@"pledgeBankCommitDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
+                             [BaseModel convertNull:[self.model.carPledge[@"pledgeDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              [BaseModel convertNull:[self.model.carInfoRes[@"carSettleDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]]
                              ];
     cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, 14);

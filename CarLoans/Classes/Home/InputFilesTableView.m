@@ -66,9 +66,6 @@
     else
         cell.button.hidden = YES;
     
-    
-    
-//    [cell.button setTitle:[[BaseModel user]note:model.enterNodeCode] forState:(UIControlStateNormal)];
     [cell.button addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.button.tag = indexPath.row;
     

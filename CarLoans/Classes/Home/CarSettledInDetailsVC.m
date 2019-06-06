@@ -76,7 +76,7 @@
                 [weakSelf setImage:image setData:key];
 
             } failure:^(NSError *error) {
-
+                [TLAlert alertWithInfo:@"上传失败"];
             }];
         };
     }
@@ -251,7 +251,7 @@
         return;
     }
     if (_greenDataArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传绿大本扫描件图片"];
+        [TLAlert alertWithInfo:@"请上传绿大本"];
         return;
     }
 //

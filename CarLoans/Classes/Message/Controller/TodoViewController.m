@@ -73,6 +73,11 @@
 
 //
 #import "CheckFileVC.h"
+
+#import "DepartmentAuditVC.h"
+#import "SettlementAuditDetailsVC.h"
+#import "ManagerAuditVC.h"
+#import "CancelVC.h"
 @interface TodoViewController ()<RefreshDelegate>
 @property (nonatomic , strong)MessageTableView *tableView;
 
@@ -394,6 +399,42 @@
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
+        if ([node isEqualToString:@"j2"]) {
+            DepartmentAuditVC * vc = [DepartmentAuditVC new];
+            vc.code = messagecode;
+            vc.title = @"清欠催收部审核";
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([node isEqualToString:@"j3"]) {
+            SettlementAuditDetailsVC *vc = [SettlementAuditDetailsVC new];
+            vc.code = messagecode;
+            vc.title = @"驻行人员审核";
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([node isEqualToString:@"j4"]) {
+            ManagerAuditVC *vc = [ManagerAuditVC new];
+            vc.code = messagecode;
+            vc.title = @"总经理审核";
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([node isEqualToString:@"j5"]) {
+            ManagerAuditVC *vc = [ManagerAuditVC new];
+            vc.code = messagecode;
+            vc.title = @"财务审核";
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([node isEqualToString:@"j6"]) {
+            CancelVC *vc = [CancelVC new];
+            vc.code = messagecode;
+            vc.title = @"财务审核";
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
         
     } failure:^(NSError *error) {
 

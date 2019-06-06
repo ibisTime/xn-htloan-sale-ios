@@ -95,7 +95,7 @@
                     [weakSelf setImage:image setData:key];
                     
                 } failure:^(NSError *error) {
-                    
+                    [TLAlert alertWithInfo:@"上传失败"];
                 }];
             }
             
@@ -283,6 +283,10 @@
                 self.AgentidNoReverse = self.model.attachments[i][@"url"];
                 self.tableView.idNoReverse = self.model.attachments[i][@"url"];
             }
+            if ([self.model.attachments[i][@"kname"] isEqualToString:@"green_big_smj"]) {
+                [self.BankVideoArray addObject: self.model.attachments[i][@"url"]];
+                self.tableView.BankVideoArray = self.BankVideoArray;
+            }
         }
         [self.view addSubview:self.tableView];
     } failure:^(NSError *error) {
@@ -451,7 +455,7 @@
     }
    
     if (self.BankVideoArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传大本扫描件图片"];
+        [TLAlert alertWithInfo:@"请上传绿大本"];
         return;
     }
     if (self.CompanyVideoArray.count == 0) {
@@ -469,12 +473,12 @@
         return;
     }
     if (self.BankContractArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传车辆行驶证扫描件"];
+        [TLAlert alertWithInfo:@"请上传车辆行驶证"];
 
         return;
     }
     if (self.CompanyContractArray.count == 0) {
-          [TLAlert alertWithInfo:@"请上传完税证明扫描件"];
+          [TLAlert alertWithInfo:@"请上传完税证明"];
         return;
     }
     

@@ -31,7 +31,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray * array = @[@"任务名称",@"任务时效"];
+    NSArray * array = @[@"任务名称",@"任务时效(小时)"];
     cell.name = array[indexPath.row];
     cell.tag = 1000 + indexPath.row;
     cell.symbolLabel.hidden = YES;

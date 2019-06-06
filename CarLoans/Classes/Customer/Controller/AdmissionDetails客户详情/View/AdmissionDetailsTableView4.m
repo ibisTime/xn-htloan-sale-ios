@@ -36,25 +36,25 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 33;
+    return 35;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row == 23 || indexPath.row == 24) {
+    if (indexPath.row == 25 || indexPath.row == 26) {
         static NSString *CellIdentifier = @"PhotoCell";
         PhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
         if (cell == nil) {
             cell = [[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (indexPath.row == 23) {
+        if (indexPath.row == 25) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"house_contract"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"购房合同及房产本";
         }
-        if (indexPath.row == 24) {
+        if (indexPath.row == 26) {
             cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"house_picture_apply"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"家访照片";
         }
@@ -89,6 +89,8 @@
                           @"民族",
                           @"学历",
                           @"政治面貌",
+                          @"职业",
+                          @"职称",
                           @"家庭人口",
                           @"联系电话",
                           @"现居住地址",
@@ -101,6 +103,7 @@
                           @"有无房产",
                           @"有无驾照",
                           @"现有车辆",
+                          
                           @"",@"",
                           @"联系人1姓名",
                           @"联系人1性别",
@@ -144,6 +147,9 @@
                              [BaseModel convertNull: self.model.creditUser[@"nation"]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"education" setDkey:self.model.creditUser[@"education"]]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"politics" setDkey:self.model.creditUser[@"political"]]],
+                             [BaseModel convertNull:[[BaseModel user]setParentKey:@"work_profession" setDkey:self.model.creditUser[@"workProfession"]]],
+                             
+                             [BaseModel convertNull:self.model.creditUser[@"postTitle"]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@", self.model.creditUser[@"familyNumber"]]],
                              [BaseModel convertNull: self.model.creditUser[@"familyPhone"]],
                              [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:self.model.creditUser[@"nowAddressProvince"]],[BaseModel convertNull:self.model.creditUser[@"nowAddressCity"]],[BaseModel convertNull:self.model.creditUser[@"nowAddressArea"]],[BaseModel convertNull:self.model.creditUser[@"nowAddress"]]],
@@ -185,14 +191,14 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 24) {
+    if (indexPath.row == 26) {
         float numberToRound;
         int result;
         numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"house_picture_apply"] componentsSeparatedByString:@"||"].count)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 45;
     }
-    if (indexPath.row == 23) {
+    if (indexPath.row == 25) {
         float numberToRound;
         int result;
         numberToRound = ([[[BaseModel user]FindUrlWithModel:self.model ByKname:@"house_contract"] componentsSeparatedByString:@"||"].count)/3.0;

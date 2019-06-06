@@ -58,4 +58,5 @@
 -(NSString *)setCompanyCode:(NSString *)code;
 -(void)ReturnsEnterLocation:(NSString *)parentKey;
 -(void)AlterImageByUrl:(NSString *)url;
+-(NSString *)ReturnBankcardNumberByCode:(NSString *)code;
 @end

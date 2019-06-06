@@ -61,8 +61,15 @@
             cell.selectStr = @"商业险";
         }
         if (indexPath.row == 5) {
-            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"];
-            cell.selectStr = @"绿大本扫描件";
+            if ([self.model.bizType isEqualToString:@"1"]) {
+                cell.selectStr = @"绿大本";
+                cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"];
+            }
+            if ([self.model.bizType isEqualToString:@"0"]) {
+                cell.selectStr = @"合格证";
+                cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"];
+            }
+            
         }
         
         return cell;
@@ -114,8 +121,15 @@
         case 4:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_syx"] componentsSeparatedByString:@"||"]];
             break;
-        case 5:
-            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"]];
+        case 5:{
+            if ([self.model.bizType isEqualToString:@"1"]) {
+                return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"]];
+            }
+            if ([self.model.bizType isEqualToString:@"0"]) {
+                return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_hgz_pic"] componentsSeparatedByString:@"||"]];
+            }
+        }
+            
             break;
         default:
             break;

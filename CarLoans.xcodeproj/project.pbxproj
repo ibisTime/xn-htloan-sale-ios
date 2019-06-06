@@ -3134,7 +3134,7 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		3662016322924AAB0010C78A /* CheckRepay还款业务查询 */ = {
+		3662016322924AAB0010C78A /* CheckRepay还款业务管理 */ = {
 			isa = PBXGroup;
 			children = (
 				36620180229270ED0010C78A /* FoewardRepay提前还款 */,
@@ -3143,7 +3143,7 @@
 				3662016522924ACD0010C78A /* View */,
 				3662016422924AC40010C78A /* Controller */,
 			);
-			name = "CheckRepay还款业务查询";
+			name = "CheckRepay还款业务管理";
 			sourceTree = "<group>";
 		};
 		3662016422924AC40010C78A /* Controller */ = {
@@ -5255,7 +5255,7 @@
 				7A74D97320FDCA990096CA59 /* GPSInstallationGPS安装 */,
 				1F1EF2A42265CFD300EADA25 /* AttachmentPool附件池 */,
 				36F9E7222282834B009DAC65 /* InputFiles档案入档 */,
-				3662016322924AAB0010C78A /* CheckRepay还款业务查询 */,
+				3662016322924AAB0010C78A /* CheckRepay还款业务管理 */,
 				36620189229283AF0010C78A /* ConfirmRepay确认还款管理 */,
 				366201A42292BCB60010C78A /* CancelMortgage解除抵押 */,
 				366201B62292D1320010C78A /* Sign面签视频 */,

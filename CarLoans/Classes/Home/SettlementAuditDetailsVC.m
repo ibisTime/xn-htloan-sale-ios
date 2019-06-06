@@ -48,7 +48,7 @@
                 [weakSelf setImage:image setData:key];
 
             } failure:^(NSError *error) {
-
+                [TLAlert alertWithInfo:@"上传失败"];
             }];
         };
     }
@@ -66,11 +66,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    self.proveArray = [NSMutableArray array];
     self.proveDataArray = [NSMutableArray array];
-    [self initTableView];
-//    self.title = @"审核";
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630521";
+    if (self.code.length > 0) {
+        http.parameters[@"code"] = self.code;
+    }
+    else{
+        http.parameters[@"code"] = self.model.code;
+    }
+    
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SettlementAuditModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+    
     _date = @"";
 
 }

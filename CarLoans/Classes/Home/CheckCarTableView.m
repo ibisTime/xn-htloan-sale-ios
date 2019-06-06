@@ -250,7 +250,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
-        NSArray *array = @[@"*大本扫描件",@"*车钥匙",@"*车辆批单",@"*登记证书",@"*车辆行驶证扫描件",@"*完税证明扫描件"];
+        NSArray *array = @[@"*绿大本",@"*车钥匙",@"*车辆批单",@"*登记证书",@"*车辆行驶证",@"*完税证明"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section-2];
         [headView addSubview:nameLabel];

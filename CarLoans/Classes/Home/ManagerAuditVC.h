@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ManagerAuditVC : BaseViewController
 @property (nonatomic , strong)SettlementAuditModel *model;
+@property (nonatomic,strong) NSString * code;
 @end
 
 NS_ASSUME_NONNULL_END

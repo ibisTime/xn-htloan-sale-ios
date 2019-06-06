@@ -72,7 +72,7 @@
                 [weakSelf setImage:image setData:key];
                 
             } failure:^(NSError *error) {
-                
+                [TLAlert alertWithInfo:@"上传失败"];
             }];
             
         };
@@ -111,6 +111,7 @@
                 TLNetworking *http = [TLNetworking new];
                 http.isShowMsg = YES;
                 http.code = @"632007";
+                http.parameters[@"type"] = @"1";
                 [http postWithSuccess:^(id responseObject) {
                     self.bankArray = responseObject[@"data"];
                     [self BankLoadData];

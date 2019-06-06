@@ -58,12 +58,24 @@
     self.tableView.model = self.model;
     [self.view addSubview:self.tableView];
     
-    NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"];
-    if (str.length > 0) {
-        self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
-        self.tableView.carHgzPic = [str componentsSeparatedByString:@"||"];
-        [self.tableView reloadData];
+    if ([self.model.bizType isEqualToString:@"1"]) {
+        NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"];
+        if (str.length > 0) {
+            self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
+            self.tableView.carHgzPic = [str componentsSeparatedByString:@"||"];
+            [self.tableView reloadData];
+        }
     }
+    else if ([self.model.bizType isEqualToString:@"0"]){
+        NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_hgz_pic"];
+        if (str.length > 0) {
+            self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
+            self.tableView.carHgzPic = [str componentsSeparatedByString:@"||"];
+            [self.tableView reloadData];
+        }
+    }
+    
+    
     
     NSString * str1 = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_invoice"];
     if (str1.length > 0) {

@@ -47,7 +47,7 @@
                 [weakSelf setImage:image setData:key];
                 
             } failure:^(NSError *error) {
-                
+                [TLAlert alertWithInfo:@"上传失败"];
             }];
         };
     }
@@ -142,12 +142,23 @@
     }
     
     
-    NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"];
-    if (str.length > 0) {
-        self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
-        self.tableView.carHgzPic = [str componentsSeparatedByString:@"||"];
-        [self.tableView reloadData];
+    if ([self.model.bizType isEqualToString:@"1"]) {
+        NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"];
+        if (str.length > 0) {
+            self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
+            self.tableView.carHgzPic = [str componentsSeparatedByString:@"||"];
+            [self.tableView reloadData];
+        }
     }
+    else{
+        NSString * str = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_hgz_pic"];
+        if (str.length > 0) {
+            self.carHgzPic = [NSMutableArray arrayWithArray: [str componentsSeparatedByString:@"||"]];
+            self.tableView.carHgzPic = [str componentsSeparatedByString:@"||"];
+            [self.tableView reloadData];
+        }
+    }
+    
     
     NSString * str1 = [[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_invoice"];
     if (str1.length > 0) {
@@ -236,13 +247,7 @@
     
 }
 -(void)Confirm{
-//    if (self.policyDatetime.length < 1) {
-//        [TLAlert alertWithInfo:@"请选择保单开始日期"];
-//    }
-//    else if (self.policyDueDate.length < 1){
-//        [TLAlert alertWithInfo:@"请选择保单到期日期"];
-//    }
-//    else{
+
     if (self.policyDatetime.length == 0) {
         [TLAlert alertWithMsg:@"请选择保单开始日期"];
         return;
@@ -267,10 +272,19 @@
         [TLAlert alertWithMsg:@"请选择保单到期日期"];
         return;
     }
-    else if (self.carHgzPic.count == 0){
-        [TLAlert alertWithMsg:@"请选择绿大本扫描件"];
-        return;
+//    else if ([self.model.bizType isEqualToString:@"1"]) {
+//        if (self.carHgzPic.count == 0){
+//            [TLAlert alertWithMsg:@"请选择绿大本扫描件"];
+//            return;
+//        }
+//    }
+    else if ([self.model.bizType isEqualToString:@"0"]) {
+        if (self.carHgzPic.count == 0){
+            [TLAlert alertWithMsg:@"请选择合格证"];
+            return;
+        }
     }
+    
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"632131";
         http.parameters[@"code"] = self.model.code;
@@ -281,7 +295,14 @@
         http.parameters[@"carSyx"] = [self convertToStringWithArray:self.carSyx] ;
         http.parameters[@"carJqx"] = [self convertToStringWithArray:self.carJqx];
         http.parameters[@"carInvoice"] = [self convertToStringWithArray:self.carInvoice];
-        http.parameters[@"greenBigSmj"] = [self convertToStringWithArray:self.carHgzPic];
+    if ([self.model.bizType isEqualToString:@"1"]) {
+        if (self.carHgzPic.count > 0) {
+            http.parameters[@"greenBigSmj"] = [self convertToStringWithArray:self.carHgzPic];
+        }
+    }else{
+        http.parameters[@"carHgzPic"] = [self convertToStringWithArray:self.carHgzPic];
+    }
+    
         [http postWithSuccess:^(id responseObject) {
             NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] postNotification:notification];
@@ -289,7 +310,6 @@
         } failure:^(NSError *error) {
             
         }];
-//    }
     
 }
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
