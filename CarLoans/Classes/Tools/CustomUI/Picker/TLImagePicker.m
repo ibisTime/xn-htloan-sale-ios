@@ -28,26 +28,40 @@
 }
 
 - (void)picker {
-    
+    CarLoansWeakSelf;
     UIImagePickerController *pickCtrl = [[UIImagePickerController alloc] init];
     pickCtrl.delegate = self;
-    pickCtrl.allowsEditing = self.allowsEditing;
+    
 
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
         [action setValue:HGColor(138, 138, 138) forKey:@"titleTextColor"];
     }];
     UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
-
+        pickCtrl.allowsEditing = NO;
         pickCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self.vc presentViewController:pickCtrl animated:YES completion:nil];
 
     }];
     UIAlertAction* fromPhotoAction1 = [UIAlertAction actionWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
-
-        pickCtrl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self.vc presentViewController:pickCtrl animated:YES completion:nil];
-
+        
+        if ([self.type isEqualToString:@"many"]) {
+            pickCtrl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            WPhotoViewController *WphotoVC = [[WPhotoViewController alloc] init];
+            //选择图片的最大数
+            WphotoVC.selectPhotoOfMax = self.count;
+            [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
+                if (weakSelf.ManyPick) {
+                    weakSelf.ManyPick(phostsArr);
+                }
+            }];
+            [self.vc presentViewController:WphotoVC animated:YES completion:nil];
+        }
+        else{
+            pickCtrl.allowsEditing = self.allowsEditing;
+            pickCtrl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self.vc presentViewController:pickCtrl animated:YES completion:nil];
+        }
     }];
     [cancelAction setValue:GaryTextColor forKey:@"_titleTextColor"];
     [fromPhotoAction setValue:MainColor forKey:@"_titleTextColor"];

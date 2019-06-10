@@ -8,8 +8,9 @@
 
 #import "ReferenceInputDetailsVC.h"
 #import "ReferenceInputDetailsTableView.h"
-@interface ReferenceInputDetailsVC ()<RefreshDelegate,BaseModelDelegate,SelectButtonDelegate>{
+@interface ReferenceInputDetailsVC ()<RefreshDelegate,BaseModelDelegate,SelectButtonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSString *secondCarReport;
+    NSArray *_phostsArr;
 }
 @property (nonatomic , strong)ReferenceInputDetailsTableView *tableView;
 //@property (nonatomic , strong)SurveyDetailsModel *surveyDetailsModel;
@@ -18,7 +19,7 @@
 @property (nonatomic , assign)NSInteger selectInt;
 
 @property (nonatomic , copy)NSString *bankResult;
-
+@property (nonatomic , assign)NSInteger count;
 @end
 
 @implementation ReferenceInputDetailsVC
@@ -53,7 +54,81 @@
     return _imagePicker;
 }
 
-
+-(void)addButClick
+{
+    
+    UIImagePickerController *pickCtrl = [[UIImagePickerController alloc] init];
+    pickCtrl.delegate = self;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        [action setValue:HGColor(138, 138, 138) forKey:@"titleTextColor"];
+    }];
+    UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
+        
+        pickCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:pickCtrl animated:YES completion:nil];
+        
+    }];
+    UIAlertAction* fromPhotoAction1 = [UIAlertAction actionWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
+        
+        pickCtrl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        WPhotoViewController *WphotoVC = [[WPhotoViewController alloc] init];
+        //选择图片的最大数
+        WphotoVC.selectPhotoOfMax = 9;
+        [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
+            _phostsArr = phostsArr;
+            self.count = phostsArr.count - 1;
+            [self updataphoto];
+        }];
+        [self presentViewController:WphotoVC animated:YES completion:nil];
+        
+    }];
+    [cancelAction setValue:GaryTextColor forKey:@"_titleTextColor"];
+    [fromPhotoAction setValue:MainColor forKey:@"_titleTextColor"];
+    [fromPhotoAction1 setValue:MainColor forKey:@"_titleTextColor"];
+    [alertController addAction:cancelAction];
+    [alertController addAction:fromPhotoAction];
+    [alertController addAction:fromPhotoAction1];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+-(void)updataphoto
+{
+    CarLoansWeakSelf;
+    UIImage *image = _phostsArr[self.count][@"image"];
+    NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+    //进行上传
+    TLUploadManager *manager = [TLUploadManager manager];
+    manager.imgData = imgData;
+    manager.image = image;
+    [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
+        WGLog(@"%@",key);
+        self.count --;
+        [weakSelf setImage:image setData:key];
+        if (self.count >= 0) {
+            [self updataphoto];
+        }
+    } failure:^(NSError *error) {
+        [TLAlert alertWithInfo:@"上传失败"];
+    }];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
+    CarLoansWeakSelf;
+    UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
+    NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+    
+    //进行上传
+    TLUploadManager *manager = [TLUploadManager manager];
+    
+    manager.imgData = imgData;
+    manager.image = image;
+    [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
+        WGLog(@"%@",key);
+        [weakSelf setImage:image setData:key];
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    } failure:^(NSError *error) {
+        [TLAlert alertWithInfo:@"上传失败"];
+    }];
+}
 -(void)setImage:(UIImage *)image setData:(NSString *)data
 {
     if (self.selectInt == 100)
@@ -166,13 +241,18 @@
 {
     if ([state isEqualToString:@"add"])
     {
-        if (index == 100) {
-            if (_bankCreditReport.count > 0) {
-                return;
-            }
-        }
         self.selectInt = index;
-        [self.imagePicker picker];
+        if (index == 101) {
+            [self addButClick];
+        }else{
+            if (index == 100) {
+                if (_bankCreditReport.count > 0) {
+                    return;
+                }
+            }
+             [self.imagePicker picker];
+        }
+        
     }
     else if([state isEqualToString:@"DeletePhotos1"])
     {

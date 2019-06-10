@@ -291,6 +291,15 @@
 		36974D53229E35A100B2B1D3 /* GPSDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36974D52229E35A100B2B1D3 /* GPSDetailsTableView.m */; };
 		36974D56229E35B400B2B1D3 /* GPSDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36974D55229E35B400B2B1D3 /* GPSDetailsVC.m */; };
 		36A3955222A0C13400BF58A1 /* FiledCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A3955122A0C13400BF58A1 /* FiledCell.m */; };
+		36A6D85D22ADFE1200768D80 /* myPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A6D84E22ADFE1200768D80 /* myPhotoCell.m */; };
+		36A6D85E22ADFE1200768D80 /* WPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A6D84F22ADFE1200768D80 /* WPhotoViewController.m */; };
+		36A6D85F22ADFE1200768D80 /* NavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A6D85022ADFE1200768D80 /* NavView.m */; };
+		36A6D86022ADFE1200768D80 /* wphoto_select_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A6D85222ADFE1200768D80 /* wphoto_select_no@2x.png */; };
+		36A6D86122ADFE1200768D80 /* wphoto_select_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A6D85322ADFE1200768D80 /* wphoto_select_yes@2x.png */; };
+		36A6D86222ADFE1200768D80 /* wphoto_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A6D85422ADFE1200768D80 /* wphoto_back@2x.png */; };
+		36A6D86322ADFE1200768D80 /* WPFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A6D85B22ADFE1200768D80 /* WPFunctionView.m */; };
+		36A6D86422ADFE1200768D80 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A6D85C22ADFE1200768D80 /* UIImage+fixOrientation.m */; };
+		36A6D86722AE551D00768D80 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A6D86622AE551D00768D80 /* ImageCell.m */; };
 		36B28A6E227E9C4000A8C07D /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */; };
 		36B28A6F227E9C4000A8C07D /* ILiveLogReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */; };
 		36B28A70227E9C4000A8C07D /* TILLiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */; };
@@ -1139,6 +1148,22 @@
 		36974D55229E35B400B2B1D3 /* GPSDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSDetailsVC.m; sourceTree = "<group>"; };
 		36A3955022A0C13400BF58A1 /* FiledCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiledCell.h; sourceTree = "<group>"; };
 		36A3955122A0C13400BF58A1 /* FiledCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiledCell.m; sourceTree = "<group>"; };
+		36A6D84E22ADFE1200768D80 /* myPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myPhotoCell.m; sourceTree = "<group>"; };
+		36A6D84F22ADFE1200768D80 /* WPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPhotoViewController.m; sourceTree = "<group>"; };
+		36A6D85022ADFE1200768D80 /* NavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavView.m; sourceTree = "<group>"; };
+		36A6D85222ADFE1200768D80 /* wphoto_select_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wphoto_select_no@2x.png"; sourceTree = "<group>"; };
+		36A6D85322ADFE1200768D80 /* wphoto_select_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wphoto_select_yes@2x.png"; sourceTree = "<group>"; };
+		36A6D85422ADFE1200768D80 /* wphoto_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wphoto_back@2x.png"; sourceTree = "<group>"; };
+		36A6D85522ADFE1200768D80 /* WPFunctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFunctionView.h; sourceTree = "<group>"; };
+		36A6D85622ADFE1200768D80 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		36A6D85722ADFE1200768D80 /* myPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPhotoCell.h; sourceTree = "<group>"; };
+		36A6D85822ADFE1200768D80 /* WPMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPMacros.h; sourceTree = "<group>"; };
+		36A6D85922ADFE1200768D80 /* NavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavView.h; sourceTree = "<group>"; };
+		36A6D85A22ADFE1200768D80 /* WPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPhotoViewController.h; sourceTree = "<group>"; };
+		36A6D85B22ADFE1200768D80 /* WPFunctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFunctionView.m; sourceTree = "<group>"; };
+		36A6D85C22ADFE1200768D80 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		36A6D86522AE551D00768D80 /* ImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		36A6D86622AE551D00768D80 /* ImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
 		36B28A6B227E9C3F00A8C07D /* ILiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveSDK.framework; sourceTree = "<group>"; };
 		36B28A6C227E9C3F00A8C07D /* ILiveLogReport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveLogReport.framework; sourceTree = "<group>"; };
 		36B28A6D227E9C3F00A8C07D /* TILLiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TILLiveSDK.framework; sourceTree = "<group>"; };
@@ -2600,6 +2625,8 @@
 				36B28A7A227EBECC00A8C07D /* ProductUsInputTableView.m */,
 				36B28A83227F003E00A8C07D /* CheckProtectTableView.h */,
 				36B28A84227F003E00A8C07D /* CheckProtectTableView.m */,
+				36A6D86522AE551D00768D80 /* ImageCell.h */,
+				36A6D86622AE551D00768D80 /* ImageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3369,6 +3396,35 @@
 				36974D4F229E265800B2B1D3 /* DataDetailsTableView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		36A6D84D22ADFE1200768D80 /* WPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				36A6D85922ADFE1200768D80 /* NavView.h */,
+				36A6D85022ADFE1200768D80 /* NavView.m */,
+				36A6D85122ADFE1200768D80 /* WPhotoImage */,
+				36A6D85522ADFE1200768D80 /* WPFunctionView.h */,
+				36A6D85B22ADFE1200768D80 /* WPFunctionView.m */,
+				36A6D85722ADFE1200768D80 /* myPhotoCell.h */,
+				36A6D84E22ADFE1200768D80 /* myPhotoCell.m */,
+				36A6D85822ADFE1200768D80 /* WPMacros.h */,
+				36A6D85A22ADFE1200768D80 /* WPhotoViewController.h */,
+				36A6D84F22ADFE1200768D80 /* WPhotoViewController.m */,
+				36A6D85622ADFE1200768D80 /* UIImage+fixOrientation.h */,
+				36A6D85C22ADFE1200768D80 /* UIImage+fixOrientation.m */,
+			);
+			path = WPhoto;
+			sourceTree = "<group>";
+		};
+		36A6D85122ADFE1200768D80 /* WPhotoImage */ = {
+			isa = PBXGroup;
+			children = (
+				36A6D85222ADFE1200768D80 /* wphoto_select_no@2x.png */,
+				36A6D85322ADFE1200768D80 /* wphoto_select_yes@2x.png */,
+				36A6D85422ADFE1200768D80 /* wphoto_back@2x.png */,
+			);
+			path = WPhotoImage;
 			sourceTree = "<group>";
 		};
 		36B28A6A227E9C3F00A8C07D /* ILiveSDK */ = {
@@ -4796,6 +4852,7 @@
 		7AB29DCB20FD8B2E0014FCB3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				36A6D84D22ADFE1200768D80 /* WPhoto */,
 				36E52CFF2289158200C18806 /* MultiAlertView */,
 				B82C71032195AF1500742EE8 /* TLTextField.h */,
 				B82C71042195AF1600742EE8 /* TLTextField.m */,
@@ -5485,6 +5542,7 @@
 			files = (
 				1F19AAA1220193030090BF84 /* ear_5.png in Resources */,
 				1F19AA85220193030090BF84 /* tooth_21.png in Resources */,
+				36A6D86022ADFE1200768D80 /* wphoto_select_no@2x.png in Resources */,
 				1F19AA9F220193030090BF84 /* ear_16.png in Resources */,
 				1F19AA80220193030090BF84 /* tooth_3.png in Resources */,
 				1F19AA7B220193030090BF84 /* tooth_4.png in Resources */,
@@ -5510,6 +5568,7 @@
 				1F19AA73220193030090BF84 /* langman.png in Resources */,
 				1F19AA67220193030090BF84 /* LoadSDK.sh in Resources */,
 				1F19AA88220193030090BF84 /* tooth_19.png in Resources */,
+				36A6D86222ADFE1200768D80 /* wphoto_back@2x.png in Resources */,
 				1F19AABB220193030090BF84 /* video_snow_white.png in Resources */,
 				1F19AA90220193030090BF84 /* tooth_13.png in Resources */,
 				1F19AA97220193030090BF84 /* ear_10.png in Resources */,
@@ -5551,6 +5610,7 @@
 				36E52D132289158300C18806 /* cell_selected@3x.png in Resources */,
 				1F19AA72220193030090BF84 /* qingliang.png in Resources */,
 				1F19AA91220193030090BF84 /* tooth_8.png in Resources */,
+				36A6D86122ADFE1200768D80 /* wphoto_select_yes@2x.png in Resources */,
 				1F19AA89220193030090BF84 /* tooth_17.png in Resources */,
 				1F19AA8E220193030090BF84 /* tooth_10.png in Resources */,
 				7AB29D9D20FD85710014FCB3 /* Assets.xcassets in Resources */,
@@ -5667,6 +5727,8 @@
 				1F1EF1DD22646D1000EADA25 /* CustomerTableView.m in Sources */,
 				7A13AEC321104E4400B8F785 /* QNAsyncRun.m in Sources */,
 				366A2ABF2289AF8300FF8366 /* CheckFileTableView.m in Sources */,
+				36A6D86722AE551D00768D80 /* ImageCell.m in Sources */,
+				36A6D85E22ADFE1200768D80 /* WPhotoViewController.m in Sources */,
 				7A13AE24210F26A200B8F785 /* IQPreviousNextView.m in Sources */,
 				1F1EF320226876CA00EADA25 /* CreditDetailsPeoplePhotoCell.m in Sources */,
 				7A3582CB21182EA9006FB5B5 /* CarSettledUpdataPhotoCell.m in Sources */,
@@ -5737,6 +5799,7 @@
 				7A94556F210EFFFE00BDFD33 /* DataTransferVC.m in Sources */,
 				7AB29E6820FD8EB30014FCB3 /* MJProperty.m in Sources */,
 				36932BB22281B27D00FE0431 /* ConfirmLendingTableView.m in Sources */,
+				36A6D85F22ADFE1200768D80 /* NavView.m in Sources */,
 				36F9E7272282837C009DAC65 /* InputfilesVC.m in Sources */,
 				7A3582902113F668006FB5B5 /* GPSInstallationModel.m in Sources */,
 				7A13AEAD21104E4300B8F785 /* QNDnsManager.m in Sources */,
@@ -5851,6 +5914,7 @@
 				36CFB5DE229BE21000D4305A /* ChooseGPSTableView.m in Sources */,
 				1F1EF2C12265D91C00EADA25 /* AdmissionDetailsTableView1.m in Sources */,
 				7AB29E7320FD8EB30014FCB3 /* CKAlertViewController.m in Sources */,
+				36A6D85D22ADFE1200768D80 /* myPhotoCell.m in Sources */,
 				7A13ADC0210F09C600B8F785 /* AccessSingleVC.m in Sources */,
 				7A0F8EA6211B1F3A00BA8358 /* ChangePasswordVC.m in Sources */,
 				7A13AEBB21104E4300B8F785 /* QNDes.m in Sources */,
@@ -5940,6 +6004,7 @@
 				B86DE43921B6702900F76091 /* JoinLiveController.m in Sources */,
 				36C02E1422803C77007EC7CF /* CheckGPSTableView.m in Sources */,
 				7A13ADE8210F15EE00B8F785 /* ClaimsTableView.m in Sources */,
+				36A6D86322ADFE1200768D80 /* WPFunctionView.m in Sources */,
 				36CFB5DB229BE13D00D4305A /* ChooseGPSVC.m in Sources */,
 				36CFB5C6229BA6AC00D4305A /* ReceivesGPSVC.m in Sources */,
 				7AABE3582139112800283BC7 /* AddGPSPeopleCell.m in Sources */,
@@ -5968,6 +6033,7 @@
 				36C02DF8227FE86D007EC7CF /* AddTaskTableView.m in Sources */,
 				3662016F22924ED50010C78A /* RepayModel.m in Sources */,
 				7A13ADB9210F029900B8F785 /* ApplyCancellationTableView.m in Sources */,
+				36A6D86422ADFE1200768D80 /* UIImage+fixOrientation.m in Sources */,
 				7AB29E7820FD8EB30014FCB3 /* FontSizeView.m in Sources */,
 				1F651A97227AD28800EFB78B /* CreditSingleTableView.m in Sources */,
 				36E6FF1A2286B12B00CD2744 /* InputVC.m in Sources */,

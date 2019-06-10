@@ -11,7 +11,7 @@
 #define TextField @"TextFieldCell"
 #import "InputBoxCell.h"
 #define InputBox @"InputBoxCell"
-
+#import "ImageCell.h"
 @implementation CheckProtectTableView
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
@@ -61,9 +61,9 @@
     }
     if (indexPath.section == 1) {
         static NSString *rid=@"PhotoCell";
-        PhotoCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        ImageCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
         if(cell==nil){
-            cell=[[PhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            cell=[[ImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.row == 0) {
@@ -123,30 +123,30 @@
         if (indexPath.row == 0) {
                 float numberToRound;
                 int result;
-                numberToRound = (self.carInvoice.count)/3.0;
+                numberToRound = (self.carInvoice.count)/4.0;
                 result = (int)ceilf(numberToRound);
-                return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+                return result * ((SCREEN_WIDTH - 45)/4 + 15) + 32;
         }
         if (indexPath.row == 1) {
             float numberToRound;
             int result;
-            numberToRound = (self.carJqx.count)/3.0;
+            numberToRound = (self.carJqx.count)/4.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+            return result * ((SCREEN_WIDTH - 45)/4 + 15) + 32;
         }
         if (indexPath.row == 2) {
             float numberToRound;
             int result;
-            numberToRound = (self.carSyx.count)/3.0;
+            numberToRound = (self.carSyx.count)/4.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+            return result * ((SCREEN_WIDTH - 45)/4 + 15) + 32;
         }
         if (indexPath.row == 3) {
             float numberToRound;
             int result;
-            numberToRound = (self.carHgzPic.count)/3.0;
+            numberToRound = (self.carHgzPic.count)/4.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15) + 32;
+            return result * ((SCREEN_WIDTH - 45)/4 + 15) + 32;
         }
     }
         return 50;

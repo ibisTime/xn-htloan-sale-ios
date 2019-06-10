@@ -100,8 +100,8 @@
                                   [NSString stringWithFormat:@"%.2f",[model.loanAmount floatValue]/1000],
                                   [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:model.loanBankName],[BaseModel convertNull:model.subbranchBankName]],
                                   [NSString stringWithFormat:@"%@",[model.isAdvanceFund isEqualToString:@"1"]?@"是":@"否"],
-                                  [NSString stringWithFormat:@"%.2f", [model.advance[@"advanceFundAmount"] floatValue]/1000 ],
-                                  [NSString stringWithFormat:@"%@",[model.advance[@"advanceFundDatetime"] convertDate]],
+                                  [NSString stringWithFormat:@"%.2f", [model.advanceFundAmount floatValue]/1000 ],
+                                  [NSString stringWithFormat:@"%@",[model.advanceFundDatetime convertDate]],
                                   [NSString stringWithFormat:@"%@",model.cancelReason]
                                   ];
     

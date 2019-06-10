@@ -425,4 +425,35 @@
         
     }
 }
+
+//-(void)alertselectimage{
+//    UIImagePickerController *pickCtrl = [[UIImagePickerController alloc] init];
+//    pickCtrl.delegate = self;
+//    pickCtrl.allowsEditing = self.allowsEditing;
+//    
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+//    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+//        [action setValue:HGColor(138, 138, 138) forKey:@"titleTextColor"];
+//    }];
+//    UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
+//        
+//        pickCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        [self.vc presentViewController:pickCtrl animated:YES completion:nil];
+//        
+//    }];
+//    UIAlertAction* fromPhotoAction1 = [UIAlertAction actionWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
+//        
+//        pickCtrl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//        [self.vc presentViewController:pickCtrl animated:YES completion:nil];
+//        
+//    }];
+//    [cancelAction setValue:GaryTextColor forKey:@"_titleTextColor"];
+//    [fromPhotoAction setValue:MainColor forKey:@"_titleTextColor"];
+//    [fromPhotoAction1 setValue:MainColor forKey:@"_titleTextColor"];
+//    [alertController addAction:cancelAction];
+//    [alertController addAction:fromPhotoAction];
+//    [alertController addAction:fromPhotoAction1];
+//    [self.vc presentViewController:alertController animated:YES completion:nil];
+//}
+
 @end

@@ -198,7 +198,7 @@
     
     NSArray *InformationArray = @[
                                   [NSString stringWithFormat:@"%@",repayModel.code],
-                                  [NSString stringWithFormat:@"%@",repayModel.user[@"realName"]],
+                                  [NSString stringWithFormat:@"%@",repayModel.realName],
                                   [NSString stringWithFormat:@"%@ %@",repayModel.loanBankName,repayModel.subbranchBankName],
                                   [NSString stringWithFormat:@"%.2f",[repayModel.loanAmount floatValue]/1000],
                                    [NSString stringWithFormat:@"%.2f",[repayModel.monthAmount floatValue]/1000]

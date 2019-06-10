@@ -33,27 +33,18 @@
                         ];
     NSArray *VCNames;
     VCNames = @[@"HomeVC", @"CustomerVC", @"MessageVC",@"MyVC"];
-//    NSArray *VCNames = @[@"TLWalletVC", @"HomeVC", @"TLMineVC"];
-    
     NSArray *selectedImageNames = @[@"首页-点击", @"客户-点击", @"消息-点击",@"我的-点击"];
     NSArray *imageNames = @[@"首页-未点击", @"客户-未点击", @"消息-未点击",@"我的-未点击"];
     
     for (int i = 0; i < imageNames.count; i++) {
-        
-       
         [self addChildVCWithTitle:titles[i]
                        controller:VCNames[i]
                       normalImage:imageNames[i]
                     selectedImage:selectedImageNames[i]];
     }
-    
-//    self.selectedIndex =[AppConfig config].isUploadCheck ? 1 : 2;
-    
-    //
     UIView *tabBarBgView = [[UIView alloc] initWithFrame:self.tabBar.bounds];
     tabBarBgView.backgroundColor = [UIColor whiteColor];
-    //        //判断点击的Controller是不是需要登录，如果是，那就登录
-    
+    //判断点击的Controller是不是需要登录，如果是，那就登录
     self.tabBar.backgroundColor = [UIColor whiteColor];
 }
 

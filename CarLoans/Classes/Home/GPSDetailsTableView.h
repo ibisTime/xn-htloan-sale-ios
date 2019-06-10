@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GPSDetailsTableView : TLTableView<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)DataTransferModel *model;
+@property (nonatomic,strong) NSArray * array;
 @end
 
 NS_ASSUME_NONNULL_END

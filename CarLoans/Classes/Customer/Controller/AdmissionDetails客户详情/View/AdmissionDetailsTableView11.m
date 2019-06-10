@@ -68,7 +68,7 @@
             cell.selectStr = @"车钥匙";
         }
         if (indexPath.row == 13) {
-            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_big_smj"] componentsSeparatedByString:@"||"];
+            cell.collectDataArray = [[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"];
             cell.selectStr = @"绿大本";
         }
         if (indexPath.row == 14) {
@@ -145,7 +145,7 @@
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_key"] componentsSeparatedByString:@"||"]];
             break;
             case 13:
-            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_big_smj"] componentsSeparatedByString:@"||"]];
+            return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"green_big_smj"] componentsSeparatedByString:@"||"]];
             break;
             case 14:
             return [self returnheight:[[[BaseModel user]FindUrlWithModel:self.model ByKname:@"car_xsz_smj"] componentsSeparatedByString:@"||"]];

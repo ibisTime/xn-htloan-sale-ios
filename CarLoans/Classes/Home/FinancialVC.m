@@ -54,7 +54,7 @@
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632515";
     helper.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
-    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
+//    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"fbhgpsNodeList"] = self.curNodeCodeList;
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.isList = NO;

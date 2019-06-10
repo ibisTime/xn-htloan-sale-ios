@@ -28,6 +28,7 @@
 //    [self initTable];
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];

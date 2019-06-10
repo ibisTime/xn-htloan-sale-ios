@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, ImageType) {
 @interface TLImagePicker : NSObject<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,copy)  void(^pickFinish)(NSDictionary *info);
+@property (nonatomic,strong) void (^ManyPick)(NSMutableArray * info);
 
 @property (nonatomic, assign) ImageType imageType;
 
@@ -30,5 +31,8 @@ typedef NS_ENUM(NSInteger, ImageType) {
 - (void)picker;
 
 - (void)videoPicker;
+
+@property (nonatomic,strong) NSString * type;
+@property (nonatomic,assign) NSInteger count;
 
 @end

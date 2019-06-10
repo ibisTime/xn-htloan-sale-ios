@@ -39,6 +39,7 @@
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.model = self.model;
+    self.tableView.array = self.model.gpsApply[@"gpsList"];
     [self.view addSubview:self.tableView];
 }
 @end

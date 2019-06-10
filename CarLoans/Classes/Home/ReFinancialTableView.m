@@ -44,7 +44,7 @@
 //    }
     if (indexPath.section == 1) {
          NSArray * collectDataArray = [self.peopleAray[0][@"advance_fund_amount_pdf"] componentsSeparatedByString:@"||"];
-        return 150 * ((collectDataArray.count / 3) + 1);
+        return 120 * ((collectDataArray.count / 3) + 1);
     }
     if (indexPath.section == 2) {
         float numberToRound;

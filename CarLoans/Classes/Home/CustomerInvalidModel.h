@@ -72,4 +72,6 @@
 @property (nonatomic,strong) NSString * insideJobPostName;
 @property (nonatomic,strong) NSString * insideJobName;
 @property (nonatomic,copy) NSString * subbranchBankName;
+@property (nonatomic,copy) NSString * advanceFundAmount;
+@property (nonatomic,copy) NSString * advanceFundDatetime;
 @end

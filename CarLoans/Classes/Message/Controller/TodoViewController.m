@@ -150,6 +150,7 @@
         if ([node isEqualToString:@"a1x"]) {
             SurveyACreditVC * vc = [SurveyACreditVC new];
             vc.model = weakSelf.model;
+            vc.state = @"1";
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }

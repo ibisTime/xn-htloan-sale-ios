@@ -14,6 +14,7 @@
     NSString *date;
     NSString *code;
     NSString *gpsDevNo;
+    NSArray *_phostsArr;
 }
 @property (nonatomic , strong)AddGPSInstallationTableView *tableView;
 @property (nonatomic , strong)TLImagePicker *imagePicker;
@@ -22,7 +23,7 @@
 @property (nonatomic , copy)NSString * str1;
 @property (nonatomic , copy)NSString * str2;
 @property (nonatomic , strong)NSMutableArray *bankPicArray;
-
+@property (nonatomic , assign)NSInteger count;
 @property (nonatomic , strong)NSMutableArray *CompanyPicArray;
 
 @end
@@ -35,10 +36,10 @@
         _imagePicker = [[TLImagePicker alloc] initWithVC:self];
         
         _imagePicker.allowsEditing = YES;
+        _imagePicker.type = @"many";
+        _imagePicker.count = 9;
         _imagePicker.pickFinish = ^(NSDictionary *info){
             NSLog(@"%@",info);
-          
-                
                 UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
                 NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
                 [SVProgressHUD showWithStatus:@"上传中"];
@@ -54,12 +55,35 @@
                 } failure:^(NSError *error) {
                     [TLAlert alertWithInfo:@"上传失败"];
                 }];
-           
+        };
+        _imagePicker.ManyPick = ^(NSMutableArray *info) {
+            _phostsArr = info;
+            self.count = info.count - 1;
+            [self updataphoto];
         };
     }
     return _imagePicker;
 }
-
+-(void)updataphoto
+{
+    CarLoansWeakSelf;
+    UIImage *image = _phostsArr[self.count][@"image"];
+    NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+    //进行上传
+    TLUploadManager *manager = [TLUploadManager manager];
+    manager.imgData = imgData;
+    manager.image = image;
+    [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
+        WGLog(@"%@",key);
+        self.count --;
+        [weakSelf setImage:image setData:key];
+        if (self.count >= 0) {
+            [self updataphoto];
+        }
+    } failure:^(NSError *error) {
+        [TLAlert alertWithInfo:@"上传失败"];
+    }];
+}
 -(void)setImage:(UIImage *)image setData:(NSString *)data
 {
     

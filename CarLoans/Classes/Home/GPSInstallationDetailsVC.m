@@ -31,6 +31,7 @@
     
     TLNetworking * http = [TLNetworking new];
     http.code = @"632516";
+    http.showView = self.view;
     if (self.code.length > 0) {
         http.parameters[@"code"] = self.code;
     }
