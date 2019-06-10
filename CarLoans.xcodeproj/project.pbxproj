@@ -6366,6 +6366,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A65000C912480C81C2EE3B15 /* Pods-CarLoans.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+					armv7,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
@@ -6403,11 +6408,36 @@
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK/BeautySDK",
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK/BeautySDK/Pitu",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.ChengWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -6415,6 +6445,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C9B75BDB46879676A230281 /* Pods-CarLoans.release.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+					armv7,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
@@ -6452,11 +6487,37 @@
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK/BeautySDK",
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK/BeautySDK/Pitu",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.ChengWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386";
 			};
 			name = Release;
 		};
