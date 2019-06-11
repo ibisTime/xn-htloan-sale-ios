@@ -7,7 +7,7 @@
 //
 
 #import "AdmissionDetailsVC.h"
-
+#import "WaterVC.h"
 #import "AdmissionDetailsTableView.h"
 #import "AdmissionDetailsTableView1.h"
 #import "AdmissionDetailsTableView2.h"
@@ -26,6 +26,7 @@
 #import "AdmissionDetailsTableView15.h"
 #import "AdmissionDetailsTableView16.h"
 #import "AdmissionDetailsTableView17.h"
+#import "AdmissionDetailsTableView18.h"
 #import "RepaymentPlanHeadView.h"
 @interface AdmissionDetailsVC ()<RefreshDelegate>
 @property (nonatomic , strong)AdmissionDetailsTableView *tableView;
@@ -47,6 +48,7 @@
 @property (nonatomic , strong)AdmissionDetailsTableView15 *tableView15;
 @property (nonatomic , strong)AdmissionDetailsTableView16 *tableView16;
 @property (nonatomic , strong)AdmissionDetailsTableView17 *tableView17;
+@property (nonatomic , strong)AdmissionDetailsTableView18 *tableView18;
 
 @property (nonatomic,strong) RepaymentPlanHeadView * topView;
 @end
@@ -59,7 +61,22 @@
     [self initNavigationController];
     [self loadData];
 }
-
+-(void)CreditFlowingWater
+{
+    TLNetworking *http = [TLNetworking new];
+    http.isShowMsg = YES;
+    http.code = @"632497";
+    http.parameters[@"bizCode"] = self.model.code;
+    //    http.parameters[@"creditUserCode"] = self.model.creditUser[@"code"];
+    [http postWithSuccess:^(id responseObject) {
+        
+        self.tableView18.WaterArray = responseObject[@"data"];
+        [self.tableView18 reloadData];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 -(void)initTableView
 {
     self.tableView = [[AdmissionDetailsTableView alloc] initWithFrame:CGRectMake(0, 0, 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
@@ -196,10 +213,17 @@
     [self.view addSubview:self.tableView16];
     
     
-
+    self.tableView18 = [[AdmissionDetailsTableView18 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView18.refreshDelegate = self;
+    self.tableView18.backgroundColor = kWhiteColor;
+    self.tableView18.tag = 1000018;
+    self.tableView18.model = self.model;
+//    self.tableView18.WaterArray = self.model.creditJours;
+    [self.view addSubview:self.tableView18];
     
     [self.view bringSubviewToFront:self.tableView1];
     
+    [self CreditFlowingWater];
 }
 
 -(void)loadData
@@ -347,7 +371,7 @@
         [self.tableView14 reloadData];
         [self.tableView15 reloadData];
         [self.tableView16 reloadData];
-
+        [self.tableView18 reloadData];
 
     } failure:^(NSError *error) {
         
@@ -362,6 +386,12 @@
         [self.view bringSubviewToFront:tableView];
         self.tableView.row = indexPath.row;
 //        [self.tableView reloadData];
+    }
+    if (refreshTableview.tag == 1000018 ) {
+        WaterVC *vc = [WaterVC new];
+        vc.model = self.model;
+        vc.waterDic = self.tableView18.WaterArray[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
 }

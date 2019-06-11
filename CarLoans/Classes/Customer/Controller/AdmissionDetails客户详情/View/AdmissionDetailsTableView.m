@@ -34,7 +34,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 17;
+    return 18;
 }
 
 #pragma mark -- tableView
@@ -49,7 +49,7 @@
         
     }
 
-    NSArray *array = @[@"基本信息",@"征信列表",@"面签",@"贷款车辆信息",@"申请人基本信息",@"工作情况",@"其他基本信息",@"共还人信息",@"担保人信息",@"财务垫资",@"银行放款",@"车辆抵押",@"发保合",@"GPS安装列表",@"流转日志",@"还款计划",@"附件池"];
+    NSArray *array = @[@"基本信息",@"征信列表",@"面签",@"贷款车辆信息",@"申请人基本信息",@"工作情况",@"其他基本信息",@"共还人信息",@"担保人信息",@"财务垫资",@"银行放款",@"车辆抵押",@"发保合",@"GPS安装列表",@"流转日志",@"还款计划",@"附件池",@"流水"];
     cell.nameLbl.text = array[indexPath.row];
     
     if (cell.height < 40) {

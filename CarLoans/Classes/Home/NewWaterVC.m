@@ -58,8 +58,7 @@
     
     return _imagePicker;
 }
--(void)updataphoto
-{
+-(void)updataphoto{
     CarLoansWeakSelf;
     UIImage *image = _phostsArr[self.count][@"image"];
     NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
@@ -88,7 +87,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self initTableView];
     self.picArray = [NSMutableArray array];
     self.title = @"流水";

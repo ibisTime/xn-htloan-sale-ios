@@ -282,6 +282,9 @@
 		366A2AB9228986F200FF8366 /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2AB8228986F200FF8366 /* FileCell.m */; };
 		366A2ABC2289AF6B00FF8366 /* CheckFileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */; };
 		366A2ABF2289AF8300FF8366 /* CheckFileTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */; };
+		366FAF7122AF911800E169AC /* AdmissionDetailsTableView18.m in Sources */ = {isa = PBXBuildFile; fileRef = 366FAF7022AF911800E169AC /* AdmissionDetailsTableView18.m */; };
+		366FAF7422AF958500E169AC /* WaterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366FAF7322AF958500E169AC /* WaterVC.m */; };
+		366FAF7722AF968A00E169AC /* WaterTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366FAF7622AF968A00E169AC /* WaterTableView.m */; };
 		36932BA922819AE000FE0431 /* InputLendingDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */; };
 		36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAB22819AF800FE0431 /* InputLendingDetailsTableView.m */; };
 		36932BAF2281B26600FE0431 /* ConfirmLendingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36932BAE2281B26600FE0431 /* ConfirmLendingVC.m */; };
@@ -1130,6 +1133,12 @@
 		366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckFileVC.m; sourceTree = "<group>"; };
 		366A2ABD2289AF8300FF8366 /* CheckFileTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckFileTableView.h; sourceTree = "<group>"; };
 		366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckFileTableView.m; sourceTree = "<group>"; };
+		366FAF6F22AF911800E169AC /* AdmissionDetailsTableView18.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdmissionDetailsTableView18.h; sourceTree = "<group>"; };
+		366FAF7022AF911800E169AC /* AdmissionDetailsTableView18.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdmissionDetailsTableView18.m; sourceTree = "<group>"; };
+		366FAF7222AF958500E169AC /* WaterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterVC.h; sourceTree = "<group>"; };
+		366FAF7322AF958500E169AC /* WaterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterVC.m; sourceTree = "<group>"; };
+		366FAF7522AF968A00E169AC /* WaterTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterTableView.h; sourceTree = "<group>"; };
+		366FAF7622AF968A00E169AC /* WaterTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterTableView.m; sourceTree = "<group>"; };
 		36932BA722819AE000FE0431 /* InputLendingDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsVC.h; sourceTree = "<group>"; };
 		36932BA822819AE000FE0431 /* InputLendingDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputLendingDetailsVC.m; sourceTree = "<group>"; };
 		36932BAA22819AF800FE0431 /* InputLendingDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputLendingDetailsTableView.h; sourceTree = "<group>"; };
@@ -2401,6 +2410,8 @@
 				1F1EF1DC22646D1000EADA25 /* CustomerTableView.m */,
 				1F1EF1DE22646D4F00EADA25 /* CustomerCell.h */,
 				1F1EF1DF22646D4F00EADA25 /* CustomerCell.m */,
+				366FAF7522AF968A00E169AC /* WaterTableView.h */,
+				366FAF7622AF968A00E169AC /* WaterTableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2411,6 +2422,8 @@
 				1F1EF2212265BFF200EADA25 /* AdmissionDetails客户详情 */,
 				1F1EF1CF2264549D00EADA25 /* CustomerVC.h */,
 				1F1EF1D02264549D00EADA25 /* CustomerVC.m */,
+				366FAF7222AF958500E169AC /* WaterVC.h */,
+				366FAF7322AF958500E169AC /* WaterVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2581,6 +2594,8 @@
 				1F00AE74226F2EC300A8E15D /* AdmissionDetailsTableView16.m */,
 				36CFB5C1229B809800D4305A /* AdmissionDetailsTableView17.h */,
 				36CFB5C2229B809800D4305A /* AdmissionDetailsTableView17.m */,
+				366FAF6F22AF911800E169AC /* AdmissionDetailsTableView18.h */,
+				366FAF7022AF911800E169AC /* AdmissionDetailsTableView18.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5784,6 +5799,7 @@
 				7A0592C520FDF10E00075FE8 /* ADPeopleTableView.m in Sources */,
 				7AB29E6620FD8EB30014FCB3 /* MJExtensionConst.m in Sources */,
 				7A945545210EB14F00BDFD33 /* ImageBrowserViewController.m in Sources */,
+				366FAF7122AF911800E169AC /* AdmissionDetailsTableView18.m in Sources */,
 				366201A32292AF2A0010C78A /* ManagerAuditTableView.m in Sources */,
 				1F00AE842271976600A8E15D /* CreditResultsVC.m in Sources */,
 				7A13AEDC21107F3100B8F785 /* UsedCarInformationCell.m in Sources */,
@@ -6097,6 +6113,7 @@
 				7A3582BF2117EB50006FB5B5 /* BankLendingVC.m in Sources */,
 				1F00AE8122718A3F00A8E15D /* CreditReviewTableView.m in Sources */,
 				36CFB5C9229BA6C200D4305A /* ReceivesGPSTableView.m in Sources */,
+				366FAF7722AF968A00E169AC /* WaterTableView.m in Sources */,
 				36294E57228592F7004C4479 /* CheckCarTableView.m in Sources */,
 				1F151A922272AB14002B7EDA /* ApplyTableView6.m in Sources */,
 				7A3582642112A8D8006FB5B5 /* FaceSignMQVC.m in Sources */,
@@ -6127,6 +6144,7 @@
 				1F651A552276A43D00EFB78B /* ToApplyForUpdateImgCell.m in Sources */,
 				7A35828021130625006FB5B5 /* NSDate+Extension.m in Sources */,
 				B84F22CD219C24C600886ADF /* InsideSureHomeVC.m in Sources */,
+				366FAF7422AF958500E169AC /* WaterVC.m in Sources */,
 				36F9E72A2282839A009DAC65 /* InputFilesTableView.m in Sources */,
 				1F651AB2227B419600EFB78B /* MakeCardEntryVC.m in Sources */,
 				1F151A9C2272AB14002B7EDA /* AccessApplyAddGPSVC.m in Sources */,

@@ -320,4 +320,5 @@
 @property (nonatomic,copy) NSString * subbranchBankName;
 
 @property (nonatomic,copy) NSString * restAmount;
+@property (nonatomic,copy) NSArray * creditJours;
 @end
