@@ -84,7 +84,7 @@
         cell = [[ToApplyForUpdateImgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *topArray = @[@"其他资料"];
+    NSArray *topArray = @[@"资产资料"];
     cell.name = topArray[indexPath.row];
     cell.muArray = [NSMutableArray array];
 //    cell.muArray = [NSMutableArray arrayWithArray:self.otherPic];

@@ -44,18 +44,25 @@
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomerInvalidCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomerInvalid forIndexPath:indexPath];
+//    CustomerInvalidCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomerInvalid forIndexPath:indexPath];
+    static NSString *rid= CustomerInvalid;
+    CustomerInvalidCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    if(cell==nil){
+        cell=[[CustomerInvalidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    }
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    return cell;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.model.count > 0) {
         cell.model = self.model[indexPath.row];
     }
-//    [[BaseModel user]note:self.model[indexPath.row].cancelNodeCode];
-    [cell.button setTitle:[[BaseModel user]note:self.model[indexPath.row].cancelNodeCode] forState:(UIControlStateNormal)];
-    cell.button.tag = indexPath.row;
-    [cell.button addTarget:self action:@selector(clickbutton:) forControlEvents:(UIControlEventTouchUpInside)];
-//    cell.hidden = NO;
     if ([self.model[indexPath.row].cancelNodeCode isEqualToString:@"i3"]) {
         cell.button.hidden = YES;
+    }else{
+        cell.button.hidden = NO;
+        [cell.button setTitle:[[BaseModel user]note:self.model[indexPath.row].cancelNodeCode] forState:(UIControlStateNormal)];
+        cell.button.tag = indexPath.row;
+        [cell.button addTarget:self action:@selector(clickbutton:) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return cell;
 }

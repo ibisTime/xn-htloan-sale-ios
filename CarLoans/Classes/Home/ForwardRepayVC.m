@@ -8,11 +8,14 @@
 
 #import "ForwardRepayVC.h"
 #import "ForwardRepayTableView.h"
-@interface ForwardRepayVC ()
+@interface ForwardRepayVC (){
+    NSArray *_phostsArr;
+}
 @property (nonatomic , assign)NSInteger selectInt;
 @property (nonatomic , strong)TLImagePicker *imagePicker;
 @property (nonatomic,strong) ForwardRepayTableView * tableView;
 @property (nonatomic,strong) NSMutableArray * picarray;
+@property (nonatomic , assign)NSInteger count;
 @end
 
 @implementation ForwardRepayVC
@@ -23,6 +26,8 @@
         _imagePicker = [[TLImagePicker alloc] initWithVC:self];
         
         _imagePicker.allowsEditing = YES;
+        _imagePicker.type = @"many";
+        _imagePicker.count = 9;
         _imagePicker.pickFinish = ^(NSDictionary *info){
             UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
             NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
@@ -40,12 +45,36 @@
                 [TLAlert alertWithInfo:@"上传失败"];
             }];
         };
+        _imagePicker.ManyPick = ^(NSMutableArray *info) {
+            _phostsArr = info;
+            weakSelf.count = info.count - 1;
+            [weakSelf updataphoto];
+        };
     }
     
     return _imagePicker;
 }
 
-
+-(void)updataphoto
+{
+    CarLoansWeakSelf;
+    UIImage *image = _phostsArr[self.count][@"image"];
+    NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+    //进行上传
+    TLUploadManager *manager = [TLUploadManager manager];
+    manager.imgData = imgData;
+    manager.image = image;
+    [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
+        WGLog(@"%@",key);
+        self.count --;
+        [weakSelf setImage:image setData:key];
+        if (self.count >= 0) {
+            [self updataphoto];
+        }
+    } failure:^(NSError *error) {
+        [TLAlert alertWithInfo:@"上传失败"];
+    }];
+}
 -(void)setImage:(UIImage *)image setData:(NSString *)data
 {
     if (self.selectInt == 100)
@@ -98,7 +127,7 @@
         http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"paperPhoto"] = [self.picarray componentsJoinedByString:@"||"];
         [http postWithSuccess:^(id responseObject) {
-            NSNotification *notification =[NSNotification notificationWithName:ADDADPEOPLENOTICE object:nil userInfo:nil];
+            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] postNotification:notification];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSError *error) {

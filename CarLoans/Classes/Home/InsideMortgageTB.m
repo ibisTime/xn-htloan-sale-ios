@@ -254,42 +254,42 @@
             int result;
             numberToRound = (_BankVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 20;
+            return result * ((SCREEN_WIDTH - 45)/3 + 15) + 5;
         }
         if (indexPath.section == 4) {
             float numberToRound;
             int result;
             numberToRound = (_CompanyVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 20;
+            return result * ((SCREEN_WIDTH - 45)/3 + 15) + 5;
         }
         if (indexPath.section == 5) {
             float numberToRound;
             int result;
             numberToRound = (_OtherVideoArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/4 + 30) + 20;
+            return result * ((SCREEN_WIDTH - 45)/3 + 15) + 5;
         }
         if (indexPath.section == 6) {
             float numberToRound;
             int result;
             numberToRound = (self.BankSignArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 20;
+            return result * ((SCREEN_WIDTH - 45)/3 + 15) + 5;
         }
         if (indexPath.section == 7) {
             float numberToRound;
             int result;
             numberToRound = (self.BankContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 20;
+            return result * ((SCREEN_WIDTH - 45)/3 + 15) + 5;
         }
         if (indexPath.section == 8) {
             float numberToRound;
             int result;
             numberToRound = (self.CompanyContractArray.count + 1.0)/3.0;
             result = (int)ceilf(numberToRound);
-            return result * ((SCREEN_WIDTH - 45)/3 + 30) + 20;
+            return result * ((SCREEN_WIDTH - 45)/3 + 15) + 5;
         }
 //        if (indexPath.section == 9) {
 //            float numberToRound;
@@ -357,7 +357,7 @@
         UIView *headView = [[UIView alloc]init];
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        confirmButton.frame = CGRectMake(20, 30, (SCREEN_WIDTH-60), 50);
+        confirmButton.frame = CGRectMake(20, 30, (SCREEN_WIDTH-40), 50);
         confirmButton.tag = 10000;
         
         [confirmButton setTitle:@"确认" forState:(UIControlStateNormal)];

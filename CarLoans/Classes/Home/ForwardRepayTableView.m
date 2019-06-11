@@ -77,7 +77,7 @@
                                       [self.model.bankFkDatetime convertToDetailDate]
                                       ];
 
-        cell.TextFidStr = InformationArray[indexPath.row];
+        cell.text = InformationArray[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }

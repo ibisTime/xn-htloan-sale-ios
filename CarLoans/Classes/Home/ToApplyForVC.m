@@ -1442,7 +1442,7 @@
 //
     if (_SelectTag == 10001) {
         periods = [[BaseModel user]setParentKey:@"loan_period" setDvalue:Str];
-        right1Label2.text = [NSString stringWithFormat:@"%.2f",[LoanBankDic[[NSString stringWithFormat:@"rate%@",dic[@"dkey"]]] floatValue]];
+        right1Label2.text = [NSString stringWithFormat:@"%.4f",[LoanBankDic[[NSString stringWithFormat:@"rate%@",dic[@"dkey"]]] floatValue]];
     }
     if (_SelectTag == 10004) {
         
@@ -1600,10 +1600,10 @@
     };
     
     self.rightTableView7.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
-        if ([name isEqualToString:@"担保人1其他资料"]) {
+        if ([name isEqualToString:@"担保人1资产资料"]) {
              weakSelf.guaAssetPdf = imgAry;
         }
-        if ([name isEqualToString:@"担保人2其他资料"]) {
+        if ([name isEqualToString:@"担保人2资产资料"]) {
              weakSelf.guaAssetPdf1 = imgAry;
         }
     };

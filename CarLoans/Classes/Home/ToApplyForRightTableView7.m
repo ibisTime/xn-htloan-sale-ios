@@ -89,7 +89,7 @@
             cell = [[ToApplyForUpdateImgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *topArray = @[@"担保人1其他资料"];
+        NSArray *topArray = @[@"担保人1资产资料"];
         cell.name = topArray[indexPath.row];
         
         cell.muArray = [NSMutableArray array];
@@ -99,10 +99,10 @@
         cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
             
             weakSelf.returnAryBlock(imgAry, name);
-            if ([name isEqualToString:@"担保人1其他资料"]) {
+            if ([name isEqualToString:@"担保人1资产资料"]) {
                 weakSelf.otherPic = imgAry;
             }
-            if ([name isEqualToString:@"担保人2其他资料"]) {
+            if ([name isEqualToString:@"担保人2资产资料"]) {
                 weakSelf.otherPic1 = imgAry;
             }
             
@@ -139,7 +139,7 @@
             cell = [[ToApplyForUpdateImgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *topArray = @[@"担保人2其他资料"];
+        NSArray *topArray = @[@"担保人2资产资料"];
         cell.name = topArray[indexPath.row];
         
         cell.muArray = [NSMutableArray array];
@@ -149,10 +149,10 @@
         cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name) {
             
             weakSelf.returnAryBlock(imgAry, name);
-            if ([name isEqualToString:@"担保人1其他资料"]) {
+            if ([name isEqualToString:@"担保人1资产资料"]) {
                 weakSelf.otherPic = imgAry;
             }
-            if ([name isEqualToString:@"担保人2其他资料"]) {
+            if ([name isEqualToString:@"担保人2资产资料"]) {
                 weakSelf.otherPic1 = imgAry;
             }
             [self reloadData];

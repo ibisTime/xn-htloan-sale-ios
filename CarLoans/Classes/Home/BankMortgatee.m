@@ -17,6 +17,7 @@
 {
     NSInteger isSelect;
     NSString *date;
+    NSArray *_phostsArr;
 }
 
 @property (nonatomic , strong)InsideMortgageTB *tableView;
@@ -30,7 +31,7 @@
 
 @property (nonatomic , copy) NSString *signPlayUrl ;
 
-
+@property (nonatomic , assign)NSInteger count;
 //银行视频
 @property (nonatomic , strong)NSMutableArray *BankVideoArray;
 //公司视频
@@ -77,6 +78,8 @@
         _imagePicker = [[TLImagePicker alloc] initWithVC:self];
         
         _imagePicker.allowsEditing = YES;
+        _imagePicker.type = @"many";
+        _imagePicker.count = 9;
         _imagePicker.pickFinish = ^(NSDictionary *info){
             NSLog(@"%@",info);
 
@@ -100,11 +103,35 @@
             }
             
         };
+        _imagePicker.ManyPick = ^(NSMutableArray *info) {
+            _phostsArr = info;
+            weakSelf.count = info.count - 1;
+            [weakSelf updataphoto];
+        };
         }
 
     return _imagePicker;
 }
-
+-(void)updataphoto
+{
+    CarLoansWeakSelf;
+    UIImage *image = _phostsArr[self.count][@"image"];
+    NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+    //进行上传
+    TLUploadManager *manager = [TLUploadManager manager];
+    manager.imgData = imgData;
+    manager.image = image;
+    [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
+        WGLog(@"%@",key);
+        self.count --;
+        [weakSelf setImage:image setData:key];
+        if (self.count >= 0) {
+            [self updataphoto];
+        }
+    } failure:^(NSError *error) {
+        [TLAlert alertWithInfo:@"上传失败"];
+    }];
+}
 -(void)setVideoStr:(NSString *)video setData:(NSString *)data
 {
     //    NSRange range = [video rangeOfString:@"tmp/"];

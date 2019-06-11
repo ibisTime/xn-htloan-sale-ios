@@ -77,7 +77,7 @@
         TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        NSArray *nameArray = @[@"客户姓名",@"业务编号",@"发件节点",@"收件节点",@"业务团队",@"信贷专员",@"内勤专员",@"参考材料清单"];
+        NSArray *nameArray = @[@"客户姓名",@"业务编号",@"发件节点",@"收件节点",@"业务团队",@"信贷专员",@"内勤专员",@"*参考材料清单"];
         cell.name = nameArray[indexPath.row];
         cell.isInput = @"0";
         NSArray *detailsArray = @[
@@ -123,7 +123,7 @@
         if (indexPath.section == 2) {
             ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            NSArray *nameArray = @[@"寄送方式",@"快递公司"];
+            NSArray *nameArray = @[@"*寄送方式",@"*快递公司"];
             cell.name = nameArray[indexPath.row];
             NSArray *detailsArray = @[_distributionStr,_CourierCompanyStr];
             cell.details = detailsArray[indexPath.row];
@@ -136,7 +136,7 @@
             }
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"快递单号" titleWidth:80 placeholder:@"请输入快递单号"];
+            TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"*快递单号" titleWidth:100 placeholder:@"请输入快递单号"];
             fild.textAlignment = NSTextAlignmentRight;
             fild.backgroundColor = kWhiteColor;
             fild.font = [UIFont systemFontOfSize:14];
@@ -154,7 +154,7 @@
         if (indexPath.section == 4) {
             ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.name = @"发货时间";
+            cell.name = @"*发货时间";
             if (self.tempDate) {
                 cell.details= self.tempDate;
                 self.date = self.tempDate;
@@ -189,7 +189,7 @@
         if (indexPath.section == 2) {
             ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            NSArray *nameArray = @[@"寄送方式",@"发货时间"];
+            NSArray *nameArray = @[@"*寄送方式",@"*发货时间"];
             cell.name = nameArray[indexPath.row];
             NSArray *detailsArray = @[_distributionStr,_date];
             cell.details = detailsArray[indexPath.row];

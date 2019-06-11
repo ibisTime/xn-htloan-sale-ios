@@ -19,6 +19,7 @@
     
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"630521";
+    http.showView = self.view;
     if (self.code.length > 0) {
         http.parameters[@"code"] = self.code;
     }

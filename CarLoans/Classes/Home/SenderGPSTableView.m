@@ -132,7 +132,7 @@
         if (indexPath.section == 1) {
             ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            NSArray *nameArray = @[@"寄送方式",@"快递公司"];
+            NSArray *nameArray = @[@"*寄送方式",@"*快递公司"];
             cell.name = nameArray[indexPath.row];
             NSArray *detailsArray = @[_distributionStr,_CourierCompanyStr];
             cell.details = detailsArray[indexPath.row];
@@ -145,7 +145,7 @@
             }
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"快递单号" titleWidth:80 placeholder:@"请输入快递单号"];
+            TLTextField *fild = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH-30, 40) leftTitle:@"*快递单号" titleWidth:100 placeholder:@"请输入快递单号"];
             fild.textAlignment = NSTextAlignmentRight;
             fild.backgroundColor = kWhiteColor;
             fild.font = [UIFont systemFontOfSize:14];
@@ -167,7 +167,7 @@
         if (indexPath.section == 3) {
             ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.name = @"发货时间";
+            cell.name = @"*发货时间";
             if (self.tempDate) {
                 cell.details= self.tempDate;
                 self.date = self.tempDate;
@@ -228,7 +228,7 @@
         if (indexPath.section == 1) {
             ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            NSArray *nameArray = @[@"寄送方式",@"发货时间"];
+            NSArray *nameArray = @[@"*寄送方式",@"*发货时间"];
             cell.name = nameArray[indexPath.row];
             NSArray *detailsArray = @[_distributionStr,_date];
             cell.details = detailsArray[indexPath.row];
