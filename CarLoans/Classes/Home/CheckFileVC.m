@@ -13,7 +13,7 @@
     NSInteger selectRow;
     NSMutableArray * FileArray;
     NSInteger selectNumber;
-    NSInteger locationCode;
+    NSString * locationCode;
 }
 @property (nonatomic,strong) CheckFileTableView * tableView;
 @property (nonatomic,strong) NSMutableArray<FileModel *> * filemodels;
@@ -34,6 +34,7 @@
     }
     [http postWithSuccess:^(id responseObject) {
         self.model = [AccessSingleModel mj_objectWithKeyValues:responseObject[@"data"]];
+        locationCode = self.model.enterLocation;
         [self initTable];
     } failure:^(NSError *error) {
         
@@ -57,7 +58,9 @@
     self.tableView = [[CheckFileTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.model = self.model;
-    self.tableView.location = [[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation];
+    self.tableView.filelocation = [[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation];
+    self.tableView.location = [[BaseModel user]ReturnLocationNameByCode:self.model.enterLocation];
+    self.tableView.enterCode = self.model.enterCode;
     [self findFile];
     [self.view addSubview:self.tableView];
 }
@@ -89,11 +92,22 @@
 //    }];
 //}
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
+    UITextField * text = [self.view viewWithTag:3333];
+    if (locationCode .length == 0) {
+        [TLAlert alertWithMsg:@"请选择存放位置"];
+        return;
+    }
+    if (text.text.length == 0) {
+        [TLAlert alertWithMsg:@"请输入档案编号"];
+        return;
+    }
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632229";
     http.parameters[@"code"] = self.model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"enterLocation"] = self.model.enterLocation;
+    http.parameters[@"enterLocation"] = locationCode;
+    http.parameters[@"enterCode"] = text.text;
+//    self.model.enterLocation;
     [http postWithSuccess:^(id responseObject) {
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
@@ -101,5 +115,23 @@
     } failure:^(NSError *error) {
         
     }];
+}
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        BaseModel *model = [BaseModel new];
+        [model ReturnsEnterLocation:@""];
+        model.ModelDelegate = self;
+    }
+}
+
+-(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
+{
+    
+    _tableView.filelocation = Str;
+    locationCode = [NSString stringWithFormat:@"%@",dic[@"code"]];
+    NSArray * arr = [USERDEFAULTS objectForKey:ENTERLOCATION];
+    _tableView.location = arr[sid][@"location"];
+    [self.tableView reloadData];
 }
 @end

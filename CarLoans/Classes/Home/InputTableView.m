@@ -37,7 +37,7 @@
     if (section == 2) {
         return self.FileArray.count;
     }
-    return 1;
+    return 3;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
@@ -68,6 +68,35 @@
         return cell;
     }
     if (indexPath.section == 1) {
+        if (indexPath.row == 1) {
+//            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"check" forIndexPath:indexPath];
+            static NSString *rid=@"checkcell";
+            TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*位置编号";
+            cell.nameTextField.tag = 3332;
+            cell.text = _location;
+            return cell;
+        }
+        if (indexPath.row == 2) {
+            //            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"check" forIndexPath:indexPath];
+            static NSString *rid=@"checkcell";
+            TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*档案编号";
+            cell.nameText = @"请输入档案编号";
+            cell.nameTextField.tag = 3333;
+            if ([cell.nameTextField.text isEqualToString:@""] && [BaseModel isBlankString:self.enterCode] == NO) {
+                cell.text = _enterCode;
+            }
+            return cell;
+        }
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"*档案存放位置";

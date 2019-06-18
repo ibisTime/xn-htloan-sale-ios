@@ -35,6 +35,8 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         return 11;
+    }if (section == 3) {
+        return 2;
     }
     return 1;
 }
@@ -52,12 +54,15 @@
         numberToRound = (_carInvoice.count + 1.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 45)/3 + 25) + 20;
-//        return 150;
-//         NSArray * collectDataArray = [self.peopleAray[0][@"interview_other_pdf"] componentsSeparatedByString:@"||"];
-//        return 180 * ((collectDataArray.count / 3) + 1);
     }
     if (indexPath.section == 3) {
-        return 50;
+        if (indexPath.row == 0) {
+            return 50;
+        }
+        if (self.inarray.count == 0) {
+            return 50;
+        }
+        return 25 * (self.inarray.count + 1);
     }
     return 50;
     
@@ -141,16 +146,32 @@
         return cell;
     }
     if (indexPath.section == 3) {
-//        ChooseCell * cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
-        static NSString *rid=@"choose";
-        ChooseCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-        if(cell==nil){
-            cell=[[ChooseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        if (indexPath.row == 0) {
+            NSString *rid=@"choose";
+            ChooseCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[ChooseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*出款账号";
+            cell.tag = 1050 + indexPath.row;
+            return cell;
+        }else if (indexPath.row == 1){
+            NSString *rid=@"choose123";
+            ChooseCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[ChooseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*收款账号";
+            cell.tag = 1050 + indexPath.row;
+            if (self.inarray.count > 0) {
+                NSString * str = [self.inarray componentsJoinedByString:@"\n"];
+                cell.text = str;
+            }
+            return cell;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"*垫资账号";
-        cell.tag = 1050 + indexPath.row;
-        return cell;
+        
     }
     
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];

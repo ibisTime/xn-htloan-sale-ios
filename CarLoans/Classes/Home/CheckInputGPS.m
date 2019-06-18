@@ -96,18 +96,25 @@
         
         [array addObject:dic];
     }
-    if (array.count == 0) {
-        [TLAlert alertWithMsg:@"请选择GPS"];
-        return;
-    }
+    
     UITextField * textfield = [self.view viewWithTag:400];
     TLNetworking * http = [[TLNetworking alloc]init];
     if (sender.tag == 1001) {
+        if (array.count == 0) {
+            [TLAlert alertWithInfo:@"请选择GPS"];
+            return;
+        }
         http.code = @"632711";
         http.parameters[@"gpsList"] = array;
     }
-    else
+    else{
+        if (textfield.text.length == 0) {
+            [TLAlert alertWithInfo:@"请输入审核意见"];
+            return;
+        }
         http.code = @"632712";
+    }
+    
     
     http.parameters[@"code"] = self.model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];

@@ -34,5 +34,7 @@ typedef NS_ENUM(NSInteger, ImageType) {
 
 @property (nonatomic,strong) NSString * type;
 @property (nonatomic,assign) NSInteger count;
+@property (nonatomic,assign) BOOL isdissmiss;
+
 
 @end

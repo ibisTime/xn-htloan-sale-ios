@@ -74,6 +74,7 @@
     TLUploadManager *manager = [TLUploadManager manager];
     manager.imgData = imgData;
     manager.image = image;
+    manager.isdissmiss = NO;
     [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
         WGLog(@"%@",key);
         self.count --;
@@ -141,14 +142,7 @@
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
     UITextField *textFid1 = [self.view viewWithTag:100002];
-    if ([_date isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请选择时间"];
-        return;
-    }
-    if (_proveDataArray.count == 0) {
-        [TLAlert alertWithInfo:@"请上传结清证明"];
-        return;
-    }
+    
     TLNetworking *http = [TLNetworking new];
     http.code = @"630551";
     http.showView = self.view;
@@ -157,9 +151,21 @@
         http.parameters[@"remark"] = textFid1.text;
     }
     if (index == 100) {
+        if ([_date isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请选择时间"];
+            return;
+        }
+        if (_proveDataArray.count == 0) {
+            [TLAlert alertWithInfo:@"请上传结清证明"];
+            return;
+        }
         http.parameters[@"approveResult"] = @"1";
     }else
     {
+        if ([textFid1.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入审核意见"];
+            return;
+        }
         http.parameters[@"approveResult"] = @"0";
     }
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];

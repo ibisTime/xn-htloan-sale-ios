@@ -29,6 +29,9 @@
 @property (nonatomic , copy)NSString *idNoReverse;
 
 @property (nonatomic , strong)InputInformationMortgageTableView *tableView;
+
+@property (nonatomic,strong) IdCardFrontModel * idcardfrontmodel;
+@property (nonatomic,strong) IdCradReverseModel * idcardreversemodel;
 @end
 
 @implementation InputInformationMortgageVC
@@ -40,6 +43,7 @@
         _imagePicker = [[TLImagePicker alloc] initWithVC:self];
 
         _imagePicker.allowsEditing = YES;
+        
         _imagePicker.pickFinish = ^(NSDictionary *info){
 
             UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
@@ -50,10 +54,11 @@
 
             manager.imgData = imgData;
             manager.image = image;
+            manager.isdissmiss = YES;
             [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
                 WGLog(@"%@",key);
                 [weakSelf setImage:image setData:key];
-
+                
             } failure:^(NSError *error) {
                 [TLAlert alertWithInfo:@"上传失败"];
             }];
@@ -68,17 +73,18 @@
     if (self.selectInt == 1) {
         [self.GreenBigBenArray addObject:data];
         self.tableView.GreenBigBenArray = self.GreenBigBenArray;
+        [SVProgressHUD dismiss];
     }
     
     
     if (self.selectInt == 50)
     {
         self.idNoFront = data;
-        self.tableView.idNoFront = self.idNoFront;
+        [self getDataFromPicWithUrl:data WithCode:@"630092"];
     }else if (self.selectInt == 51)
     {
         self.idNoReverse = data;
-        self.tableView.idNoReverse = self.idNoReverse;
+        [self getDataFromPicWithUrl:data WithCode:@"630093"];
     }
     [self.tableView reloadData];
 }
@@ -89,12 +95,40 @@
         
         _idNoFront = @"";
         self.tableView.idNoFront = _idNoFront;
+        self.idcardfrontmodel = nil;
+        self.tableView.idcardfrontmodel = self.idcardfrontmodel;
     }else
     {
         _idNoReverse = @"";
         self.tableView.idNoReverse = _idNoReverse;
+        self.idcardreversemodel = nil;
+        self.tableView.idcardreversemodel = self.idcardreversemodel;
     }
     [self.tableView reloadData];
+}
+-(void)getDataFromPicWithUrl:(NSString *)picurl WithCode :(NSString *)code{
+    [SVProgressHUD show];
+    NSString * url = [picurl convertImageUrl];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = code;
+    http.parameters[@"picUrl"] = url;
+    [http postWithSuccess:^(id responseObject) {
+        if ([code isEqualToString:@"630092"]) {
+            self.idcardfrontmodel = [IdCardFrontModel mj_objectWithKeyValues:responseObject[@"data"]];
+            self.tableView.idNoFront = picurl;
+            self.tableView.idcardfrontmodel = self.idcardfrontmodel;
+        }
+        else if ([code isEqualToString:@"630093"]) {
+            self.idcardreversemodel = [IdCradReverseModel mj_objectWithKeyValues:responseObject[@"data"]];
+            self.tableView.idNoReverse = picurl;
+            self.tableView.idcardreversemodel = self.idcardreversemodel;
+        }
+        [self.tableView reloadData];
+        [SVProgressHUD dismiss];
+    } failure:^(NSError *error) {
+        
+    }];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

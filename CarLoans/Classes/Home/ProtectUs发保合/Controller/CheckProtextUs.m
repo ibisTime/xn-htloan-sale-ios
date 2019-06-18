@@ -108,8 +108,14 @@
     if (sender.tag == 1001) {
         http.parameters[@"approveResult"] = @"1";
     }
-    else
+    else{
         http.parameters[@"approveResult"] = @"0";
+        if (approveNote.length == 0) {
+            [TLAlert alertWithInfo:@"请输入审核意见"];
+            return;
+        }
+    }
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"approveNote"] = approveNote;

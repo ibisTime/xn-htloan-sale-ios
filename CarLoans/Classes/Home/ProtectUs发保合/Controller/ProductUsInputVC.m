@@ -73,6 +73,7 @@
     TLUploadManager *manager = [TLUploadManager manager];
     manager.imgData = imgData;
     manager.image = image;
+    manager.isdissmiss = NO;
     [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
         WGLog(@"%@",key);
         self.count --;
@@ -126,6 +127,7 @@
     self.title=@"录入发保合";
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
@@ -315,6 +317,7 @@
     
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"632131";
+    http.showView = self.view;
         http.parameters[@"code"] = self.model.code;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"policyDatetime"] = self.policyDatetime;

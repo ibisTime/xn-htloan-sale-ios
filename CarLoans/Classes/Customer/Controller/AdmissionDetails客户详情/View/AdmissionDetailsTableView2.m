@@ -67,8 +67,8 @@
         if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
             
             
-            [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gua0 convertImageUrl]] forState:UIControlStateNormal];
-            [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gua0 convertImageUrl]] forState:UIControlStateNormal];
+            [cell.button1 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_front_gua convertImageUrl]] forState:UIControlStateNormal];
+            [cell.button2 sd_setImageWithURL:[NSURL URLWithString:[self.id_no_reverse_gua convertImageUrl]] forState:UIControlStateNormal];
             cell.button1.tag = 104;
             cell.button2.tag = 105;
             if (indexPath.section > 0) {
@@ -161,26 +161,26 @@
         if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
             if ([dataDic[@"isFirstGua"] isEqualToString:@"1"]) {
                 if (indexPath.row == 6) {
-                    if (![self.auth_pdf_gua0[0] isEqualToString:@""]) {
-                        cell.collectDataArray = self.auth_pdf_gua0;
+                    if (![self.auth_pdf_gua[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.auth_pdf_gua;
                     }
                     cell.selectStr = @"征信查询授权书";
                 }
                 if (indexPath.row == 7) {
-                    if (![self.interview_pic_gua0[0] isEqualToString:@""]) {
-                        cell.collectDataArray = self.interview_pic_gua0;
+                    if (![self.interview_pic_gua[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.interview_pic_gua;
                     }
                     cell.selectStr = @"手持授权书照片";
                 }
                 if (indexPath.row == 9) {
-                    if (![self.bank_report_gua0[0] isEqualToString:@""]) {
-                        cell.collectDataArray = self.bank_report_gua0;
+                    if (![self.bank_report_gua[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.bank_report_gua;
                     }
                     cell.selectStr = @"征信报告";
                 }
                 if (indexPath.row == 10) {
-                    if (![self.data_report_gua0[0] isEqualToString:@""]) {
-                        cell.collectDataArray = self.data_report_gua0;
+                    if (![self.data_report_gua[0] isEqualToString:@""]) {
+                        cell.collectDataArray = self.data_report_gua;
                     }
                     cell.selectStr = @"担保人大数据报告";
                 }
@@ -277,10 +277,10 @@
             [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gh];
             break;
         case 104:
-            [[BaseModel user]AlterImageByUrl:self.id_no_front_gua0];
+            [[BaseModel user]AlterImageByUrl:self.id_no_front_gua];
             break;
         case 105:
-            [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gua0];
+            [[BaseModel user]AlterImageByUrl:self.id_no_reverse_gua];
             break;
         case 106:
             [[BaseModel user]AlterImageByUrl:self.id_no_front_gua1];
@@ -371,7 +371,7 @@
     if ([dataDic[@"loanRole"] isEqualToString:@"3"]) {
         if ([dataDic[@"isFirstGua"] isEqualToString:@"1"]) {
             if (indexPath.row == 6) {
-                array = self.auth_pdf_gua0;
+                array = self.auth_pdf_gua;
                 NSString * str = array[0];
                 if (str.length == 0) {
                     return 50;
@@ -379,7 +379,7 @@
                 
             }
             if (indexPath.row == 7) {
-                array = self.interview_pic_gua0;
+                array = self.interview_pic_gua;
                 NSString * str = array[0];
                 if (str.length == 0) {
                     return 50;
@@ -388,14 +388,14 @@
             }
             if (indexPath.row == 9) {
                 
-                array = self.bank_report_gua0;
+                array = self.bank_report_gua;
                 NSString * str = array[0];
                 if (str.length == 0) {
                     return 50;
                 }
             }
             if (indexPath.row == 10) {
-                array = self.data_report_gua0;
+                array = self.data_report_gua;
                 NSString * str = array[0];
                 if (str.length == 0) {
                     return 50;

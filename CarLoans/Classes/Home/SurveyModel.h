@@ -321,4 +321,7 @@
 
 @property (nonatomic,copy) NSString * restAmount;
 @property (nonatomic,copy) NSArray * creditJours;
+@property (nonatomic,strong) NSDictionary * user;
+@property (nonatomic,copy) NSString * enterCode;
+@property (nonatomic,copy) NSArray * advanceCollectCardList;
 @end

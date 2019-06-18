@@ -46,6 +46,7 @@
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
         lineView.backgroundColor = LineBackColor;
         [self addSubview:lineView];
+        self.lineView = lineView;
     }
     return self;
 }
@@ -62,6 +63,20 @@
 -(void)setDetails:(NSString *)details
 {
     _detailsLabel.text = details;
+}
+
+-(void)setText:(NSString *)text{
+    NSArray * array = [text componentsSeparatedByString:@"\n"];
+    _detailsLabel.text = text;
+    _detailsLabel.numberOfLines = 0;
+    [_detailsLabel sizeToFit];
+    _detailsLabel.frame = CGRectMake(115, 0, SCREEN_WIDTH - 155, 28 * (array.count + 1));
+    
+    _nameLabel.frame = CGRectMake(15, 0,_nameLabel.width, 28 * (array.count + 1));
+    
+    _xiaImage.frame = CGRectMake(SCREEN_WIDTH - 15 - 7, _detailsLabel.height / 2 - 12, 7, 12);
+    
+    _lineView.frame = CGRectMake(0, _detailsLabel.height - 1, SCREEN_WIDTH, 1);
 }
 
 @end

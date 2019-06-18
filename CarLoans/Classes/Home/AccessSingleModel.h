@@ -111,4 +111,5 @@
 @property (nonatomic,copy) NSString * enterLocation;
 @property (nonatomic,strong) NSString * repayCardNumber;
 @property (nonatomic,copy) NSString * subbranchBankName;
+@property (nonatomic,copy) NSString * enterCode;
 @end

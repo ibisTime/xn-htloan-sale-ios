@@ -30,9 +30,9 @@
     if (section == 0) {
         return 8;
     }
-//    if (section == 2) {
-//        return self.FileArray.count;
-//    }
+    if (section == 1) {
+        return 3;
+    }
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,10 +64,40 @@
         return cell;
     }
     if (indexPath.section == 1) {
+        if (indexPath.row == 2) {
+            //            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"check" forIndexPath:indexPath];
+            static NSString *rid=@"checkcell";
+            TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*档案编号";
+            cell.nameText = @"请输入档案编号";
+            cell.nameTextField.tag = 3333;
+            if ([cell.nameTextField.text isEqualToString:@""] && [BaseModel isBlankString:self.enterCode] == NO) {
+                cell.text = _enterCode;
+            }
+            return cell;
+        }
+        if (indexPath.row == 1) {
+            //            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"check" forIndexPath:indexPath];
+            static NSString *rid=@"checkcell1";
+            TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.name = @"*位置编号";
+            cell.nameTextField.tag = 3332;
+            cell.text = _location;
+            cell.isInput = @"0";
+            return cell;
+        }
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:Choose forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name = @"*档案存放位置";
-        cell.detailsLabel.text = self.location;
+        cell.detailsLabel.text = self.filelocation;
         return cell;
     }
     static NSString *rid=@"upload";
@@ -95,7 +125,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
-        return 150;
+        return 50;
     }
     return 50;
 }

@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 12;
+    return 13;
 }
 
 #pragma mark -- tableView
@@ -56,6 +56,30 @@
         return cell;
         
     }
+    if (indexPath.row == 12) {
+        static NSString *rid=@"cell123";
+        AdmissionInformationCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        if(cell==nil){
+            cell=[[AdmissionInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        }
+        _cell = cell;
+        NSArray *topArray = @[@"收款账号"];
+        cell.topLbl.text = topArray[0];
+        NSArray * array = self.model.advance[@"advanceCollectCardList"];
+        NSMutableArray * bank = [NSMutableArray array];
+        NSString * str ;
+        for (int i = 0; i < array.count; i ++) {
+            [bank addObject:[[BaseModel user]ReturnBankcardNumberByCode:array[i][@"collectBankcardCode"] ]];
+        }
+        str = [bank componentsJoinedByString:@"\n"];
+        NSLog(@"%@",str);
+        cell.bottomLbl.text = str;
+        cell.bottomLbl.numberOfLines = 0;
+        [cell.bottomLbl sizeToFit];
+        cell.bottomLbl.frame = CGRectMake(15, 39, SCREEN_WIDTH - 137, cell.bottomLbl.height);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
     static NSString *CellIdentifier = @"Cell";
     AdmissionInformationCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
     if (cell == nil) {
@@ -72,7 +96,7 @@
                           @"银行服务费",
                           @"垫资日期",
                           @"垫资金额",
-                          @"垫资账号",
+                          @"出款账号",
                           @"",
                           @"垫资说明"];
     cell.topLbl.text = topArray[indexPath.row];

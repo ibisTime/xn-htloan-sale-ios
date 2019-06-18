@@ -26,6 +26,7 @@
 //    [self inittableview];
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
@@ -79,6 +80,7 @@
     NSString * approveNote = cell.nameTextField.text;
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = self.code;
+    http.showView = self.view;
     if (sender.tag == 1001) {
         http.parameters[@"approveResult"] = @"1";
     }

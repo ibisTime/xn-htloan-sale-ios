@@ -305,10 +305,39 @@
         nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];
         
+        NSArray * title = [NSArray array];
+        if ([_dataDic[@"status"] isEqualToString:@"0"]) {
+            title = @[@"工行征信",@"同盾征信"];
+        }
+        if ([_dataDic[@"status"] isEqualToString:@"1"]) {
+            title = @[@"待工行回调",@"同盾征信"];
+        }
+        if ([_dataDic[@"status"] isEqualToString:@"2"]) {
+            title = @[@"工行回调完成",@"同盾征信"];
+        }
+       
+        
+        UIButton * button = [UIButton buttonWithTitle:title[section - 2] titleColor:MainColor backgroundColor:kClearColor titleFont:14 cornerRadius:3];
+        kViewBorderRadius(button, 3, 1, MainColor);
+        button.tag = section;
+        [button.titleLabel sizeToFit];
+        button.frame = CGRectMake(SCREEN_WIDTH - button.titleLabel.width - 15 - 10, 10, button.titleLabel.width + 10, 30);
+        [button addTarget:self action:@selector(click:) forControlEvents:(UIControlEventTouchUpInside)];
+        [headView addSubview:button];
+        
         return headView;
     }
     return nil;
 }
+
+-(void)click:(UIButton * )sender{
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:selectRowState:)]) {
+        
+        [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"sender"];
+        
+    }
+}
+
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {

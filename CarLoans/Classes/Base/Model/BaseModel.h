@@ -32,6 +32,7 @@
 + (BOOL)isBlankDictionary:(NSDictionary *)dic;
 + (NSString*)convertNull:(id)object;
 + (NSString*)convertNullReturnStr:(id)object;
+-(NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
 //存储用户信息
 - (void)saveUserInfo:(NSDictionary *)userInfo;
 
@@ -51,6 +52,8 @@
 //查找角色............
 -(NSString *)setParentKey:(NSString *)parentKey setDkey:(NSString *)dkey;
 -(NSString *)setParentKey:(NSString *)parentKey setDvalue:(NSString *)dvalue;
+-(NSString *)setid:(NSString *)cityid;
+-(NSString *)setvalue:(NSString *)cityvalue;
 -(void)phoneCode:(UIButton *)sender;
 -(NSString *)FindUrlWithModel:(SurveyModel *)model ByKname:(NSString *)Kname;
 
@@ -59,4 +62,5 @@
 -(void)ReturnsEnterLocation:(NSString *)parentKey;
 -(void)AlterImageByUrl:(NSString *)url;
 -(NSString *)ReturnBankcardNumberByCode:(NSString *)code;
+-(NSString *)ReturnLocationNameByCode:(NSString *)code;
 @end

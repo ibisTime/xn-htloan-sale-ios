@@ -16,6 +16,7 @@
 #import "SelPlayerConfiguration.h"
 #import <Masonry.h>
 #import <AVKit/AVKit.h>
+#import "SecondReportVC.h"
 @interface AdmissionDetailsTableView16 ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -104,7 +105,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([self.model.attachments[indexPath.row][@"attachType"] isEqualToString:@"图片"]) {
+    if ([self.model.attachments[indexPath.row][@"attachType"] isEqualToString:@"链接"]) {
+        [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
+    }
+    
+    else if ([self.model.attachments[indexPath.row][@"attachType"] isEqualToString:@"图片"]) {
         NSMutableArray *muArray = [NSMutableArray array];
         NSArray * arr = [self.model.attachments[indexPath.row][@"url"] componentsSeparatedByString:@"||"];
         for (int i = 0; i < arr.count; i++) {

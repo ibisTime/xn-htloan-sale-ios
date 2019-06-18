@@ -57,8 +57,14 @@
     if (sender.tag == 1001) {
         approveResult = @"1";
     }
-    else
+    else{
         approveResult = @"0";
+        if (cell.nameTextField.text.length == 0) {
+            [TLAlert alertWithInfo:@"请输入审核意见"];
+            return;
+        }
+    }
+    
     http.code = @"632127";
     http.parameters[@"code"] = self.model.code;
     http.parameters[@"approveResult"] = approveResult;

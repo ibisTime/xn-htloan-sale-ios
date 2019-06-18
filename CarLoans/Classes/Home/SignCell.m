@@ -175,14 +175,28 @@
     NSArray *InformationArray = @[
                                   [NSString stringWithFormat:@"%@",signModel.code],
                                   [NSString stringWithFormat:@"%@",signModel.creditUser[@"userName"]],
-                                  [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:signModel.carInfoRes[@"carBrand"]],[BaseModel convertNull:signModel.carInfoRes[@"carSeries"]],[BaseModel convertNull:signModel.carInfoRes[@"carModel"]],[BaseModel convertNull:signModel.carInfoRes[@"carColor"]]],
+                                  [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:signModel.carInfoRes[@"carBrandName"]],[BaseModel convertNull:signModel.carInfoRes[@"carSeriesName"]],[BaseModel convertNull:signModel.carInfoRes[@"carModelName"]],[BaseModel convertNull:signModel.carInfoRes[@"carColor"]]],
                                   [NSString stringWithFormat:@"%@",[signModel.intevDateTime convertDate]]
                                   ];
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
+        
+        
+        
+        UILabel *InformationLabel1 = [self viewWithTag:1000000 + i - 1];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
         InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+        InformationLabel.numberOfLines = 0;
+        [InformationLabel sizeToFit];
+        if (i == 0) {
+            InformationLabel.frame = CGRectMake(115 , 10, SCREEN_WIDTH - 130, InformationLabel.height);
+        }else{
+            InformationLabel.frame = CGRectMake(115 , InformationLabel1.yy + 15, SCREEN_WIDTH - 130, InformationLabel.height);
+        }
+        
+        
+        
     }
     
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 175,SCREEN_WIDTH, 1)];

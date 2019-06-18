@@ -58,6 +58,27 @@
 
 //面签视频
 #import "SignVC.h"
+//
+#import "BeyondListVC.h"
+//
+#import "GreenListVC.h"
+//
+#import "YellowListVC.h"
+//红名单
+#import "RedListVC.h"
+//
+#import "ForwardCheckVC.h"
+//
+#import "TrailerVC.h"
+//
+#import "RedeemVC.h"
+//
+#import "LawSuitVC.h"
+//
+#import "BlackListVC.h"
+//
+#import "HistoryVC.h"
+
 @interface HomeVC ()<RefreshDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSDictionary *dataDic;
@@ -103,7 +124,8 @@
         return 5;
     }
     if (section == 2) {
-        return 4;
+//        return 13;
+        return 5;
     }
     return 3;
 }
@@ -123,7 +145,8 @@
         cell.nameLbl.text = array[indexPath.row];
     }
     if (indexPath.section == 2) {
-        NSArray *array = @[@"还款业务管理",@"确认还款管理",@"结清审核",@"解除抵押"];
+//        NSArray *array = @[@"还款业务管理",@"确认还款管理",@"结清审核",@"解除抵押",@"绿名单",@"黄名单",@"红名单",@"提前还款审核",@"拖车管理",@"用户赎回",@"司法诉讼",@"黑名单",@"历史业务管理"];
+        NSArray *array = @[@"还款业务管理",@"确认还款管理",@"结清审核",@"解除抵押",@"逾期名单"];
         cell.iconImg.image= kImage(array[indexPath.row]);
         cell.nameLbl.text = array[indexPath.row];
     }
@@ -358,7 +381,7 @@
     
     if (indexPath.section == 2) {
         switch (indexPath.row) {
-                case 0:{
+            case 0:{
                     CheckRepayVC * vc = [CheckRepayVC new];
                     vc.title = @"还款业务管理";
                     vc.hidesBottomBarWhenPushed = YES;
@@ -366,26 +389,88 @@
                 }
                 
                 break;
-                case 1:{
+            case 1:{
                     ConfirmRepayVC * vc = [ConfirmRepayVC new];
                     vc.title = @"确认还款管理";
                     vc.hidesBottomBarWhenPushed = YES;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                 break;
-                case 2:{
+            case 2:{
                     SettlementAuditVC *vc = [SettlementAuditVC new];
                     vc.hidesBottomBarWhenPushed = YES;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                 break;
-                case 3:{
+            case 3:{
                     CancelMortgageVC * vc = [CancelMortgageVC new];
                     vc.hidesBottomBarWhenPushed = YES;
                     vc.title = @"解除抵押";
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                 break;
+            
+            case 4:{
+                BeyondListVC * vc = [BeyondListVC new];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+//            case 4:{
+//                GreenListVC * vc = [GreenListVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
+//            break;
+                                     
+//            case 5:{
+//                YellowListVC * vc = [YellowListVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
+//                break;
+//            case 6:{
+//                RedListVC * vc = [RedListVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                break;
+//            case 7:{
+//                ForwardCheckVC * vc = [ForwardCheckVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                break;
+//            case 8:{
+//                TrailerVC * vc = [TrailerVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                break;
+//            case 9:{
+//                RedeemVC * vc = [RedeemVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                break;
+//            case 10:{
+//                LawSuitVC * vc = [LawSuitVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                break;
+//            case 11:{
+//                BlackListVC * vc = [BlackListVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                break;
+//            case 12:{
+//                HistoryVC * vc = [HistoryVC new];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:vc animated:YES];
+//                }
+//                break;
                 
             default:
                 break;
@@ -666,9 +751,14 @@
     http1.code = @"630036";
     [http1 postWithSuccess:^(id responseObject) {
         [USERDEFAULTS setObject:responseObject[@"data"] forKey:BOUNCEDDATA];
+        
     } failure:^(NSError *error) {
 
     }];
+    
+    
+    
+    
     
     TLNetworking * http2 = [TLNetworking new];
     http2.isShowMsg = NO;
@@ -691,8 +781,20 @@
     
     TLNetworking * http4 = [TLNetworking new];
     http4.code = @"632007";
+    http4.isShowMsg = NO;
     [http4 postWithSuccess:^(id responseObject) {
         [USERDEFAULTS setObject:responseObject[@"data"] forKey:ADVANCECARD];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    TLNetworking *http5 = [TLNetworking new];
+    http5.isShowMsg = NO;
+    http5.code = @"630477";
+    http5.parameters[@"status"] = @"1";
+    [http5 postWithSuccess:^(id responseObject) {
+        [USERDEFAULTS setObject:responseObject[@"data"] forKey:REGION];
+        
     } failure:^(NSError *error) {
         
     }];

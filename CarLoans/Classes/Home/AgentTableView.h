@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *idNoFront;
 //    身份证反面
 @property (nonatomic , copy)NSString *idNoReverse;
+
+@property (nonatomic,strong) IdCardFrontModel * idcardfrontmodel;
+@property (nonatomic,strong) IdCradReverseModel * idcardreversemodel;
 @end
 
 NS_ASSUME_NONNULL_END

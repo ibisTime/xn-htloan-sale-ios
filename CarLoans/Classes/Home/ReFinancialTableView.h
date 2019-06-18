@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic,strong) NSMutableArray * carInvoice;//发票
 @property (nonatomic , strong)NSArray *peopleAray;
+@property (nonatomic,strong) NSArray * inarray;
 @end
 
 NS_ASSUME_NONNULL_END

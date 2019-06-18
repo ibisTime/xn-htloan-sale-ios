@@ -51,9 +51,12 @@
     if (self.model[indexPath.row].status == 0) {
         cell.button.hidden = NO;
     }
-    if (self.model[indexPath.row].status == 1) {
+    else{
         cell.button.hidden = YES;
     }
+//    if (self.model[indexPath.row].status == 1) {
+//        cell.button.hidden = YES;
+//    }
     return cell;
 }
 
@@ -76,10 +79,10 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.model[indexPath.row].status == 1) {
-        return 164;
+    if (self.model[indexPath.row].status == 0) {
+        return 205;
     }
-    return 205;
+    return 164;
 }
 
 #pragma mark -- 区头高度

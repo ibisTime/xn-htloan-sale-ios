@@ -114,7 +114,7 @@
                             @""];
     
     cell.text = textarray[indexPath.row];
-    cell.nameTextField.tag = 100000 + indexPath.row;
+    cell.nameTextField.tag = 111000 + indexPath.row;
     if (indexPath.row == 5) {
         cell.nameTextField.hidden = NO;
         cell.nameTextLabel.hidden = YES;

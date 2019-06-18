@@ -19,12 +19,15 @@
 
 @property (nonatomic, assign) id <SelectButtonDelegate> ButtonDelegate;
 
+@property (nonatomic,strong) IdCardFrontModel * idcardfrontmodel;
+@property (nonatomic,strong) IdCradReverseModel * idcardreversemodel;
 //    身份证正面
 @property (nonatomic , copy)NSString *idNoFront;
 //    身份证反面
 @property (nonatomic , copy)NSString *idNoReverse;
 
 @property (nonatomic , strong)NSDictionary *dataDic;
+@property (nonatomic , strong)NSDictionary *dataDic1;
 
 @property (nonatomic , assign)NSInteger selectRow;
 

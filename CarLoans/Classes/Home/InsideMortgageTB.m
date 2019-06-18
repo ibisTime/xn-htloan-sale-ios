@@ -130,27 +130,37 @@
                 }
             }
             if (indexPath.row == 5) {
-                NSString * str = cell.nameTextField.text;
-                if (str.length == 0) {
-                    cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
+                NSString * str1 = cell.nameTextField.text;
+                if (self.idNoFront.length == 0) {
+                    cell.nameTextField.text = @"";
+                }
+                else if (str1.length == 0) {
+                    if (self.idcardfrontmodel) {
+                        NSLog(@"idcardfrontmodel");
+                        cell.nameTextField.text = self.idcardfrontmodel.userName;
+                    }else{
+                        NSLog(@"carPledge");
+                        cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
+                    }
+                    
                 }
             }
             if (indexPath.row == 6) {
-                NSString * str = cell.nameTextField.text;
-                if (str.length == 0) {
-                    cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
+                NSString * str2 = cell.nameTextField.text;
+                if (self.idNoFront.length == 0) {
+                    cell.nameTextField.text = @"";
+                }
+                else if (str2.length == 0) {
+                    if (self.idcardfrontmodel) {
+                        cell.nameTextField.text = self.idcardfrontmodel.idNo;
+                    }else
+                        cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
                 }
             }
             return cell;
         }
     }
     else if (indexPath.section == 2) {
-//        UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
-//        static NSString *rid=@"UploadIdCardCell";
-//        UploadIdCardCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-//        if(cell==nil){
-//            cell=[[UploadIdCardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
-//        }
         UploadIdCardCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

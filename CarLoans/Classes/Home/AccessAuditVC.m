@@ -57,12 +57,18 @@
     
     UITextField *textField = [self.view viewWithTag:10000];
     
-    if ([textField.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入审核意见"];
-        return;
+    
+    NSString * approveResult;
+    if (index == 1000) {
+        approveResult = @"1";
     }
-    
-    
+    else{
+        approveResult = @"0";
+        if ([textField.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入审核意见"];
+            return;
+        }
+    }
     
     TLNetworking *http = [TLNetworking new];
     

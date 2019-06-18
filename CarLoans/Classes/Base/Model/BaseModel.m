@@ -228,6 +228,16 @@
     }
     return name;
 }
+-(NSString *)ReturnLocationNameByCode:(NSString *)code{
+    NSString * name;
+    NSArray *array = [USERDEFAULTS objectForKey:ENTERLOCATION];
+    for (int i = 0; i < array.count; i++) {
+        if ([array[i][@"code"] isEqualToString:code]) {
+            name = array[i][@"location"];
+        }
+    }
+    return name;
+}
 
 //弹框
 -(void)CustomBouncedView:(NSMutableArray *)nameArray setState:(NSString *)state
@@ -357,6 +367,30 @@
     }
     return dkey;
 }
+
+-(NSString *)setid:(NSString *)cityid
+{
+    NSString *dvalue;
+    NSArray *dataArray = [USERDEFAULTS objectForKey:REGION];
+    for (int i = 0; i < dataArray.count; i ++) {
+        if ([[NSString stringWithFormat:@"%@", dataArray[i][@"id"]] isEqualToString:cityid]) {
+            dvalue = dataArray[i][@"cityName"];
+        }
+    }
+    return dvalue;
+}
+-(NSString *)setvalue:(NSString *)cityvalue
+{
+    NSString *dvalue;
+    NSArray *dataArray = [USERDEFAULTS objectForKey:REGION];
+    for (int i = 0; i < dataArray.count; i ++) {
+        if ([[NSString stringWithFormat:@"%@", dataArray[i][@"cityName"]] isEqualToString:cityvalue]) {
+            dvalue = dataArray[i][@"id"];
+        }
+    }
+    return dvalue;
+}
+
 -(NSString *)ReturnBankcardNumberByCode:(NSString *)code{
     NSString * name;
     NSArray *array = [USERDEFAULTS objectForKey:ADVANCECARD];
@@ -425,7 +459,24 @@
         
     }
 }
-
+-(NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
 //-(void)alertselectimage{
 //    UIImagePickerController *pickCtrl = [[UIImagePickerController alloc] init];
 //    pickCtrl.delegate = self;

@@ -57,6 +57,8 @@
     self.tableView.refreshDelegate = self;
     self.tableView.model = self.model;
     self.tableView.filelocation = [[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation];
+    self.tableView.location = [[BaseModel user]ReturnLocationNameByCode:self.model.enterLocation];
+    self.tableView.enterCode = self.model.enterCode;
     locationCode = self.model.enterLocation;
     [self findFile];
     [self.view addSubview:self.tableView];
@@ -96,6 +98,10 @@
     {
         _tableView.filelocation = Str;
         locationCode = [NSString stringWithFormat:@"%@",dic[@"code"]];
+        NSArray * arr = [USERDEFAULTS objectForKey:ENTERLOCATION];
+        _tableView.location = arr[sid][@"location"];
+        
+        NSLog(@"locationmmj %@",arr[sid][@"location"]);
     }
     
     [self.tableView reloadData];
@@ -130,15 +136,25 @@
     }
 }
 -(void)input{
+    UITextField * text = [self.view viewWithTag:3333];
+    
     if (locationCode .length == 0) {
         [TLAlert alertWithMsg:@"请选择存放位置"];
         return;
-    }else{
+    }
+    if (text.text.length == 0) {
+        [TLAlert alertWithMsg:@"请输入档案编号"];
+        return;
+    }
+    
+    
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632134";
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     http.parameters[@"enterLocation"] = [NSString stringWithFormat:@"%@", locationCode];
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+    http.parameters[@"enterCode"] = text.text;
     [http postWithSuccess:^(id responseObject) {
         NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
@@ -146,7 +162,7 @@
     } failure:^(NSError *error) {
         
     }];
-    }
+    
 }
 -(void)deleteFile : (NSInteger)index{
     if (self.filemodels.count > 0) {

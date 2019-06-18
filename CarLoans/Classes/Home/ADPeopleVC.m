@@ -16,7 +16,8 @@
 }
 
 @property (nonatomic , assign)NSInteger selectInt;
-
+@property (nonatomic,strong) IdCardFrontModel * idcardfrontmodel;
+@property (nonatomic,strong) IdCradReverseModel * idcradreversemodel;
 //@property (nonatomic , strong)NSMutableArray *array1;
 //@property (nonatomic , strong)NSMutableArray *array2;
 
@@ -58,6 +59,7 @@
 
             manager.imgData = imgData;
             manager.image = image;
+            manager.isdissmiss = YES;
             [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
                 WGLog(@"%@",key);
                 [weakSelf setImage:image setData:key];
@@ -116,6 +118,7 @@
     TLUploadManager *manager = [TLUploadManager manager];
     manager.imgData = imgData;
     manager.image = image;
+    manager.isdissmiss = NO;
     [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
         WGLog(@"%@",key);
         self.count --;
@@ -153,7 +156,7 @@
 //        征信授权书
         [self.authPdfArray addObject:data];
         self.tableView.certificateArray = self.authPdfArray;
-
+        [SVProgressHUD dismiss];
 
     }
     else if (self.selectInt == 105)
@@ -161,36 +164,62 @@
 //        面签照片
         [self.interviewPicArray addObject:data];
         self.tableView.faceToFaceArray = self.interviewPicArray;
-
+        [SVProgressHUD dismiss];
     }
     else if (self.selectInt == 50)
     {
 
         self.idNoFront = data;
-        self.tableView.idNoFront = self.idNoFront;
-
-
+        [self getDataFromPicWithUrl:data WithCode:@"630092"];
     }else if (self.selectInt == 51)
     {
-
         self.idNoReverse = data;
-        self.tableView.idNoReverse = self.idNoReverse;
-
+        [self getDataFromPicWithUrl:data WithCode:@"630093"];
     }
     [self.tableView reloadData];
 }
-
+-(void)getDataFromPicWithUrl:(NSString *)picurl WithCode :(NSString *)code{
+    NSString * url = [picurl convertImageUrl];
+    TLNetworking * http = [[TLNetworking alloc]init];
+//    http.showView = self.view;
+    http.code = code;
+    http.parameters[@"picUrl"] = url;
+    [http postWithSuccess:^(id responseObject) {
+        if ([code isEqualToString:@"630092"]) {
+            self.idcardfrontmodel = [IdCardFrontModel mj_objectWithKeyValues:responseObject[@"data"]];
+            self.tableView.idNoFront = picurl;
+            self.tableView.idcardfrontmodel = self.idcardfrontmodel;
+        }
+        else if ([code isEqualToString:@"630093"]) {
+            self.idcradreversemodel = [IdCradReverseModel mj_objectWithKeyValues:responseObject[@"data"]];
+            self.tableView.idNoReverse = picurl;
+            self.tableView.idcardreversemodel = self.idcradreversemodel;
+        }
+        [self.tableView reloadData];
+        [SVProgressHUD dismiss];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
 //删除身份证图片
 -(void)selectButtonClick:(UIButton *)sender
 {
     if (sender.tag == 5000) {
         _idNoFront = @"";
         self.tableView.idNoFront = _idNoFront;
+        self.idcardfrontmodel = nil;
+        self.tableView.idcardfrontmodel = self.idcardfrontmodel;
+        self.tableView.dataDic = nil;
     }else
     {
         _idNoReverse = @"";
         self.tableView.idNoReverse = _idNoReverse;
+        self.idcradreversemodel = nil;
+        self.tableView.idcardreversemodel = self.idcradreversemodel;
+        self.tableView.dataDic1 = nil;
     }
+    
     [self.tableView reloadData];
 }
 
@@ -217,6 +246,7 @@
 {
     self.tableView.selectRow = _selectRow;
     self.tableView.dataDic = _dataDic;
+    self.tableView.dataDic1 = _dataDic;
 
     _loanRole = _dataDic[@"loanRole"];
     _relation = _dataDic[@"relation"];
@@ -296,18 +326,16 @@
 -(void)confirmButtonClick
 {
     UITextField *textField1 = [self.view viewWithTag:20000];
-    UITextField *textField2 = [self.view viewWithTag:20001];
-    UITextField *textField3 = [self.view viewWithTag:20002];
+    UITextField *textField2 = [self.view viewWithTag:21000];
+    UITextField *textField3 = [self.view viewWithTag:21001];
+    UITextField *textField4 = [self.view viewWithTag:21002];
+    UITextField *textField5 = [self.view viewWithTag:21003];
+    UITextField *textField6 = [self.view viewWithTag:21004];
+    UITextField *textField7 = [self.view viewWithTag:21005];
+    UITextField *textField8 = [self.view viewWithTag:21006];
+    
     if ([textField1.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入姓名"];
-        return;
-    }
-    if ([textField2.text isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请输入手机号"];
-        return;
-    }
-    if (textField2.text.length != 11) {
-        [TLAlert alertWithInfo:@"手机号格式不正确，请重新输入"];
         return;
     }
     if ([_loanRole isEqualToString:@""]) {
@@ -342,19 +370,42 @@
         [TLAlert alertWithInfo:@"请上传面签照片"];
         return;
     }
-
+    NSDictionary * idCardInfo;
+    if (_idcardfrontmodel && _idcradreversemodel) {
+        idCardInfo = @{@"userName":textField2.text,
+                                      @"nation":textField5.text,
+                                      @"gender":textField6.text ,
+                                      @"customerBirth":textField4.text ,
+                                      @"idNo":textField3.text,
+                                      @"birthAddress":textField7.text,
+                                      @"authref":textField8.text,
+                                      @"statdate":_idcradreversemodel.statdate
+                                      };
+    }else{
+        idCardInfo = @{@"userName":textField2.text,
+                       @"nation":textField5.text,
+                       @"gender":textField6.text ,
+                       @"customerBirth":textField4.text ,
+                       @"idNo":textField3.text,
+                       @"birthAddress":textField7.text,
+                       @"authref":textField8.text,
+                       @"statdate":_dataDic[@"idCardInfo"][@"statdate"]
+                       };
+    }
+    
     NSString *authPdf = [_authPdfArray componentsJoinedByString:@"||"];
     NSString *interviewPic = [_interviewPicArray componentsJoinedByString:@"||"];
     NSDictionary *dataDic  = @{
-                                      @"userName":[BaseModel convertNull:textField1.text],
-                                      @"mobile":[BaseModel convertNull:textField2.text],
+                                      @"userName":[BaseModel convertNull:textField2.text],
+                                      @"mobile":[BaseModel convertNull:textField1.text],
                                       @"loanRole":_loanRole,
                                       @"relation":_relation,
                                       @"idNo":[BaseModel convertNull:textField3.text],
                                       @"idFront":_idNoFront,
                                       @"idReverse":_idNoReverse,
                                       @"authPdf":authPdf,
-                                      @"interviewPic":interviewPic
+                                      @"interviewPic":interviewPic,
+                                      @"idCardInfo":idCardInfo
                                       };
 
     NSNotification *notification =[NSNotification notificationWithName:ADDADPEOPLENOTICE object:nil userInfo:dataDic];
@@ -365,20 +416,14 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
         isSelect = indexPath.row;
         BaseModel *model = [BaseModel new];
         model.ModelDelegate = self;
-        if (indexPath.row == 0) {
-//            if (self.isFirstEntry == YES) {
-//                return;
-//            }
+        if (indexPath.row == 1) {
             [model ReturnsParentKeyAnArray:@"credit_user_loan_role"];
-        }else
+        }else if(indexPath.row == 2)
         {
-//            if (self.isFirstEntry == YES) {
-//                return;
-//            }
             [model ReturnsParentKeyAnArray:@"credit_user_relation"];
         }
     }
@@ -388,10 +433,10 @@
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
 {
     NSLog(@"%@",dic);
-    if (isSelect == 0) {
+    if (isSelect == 1) {
         _loanRole = dic[@"dkey"];
         self.tableView.loanRole = _loanRole;
-    }else
+    }else if(isSelect == 2)
     {
         _relation = dic[@"dkey"];
         self.tableView.relation = _relation;

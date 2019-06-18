@@ -27,4 +27,8 @@
 //     行驶证反面
 @property (nonatomic , copy)NSString *xszReverse;
 
+
+@property (nonatomic,strong) NSArray * carinfo;
+
+
 @end

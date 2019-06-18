@@ -129,7 +129,10 @@
 
                 success(key);
             }
-            [SVProgressHUD dismiss];
+            if (!_isdissmiss) {
+                [SVProgressHUD dismiss];
+            }
+            
 
         } option:nil];
 

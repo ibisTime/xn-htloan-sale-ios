@@ -44,11 +44,8 @@
     [self.view addSubview:self.tableView];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
-    UITextField * text3 = [self.view viewWithTag:100003];
-    if (text3.text.length == 0) {
-        [TLAlert alertWithMsg:@"请输入审核意见"];
-        return;
-    }
+    UITextField * text3 = [self.view viewWithTag:111005];
+    
     TLNetworking * http = [[TLNetworking alloc]init];
     if ([self.model.curNodeCode isEqualToString:@"j4"]) {
         http.code = @"630552";
@@ -60,6 +57,10 @@
     if (index == 100) {
         http.parameters[@"approveResult"] = @"1";
     }else{
+        if ([text3.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入审核意见"];
+            return;
+        }
         http.parameters[@"approveResult"] = @"0";
     }
     http.parameters[@"code"] = self.model.code;

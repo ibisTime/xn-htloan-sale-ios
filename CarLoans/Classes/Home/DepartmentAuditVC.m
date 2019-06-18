@@ -49,7 +49,7 @@
 //    UITextField * text2 = [self.view viewWithTag:100002];
     UITextField * text3 = [self.view viewWithTag:100003];
     if (text1.text.length == 0) {
-        [TLAlert alertWithMsg:@"请输入扣除违约金金额"];
+        [TLAlert alertWithInfo:@"请输入扣除违约金金额"];
         return;
     }
 //    if (text2.text.length == 0) {
@@ -57,7 +57,7 @@
 //        return;
 //    }
     if (text3.text.length == 0) {
-        [TLAlert alertWithMsg:@"请输入审核意见"];
+        [TLAlert alertWithInfo:@"请输入审核意见"];
         return;
     }
     TLNetworking * http = [[TLNetworking alloc]init];

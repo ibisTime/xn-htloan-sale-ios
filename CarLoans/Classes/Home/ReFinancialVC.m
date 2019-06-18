@@ -10,9 +10,12 @@
 #import "ReFinancialTableView.h"
 #import "ChooseCell.h"
 #import "InputBoxCell.h"
+#import "MultiBaseView.h"
 @interface ReFinancialVC ()<RefreshDelegate,BaseModelDelegate>{
     NSArray *LoanProductsArray;
+    NSArray * collectarray;
     NSArray *_phostsArr;
+    NSMutableArray * collectCardCodeList;
 }
 @property (nonatomic,strong) ReFinancialTableView * tableView;
 @property (nonatomic,strong) UIButton * passBtn;
@@ -32,9 +35,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    collectCardCodeList = [NSMutableArray array];
 //    [self initTableView];
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
@@ -224,7 +229,30 @@
     [self.passBtn addTarget:self action:@selector(confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.passBtn];
     
-    // Do any additional setup after loading the view.
+    
+    
+    TLNetworking *http1 = [TLNetworking new];
+    http1.isShowMsg = NO;
+    http1.code = @"632007";
+    http1.parameters[@"type"] = @"4";
+    http1.parameters[@"advanceType"] = @"2";
+    [http1 postWithSuccess:^(id responseObject) {
+        LoanProductsArray = responseObject[@"data"];
+    }failure:^(NSError *error) {
+        }];
+    
+    
+    TLNetworking *http2 = [TLNetworking new];
+    http2.isShowMsg = NO;
+    http2.code = @"632007";
+    http2.parameters[@"type"] = @"4";
+    http2.parameters[@"advanceType"] = @"1";
+    [http2 postWithSuccess:^(id responseObject) {
+        collectarray = responseObject[@"data"];
+    }failure:^(NSError *error) {
+    }];
+    
+    
 }
 
 - (TLImagePicker *)imagePicker {
@@ -272,6 +300,7 @@
     TLUploadManager *manager = [TLUploadManager manager];
     manager.imgData = imgData;
     manager.image = image;
+    manager.isdissmiss = NO;
     [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
         WGLog(@"%@",key);
         self.count --;
@@ -335,31 +364,16 @@
         }
     }
     if (indexPath.section == 3) {
-        [self LoanProducts];
+        if (indexPath.row == 0) {
+            [self LoanProducts];
+        }
+        if (indexPath.row == 1) {
+            [self chooseMainIncome];
+        }
     }
     
 }
--(void)LoanProducts
-{
-    TLNetworking *http = [TLNetworking new];
-    
-    http.isShowMsg = NO;
-    http.code = @"632007";
-    http.parameters[@"type"] = @"4";
-//    http.parameters[@"type"] = self.model.bizType;
-    [http postWithSuccess:^(id responseObject) {
-        LoanProductsArray = responseObject[@"data"];
-        NSMutableArray *array = [NSMutableArray array];
-        
-        for (int i = 0; i < LoanProductsArray.count; i ++) {
-            NSString * str = [NSString stringWithFormat:@"%@\n%@",LoanProductsArray[i][@"bankName"],LoanProductsArray[i][@"bankcardNumber"]];
-            [array addObject:str];
-        }
-        self.bankarray = array;
-        [_baseModel CustomBouncedView:array setState:@"100"];
-    } failure:^(NSError *error) {
-    }];
-}
+
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid{
     self.bancode = LoanProductsArray[sid][@"code"];
     ChooseCell * cell = [self.view viewWithTag:1050];
@@ -387,12 +401,14 @@
     }else{
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = self.code;
+        http.showView = self.view;
         self.carInvoicestr = [self.carInvoice componentsJoinedByString:@"||"];
         http.parameters[@"advanceFundAmount"] = [NSString stringWithFormat:@"%.f", [cell.nameTextField.text floatValue] * 1000];
         http.parameters[@"advanceFundDatetime"] = self.policyDatetime;
         http.parameters[@"billPdf"] = self.carInvoicestr;
         http.parameters[@"code"] = self.model.code;
         http.parameters[@"advanceCardCode"] = self.bancode;
+        http.parameters[@"collectCardCodeList"] = collectCardCodeList;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         [http postWithSuccess:^(id responseObject) {
             NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
@@ -403,5 +419,44 @@
         }];
     }
     
+}
+-(void)LoanProducts
+{
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0; i < LoanProductsArray.count; i ++) {
+            NSString * str = [NSString stringWithFormat:@"%@\n%@",LoanProductsArray[i][@"bankName"],LoanProductsArray[i][@"bankcardNumber"]];
+            [array addObject:str];
+        }
+        self.bankarray = array;
+        [_baseModel CustomBouncedView:array setState:@"100"];
+}
+-(void)chooseMainIncome{
+    NSMutableArray * valuearray = [NSMutableArray array];
+    for (int i = 0; i < collectarray.count; i ++) {
+        [valuearray addObject:[NSString stringWithFormat:@"%@-%@",collectarray[i][@"bankName"],collectarray[i][@"bankcardNumber"]]];
+    }
+    
+    [MultiBaseView showMultiSheetAlertWithTitle:@"选择" conditions:valuearray resultBlock:^(NSArray *selectArr) {
+        collectCardCodeList = [NSMutableArray array];
+        for (NSString *str in selectArr) {
+            for (int i = 0; i < valuearray.count; i ++) {
+                if ([str isEqualToString:valuearray[i]]) {
+                    NSArray * arr = [str componentsSeparatedByString:@"-"];
+                    for (int i = 0; i < collectarray.count; i ++) {
+                        if ([arr[0] isEqualToString:collectarray[i][@"bankName"]]) {
+                            if ([arr[1] isEqualToString:collectarray[i][@"bankcardNumber"]]) {
+                                NSLog(@"%@",collectarray[i][@"code"]);
+                                [collectCardCodeList addObject:collectarray[i][@"code"]];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        self.tableView.inarray = selectArr;
+        [self.tableView reloadData];
+    } cancleBlock:^{
+        NSLog(@"取消");
+    }];
 }
 @end

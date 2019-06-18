@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) AccessSingleModel * model;
 @property (nonatomic,strong) NSMutableArray * FileArray;
 @property (nonatomic,strong) NSMutableArray<FileModel *> * filemodels;
+@property (nonatomic,strong) NSString * filelocation;
+@property (nonatomic,strong) NSString * enterCode;
 @property (nonatomic,strong) NSString * location;
 @end
 

@@ -8,6 +8,8 @@
 
 #import "ReferenceInputDetailsVC.h"
 #import "ReferenceInputDetailsTableView.h"
+#import "BankResultVC.h"
+#import "TongDunVC.h"
 @interface ReferenceInputDetailsVC ()<RefreshDelegate,BaseModelDelegate,SelectButtonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSString *secondCarReport;
     NSArray *_phostsArr;
@@ -100,6 +102,7 @@
     TLUploadManager *manager = [TLUploadManager manager];
     manager.imgData = imgData;
     manager.image = image;
+    manager.isdissmiss = NO;
     [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
         WGLog(@"%@",key);
         self.count --;
@@ -315,6 +318,42 @@
         _creditListBlock(dic, _row);
         [self.navigationController popViewControllerAnimated:YES];
         
+    }
+    else if ([state isEqualToString:@"sender"]){
+        if (index == 2) {
+            if ([sender.titleLabel.text isEqualToString:@"待工行回调"]) {
+                return;
+            }
+            else if ([sender.titleLabel.text isEqualToString:@"工行征信"]){
+                TLNetworking * http = [TLNetworking new];
+                http.code = @"632114";
+                http.parameters[@"code"] = _dataDic[@"code"];
+                [http postWithSuccess:^(id responseObject) {
+                    [TLAlert alertWithInfo:@"征信成功"];
+                } failure:^(NSError *error) {
+                    
+                }];
+            }
+            else{
+                BankResultVC * vc = [BankResultVC new];
+                vc.dataDic = self.dataDic;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }
+        if (index == 3) {
+            TLNetworking * http = [TLNetworking new];
+            http.code = @"632117";
+            http.showView = self.view;
+            http.parameters[@"creditUserCode"] = _dataDic[@"code"];
+            [http postWithSuccess:^(id responseObject) {
+                TongDunVC * vc = [TongDunVC new];
+                vc.result = responseObject[@"data"];
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            } failure:^(NSError *error) {
+                
+            }];
+        }
     }
     
     [self.tableView reloadData];

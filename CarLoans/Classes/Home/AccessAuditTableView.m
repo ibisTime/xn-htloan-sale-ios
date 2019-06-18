@@ -95,7 +95,7 @@
         cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"*审核意见";
+    cell.name = @"审核意见";
     cell.nameText = @"请输入审核意见";
     cell.nameTextField.tag = 10000;
     

@@ -3,6 +3,8 @@
 //征信人
 #import "ADPeopleVC.h"
 #import "SurveyDetailsModel.h"
+#import "SelectedListView.h"
+#import "SecondReportVC.h"
 @interface SurveyACreditVC ()<RefreshDelegate,BaseModelDelegate,SelectButtonDelegate>
 {
 
@@ -16,9 +18,26 @@
 
     NSMutableArray *peopleArray;
     NSString * speciesStr;
+    UILabel * label;
+    UILabel * label1;
+    UILabel * label2;
+    UILabel * label3;
+    UITextField * label4;
+    UILabel * label5;
+    
+    NSString * carModel;
+    NSString * modelId;
+    NSString * zone;
+    NSString  *Date;
     
 }
 
+@property (nonatomic , strong)NSArray *brandAry;
+@property (nonatomic , strong)NSArray *carsAry;
+@property (nonatomic , strong)NSArray *modelsAry;
+@property (nonatomic , strong)NSDictionary *brandDic;
+@property (nonatomic , strong)NSDictionary *carsDic;
+@property (nonatomic , strong)NSDictionary *modelsDic;
 @property (nonatomic , strong)SurveyACreditTableView *tableView;
 @property (nonatomic,strong) NSString * secondCarReport;;
 
@@ -35,6 +54,9 @@
 @property (nonatomic , copy)NSString *idNoFront;
 //    身份证反面
 @property (nonatomic , copy)NSString *idNoReverse;
+@property (nonatomic,strong) NSArray * carinfo;
+@property (nonatomic,strong) NSArray * carcode;
+@property (nonatomic,strong) BaseModel * basemodel;
 @end
 
 @implementation SurveyACreditVC
@@ -78,10 +100,12 @@
     else if (self.selectInt == 50){
         self.idNoFront = data;
         self.tableView.xszFront = self.idNoFront;
+        [SVProgressHUD dismiss];
     }
     else if (self.selectInt == 51){
         self.idNoReverse = data;
         self.tableView.xszReverse = self.idNoReverse;
+        [SVProgressHUD dismiss];
     }
     
     [self.tableView reloadData];
@@ -89,6 +113,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.basemodel = [BaseModel new];
     self.title = @"发起征信";
     if (self.model.code.length > 0) {
         TLNetworking * http = [[TLNetworking alloc]init];
@@ -116,8 +141,10 @@
     });
     
     bizType = 100;
-//    [self ModifyTheInformation];
-
+    
+    
+ 
+    NSLog(@"1");
 }
 
 
@@ -145,6 +172,8 @@
 
 -(void)loadData
 {
+
+    
     NSString *idNoFront;
     NSString *idNoReverse;
     NSString *authPdf;
@@ -154,12 +183,23 @@
     NSString *xszReverse;
     
     NSMutableArray *array = [NSMutableArray array];
-    
+    NSDictionary * idCardInfo;
     int DBR = 0;
     for (int j = 0; j < self.model.creditUserList.count; j ++) {
         NSDictionary *dataDic;
         NSDictionary *creditUser = self.model.creditUserList[j];
         if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"1"]) {
+            
+            idCardInfo = @{@"userName":creditUser[@"userName"],
+                           @"nation":creditUser[@"nation"],
+                           @"gender":creditUser[@"gender"],
+                           @"customerBirth":creditUser[@"customerBirth"],
+                           @"idNo":creditUser[@"idNo"],
+                           @"birthAddress":creditUser[@"birthAddress"],
+                           @"authref":creditUser[@"authref"],
+                           @"statdate":creditUser[@"statdate"]
+                           };
+
             
             for (int k = 0; k < self.model.attachments.count; k ++) {
                 NSDictionary *attachments = self.model.attachments[k];
@@ -198,13 +238,22 @@
                          @"interviewPic":[BaseModel convertNull:interviewPic],
                          @"xszFront":[BaseModel convertNull:xszFront],
                          @"xszReverse":[BaseModel convertNull:xszReverse],
-                         @"secondCarReport":[BaseModel convertNull:secondCarReport]
+                         @"secondCarReport":[BaseModel convertNull:secondCarReport],
+                         @"idCardInfo":idCardInfo
                          };
             [array addObject:dataDic];
         }
         if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"2"]) {
             
-            
+            idCardInfo = @{@"userName":creditUser[@"userName"],
+                           @"nation":creditUser[@"nation"],
+                           @"gender":creditUser[@"gender"],
+                           @"customerBirth":creditUser[@"customerBirth"],
+                           @"idNo":creditUser[@"idNo"],
+                           @"birthAddress":creditUser[@"birthAddress"],
+                           @"authref":creditUser[@"authref"],
+                           @"statdate":creditUser[@"statdate"]
+                           };
             
             
             for (int k = 0; k < self.model.attachments.count; k ++) {
@@ -245,12 +294,22 @@
                          @"interviewPic":[BaseModel convertNull:interviewPic],
                          @"xszFront":[BaseModel convertNull:xszFront],
                          @"xszReverse":[BaseModel convertNull:xszReverse],
-                         @"secondCarReport":[BaseModel convertNull:secondCarReport]
+                         @"secondCarReport":[BaseModel convertNull:secondCarReport],
+                         @"idCardInfo":idCardInfo
                          };
             [array addObject:dataDic];
         }
         
         if ([self.model.creditUserList[j][@"loanRole"] isEqualToString:@"3"]) {
+            idCardInfo = @{@"userName":creditUser[@"userName"],
+                           @"nation":creditUser[@"nation"],
+                           @"gender":creditUser[@"gender"],
+                           @"customerBirth":creditUser[@"customerBirth"],
+                           @"idNo":creditUser[@"idNo"],
+                           @"birthAddress":creditUser[@"birthAddress"],
+                           @"authref":creditUser[@"authref"],
+                           @"statdate":creditUser[@"statdate"]
+                           };
             for (int k = 0; k < self.model.attachments.count; k ++) {
                 NSDictionary *attachments = self.model.attachments[k];
                 if ([attachments[@"kname"] isEqualToString:[NSString stringWithFormat:@"id_no_front_gua%d",DBR]]) {
@@ -289,7 +348,8 @@
                          @"interviewPic":[BaseModel convertNull:interviewPic],
                          @"xszFront":[BaseModel convertNull:xszFront],
                          @"xszReverse":[BaseModel convertNull:xszReverse],
-                         @"secondCarReport":[BaseModel convertNull:secondCarReport]
+                         @"secondCarReport":[BaseModel convertNull:secondCarReport],
+                         @"idCardInfo":idCardInfo
                          };
             [array addObject:dataDic];
             DBR ++;
@@ -299,6 +359,8 @@
         self.tableView.xszReverse = array[0][@"xszReverse"];
         self.tableView.secondCarReport = array[0][@"secondCarReport"];
         
+        
+        
         self.secondCarReport = array[0][@"secondCarReport"];
         self.idNoFront = array[0][@"xszFront"];
         self.idNoReverse =  array[0][@"xszReverse"];
@@ -307,16 +369,7 @@
     self.tableView.peopleAray = array;
     
     peopleArray = array;
-//    if (self.model) {
-//        self.tableView.xszFront = self.model.xszReverse;
-//        self.tableView.xszReverse = self.model.xszFront;
-//        if (peopleArray.count != 0) {
-//            self.tableView.secondCarReport = peopleArray[0][@"secondCarReport"];
-//        }
-        
-//        self.tableView.speciesStr = @"二手车";
-//    }
-    
+
     UITextField *textField1 = [self.view viewWithTag:300];
     if (![[NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000] isEqualToString:@"0.00"]) {
         textField1.text = [NSString stringWithFormat:@"%.2f",[self.model.loanAmount floatValue]/1000];
@@ -331,6 +384,7 @@
 
     }else if([_model.bizType isEqualToString:@"1"])
     {
+        
         _tableView.speciesStr = @"二手车";
         speciesStr = @"二手车";
     }else
@@ -338,8 +392,7 @@
         _tableView.speciesStr = @"";
         speciesStr = @"";
     }
-//    _tableView.secondCarReport = self.model.secondCarReport;
-//    _tableView.idNoFront = self.model.car
+    
     bizType = [_model.bizType integerValue];
     TLNetworking *http = [TLNetworking new];
     http.isShowMsg = YES;
@@ -355,10 +408,50 @@
     } failure:^(NSError *error) {
         
     }];
+    
     [self.tableView reloadData];
+    if (self.model) {
+        self.carcode = @[[BaseModel convertNull:self.model.carInfoRes[@"carBrand"]],
+                         [BaseModel convertNull:self.model.carInfoRes[@"carSeries"]],
+                         [BaseModel convertNull:self.model.carInfoRes[@"carModel"]]];
+        
+        self.carinfo = @[[BaseModel convertNull:self.model.carInfoRes[@"carBrandName"]],
+                         [BaseModel convertNull:self.model.carInfoRes[@"carSeriesName"]],
+                         [BaseModel convertNull:self.model.carInfoRes[@"carModelName"]],
+                         [BaseModel convertNull:self.model.carInfoRes[@"regDate"]],
+                         [BaseModel convertNull:self.model.carInfoRes[@"mile"]],
+                         [BaseModel convertNull:[_basemodel setid:self.model.carInfoRes[@"region"]]]
+                         ];
+        self.tableView.carinfo = self.carinfo;
+    }
     
+    NSLog(@"2");
+    [self addcar];
+}
+-(void)addcar{
+//    label = [self.view viewWithTag:3000];
+//    label1 = [self.view viewWithTag:3001];
+//    label2 = [self.view viewWithTag:3002];
+//    label3 = [self.view viewWithTag:3003];
+//    label4 = [self.view viewWithTag:3004];
+//    label5 = [self.view viewWithTag:3005];
+//
+//
+//    self.tableView.carinfo = @[self.model.carInfoRes[@"carBrandName"],
+//                               self.model.carInfoRes[@"carSeriesName"],
+//                               self.model.carInfoRes[@"carModelName"],
+//                               @"2019-01",
+//                               @"8",
+//                               [[BaseModel user] setParentKey:@"region_belong" setDkey:self.model.carInfoRes[@"region"]]
+//                               ];
     
-    
+//    label.text = self.model.carInfoRes[@"carBrandName"];
+//    label1.text = self.model.carInfoRes[@"carSeriesName"];
+//    label2.text = self.model.carInfoRes[@"carModelName"];
+//
+//    label5.text = [[BaseModel user] setParentKey:@"region_belong" setDkey:self.model.carInfoRes[@"region"]];
+//
+//    [self.tableView reloadData];
 }
 
 - (void)initTableView {
@@ -368,9 +461,16 @@
     self.tableView.ButtonDelegate = self;
     _tableView.bankStr = @"";
     _tableView.speciesStr = @"";
-    
-    
     [self.view addSubview:self.tableView];
+    
+//    label = [self.view viewWithTag:3000];
+//    label1 = [self.view viewWithTag:3001];
+//    label2 = [self.view viewWithTag:3002];
+//    label3 = [self.view viewWithTag:3003];
+//    label4 = [self.view viewWithTag:3004];
+//    label5 = [self.view viewWithTag:3005];
+
+    NSLog(@"3");
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state
@@ -407,7 +507,7 @@
         }
         
     }
-    
+    NSLog(@"4");
 }
 
 //删除身份证图片
@@ -519,6 +619,43 @@
     http.parameters[@"creditUserList"] = peopleArray;
     http.parameters[@"creditNote"] = textField2.text;
     if (bizType == 1) {
+        NSString * carBrand;
+        NSString * carSeries;
+        NSString * region;
+        NSString * regDate;
+        if (_brandDic) {
+            carBrand = _brandDic[@"code"];
+        }else{
+            carBrand = _carcode[0];
+        }
+        
+        if (_carsDic) {
+            carSeries  = _carsDic[@"code"];
+        }else{
+            carSeries  = _carcode[1];
+        }
+        
+        if (zone) {
+            region = [NSString stringWithFormat:@"%@",zone];
+        }else{
+            region = [NSString stringWithFormat:@"%@",[_basemodel setvalue: _carinfo[5]]];
+        }
+        
+        if (Date) {
+            regDate = Date;
+        }else{
+            regDate = _carinfo[3];
+        }
+        
+        if (!carModel) {
+            carModel = _carcode[2];
+        }
+        
+        NSString * mile = label4.text;
+        if (!mile) {
+            mile = _carinfo[4];
+        }
+        
         if (self.secondCarReport.length < 1) {
             [TLAlert alertWithInfo:@"请上传评估报告"];
             return;
@@ -531,9 +668,40 @@
             [TLAlert alertWithInfo:@"请上传行驶证反面照片"];
             return;
         }
+        if (carBrand.length < 1) {
+            [TLAlert alertWithInfo:@"请选择品牌"];
+            return;
+        }
+        if (carSeries.length < 1) {
+            [TLAlert alertWithInfo:@"请选择车系"];
+            return;
+        }
+        if (carModel.length < 1) {
+            [TLAlert alertWithInfo:@"请选择车型"];
+            return;
+        }
+        if (regDate.length < 1) {
+            [TLAlert alertWithInfo:@"请选择日期"];
+            return;
+        }
+        if (mile.length < 1) {
+            [TLAlert alertWithInfo:@"请输入公里数"];
+            return;
+        }
+        if (region.length < 1) {
+            [TLAlert alertWithInfo:@"请选择城市"];
+            return;
+        }
         http.parameters[@"secondCarReport"] = self.secondCarReport;
         http.parameters[@"xszFront"] = self.idNoFront;
         http.parameters[@"xszReverse"] = self.idNoReverse;
+        http.parameters[@"carBrand"] = carBrand;
+        http.parameters[@"carSeries"] = carSeries;
+        http.parameters[@"carModel"] = carModel;
+        http.parameters[@"regDate"] = regDate;
+        http.parameters[@"mile"] = mile;
+        http.parameters[@"region"] = region;
+        
     }
 
     
@@ -555,6 +723,15 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    [self addcar];
+    label = [self.view viewWithTag:3000];
+    label1 = [self.view viewWithTag:3001];
+    label2 = [self.view viewWithTag:3002];
+    label3 = [self.view viewWithTag:3003];
+    label4 = [self.view viewWithTag:3004];
+    label5 = [self.view viewWithTag:3005];
+    
+    
     if (indexPath.section == 0) {
         selectNumber = indexPath.row;
         if (indexPath.row == 0) {
@@ -588,11 +765,43 @@
             vc.dataDic = self.tableView.peopleAray[indexPath.row];
             vc.selectRow = indexPath.row;
             vc.state = self.state;
-//            [self.tableView.peopleAray removeObjectAtIndex:indexPath.row];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }else{
-        if (indexPath.section == 4) {
+        if (indexPath.section == 2) {
+            if (indexPath.row == 0) {
+                [self choosecar];
+            }
+            if (indexPath.row == 3) {
+                {
+                    WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
+                        
+                        NSString *date = [selectDate stringWithFormat:@"yyyy-MM"];
+                        Date = date;
+                        label3.text = date;
+                    }];
+                    
+                    datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
+                    datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+                    datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
+                    [datepicker show];
+                    [self.tableView reloadData];
+                }
+            }
+            if (indexPath.row == 5) {
+                [self chooseaddress];
+            }
+        }
+        if (indexPath.section == 3) {
+            if (self.secondCarReport.length == 0) {
+                [TLAlert alertWithInfo:@"暂无二手车评估报告"];
+                return;
+            }
+            SecondReportVC * vc = [SecondReportVC new];
+            vc.web = self.secondCarReport;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if (indexPath.section == 5) {
             selectRow = 1234 + indexPath.row;
             ADPeopleVC *vc = [[ADPeopleVC alloc]init];
             vc.dataDic = self.tableView.peopleAray[indexPath.row];
@@ -603,7 +812,197 @@
     }
     
 }
+-(void)chooseaddress {
+    if (label.text.length == 0) {
+        [TLAlert alertWithInfo:@"请选择品牌"];
+        return;
+    }
+    if (label1.text.length == 0) {
+        [TLAlert alertWithInfo:@"请选择车系"];
+        return;
+    }
+    if (label2.text.length == 0) {
+        [TLAlert alertWithInfo:@"请选择车型"];
+        return;
+    }
+    
+    if (label3.text.length == 0) {
+        [TLAlert alertWithInfo:@"请选择上牌时间"];
+        return;
+    }
+    if (label4.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入公里数"];
+        return;
+    }
+    TLNetworking *http = [TLNetworking new];
+    
+    http.isShowMsg = NO;
+    http.code = @"630477";
+    http.parameters[@"status"] = @"1";
+    [http postWithSuccess:^(id responseObject) {
+        
+        
+        _brandAry = responseObject[@"data"];
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0 ; i < _brandAry.count; i ++) {
+            [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_brandAry[i][@"cityName"]]]];
+        }
+        
+        SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+        view.isSingle = YES;
+        view.array = array;
+        view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+            [LEEAlert closeWithCompletionBlock:^{
+                SelectedListModel *model = array[0];
+                label5.text = model.title;
+                zone = _brandAry[model.sid][@"id"];
+                [self getreport];
+            }];
+            
+        };
+        [LEEAlert alert].config
+        .LeeTitle(@"选择")
+        .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+        .LeeCustomView(view)
+        .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+        .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+        .LeeClickBackgroundClose(YES)
+        .LeeShow();
+    }failure:^(NSError *error) { }];
+}
 
+-(void)choosecar{
+    TLNetworking *http = [TLNetworking new];
+    
+    http.isShowMsg = NO;
+    http.code = @"630406";
+    http.showView = self.view;
+    http.parameters[@"status"] = @"1";
+    http.parameters[@"type"] = @"1";
+    [http postWithSuccess:^(id responseObject) {
+        
+        
+        _brandAry = responseObject[@"data"];
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0 ; i < _brandAry.count; i ++) {
+            [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_brandAry[i][@"name"]]]];
+        }
+        
+        SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+        view.isSingle = YES;
+        view.array = array;
+        view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+            [LEEAlert closeWithCompletionBlock:^{
+                NSLog(@"选中的%@" , array);
+                
+                SelectedListModel *model = array[0];
+//                right2Label4.text = model.title;
+                label.text = model.title;
+                NSLog(@"%@",label);
+                _brandDic = _brandAry[model.sid];
+                TLNetworking *http = [TLNetworking new];
+                http.isShowMsg = NO;
+                http.showView = self.view;
+                http.code = @"630416";
+                http.parameters[@"brandCode"] = _brandDic[@"code"];
+                http.parameters[@"status"] = @"1";
+                http.parameters[@"type"] = @"1";
+                [http postWithSuccess:^(id responseObject) {
+                    _carsAry = responseObject[@"data"];
+                    
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (int i = 0 ; i < _carsAry.count; i ++) {
+                        [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_carsAry[i][@"name"]]]];
+                    }
+                    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+                    view.isSingle = YES;
+                    view.array = array;
+                    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+                        [LEEAlert closeWithCompletionBlock:^{
+                            NSLog(@"选中的%@" , array);
+                            SelectedListModel *model = array[0];
+//                            right2Label5.text = model.title;
+                            label1.text = model.title;
+                            _carsDic = _carsAry[model.sid];
+                            
+                            _modelsAry = _carsDic[@"cars"];
+                            
+                            NSMutableArray *array = [NSMutableArray array];
+                            for (int i = 0 ; i < _modelsAry.count; i ++) {
+                                [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_modelsAry[i][@"name"]]]];
+                            }
+                            
+                            
+                            
+                            SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+                            view.isSingle = YES;
+                            view.array = array;
+                            view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+                                [LEEAlert closeWithCompletionBlock:^{
+                                    NSLog(@"选中的%@" , array);
+                                    SelectedListModel *model = array[0];
+                                    label2.text = model.title;
+                                    modelId = _modelsAry[model.sid][@"modelId"];
+                                    carModel =_modelsAry[model.sid][@"code"];
+                                }];
+                            };
+                            [LEEAlert alert].config
+                            .LeeTitle(@"选择")
+                            .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+                            .LeeCustomView(view)
+                            .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+                            .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+                            .LeeClickBackgroundClose(YES)
+                            .LeeShow();
+                            
+                        }];
+                    };
+                    [LEEAlert alert].config
+                    .LeeTitle(@"选择")
+                    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+                    .LeeCustomView(view)
+                    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+                    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+                    .LeeClickBackgroundClose(YES)
+                    .LeeShow();
+                    
+                } failure:^(NSError *error) {
+                    
+                }];
+                
+            }];
+        };
+        [LEEAlert alert].config
+        .LeeTitle(@"选择")
+        .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+        .LeeCustomView(view)
+        .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+        .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+        .LeeClickBackgroundClose(YES)
+        .LeeShow();
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    [self.tableView reloadData];
+}
+-(void)getreport{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630479";
+    http.parameters[@"zone"] = zone;
+    http.parameters[@"modelId"] = modelId;
+    http.parameters[@"mile"] = label4.text;
+    http.parameters[@"regDate"] = label3.text;
+    [http postWithSuccess:^(id responseObject) {
+        NSString * str = responseObject[@"data"][@"url"];
+        self.secondCarReport = str;
+        self.tableView.secondCarReport = str;
+        [self.tableView reloadData];
+        NSLog(@"urlqweqwe = %@",str);
+    } failure:^(NSError *error) {
+        
+    }];
+}
 //银行卡弹框
 -(void)BankLoadData
 {
@@ -619,6 +1018,7 @@
 
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
 {
+    
     WGLog(@"%@",dic);
     if (selectNumber == 0)
     {
@@ -634,6 +1034,7 @@
     }
     
     [self.tableView reloadData];
+ 
 }
 
 

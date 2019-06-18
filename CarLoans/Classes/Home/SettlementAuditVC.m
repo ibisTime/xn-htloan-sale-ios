@@ -105,6 +105,7 @@
             weakSelf.model = shouldDisplayCoins;
             weakSelf.tableView.model = shouldDisplayCoins;
             [weakSelf.tableView reloadData_tl];
+            [weakSelf.tableView endRefreshHeader];
         } failure:^(NSError *error) {
 
         }];

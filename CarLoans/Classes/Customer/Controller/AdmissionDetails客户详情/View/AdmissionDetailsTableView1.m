@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 12;
+    return 13;
 }
 
 #pragma mark -- tableView
@@ -48,7 +48,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell = cell;
-    NSArray *topArray = @[@"业务编号",@"客户姓名",@"业务公司",@"业务团队",@"信贷专员",@"业务内勤",@"贷款金额",@"贷款银行",@"档案存放位置",@"制卡寄送地址",@"制卡寄送邮编",@"制卡卡号"];
+    NSArray *topArray = @[@"业务编号",@"客户姓名",@"业务公司",@"业务团队",@"信贷专员",@"业务内勤",@"贷款金额",@"贷款银行",@"档案存放位置",@"档案编号",@"制卡寄送地址",@"制卡寄送邮编",@"制卡卡号"];
     cell.topLbl.text = topArray[indexPath.row];
     
     NSArray *bottomArray = @[[BaseModel convertNullReturnStr:self.model.code],
@@ -60,6 +60,7 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[_model.loanAmount floatValue]/1000]],
                               [NSString stringWithFormat:@"%@ %@",[BaseModel convertNull:self.model.loanBankName],[BaseModel convertNull:self.model.subbranchBankName]],
                              [BaseModel convertNull:[[BaseModel user]ReturnEnterNameByCode:self.model.enterLocation]],
+                             [BaseModel convertNull:self.model.enterCode],
                              [NSString stringWithFormat:@"%@%@%@%@",[BaseModel convertNull:self.model.cardPostProvince],[BaseModel convertNull:self.model.cardPostCity],[BaseModel convertNull:self.model.cardPostArea],[BaseModel convertNull:self.model.cardPostAddress]],
                              [BaseModel convertNull:self.model.cardPostCode],
                              [BaseModel convertNull:self.model.repayCardNumber]

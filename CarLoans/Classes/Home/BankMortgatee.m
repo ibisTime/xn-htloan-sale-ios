@@ -68,6 +68,9 @@
 //    身份证反面
 @property (nonatomic , copy)NSString *AgentidNoReverse;
 
+@property (nonatomic,strong) IdCardFrontModel * idcardfrontmodel;
+@property (nonatomic,strong) IdCradReverseModel * idcardreversemodel;
+
 @end
 
 @implementation BankMortgatee
@@ -90,7 +93,7 @@
 //                [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
                 //进行上传
                 TLUploadManager *manager = [TLUploadManager manager];
-                
+                manager.isdissmiss = NO;
                 manager.imgData = imgData;
                 manager.image = image;
                 [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
@@ -121,6 +124,7 @@
     TLUploadManager *manager = [TLUploadManager manager];
     manager.imgData = imgData;
     manager.image = image;
+    manager.isdissmiss = NO;
     [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
         WGLog(@"%@",key);
         self.count --;
@@ -252,12 +256,12 @@
             break;
         case 50:{
             self.AgentidNoFront = data;
-            self.tableView.idNoFront = self.AgentidNoFront;
+            [self getDataFromPicWithUrl:data WithCode:@"630092"];
         }
             break;
         case 51:{
             self.AgentidNoReverse = data;
-            self.tableView.idNoReverse = self.AgentidNoReverse;
+            [self getDataFromPicWithUrl:data WithCode:@"630093"];
         }
             break;
         default:
@@ -267,6 +271,32 @@
     [self.tableView reloadData];
     
 }
+
+-(void)getDataFromPicWithUrl:(NSString *)picurl WithCode :(NSString *)code{
+    [SVProgressHUD show];
+    NSString * url = [picurl convertImageUrl];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = code;
+    http.parameters[@"picUrl"] = url;
+    [http postWithSuccess:^(id responseObject) {
+        if ([code isEqualToString:@"630092"]) {
+            self.idcardfrontmodel = [IdCardFrontModel mj_objectWithKeyValues:responseObject[@"data"]];
+            self.tableView.idNoFront = picurl;
+            self.tableView.idcardfrontmodel = self.idcardfrontmodel;
+        }
+        else if ([code isEqualToString:@"630093"]) {
+            self.idcardreversemodel = [IdCradReverseModel mj_objectWithKeyValues:responseObject[@"data"]];
+            self.tableView.idNoReverse = picurl;
+            self.tableView.idcardreversemodel = self.idcardreversemodel;
+        }
+        [self.tableView reloadData];
+        [SVProgressHUD dismiss];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -585,10 +615,14 @@
     if (sender.tag == 5000) {
         _AgentidNoFront = @"";
         self.tableView.idNoFront = _AgentidNoFront;
+        _idcardfrontmodel = nil;
+        self.tableView.idcardfrontmodel = _idcardfrontmodel;
     }else
     {
         _AgentidNoReverse = @"";
         self.tableView.idNoReverse = _AgentidNoReverse;
+        _idcardreversemodel = nil;
+        self.tableView.idcardreversemodel = _idcardreversemodel;
     }
     [self.tableView reloadData];
 }

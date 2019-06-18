@@ -41,15 +41,21 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return 5;
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    if (section == 0 || section == 1 ) {
-        return 2;
+    if (section == 0) {
+        return 3;
+    }
+    if (section == 1) {
+        return 1;
+    }
+    if (section == 2) {
+        return 7;
     }
     return 1;
 }
@@ -58,42 +64,33 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"*姓名",@"*手机号"];
-        NSArray *placeholderArray = @[@"请输入姓名",@"请输入手机号"];
-        cell.name = nameArray[indexPath.row];
-        cell.nameText = placeholderArray[indexPath.row];
-        cell.nameTextField.tag = 20000 + indexPath.row;
-
-//        if (self.dataDic.count > 0) {
-//            NSArray *Array = @[_dataDic[@"userName"],_dataDic[@"mobile"]];
-//            cell.TextFidStr = Array[indexPath.row];
-//        }
-        if (indexPath.row == 1) {
-            NSString * str = cell.nameTextField.text;
-            if (str.length == 0) {
-                cell.TextFidStr = [BaseModel convertNull: _dataDic[@"mobile"]];
-            }
-            cell.nameTextField.keyboardType = UIKeyboardTypePhonePad;
-        }
         if (indexPath.row == 0) {
-            NSString * str = cell.nameTextField.text;
-            if (str.length == 0) {
-                cell.TextFidStr = [BaseModel convertNull: _dataDic[@"userName"]];
+            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            NSArray *nameArray = @[@"*手机号"];
+            NSArray *placeholderArray = @[@"请输入手机号"];
+            cell.name = nameArray[indexPath.row];
+            cell.nameText = placeholderArray[indexPath.row];
+            cell.nameTextField.tag = 20000 + indexPath.row;
+            if (indexPath.row == 0) {
+                
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
+                    NSString * str = cell.nameTextField.text;
+                    if (str.length == 0) {
+                        cell.TextFidStr = [BaseModel convertNull: _dataDic[@"mobile"]];
+                    }
+                    cell.nameTextField.keyboardType = UIKeyboardTypePhonePad;
+                }
             }
-//            cell.nameTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            return cell;
         }
-        
-        return cell;
-    }
-    if (indexPath.section == 1) {
+    if (indexPath.row == 1 || indexPath.row == 2) {
         ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:ChooseC forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSArray *nameArray = @[@"*贷款角色",@"*与借款人关系"];
-        cell.name = nameArray[indexPath.row];
-        if (indexPath.row == 0) {
+        cell.name = nameArray[indexPath.row - 1];
+        if (indexPath.row == 1) {
             if ([BaseModel isBlankString:self.loanRole] == NO) {
                 cell.details = [[BaseModel user] setParentKey:@"credit_user_loan_role" setDkey:self.loanRole];
             }
@@ -105,19 +102,8 @@
         }
         return cell;
     }
-    if (indexPath.section == 2) {
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"*身份证号";
-        cell.nameText = @"请输入身份证号";
-        cell.nameTextField.tag = 20002;
-        NSString * str = cell.nameTextField.text;
-        if (str.length == 0) {
-            cell.TextFidStr = _dataDic[@"idNo"];
-        }
-        return cell;
     }
-    if (indexPath.section == 3) {
+    if (indexPath.section == 1) {
         UploadIdCardCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.nameArray = @[@"身份证正面",@"身份证反面"];
@@ -127,7 +113,75 @@
         cell.idNoReverse = self.idNoReverse;
         return cell;
     }
-    if (indexPath.section == 4) {
+    if (indexPath.section == 2) {
+//        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        static NSString *rid=@"TextFieldCell123123";
+        TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+        if(cell==nil){
+            cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        NSArray *nameArray = @[@"*姓名",@"身份证号",@"出生年月日",@"民族",@"性别",@"住址",@"签发机关"];
+        cell.name = nameArray[indexPath.row];
+        cell.nameTextField.tag = 21000 + indexPath.row;
+        if (indexPath.row < 6) {
+            if (_dataDic) {
+                NSArray * array = @[[BaseModel convertNull: _dataDic[@"idCardInfo"][@"userName"]],
+                                    [BaseModel convertNull: _dataDic[@"idCardInfo"][@"idNo"]],
+                                    [BaseModel convertNull: _dataDic[@"idCardInfo"][@"customerBirth"]],
+                                    [BaseModel convertNull: _dataDic[@"idCardInfo"][@"nation"]],
+                                    [BaseModel convertNull: _dataDic[@"idCardInfo"][@"gender"]],
+                                    [BaseModel convertNull: _dataDic[@"idCardInfo"][@"birthAddress"]]];
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
+                    cell.TextFidStr = array[indexPath.row];
+                }
+                
+            }
+            else  {
+                if (_idcardfrontmodel){
+                NSArray * array = @[[BaseModel convertNull: _idcardfrontmodel.userName],
+                                    [BaseModel convertNull: _idcardfrontmodel.idNo],
+                                    [BaseModel convertNull: _idcardfrontmodel.customerBirth],
+                                    [BaseModel convertNull: _idcardfrontmodel.nation],
+                                    [BaseModel convertNull: _idcardfrontmodel.gender],
+                                    [BaseModel convertNull: _idcardfrontmodel.birthAddress]];
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
+                    cell.TextFidStr = array[indexPath.row];
+                }
+                }
+                
+            else{
+                NSArray * array = @[@"",@"",@"",@"",@"",@""];
+                cell.text = array[indexPath.row];
+            }
+        }
+            
+        }
+        else{
+            if (_dataDic1) {
+                NSArray * array = @[[BaseModel convertNull: _dataDic1[@"idCardInfo"][@"authref"]]];
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
+                    cell.TextFidStr = array[indexPath.row-6];
+                }
+            }
+            else if (_idcardreversemodel) {
+                NSArray * array = @[[BaseModel convertNull: _idcardreversemodel.authref]];
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
+                    cell.TextFidStr = array[indexPath.row-6];
+                }
+            }else{
+                NSArray * array = @[@""];
+                cell.text = array[indexPath.row - 6];
+            }
+        }
+        
+        return cell;
+    }
+    if (indexPath.section == 3) {
         CollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionView forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
@@ -269,17 +323,17 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3) {
+    if (indexPath.section == 1) {
         return SCREEN_WIDTH/3 + 70;
     }
-    if (indexPath.section == 4) {
+    if (indexPath.section == 3) {
         float numberToRound;
         int result;
         numberToRound = (self.certificateArray.count + 1.0)/3.0;
         result = (int)ceilf(numberToRound);
         return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
     }
-    if (indexPath.section == 5) {
+    if (indexPath.section == 4) {
         float numberToRound;
         int result;
         numberToRound = (self.faceToFaceArray.count + 1.0)/3.0;
@@ -292,7 +346,7 @@
 #pragma mark -- 区头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 4 || section == 5) {
+    if (section == 3 || section == 4) {
         return 50;
     }
     return 0.01;
@@ -301,7 +355,7 @@
 #pragma mark -- 区尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 5) {
+    if (section == 4) {
         return 100;
     }
     return 0.01;
@@ -309,7 +363,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 4 || section == 5) {
+    if (section == 3 || section == 4) {
         UIView *headView = [[UIView alloc]init];
 
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
@@ -322,7 +376,7 @@
 
         NSArray *array = @[@"*征信查询授权书",@"*手持授权书照片"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
-        nameLabel.text = array[section - 4];
+        nameLabel.text = array[section - 3];
         [headView addSubview:nameLabel];
 
         return headView;
@@ -333,7 +387,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
 
-    if (section == 5) {
+    if (section == 4) {
         UIView *headView = [[UIView alloc]init];
 
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];

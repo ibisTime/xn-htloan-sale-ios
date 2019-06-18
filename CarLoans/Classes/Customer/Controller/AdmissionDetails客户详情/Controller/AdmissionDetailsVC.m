@@ -27,7 +27,10 @@
 #import "AdmissionDetailsTableView16.h"
 #import "AdmissionDetailsTableView17.h"
 #import "AdmissionDetailsTableView18.h"
+#import "AdmissionDetailsTableView19.h"
 #import "RepaymentPlanHeadView.h"
+#import "SecondReportVC.h"
+#import "TongDunHeadView.h"
 @interface AdmissionDetailsVC ()<RefreshDelegate>
 @property (nonatomic , strong)AdmissionDetailsTableView *tableView;
 
@@ -49,8 +52,10 @@
 @property (nonatomic , strong)AdmissionDetailsTableView16 *tableView16;
 @property (nonatomic , strong)AdmissionDetailsTableView17 *tableView17;
 @property (nonatomic , strong)AdmissionDetailsTableView18 *tableView18;
+@property (nonatomic , strong)AdmissionDetailsTableView19 *tableView19;
 
 @property (nonatomic,strong) RepaymentPlanHeadView * topView;
+@property (nonatomic,strong) TongDunHeadView * tongdunHeadView;
 @end
 @implementation AdmissionDetailsVC
 
@@ -218,8 +223,25 @@
     self.tableView18.backgroundColor = kWhiteColor;
     self.tableView18.tag = 1000018;
     self.tableView18.model = self.model;
-//    self.tableView18.WaterArray = self.model.creditJours;
     [self.view addSubview:self.tableView18];
+    
+    
+    
+    
+    self.tableView19 = [[AdmissionDetailsTableView19 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView19.backgroundColor = kWhiteColor;
+    self.tableView19.tag = 1000019;
+    NSString * str = self.model.creditUser[@"tongdunResult"];
+    str = [str stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+    NSDictionary * dic = [[BaseModel user]dictionaryWithJsonString:str];
+    self.tableView19.tongdunResult = dic[@"result_desc"];
+    self.tableView19.risk_items =  dic[@"result_desc"][@"ANTIFRAUD"][@"risk_items"];
+    [self.view addSubview:self.tableView19];
+    
+    _tongdunHeadView = [[TongDunHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 107, 114 + 20)];
+    _tongdunHeadView.tongdunResult = dic;
+    self.tableView19.tableHeaderView = _tongdunHeadView;
+    
     
     [self.view bringSubviewToFront:self.tableView1];
     
@@ -267,23 +289,23 @@
                 self.tableView2.data_report_apply = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
 //            担保人图片
-            if ([attachment[@"kname"] isEqualToString:@"id_no_front_gua0"]) {
-                self.tableView2.id_no_front_gua0 = attachment[@"url"];
+            if ([attachment[@"kname"] isEqualToString:@"id_no_front_gua"]) {
+                self.tableView2.id_no_front_gua = attachment[@"url"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"id_no_reverse_gua0"]) {
-                self.tableView2.id_no_reverse_gua0 = attachment[@"url"];
+            if ([attachment[@"kname"] isEqualToString:@"id_no_reverse_gua"]) {
+                self.tableView2.id_no_reverse_gua = attachment[@"url"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"auth_pdf_gua0"]) {
-                self.tableView2.auth_pdf_gua0 = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            if ([attachment[@"kname"] isEqualToString:@"auth_pdf_gua"]) {
+                self.tableView2.auth_pdf_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"interview_pic_gua0"]) {
-                self.tableView2.interview_pic_gua0 = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            if ([attachment[@"kname"] isEqualToString:@"interview_pic_gua"]) {
+                self.tableView2.interview_pic_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"bank_report_gua0"]) {
-                self.tableView2.bank_report_gua0 = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            if ([attachment[@"kname"] isEqualToString:@"bank_report_gua"]) {
+                self.tableView2.bank_report_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
-            if ([attachment[@"kname"] isEqualToString:@"data_report_gua0"]) {
-                self.tableView2.data_report_gua0 = [attachment[@"url"] componentsSeparatedByString:@"||"];
+            if ([attachment[@"kname"] isEqualToString:@"data_report_gua"]) {
+                self.tableView2.data_report_gua = [attachment[@"url"] componentsSeparatedByString:@"||"];
             }
             
             if ([attachment[@"kname"] isEqualToString:@"id_no_front_gua1"]) {
@@ -392,6 +414,13 @@
         vc.model = self.model;
         vc.waterDic = self.tableView18.WaterArray[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (refreshTableview.tag == 1000017 ) {
+        if ([self.model.attachments[indexPath.row][@"attachType"] isEqualToString:@"链接"]) {
+            SecondReportVC * vc = [SecondReportVC new];
+            vc.web = self.model.attachments[indexPath.row][@"url"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     
 }

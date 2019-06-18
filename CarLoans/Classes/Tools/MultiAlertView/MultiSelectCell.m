@@ -25,6 +25,7 @@
 
 - (void)setTitle:(NSString *)title andSelectArr:(NSArray *)listArr{
     
+    self.titleLa.numberOfLines = 0;
     self.titleLa.text = title;
     
 //    __block BOOL isExist = NO;

@@ -96,7 +96,7 @@
         cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"可退押金金额",@"扣除违约金额",@"实际退款金额",@"*审核意见"];
+    NSArray *nameArray = @[@"可退押金金额",@"扣除违约金额",@"实际退款金额",@"审核意见"];
     cell.name = nameArray[indexPath.row];
     cell.nameTextField.tag = 100000 + indexPath.row;
     if (indexPath.row == 0) {
@@ -110,6 +110,7 @@
     if (indexPath.row == 1) {
         cell.nameTextField.placeholder = @"请输入扣除违约金额";
         cell.nameTextField.delegate = self;
+        cell.nameTextField.keyboardType = UIKeyboardTypeDecimalPad;
     }
     if (indexPath.row == 2) {
         cell.nameTextField.enabled = NO;

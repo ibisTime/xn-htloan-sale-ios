@@ -35,6 +35,9 @@
 #import <UIImageView+WebCache.h>
 #import "NSString+Extension.h"
 #import "LoginVC.h"
+#import "ListModel.h"
+#import "IdCardFrontModel.h"
+#import "IdCradReverseModel.h"
 #import "AccessCameraPhotoAlbum.h"
 #import "IQKeyboardManager.h"
 #import "PhotoCell.h"
@@ -59,6 +62,7 @@
 #define NODE @"node"
 #import "TLUploadManager.h"
 #define BOUNCEDDATA @"BouncedData"
+#define REGION @"Region"
 #define COMPANYNODE @"CompanyNode"
 #define ENTERLOCATION @"EnterLocation"
 #define ADVANCECARD @"advanceCardCode"
@@ -68,9 +72,7 @@
 #define ApplyForCancellation @"ApplyForCancellation"
 #define LOADDATAPAGE @"LOADDATAPAGE"
 #define ADDGPS @"ADDGPS"
-
 #import "WPhotoViewController.h"
-
 #define kDeviceStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 #define USERDEFAULTS [NSUserDefaults standardUserDefaults]
 

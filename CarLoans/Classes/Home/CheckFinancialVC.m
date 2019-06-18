@@ -23,6 +23,7 @@
     [super viewDidLoad];
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
@@ -92,6 +93,7 @@
 -(void)confirm:(UIButton *)sender{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = self.code;
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     NSString * str =  self.model.isAdvanceFund;
     http.parameters[@"isAdvanceFund"] = str;

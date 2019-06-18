@@ -24,6 +24,8 @@
 #import "AddPeopleCell.h"
 #define AddPeople @"AddPeopleCell"
 
+#import "SecondReportCell.h"
+
 @interface SurveyACreditTableView ()<UITableViewDataSource,UITableViewDelegate,SurveyPeopleDelegate,DriveCardDelegate,UploadIdCardDelegate>
 
 @end
@@ -55,7 +57,7 @@
         return 4;
     }else
     {
-        return 6;
+        return 7;
     }
 }
 
@@ -72,7 +74,10 @@
         }
     }
     else{
-        if (section == 4) {
+        if (section == 2) {
+            return 6;
+        }
+        if (section == 5) {
             return self.peopleAray.count;
         }
     }
@@ -107,7 +112,7 @@
 
     if ([_speciesStr isEqualToString:@"新车"] || [_speciesStr isEqualToString:@""]) {
         if (indexPath.section == 2) {
-            static NSString *rid=@"SurveyPeopleTableViewCell";
+            NSString *rid=@"SurveyPeopleTableViewCell";
             SurveyPeopleTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
             if(cell==nil){
                 cell=[[SurveyPeopleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
@@ -138,41 +143,56 @@
     }else
     {
         if (indexPath.section == 2) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            UIButton *_photoBtn = [UIButton buttonWithTitle:@"评估报告" titleColor:GaryTextColor backgroundColor:BackColor titleFont:13];
-            _photoBtn.frame = CGRectMake(15 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3);
-            [_photoBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
-                [button setImage:[UIImage imageNamed:@"添加"] forState:(UIControlStateNormal)];
-            }];
-            kViewBorderRadius(_photoBtn, 5, 1, HGColor(230, 230, 230));
-            [cell addSubview:_photoBtn];
-            
-            UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0 , 0, (SCREEN_WIDTH - 40)/2, SCREEN_WIDTH/3)];
-            [photoImage sd_setImageWithURL:[NSURL URLWithString:[self.secondCarReport convertImageUrl]]];
-            [_photoBtn addSubview:photoImage];
-            
-            UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-            selectButton.frame = CGRectMake((SCREEN_WIDTH - 40)/2-15 , 0, 30, 30);
-            [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
-           
-            selectButton.tag = 50000 + indexPath.section;
-            selectButton.hidden= NO;
-            [cell addSubview:selectButton];
-            if (self.secondCarReport.length > 0) {
-                [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-                 [selectButton addTarget:self action:@selector(SelectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-                _photoBtn.userInteractionEnabled = YES;
-                selectButton.hidden = NO;
-            }else{
-                [_photoBtn addTarget:self action:@selector(appraisalReportBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-                _photoBtn.userInteractionEnabled = YES;
-                selectButton.hidden = YES;
+            if (indexPath.row < 4 || indexPath.row == 5) {
+                NSString *rid=@"choosecell123";
+                ChooseCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+                if(cell==nil){
+                    cell=[[ChooseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+                }
+                NSArray * array = @[@"*品牌",@"*车系",@"*车型",@"*上牌时间",@"",@"*城市标识"];
+                cell.name = array[indexPath.row];
+                cell.detailsLabel.tag = 3000 + indexPath.row;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                if (!cell.detailsLabel.text) {
+                    if (self.carinfo) {
+                        cell.details = self.carinfo[indexPath.row];
+                    }
+                    
+                }
+                return cell;
             }
-
-            return cell;
+            else{
+                NSString *rid=@"textcell";
+                TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+                if(cell==nil){
+                    cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+                }
+                NSArray * arr = @[@"*公里数(万)"];
+                cell.name = arr[indexPath.row - 4];
+                cell.nameTextField.tag =3004;
+                NSString * str = cell.nameTextField.text;
+                if (str.length == 0) {
+                    if (self.carinfo) {
+                        cell.text = self.carinfo[indexPath.row];
+                    }
+                }
+                
+                cell.nameTextField.keyboardType = UIKeyboardTypeDecimalPad;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
         }
         if (indexPath.section == 3) {
+            NSString *rid=@"normalcell";
+            SecondReportCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[SecondReportCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.secondreport = self.secondCarReport;
+            return cell;
+        }
+        if (indexPath.section == 4) {
             UploadIdCardCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.nameArray = @[@"行驶证正面",@"行驶证反面"];
@@ -183,7 +203,7 @@
             return cell;
 
         }
-        if (indexPath.section == 4) {
+        if (indexPath.section == 5) {
             SurveyPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SurveyPeople forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.name = @"*征信人";
@@ -196,7 +216,7 @@
             cell.selectButton.tag = indexPath.row + 900000;
             return cell;
         }
-        if (indexPath.section == 5) {
+        if (indexPath.section == 6) {
             AddPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:AddPeople forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -274,17 +294,17 @@
         return 50;
     }else
     {
-        if (indexPath.section == 2) {
-            return SCREEN_WIDTH/3 + 15;
-        }
         if (indexPath.section == 3) {
+            return 100;
+        }
+        if (indexPath.section == 4) {
             return SCREEN_WIDTH/3 + 70;
         }
         
-        if (indexPath.section == 4) {
+        if (indexPath.section == 5) {
             return 145;
         }
-        if (indexPath.section == 5) {
+        if (indexPath.section == 6) {
             return 145;
         }
         return 50;
@@ -302,7 +322,7 @@
         return 10;
     }else
     {
-        if (section == 0 || section == 5 || section == 6 || section == 1 || section == 4 || section == 3) {
+        if (section == 0 || section == 2 || section == 5 || section == 6 || section == 1 || section == 4 || section == 3) {
             return 0.01;
         }
 //        if (section == 4) {
@@ -323,7 +343,7 @@
         return 0.01;
     }else
     {
-        if (section == 5) {
+        if (section == 6) {
             return 100;
         }
         return 0.01;
@@ -334,7 +354,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if ([_speciesStr isEqualToString:@"二手车"]) {
-        if (section == 2) {
+        if (section == 3) {
             UIView *headView = [[UIView alloc]init];
 
             UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
@@ -382,7 +402,7 @@
         }
     }else
     {
-        if (section == 5) {
+        if (section == 6) {
             UIView *headView = [[UIView alloc]init];
 
 

@@ -25,6 +25,7 @@
     self.title = @"征信审核";
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
+    http.showView = self.view;
     http.parameters[@"code"] = self.surveyModel.code;
     [http postWithSuccess:^(id responseObject) {
         self.surveyModel = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
@@ -53,6 +54,7 @@
 {
     TLNetworking *http = [TLNetworking new];
     http.code = @"630036";
+    http.showView = self.view;
     http.parameters[@"parentKey"] = @"cdbiz_status";
     [http postWithSuccess:^(id responseObject) {
         
@@ -89,16 +91,20 @@
 {
     
     UITextField *textField = [self.view viewWithTag:3000];
-    if ([textField.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入审核意见"];
-        return;
-    }
+//    if ([textField.text isEqualToString:@""]) {
+//        [TLAlert alertWithInfo:@"请输入审核意见"];
+//        return;
+//    }
     
     NSString *approveResult;
     if (index == 100) {
         approveResult = @"1";
     }else
     {
+        if ([textField.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入审核意见"];
+            return;
+        }
         approveResult = @"0";
     }
     TLNetworking *http = [TLNetworking new];

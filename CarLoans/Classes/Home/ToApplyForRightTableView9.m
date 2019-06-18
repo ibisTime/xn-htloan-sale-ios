@@ -31,7 +31,7 @@
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         static NSString *rid=@"cell1";
         ToApplyForEncapsulationCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
         if(cell==nil){
@@ -44,7 +44,7 @@
         cell.inputTextField.tag = 90000 + indexPath.row;
         return cell;
     }
-    else if (indexPath.section == 1){
+    else if (indexPath.section == 0){
         static NSString *rid=@"cell2";
         ToApplyForUpdateImgCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
         if(cell==nil){
@@ -101,7 +101,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         return 53;
     }
     if (indexPath.section == 2) {

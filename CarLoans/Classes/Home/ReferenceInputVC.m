@@ -10,7 +10,9 @@
 #import "ReferenceInputTableView.h"
 #import "SurveyInformationVC.h"
 #import "ReferenceInputDetailsVC.h"
-@interface ReferenceInputVC ()<RefreshDelegate>
+@interface ReferenceInputVC ()<RefreshDelegate>{
+    NSArray * array;
+}
 @property (nonatomic , strong)ReferenceInputTableView *tableView;
 @property (nonatomic , strong)NSArray *dataArray;
 
@@ -19,6 +21,23 @@
 @end
 
 @implementation ReferenceInputVC
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
+    http.code = @"632518";
+    http.parameters[@"code"] = self.surveyModel.code;
+    http.parameters[@"start"] = @1;
+    http.parameters[@"limit"] = @10;
+    [http postWithSuccess:^(id responseObject) {
+        array = responseObject[@"data"][@"list"];
+        
+        
+        [self initTableView];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,6 +45,7 @@
     self.title = @"录入征信结果";
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"632516";
+    http.showView = self.view;
     http.parameters[@"code"] = self.surveyModel.code;
     [http postWithSuccess:^(id responseObject) {
         self.surveyModel = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
@@ -49,6 +69,9 @@
     [self.RightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
 }
 
+
+
+
 -(void)rightButtonClick
 {
     AdmissionDetailsVC *vc = [AdmissionDetailsVC new];
@@ -61,6 +84,7 @@
 {
     TLNetworking *http = [TLNetworking new];
     http.code = @"630036";
+    http.showView = self.view;
     http.parameters[@"parentKey"] = @"cdbiz_status";
     [http postWithSuccess:^(id responseObject) {
         
@@ -126,7 +150,8 @@
 -(void)ReferenceInputRow:(NSInteger)row
 {
     ReferenceInputDetailsVC *vc = [ReferenceInputDetailsVC new];
-    vc.dataDic = self.surveyModel.creditUserList[row];
+//    vc.dataDic = self.surveyModel.creditUserList[row];
+    vc.dataDic = array[row];
     vc.creditListDic = _creditList[row];
     vc.row = row;
     vc.creditListBlock = ^(NSDictionary * _Nonnull creditListDic, NSInteger row) {

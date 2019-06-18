@@ -52,7 +52,7 @@
 
     if (section == 0) {
         return 9;
-    }if (section == 1) {
+    }if (section == 2) {
         return 3;
     }
     return 1;
@@ -91,7 +91,7 @@
         cell.TextFidStr = detailsArray[indexPath.row];
         return cell;
     }
-    if (indexPath.section == 1){
+    if (indexPath.section == 2){
         static NSString *rid=@"cell12";
         TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
         if(cell==nil){
@@ -100,15 +100,31 @@
         NSArray * arr = @[@"*代理人",@"*代理人身份证号",@"*抵押地点"];
         if (indexPath.row == 0) {
             NSString * str1 = cell.nameTextField.text;
-            if (str1.length == 0) {
-                cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
+            if (self.idNoFront.length == 0) {
+                cell.nameTextField.text = @"";
+            }
+            else if (str1.length == 0) {
+                if (self.idcardfrontmodel) {
+                    NSLog(@"idcardfrontmodel");
+                    cell.nameTextField.text = self.idcardfrontmodel.userName;
+                }else{
+                    NSLog(@"carPledge");
+                    cell.nameTextField.text = self.model.carPledge[@"pledgeUser"];
+                }
+                
             }
         }
        
         if (indexPath.row == 1) {
              NSString * str2 = cell.nameTextField.text;
-            if (str2.length == 0) {
-                cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
+            if (self.idNoFront.length == 0) {
+                cell.nameTextField.text = @"";
+            }
+            else if (str2.length == 0) {
+                if (self.idcardfrontmodel) {
+                    cell.nameTextField.text = self.idcardfrontmodel.idNo;
+                }else
+                    cell.nameTextField.text = self.model.carPledge[@"pledgeUserIdCard"];
             }
         }
         
@@ -123,7 +139,7 @@
         cell.nameTextField.tag = indexPath.row + 20000;
         return cell;
     }
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         UploadIdCardCell *cell= [tableView dequeueReusableCellWithIdentifier:UploadIdCard forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.nameLbl.text = @"*代理人身份证";
@@ -176,7 +192,7 @@
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         return SCREEN_WIDTH/3 + 70;
     }
     return 50;

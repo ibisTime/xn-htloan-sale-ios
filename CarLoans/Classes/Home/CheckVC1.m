@@ -66,7 +66,7 @@
     NSString * approveNote = cell.nameTextField.text;
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = self.code;
-    
+    http.showView = self.view;
     http.parameters[@"code"] = self.model.code;
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     if ([self.code isEqualToString:@"632461"]) {

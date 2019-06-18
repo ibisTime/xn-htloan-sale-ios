@@ -408,6 +408,12 @@
         return;
 
     }
+    if ([_model.status isEqualToString:@"3"]) {
+        if ([self.tableView.remarkField.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入发货备注"];
+            return;
+        }
+    }
 
     TLNetworking *http = [TLNetworking new];
     http.code = @"632150";
