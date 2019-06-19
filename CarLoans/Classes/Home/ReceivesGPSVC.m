@@ -224,6 +224,10 @@
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"remark"] = textField.text;
     if (index == 0) {
+        if ([textField.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入备注"];
+            return;
+        }
         http.parameters[@"approveResult"] = @(0);
     }else
     {

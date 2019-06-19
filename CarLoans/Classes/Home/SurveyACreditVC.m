@@ -893,10 +893,7 @@
         view.array = array;
         view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
             [LEEAlert closeWithCompletionBlock:^{
-                NSLog(@"选中的%@" , array);
-                
                 SelectedListModel *model = array[0];
-//                right2Label4.text = model.title;
                 label.text = model.title;
                 NSLog(@"%@",label);
                 _brandDic = _brandAry[model.sid];
@@ -921,7 +918,6 @@
                         [LEEAlert closeWithCompletionBlock:^{
                             NSLog(@"选中的%@" , array);
                             SelectedListModel *model = array[0];
-//                            right2Label5.text = model.title;
                             label1.text = model.title;
                             _carsDic = _carsAry[model.sid];
                             
@@ -931,9 +927,6 @@
                             for (int i = 0 ; i < _modelsAry.count; i ++) {
                                 [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",_modelsAry[i][@"name"]]]];
                             }
-                            
-                            
-                            
                             SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
                             view.isSingle = YES;
                             view.array = array;

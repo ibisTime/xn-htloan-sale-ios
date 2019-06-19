@@ -26,7 +26,7 @@
     TLNetworking * http = [[TLNetworking alloc]init];
     http.showView = self.view;
     http.code = @"632518";
-    http.parameters[@"code"] = self.surveyModel.code;
+    http.parameters[@"bizCode"] = self.surveyModel.code;
     http.parameters[@"start"] = @1;
     http.parameters[@"limit"] = @10;
     [http postWithSuccess:^(id responseObject) {
@@ -145,6 +145,8 @@
             WGLog(@"%@",error);
         }];
     }
+    
+//    NSDictionary * dic = [NSDictionary 
 }
 
 -(void)ReferenceInputRow:(NSInteger)row

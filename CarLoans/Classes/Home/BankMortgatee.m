@@ -341,7 +341,8 @@
                 self.tableView.idNoReverse = self.model.attachments[i][@"url"];
             }
             if ([self.model.attachments[i][@"kname"] isEqualToString:@"green_big_smj"]) {
-                [self.BankVideoArray addObject: self.model.attachments[i][@"url"]];
+                
+                [self.BankVideoArray addObject: [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"]];
                 self.tableView.BankVideoArray = self.BankVideoArray;
             }
         }

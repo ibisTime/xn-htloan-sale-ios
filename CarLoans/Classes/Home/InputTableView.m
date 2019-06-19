@@ -79,6 +79,7 @@
             cell.name = @"*位置编号";
             cell.nameTextField.tag = 3332;
             cell.text = _location;
+            cell.isInput = @"0";
             return cell;
         }
         if (indexPath.row == 2) {

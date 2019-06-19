@@ -34,6 +34,7 @@
     // Do any additional setup after loading the view.
     self.title = @"收件";
     TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
     http.code = @"632156";
     if (self.code.length > 0) {
         http.parameters[@"code"] = self.code;
@@ -221,6 +222,10 @@
     http.parameters[@"updater"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"remark"] = textField.text;
     if (index == 0) {
+        if ([textField.text isEqualToString:@""]) {
+            [TLAlert alertWithInfo:@"请输入备注"];
+            return;
+        }
         http.parameters[@"approveResult"] = @(0);
     }else
     {

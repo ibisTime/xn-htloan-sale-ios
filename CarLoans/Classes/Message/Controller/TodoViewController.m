@@ -431,7 +431,7 @@
         if ([node isEqualToString:@"j6"]) {
             CancelVC *vc = [CancelVC new];
             vc.code = messagecode;
-            vc.title = @"财务审核";
+            vc.title = @"解除抵押";
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }

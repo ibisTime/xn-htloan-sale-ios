@@ -13,15 +13,25 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UILabel * label = [UILabel labelWithFrame:CGRectMake(10, 0, self.width - 20, 60) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kBlackColor];
+        NSLog(@"%f",self.xx);
+        NSLog(@"%f",self.width);
+        NSLog(@"%f",SCREEN_WIDTH);
+        UILabel * label = [UILabel labelWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 20, 60) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kBlackColor];
         label.numberOfLines = 0;
         self.label = label;
         [self.contentView addSubview:label];
     }
     return self;
 }
+-(void)setType:(NSString *)type{
+    _type = type;
+}
 -(void)setTitle:(NSString *)title{
+    if ([_type isEqualToString:@"details"]) {
+        self.label.frame = CGRectMake(10, 0, SCREEN_WIDTH-107 - 20, 60);
+    }
     self.label.text = title;
+    
 }
 
 - (void)awakeFromNib {

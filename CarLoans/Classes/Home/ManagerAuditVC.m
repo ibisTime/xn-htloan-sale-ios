@@ -47,6 +47,7 @@
     UITextField * text3 = [self.view viewWithTag:111005];
     
     TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
     if ([self.model.curNodeCode isEqualToString:@"j4"]) {
         http.code = @"630552";
     }

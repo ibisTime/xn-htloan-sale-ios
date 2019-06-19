@@ -136,8 +136,8 @@
     NSArray * textarray = @[[NSString stringWithFormat:@"%.2f", [self.model.retreatDeposit floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[self.model.cutLyDeposit floatValue]/1000],
                             @""];
-    
-    cell.TextFidStr = textarray[indexPath.row];
+    NSLog(@"%@",[NSString stringWithFormat:@"%.2f",[self.model.cutLyDeposit floatValue]/1000]);
+    cell.text = textarray[indexPath.row];
     cell.nameTextField.tag = 100000 + indexPath.row;
     if (indexPath.row == 0) {
         cell.nameTextField.hidden = YES;

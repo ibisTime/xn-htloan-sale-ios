@@ -73,6 +73,7 @@
 #define LOADDATAPAGE @"LOADDATAPAGE"
 #define ADDGPS @"ADDGPS"
 #import "WPhotoViewController.h"
+#import "UITableView+AddForPlaceholder.h"
 #define kDeviceStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 #define USERDEFAULTS [NSUserDefaults standardUserDefaults]
 

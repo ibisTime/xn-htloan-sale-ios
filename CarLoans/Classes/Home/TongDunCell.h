@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TongDunCell : UITableViewCell
 @property (nonatomic,strong) NSString * title;
+@property (nonatomic,strong) NSString * type;
 @property (nonatomic,strong) UILabel * label;
 @end
 

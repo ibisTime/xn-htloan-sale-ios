@@ -325,6 +325,7 @@
                 return;
             }
             else if ([sender.titleLabel.text isEqualToString:@"工行征信"]){
+                [sender setTitle:@"待工行回调" forState:(UIControlStateNormal)];
                 TLNetworking * http = [TLNetworking new];
                 http.code = @"632114";
                 http.parameters[@"code"] = _dataDic[@"code"];

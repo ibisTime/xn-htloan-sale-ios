@@ -115,7 +115,7 @@
     }
     if (indexPath.section == 2) {
 //        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-        static NSString *rid=@"TextFieldCell123123";
+        NSString *rid=@"TextFieldCell123123";
         TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
         if(cell==nil){
             cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
@@ -135,6 +135,9 @@
                 NSString * str = cell.nameTextField.text;
                 if (str.length == 0) {
                     cell.TextFidStr = array[indexPath.row];
+                }else
+                {
+                    cell.TextFidStr = cell.nameTextField.text;
                 }
                 
             }
@@ -149,33 +152,39 @@
                 NSString * str = cell.nameTextField.text;
                 if (str.length == 0) {
                     cell.TextFidStr = array[indexPath.row];
+                }else
+                {
+                    cell.TextFidStr = cell.nameTextField.text;
                 }
                 }
                 
             else{
-                NSArray * array = @[@"",@"",@"",@"",@"",@""];
-                cell.text = array[indexPath.row];
+//                NSArray * array = @[@"",@"",@"",@"",@"",@""];
+                cell.text = @"";
             }
         }
             
         }
         else{
             if (_dataDic1) {
-                NSArray * array = @[[BaseModel convertNull: _dataDic1[@"idCardInfo"][@"authref"]]];
+//                NSArray * array = @[[BaseModel convertNull: _dataDic1[@"idCardInfo"][@"authref"]]];
                 NSString * str = cell.nameTextField.text;
                 if (str.length == 0) {
-                    cell.TextFidStr = array[indexPath.row-6];
+                    cell.TextFidStr = [BaseModel convertNull: _dataDic1[@"idCardInfo"][@"authref"]];
                 }
             }
             else if (_idcardreversemodel) {
-                NSArray * array = @[[BaseModel convertNull: _idcardreversemodel.authref]];
+//                NSArray * array = @[[BaseModel convertNull: _idcardreversemodel.authref]];
                 NSString * str = cell.nameTextField.text;
                 if (str.length == 0) {
-                    cell.TextFidStr = array[indexPath.row-6];
+                    cell.TextFidStr = [BaseModel convertNull: _idcardreversemodel.authref];
+                }else
+                {
+                    cell.TextFidStr = cell.nameTextField.text;
                 }
             }else{
-                NSArray * array = @[@""];
-                cell.text = array[indexPath.row - 6];
+//                NSArray * array = @[@""];
+                cell.text = @"";
             }
         }
         

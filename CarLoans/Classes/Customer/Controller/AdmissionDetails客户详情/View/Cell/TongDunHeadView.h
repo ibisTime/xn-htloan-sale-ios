@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) GBCircleChart * circleChart;
 @property (nonatomic,strong) NSDictionary * tongdunResult;
 @property (nonatomic,strong) UILabel * tongdunid;
+@property (nonatomic,strong) UILabel * resultlabel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -28,6 +28,9 @@
         self.tongdunid = [UILabel labelWithFrame:CGRectMake(0, 100, SCREEN_WIDTH - 107, 30) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:Font(14) textColor:kBlackColor];
         [self addSubview:self.tongdunid];
         
+        self.resultlabel = [UILabel labelWithFrame:CGRectMake(0, 135, SCREEN_WIDTH - 107, 30) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:Font(16) textColor:kBlackColor];
+        [self addSubview:self.resultlabel];
+        
     }
     return self;
 }
@@ -37,5 +40,19 @@
     [_circleChart strokeChart];
     
     self.tongdunid.text = [NSString stringWithFormat:@"保镖ID:%@",[BaseModel convertNull: tongdunResult[@"id"]]];
+    
+    NSString * str = tongdunResult[@"result_desc"][@"ANTIFRAUD"][@"final_decision"];
+    if ([str isEqualToString:@"PASS"]) {
+        self.resultlabel.text = @"建议通过";
+        [self.resultlabel setTextColor:RGB(167, 217, 112)];
+    }
+    else if ([str isEqualToString:@"REVIEW"]) {
+        self.resultlabel.text = @"建议复核";
+        [self.resultlabel setTextColor:RGB(240, 211, 72)];
+    }
+    else if ([str isEqualToString:@"REJECT"]) {
+        self.resultlabel.text = @"建议拒绝";
+        [self.resultlabel setTextColor:RGB(221, 105, 94)];
+    }
 }
 @end

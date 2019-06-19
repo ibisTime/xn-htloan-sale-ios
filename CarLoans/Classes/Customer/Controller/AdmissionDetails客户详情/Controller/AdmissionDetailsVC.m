@@ -231,6 +231,9 @@
     self.tableView19 = [[AdmissionDetailsTableView19 alloc] initWithFrame:CGRectMake(107, 0, SCREEN_WIDTH - 107, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView19.backgroundColor = kWhiteColor;
     self.tableView19.tag = 1000019;
+    self.tableView19.defaultNoDataText = @"";
+    self.tableView19.defaultNoDataImage = kImage(@"");
+    self.tableView19.customNoDataView = [UIView new];
     NSString * str = self.model.creditUser[@"tongdunResult"];
     str = [str stringByReplacingOccurrencesOfString:@"\\" withString:@""];
     NSDictionary * dic = [[BaseModel user]dictionaryWithJsonString:str];
@@ -238,7 +241,7 @@
     self.tableView19.risk_items =  dic[@"result_desc"][@"ANTIFRAUD"][@"risk_items"];
     [self.view addSubview:self.tableView19];
     
-    _tongdunHeadView = [[TongDunHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 107, 114 + 20)];
+    _tongdunHeadView = [[TongDunHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 107, 170)];
     _tongdunHeadView.tongdunResult = dic;
     self.tableView19.tableHeaderView = _tongdunHeadView;
     

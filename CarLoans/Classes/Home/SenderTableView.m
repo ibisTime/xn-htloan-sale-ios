@@ -126,7 +126,10 @@
             NSArray *nameArray = @[@"*寄送方式",@"*快递公司"];
             cell.name = nameArray[indexPath.row];
             NSArray *detailsArray = @[_distributionStr,_CourierCompanyStr];
-            cell.details = detailsArray[indexPath.row];
+            if ([cell.detailsLabel.text isEqualToString:@""]) {
+                cell.details = detailsArray[indexPath.row];
+            }
+            
             return cell;
         }
         if (indexPath.section == 3) {

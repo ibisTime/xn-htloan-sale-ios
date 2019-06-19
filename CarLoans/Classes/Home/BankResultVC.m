@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"银行征信结果";
-    
+    [self initTableView];
 }
 
 - (void)initTableView {

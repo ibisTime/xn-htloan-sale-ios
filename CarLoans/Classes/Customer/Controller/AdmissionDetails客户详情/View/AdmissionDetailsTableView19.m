@@ -37,6 +37,7 @@
     if(cell==nil){
         cell=[[TongDunCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
     }
+    cell.type = @"details";
     cell.title = [NSString stringWithFormat:@"规则名称:%@\n规则得分:%@",self.risk_items[indexPath.row][@"risk_name"],self.risk_items[indexPath.row][@"score"]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
