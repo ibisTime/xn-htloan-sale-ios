@@ -982,6 +982,7 @@
 -(void)getreport{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"630479";
+    http.showView = self.view;
     http.parameters[@"zone"] = zone;
     http.parameters[@"modelId"] = modelId;
     http.parameters[@"mile"] = label4.text;

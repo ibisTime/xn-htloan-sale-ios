@@ -23,6 +23,7 @@
     self.tableView = [[TongDunTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.defaultNoDataText = @"";
+    self.tableView.customNoDataView = [UIView new];
     self.tableView.defaultNoDataImage = kImage(@"");
     self.tableView.tag = 1000019;
     NSString * str = self.result;
