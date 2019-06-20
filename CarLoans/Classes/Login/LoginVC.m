@@ -10,6 +10,7 @@
 #import "HomeVC.h"
 #import "ChangePasswordVC.h"
 #import "TLTabBarController.h"
+#import "RegisteredViewController.h"
 @interface LoginVC ()
 
 @property (nonatomic , strong)UITextField *mobileTextFd;
@@ -20,7 +21,7 @@
 
 @property (nonatomic , strong)UIButton *loginButton;
 
-
+@property (nonatomic,strong) NSString * cvalue;
 
 @end
 
@@ -63,6 +64,11 @@
 //        [self presentViewController:nav animated:YES completion:nil];
         [self.navigationController pushViewController:vc animated:YES];
 
+    }
+    else if (sender.tag == 102){
+        RegisteredViewController *vc = [[RegisteredViewController alloc]init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
     }
     else
     {
@@ -139,7 +145,45 @@
     [self customTypeSetUp];
     [self.view addSubview:self.ForgotPasswordButton];
     [self.view addSubview:self.loginButton];
+    
+    [self setbutton];
+    
+    
 }
+
+-(void)setbutton{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"630047";
+        http.showView = self.view;
+        http.parameters[@"key"] = @"is_register";
+        http.parameters[@"roleCode"] = @"SR201800000000000000YWY";
+        http.parameters[@"postCode"] = @"DP201906061418229735934";
+        http.parameters[@"type"] = @"i";
+        [http postWithSuccess:^(id responseObject) {
+            self.cvalue = responseObject[@"data"][@"cvalue"];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([self.cvalue isEqualToString:@"1"]) {
+                    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+                    [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+                    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+                    self.RightButton.titleLabel.font = Font(16);
+                    [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-50, 30, 50, 50)];
+                    [self.RightButton setTitle:@"注册" forState:(UIControlStateNormal)];
+                    self.RightButton.tag = 102;
+                    [self.RightButton addTarget:self action:@selector(buttonMethodClick:) forControlEvents:(UIControlEventTouchUpInside)];
+                }
+            });
+            
+        }failure:^(NSError *error) {
+            
+        }];
+        
+        
+    });
+}
+
 
 -(void)customTypeSetUp
 {
@@ -180,7 +224,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [self setbutton];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

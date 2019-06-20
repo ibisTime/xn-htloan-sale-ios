@@ -161,6 +161,10 @@
 		36401C222293D59600580033 /* AddPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36401C212293D59600580033 /* AddPeopleCell.m */; };
 		3650426E229A4D470040383C /* SignVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3650426D229A4D470040383C /* SignVideoVC.m */; };
 		36504271229A4D5E0040383C /* SignVideoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36504270229A4D5E0040383C /* SignVideoTableView.m */; };
+		36615ABB22BB64E000196436 /* RegisteredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36615ABA22BB64E000196436 /* RegisteredViewController.m */; };
+		36615AC422BB652900196436 /* RegisteredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36615ABE22BB652900196436 /* RegisteredView.m */; };
+		36615AC522BB652900196436 /* TermsOfServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36615ABF22BB652900196436 /* TermsOfServiceView.m */; };
+		36615AC622BB652900196436 /* SendVerificationCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36615AC122BB652900196436 /* SendVerificationCodeView.m */; };
 		3662016822924AF10010C78A /* CheckRepayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016722924AF10010C78A /* CheckRepayVC.m */; };
 		3662016B22924BA40010C78A /* CheckRepayTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016A22924BA40010C78A /* CheckRepayTableView.m */; };
 		3662016F22924ED50010C78A /* RepayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662016E22924ED50010C78A /* RepayModel.m */; };
@@ -1002,6 +1006,15 @@
 		3650426D229A4D470040383C /* SignVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignVideoVC.m; sourceTree = "<group>"; };
 		3650426F229A4D5E0040383C /* SignVideoTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignVideoTableView.h; sourceTree = "<group>"; };
 		36504270229A4D5E0040383C /* SignVideoTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignVideoTableView.m; sourceTree = "<group>"; };
+		36615AB822BB64B700196436 /* RegisteredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteredViewController.h; sourceTree = "<group>"; };
+		36615ABA22BB64E000196436 /* RegisteredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteredViewController.m; sourceTree = "<group>"; };
+		36615ABD22BB652900196436 /* SendVerificationCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendVerificationCodeView.h; sourceTree = "<group>"; };
+		36615ABE22BB652900196436 /* RegisteredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteredView.m; sourceTree = "<group>"; };
+		36615ABF22BB652900196436 /* TermsOfServiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOfServiceView.m; sourceTree = "<group>"; };
+		36615AC022BB652900196436 /* HomeRecommendedModelsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeRecommendedModelsCell.h; sourceTree = "<group>"; };
+		36615AC122BB652900196436 /* SendVerificationCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendVerificationCodeView.m; sourceTree = "<group>"; };
+		36615AC222BB652900196436 /* TermsOfServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfServiceView.h; sourceTree = "<group>"; };
+		36615AC322BB652900196436 /* RegisteredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteredView.h; sourceTree = "<group>"; };
 		3662016622924AF10010C78A /* CheckRepayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayVC.h; sourceTree = "<group>"; };
 		3662016722924AF10010C78A /* CheckRepayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckRepayVC.m; sourceTree = "<group>"; };
 		3662016922924BA40010C78A /* CheckRepayTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckRepayTableView.h; sourceTree = "<group>"; };
@@ -3022,6 +3035,20 @@
 				3600B2362297D107002C4C18 /* YeWuTableView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		36615ABC22BB652900196436 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36615AC322BB652900196436 /* RegisteredView.h */,
+				36615ABE22BB652900196436 /* RegisteredView.m */,
+				36615ABD22BB652900196436 /* SendVerificationCodeView.h */,
+				36615AC022BB652900196436 /* HomeRecommendedModelsCell.h */,
+				36615AC122BB652900196436 /* SendVerificationCodeView.m */,
+				36615AC222BB652900196436 /* TermsOfServiceView.h */,
+				36615ABF22BB652900196436 /* TermsOfServiceView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3662016322924AAB0010C78A /* CheckRepay还款业务管理 */ = {
@@ -5201,6 +5228,9 @@
 		7AB29DC820FD86A70014FCB3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				36615ABC22BB652900196436 /* View */,
+				36615AB822BB64B700196436 /* RegisteredViewController.h */,
+				36615ABA22BB64E000196436 /* RegisteredViewController.m */,
 				7A0592D820FEDFD500075FE8 /* LoginVC.h */,
 				7A0592D920FEDFD500075FE8 /* LoginVC.m */,
 				B86DE43B21B6755100F76091 /* FaceToFaceSignVC.h */,
@@ -6240,6 +6270,7 @@
 				B84F22CA219C193000886ADF /* InsideSureTB.m in Sources */,
 				7A0592C820FDF44600075FE8 /* UploadIdCardCell.m in Sources */,
 				7A0F8E72211983E800BA8358 /* LiveRoomViewController.m in Sources */,
+				36615AC522BB652900196436 /* TermsOfServiceView.m in Sources */,
 				7A35829F211401F2006FB5B5 /* AddGPSInstallationTableView.m in Sources */,
 				7A13AE20210F26A100B8F785 /* IQKeyboardManager.m in Sources */,
 				7A945553210EFE0F00BDFD33 /* GPSInstallationVC.m in Sources */,
@@ -6284,6 +6315,7 @@
 				1F1EF2352265CD0200EADA25 /* ProtectUsTableView.m in Sources */,
 				36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */,
 				1F651A3C2275B14D00EFB78B /* ToApplyForRightTableView2.m in Sources */,
+				36615AC422BB652900196436 /* RegisteredView.m in Sources */,
 				7A13ADD0210F0E4500B8F785 /* GPSCollectedVC.m in Sources */,
 				7AB29EAA20FDB9750014FCB3 /* HomeHeadView.m in Sources */,
 				1F151A9D2272AB14002B7EDA /* AccessApplyAddGPSTableView.m in Sources */,
@@ -6575,6 +6607,7 @@
 				1F151A8F2272AB14002B7EDA /* AccessApplyApplyVC.m in Sources */,
 				7A13AEC621104E4400B8F785 /* QNFile.m in Sources */,
 				369D22AA22B8D37D00EEF4F9 /* BankResultTableView.m in Sources */,
+				36615ABB22BB64E000196436 /* RegisteredViewController.m in Sources */,
 				1F651A9B227B2F1700EFB78B /* MakeCardVC.m in Sources */,
 				36CFB5CF229BB3D800D4305A /* SenderGPSTableView.m in Sources */,
 				7A3582AE211452D9006FB5B5 /* VehiclesInDetailsVC.m in Sources */,
@@ -6623,6 +6656,7 @@
 				7A3582742112FAF5006FB5B5 /* SenderVC.m in Sources */,
 				7A13AE1F210F26A100B8F785 /* IQUIWindow+Hierarchy.m in Sources */,
 				7A13AE26210F26A200B8F785 /* IQToolbar.m in Sources */,
+				36615AC622BB652900196436 /* SendVerificationCodeView.m in Sources */,
 				7A13AED321104E4400B8F785 /* QNUploadOption.m in Sources */,
 				366201C52292D4040010C78A /* SignCell.m in Sources */,
 				7AB29EA420FD93EA0014FCB3 /* HomeCell.m in Sources */,
