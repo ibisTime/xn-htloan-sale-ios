@@ -65,22 +65,22 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+//            TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+            static NSString *rid=@"mobile";
+            TextFieldCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+            if(cell==nil){
+                cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+            }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             NSArray *nameArray = @[@"*手机号"];
             NSArray *placeholderArray = @[@"请输入手机号"];
             cell.name = nameArray[indexPath.row];
             cell.nameText = placeholderArray[indexPath.row];
             cell.nameTextField.tag = 20000 + indexPath.row;
+            cell.nameTextField.keyboardType = UIKeyboardTypePhonePad;
             if (indexPath.row == 0) {
-                
-                NSString * str = cell.nameTextField.text;
-                if (str.length == 0) {
-                    NSString * str = cell.nameTextField.text;
-                    if (str.length == 0) {
-                        cell.TextFidStr = [BaseModel convertNull: _dataDic[@"mobile"]];
-                    }
-                    cell.nameTextField.keyboardType = UIKeyboardTypePhonePad;
+                if ([cell.nameTextField.text isEqualToString:@""]) {
+                    cell.TextFidStr = [BaseModel convertNull: _dataDic[@"mobile"]];
                 }
             }
             return cell;
@@ -121,7 +121,7 @@
             cell=[[TextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"*姓名",@"身份证号",@"出生年月日",@"民族",@"性别",@"住址",@"签发机关"];
+        NSArray *nameArray = @[@"*姓名",@"*身份证号",@"出生年月日",@"民族",@"性别",@"住址",@"签发机关"];
         cell.name = nameArray[indexPath.row];
         cell.nameTextField.tag = 21000 + indexPath.row;
         if (indexPath.row < 6) {
