@@ -101,15 +101,15 @@
                           @"垫资说明"];
     cell.topLbl.text = topArray[indexPath.row];
     
-    NSArray *bottomArray = @[[BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"gpsFee"] floatValue]/1000]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"monthDeposit"] floatValue]/1000]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"otherFee"] floatValue]/1000]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"companyFee"] floatValue]/1000]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"teamFee"] floatValue]/1000]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.carInfoRes[@"bankFee"] floatValue]/1000]],
+    NSArray *bottomArray = @[[BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"gpsFee"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"authFee"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"monthDeposit"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"otherFee"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"companyFee"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f", [self.model.loanInfo[@"teamFee"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f", [self.model.carInfoRes[@"bankFee"] floatValue]/1000]],
                              [BaseModel convertNull:[self.model.advance[@"advanceFundDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f", [self.model.advance[@"advanceFundAmount"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f", [self.model.advance[@"advanceFundAmount"] floatValue]/1000]],
                              [BaseModel convertNull:[[BaseModel user]ReturnBankcardNumberByCode:self.model.advance[@"advanceCardCode"]]],
                              @"",
                              [BaseModel convertNull:self.model.advance[@"advanceNote"]]];

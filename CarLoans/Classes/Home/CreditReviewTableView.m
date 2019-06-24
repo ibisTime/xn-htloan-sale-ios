@@ -79,7 +79,7 @@
                               [NSString stringWithFormat:@"%@-%@-%@-%@",self.model.insideJobCompanyName,self.model.insideJobDepartMentName,self.model.insideJobPostName,self.model.insideJobName],
                               [BaseModel convertNull:[[BaseModel user]note:self.model.curNodeCode]]];
         
-        cell.TextFidStr = rightAry[indexPath.row];
+        cell.text = rightAry[indexPath.row];
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;
         return cell;

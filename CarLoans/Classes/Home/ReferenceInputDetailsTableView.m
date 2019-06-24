@@ -151,7 +151,7 @@
         cell = [[TextFieldCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"*信用卡使用占比（%）",@"*征信报告说明"];
+    NSArray *nameArray = @[@"信用卡使用占比（%）",@"*征信报告说明"];
     cell.name = nameArray[indexPath.row];
     self.cell = cell;
     NSArray *placArray = @[@"请输入使用占比",@"请输入说明"];
@@ -300,7 +300,7 @@
         lineView.backgroundColor = LineBackColor;
         [headView addSubview:lineView];
         
-        NSArray *array = @[@"*银行征信报告(单)",@"*大数据征信报告(多张)"];
+        NSArray *array = @[@"银行征信报告(单)",@"*大数据征信报告(多张)"];
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:[UIColor blackColor]];
         nameLabel.text = array[section - 2];
         [headView addSubview:nameLabel];

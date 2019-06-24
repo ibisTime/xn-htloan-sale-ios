@@ -275,13 +275,16 @@
             return;
         }
         
-        if (self.bankCreditReport.count == 0) {
-                [TLAlert alertWithInfo:@"请上传银行征信报告"];
-                return;
-        }
-        else{
+//        if (self.bankCreditReport.count == 0) {
+//                [TLAlert alertWithInfo:@"请上传银行征信报告"];
+//                return;
+//        }
+//        else{
+        if (self.bankCreditReport.count > 0) {
             secondCarReport = self.bankCreditReport[0];
         }
+        
+//        }
         
         if (self.dataCreditReport.count == 0) {
             [TLAlert alertWithInfo:@"请上传大数据征信报告"];
@@ -290,10 +293,10 @@
         
         UITextField *textField1 = [self.view viewWithTag:3000];
         UITextField *textField2 = [self.view viewWithTag:3001];
-        if ([textField1.text isEqualToString:@""]) {
-            [TLAlert alertWithInfo:@"请输入信用卡使用占比"];
-            return;
-        }
+//        if ([textField1.text isEqualToString:@""]) {
+//            [TLAlert alertWithInfo:@"请输入信用卡使用占比"];
+//            return;
+//        }
         if ([textField2.text isEqualToString:@""]) {
             [TLAlert alertWithInfo:@"请输入说明"];
             return;
@@ -307,12 +310,12 @@
             bankResult = @"0";
         }
         
-        NSDictionary *dic = @{@"bankCreditReport":secondCarReport,
-                              @"creditCardOccupation":[NSString stringWithFormat:@"%.2f",[textField1.text floatValue]/100],
-                              @"creditNote":textField2.text,
-                              @"bankResult":bankResult,
-                              @"creditUserCode":_dataDic[@"code"],
-                              @"dataCreditReport":[_dataCreditReport componentsJoinedByString:@"||"]
+        NSDictionary *dic = @{@"bankCreditReport":[BaseModel convertNull: secondCarReport],
+                              @"creditCardOccupation":[BaseModel convertNullWithOutMoney: [NSString stringWithFormat:@"%.2f",[textField1.text floatValue]/100]],
+                              @"creditNote":[BaseModel convertNull: textField2.text],
+                              @"bankResult":[BaseModel convertNull: bankResult],
+                              @"creditUserCode":[BaseModel convertNull: _dataDic[@"code"]],
+                              @"dataCreditReport":[BaseModel convertNull: [_dataCreditReport componentsJoinedByString:@"||"]]
                               };
         
         _creditListBlock(dic, _row);

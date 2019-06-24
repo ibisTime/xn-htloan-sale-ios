@@ -136,7 +136,7 @@
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
         InformationLabel.numberOfLines = 2;
-        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+        InformationLabel.text =[BaseModel convertNullWithOutMoney: InformationArray[i]];
     }
 }
 
@@ -175,7 +175,7 @@
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
         InformationLabel.numberOfLines = 0;
-        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+        InformationLabel.text =[BaseModel convertNullWithOutMoney: InformationArray[i]];
     }
 }
 
@@ -222,7 +222,7 @@
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-        InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+        InformationLabel.text = [BaseModel convertNullWithOutMoney:InformationArray[i]];
     }
 }
 

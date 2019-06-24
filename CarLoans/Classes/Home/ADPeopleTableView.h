@@ -26,6 +26,7 @@
 //    身份证反面
 @property (nonatomic , copy)NSString *idNoReverse;
 
+//重进之后数据存在dataDic、dataDic1
 @property (nonatomic , strong)NSDictionary *dataDic;
 @property (nonatomic , strong)NSDictionary *dataDic1;
 

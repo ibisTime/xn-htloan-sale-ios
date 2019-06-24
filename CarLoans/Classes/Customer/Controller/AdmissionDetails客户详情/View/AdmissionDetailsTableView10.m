@@ -88,8 +88,8 @@
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayBankDate"]]],
                              [BaseModel convertNull:[NSString stringWithFormat:@"%@",self.model.bankLoan[@"repayCompanyDate"]]],
                              [BaseModel convertNull:self.model.bankLoan[@"repayFirstMonthDatetime"]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.bankLoan[@"repayFirstMonthAmount"] floatValue]/1000]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.bankLoan[@"repayMonthAmount"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f",[self.model.bankLoan[@"repayFirstMonthAmount"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f",[self.model.bankLoan[@"repayMonthAmount"] floatValue]/1000]],
                              [BaseModel convertNull:self.model.bankLoan[@"receiptBankcardNumber"]],
                              [BaseModel convertNull:[self.model.bankLoan[@"bankCommitDatetime"] convertDateWithFormat:@"yyyy-MM-dd"]],
                              @""];

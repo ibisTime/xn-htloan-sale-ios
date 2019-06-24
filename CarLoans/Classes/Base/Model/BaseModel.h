@@ -31,6 +31,7 @@
 + (BOOL) isBlankString:(NSString *)string;
 + (BOOL)isBlankDictionary:(NSDictionary *)dic;
 + (NSString*)convertNull:(id)object;
++ (NSString*)convertNullWithOutMoney:(id)object;
 + (NSString*)convertNullReturnStr:(id)object;
 -(NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
 //存储用户信息

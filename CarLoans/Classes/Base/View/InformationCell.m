@@ -150,7 +150,7 @@
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+        InformationLabel.text =[BaseModel convertNullWithOutMoney: InformationArray[i]];
     }
     
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 280,SCREEN_WIDTH, 1)];
@@ -232,7 +232,7 @@
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+        InformationLabel.text =[BaseModel convertNullWithOutMoney: InformationArray[i]];
     }
     
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 280,SCREEN_WIDTH, 1)];
@@ -315,7 +315,7 @@
             UILabel *nameLabel = [self viewWithTag:100000 + i];
             nameLabel.text = nameArray[i];
             UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-            InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+            InformationLabel.text = [BaseModel convertNullWithOutMoney:InformationArray[i]];
         }
     }
 }
@@ -360,7 +360,7 @@
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-        InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+        InformationLabel.text = [BaseModel convertNullWithOutMoney:InformationArray[i]];
     }
 }
 
@@ -512,7 +512,7 @@
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+        InformationLabel.text =[BaseModel convertNullWithOutMoney: InformationArray[i]];
     }
     
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 530,SCREEN_WIDTH, 1)];

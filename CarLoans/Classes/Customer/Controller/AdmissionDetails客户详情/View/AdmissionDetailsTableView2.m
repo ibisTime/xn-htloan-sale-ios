@@ -251,7 +251,7 @@
                              @"",
                              @"",
                              @"",
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[dataDic[@"creditCardOccupation"] floatValue]]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f",[dataDic[@"creditCardOccupation"] floatValue]]],
                              @"",
                              @"",
                              [BaseModel convertNull:dataDic[@"bankCreditResultRemark"]]];

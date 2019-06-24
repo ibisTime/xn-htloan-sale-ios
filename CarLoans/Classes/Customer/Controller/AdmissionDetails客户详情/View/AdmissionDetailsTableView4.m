@@ -156,7 +156,7 @@
                              [BaseModel convertNull:self.model.creditUser[@"nowPostCode"]],
                              [NSString stringWithFormat:@"%@-%@-%@-%@",[BaseModel convertNull:self.model.creditUser[@"birthAddressProvince"]],[BaseModel convertNull:self.model.creditUser[@"birthAddressCity"]],[BaseModel convertNull:self.model.creditUser[@"birthAddressArea"]],[BaseModel convertNull:self.model.creditUser[@"nowAddress"]]],
                              [BaseModel convertNull:self.model.creditUser[@"birthPostCode"]],
-                             [BaseModel convertNull:[NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"familyMainAsset"] floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"familyMainAsset"] floatValue]/1000]],
                              [dvalueArray componentsJoinedByString:@","],
                              [BaseModel convertNull:self.model.creditUser[@"mainAssetInclude"]],
                              [BaseModel convertNull:[self.model.creditUser[@"isHouseProperty"] isEqualToString:@"1"]?@"有":[self.model.creditUser[@"isHouseProperty"] isEqualToString:@"0"]?@"否":@""],

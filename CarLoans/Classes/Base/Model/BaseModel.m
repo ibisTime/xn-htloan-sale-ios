@@ -112,6 +112,31 @@
     return object;
 
 }
++ (NSString*)convertNullWithOutMoney:(id)object{
+    
+    // 转换空串
+    
+    if ([object isEqual:[NSNull null]]) {
+        return @"";
+    }
+    else if ([object isEqualToString:@""])
+    {
+        return @"";
+    }
+    else if ([object isKindOfClass:[NSNull class]])
+    {
+        return @"";
+    }
+    else if ([object isEqualToString:@"(null)"])
+    {
+        return @"";
+    }
+    else if (object==nil){
+        return @"";
+    }
+    return object;
+    
+}
 
 + (NSString*)convertNullReturnStr:(id)object{
     

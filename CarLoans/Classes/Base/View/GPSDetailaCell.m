@@ -113,7 +113,7 @@
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+        InformationLabel.text =[BaseModel convertNullWithOutMoney: InformationArray[i]];
     }
 }
 
@@ -159,7 +159,7 @@
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
-        InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
+        InformationLabel.text = [BaseModel convertNullWithOutMoney:InformationArray[i]];
     }
 }
 

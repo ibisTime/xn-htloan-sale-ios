@@ -91,7 +91,7 @@
                              [BaseModel convertNull:self.model.creditUser[@"companyContactNo"]],
                              [BaseModel convertNull: [[BaseModel user]setParentKey:@"work_belong_industry" setDkey: self.model.creditUser[@"workBelongIndustry"]]],
                              [BaseModel convertNull:[[BaseModel user]setParentKey:@"work_company_property" setDkey:self.model.creditUser[@"workCompanyProperty"]]],
-                             [BaseModel convertNull: [NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"monthIncome"]  floatValue]/1000]],
+                             [BaseModel convertNullWithOutMoney: [NSString stringWithFormat:@"%.2f",[self.model.creditUser[@"monthIncome"]  floatValue]/1000]],
                              [BaseModel convertNull:self.model.creditUser[@"workDatetime"]],
                              [BaseModel convertNull:self.model.creditUser[@"otherWorkNote"]],
                              [BaseModel convertNull:self.model.creditUser[@"employeeQuantity"]],

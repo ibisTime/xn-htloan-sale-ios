@@ -56,7 +56,6 @@
                                 [NSString stringWithFormat:@"%.2f",[self.model.restTotalCost floatValue]/1000 ],
                                 [NSString stringWithFormat:@"%.2f",[self.model.unRepayTotalAmount floatValue]/1000 ],
                                 ];
-        
         cell.text = textarray[indexPath.row];
         cell.nameTextField.hidden = YES;
         cell.nameTextLabel.hidden = NO;
