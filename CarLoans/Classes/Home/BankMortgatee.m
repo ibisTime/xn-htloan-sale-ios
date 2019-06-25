@@ -343,7 +343,7 @@
             if ([self.model.attachments[i][@"kname"] isEqualToString:@"green_big_smj"]) {
                 
                 [self.BankVideoArray addObject: [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"]];
-                self.tableView.BankVideoArray = self.BankVideoArray;
+                self.tableView.BankVideoArray = [self.model.attachments[i][@"url"] componentsSeparatedByString:@"||"];
             }
         }
         [self.view addSubview:self.tableView];

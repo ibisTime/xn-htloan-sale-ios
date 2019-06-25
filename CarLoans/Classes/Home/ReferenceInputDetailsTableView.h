@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , strong)TextFieldCell *cell;
 @property (nonatomic , copy)NSString *secondCarReport;
+
+@property (nonatomic,copy) NSString * titlestr;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -47,7 +47,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.WaterDic = self.WaterArray[indexPath.row];
-    [cell.deleteBtn addTarget:self action:@selector(deleteButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+//    [cell.deleteBtn addTarget:self action:@selector(deleteButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.deleteBtn.tag = indexPath.row;
     cell.deleteBtn.hidden = YES;
     return cell;

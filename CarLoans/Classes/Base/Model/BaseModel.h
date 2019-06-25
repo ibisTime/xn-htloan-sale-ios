@@ -54,6 +54,8 @@
 -(NSString *)setParentKey:(NSString *)parentKey setDkey:(NSString *)dkey;
 -(NSString *)setParentKey:(NSString *)parentKey setDvalue:(NSString *)dvalue;
 -(NSString *)setid:(NSString *)cityid;
+-(NSString *)setcityid:(NSString *)cityid;
+-(NSString *)setcityvalue:(NSString *)cityid;
 -(NSString *)setvalue:(NSString *)cityvalue;
 -(void)phoneCode:(UIButton *)sender;
 -(NSString *)FindUrlWithModel:(SurveyModel *)model ByKname:(NSString *)Kname;

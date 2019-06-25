@@ -215,7 +215,16 @@
     self.tableView.dataDic = self.dataDic;
     [self.view addSubview:self.tableView];
     
-    
+    if ([_dataDic[@"status"] isEqualToString:@"0"]) {
+        self.tableView.titlestr = @"工行征信";
+                }
+    if ([_dataDic[@"status"] isEqualToString:@"1"]) {
+        self.tableView.titlestr = @"待工行回调";
+    }
+    if ([_dataDic[@"status"] isEqualToString:@"2"]) {
+        self.tableView.titlestr = @"工行回调完成";
+    }
+    [self.tableView reloadData];
 }
 -(void)selectButtonClick:(UIButton *)sender{
     secondCarReport = @"";
@@ -328,12 +337,15 @@
                 return;
             }
             else if ([sender.titleLabel.text isEqualToString:@"工行征信"]){
-                [sender setTitle:@"待工行回调" forState:(UIControlStateNormal)];
+                
                 TLNetworking * http = [TLNetworking new];
                 http.code = @"632114";
+                http.showView = self.view;
                 http.parameters[@"code"] = _dataDic[@"code"];
                 [http postWithSuccess:^(id responseObject) {
-                    [TLAlert alertWithInfo:@"征信成功"];
+                    [TLAlert alertWithSucces:@"征信成功"];
+                    self.tableView.titlestr = @"待工行回调";
+                    [self.tableView reloadData];
                 } failure:^(NSError *error) {
                     
                 }];

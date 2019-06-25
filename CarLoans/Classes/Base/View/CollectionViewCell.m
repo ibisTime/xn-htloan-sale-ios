@@ -95,7 +95,7 @@
         cell.backgroundColor = [UIColor clearColor];
         UIImageView *image = [[UIImageView alloc]initWithFrame: CGRectMake(0, 0, (SCREEN_WIDTH - 50)/3, (SCREEN_WIDTH - 50)/3)];
         kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
-        [image sd_setImageWithURL:[NSURL URLWithString:[array[indexPath.row] convertImageUrl]]];
+        [image sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@", array[indexPath.row]] convertImageUrl]]];
         [cell addSubview:image];
         return cell;
     }
@@ -116,17 +116,20 @@
     }
     else
     {
-        UIImageView *image = [[UIImageView alloc]initWithFrame: CGRectMake(0, 0, (SCREEN_WIDTH - 50)/3, (SCREEN_WIDTH - 50)/3)];
-        kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
-        [image sd_setImageWithURL:[NSURL URLWithString:[array[indexPath.row - 1] convertImageUrl]]];
-        [cell addSubview:image];
-
-        UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        selectButton.frame = CGRectMake((SCREEN_WIDTH - 50)/3 - 40, 0, 40, 40);
-        [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
-        [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        selectButton.tag = indexPath.row - 1 + 1000;
-        [cell addSubview:selectButton];
+        if (array.count > 0) {
+            UIImageView *image = [[UIImageView alloc]initWithFrame: CGRectMake(0, 0, (SCREEN_WIDTH - 50)/3, (SCREEN_WIDTH - 50)/3)];
+            kViewBorderRadius(image, 5, 1, HGColor(230, 230, 230));
+            [image sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@", array[indexPath.row - 1]] convertImageUrl]]];
+            [cell addSubview:image];
+            
+            UIButton *selectButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+            selectButton.frame = CGRectMake((SCREEN_WIDTH - 50)/3 - 40, 0, 40, 40);
+            [selectButton setImage:HGImage(@"删除") forState:(UIControlStateNormal)];
+            [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            selectButton.tag = indexPath.row - 1 + 1000;
+            [cell addSubview:selectButton];
+        }
+        
     }
     return cell;
 }
@@ -159,7 +162,7 @@
     {
         NSMutableArray *imageArray = [NSMutableArray array];
         for (int i = 0; i < array.count; i ++) {
-            [imageArray addObject:[array[i] convertImageUrl]];
+            [imageArray addObject:[[NSString stringWithFormat:@"%@", array[i]] convertImageUrl]];
         }
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
         [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:indexPath.row - 1 imagesBlock:^NSArray *{

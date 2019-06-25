@@ -134,6 +134,7 @@
             }
         }
     }
+    
 //    right3Label15.text = [dvalueArray componentsJoinedByString:@","];
     
     NSArray *bottomArray = @[[BaseModel convertNull: self.model.creditUser[@"userName"]],

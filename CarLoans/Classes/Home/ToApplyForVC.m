@@ -611,7 +611,7 @@
         //   市场指导价
         http.parameters[@"originalPrice"] = [NSString stringWithFormat:@"%.f",[right2Label10.text floatValue]*1000];
         //   所属区域
-        http.parameters[@"region"] = [_baseModel setvalue:right2Label11.text];
+        http.parameters[@"region"] = [_baseModel setcityvalue:right2Label11.text];
         //   厂家贴息
         http.parameters[@"carDealerSubsidy"] = [NSString stringWithFormat:@"%.f",[right2Label12.text floatValue]*1000];
         //   油补公里数
@@ -823,7 +823,7 @@
         // 何时进入现单位工作
         http.parameters[@"workDatetime"] = right5Label6.text;
         // 职位
-        http.parameters[@"position"] = right5Label7.text;
+        http.parameters[@"position"] = [[BaseModel user]setParentKey:@"position" setDvalue: right5Label7.text];
         // 月收入
         http.parameters[@"monthIncome"] =  [NSString stringWithFormat:@"%.f",[right5Label8.text floatValue]*1000];
         // 工作描述
@@ -1148,7 +1148,7 @@
                     [LEEAlert closeWithCompletionBlock:^{
                         SelectedListModel *model = array[0];
                         right2Label11.text = model.title;
-                        regioncode = _brandAry[model.sid][@"id"];
+                        regioncode = _brandAry[model.sid][@"cityId"];
                     }];
                     
                 };
@@ -1757,7 +1757,8 @@
     right2Label4.text = [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carBrandName"]]];
     right2Label5.text = [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carSeriesName"]]];
     right2Label6.text = [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%@",self.model.carInfoRes[@"carModelName"]]];
-    right2Label11.text = [_baseModel setid:self.model.carInfoRes[@"region"]];
+//    right2Label11.text = [_baseModel setid:self.model.carInfoRes[@"region"]];
+    right2Label11.text = [_baseModel setcityid:self.model.carInfoRes[@"region"]];
     if ([BaseModel isBlankString:self.model.carInfoRes[@"invoiceCompany"]]==NO) {
     
     
@@ -1890,7 +1891,8 @@
             right5Label4.text =  creditUser[@"companyAddress"];
             right5Label5.text = creditUser[@"companyContactNo"];
             right5Label6.text = creditUser[@"workDatetime"];
-            right5Label7.text = creditUser[@"position"];
+//            right5Label7.text = creditUser[@"position"];
+                right5Label7.text = [[BaseModel user]setParentKey:@"position" setDkey:creditUser[@"position"]];
             right5Label8.text =[BaseModel convertNullWithOutMoney: [NSString stringWithFormat:@"%.2f",[creditUser[@"monthIncome"]  floatValue]/1000]];
             
             

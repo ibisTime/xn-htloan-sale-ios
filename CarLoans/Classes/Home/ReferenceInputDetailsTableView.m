@@ -306,15 +306,17 @@
         [headView addSubview:nameLabel];
         
         NSArray * title = [NSArray array];
-        if ([_dataDic[@"status"] isEqualToString:@"0"]) {
-            title = @[@"工行征信",@"同盾征信"];
-        }
-        if ([_dataDic[@"status"] isEqualToString:@"1"]) {
-            title = @[@"待工行回调",@"同盾征信"];
-        }
-        if ([_dataDic[@"status"] isEqualToString:@"2"]) {
-            title = @[@"工行回调完成",@"同盾征信"];
-        }
+        title = @[[BaseModel convertNull: self.titlestr],@"同盾征信"];
+        
+//        if ([_dataDic[@"status"] isEqualToString:@"0"]) {
+//            title = @[@"工行征信",@"同盾征信"];
+//        }
+//        if ([_dataDic[@"status"] isEqualToString:@"1"]) {
+//            title = @[@"待工行回调",@"同盾征信"];
+//        }
+//        if ([_dataDic[@"status"] isEqualToString:@"2"]) {
+//            title = @[@"工行回调完成",@"同盾征信"];
+//        }
        
         
         UIButton * button = [UIButton buttonWithTitle:title[section - 2] titleColor:MainColor backgroundColor:kClearColor titleFont:14 cornerRadius:3];

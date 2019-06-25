@@ -46,12 +46,12 @@
         {
             type = @"银行";
         }
-        NSArray * array = @[_waterDic[@"creditUser"][@"userName"],
+        NSArray * array = @[[BaseModel convertNullWithOutMoney: _waterDic[@"creditUser"][@"userName"]],
                             type,
-                            [_waterDic[@"datetimeStart"] convertDate],
-                            [_waterDic[@"datetimeEnd"] convertDate],
-                            [[BaseModel user] setParentKey:@"interest" setDkey:[NSString stringWithFormat:@"%@",_waterDic[@"jourInterest1"]]],
-                            [[BaseModel user] setParentKey:@"interest" setDkey:[NSString stringWithFormat:@"%@",_waterDic[@"jourInterest2"]]],
+                            [BaseModel convertNullWithOutMoney:[_waterDic[@"datetimeStart"] convertDate]],
+                            [BaseModel convertNullWithOutMoney:[_waterDic[@"datetimeEnd"] convertDate]],
+                            [BaseModel convertNullWithOutMoney:[[BaseModel user] setParentKey:@"interest" setDkey:[NSString stringWithFormat:@"%@",_waterDic[@"jourInterest1"]]]],
+                            [BaseModel convertNullWithOutMoney:[[BaseModel user] setParentKey:@"interest" setDkey:[NSString stringWithFormat:@"%@",_waterDic[@"jourInterest2"]]]],
                             [NSString stringWithFormat:@"%.2f",[_waterDic[@"interest1"] floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[_waterDic[@"interest2"] floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[_waterDic[@"income"] floatValue]/1000],
@@ -59,7 +59,7 @@
                             [NSString stringWithFormat:@"%.2f",[_waterDic[@"monthIncome"] floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[_waterDic[@"monthExpend"] floatValue]/1000],
                             [NSString stringWithFormat:@"%.2f",[_waterDic[@"balance"] floatValue]/1000],
-                            _waterDic[@"remark"]];
+                            [BaseModel convertNullWithOutMoney:_waterDic[@"remark"]]];
         cell.TextFidStr = array[indexPath.row];
         return cell;
     }

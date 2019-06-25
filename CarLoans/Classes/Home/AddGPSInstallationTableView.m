@@ -97,7 +97,7 @@
     cell.nameText = @"请输入安装人员";
         cell.nameTextField.tag = 101;
     if (self.isSelect >= 100) {
-        NSArray *array = @[_Str2,[BaseModel convertNull:_Str2]];
+        NSArray *array = @[[BaseModel convertNullWithOutMoney: _Str2],[BaseModel convertNull:_Str2]];
         cell.TextFidStr = array[indexPath.row];
     }
         return cell;
@@ -110,7 +110,7 @@
         cell.nameText = @"请输入备注";
         cell.nameTextField.tag = 102;
         if (self.isSelect >= 100) {
-            NSArray *array = @[_Str3,[BaseModel convertNull:_Str3]];
+            NSArray *array = @[[BaseModel convertNullWithOutMoney:_Str3],[BaseModel convertNull:_Str3]];
             cell.TextFidStr = array[indexPath.row];
         }
         return cell;

@@ -155,7 +155,7 @@
                              [self.model.isFinacing isEqualToString:@"1"]?@"是":[self.model.isAdvanceFund isEqualToString:@"0"]?@"否":@"",
                              [self.model.isGpsAz isEqualToString:@"1"]?@"是":[self.model.isGpsAz isEqualToString:@"0"]?@"否":@"",
                              [self.model.isPlatInsure isEqualToString:@"1"]?@"是":[self.model.isPlatInsure isEqualToString:@"0"]?@"否":@"",
-                             [BaseModel convertNull:[[BaseModel user] setid:self.model.carInfoRes[@"region"]]],
+                             [BaseModel convertNull:[[BaseModel user] setcityid:self.model.carInfoRes[@"region"]]],
                              [BaseModel convertNull:[[BaseModel user]setCompanyCode:self.model.carInfoRes[@"vehicleCompanyName"]]],
                              [BaseModel convertNull:self.model.carInfoRes[@"invoiceCompany"]],
                              [BaseModel convertNullWithOutMoney:[NSString stringWithFormat:@"%.2f",[self.model.loanInfo[@"invoicePrice"] floatValue]/1000]],
@@ -236,7 +236,7 @@
             result = (int)ceilf(numberToRound);
             return result * ((SCREEN_WIDTH - 107 - 45)/3 + 15 ) + 32;
         }
-        return 0;
+//        return 0;
     }
     if (indexPath.row == 36) {
         NSArray * array = @[@"",@""];

@@ -404,6 +404,28 @@
     }
     return dvalue;
 }
+-(NSString *)setcityid:(NSString *)cityid
+{
+    NSString *dvalue;
+    NSArray *dataArray = [USERDEFAULTS objectForKey:REGION];
+    for (int i = 0; i < dataArray.count; i ++) {
+        if ([[NSString stringWithFormat:@"%@", dataArray[i][@"cityId"]] isEqualToString:cityid]) {
+            dvalue = dataArray[i][@"cityName"];
+        }
+    }
+    return dvalue;
+}
+-(NSString *)setcityvalue:(NSString *)cityid
+{
+    NSString *dvalue;
+    NSArray *dataArray = [USERDEFAULTS objectForKey:REGION];
+    for (int i = 0; i < dataArray.count; i ++) {
+        if ([[NSString stringWithFormat:@"%@", dataArray[i][@"cityName"]] isEqualToString:cityid]) {
+            dvalue = dataArray[i][@"cityId"];
+        }
+    }
+    return dvalue;
+}
 -(NSString *)setvalue:(NSString *)cityvalue
 {
     NSString *dvalue;
