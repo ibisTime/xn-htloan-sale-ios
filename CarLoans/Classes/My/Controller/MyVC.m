@@ -9,6 +9,7 @@
 #import "MyVC.h"
 #import "ChangePhoneAndEmailVC.h"
 #import "TLUserForgetPwdVC.h"
+#import "ChangeBrandVC.h"
 @interface MyVC ()<RefreshDelegate>
 {
     NSDictionary *dataDic;
@@ -206,7 +207,10 @@
     switch (sender.tag - 1000) {
         case 0:
         {
-            
+            // 更新图标
+//            ChangeBrandVC * vc = [ChangeBrandVC new];
+//            vc.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:

@@ -71,5 +71,4 @@
 -(void)applicationDidFinishLaunching:(UIApplication *)application{
     SDImageCache.sharedImageCache.maxMemoryCost = 1024*1024*8;
 }
-
 @end

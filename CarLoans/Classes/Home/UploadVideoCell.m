@@ -64,8 +64,6 @@
     return self;
 }
 
-
-
 -(void)setCollectDataArray:(NSArray *)collectDataArray
 {
     

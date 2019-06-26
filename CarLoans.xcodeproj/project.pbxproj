@@ -190,12 +190,20 @@
 		366201BE2292D1880010C78A /* SignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201BD2292D1880010C78A /* SignVC.m */; };
 		366201C12292D2E00010C78A /* SignModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201C02292D2E00010C78A /* SignModel.m */; };
 		366201C52292D4040010C78A /* SignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366201C42292D4040010C78A /* SignCell.m */; };
+		3668C3AC22C355A400BE3602 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3668C3A922C355A300BE3602 /* PhotoView.m */; };
+		3668C3AD22C355A400BE3602 /* ImageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3668C3AB22C355A300BE3602 /* ImageBrowserViewController.m */; };
 		366A2AB9228986F200FF8366 /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2AB8228986F200FF8366 /* FileCell.m */; };
 		366A2ABC2289AF6B00FF8366 /* CheckFileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABB2289AF6B00FF8366 /* CheckFileVC.m */; };
 		366A2ABF2289AF8300FF8366 /* CheckFileTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A2ABE2289AF8300FF8366 /* CheckFileTableView.m */; };
 		366FAF7122AF911800E169AC /* AdmissionDetailsTableView18.m in Sources */ = {isa = PBXBuildFile; fileRef = 366FAF7022AF911800E169AC /* AdmissionDetailsTableView18.m */; };
 		366FAF7422AF958500E169AC /* WaterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366FAF7322AF958500E169AC /* WaterVC.m */; };
 		366FAF7722AF968A00E169AC /* WaterTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366FAF7622AF968A00E169AC /* WaterTableView.m */; };
+		367845A122C352830076E118 /* UpdateBrandVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3678459A22C352830076E118 /* UpdateBrandVC.m */; };
+		367845A222C352830076E118 /* ChangeBrandVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3678459B22C352830076E118 /* ChangeBrandVC.m */; };
+		367845A322C352830076E118 /* ChangeBrandTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3678459E22C352830076E118 /* ChangeBrandTableView.m */; };
+		367845A422C352830076E118 /* UpdateBrandTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3678459F22C352830076E118 /* UpdateBrandTableView.m */; };
+		367845AD22C3537D0076E118 /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367845AC22C3537D0076E118 /* CarModel.m */; };
+		367845B022C353FB0076E118 /* BrandTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367845AF22C353FB0076E118 /* BrandTableViewCell.m */; };
 		367CB13122B9FCB50036D75E /* LoadSDK.sh in Resources */ = {isa = PBXBuildFile; fileRef = 367CB0B522B9FCB50036D75E /* LoadSDK.sh */; };
 		367CB13222B9FCB50036D75E /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367CB0B722B9FCB50036D75E /* ImSDK.framework */; };
 		367CB13322B9FCB50036D75E /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367CB0B822B9FCB50036D75E /* TLSSDK.framework */; };
@@ -570,8 +578,6 @@
 		7A35841821196C45006FB5B5 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A35841721196C45006FB5B5 /* libsqlite3.tbd */; };
 		7A35841C21196C58006FB5B5 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A35841B21196C58006FB5B5 /* libstdc++.tbd */; };
 		7A35841E21196C5F006FB5B5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A35841D21196C5F006FB5B5 /* libz.tbd */; };
-		7A945545210EB14F00BDFD33 /* ImageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A945542210EB14F00BDFD33 /* ImageBrowserViewController.m */; };
-		7A945546210EB14F00BDFD33 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A945544210EB14F00BDFD33 /* PhotoView.m */; };
 		7A94554A210EC18C00BDFD33 /* TLImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A945549210EC18C00BDFD33 /* TLImagePicker.m */; };
 		7A945550210EFDB600BDFD33 /* FaceSignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A94554F210EFDB600BDFD33 /* FaceSignVC.m */; };
 		7A945553210EFE0F00BDFD33 /* GPSInstallationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A945552210EFE0F00BDFD33 /* GPSInstallationVC.m */; };
@@ -1065,6 +1071,10 @@
 		366201C02292D2E00010C78A /* SignModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignModel.m; sourceTree = "<group>"; };
 		366201C32292D4040010C78A /* SignCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignCell.h; sourceTree = "<group>"; };
 		366201C42292D4040010C78A /* SignCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignCell.m; sourceTree = "<group>"; };
+		3668C3A822C355A300BE3602 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
+		3668C3A922C355A300BE3602 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
+		3668C3AA22C355A300BE3602 /* ImageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBrowserViewController.h; sourceTree = "<group>"; };
+		3668C3AB22C355A300BE3602 /* ImageBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowserViewController.m; sourceTree = "<group>"; };
 		366A2AAD22895E6600FF8366 /* libAWDProtobufBluetooth.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufBluetooth.tbd; path = usr/lib/libAWDProtobufBluetooth.tbd; sourceTree = SDKROOT; };
 		366A2AAF22895E8D00FF8366 /* libAWDProtobufFacetime.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufFacetime.tbd; path = usr/lib/libAWDProtobufFacetime.tbd; sourceTree = SDKROOT; };
 		366A2AB122895E9300FF8366 /* libAWDProtobufFacetimeiMessage.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAWDProtobufFacetimeiMessage.tbd; path = usr/lib/libAWDProtobufFacetimeiMessage.tbd; sourceTree = SDKROOT; };
@@ -1081,6 +1091,18 @@
 		366FAF7322AF958500E169AC /* WaterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterVC.m; sourceTree = "<group>"; };
 		366FAF7522AF968A00E169AC /* WaterTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterTableView.h; sourceTree = "<group>"; };
 		366FAF7622AF968A00E169AC /* WaterTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterTableView.m; sourceTree = "<group>"; };
+		3678459822C352830076E118 /* UpdateBrandVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateBrandVC.h; sourceTree = "<group>"; };
+		3678459922C352830076E118 /* ChangeBrandVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrandVC.h; sourceTree = "<group>"; };
+		3678459A22C352830076E118 /* UpdateBrandVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateBrandVC.m; sourceTree = "<group>"; };
+		3678459B22C352830076E118 /* ChangeBrandVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrandVC.m; sourceTree = "<group>"; };
+		3678459D22C352830076E118 /* UpdateBrandTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateBrandTableView.h; sourceTree = "<group>"; };
+		3678459E22C352830076E118 /* ChangeBrandTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrandTableView.m; sourceTree = "<group>"; };
+		3678459F22C352830076E118 /* UpdateBrandTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateBrandTableView.m; sourceTree = "<group>"; };
+		367845A022C352830076E118 /* ChangeBrandTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrandTableView.h; sourceTree = "<group>"; };
+		367845AB22C3537D0076E118 /* CarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarModel.h; sourceTree = "<group>"; };
+		367845AC22C3537D0076E118 /* CarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarModel.m; sourceTree = "<group>"; };
+		367845AE22C353FA0076E118 /* BrandTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandTableViewCell.h; sourceTree = "<group>"; };
+		367845AF22C353FB0076E118 /* BrandTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandTableViewCell.m; sourceTree = "<group>"; };
 		367CB0B522B9FCB50036D75E /* LoadSDK.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = LoadSDK.sh; sourceTree = "<group>"; };
 		367CB0B722B9FCB50036D75E /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
 		367CB0B822B9FCB50036D75E /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TLSSDK.framework; sourceTree = "<group>"; };
@@ -1711,10 +1733,6 @@
 		7A35841721196C45006FB5B5 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7A35841B21196C58006FB5B5 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		7A35841D21196C5F006FB5B5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		7A945541210EB14F00BDFD33 /* ImageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBrowserViewController.h; sourceTree = "<group>"; };
-		7A945542210EB14F00BDFD33 /* ImageBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowserViewController.m; sourceTree = "<group>"; };
-		7A945543210EB14F00BDFD33 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
-		7A945544210EB14F00BDFD33 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
 		7A945548210EC18B00BDFD33 /* TLImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLImagePicker.h; sourceTree = "<group>"; };
 		7A945549210EC18C00BDFD33 /* TLImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLImagePicker.m; sourceTree = "<group>"; };
 		7A94554E210EFDB600BDFD33 /* FaceSignVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceSignVC.h; sourceTree = "<group>"; };
@@ -2217,6 +2235,7 @@
 		1F1EF1C6226453B300EADA25 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				3678459622C352830076E118 /* ChangeBrand */,
 				1F1EF1CE2264547400EADA25 /* Controller */,
 				1F1EF1CD2264547200EADA25 /* View */,
 			);
@@ -3255,6 +3274,41 @@
 				366201C02292D2E00010C78A /* SignModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		3678459622C352830076E118 /* ChangeBrand */ = {
+			isa = PBXGroup;
+			children = (
+				3678459722C352830076E118 /* Controller */,
+				3678459C22C352830076E118 /* View */,
+				367845AB22C3537D0076E118 /* CarModel.h */,
+				367845AC22C3537D0076E118 /* CarModel.m */,
+			);
+			path = ChangeBrand;
+			sourceTree = "<group>";
+		};
+		3678459722C352830076E118 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3678459822C352830076E118 /* UpdateBrandVC.h */,
+				3678459A22C352830076E118 /* UpdateBrandVC.m */,
+				3678459922C352830076E118 /* ChangeBrandVC.h */,
+				3678459B22C352830076E118 /* ChangeBrandVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3678459C22C352830076E118 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				367845AE22C353FA0076E118 /* BrandTableViewCell.h */,
+				367845AF22C353FB0076E118 /* BrandTableViewCell.m */,
+				3678459D22C352830076E118 /* UpdateBrandTableView.h */,
+				3678459F22C352830076E118 /* UpdateBrandTableView.m */,
+				367845A022C352830076E118 /* ChangeBrandTableView.h */,
+				3678459E22C352830076E118 /* ChangeBrandTableView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		367CB0B422B9FCB50036D75E /* ILiveSDK */ = {
@@ -4875,10 +4929,10 @@
 		7A945540210EB14F00BDFD33 /* SJChartVeiw */ = {
 			isa = PBXGroup;
 			children = (
-				7A945541210EB14F00BDFD33 /* ImageBrowserViewController.h */,
-				7A945542210EB14F00BDFD33 /* ImageBrowserViewController.m */,
-				7A945543210EB14F00BDFD33 /* PhotoView.h */,
-				7A945544210EB14F00BDFD33 /* PhotoView.m */,
+				3668C3AA22C355A300BE3602 /* ImageBrowserViewController.h */,
+				3668C3AB22C355A300BE3602 /* ImageBrowserViewController.m */,
+				3668C3A822C355A300BE3602 /* PhotoView.h */,
+				3668C3A922C355A300BE3602 /* PhotoView.m */,
 			);
 			path = SJChartVeiw;
 			sourceTree = "<group>";
@@ -6156,6 +6210,7 @@
 				36C02DF5227FE64E007EC7CF /* AddTaskVC.m in Sources */,
 				369D22A122B8756600EEF4F9 /* UICountingLabel.m in Sources */,
 				7A13ADC6210F0ACE00B8F785 /* AccessSingleModel.m in Sources */,
+				367845A422C352830076E118 /* UpdateBrandTableView.m in Sources */,
 				1F1EF3112268294B00EADA25 /* CreditDetailsCell.m in Sources */,
 				7AB29E8A20FD8EB30014FCB3 /* UIScrollView+TLAdd.m in Sources */,
 				7A13AEB821104E4300B8F785 /* QNResolvUtil.m in Sources */,
@@ -6225,7 +6280,6 @@
 				7A0592C520FDF10E00075FE8 /* ADPeopleTableView.m in Sources */,
 				7AB29E6620FD8EB30014FCB3 /* MJExtensionConst.m in Sources */,
 				36BD495222B5F8F2007DCD9B /* GreenListTableView.m in Sources */,
-				7A945545210EB14F00BDFD33 /* ImageBrowserViewController.m in Sources */,
 				36A0DBB622B7D02A00C92537 /* TongDunHeadView.m in Sources */,
 				366FAF7122AF911800E169AC /* AdmissionDetailsTableView18.m in Sources */,
 				366201A32292AF2A0010C78A /* ManagerAuditTableView.m in Sources */,
@@ -6325,6 +6379,7 @@
 				7A13AEC421104E4400B8F785 /* QNCrc32.m in Sources */,
 				3600B2372297D107002C4C18 /* YeWuTableView.m in Sources */,
 				36D2EC8822B5F39F002E3466 /* RedListVC.m in Sources */,
+				367845B022C353FB0076E118 /* BrandTableViewCell.m in Sources */,
 				36F9E72D2282C5D7009DAC65 /* TransferCell.m in Sources */,
 				7A0592D420FED6B700075FE8 /* SurveyWTGVC.m in Sources */,
 				7A3582672112A9BE006FB5B5 /* FaceSignMQTableView.m in Sources */,
@@ -6344,12 +6399,12 @@
 				1F1EF2AC2265D03000EADA25 /* AttachmentPoolTableView.m in Sources */,
 				1F151A912272AB14002B7EDA /* ApplyTableView1.m in Sources */,
 				1F1EF2B82265D37300EADA25 /* RepaymentPlanTableView.m in Sources */,
-				7A945546210EB14F00BDFD33 /* PhotoView.m in Sources */,
 				3600B23A2297F170002C4C18 /* SettlementAuditCell.m in Sources */,
 				36620172229255DC0010C78A /* CheckRepayCell.m in Sources */,
 				7A13AEB521104E4300B8F785 /* QNHijackingDetectWrapper.m in Sources */,
 				36C02E00227FFFB0007EC7CF /* ReFinancialTableView.m in Sources */,
 				1F651A582276DDFE00EFB78B /* ToApplyForRunningWaterCell.m in Sources */,
+				3668C3AC22C355A400BE3602 /* PhotoView.m in Sources */,
 				366A2ABC2289AF6B00FF8366 /* CheckFileVC.m in Sources */,
 				36E52D152289158300C18806 /* UIView+Extension.m in Sources */,
 				1F151A462272A7E1002B7EDA /* AccessApplyTableView.m in Sources */,
@@ -6415,6 +6470,7 @@
 				7A0592B520FDE64200075FE8 /* InputBoxCell.m in Sources */,
 				1F1EF1FE22657EF200EADA25 /* CustomerDetailsVC.m in Sources */,
 				7A13AE1E210F26A100B8F785 /* IQUIViewController+Additions.m in Sources */,
+				367845A222C352830076E118 /* ChangeBrandVC.m in Sources */,
 				366201C12292D2E00010C78A /* SignModel.m in Sources */,
 				7AB29E7420FD8EB30014FCB3 /* TLAlert.m in Sources */,
 				B834137D21D0786100A63D3B /* SelectedCell.m in Sources */,
@@ -6467,7 +6523,9 @@
 				36A6D86322ADFE1200768D80 /* WPFunctionView.m in Sources */,
 				36CFB5DB229BE13D00D4305A /* ChooseGPSVC.m in Sources */,
 				36CFB5C6229BA6AC00D4305A /* ReceivesGPSVC.m in Sources */,
+				367845A322C352830076E118 /* ChangeBrandTableView.m in Sources */,
 				7AABE3582139112800283BC7 /* AddGPSPeopleCell.m in Sources */,
+				367845A122C352830076E118 /* UpdateBrandVC.m in Sources */,
 				B8F5C1AC2199640C002A00B6 /* insideMortgatee.m in Sources */,
 				36620191229284410010C78A /* ConfirmRepayTableView.m in Sources */,
 				7A13ADD9210F126F00B8F785 /* GPSClaimsTableView.m in Sources */,
@@ -6480,6 +6538,7 @@
 				7A13ADD3210F102800B8F785 /* DataTransferTableView.m in Sources */,
 				7A0592CE20FED23900075FE8 /* InformationCell.m in Sources */,
 				7AB29E7B20FD8EB30014FCB3 /* SelectedListView.m in Sources */,
+				367845AD22C3537D0076E118 /* CarModel.m in Sources */,
 				7A94554A210EC18C00BDFD33 /* TLImagePicker.m in Sources */,
 				7A0F8E852119C33400BA8358 /* SettlementAuditDetailsTableView.m in Sources */,
 				36CFB5CC229BB3C300D4305A /* SenderGPSVC.m in Sources */,
@@ -6567,6 +6626,7 @@
 				1F151A922272AB14002B7EDA /* ApplyTableView6.m in Sources */,
 				7A3582642112A8D8006FB5B5 /* FaceSignMQVC.m in Sources */,
 				7A13AEB421104E4300B8F785 /* QNNiuDns.m in Sources */,
+				3668C3AD22C355A400BE3602 /* ImageBrowserViewController.m in Sources */,
 				7A13ADE5210F159800B8F785 /* ClaimsVC.m in Sources */,
 				7A13AEC221104E4400B8F785 /* QNALAssetFile.m in Sources */,
 				3662016B22924BA40010C78A /* CheckRepayTableView.m in Sources */,
