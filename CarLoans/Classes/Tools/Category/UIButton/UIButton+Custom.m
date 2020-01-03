@@ -52,7 +52,6 @@
             
             [button setBackgroundColor:backgroundColor];
         }else {
-        
             [button setBackgroundColor:[UIColor clearColor]];
         }
         

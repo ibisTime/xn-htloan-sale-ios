@@ -7,9 +7,9 @@
 //
 
 #import "BaseViewController.h"
-#import <ILiveSDK/ILiveCoreHeader.h>
+//#import <ILiveSDK/ILiveCoreHeader.h>
 
-@interface FaceToFaceSignVC : BaseViewController<ILiveMemStatusListener, ILiveRoomDisconnectListener>
+@interface FaceToFaceSignVC : BaseViewController
 @property (nonatomic, assign) long long chinaID;
 @property (nonatomic , copy)void (^curreryBlock)(NSString* roomID);
 @property (nonatomic, copy) NSString* roomId;

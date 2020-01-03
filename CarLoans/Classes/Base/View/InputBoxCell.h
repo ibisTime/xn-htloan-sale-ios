@@ -19,5 +19,6 @@
 @property (nonatomic , strong)UITextField *nameTextField;
 
 @property (nonatomic , strong)UILabel *symbolLabel;
-
+@property (nonatomic , copy)NSString *detailsStr;
+@property (nonatomic , copy)NSString *isInput;
 @end

@@ -23,14 +23,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"修改密码";
+    self.title = @"忘记密码";
     self.view.backgroundColor = BackColor;
     [self TheInterfaceDisplayView];
 
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    self.navigationItem.leftBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.LeftBackbButton]];
-    [self.LeftBackbButton addTarget:self action:@selector(LeftBackbButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
-    self.LeftBackbButton.backgroundColor = kNavBarBackgroundColor;
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    self.navigationItem.leftBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.LeftBackbButton]];
+//    [self.LeftBackbButton addTarget:self action:@selector(LeftBackbButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+//    self.LeftBackbButton.backgroundColor = kNavBarBackgroundColor;
 
 
 
@@ -110,9 +110,9 @@
     }
 
     TLNetworking *http = [TLNetworking new];
-    http.code = @"805063";
+    http.code = @"630053";
     http.showView = self.view;
-    http.parameters[@"kind"] = @"C";
+    http.parameters[@"kind"] = @"B";
     http.parameters[@"mobile"] = tfView1.nameTextField.text;
     http.parameters[@"smsCaptcha"] = codeView.nameTextField.text;
     http.parameters[@"newLoginPwd"] = tfView2.nameTextField.text;
@@ -120,7 +120,8 @@
     [http postWithSuccess:^(id responseObject) { 
         WGLog(@"%@",responseObject);
         [TLAlert alertWithInfo:@"修改成功"];
-        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         WGLog(@"%@",error);
     }];

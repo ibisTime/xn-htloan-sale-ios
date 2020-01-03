@@ -9,20 +9,24 @@
 #ifndef APICodeMacro_h
 #define APICodeMacro_h
 
-
+//新疆
+//#define APPURL @"http://39.104.89.43:2601/forward-service/api"
 //研发
-//#define APPURL @"http://120.26.6.213:2401/forward-service//api"
-//测试http://120.26.6.213:2408/login
+#define APPURL @"http://47.99.80.106:2401/forward-service/api"
+//测试
+//#define APPURL @"http://112.124.25.207:2401/forward-service/api"
+//正式
+//#define APPURL @"http://47.110.249.120:2401/forward-service/api"
 
-//#define APPURL @"http://47.99.163.139:2401/forward-service//api"
+//测试
+//#define APPURL @"http://47.99.163.139:2401/forward-service/api"
 //线上
-#define APPURL @"http://39.104.89.43:2401/forward-service//api"
-
+//#define APPURL @"http://47.110.249.120:2401/forward-service/api"
 
 //#define QINIUURL @"http://p9sctbdpk.bkt.clouddn.com/"
-#define QINIUURL @"http://img.fhcdzx.com/"
-
-
+//#define QINIUURL @"http://img.fhcdzx.com/"
+#define QINIUURL @"http://img.wzhaoyuan.com/"
+//@"http://img.wzhaoyuan.com"
 //验证码
 #define CAPTCHA_CODE @"805950"
 //用户
@@ -33,7 +37,7 @@
 // ====================   个人中心    ===================
 #define VERIFICATION_CODE_CODE @"630090"//发送验证码
 #define ModifyPhoneNumberURL @"805061"//修改手机号
-#define ChangePasswordURL @"805063"//修改密码
+#define ChangePasswordURL @"630053"//修改密码
 #define TopUpPaymentPassword @"805067"//充值支付密码
 #define ModifyTheNicknameURL @"805081"//修改昵称
 #define ShippingAddressURL @"805165"//收货地址

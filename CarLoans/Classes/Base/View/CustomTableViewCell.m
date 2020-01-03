@@ -36,7 +36,6 @@
         UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
         lineView1.backgroundColor = LineBackColor;
         [self addSubview:lineView1];
-        
         [self addSubview:self.codeLabel];
         [self addSubview:self.stateLabel];
         
@@ -57,6 +56,7 @@
             
             _InformationLabel = [UILabel labelWithFrame:CGRectMake(115 , 70 + i % k * 35, SCREEN_WIDTH - 130, 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
             _InformationLabel.tag = 1000000 + i;
+            _InformationLabel.numberOfLines = 2;
             [self addSubview:_InformationLabel];
         }
         if (k == 13) {
@@ -112,7 +112,7 @@
                            @"客户姓名",
                            @"贷款金额",
                            @"贷款银行",
-                           @"驻行内勤",
+                           @"业  务  员",
                            @"申请时间"];
     NSString *bizType;
     if ([surveyModel.bizType integerValue] == 0) {
@@ -127,17 +127,58 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
-                                  [NSString stringWithFormat:@"%@",surveyModel.operatorName],
+                                  [NSString stringWithFormat:@"%@ %@",surveyModel.loanBankName,surveyModel.subbranchBankName],
+                                  [NSString stringWithFormat:@"%@",surveyModel.saleUserName],
                                   [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
     
     for (int i = 0; i < nameArray.count; i ++ ) {
         UILabel *nameLabel = [self viewWithTag:100000 + i];
         nameLabel.text = nameArray[i];
         UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.numberOfLines = 2;
         InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
     }
 }
+
+-(void)setMakeCardModel:(SurveyModel *)makeCardModel
+{
+    _codeLabel.text = [NSString stringWithFormat:@"%@",makeCardModel.code];
+    _stateLabel.text = [[BaseModel user]note:makeCardModel.makeCardNode];
+    
+    NSLog(@"%@",[[BaseModel user]note:makeCardModel.curNodeCode]);
+    NSArray *nameArray = @[
+                           @"业务种类",
+                           @"客户姓名",
+                           @"贷款金额",
+                           @"贷款银行",
+                           @"业  务  员",
+                           @"申请时间"];
+    NSString *bizType;
+    if ([makeCardModel.bizType integerValue] == 0) {
+        bizType = @"新车";
+    }
+    else
+    {
+        bizType = @"二手车";
+    }
+    
+    NSArray *InformationArray = @[
+                                  [NSString stringWithFormat:@"%@",bizType],
+                                  [NSString stringWithFormat:@"%@",makeCardModel.creditUser[@"userName"]],
+                                  [NSString stringWithFormat:@"%.2f",[makeCardModel.loanAmount floatValue]/1000],
+                                  [NSString stringWithFormat:@"%@ %@",makeCardModel.loanBankName,makeCardModel.subbranchBankName],
+                                  [NSString stringWithFormat:@"%@",makeCardModel.saleUserName],
+                                  [NSString stringWithFormat:@"%@",[makeCardModel.applyDatetime convertToDetailDate]]];
+    
+    for (int i = 0; i < nameArray.count; i ++ ) {
+        UILabel *nameLabel = [self viewWithTag:100000 + i];
+        nameLabel.text = nameArray[i];
+        UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+        InformationLabel.numberOfLines = 0;
+        InformationLabel.text =[BaseModel convertNull: InformationArray[i]];
+    }
+}
+
 
 
 //准入单     车辆抵押    车辆落户
@@ -173,7 +214,7 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",accessSingleModel.applyUserName],
                                   [NSString stringWithFormat:@"%.2f",[accessSingleModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",accessSingleModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",accessSingleModel.loanBankName,accessSingleModel.subbranchBankName],
                                   isAdvanceFund,
                                   [NSString stringWithFormat:@"%@",[accessSingleModel.applyDatetime convertToDetailDate]]];
     

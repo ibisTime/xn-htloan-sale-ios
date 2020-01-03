@@ -40,13 +40,23 @@
 
 -(void)btnClick:(UIButton *)sender
 {
+    if (_picArray.count == 0) {
+        return;
+    }
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
 
     [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:sender.tag - 10000 imagesBlock:^NSArray *{
         return self.photoArray;
     }];
 }
-
+- (void)btnclick1:(UITapGestureRecognizer*)ta
+{
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    
+    [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:ta.view.tag - 10000 imagesBlock:^NSArray *{
+        return self.photoArray;
+    }];
+}
 -(void)setPicArray:(NSArray *)picArray
 {
     NSMutableArray *array = [NSMutableArray array];
@@ -59,6 +69,9 @@
 
         UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(15 + i % 3 *  ((SCREEN_WIDTH - 50)/3 + 10), 50 + i / 3 * ((SCREEN_WIDTH - 50)/3 + 10), (SCREEN_WIDTH - 50)/3, (SCREEN_WIDTH - 50)/3)];
         [photoImage sd_setImageWithURL:[NSURL URLWithString:[picArray[i] convertImageUrl]]];
+        photoImage.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(btnclick1:)];
+        [photoImage addGestureRecognizer:tap];
         [self addSubview:photoImage];
 
         UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];

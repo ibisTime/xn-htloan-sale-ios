@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CollectionViewCell.h"
 
-@protocol CustomCollectionDelegate <NSObject>
+@protocol CustomCollectiondelegate <NSObject>
 
 - (void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString*)str;
 
@@ -16,11 +17,18 @@
 
 @end
 
+
 @interface CollectionViewCell : UITableViewCell
 
 @property (nonatomic, assign) id<CustomCollectionDelegate> delegate;
 @property (nonatomic,strong)UICollectionView *collectionView;
+//图片数组
 @property (nonatomic,strong)NSArray *collectDataArray;
+//标题
 @property (nonatomic , copy)NSString *selectStr;
+@property (nonatomic,strong) NSString * title;
+//是否允许编辑
+@property (nonatomic , assign)BOOL isEditor;
+
 
 @end

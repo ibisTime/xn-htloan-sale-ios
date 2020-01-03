@@ -19,6 +19,9 @@
 
 @property (nonatomic, copy) NSString *videoData;
 
+@property (nonatomic,assign) BOOL isdissmiss;
+
+
 
 + (instancetype)manager;
 

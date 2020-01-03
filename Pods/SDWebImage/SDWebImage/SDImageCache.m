@@ -461,6 +461,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 
 - (void)clearMemory {
     [self.memCache removeAllObjects];
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
 }
 
 - (void)clearDiskOnCompletion:(nullable SDWebImageNoParamsBlock)completion {

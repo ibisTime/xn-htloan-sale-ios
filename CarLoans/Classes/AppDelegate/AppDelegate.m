@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "HomeVC.h"
 #import "LoginVC.h"
-#import <ILiveSDK/ILiveSDK.h>
+#import "TLTabBarController.h"
+#import "CheckDetailsVC.h"
 @interface AppDelegate ()
 
 @end
@@ -25,13 +26,14 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     if([BaseModel user].isLogin == NO) {
         LoginVC *VC = [[LoginVC alloc]init];
-        self.window.rootViewController = VC;
-    }else
-    {
-        HomeVC *VC = [[HomeVC alloc]init];
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
         self.window.rootViewController = nav;
+    }else
+    {
+        TLTabBarController *TabBarVC = [[TLTabBarController alloc]init];
+        self.window.rootViewController = TabBarVC;
     }
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -63,5 +65,12 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+    [[SDImageCache sharedImageCache]clearMemory];
+    [[SDWebImageManager sharedManager]cancelAll];
+}
+-(void)applicationDidFinishLaunching:(UIApplication *)application{
+    SDImageCache.sharedImageCache.maxMemoryCost = 1024*1024*8;
+}
 
 @end

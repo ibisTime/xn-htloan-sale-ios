@@ -120,12 +120,15 @@ _Pragma("clang diagnostic pop") \
 }
 
 //刷新
+//刷新
 - (void)addRefreshAction:(void (^)())refresh
 {
+    
+    
     self.refresh = refresh;
-    
-    
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:self.refresh];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
     self.mj_header = header;
 }
 
@@ -139,10 +142,11 @@ _Pragma("clang diagnostic pop") \
     logo.image = [UIImage imageNamed:@"logo_small"];
     [footer addSubview:logo];
     footer.arrowView.hidden = YES;
+    //    footer.lastUpdatedTimeLabel.hidden = YES;
+    footer.stateLabel.hidden = YES;
     self.mj_footer = footer;
     
 }
-
 
 - (void)beginRefreshing
 {
@@ -284,5 +288,9 @@ _Pragma("clang diagnostic pop") \
         [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
     }
 }
-
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didDeselectRowAtIndexPath:)]) {
+        [self.refreshDelegate refreshTableView:self didDeselectRowAtIndexPath:indexPath];
+    }
+}
 @end

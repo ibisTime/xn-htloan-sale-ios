@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UIAlertController *alertCtrl;     //!< 提示框
 
 @property (nonatomic, copy) NSString *videoUrl;     //!< 提示框
-@property (nonatomic, strong) ILivePushOption *option;
+//@property (nonatomic, strong) ILivePushOption *option;
 @property (nonatomic, strong)  UIButton *switchButton;
 @property (nonatomic, copy) NSString *streamId;     //!< 提示框
 @end
@@ -33,25 +33,25 @@
     self.title = @"面签";
     [self detectAuthorizationStatus];
     
-    [[ILiveRoomManager getInstance] enableCamera:CameraPosFront enable:YES succ:^{
-        NSLog(@"打开摄像头成功");
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
-        NSLog(@"打开摄像头失败");
-    }];
-    
-    [[ILiveRoomManager getInstance] enableMic:YES succ:^{
-        NSLog(@"打开麦克风成功");
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
-        NSLog(@"打开麦克风失败");
-    }];
+//    [[ILiveRoomManager getInstance] enableCamera:CameraPosFront enable:YES succ:^{
+//        NSLog(@"打开摄像头成功");
+//    } failed:^(NSString *module, int errId, NSString *errMsg) {
+//        NSLog(@"打开摄像头失败");
+//    }];
+//
+//    [[ILiveRoomManager getInstance] enableMic:YES succ:^{
+//        NSLog(@"打开麦克风成功");
+//    } failed:^(NSString *module, int errId, NSString *errMsg) {
+//        NSLog(@"打开麦克风失败");
+//    }];
     
     // 检测音视频权限
     
     
     number = 0;
     UIButton *switchButton = [UIButton buttonWithTitle:@"切换摄像头" titleColor:kWhiteColor backgroundColor:kClearColor titleFont:14];
-    switchButton.frame = CGRectMake(SCREEN_WIDTH-120, 5, 100, 24);
-    
+    switchButton.frame = CGRectMake(SCREEN_WIDTH - 115, 5, 100, 24);
+    switchButton.contentHorizontalAlignment =  UIControlContentHorizontalAlignmentRight;
     [self.view addSubview:switchButton];
     
     [switchButton addTarget:self action:@selector(SwitchCanmer:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -60,12 +60,12 @@
 
 - (void)SwitchCanmer: (UIButton *)sender
 {
-    [[ILiveRoomManager getInstance] switchCamera:^{
-        WGLog(@"switchsucess");
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
-        WGLog(@"switchfailed");
-        
-    }];
+//    [[ILiveRoomManager getInstance] switchCamera:^{
+//        WGLog(@"switchsucess");
+//    } failed:^(NSString *module, int errId, NSString *errMsg) {
+//        WGLog(@"switchfailed");
+//
+//    }];
     
 }
 
@@ -134,18 +134,18 @@
 
 
 
--(void)viewDidAppear:(BOOL)animated
-{
-    if (self.RightButton.hidden == YES) {
-        
-    }else{
-        [TLAlert alertWithMsg:@"已发送面签短信给用户"];
-        
-    }
-    
-    [super viewDidAppear:animated];
-    
-}
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    if (self.RightButton.hidden == YES) {
+//
+//    }else{
+//        [TLAlert alertWithMsg:@"已发送面签短信给用户"];
+//
+//    }
+//
+//    [super viewDidAppear:animated];
+//
+//}
 #pragma mark - Custom Method
 // 检测音视频权限
 - (void)detectAuthorizationStatus {
@@ -197,277 +197,277 @@
 
 // 房间销毁时记得调用退出房间接口
 - (void)dealloc {
-    [[ILiveRoomManager getInstance] quitRoom:^{
-        NSLog(@"退出房间成功");
-        
-        
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
-        NSLog(@"退出房间失败 %d : %@", errId, errMsg);
-    }];
+//    [[ILiveRoomManager getInstance] quitRoom:^{
+//        NSLog(@"退出房间成功");
+//
+//
+//    } failed:^(NSString *module, int errId, NSString *errMsg) {
+//        NSLog(@"退出房间失败 %d : %@", errId, errMsg);
+//    }];
 }
 
 #pragma mark - ILiveMemStatusListener
-- (BOOL)onEndpointsUpdateInfo:(QAVUpdateEvent)event updateList:(NSArray *)endpoints {
-    if (endpoints.count <= 0) {
-        return NO;
-    }
-    //
-    //    NSInteger aaa = 0;
-    for (QAVEndpoint *endpoint in endpoints) {
-        
-        switch (event) {
-            case QAV_EVENT_ID_ENDPOINT_HAS_CAMERA_VIDEO:
-            {
-                /*
-                 创建并添加渲染视图，传入userID和渲染画面类型，这里传入 QAVVIDEO_SRC_TYPE_CAMERA（摄像头画面）,
-                 */
-                
-                
-                if([endpoint.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]])
-                {
-                    ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                    ILiveRenderView *renderView = [frameDispatcher addRenderAt:self.view.bounds forIdentifier:[USERDEFAULTS objectForKey:USER_ID] srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                    [self.view addSubview:renderView];
-                    //                    [self.view bringSubviewToFront:renderView];
-                    [self.view sendSubviewToBack:renderView];
-                }else
-                {
-                    //                    if (endpoints.count == 1) {
-                    //                        number = 0;
-                    //                    }
-                    if (rect.size.width != 0 && rect1.size.width != 0) {
-                        number = 0;
-                        ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                        ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectMake(20, 30 +  number * 180, 100, 150) forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                        //                    renderView.tag = 100 + number;
-                        [self.view addSubview:renderView];
-                        [self.view bringSubviewToFront:renderView];
-                        //                    [self.view sendSubviewToBack:renderView];
-                        number ++;
-                        rect = CGRectMake(0, 0, 0, 0);
-                        rect1 = CGRectMake(0, 0, 0, 0);
-                    }else
-                    {
-                        if (rect.size.width != 0) {
-                            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                            ILiveRenderView *renderView = [frameDispatcher addRenderAt:rect forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                            //                    renderView.tag = 100 + number;
-                            [self.view addSubview:renderView];
-                            [self.view bringSubviewToFront:renderView];
-                            
-                            rect = CGRectMake(0, 0, 0, 0);
-                            
-                            //                    [self.view sendSubviewToBack:renderView];
-                            //                        number ++;
-                        }else if (rect1.size.width != 0)
-                        {
-                            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                            ILiveRenderView *renderView = [frameDispatcher addRenderAt:rect1 forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                            //                    renderView.tag = 100 + number;
-                            [self.view addSubview:renderView];
-                            rect1 = CGRectMake(0, 0, 0, 0);
-                            [self.view bringSubviewToFront:renderView];
-                        }else
-                        {
-                            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                            ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectMake(20, 30 +  number * 180, 100, 150) forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                            //                    renderView.tag = 100 + number;
-                            [self.view addSubview:renderView];
-                            [self.view bringSubviewToFront:renderView];
-                            //                    [self.view sendSubviewToBack:renderView];
-                            number ++;
-                        }
-                    }
-                    
-                    
-                    
-                    
-                    
-                }
-                
-                
-                
-                
-                // 房间内上麦用户数量变化，重新布局渲染视图
-                //                [self onCameraNumChange:endpoint.identifier];
-                //                if (renderView.frame.size.width < SCREEN_WIDTH && [endpoint.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]] ) {
-                //                    NSArray *allRenderViews = [[[ILiveRoomManager getInstance] getFrameDispatcher] getAllRenderViews];
-                //
-                //
-                //                }
-                //                    if (allRenderViews.count == 3) {
-                //                        [allRenderViews enumerateObjectsUsingBlock:^(ILiveRenderView *renderView, NSUInteger idx, BOOL * _Nonnull stop) {
-                //                            if (renderView.frame.size.width < SCREEN_WIDTH && [endpoint.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]] )
-                //                            {
-                //                                renderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                //                                [self.view sendSubviewToBack:renderView];
-                //                            }else{
-                //
-                //                                [self.view bringSubviewToFront:renderView];
-                //                            }
-                //
-                //                        }];
-                //                    }
-                
-                
-                //                }
-            }
-                break;
-            case QAV_EVENT_ID_ENDPOINT_NO_CAMERA_VIDEO:
-            {
-                
-                //                number = 0;
-                // 移除渲染视图
-                ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                ILiveRenderView *renderView = [frameDispatcher removeRenderViewFor:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                //                rect = renderView.frame;
-                [renderView removeFromSuperview];
-                CGRect viewRect = renderView.frame;
-                if (renderView.frame.origin.y == 30) {
-                    rect = viewRect;
-                }
-                else
-                {
-                    rect1 = viewRect;
-                }
-                //                    if (endpoints.count == 0) {
-                //                        number = 0;
-                //                        rect = CGRectMake(0, 0, 0, 0);
-                //                    }
-                // 房间内上麦用户数量变化，重新布局渲染视图
-                //                [self onCameraNumChange:@""];
-                
-                //                if([endpoint.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]])
-                //                {
-                //                    ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                //                    ILiveRenderView *renderView = [frameDispatcher addRenderAt:self.view.bounds forIdentifier:[USERDEFAULTS objectForKey:USER_ID] srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                //                    [self.view addSubview:renderView];
-                //
-                //                    [self.view sendSubviewToBack:renderView];
-                //                }else
-                //                {
-                //
-                //                    ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-                //                    ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectMake(20, 30 +  number * 180, 100, 150) forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                //                    [self.view addSubview:renderView];
-                //                    //                    [self.view sendSubviewToBack:renderView];
-                //                    [self.view bringSubviewToFront:renderView];
-                ////                    number ++;
-                //
-                //                }
-            }
-                break;
-            default:
-                break;
-        }
-    }
-    
-    return YES;
-}
+//- (BOOL)onEndpointsUpdateInfo:(QAVUpdateEvent)event updateList:(NSArray *)endpoints {
+//    if (endpoints.count <= 0) {
+//        return NO;
+//    }
+//    //
+//    //    NSInteger aaa = 0;
+//    for (QAVEndpoint *endpoint in endpoints) {
+//
+//        switch (event) {
+//            case QAV_EVENT_ID_ENDPOINT_HAS_CAMERA_VIDEO:
+//            {
+//                /*
+//                 创建并添加渲染视图，传入userID和渲染画面类型，这里传入 QAVVIDEO_SRC_TYPE_CAMERA（摄像头画面）,
+//                 */
+//
+//
+//                if([endpoint.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]])
+//                {
+//                    ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+//                    ILiveRenderView *renderView = [frameDispatcher addRenderAt:self.view.bounds forIdentifier:[USERDEFAULTS objectForKey:USER_ID] srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+//                    [self.view addSubview:renderView];
+//                    //                    [self.view bringSubviewToFront:renderView];
+//                    [self.view sendSubviewToBack:renderView];
+//                }else
+//                {
+//                    //                    if (endpoints.count == 1) {
+//                    //                        number = 0;
+//                    //                    }
+//                    if (rect.size.width != 0 && rect1.size.width != 0) {
+//                        number = 0;
+//                        ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+//                        ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectMake(20, 30 +  number * 180, 100, 150) forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+//                        //                    renderView.tag = 100 + number;
+//                        [self.view addSubview:renderView];
+//                        [self.view bringSubviewToFront:renderView];
+//                        //                    [self.view sendSubviewToBack:renderView];
+//                        number ++;
+//                        rect = CGRectMake(0, 0, 0, 0);
+//                        rect1 = CGRectMake(0, 0, 0, 0);
+//                    }else
+//                    {
+//                        if (rect.size.width != 0) {
+//                            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+//                            ILiveRenderView *renderView = [frameDispatcher addRenderAt:rect forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+//                            //                    renderView.tag = 100 + number;
+//                            [self.view addSubview:renderView];
+//                            [self.view bringSubviewToFront:renderView];
+//
+//                            rect = CGRectMake(0, 0, 0, 0);
+//
+//                            //                    [self.view sendSubviewToBack:renderView];
+//                            //                        number ++;
+//                        }else if (rect1.size.width != 0)
+//                        {
+//                            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+//                            ILiveRenderView *renderView = [frameDispatcher addRenderAt:rect1 forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+//                            //                    renderView.tag = 100 + number;
+//                            [self.view addSubview:renderView];
+//                            rect1 = CGRectMake(0, 0, 0, 0);
+//                            [self.view bringSubviewToFront:renderView];
+//                        }else
+//                        {
+//                            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+//                            ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectMake(20, 30 +  number * 180, 100, 150) forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+//                            //                    renderView.tag = 100 + number;
+//                            [self.view addSubview:renderView];
+//                            [self.view bringSubviewToFront:renderView];
+//                            //                    [self.view sendSubviewToBack:renderView];
+//                            number ++;
+//                        }
+//                    }
+//
+//
+//
+//
+//
+//                }
+//
+//
+//
+//
+//                // 房间内上麦用户数量变化，重新布局渲染视图
+//                //                [self onCameraNumChange:endpoint.identifier];
+//                //                if (renderView.frame.size.width < SCREEN_WIDTH && [endpoint.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]] ) {
+//                //                    NSArray *allRenderViews = [[[ILiveRoomManager getInstance] getFrameDispatcher] getAllRenderViews];
+//                //
+//                //
+//                //                }
+//                //                    if (allRenderViews.count == 3) {
+//                //                        [allRenderViews enumerateObjectsUsingBlock:^(ILiveRenderView *renderView, NSUInteger idx, BOOL * _Nonnull stop) {
+//                //                            if (renderView.frame.size.width < SCREEN_WIDTH && [endpoint.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]] )
+//                //                            {
+//                //                                renderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//                //                                [self.view sendSubviewToBack:renderView];
+//                //                            }else{
+//                //
+//                //                                [self.view bringSubviewToFront:renderView];
+//                //                            }
+//                //
+//                //                        }];
+//                //                    }
+//
+//
+//                //                }
+//            }
+//                break;
+//            case QAV_EVENT_ID_ENDPOINT_NO_CAMERA_VIDEO:
+//            {
+//
+//                //                number = 0;
+//                // 移除渲染视图
+//                ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+//                ILiveRenderView *renderView = [frameDispatcher removeRenderViewFor:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+//                //                rect = renderView.frame;
+//                [renderView removeFromSuperview];
+//                CGRect viewRect = renderView.frame;
+//                if (renderView.frame.origin.y == 30) {
+//                    rect = viewRect;
+//                }
+//                else
+//                {
+//                    rect1 = viewRect;
+//                }
+//                //                    if (endpoints.count == 0) {
+//                //                        number = 0;
+//                //                        rect = CGRectMake(0, 0, 0, 0);
+//                //                    }
+//                // 房间内上麦用户数量变化，重新布局渲染视图
+//                //                [self onCameraNumChange:@""];
+//
+//                //                if([endpoint.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]])
+//                //                {
+//                //                    ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+//                //                    ILiveRenderView *renderView = [frameDispatcher addRenderAt:self.view.bounds forIdentifier:[USERDEFAULTS objectForKey:USER_ID] srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+//                //                    [self.view addSubview:renderView];
+//                //
+//                //                    [self.view sendSubviewToBack:renderView];
+//                //                }else
+//                //                {
+//                //
+//                //                    ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+//                //                    ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectMake(20, 30 +  number * 180, 100, 150) forIdentifier:endpoint.identifier srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+//                //                    [self.view addSubview:renderView];
+//                //                    //                    [self.view sendSubviewToBack:renderView];
+//                //                    [self.view bringSubviewToFront:renderView];
+//                ////                    number ++;
+//                //
+//                //                }
+//            }
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+//
+//    return YES;
+//}
 
 // 房间内上麦用户数量变化时调用，重新布局所有渲染视图，
-- (void)onCameraNumChange:(NSString*)userID {
-    // 获取当前所有渲染视图
-    
-    
-    NSArray *allRenderViews = [[[ILiveRoomManager getInstance] getFrameDispatcher] getAllRenderViews];
-    // 检测异常情况
-    if (allRenderViews.count == 0) {
-        return;
-    }
-    // 计算并设置每一个渲染视图的frame
-    //    CGFloat renderViewHeight = ((SCREEN_HEIGHT - kStatusBarHeight) / allRenderViews.count);
-    CGFloat renderViewWidth = SCREEN_WIDTH;
-    __block CGFloat renderViewY = 0.f;
-    CGFloat renderViewX = 0.f;
-    
-    if (number == 0) {
-        number = allRenderViews.count + 1;
-    }
-    
-    [allRenderViews enumerateObjectsUsingBlock:^(ILiveRenderView *renderView, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        //        if([renderView.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]])
-        //        {
-        //            CGRect frame = CGRectMake(renderViewX, renderViewY, renderViewWidth, SCREEN_HEIGHT);
-        //            renderView.frame = frame;
-        //        }else
-        //        {
-        //            CGRect frame = CGRectMake(20, 30 + idx % allRenderViews.count * 180, 100, 150);
-        //            renderView.frame = frame;
-        //            [self.view bringSubviewToFront:renderView];
-        //        }
-        //        for (int i = 0; i < allRenderViews.count; i ++) {
-        if (idx == allRenderViews.count - number) {
-            //                return;
-            CGRect frame = CGRectMake(renderViewX, renderViewY, renderViewWidth, SCREEN_HEIGHT);
-            renderView.frame = frame;
-        }else
-        {
-            CGRect frame = CGRectMake(20, 30 + idx % allRenderViews.count * 180, 100, 150);
-            renderView.frame = frame;
-            [self.view bringSubviewToFront:renderView];
-        }
-        
-        //        }
-        //        if (idx == allRenderViews.count - num + 1) {
-        //
-        //        }
-        
-        //        if (allRenderViews.count == 2) {
-        //            if (idx == 0) {
-        //
-        //                CGRect frame = CGRectMake(20, 30, 100, 150);
-        //                renderView.frame = frame;
-        //                [self.view bringSubviewToFront:renderView];
-        //
-        //            }else if (idx == 1)
-        //            {
-        //                renderViewY = 0;
-        //
-        //                CGRect frame = CGRectMake(renderViewX, renderViewY, renderViewWidth, SCREEN_HEIGHT);
-        //                renderView.frame = frame;
-        //
-        //            }
-        //        }
-        
-        //        if (allRenderViews.count == 3){
-        //
-        //            if (idx == 0) {
-        //
-        //
-        //                CGRect frame = CGRectMake(20, 30, 100, 150);
-        //                renderView.frame = frame;
-        //                [self.view bringSubviewToFront:renderView];
-        //
-        //            }else if (idx == 1)
-        //            {
-        //
-        //                CGRect frame = CGRectMake(20, 210, 100, 150);
-        //                renderView.frame = frame;
-        //                [self.view bringSubviewToFront:renderView];
-        //
-        //            }else{
-        //
-        //                renderViewY = 0;
-        //                CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        //                renderView.frame = frame;
-        ////                [self.view sendSubviewToBack:renderView];
-        //
-        //            }
-        //
-        //        }
-        //        if (allRenderViews.count == 1)
-        //        {
-        //            renderViewY = 0;
-        //            CGRect frame = CGRectMake(renderViewX, renderViewY, renderViewWidth, SCREEN_HEIGHT);
-        //            renderView.frame = frame;
-        //
-        //        }
-        
-        
-    }];
-}
+//- (void)onCameraNumChange:(NSString*)userID {
+//    // 获取当前所有渲染视图
+//
+//
+//    NSArray *allRenderViews = [[[ILiveRoomManager getInstance] getFrameDispatcher] getAllRenderViews];
+//    // 检测异常情况
+//    if (allRenderViews.count == 0) {
+//        return;
+//    }
+//    // 计算并设置每一个渲染视图的frame
+//    //    CGFloat renderViewHeight = ((SCREEN_HEIGHT - kStatusBarHeight) / allRenderViews.count);
+//    CGFloat renderViewWidth = SCREEN_WIDTH;
+//    __block CGFloat renderViewY = 0.f;
+//    CGFloat renderViewX = 0.f;
+//
+//    if (number == 0) {
+//        number = allRenderViews.count + 1;
+//    }
+//
+//    [allRenderViews enumerateObjectsUsingBlock:^(ILiveRenderView *renderView, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//        //        if([renderView.identifier isEqualToString:[USERDEFAULTS objectForKey:USER_ID]])
+//        //        {
+//        //            CGRect frame = CGRectMake(renderViewX, renderViewY, renderViewWidth, SCREEN_HEIGHT);
+//        //            renderView.frame = frame;
+//        //        }else
+//        //        {
+//        //            CGRect frame = CGRectMake(20, 30 + idx % allRenderViews.count * 180, 100, 150);
+//        //            renderView.frame = frame;
+//        //            [self.view bringSubviewToFront:renderView];
+//        //        }
+//        //        for (int i = 0; i < allRenderViews.count; i ++) {
+//        if (idx == allRenderViews.count - number) {
+//            //                return;
+//            CGRect frame = CGRectMake(renderViewX, renderViewY, renderViewWidth, SCREEN_HEIGHT);
+//            renderView.frame = frame;
+//        }else
+//        {
+//            CGRect frame = CGRectMake(20, 30 + idx % allRenderViews.count * 180, 100, 150);
+//            renderView.frame = frame;
+//            [self.view bringSubviewToFront:renderView];
+//        }
+//
+//        //        }
+//        //        if (idx == allRenderViews.count - num + 1) {
+//        //
+//        //        }
+//
+//        //        if (allRenderViews.count == 2) {
+//        //            if (idx == 0) {
+//        //
+//        //                CGRect frame = CGRectMake(20, 30, 100, 150);
+//        //                renderView.frame = frame;
+//        //                [self.view bringSubviewToFront:renderView];
+//        //
+//        //            }else if (idx == 1)
+//        //            {
+//        //                renderViewY = 0;
+//        //
+//        //                CGRect frame = CGRectMake(renderViewX, renderViewY, renderViewWidth, SCREEN_HEIGHT);
+//        //                renderView.frame = frame;
+//        //
+//        //            }
+//        //        }
+//
+//        //        if (allRenderViews.count == 3){
+//        //
+//        //            if (idx == 0) {
+//        //
+//        //
+//        //                CGRect frame = CGRectMake(20, 30, 100, 150);
+//        //                renderView.frame = frame;
+//        //                [self.view bringSubviewToFront:renderView];
+//        //
+//        //            }else if (idx == 1)
+//        //            {
+//        //
+//        //                CGRect frame = CGRectMake(20, 210, 100, 150);
+//        //                renderView.frame = frame;
+//        //                [self.view bringSubviewToFront:renderView];
+//        //
+//        //            }else{
+//        //
+//        //                renderViewY = 0;
+//        //                CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//        //                renderView.frame = frame;
+//        ////                [self.view sendSubviewToBack:renderView];
+//        //
+//        //            }
+//        //
+//        //        }
+//        //        if (allRenderViews.count == 1)
+//        //        {
+//        //            renderViewY = 0;
+//        //            CGRect frame = CGRectMake(renderViewX, renderViewY, renderViewWidth, SCREEN_HEIGHT);
+//        //            renderView.frame = frame;
+//        //
+//        //        }
+//
+//
+//    }];
+//}
 
 #pragma mark - ILiveRoomDisconnectListener
 /**
@@ -475,9 +475,9 @@
  @param reason 退出房间的原因，具体值见返回码
  @return YES 执行成功
  */
-- (BOOL)onRoomDisconnect:(int)reason {
-    NSLog(@"房间异常退出：%d", reason);
-    return YES;
-}
+//- (BOOL)onRoomDisconnect:(int)reason {
+//    NSLog(@"房间异常退出：%d", reason);
+//    return YES;
+//}
 
 @end

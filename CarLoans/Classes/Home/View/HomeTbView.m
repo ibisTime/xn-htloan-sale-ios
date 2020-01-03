@@ -50,12 +50,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([dataDic[@"roleCode"] isEqualToString:@"SR20180000000000000ZHRY"]) {
-        return 2;
-    }else
-    {
-        return 3;
-    }
+    return 4;
 }
 
 #pragma mark -- 行数
@@ -123,59 +118,59 @@
 
 -(void)cellLabel
 {
-    UILabel *label1 = [self viewWithTag:5000];
-    UILabel *label2 = [self viewWithTag:5001];
-    UILabel *label3 = [self viewWithTag:5002];
-    UILabel *label4 = [self viewWithTag:5003];
-    UILabel *label5 = [self viewWithTag:5004];
-    UILabel *label6 = [self viewWithTag:5005];
-    if (self.RedDotDic) {
-        headView.dic = self.RedDotDic;
-    }
-    if ([self.RedDotDic[@"creditTodo"] integerValue] == 0) {
-        label1.hidden = YES;
-    }else
-    {
-        label1.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"creditTodo"] integerValue]];
-        label1.hidden = NO;
-        NSLog(@"%ld",[self.RedDotDic[@"creditTodo"] integerValue]);
-    }
-
-    if ([self.RedDotDic[@"interviewTodo"] integerValue] == 0) {
-        label2.hidden = YES;
-    }else
-    {
-        label2.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"interviewTodo"] integerValue]];
-        label2.hidden = NO;
-    }
-    if ([self.RedDotDic[@"gpsInstallTodo"] integerValue] == 0) {
-        label3.hidden = YES;
-    }else
-    {
-        label3.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"gpsInstallTodo"] integerValue]];
-        label3.hidden = NO;
-    }
-    if ([self.RedDotDic[@"carSettleTodo"] integerValue] == 0) {
-        label4.hidden = YES;
-    }else
-    {
-        label4.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"carSettleTodo"] integerValue]];
-        label4.hidden = NO;
-    }
-    if ([self.RedDotDic[@"entryMortgageTodo"] integerValue] == 0) {
-        label5.hidden = YES;
-    }else
-    {
-        label5.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"entryMortgageTodo"] integerValue]];
-        label5.hidden = NO;
-    }
-    if ([self.RedDotDic[@"logisticsTodo"] integerValue] == 0) {
-        label6.hidden = YES;
-    }else
-    {
-        label6.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"logisticsTodo"] integerValue]];
-        label6.hidden = NO;
-    }
+//    UILabel *label1 = [self viewWithTag:5000];
+//    UILabel *label2 = [self viewWithTag:5001];
+//    UILabel *label3 = [self viewWithTag:5002];
+//    UILabel *label4 = [self viewWithTag:5003];
+//    UILabel *label5 = [self viewWithTag:5004];
+//    UILabel *label6 = [self viewWithTag:5005];
+//    if (self.RedDotDic) {
+//        headView.dic = self.RedDotDic;
+//    }
+//    if ([self.RedDotDic[@"creditTodo"] integerValue] == 0) {
+//        label1.hidden = YES;
+//    }else
+//    {
+//        label1.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"creditTodo"] integerValue]];
+//        label1.hidden = NO;
+//        NSLog(@"%ld",[self.RedDotDic[@"creditTodo"] integerValue]);
+//    }
+//
+//    if ([self.RedDotDic[@"interviewTodo"] integerValue] == 0) {
+//        label2.hidden = YES;
+//    }else
+//    {
+//        label2.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"interviewTodo"] integerValue]];
+//        label2.hidden = NO;
+//    }
+//    if ([self.RedDotDic[@"gpsInstallTodo"] integerValue] == 0) {
+//        label3.hidden = YES;
+//    }else
+//    {
+//        label3.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"gpsInstallTodo"] integerValue]];
+//        label3.hidden = NO;
+//    }
+//    if ([self.RedDotDic[@"carSettleTodo"] integerValue] == 0) {
+//        label4.hidden = YES;
+//    }else
+//    {
+//        label4.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"carSettleTodo"] integerValue]];
+//        label4.hidden = NO;
+//    }
+//    if ([self.RedDotDic[@"entryMortgageTodo"] integerValue] == 0) {
+//        label5.hidden = YES;
+//    }else
+//    {
+//        label5.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"entryMortgageTodo"] integerValue]];
+//        label5.hidden = NO;
+//    }
+//    if ([self.RedDotDic[@"logisticsTodo"] integerValue] == 0) {
+//        label6.hidden = YES;
+//    }else
+//    {
+//        label6.text = [NSString stringWithFormat:@"%ld",[self.RedDotDic[@"logisticsTodo"] integerValue]];
+//        label6.hidden = NO;
+//    }
 
 }
 
@@ -198,15 +193,15 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-//        if ([[USERDEFAULTS objectForKey:USERDATA][@"loginName"] isEqualToString:@"ios"]) {
-//            return SCREEN_WIDTH/3;
-//        }else
-//        {
-            return SCREEN_WIDTH/3*2;
-//        }
-
+        return SCREEN_WIDTH;
     }
-    return SCREEN_WIDTH/3;
+    if (indexPath.section == 1) {
+        return SCREEN_WIDTH/3*2;
+    }
+    if (indexPath.section == 2) {
+        return SCREEN_WIDTH/3;
+    }
+    return SCREEN_WIDTH/3*2;
 }
 
 #pragma mark -- 区头高度
@@ -229,21 +224,15 @@
     backView.backgroundColor = [UIColor whiteColor];
     [headView addSubview:backView];
 
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(15, 10, 4, 15)];
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(15, 9.5, 4, 16)];
     lineView.backgroundColor = MainColor;
+    kViewRadius(lineView, 2);
     [backView addSubview:lineView];
     UILabel *headLabel = [UILabel labelWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 45, 35) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(15) textColor:[UIColor blackColor]];
     [backView addSubview:headLabel];
     //    headView.
-    if ([dataDic[@"roleCode"] isEqualToString:@"SR20180000000000000ZHRY"]) {
-        NSArray *nameArray = @[@"车贷业务",@"资料传递"];
-        headLabel.text = nameArray[section];
-
-    }else
-    {
-        NSArray *nameArray = @[@"车贷业务",@"车贷工具",@"资料传递"];
-        headLabel.text = nameArray[section];
-    }
+    NSArray *nameArray = @[@"贷前准入",@"贷中执行",@"贷后跟踪",@"车贷工具"];
+    headLabel.text = nameArray[section];
     return headView;
 
 

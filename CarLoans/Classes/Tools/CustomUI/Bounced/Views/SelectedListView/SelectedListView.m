@@ -111,7 +111,8 @@
     SelectedListModel *model = self.array[indexPath.row];
     
     cell.textLabel.text = model.title;
-    
+//    cell.textLabel.font = Font(14\n);
+    cell.textLabel.numberOfLines = 2;
     cell.backgroundColor = [UIColor clearColor];
     
     cell.selectedBackgroundView = [UIView new];

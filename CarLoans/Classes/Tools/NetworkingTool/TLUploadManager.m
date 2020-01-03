@@ -95,6 +95,9 @@
 {
 
     [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    
+    
     TLNetworking *getUploadToken = [TLNetworking new];
 
     getUploadToken.showView = showView;
@@ -103,8 +106,8 @@
     [getUploadToken postWithSuccess:^(id responseObject) {
 
         NSString *token = responseObject[@"data"][@"uploadToken"];
-
         [SVProgressHUD show];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
 //            builder.zone = [QNZone zone0];
         }];
@@ -126,12 +129,15 @@
 
                 success(key);
             }
-            [SVProgressHUD dismiss];
+            if (!_isdissmiss) {
+                [SVProgressHUD dismiss];
+            }
+            
 
         } option:nil];
 
     } failure:^(NSError *error) {
-
+        [TLAlert alertWithError:@"上传失败"];
         if (failure) {
             failure(error);
         }

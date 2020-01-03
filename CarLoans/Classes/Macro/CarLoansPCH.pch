@@ -17,22 +17,46 @@
 #import "AppColorMacro.h"
 #import "AppMacro.h"
 #import "TLNetworking.h"
+#import "TLAlert.h"
 #import <SVProgressHUD.h>
+#import <SDWebImage/UIButton+WebCache.h>
 #import "BaseModel.h"
 #import "CKAlertViewController.h"
 #import "MJExtension.h"
+#import "TopModel.h"
+#import "ToApplyForEncapsulationCell.h"
+#define ToApplyForEncapsulation @"ToApplyForEncapsulationCell"
+#import "ToApplyForUpdateImgCell.h"
+#define ToApplyForUpdateImg @"ToApplyForUpdateImgCell"
 #import "TLPageDataHelper.h"
+#import "MenuModel.h"
+#import <Masonry.h>
 #import <MJRefresh.h>
 #import "LEEAlert.h"
+#import "WSDatePickerView.h"
 #import <UIImageView+WebCache.h>
 #import "NSString+Extension.h"
 #import "LoginVC.h"
+#import "ListModel.h"
+#import "IdCardFrontModel.h"
+#import "IdCradReverseModel.h"
 #import "AccessCameraPhotoAlbum.h"
 #import "IQKeyboardManager.h"
-
+#import "PhotoCell.h"
+#import "AdmissionInformationCell.h"
+#import "VideoCell.h"
+#import "UIView+Frame.h"
+#import "NSDictionary+Extension.h"
+#import "AdmissionDetailsVC.h"
+#import "AccessSingleModel.h"
+#import "RepayModel.h"
+#import "SettlementAuditModel.h"
+#import "SignModel.h"
+#import "CustomerInvalidModel.h"
 #define TOKEN_ID @"token_id"
 #define USER_ID @"user_id"
 #define USERDATA @"USERDATA"
+#define DEPARTMENTCODE @"departmentCode"
 #define ROLECODE @"roleCode"
 #define ROSTCODE @"postCode"
 #define TEAMCODE @"teamCode"
@@ -40,13 +64,18 @@
 #define NODE @"node"
 #import "TLUploadManager.h"
 #define BOUNCEDDATA @"BouncedData"
-
-
+#define REGION @"Region"
+#define COMPANYNODE @"CompanyNode"
+#define ENTERLOCATION @"EnterLocation"
+#define ADVANCECARD @"advanceCardCode"
+#import "NSString+Check.h"
+#import "SurveyModel.h"
 #define ADDADPEOPLENOTICE @"ADDADPEOPLENOTICE"
 #define ApplyForCancellation @"ApplyForCancellation"
 #define LOADDATAPAGE @"LOADDATAPAGE"
 #define ADDGPS @"ADDGPS"
-
+#import "WPhotoViewController.h"
+#import "UITableView+AddForPlaceholder.h"
 #define kDeviceStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 #define USERDEFAULTS [NSUserDefaults standardUserDefaults]
 
@@ -61,9 +90,12 @@
 //设置颜色
 #define HGColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
-#define kWidth(x) (x)*(SCREEN_WIDTH)/375.0
-#define kHeight(y) (y)*(SCREEN_HEIGHT)/667.0
+//#define kWidth(x) (x)*(SCREEN_WIDTH)/375.0
+//#define kHeight(y) (y)*(SCREEN_HEIGHT)/667.0
 
+#define Height_StatusBar [[UIApplication sharedApplication] statusBarFrame].size.height
+
+//#define kDevice_Is_iPhoneX (Height_StatusBar == 44 ? YES : NO)
 #define kNavigationBarHeight  (kDevice_Is_iPhoneX == YES ? 88: 64)
 #define kStatusBarHeight (kDevice_Is_iPhoneX == YES ? 44: 20)
 
@@ -88,6 +120,7 @@
 #define LoadingString @"加载中"
 
 #define CarLoansWeakSelf  __weak typeof(self) weakSelf = self;
+#define ProjectWeakSelf  __weak typeof(self) weakSelf = self;
 //自定义高效率的 NSLog
 #ifdef DEBUG
 #define WGLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])

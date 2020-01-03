@@ -14,6 +14,7 @@
  */
 typedef enum{
     DateStyleShowYearMonthDayHourMinute  = 0,//年月日时分
+    DateStyleShowYearMonth,//年月
     DateStyleShowMonthDayHourMinute,//月日时分
     DateStyleShowYearMonthDay,//年月日
     DateStyleShowMonthDay,//月日

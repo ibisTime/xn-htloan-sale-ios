@@ -24,11 +24,25 @@
         _nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 120, 50)];
         _nameTextField.font = HGfont(14);
         _nameTextField.textAlignment = NSTextAlignmentRight;
+//        _nameTextField.backgroundColor = [UIColor redColor];
         [_nameTextField setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
     }
     return _nameTextField;
 }
 
+-(UILabel *)nameTextLabel
+{
+    if (!_nameTextLabel) {
+        _nameTextLabel = [[UILabel alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 120, 50)];
+        _nameTextLabel.font = HGfont(14);
+        _nameTextLabel.textAlignment = NSTextAlignmentRight;
+        _nameTextLabel.numberOfLines = 0;
+        _nameTextLabel.hidden = YES;
+//        _nameLabel.font = Font(14);
+//        [_nameLabel setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
+    }
+    return _nameTextLabel;
+}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -36,16 +50,10 @@
     if (self) {
         [self addSubview:self.nameLabel];
         [self addSubview:self.nameTextField];
-
-        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        lineView1.backgroundColor = LineBackColor;
-        [self addSubview:lineView1];
-
-
+        [self addSubview:self.nameTextLabel];
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
         lineView.backgroundColor = LineBackColor;
         [self addSubview:lineView];
-       
     }
     return self;
 }
@@ -70,13 +78,10 @@
         UISwitch *switchButton = (UISwitch*)sender;
         BOOL isButtonOn = [switchButton isOn];
         if (isButtonOn) {
-//            showSwitchValue.text = @"是";
-            
+ 
         }else {
-//            showSwitchValue.text = @"否";
-            
+  
         }
-    
 }
 
 
@@ -87,6 +92,7 @@
     _nameLabel.frame = CGRectMake(15, 18, 0, 14);
     [_nameLabel sizeToFit];
     _nameTextField.frame = CGRectMake(_nameLabel.frame.size.width + 25, 0, SCREEN_WIDTH - _nameLabel.frame.size.width - 40, 50);
+    _nameTextLabel.frame = CGRectMake(_nameLabel.frame.size.width + 25, 0, SCREEN_WIDTH - _nameLabel.frame.size.width - 40, 50);
 }
 
 -(void)setNameText:(NSString *)nameText
@@ -99,11 +105,22 @@
     if ([isInput isEqualToString:@"0"]) {
         _nameTextField.enabled = NO;
     }
+    if ([isInput isEqualToString:@"1"]) {
+        _nameTextField.enabled = NO;
+        _nameTextField.hidden = YES;
+        _nameTextLabel.hidden = NO;
+    }
 }
 
 -(void)setTextFidStr:(NSString *)TextFidStr
 {
+//    _nameTextLabel.numberOfLines = 2;
     _nameTextField.text = [BaseModel convertNull:TextFidStr];
+    _nameTextLabel.text = [BaseModel convertNull:TextFidStr];
 }
 
+-(void)setText:(NSString *)text{
+    _nameTextField.text = text;
+    _nameTextLabel.text = text;
+}
 @end

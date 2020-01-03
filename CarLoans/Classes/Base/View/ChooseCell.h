@@ -20,4 +20,6 @@
 
 @property (nonatomic , copy)NSString *details;
 
+@property (nonatomic,copy) NSString * text;
+@property (nonatomic,strong) UIView *lineView;
 @end

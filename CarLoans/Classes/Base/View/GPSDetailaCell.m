@@ -63,7 +63,7 @@
             lineView2.backgroundColor = LineBackColor;
             [self addSubview:lineView2];
             _button = [UIButton buttonWithTitle:@"确认提交银行" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
-            _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290+60+90+90+30-10+60, 100, 30);
+            _button.frame = CGRectMake(SCREEN_WIDTH - 115, 290+60+90+90+30-10+60 + 5, 100, 30);
             kViewBorderRadius(_button, 5, 1, MainColor);
             [self addSubview:_button];
             _button.hidden = YES;
@@ -105,7 +105,7 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",surveyModel.creditUser[@"userName"]],
                                   [NSString stringWithFormat:@"%.2f",[surveyModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",surveyModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",surveyModel.loanBankName,surveyModel.subbranchBankName],
                                   [NSString stringWithFormat:@"%@",surveyModel.operatorName],
                                   [NSString stringWithFormat:@"%@",[surveyModel.applyDatetime convertToDetailDate]]];
     
@@ -151,7 +151,7 @@
                                   [NSString stringWithFormat:@"%@",bizType],
                                   [NSString stringWithFormat:@"%@",accessSingleModel.applyUserName],
                                   [NSString stringWithFormat:@"%.2f",[accessSingleModel.loanAmount floatValue]/1000],
-                                  [NSString stringWithFormat:@"%@",accessSingleModel.loanBankName],
+                                  [NSString stringWithFormat:@"%@ %@",accessSingleModel.loanBankName,accessSingleModel.subbranchBankName],
                                   isAdvanceFund,
                                   [NSString stringWithFormat:@"%@",[accessSingleModel.applyDatetime convertToDetailDate]]];
     
@@ -206,7 +206,8 @@
                                       [NSString stringWithFormat:@"%@",dataTransferModel.gpsApply[@"customerName"]],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.code],
                                       
-                                      [NSString stringWithFormat:@"%@",[[BaseModel user] setParentKey:@"kd_company" setDkey:dataTransferModel.logisticsCompany]],
+                                      [NSString stringWithFormat:@"%@",dataTransferModel.teamName],
+
                                       [NSString stringWithFormat:@"%@",dataTransferModel.senderName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.receiverName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.saleUserName],
@@ -266,7 +267,7 @@
                                       [NSString stringWithFormat:@"%@",dataTransferModel.gpsApply[@"customerName"]],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.code],
                                       
-                                      [NSString stringWithFormat:@"%@",[[BaseModel user] setParentKey:@"kd_company" setDkey:dataTransferModel.logisticsCompany]],
+                                      [NSString stringWithFormat:@"%@",dataTransferModel.teamName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.senderName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.receiverName],
                                       [NSString stringWithFormat:@"%@",dataTransferModel.saleUserName],

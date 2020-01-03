@@ -14,7 +14,8 @@
 #import "AccessSingleModel.h"
 //资料传递
 #import "DataTransferModel.h"
-
+//gps安装
+#import "GPSInstallationModel.h"
 
 @interface InformationCell : UITableViewCell
 
@@ -33,9 +34,17 @@
 @property (nonatomic , assign)BOOL  isXin;
 @property (nonatomic , assign)BOOL isCar;
 
+@property (nonatomic,assign) BOOL isFinancial;
+
+
+//@property (nonatomic,assign) BOOL isFinancial;
+@property (nonatomic,strong) NSString * state;
+
+
 @property (nonatomic , strong)SurveyModel *surveyModel;
 @property (nonatomic , strong)AccessSingleModel *accessSingleModel;
+@property (nonatomic , strong)AccessSingleModel *CarMortgageModel;
 @property (nonatomic , strong)DataTransferModel *dataTransferModel;
-
-
+@property (nonatomic,strong) GPSInstallationModel * gpsInstallationModel;
+@property (nonatomic,strong) RepayModel * repayModel;
 @end

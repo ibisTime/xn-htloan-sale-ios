@@ -11,7 +11,7 @@
 //#import "AppConfig.h"
 //#import "TLUser.h"
 //Category
-#import "TLProgressHUD.h"
+
 #import "TLAlert.h"
 #import "HttpLogger.h"
 //#import "UIViewController+Extension.h"
@@ -44,7 +44,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer.timeoutInterval = 15.0;
+    manager.requestSerializer.timeoutInterval = 60.0;
     //去除返回的null的value
     AFJSONResponseSerializer *response = [AFJSONResponseSerializer serializer];
     response.removesKeysWithNullValues = YES;
@@ -111,10 +111,11 @@
     
     if(self.showView){
     
-        [TLProgressHUD show];
+        [SVProgressHUD show];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     }
     if (self.isShowMsg) {
-//        [TLProgressHUD dismiss];
+        [SVProgressHUD dismiss];
     }
     
     if(self.code && self.code.length > 0){
@@ -129,27 +130,39 @@
 //            self.parameters[@"systemCode"] = [[self class] systemCode];
         }
         
-//        if ([TLUser user].token) {
-//
-//            self.parameters[@"token"] = [TLUser user].token;
-//        }
+        if ([USERDEFAULTS objectForKey:TOKEN_ID]) {
+
+            self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
+        }
 //
 //        self.parameters[@"companyCode"] = [[self class] companyCode];
 
 
     }
-    NSData *data = [NSJSONSerialization dataWithJSONObject:self.parameters options:NSJSONWritingPrettyPrinted error:nil];
-    self.parameters = [NSMutableDictionary dictionaryWithCapacity:2];
-
-
-    self.parameters[@"companyCode"] = @"CD-HTWT000020";
-    self.parameters[@"systemCode"] = @"CD-HTWT000020";
-
-    self.parameters[@"json"] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self.parameters options:NSJSONWritingPrettyPrinted error:nil];
+//    self.parameters = [NSMutableDictionary dictionaryWithCapacity:2];
 
-    self.parameters[@"code"] = self.code;
-    NSLog(@"%@",self.parameters);
+//    self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
+//    self.parameters[@"companyCode"] = @"CD-HTWT000020";
+//    self.parameters[@"systemCode"] = @"CD-HTWT000020";
+//
+//    self.parameters[@"code"] = self.code;
+//
+//
+//
+//    self.parameters[@"json"] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+//    NSLog(@"%@",self.parameters);
+
+    NSDictionary *paraDic = @{@"json":[TLNetworking dictionaryToJson:self.parameters],
+                              @"companyCode":@"CD-HTWT000020",
+                              @"systemCode":@"CD-HTWT000020",
+                              @"code":self.code
+                              };
+    
+//    NSLog(@"%@",self.parameters);
+//    [HttpLogger logJSONStringWithResponseObject:self.parameters];
 //    if (!self.url || !self.url.length) {
 //        NSLog(@"url 不存在啊");
 ////        if (hud || self.showView) {
@@ -158,10 +171,10 @@
 //        return nil;
 //    }
 //
-//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:APPURL]];
-//    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:self.parameters httpMethod:@"POST"];
-
-    return [self.manager POST:APPURL parameters:self.parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:APPURL]];
+    [HttpLogger logDebugInfoWithRequest:request apiName:self.code requestParams:paraDic httpMethod:@"POST"];
+//    NSLog(@"code==%@ %@ %@",self.code,self.parameters,APPURL);
+    return [self.manager POST:APPURL parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
       
       [HttpLogger logDebugInfoWithResponse:task.response apiName:self.code resposeString:responseObject request:task.originalRequest error:nil];
 
@@ -170,7 +183,7 @@
 
       if(self.showView){
           
-          [TLProgressHUD dismiss];
+          [SVProgressHUD dismiss];
       }
       
       if([responseObject[@"errorCode"] isEqual:@"0"]){ //成功
@@ -201,46 +214,35 @@
           if ([responseObject[@"errorCode"] isEqual:@"4"]) {
               //token错误  4
               
-              [TLAlert alertWithTitle:@"提示" message:@"为了您的账户安全,请重新登录" confirmAction:^{
-//                  LoginViewController *vc = [[LoginViewController alloc]init];
-//                  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-////                  vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-////                  vc.modalPresentationStyle = UIModalTransitionStyleFlipHorizontal;
-//                  vc.state = @"100";
-//                  UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-//                  [rootViewController presentViewController:nav animated:YES completion:nil];
+              [TLAlert alertWithTitle:@"提示" message:@"登录失效,请重新登录" confirmAction:^{
+                  LoginVC *vc = [[LoginVC alloc]init];
+                  UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                  UINavigationController *vcC = [[UINavigationController alloc]initWithRootViewController:vc];
+                  [USERDEFAULTS removeObjectForKey:USER_ID];
+                  [USERDEFAULTS removeObjectForKey:TOKEN_ID];
+                  window.rootViewController = vcC;
               }];
               return;
           }
-          
-          if(self.isShowMsg) { //异常也是失败
-              
-              [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
-
+          if ([responseObject[@"errorInfo"] isEqualToString:@""]) {
+              [TLAlert alertWithInfo:@"操作失败"];
           }
+          else
+              [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
       }
       
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       
-       if(self.showView) {
-           
-           [TLProgressHUD dismiss];
-       }
-       
-       if (self.isShowMsg) {
-
-           [TLAlert alertWithInfo:@"网络异常"];
-       }
+       [TLAlert alertWithInfo:@"网络异常"];
 
        if(failure) {
            //在主线程中加载UI
-           dispatch_async(dispatch_get_main_queue(), ^{
-               
-               if (self.baseVC) {
-                   
-//                   [self.baseVC addPlaceholderView];
-               }
-           });
+//           dispatch_async(dispatch_get_main_queue(), ^{
+//
+//               if (self.baseVC) {
+//
+////                   [self.baseVC addPlaceholderView];
+//               }
+//           });
         
            failure(error);
        }
@@ -248,6 +250,15 @@
    }];
 
 }
+
++(NSString*)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&parseError];
+    NSString *str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return str;
+}
+
 
 - (void)hundleSuccess:(id)responseObj {
 
