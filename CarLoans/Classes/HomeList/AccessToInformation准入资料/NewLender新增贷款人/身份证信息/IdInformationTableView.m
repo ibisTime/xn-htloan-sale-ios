@@ -52,16 +52,28 @@
                      self.startDate,
                      self.statdate,
                      self.idNo];
-    
-    if ([cell.rightTF.text isEqualToString:@""]) {
+    if (indexPath.row == 3 || indexPath.row == 6 || indexPath.row == 7) {
         cell.rightStr = ary[indexPath.row];
-    }
-    if (self.isDetails == YES) {
-        cell.type = MenuShowType;
+        if (self.isDetails == YES) {
+            cell.type = MenuShowType;
+        }else
+        {
+            cell.type = MenuChooseType;
+        }
     }else
     {
-        cell.type = MenuInputType;
+        if ([cell.rightTF.text isEqualToString:@""]) {
+            cell.rightStr = ary[indexPath.row];
+        }
+        if (self.isDetails == YES) {
+            cell.type = MenuShowType;
+        }else
+        {
+            cell.type = MenuInputType;
+        }
     }
+    
+    
     cell.rightTF.tag = 1000 + indexPath.row;
     cell.placStr = [NSString stringWithFormat:@"请输入%@",nameArray[indexPath.row]];
     return cell;

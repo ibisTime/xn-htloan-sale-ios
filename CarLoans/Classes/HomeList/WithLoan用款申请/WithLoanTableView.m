@@ -11,7 +11,9 @@
 #import "MenuInputCell.h"
 #import "InstructionsCell.h"
 @interface WithLoanTableView ()<UITableViewDataSource,UITableViewDelegate>
-
+{
+    NSMutableArray *_writeArray;
+}
 
 
 @end
@@ -21,6 +23,7 @@
     if (self = [super initWithFrame:frame style:style]) {
         self.dataSource = self;
         self.delegate = self;
+        
     }
     return self;
 }
@@ -93,7 +96,7 @@
                      ];
     
     cell.leftStr = nameArray[indexPath.row];
-    cell.type = MenuInputType;
+    cell.type = MenuShowType;
     
     
     cell.rightStr = [NSString stringWithFormat:@"%@",ary[indexPath.row]];

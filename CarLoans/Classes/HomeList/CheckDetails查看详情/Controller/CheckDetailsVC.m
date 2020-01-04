@@ -208,9 +208,6 @@
     [self.view addSubview:self.tableView15];
     self.tableView15.tableHeaderView = self.headView;
  
-    
-    
-    
     TLNetworking *http = [TLNetworking new];
     http.code = @"632516";
     http.showView = self.view;
@@ -218,12 +215,12 @@
     [http postWithSuccess:^(id responseObject) {
     
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
-
         self.tableView1.model = self.model;
         self.tableView1.saleUserId = [BaseModel convertNull:self.model.saleUserName];
         self.tableView1.loanBankCode = [BaseModel convertNull:self.model.loanBankName];
         self.tableView1.region = [BaseModel convertNull:self.model.regionName];
         self.tableView1.shopCarGarage = [BaseModel convertNull:self.model.carInfo[@"shopCarGarageName"]];
+        
         if ([self.model.bizType isEqualToString:@"0"]) {
             self.tableView1.bizType = @"新车";
         }else if([self.model.bizType isEqualToString:@"1"])
@@ -269,6 +266,8 @@
         self.tableView4.rateType = bankLoan[@"rateType"];
         self.tableView4.isAdvanceFund = bankLoan[@"isAdvanceFund"];
         self.tableView4.isDiscount = bankLoan[@"isDiscount"];
+        self.tableView4.wanFactor = bankLoan[@"wanFactor"];
+        
         [self.tableView4 reloadData];
         
         self.tableView5.model = self.model;

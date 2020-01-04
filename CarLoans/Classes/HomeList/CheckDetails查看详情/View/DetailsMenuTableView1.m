@@ -29,7 +29,7 @@
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.model.bizType isEqualToString:@"二手车"]) {
+    if ([self.bizType isEqualToString:@"二手车"]) {
         return [MenuModel new].menuSecondgHandArray1.count;
     }
     return [MenuModel new].menuArray1.count;
@@ -56,6 +56,7 @@
                          [BaseModel convertNull:self.carSeries],
                          [BaseModel convertNull:self.carModel],
                          [BaseModel convertNull:self.regDate],
+                         [BaseModel convertNull:self.mile],
                          [BaseModel convertNull:self.secondCarReport]
                          ];
         cell.rightStr = ary[indexPath.row];

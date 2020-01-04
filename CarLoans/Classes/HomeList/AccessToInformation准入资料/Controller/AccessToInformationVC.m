@@ -346,7 +346,7 @@
                 TLNetworking *http = [TLNetworking new];
                 http.isShowMsg = YES;
                 http.code = @"632037";
-                
+                http.parameters[@"ststus"] = @"1";
                 http.showView = self.view;
                 [http postWithSuccess:^(id responseObject) {
                     loanBankCodeAry = responseObject[@"data"];
@@ -412,9 +412,9 @@
                 break;
             case 8:
             {
-                WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+                WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
                     
-                    NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+                    NSString *date = [selectDate stringWithFormat:@"yyyy-MM"];
                     self.regDate = date;
                     self.tableView1.regDate = date;
                     [self.tableView1 reloadData];
@@ -466,9 +466,50 @@
                     }];
                 }else
                 {
-                    WebVC *vc = [WebVC new];
-                    vc.url = self.secondCarReport;
-                    [self.navigationController pushViewController:vc animated:YES];
+                    if ([self.secondCarReport isEqualToString:@""]) {
+                        {
+                            UITextField *text = [self.view viewWithTag:10009];
+                            
+                            if ([BaseModel isBlankString:self.region] == YES) {
+                                [TLAlert alertWithInfo:@"请选择业务发生地"];
+                                return;
+                            }
+                            if ([BaseModel isBlankString:self.carModel] == YES) {
+                                [TLAlert alertWithInfo:@"请选择车型"];
+                                return;
+                            }
+                            if ([BaseModel isBlankString:self.regDate] == YES) {
+                                [TLAlert alertWithInfo:@"请输入上牌时间"];
+                                return;
+                            }
+                            if ([text.text isEqualToString:@""]) {
+                                [TLAlert alertWithInfo:@"请输入公里数"];
+                                return;
+                            }
+                            TLNetworking *http = [TLNetworking new];
+                            http.isShowMsg = YES;
+                            http.code = @"630479";
+                            http.parameters[@"zone"] = self.region;
+                            http.parameters[@"regDate"] = self.regDate;
+                            http.parameters[@"mile"] = text.text;
+                            http.parameters[@"modelId"] = self.carModel;
+                            http.showView = self.view;
+                            [http postWithSuccess:^(id responseObject) {
+                                
+                                self.secondCarReport = responseObject[@"data"][@"url"];
+                                self.tableView1.secondCarReport = responseObject[@"data"][@"url"];
+                                [self.tableView1 reloadData];
+                            } failure:^(NSError *error) {
+                                
+                            }];
+                        }
+                    }else
+                    {
+                        WebVC *vc = [WebVC new];
+                        vc.url = self.secondCarReport;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                    
                 }
             }
                 break;
@@ -641,6 +682,7 @@
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = YES;
         http.code = @"632037";
+//        http.parameters[@"status"] = @"1";
         http.showView = self.view;
         [http postWithSuccess:^(id responseObject) {
             loanBankCodeAry = responseObject[@"data"];
@@ -721,7 +763,9 @@
         }else
         {
             self.isAzGps = @"0";
+            self.tableView6.gpsAry = [NSMutableArray array];
         }
+        
         self.tableView6.isAzGps = self.isAzGps;
         [self.tableView6 reloadData];
     }
@@ -926,7 +970,6 @@
         self.tableView1.carModel = [BaseModel convertNull:self.model.carInfo[@"carModelName"]];
         self.tableView1.regDate = [BaseModel convertNull:self.model.carInfo[@"regDate"]];
         self.regDate = [BaseModel convertNull:self.model.carInfo[@"regDate"]];
-        
         self.tableView1.mile = [BaseModel convertNull:self.model.carInfo[@"mile"]];
         self.mile = [BaseModel convertNull:self.model.carInfo[@"mile"]];
         self.tableView1.secondCarReport = [BaseModel convertNull:self.model.carInfo[@"secondCarReport"]];
@@ -957,6 +1000,7 @@
             }
         }
         self.tableView4.model = self.model;
+        
         NSDictionary *bankLoan = self.model.bankLoan;
         self.periods = bankLoan[@"periods"];
         self.tableView4.periods = self.periods;
@@ -1085,12 +1129,16 @@
         }
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"632538";
+        if ([BaseModel isBlankString:_model.code] == NO) {
+            http.parameters[@"code"] = _model.code;
+        }
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"loanBankCode"] = self.loanBankCode;
         http.parameters[@"region"] = self.region;
         http.parameters[@"bizType"] = self.bizType;
         http.parameters[@"regDate"] = self.regDate;
-        http.parameters[@"mile"] = self.mile;
+        UITextField *textField = [self.view viewWithTag:10009];
+        http.parameters[@"mile"] = textField.text;
         http.parameters[@"secondCarReport"] = self.secondCarReport;
         http.parameters[@"carBrand"] = self.carBrand;
         http.parameters[@"carSeries"] = self.carSeries;

@@ -52,6 +52,10 @@
             cell.type = MenuPushType;
             cell.rightStr = [BaseModel convertNull:self.carBrand];
         }else if (indexPath.row == 9) {
+            cell.rightTF.tag = 1000 + indexPath.row;
+            if ([cell.rightTF.text isEqualToString:@""]) {
+                cell.rightStr = [BaseModel convertNull:self.mile];
+            }
             cell.type = MenuInputType;
         }else if (indexPath.row == 10 || indexPath.row == 6 || indexPath.row == 7) {
             if (indexPath.row == 10) {
@@ -72,7 +76,13 @@
                     cell.rightStr = @"点击获取报告";
                 }else
                 {
-                    cell.rightStr = self.secondCarReport;
+                    if ([self.secondCarReport isEqualToString:@""]) {
+                        cell.rightStr = @"点击获取报告";
+                    }else
+                    {
+                        cell.rightStr = self.secondCarReport;
+                    }
+                    
                 }
             }
         }else

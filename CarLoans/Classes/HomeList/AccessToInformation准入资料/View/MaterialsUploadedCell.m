@@ -165,9 +165,9 @@
         
         
         UILabel *leftLbl = [UILabel labelWithFrame:CGRectZero textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#999999")];
-        NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:@"资料上传"];
-        [attriStr addAttribute:NSForegroundColorAttributeName value:kHexColor(@"#F56A6A") range:NSMakeRange(0, 1)];
-        leftLbl.attributedText = attriStr;
+//        NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:@"资料上传"];
+//        [attriStr addAttribute:NSForegroundColorAttributeName value:kHexColor(@"#F56A6A") range:NSMakeRange(0, 1)];
+        leftLbl.text = @"资料上传";
         [self addSubview:leftLbl];
         [leftLbl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
@@ -217,7 +217,110 @@
 -(void)photoBtnClick:(UIButton *)sender
 {
     if (_isDetails == YES) {
-        return;
+        
+        
+//        @property (nonatomic , strong)NSString *driveCard;
+//        @property (nonatomic , strong)NSString *marryPdf;
+//        @property (nonatomic , strong)NSString *divorcePdf;
+//        @property (nonatomic , strong)NSString *singleProve;
+//        @property (nonatomic , strong)NSString *incomeProve;
+//
+//        @property (nonatomic , strong)NSString *liveProvePdf;
+//        @property (nonatomic , strong)NSString *housePropertyCardPdf;
+//
+        if (sender.tag == 100) {
+            if ([BaseModel isBlankString:_driveCard] == YES) {
+                return;
+            }
+            if ([_driveCard isEqualToString:@""]) {
+                return;
+            }
+            NSArray *ary = @[[_driveCard convertImageUrl]];
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                return ary;
+            }];
+        }
+        if (sender.tag == 101) {
+            if ([BaseModel isBlankString:_marryPdf] == YES) {
+                return;
+            }
+            if ([_marryPdf isEqualToString:@""]) {
+                return;
+            }
+            NSArray *ary = @[[_marryPdf convertImageUrl]];
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                return ary;
+            }];
+        }
+        if (sender.tag == 102) {
+            if ([BaseModel isBlankString:_divorcePdf] == YES) {
+                return;
+            }
+            if ([_divorcePdf isEqualToString:@""]) {
+                return;
+            }
+            NSArray *ary = @[[_divorcePdf convertImageUrl]];
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                return ary;
+            }];
+        }
+        if (sender.tag == 103) {
+            if ([BaseModel isBlankString:_singleProve] == YES) {
+                return;
+            }
+            if ([_singleProve isEqualToString:@""]) {
+                return;
+            }
+            NSArray *ary = @[[_singleProve convertImageUrl]];
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                return ary;
+            }];
+        }
+        if (sender.tag == 104) {
+            if ([BaseModel isBlankString:_incomeProve] == YES) {
+                return;
+            }
+            if ([_incomeProve isEqualToString:@""]) {
+                return;
+            }
+            NSArray *ary = @[[_incomeProve convertImageUrl]];
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                return ary;
+            }];
+        }
+        if (sender.tag == 105) {
+            if ([BaseModel isBlankString:_liveProvePdf] == YES) {
+                return;
+            }
+            if ([_liveProvePdf isEqualToString:@""]) {
+                return;
+            }
+            NSArray *ary = @[[_liveProvePdf convertImageUrl]];
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                return ary;
+            }];
+        }
+        if (sender.tag == 106) {
+            if ([BaseModel isBlankString:_housePropertyCardPdf] == YES) {
+                return;
+            }
+            if ([_housePropertyCardPdf isEqualToString:@""]) {
+                return;
+            }
+            NSArray *ary = @[[_housePropertyCardPdf convertImageUrl]];
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            [ImageBrowserViewController show:window.rootViewController type:PhotoBroswerVCTypeModal index:0 imagesBlock:^NSArray *{
+                return ary;
+            }];
+        }
+        
+        
     }
     selectTag = sender.tag;
     [self.imagePicker picker];

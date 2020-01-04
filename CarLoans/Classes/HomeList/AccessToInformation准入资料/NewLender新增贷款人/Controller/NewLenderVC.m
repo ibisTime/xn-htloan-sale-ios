@@ -81,11 +81,13 @@
         
     };
     [self.view addSubview:self.tableView];
+    if (self.isDetails == NO) {
+        UIButton *_bottomBtn = [UIButton buttonWithTitle:@"保存" titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16 cornerRadius:2];
+        _bottomBtn.frame = CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 30, 45);
+        [_bottomBtn addTarget:self action:@selector(bottomBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [self.view addSubview:_bottomBtn];
+    }
     
-    UIButton *_bottomBtn = [UIButton buttonWithTitle:@"保存" titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16 cornerRadius:2];
-    _bottomBtn.frame = CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 30, 45);
-    [_bottomBtn addTarget:self action:@selector(bottomBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:_bottomBtn];
 }
 
 -(void)bottomBtnClick
@@ -215,7 +217,7 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+     
     if (indexPath.row == 2) {
         
         if ([BaseModel isBlankString:self.idReverse] == YES || [BaseModel isBlankString:self.idFront] == YES) {
@@ -265,6 +267,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }else
         {
+            
             MasterLenderInformationVC *vc = [MasterLenderInformationVC new];
             vc.code = self.code;
             vc.dataDic = self.dataDic;

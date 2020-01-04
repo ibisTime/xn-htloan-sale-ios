@@ -19,9 +19,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.1</string>
+	<string>3.3.0</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>1</string>
 	<key>LSApplicationCategoryType</key>
 	<string>View controller-based status bar appearance</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -32,11 +32,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>是否允许凤凰车e贷访问您的相机,用于修改头像、上传凭证图片</string>
+	<string>是否允许浩源金融访问您的相机,用于修改头像、上传凭证图片</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>是否允许凤凰车e贷访问您的摄像头,进行面签</string>
+	<string>是否允许浩源金融访问您的摄像头,进行面签</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>是否允许凤凰车e贷访问您的相册,用于修改头像、上传凭证图片</string>
+	<string>是否允许浩源金融访问您的相册,用于修改头像、上传凭证图片</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
