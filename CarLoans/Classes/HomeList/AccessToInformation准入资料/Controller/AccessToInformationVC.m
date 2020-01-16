@@ -113,12 +113,12 @@
 @property (nonatomic , strong)NSArray *zfbJour;
 @property (nonatomic , strong)NSArray *wxJour;
 @property (nonatomic , strong)NSArray *otherPdf;
-
+@property (nonatomic , strong)NSArray *contractAwardVideo;
 
 @property (nonatomic , strong)NSArray *doorPdf;
 @property (nonatomic , strong)NSArray *groupPhoto;
 @property (nonatomic , strong)NSArray *houseVideo;
-
+@property (nonatomic , strong)NSArray *companyVideo;
 //车辆图
 @property (nonatomic , strong)NSArray *carHead;
 @property (nonatomic , strong)NSArray *carRegisterCertificateFirst;
@@ -235,6 +235,10 @@
             weakSelf.otherPdf = imgAry;
             weakSelf.tableView7.otherPdf = imgAry;
         }
+        if ([name isEqualToString:@"合同签约视频"]) {
+            weakSelf.contractAwardVideo = imgAry;
+            weakSelf.tableView7.contractAwardVideo = imgAry;
+        }
         [weakSelf.tableView7 reloadData];
     };
     [self.view addSubview:self.tableView7];
@@ -252,9 +256,13 @@
             weakSelf.groupPhoto = imgAry;
             weakSelf.tableView8.groupPhoto = imgAry;
         }
-        if ([name isEqualToString:@"家访视频（多选）"]) {
+        if ([name isEqualToString:@"家访视频"]) {
             weakSelf.houseVideo = imgAry;
             weakSelf.tableView8.houseVideo = imgAry;
+        }
+        if ([name isEqualToString:@"公司视频"]) {
+            weakSelf.companyVideo = imgAry;
+            weakSelf.tableView8.companyVideo = imgAry;
         }
         [weakSelf.tableView8 reloadData];
     };
@@ -328,6 +336,7 @@
                 http.isShowMsg = YES;
                 http.code = @"630066";
                 http.parameters[@"roleCode"] = @"SR201800000000000000YWY";
+                http.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
                 http.showView = self.view;
                 [http postWithSuccess:^(id responseObject) {
                     saleUserIdAry = responseObject[@"data"];
@@ -961,7 +970,6 @@
         {
             self.tableView1.bizType = @"二手车";
         }
-        
         self.carBrand = [BaseModel convertNull:self.model.carInfo[@"carBrand"]];
         self.tableView1.carBrand = [BaseModel convertNull:self.model.carInfo[@"carBrandName"]];
         self.carSeries = [BaseModel convertNull:self.model.carInfo[@"carSeries"]];
@@ -1045,7 +1053,7 @@
         self.zfbJour = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"zfb_jour"] componentsSeparatedByString:@"||"];
         self.wxJour = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"wx_jour"] componentsSeparatedByString:@"||"];
         self.otherPdf = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"other_pdf"] componentsSeparatedByString:@"||"];
-        
+        self.contractAwardVideo = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"contract_award_video"] componentsSeparatedByString:@"||"];
         
         if (self.model.gpsAzList.count > 0) {
             for (int i = 0; i < self.model.gpsAzList.count; i ++) {
@@ -1067,6 +1075,7 @@
         self.tableView7.zfbJour = self.zfbJour;
         self.tableView7.wxJour = self.wxJour;
         self.tableView7.otherPdf = self.otherPdf;
+        self.tableView7.contractAwardVideo = self.contractAwardVideo;
         [self.tableView7 reloadData];
         
         self.doorPdf = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"door_photo"] componentsSeparatedByString:@"||"];
@@ -1075,6 +1084,8 @@
         self.tableView8.groupPhoto = self.groupPhoto;
         self.houseVideo = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"house_video"] componentsSeparatedByString:@"||"];
         self.tableView8.houseVideo = self.houseVideo;
+        self.companyVideo = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"company_video"] componentsSeparatedByString:@"||"];
+        self.tableView8.companyVideo = self.companyVideo;
         [self.tableView8 reloadData];
         
         self.carHead = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"car_head"] componentsSeparatedByString:@"||"];
@@ -1415,6 +1426,9 @@
         if (self.otherPdf.count > 0) {
             http.parameters[@"otherPdf"] = [self.otherPdf componentsJoinedByString:@"||"];
         }
+        if (self.contractAwardVideo.count > 0) {
+            http.parameters[@"contractAwardVideo"] = [self.contractAwardVideo componentsJoinedByString:@"||"];
+        }
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];
         } failure:^(NSError *error) {
@@ -1435,6 +1449,9 @@
         }
         if (self.houseVideo.count) {
             http.parameters[@"houseVideo"] = [self.houseVideo componentsJoinedByString:@"||"];
+        }
+        if (self.companyVideo.count) {
+            http.parameters[@"companyVideo"] = [self.companyVideo componentsJoinedByString:@"||"];
         }
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];

@@ -19,7 +19,7 @@ typedef void (^ReturnPhotoAryBlock)(NSArray *imgAry,NSString *name,NSInteger sec
 @property (nonatomic , strong)NSArray *doorPdf;
 @property (nonatomic , strong)NSArray *groupPhoto;
 @property (nonatomic , strong)NSArray *houseVideo;
-
+@property (nonatomic , strong)NSArray *companyVideo;
 @end
 
 NS_ASSUME_NONNULL_END

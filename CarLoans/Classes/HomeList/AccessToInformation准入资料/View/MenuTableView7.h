@@ -31,7 +31,7 @@ typedef void (^ReturnPhotoAryBlock)(NSArray *imgAry,NSString *name,NSInteger sec
 @property (nonatomic , strong)NSArray *zfbJour;
 @property (nonatomic , strong)NSArray *wxJour;
 @property (nonatomic , strong)NSArray *otherPdf;
-
+@property (nonatomic , strong)NSArray *contractAwardVideo;
 @end
 
 NS_ASSUME_NONNULL_END

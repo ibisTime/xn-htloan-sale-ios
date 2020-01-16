@@ -72,9 +72,6 @@
                      [BaseModel convertNull:self.presentJobYears],
                      [BaseModel convertNull:[[BaseModel user] setParentKey:@"permanent_type" setDkey:self.permanentType]]
                      ];
-    
-    
-    
     if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 9 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 || indexPath.row == 16 ) {
         if (self.isDetails == YES) {
             cell.type = MenuShowType;
@@ -82,25 +79,24 @@
         {
             cell.type = MenuChooseType;
         }
-        
-        cell.rightLbl.text = ary[indexPath.row];
+        cell.rightStr = ary[indexPath.row];
     }else
     {
         if (self.isDetails == YES) {
             cell.type = MenuShowType;
-            cell.rightLbl.text = ary[indexPath.row];
+            cell.rightStr = ary[indexPath.row];
         }else
         {
             cell.type = MenuInputType;
             if ([cell.rightTF.text isEqualToString:@""]) {
                 cell.rightTF.text = ary[indexPath.row];
             }
-            cell.rightTF.tag = 1000 + indexPath.row;
             cell.placStr = [NSString stringWithFormat:@"请输入%@",nameArray[indexPath.row]];
         }
-        
-        
     }
+    cell.rightLbl.tag = 1000 + indexPath.row;
+    cell.rightTF.tag = 1000 + indexPath.row;
+    
     return cell;
 }
 

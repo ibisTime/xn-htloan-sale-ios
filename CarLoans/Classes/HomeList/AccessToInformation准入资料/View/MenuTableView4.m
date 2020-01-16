@@ -171,11 +171,22 @@
     if ([bankLoan[@"loanAmount"] floatValue] != 0 && [self.model.carInfo[@"invoicePrice"] floatValue] != 0) {
         loanRatio = [NSString stringWithFormat:@"%.2f",[[BaseModel Chu1000:bankLoan[@"loanAmount"]] floatValue]/[[BaseModel Chu1000:self.model.carInfo[@"invoicePrice"]] floatValue]];
     }
+    
+    NSString *rebateRate;
+    NSDictionary *carInfo = self.model.carInfo;
+    if ([[BaseModel Cheng100:bankLoan[@"rebateRate"]] floatValue] == 0) {
+        rebateRate = [BaseModel Cheng100:carInfo[@"shopCarGarageRate"]];
+    }else
+    {
+        rebateRate = [BaseModel Cheng100:bankLoan[@"rebateRate"]];
+    }
+    
+    
     _writeArray = [NSMutableArray arrayWithArray:@[[BaseModel Chu1000:bankLoan[@"loanAmount"]],
                                                    @"",
                                                    [BaseModel Cheng100:self.bankRate],
                                                    [BaseModel Cheng100:bankLoan[@"totalRate"]],
-                                                   [BaseModel Cheng100:bankLoan[@"rebateRate"]],
+                                                   rebateRate,
                                                    @"",
                                                    [BaseModel Chu1000:bankLoan[@"monthAmount"]],
                                                    [BaseModel Chu1000:bankLoan[@"repayFirstMonthAmount"]],

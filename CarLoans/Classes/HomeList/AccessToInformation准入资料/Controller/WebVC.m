@@ -19,9 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"评估报告";
     
     WKWebViewConfiguration *webConfig = [[WKWebViewConfiguration alloc] init];
-    
     // ************* js
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
     webConfig.userContentController = userContentController;

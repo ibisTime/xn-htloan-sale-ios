@@ -37,7 +37,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 3;
+    return 4;
 }
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -50,7 +50,7 @@
         cell = [[UploadMultiplePicturesCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"上门照片（多选）",@"合照（多选）",@"家访视频（多选）"];
+    NSArray *nameArray = @[@"上门照片（多选）",@"合照（多选）",@"家访视频",@"公司视频"];
     cell.name = nameArray[indexPath.row];
     cell.isDetails = self.isDetails;
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name, NSInteger section) {
@@ -64,6 +64,9 @@
     }
     if (indexPath.row == 2) {
         cell.collectDataArray = self.houseVideo;
+    }
+    if (indexPath.row == 3) {
+        cell.collectDataArray = self.companyVideo;
     }
     _cell = cell;
     return cell;

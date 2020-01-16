@@ -71,7 +71,9 @@
         NSDictionary *bankLoan = self.model.bankLoan;
         NSString *loanAmount = [BaseModel Chu1000:bankLoan[@"loanAmount"]];
         NSString *bankRate = bankLoan[@"rebateRate"];
-        repointAmount = [NSString stringWithFormat:@"%.2f",[loanAmount floatValue] * [bankRate floatValue]];
+        NSString *totalRate = bankLoan[@"totalRate"];
+        NSString *rebateRate = bankLoan[@"rebateRate"];
+        repointAmount = [NSString stringWithFormat:@"%.2f",([totalRate floatValue] - [rebateRate floatValue]) * [loanAmount floatValue]];
     }
     else
     {

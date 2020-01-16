@@ -39,7 +39,7 @@
     if (section == 0) {
         return 1;
     }
-    return 5;
+    return 6;
 }
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,7 +74,7 @@
         cell = [[UploadMultiplePicturesCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"户口本（多选）",@"银行流水（多选）",@"支付宝流水（多选）",@"微信流水（多选）",@"其他（多选）"];
+    NSArray *nameArray = @[@"户口本（多选）",@"银行流水（多选）",@"支付宝流水（多选）",@"微信流水（多选）",@"其他（多选）",@"合同签约视频"];
     cell.name = nameArray[indexPath.row];
     
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name, NSInteger section) {
@@ -95,6 +95,9 @@
     }
     if (indexPath.row == 4) {
         cell.collectDataArray = self.otherPdf;
+    }
+    if (indexPath.row == 5) {
+        cell.collectDataArray = self.contractAwardVideo;
     }
     _cell = cell;
     return cell;

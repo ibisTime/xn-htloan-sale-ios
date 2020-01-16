@@ -38,11 +38,30 @@
     // Do any additional setup after loading the view.
     [self initTableView];
     if ([self.title isEqualToString:@"准入资料"]) {
-        UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        negativeSpacer.width = -10;
-        self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-        [self.RightButton setTitle:@"录入" forState:(UIControlStateNormal)];
-        [self.RightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        TLNetworking *http = [TLNetworking new];
+        http.isShowMsg = YES;
+        http.code = @"630167";
+        http.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
+        http.showView = self.view;
+        [http postWithSuccess:^(id responseObject) {
+            
+            NSArray *ary = responseObject[@"data"];
+            for (int i = 0; i < ary.count; i ++) {
+                if ([ary[i][@"code"] isEqualToString:@"a1"]) {
+                    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+                    negativeSpacer.width = -10;
+                    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+                    [self.RightButton setTitle:@"新建" forState:(UIControlStateNormal)];
+                    [self.RightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+                }
+            }
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        
     }
     CarLoansWeakSelf;
     [self.tableView addRefreshAction:^{

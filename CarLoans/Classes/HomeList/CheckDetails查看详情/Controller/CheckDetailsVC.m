@@ -17,6 +17,7 @@
 #import "MenuTableView7.h"
 #import "MenuTableView8.h"
 #import "MenuTableView9.h"
+#import "WebVC.h"
 #import "DetailsMenuTableView10.h"
 #import "DetailsMenuTableView11.h"
 #import "DetailsMenuTableView12.h"
@@ -311,7 +312,7 @@
         self.zfbJour = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"zfb_jour"] componentsSeparatedByString:@"||"];
         self.wxJour = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"wx_jour"] componentsSeparatedByString:@"||"];
         self.otherPdf = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"other_pdf"] componentsSeparatedByString:@"||"];
-        
+//        self.contractAwardVideo = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"contract_award_video"] componentsSeparatedByString:@"||"];
         
         
         self.tableView7.driveCard = _driveCard;
@@ -326,6 +327,7 @@
         self.tableView7.zfbJour = self.zfbJour;
         self.tableView7.wxJour = self.wxJour;
         self.tableView7.otherPdf = self.otherPdf;
+        self.tableView7.contractAwardVideo = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"contract_award_video"] componentsSeparatedByString:@"||"];
         [self.tableView7 reloadData];
         
         self.doorPdf = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"door_photo"] componentsSeparatedByString:@"||"];
@@ -334,12 +336,15 @@
         self.tableView8.groupPhoto = self.groupPhoto;
         self.houseVideo = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"house_video"] componentsSeparatedByString:@"||"];
         self.tableView8.houseVideo = self.houseVideo;
+//        self.companyVideo = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"company_video"] componentsSeparatedByString:@"||"];
+        self.tableView8.companyVideo = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"company_video"] componentsSeparatedByString:@"||"];
         [self.tableView8 reloadData];
         
         self.carHead = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"car_head"] componentsSeparatedByString:@"||"];
         self.tableView9.carHead = self.carHead;
         self.carRegisterCertificateFirst = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"car_register_certificate_first"] componentsSeparatedByString:@"||"];
         self.tableView9.carRegisterCertificateFirst = self.carRegisterCertificateFirst;
+        
         [self.tableView9 reloadData];
         
         
@@ -430,6 +435,15 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 10) {
+//        NSString *secondCarReport = [BaseModel convertNull:self.model.carInfo[@"secondCarReport"]];
+        if ([BaseModel isBlankString:self.tableView1.secondCarReport] == NO) {
+            WebVC *vc = [WebVC new];
+            vc.url = self.tableView1.secondCarReport;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+    
     
     if (refreshTableview.tag == 20101) {
         NewLenderVC *vc = [NewLenderVC new];

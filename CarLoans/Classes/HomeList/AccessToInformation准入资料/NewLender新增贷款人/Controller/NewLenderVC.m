@@ -95,46 +95,33 @@
     UITextField *textField3 = [self.view viewWithTag:203];
     UITextField *textField5 = [self.view viewWithTag:205];
     
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"632530";
-    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"code"] = self.code;
-    http.showView = self.view;
-    NSArray *creditUserList = @[@{@"loanRole":[BaseModel convertNull:_dataDic[@"dkey"]],
-                                       @"idFront":[BaseModel convertNull:self.idFront],
-                                       @"idReverse":[BaseModel convertNull:self.idReverse],
-                                       @"holdIdCardPdf":[BaseModel convertNull:self.holdIdCardPdf],
-                                       @"userName":[BaseModel convertNull:self.userName],
-                                  @"startDate":[BaseModel convertNull:self.startDate],
-                                       @"nation":[BaseModel convertNull:self.nation],
-                                       @"gender":[BaseModel convertNull:self.gender],
-                                       @"customerBirth":[BaseModel convertNull:self.customerBirth],
-                                       @"idNo":[BaseModel convertNull:self.idNo],
-                                       @"birthAddress":[BaseModel convertNull:self.birthAddress],
-                                       @"authref":[BaseModel convertNull:self.authref],
-                                       @"statdate":[BaseModel convertNull:self.statdate],
-                                       @"bankCreditResult":[BaseModel convertNull:_bankCreditResult],
-                                       @"mobile":textField3.text,
-                                       @"bankCreditResultRemark":textField5.text,
-                                       }];
-    
-    http.parameters[@"creditUserList"] = creditUserList;
-    [http postWithSuccess:^(id responseObject) {
-        
-        [TLAlert alertWithSucces:@"保存成功"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
-        });
-        
-    } failure:^(NSError *error) {
-        
-    }];
     
     
-}
+    if ([BaseModel isBlankString:self.idReverse] == YES || [BaseModel isBlankString:self.idFront] == YES) {
+        [TLAlert alertWithInfo:@"请先上传身份证信息"];
+        return;
+    }
+    if ([textField3.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入手机号"];
+        return;
+    }
+    if ([BaseModel isBlankString:_bankCreditResult] == YES)
+    {
+        [TLAlert alertWithInfo:@"请选择征信结果"];
+        return;
+    }
+    
+    
+    if (![[BaseModel convertNull:self.userName] isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入客户姓名"];
+        return;
+    }
 
--(void)loadData
-{
+    if ([textField5.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入征信说明"];
+        return;
+    }
+    
     TLNetworking *http = [TLNetworking new];
     http.code = @"632516";
     http.showView = self.view;
@@ -142,7 +129,93 @@
     [http postWithSuccess:^(id responseObject) {
         self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
         
+        
+        
+        
+        if (self.model.creditUserList.count == 0) {
+            [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
+            return;
+        }
+        
         for (int i = 0; i < self.model.creditUserList.count; i ++) {
+            if ([self.dataDic[@"dkey"] isEqualToString:self.model.creditUserList[i][@"loanRole"]]) {
+                NSDictionary *creditUser = self.model.creditUserList[i];
+                
+                NSString *education = creditUser[@"education"];
+                
+                
+                if ([BaseModel isBlankString:education] == YES) {
+                    [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
+                    return;
+                }
+                
+                TLNetworking * http1 = [[TLNetworking alloc]init];
+                http1.code = @"632530";
+                http1.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+                http1.parameters[@"code"] = self.code;
+                http1.showView = self.view;
+                NSArray *creditUserList = @[@{@"loanRole":[BaseModel convertNull:_dataDic[@"dkey"]],
+                                              @"idFront":[BaseModel convertNull:self.idFront],
+                                              @"idReverse":[BaseModel convertNull:self.idReverse],
+                                              @"holdIdCardPdf":[BaseModel convertNull:self.holdIdCardPdf],
+                                              @"userName":[BaseModel convertNull:self.userName],
+                                              @"startDate":[BaseModel convertNull:self.startDate],
+                                              @"nation":[BaseModel convertNull:self.nation],
+                                              @"gender":[BaseModel convertNull:self.gender],
+                                              @"customerBirth":[BaseModel convertNull:self.customerBirth],
+                                              @"idNo":[BaseModel convertNull:self.idNo],
+                                              @"birthAddress":[BaseModel convertNull:self.birthAddress],
+                                              @"authref":[BaseModel convertNull:self.authref],
+                                              @"statdate":[BaseModel convertNull:self.statdate],
+                                              @"bankCreditResult":[BaseModel convertNull:_bankCreditResult],
+                                              @"mobile":textField3.text,
+                                              @"bankCreditResultRemark":textField5.text,
+                                              }];
+                
+                http1.parameters[@"creditUserList"] = creditUserList;
+                [http1 postWithSuccess:^(id responseObject) {
+                    
+                    [TLAlert alertWithSucces:@"保存成功"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
+                    
+                } failure:^(NSError *error) {
+                    
+                }];
+                
+                
+            }
+        }
+    
+        
+    } failure:^(NSError *error) {
+        
+    }];
+        
+    
+    
+    
+    
+    
+    
+}
+
+-(void)loadData
+{
+    
+    
+    
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"632516";
+    http.showView = self.view;
+    http.parameters[@"code"] = self.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+        _bankCreditResult = @"1";
+        _tableView.bankCreditResult = _bankCreditResult;
+        for (int i = 0; i < self.model.creditUserList.count; i ++) {
+        
             if ([self.dataDic[@"dkey"] isEqualToString:self.model.creditUserList[i][@"loanRole"]]) {
                 NSDictionary *creditUser = self.model.creditUserList[i];
                 
@@ -196,7 +269,13 @@
                 _birthAddress = [BaseModel convertNull:creditUser[@"birthAddress"]];
                 _authref = [BaseModel convertNull:creditUser[@"authref"]];
                 _statdate = [BaseModel convertNull:creditUser[@"statdate"]];
-                _bankCreditResult = creditUser[@"bankCreditResult"];
+                if ([BaseModel isBlankString:creditUser[@"bankCreditResult"]] == YES) {
+                    _bankCreditResult = @"1";
+                }else
+                {
+                    _bankCreditResult = creditUser[@"bankCreditResult"];
+                }
+                
                 _startDate = [BaseModel convertNull:creditUser[@"startDate"]];
                 
                 _tableView.bankCreditResult = _bankCreditResult;

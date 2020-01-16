@@ -126,6 +126,23 @@
     });
 }
 
+-(NSString *)WarningContent:(NSString *)name CurrentTag:(NSInteger)tag
+{
+
+    UILabel *label = [self.view viewWithTag:tag];
+    UITextField *text = [self.view viewWithTag:tag];
+
+    NSString *str = [name stringByReplacingOccurrencesOfString:@"*" withString:@""];
+    if (![name hasPrefix:@"*"])
+    {
+        return @"";
+    }else if([label.text isEqualToString:@""] && [text.text isEqualToString:@""])
+    {
+        return [NSString stringWithFormat:@"请录入%@",str];
+    }else{
+        return @"";
+    }
+}
 
 -(void)loadData
 {
@@ -235,6 +252,19 @@
     UITextField *tf4 = [self.view viewWithTag:1010];
     UITextField *tf5 = [self.view viewWithTag:1014];
     UITextField *tf6 = [self.view viewWithTag:1015];
+    
+    NSString *name;
+    for (int i = 0; i < [MenuModel new].improveInformationArray.count; i ++) {
+        name = [self WarningContent:[MenuModel new].improveInformationArray[i] CurrentTag:1000 + i];
+        if (![name isEqualToString:@""]) {
+            [TLAlert alertWithInfo:name];
+            return;
+        }
+    }
+    
+    
+    
+    
     NSArray *creditUserList = @[@{@"loanRole":[BaseModel convertNull:_dataDic[@"dkey"]],
                                   @"education":[BaseModel convertNull:_education],
                                   @"nowAddressProvince":[BaseModel convertNull:_nowAddressProvince],
