@@ -19,7 +19,8 @@
 #import "ConfirmReceiptVC.h"
 #import "MortgageVC.h"
 #import "IntoFileVC.h"
-
+#import "ReceiveEvaluationVC.h"
+#import "ConfirmEvaluationVC.h"
 @interface HomeListVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)HomeListTableView *tableView;
@@ -157,60 +158,72 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (self.selectRow == 2) {
-        WithLoanVC *vc = [WithLoanVC new];
+        ConfirmEvaluationVC *vc = [ConfirmEvaluationVC new];
         vc.title = [MenuModel new].homeArray[self.selectRow];
         vc.model = self.models[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (self.selectRow == 3) {
-        MakeAuditVC *vc = [MakeAuditVC new];
+        ReceiveEvaluationVC *vc = [ReceiveEvaluationVC new];
         vc.title = [MenuModel new].homeArray[self.selectRow];
         vc.model = self.models[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (self.selectRow == 4) {
-        MakingCircuitsVc *vc = [MakingCircuitsVc new];
+        WithLoanVC *vc = [WithLoanVC new];
         vc.title = [MenuModel new].homeArray[self.selectRow];
         vc.model = self.models[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (self.selectRow == 5) {
+        MakeAuditVC *vc = [MakeAuditVC new];
+        vc.title = [MenuModel new].homeArray[self.selectRow];
+        vc.model = self.models[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (self.selectRow == 6) {
+        MakingCircuitsVc *vc = [MakingCircuitsVc new];
+        vc.title = [MenuModel new].homeArray[self.selectRow];
+        vc.model = self.models[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (self.selectRow == 7) {
         MatEndowmentRecordVC *vc = [MatEndowmentRecordVC new];
         vc.title = [MenuModel new].homeArray[self.selectRow];
         vc.model = self.models[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
 //    打件，银行收件，银行提交
-    if (self.selectRow == 6 || self.selectRow == 7 || self.selectRow == 8 || self.selectRow == 9) {
+    if (self.selectRow == 8 || self.selectRow == 9 || self.selectRow == 10 || self.selectRow == 11) {
         NSArray *leftAry = @[@"完成时间",@"完成时间",@"收件时间",@"提交时间"];
         NSArray *rightAry = @[@"请输入完成说明",@"请输入完成说明",@"请输入收件说明",@"请输入提交说明"];
         TimeSubmissionVC *vc = [TimeSubmissionVC new];
-        vc.left = leftAry[_selectRow - 6];
+        vc.left = leftAry[_selectRow - 8];
         vc.model = self.models[indexPath.row];
-        vc.right = rightAry[_selectRow - 6];
-        vc.selectRow = _selectRow - 6;
+        vc.right = rightAry[_selectRow - 8];
+        vc.selectRow = _selectRow - 8;
         vc.title = [MenuModel new].homeArray[self.selectRow];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if (self.selectRow == 10) {
+    if (self.selectRow == 12) {
         IntoTheLoanVC *vc = [IntoTheLoanVC new];
         vc.title = [MenuModel new].homeArray[self.selectRow];
         vc.model = self.models[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if (self.selectRow == 11) {
+    if (self.selectRow == 13) {
         ConfirmReceiptVC *vc = [ConfirmReceiptVC new];
         vc.title = [MenuModel new].homeArray[self.selectRow];
         vc.model = self.models[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if (self.selectRow == 12 || self.selectRow == 13) {
+    if (self.selectRow == 14 || self.selectRow == 15) {
         MortgageVC *vc = [MortgageVC new];
         vc.title = [MenuModel new].homeArray[self.selectRow];
         vc.model = self.models[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if (self.selectRow == 14) {
+    if (self.selectRow == 16) {
         IntoFileVC *vc = [IntoFileVC new];
         vc.title = [MenuModel new].homeArray[self.selectRow];
         vc.model = self.models[indexPath.row];

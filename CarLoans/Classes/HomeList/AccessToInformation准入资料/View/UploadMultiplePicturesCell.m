@@ -29,7 +29,12 @@
         _imagePicker = [[TLImagePicker alloc] initWithVC:window.rootViewController];
         _imagePicker.allowsEditing = YES;
         _imagePicker.type = @"many";
-        _imagePicker.count = 9;
+        if (_isSingle == YES) {
+            _imagePicker.count = 1;
+        }else
+        {
+            _imagePicker.count = 9;
+        }
         
         _imagePicker.pickFinish = ^(NSDictionary *info){
             
@@ -46,35 +51,6 @@
                     NSString  *videoPath =  info[UIImagePickerControllerMediaURL];
                     
                     NSLog(@"相册视频路径是：%@",videoPath);
-                    
-                    
-                    
-                    //第一中方法，通过路径直接copy
-                    
-                    //        //删除原来的 防止重复选
-                    //                [[NSFileManager defaultManager] removeItemAtPath:_filePath error:nil];
-                    //                [[NSFileManager defaultManager] removeItemAtPath:_imagePath error:nil];
-                    //                NSDateFormatter *formater = [[NSDateFormatter alloc] init];
-                    //                [formater setDateFormat:@"yy-MM-dd-HH:mm:ss"];
-                    //
-                    //                _filePath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/%@", [[formater stringFromDate:[NSDate date]] stringByAppendingString:@".mp4"]];
-                    //
-                    //
-                    //                NSString  *videoPath =  info[UIImagePickerControllerMediaURL];
-                    //
-                    //                NSFileManager *fileManager = [NSFileManager defaultManager];
-                    //
-                    //                NSError *error;
-                    //                [fileManager copyItemAtPath:videoPath toPath:_filePath error:&error];
-                    //                if (error)
-                    //                {
-                    //
-                    //                    NSLog(@"文件保存到缓存失败");
-                    //                }
-                    //
-                    //                [self getSomeMessageWithFilePath:_filePath];
-                    
-                    
                     //第二种方法，进行视频导出
                     [weakSelf startExportVideoWithVideoAsset:asset completion:^(NSString *outputPath) {
                         
@@ -83,128 +59,8 @@
                     }];;
                     
                     
-                    
+
                 }
-                
-                
-                //2.文件的url
-//                NSURL *url1=[info objectForKey:UIImagePickerControllerMediaURL];//视频路径
-//                NSString *urlStr=[url1 path];
-//
-//                [SVProgressHUD showWithStatus:@"上传中"];
-//                //进行上传
-//                AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:urlStr] options:nil];
-//
-//                NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
-//
-//                NSLog(@"%@",compatiblePresets);
-//
-//                if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
-//
-////                    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
-////
-////                    NSDateFormatter *formater = [[NSDateFormatter alloc] init];//用时间给文件全名，以免重复
-////
-////                    [formater setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
-////
-////                    NSString * resultPath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", [formater stringFromDate:[NSDate date]]];
-////
-////                    NSLog(@"resultPath = %@",resultPath);
-////                    exportSession.outputURL = [NSURL fileURLWithPath:resultPath];
-////
-////                    exportSession.outputFileType = AVFileTypeMPEG4;
-////
-////                    exportSession.shouldOptimizeForNetworkUse = YES;
-//
-//
-//                    AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
-//                    NSDateFormatter *formater = [[NSDateFormatter alloc] init];
-//                    [formater setDateFormat:@"yyyy-MM-dd-HH:mm:ss-SSS"];
-//                    NSString *outputPath = [NSHomeDirectory() stringByAppendingFormat:@"/tmp/video-%@.mp4", [formater stringFromDate:[NSDate date]]];
-//                    if (avAsset.URL && avAsset.URL.lastPathComponent) {
-//                        outputPath = [outputPath stringByReplacingOccurrencesOfString:@".mp4" withString:[NSString stringWithFormat:@"-%@", avAsset.URL.lastPathComponent]];
-//                    }
-//                    NSLog(@"video outputPath = %@",outputPath);
-//                    session.outputURL = [NSURL fileURLWithPath:outputPath];
-//
-//                    // Optimize for network use.
-//                    session.shouldOptimizeForNetworkUse = true;
-//
-//                    NSArray *supportedTypeArray = session.supportedFileTypes;
-//                    if ([supportedTypeArray containsObject:AVFileTypeMPEG4]) {
-//                        session.outputFileType = AVFileTypeMPEG4;
-//                    } else if (supportedTypeArray.count == 0) {
-////                        if (failure) {
-////                            failure(@"该视频类型暂不支持导出", nil);
-////                        }
-//                        [TLAlert alertWithInfo:@"该视频类型暂不支持导出"];
-//                        NSLog(@"No supported file types 视频类型暂不支持导出");
-//                        return;
-//                    } else {
-//                        session.outputFileType = [supportedTypeArray objectAtIndex:0];
-//                    }
-//
-////                    if (![[NSFileManager defaultManager] fileExistsAtPath:[NSHomeDirectory() stringByAppendingFormat:@"/tmp"]]) {
-////                        [[NSFileManager defaultManager] createDirectoryAtPath:[NSHomeDirectory() stringByAppendingFormat:@"/tmp"] withIntermediateDirectories:YES attributes:nil error:nil];
-////                    }
-//
-//                    AVMutableVideoComposition *videoComposition = [weakSelf fixedCompositionWithAsset:avAsset];
-//                    if (videoComposition.renderSize.width) {
-//                        // 修正视频转向
-//                        session.videoComposition = videoComposition;
-//                    }
-//
-//
-//
-//
-//                    [session exportAsynchronouslyWithCompletionHandler:^{
-//                        dispatch_async(dispatch_get_main_queue(), ^{
-//                            switch (session.status) {
-//                                case AVAssetExportSessionStatusUnknown: {
-//                                    NSLog(@"AVAssetExportSessionStatusUnknown");
-//                                }  break;
-//                                case AVAssetExportSessionStatusWaiting: {
-//                                    NSLog(@"AVAssetExportSessionStatusWaiting");
-//                                }  break;
-//                                case AVAssetExportSessionStatusExporting: {
-//                                    NSLog(@"AVAssetExportSessionStatusExporting");
-//                                }  break;
-//                                case AVAssetExportSessionStatusCompleted: {
-//                                    NSLog(@"AVAssetExportSessionStatusCompleted");
-////                                    if (success) {
-////                                        success(outputPath);
-////                                    }
-//                                    TLUploadManager *manager = [TLUploadManager manager];
-//                                    manager.videoData = outputPath;
-//                                    [manager getTokenShowViewFile:weakSelf succes:^(NSString *key) {
-//                                        WGLog(@"%@",key);
-//                                        [weakSelf setVideoStr:urlStr setData:key];
-//
-//                                    } failure:^(NSError *error) {
-//
-//                                    }];
-//
-//                                }  break;
-//                                case AVAssetExportSessionStatusFailed: {
-//                                    NSLog(@"AVAssetExportSessionStatusFailed");
-//                                    [TLAlert alertWithInfo:@"视频导出失败"];
-////                                    if (failure) {
-////                                        failure(@"视频导出失败", session.error);
-////                                    }
-//                                }  break;
-//                                case AVAssetExportSessionStatusCancelled: {
-//                                    NSLog(@"AVAssetExportSessionStatusCancelled");
-//                                    [TLAlert alertWithInfo:@"导出任务已被取消"];
-////                                    if (failure) {
-////                                        failure(@"导出任务已被取消", nil);
-////                                    }
-//                                }  break;
-//                                default: break;
-//                            }
-//                        });
-//                    }];
-//
-//                }
             }else
             {
                 UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
@@ -319,12 +175,6 @@
                     break;
                 case AVAssetExportSessionStatusCompleted: {
                     NSLog(@"AVAssetExportSessionStatusCompleted");
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        if (completion) {
-//                            completion(outputPath);
-//                        }
-                        //                        _videoArray = [VRVideoTool getAllFileNameFormDoucuments];
-                        //                        [_tableView reloadData];
                     MJWeakSelf;
                     TLUploadManager *manager = [TLUploadManager manager];
                     manager.videoData = outputPath;
@@ -430,6 +280,7 @@
     manager.imgData = imgData;
     manager.image = image;
     manager.isdissmiss = NO;
+    
     [manager getTokenShowView:weakSelf succes:^(NSString *key) {
         WGLog(@"%@",key);
         self.count --;
@@ -467,11 +318,19 @@
     }else
     {
         NSMutableArray *ary = [NSMutableArray array];
-        if (_imagePicker.count != 1) {
-            [ary addObjectsFromArray:self.collectDataArray];
+        
+        if (_isSingle == YES) {
+            self.collectDataArray = @[data];
+        }else
+        {
+            if (_imagePicker.count != 1) {
+                [ary addObjectsFromArray:self.collectDataArray];
+            }
+            [ary addObject:data];
+            self.collectDataArray = ary;
         }
-        [ary addObject:data];
-        self.collectDataArray = ary;
+        
+        
         [self.collectionView reloadData];
         self.returnAryBlock(self.collectDataArray, _name, _selectSection);
         [self CustomBlock];
@@ -481,14 +340,94 @@
 -(void)setImage:(UIImage *)image setData:(NSString *)data
 {
     NSMutableArray *ary = [NSMutableArray array];
-    if (_imagePicker.count != 1) {
-        [ary addObjectsFromArray:self.collectDataArray];
+    if (_isSingle == YES) {
+        self.collectDataArray = @[data];
+    }else
+    {
+        if (_imagePicker.count != 1) {
+            [ary addObjectsFromArray:self.collectDataArray];
+        }
+        [ary addObject:data];
+        self.collectDataArray = ary;
     }
-    [ary addObject:data];
-    self.collectDataArray = ary;
+    
+    
+    
     [self.collectionView reloadData];
     self.returnAryBlock(self.collectDataArray, _name, _selectSection);
     [self CustomBlock];
+}
+
+-(void)setIsSingle:(BOOL)isSingle
+{
+    _isSingle = isSingle;
+    if (isSingle == YES) {
+        _imagePicker.count = 1;
+    }else
+    {
+        _imagePicker.count = 9;
+    }
+    
+    CarLoansWeakSelf;
+    
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    _imagePicker = [[TLImagePicker alloc] initWithVC:window.rootViewController];
+    _imagePicker.allowsEditing = YES;
+    _imagePicker.type = @"many";
+    if (_isSingle == YES) {
+        _imagePicker.count = 1;
+    }else
+    {
+        _imagePicker.count = 9;
+    }
+    
+    _imagePicker.pickFinish = ^(NSDictionary *info){
+        
+        
+        if ([_name containsString:@"视频"] == YES) {
+            
+            
+            
+            NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+            if ([mediaType isEqualToString:@"public.movie"])
+            {
+                NSURL *videoUrl = [info objectForKey:UIImagePickerControllerMediaURL];
+                AVURLAsset *asset = [AVURLAsset assetWithURL:videoUrl];
+                NSString  *videoPath =  info[UIImagePickerControllerMediaURL];
+                
+                NSLog(@"相册视频路径是：%@",videoPath);
+                //第二种方法，进行视频导出
+                [weakSelf startExportVideoWithVideoAsset:asset completion:^(NSString *outputPath) {
+                    
+                    //                        [self getSomeMessageWithFilePath:_filePath];
+                    
+                }];;
+                
+                
+                
+            }
+        }else
+        {
+            UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
+            NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+            TLUploadManager *manager = [TLUploadManager manager];
+            manager.imgData = imgData;
+            manager.image = image;
+            [manager getTokenShowView:weakSelf succes:^(NSString *key) {
+                WGLog(@"%@",key);
+                [weakSelf setImage:image setData:key];
+            } failure:^(NSError *error) {
+                [TLAlert alertWithInfo:@"上传失败"];
+            }];
+        }
+    };
+    if ([_name containsString:@"视频"] == NO) {
+        _imagePicker.ManyPick = ^(NSMutableArray *info) {
+            _phostsArr = info;
+            weakSelf.count = info.count - 1;
+            [weakSelf updataphoto];
+        };
+    }
 }
 
 

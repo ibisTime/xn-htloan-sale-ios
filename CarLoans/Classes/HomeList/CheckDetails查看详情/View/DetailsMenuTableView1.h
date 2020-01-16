@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsMenuTableView1 : TLTableView
 @property (nonatomic , strong)SurveyModel *model;
-
+@property (nonatomic , copy)NSString *ascription;
 @property (nonatomic , copy)NSString *loanBankCode;
 @property (nonatomic , copy)NSString *code;
 @property (nonatomic , copy)NSString *region;

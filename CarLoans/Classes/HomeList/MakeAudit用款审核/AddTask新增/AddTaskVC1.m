@@ -8,6 +8,7 @@
 
 #import "AddTaskVC1.h"
 #import "AddTaskTableView1.h"
+#import "AddTaskExecutorVC.h"
 @interface AddTaskVC1 ()<RefreshDelegate,BaseModelDelegate>
 {
     NSArray *saleUserIdAry;
@@ -60,22 +61,30 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 2) {
-        NSMutableArray *array = [NSMutableArray array];
-        for (int i = 0; i < saleUserIdAry.count; i ++) {
-            [array addObject:saleUserIdAry[i][@"realName"]];
-        }
-        BaseModel *baseModel = [BaseModel user];
-        baseModel.ModelDelegate = self;
-        [baseModel CustomBouncedView:array setState:@"100"];
+        
+        AddTaskExecutorVC *vc = [AddTaskExecutorVC new];
+        CarLoansWeakSelf;
+        vc.returnAryBlock = ^(SurveyModel * _Nonnull model) {
+            realName = model.userId;
+            weakSelf.tableView.realName = model.realName;
+            [weakSelf.tableView reloadData];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+        
+//        NSMutableArray *array = [NSMutableArray array];
+//        for (int i = 0; i < saleUserIdAry.count; i ++) {
+//            [array addObject:saleUserIdAry[i][@"realName"]];
+//        }
+//        BaseModel *baseModel = [BaseModel user];
+//        baseModel.ModelDelegate = self;
+//        [baseModel CustomBouncedView:array setState:@"100"];
     }
 }
 
 //弹框代理方法
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
 {
-    realName = saleUserIdAry[sid][@"userId"];
-    self.tableView.realName = Str;
-    [self.tableView reloadData];
+    
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state

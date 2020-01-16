@@ -97,6 +97,7 @@
         
         UILabel *leftLbl = [UILabel labelWithFrame:CGRectZero textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#999999")];
         NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:@"*资料上传"];
+        _leftLbl = leftLbl;
         [attriStr addAttribute:NSForegroundColorAttributeName value:kHexColor(@"#F56A6A") range:NSMakeRange(0, 1)];
         leftLbl.attributedText = attriStr;
         [self addSubview:leftLbl];

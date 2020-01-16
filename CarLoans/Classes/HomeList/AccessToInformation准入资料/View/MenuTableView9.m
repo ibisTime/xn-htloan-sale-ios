@@ -36,9 +36,9 @@
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return 2;
+    return 4;
 }
+
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -50,7 +50,13 @@
         cell = [[UploadMultiplePicturesCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"车辆图（多选）",@"车辆登记证书（多选）"];
+    NSArray *nameArray = @[@"车辆图（多选）",@"车辆登记证书（多选）",@"保单图片（多选）",@"发票图片"];
+    if (indexPath.row == 3) {
+        cell.isSingle = YES;
+    }else
+    {
+        cell.isSingle = NO;
+    }
     cell.name = nameArray[indexPath.row];
     cell.isDetails = self.isDetails;
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name, NSInteger section) {
@@ -58,9 +64,18 @@
     };
     if (indexPath.row == 0) {
         cell.collectDataArray = self.carHead;
-    }else
+    }
+    if (indexPath.row == 1)
     {
         cell.collectDataArray = self.carRegisterCertificateFirst;
+    }
+    if (indexPath.row == 2)
+    {
+        cell.collectDataArray = self.policy;
+    }
+    if (indexPath.row == 3)
+    {
+        cell.collectDataArray = self.carInvoice;
     }
     _cell = cell;
     return cell;

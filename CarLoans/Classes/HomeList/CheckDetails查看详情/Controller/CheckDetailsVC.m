@@ -73,7 +73,7 @@
 @property (nonatomic , strong)NSArray *carRegisterCertificateFirst;
 
 
-@property (nonatomic , strong)NSMutableArray *gpsAry;
+@property (nonatomic , strong)NSMutableArray <SurveyModel *>*gpsAry;
 //@property (nonatomic , strong)NSString *regDate;
 @property (nonatomic , strong)NSString *isAzGps;
 @property (nonatomic , strong)NSString *regAddress;
@@ -221,19 +221,19 @@
         self.tableView1.loanBankCode = [BaseModel convertNull:self.model.loanBankName];
         self.tableView1.region = [BaseModel convertNull:self.model.regionName];
         self.tableView1.shopCarGarage = [BaseModel convertNull:self.model.carInfo[@"shopCarGarageName"]];
-        
+        self.tableView1.ascription = self.model.ascriptionName;
         if ([self.model.bizType isEqualToString:@"0"]) {
             self.tableView1.bizType = @"新车";
         }else if([self.model.bizType isEqualToString:@"1"])
         {
             self.tableView1.bizType = @"二手车";
         }
-        self.tableView1.carBrand = [BaseModel convertNull:self.model.carInfo[@"carBrandName"]];
-        self.tableView1.carSeries = [BaseModel convertNull:self.model.carInfo[@"carSeriesName"]];
-        self.tableView1.carModel = [BaseModel convertNull:self.model.carInfo[@"carModelName"]];
-        self.tableView1.regDate = [BaseModel convertNull:self.model.carInfo[@"regDate"]];
-        self.tableView1.mile = [BaseModel convertNull:self.model.carInfo[@"mile"]];
-        self.tableView1.secondCarReport = [BaseModel convertNull:self.model.carInfo[@"secondCarReport"]];
+//        self.tableView1.carBrand = [BaseModel convertNull:self.model.carInfo[@"carBrandName"]];
+//        self.tableView1.carSeries = [BaseModel convertNull:self.model.carInfo[@"carSeriesName"]];
+//        self.tableView1.carModel = [BaseModel convertNull:self.model.carInfo[@"carModelName"]];
+//        self.tableView1.regDate = [BaseModel convertNull:self.model.carInfo[@"regDate"]];
+//        self.tableView1.mile = [BaseModel convertNull:self.model.carInfo[@"mile"]];
+//        self.tableView1.secondCarReport = [BaseModel convertNull:self.model.carInfo[@"secondCarReport"]];
         [self.tableView1 reloadData];
         
         
@@ -276,15 +276,45 @@
 
         self.regAddress = [BaseModel convertNull:self.model.carInfo[@"regAddress"]];
         
+//        self.region = [BaseModel convertNull:self.model.carInfo[@"regAddress"]];
+        
         self.tableView6.regAddress = self.model.carInfo[@"regAddressName"];
         self.tableView6.regDate = [BaseModel convertNull:self.model.carInfo[@"regDate"]];
         
+        
+        
+//        self.driveLicense = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"drive_license"] componentsSeparatedByString:@"||"];
+        self.tableView6.driveLicense = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"drive_license"] componentsSeparatedByString:@"||"];
+        
+//        self.region = [BaseModel convertNull:self.model.carInfo[@"region"]];
+        self.tableView6.regAddress = [BaseModel convertNull:self.model.regionName];
+        
         self.isAzGps = [BaseModel convertNull:self.model.carInfo[@"isAzGps"]];
         self.tableView6.isAzGps = self.isAzGps;
+        
         self.isPublicCard = [BaseModel convertNull:self.model.carInfo[@"isPublicCard"]];
         self.tableView6.isPublicCard = self.isPublicCard;
+        
         self.tableView6.model = self.model;
+        
+//        self.carBrand = [BaseModel convertNull:self.model.carInfo[@"carBrand"]];
+        self.tableView6.carBrand = [BaseModel convertNull:self.model.carInfo[@"carBrandName"]];
+//        self.carSeries = [BaseModel convertNull:self.model.carInfo[@"carSeries"]];
+        self.tableView6.carSeries = [BaseModel convertNull:self.model.carInfo[@"carSeriesName"]];
+//        self.carModel = [BaseModel convertNull:self.model.carInfo[@"carModel"]];
+        self.tableView6.carModel = [BaseModel convertNull:self.model.carInfo[@"carModelName"]];
+        self.tableView6.regDate = [BaseModel convertNull:self.model.carInfo[@"regDate"]];
+//        self.regDate = [BaseModel convertNull:self.model.carInfo[@"regDate"]];
+        self.tableView6.mile = [BaseModel convertNull:self.model.carInfo[@"mile"]];
+//        self.mile = [BaseModel convertNull:self.model.carInfo[@"mile"]];
+        
+        self.tableView6.bizType = self.model.bizType;
+        
+        self.tableView6.secondCarReport = [BaseModel convertNull:self.model.carInfo[@"secondCarReport"]];
+//        self.secondCarReport = [BaseModel convertNull:self.model.carInfo[@"secondCarReport"]];
+        
         [self.tableView6 reloadData];
+        
         
         
         
@@ -292,7 +322,7 @@
         
         if (self.model.gpsAzList.count > 0) {
             for (int i = 0; i < self.model.gpsAzList.count; i ++) {
-                [self.tableView6.gpsAry addObject:self.model.gpsAzList[i]];
+                [self.tableView6.gpsAry addObject:[SurveyModel mj_objectWithKeyValues:self.model.gpsAzList[i]]];
                 [self.tableView6.gpsPhotoAry addObject:[self.model.gpsAzList[i][@"azPhotos"] componentsSeparatedByString:@"||"]];
             }
         }
@@ -435,14 +465,10 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 10) {
+//    if (indexPath.row == 10) {
 //        NSString *secondCarReport = [BaseModel convertNull:self.model.carInfo[@"secondCarReport"]];
-        if ([BaseModel isBlankString:self.tableView1.secondCarReport] == NO) {
-            WebVC *vc = [WebVC new];
-            vc.url = self.tableView1.secondCarReport;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
+        
+//    }
     
     
     if (refreshTableview.tag == 20101) {
@@ -451,6 +477,17 @@
         vc.code = self.model.code;
         vc.isDetails = YES;
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (refreshTableview.tag == 20105) {
+        if ([self.model.bizType isEqualToString:@"1"]) {
+            if (indexPath.row == 3) {
+                if ([BaseModel isBlankString:self.tableView6.secondCarReport] == NO) {
+                    WebVC *vc = [WebVC new];
+                    vc.url = self.tableView6.secondCarReport;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+            }
+        }
     }
     if (refreshTableview.tag == 20109) {
         if (indexPath.section == 2) {

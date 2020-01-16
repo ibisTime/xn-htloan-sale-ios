@@ -9,11 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface SurveyModel : NSObject
+@property (nonatomic , copy)NSString *userId;
+@property (nonatomic , copy)NSString *realName;
+@property (nonatomic , copy)NSString *fullName;
 @property (nonatomic , copy)NSString *pledgeNodeCode;
+@property (nonatomic , copy)NSString *ascriptionName;
+@property (nonatomic , copy)NSString *ascription;
 @property (nonatomic , copy)NSString *creditNote;
 @property (nonatomic , copy)NSString *secondCarReport;
 @property (nonatomic , strong)NSDictionary *carInfoRes;
 @property (nonatomic , copy)NSString *loanCode;
+@property (nonatomic , copy)NSString *gpsDevNo;
 @property (nonatomic , strong)NSDictionary *loanInfo;
 @property (nonatomic , strong)NSDictionary *carInfo;
 @property (nonatomic , copy)NSString *isGpsAz;

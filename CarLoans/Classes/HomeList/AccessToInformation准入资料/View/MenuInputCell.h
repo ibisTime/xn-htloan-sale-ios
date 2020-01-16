@@ -12,7 +12,8 @@ typedef NS_ENUM(NSUInteger, MenuType) {
     MenuPushType,
     MenuChooseType,
     MenuShowType,
-    MenuCheckDetailsType
+    MenuCheckDetailsType,
+    MenuCheckDetailsType1
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImageView *youImg;
 @property (nonatomic, strong) UILabel *rightLbl;
 @property (nonatomic, strong) UIButton *checkDetailsBtn;
+@property (nonatomic, strong) UIButton *checkDetailsBtn1;
 
 @property (nonatomic, copy)NSString *leftStr;
 @property (nonatomic, copy)NSString *placStr;

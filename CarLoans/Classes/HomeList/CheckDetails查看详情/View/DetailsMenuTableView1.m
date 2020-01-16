@@ -29,9 +29,6 @@
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.bizType isEqualToString:@"二手车"]) {
-        return [MenuModel new].menuSecondgHandArray1.count;
-    }
     return [MenuModel new].menuArray1.count;
 }
 
@@ -44,40 +41,39 @@
         cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if ([self.bizType isEqualToString:@"二手车"]) {
-        NSArray *nameArray = [MenuModel new].menuSecondgHandArray1;
-        cell.leftStr = nameArray[indexPath.row];
+//    if ([self.bizType isEqualToString:@"二手车"]) {
+//        NSArray *nameArray = [MenuModel new].menuSecondgHandArray1;
+//        cell.leftStr = nameArray[indexPath.row];
+//        NSArray *ary = @[[BaseModel convertNull:self.saleUserId],
+//                         [BaseModel convertNull:self.loanBankCode],
+//                         [BaseModel convertNull:self.region],
+//                         [BaseModel convertNull:self.shopCarGarage],
+//                         [BaseModel convertNull:self.bizType],
+//                         [BaseModel convertNull:self.carBrand],
+//                         [BaseModel convertNull:self.carSeries],
+//                         [BaseModel convertNull:self.carModel],
+//                         [BaseModel convertNull:self.regDate],
+//                         [BaseModel convertNull:self.mile],
+//                         [BaseModel convertNull:self.secondCarReport]
+//                         ];
+//        cell.rightStr = ary[indexPath.row];
+//        cell.type = MenuShowType;
+//        
+//    }else
+//    {
         NSArray *ary = @[[BaseModel convertNull:self.saleUserId],
                          [BaseModel convertNull:self.loanBankCode],
                          [BaseModel convertNull:self.region],
                          [BaseModel convertNull:self.shopCarGarage],
+                         [BaseModel convertNull:self.ascription],
                          [BaseModel convertNull:self.bizType],
-                         [BaseModel convertNull:self.carBrand],
-                         [BaseModel convertNull:self.carSeries],
-                         [BaseModel convertNull:self.carModel],
-                         [BaseModel convertNull:self.regDate],
-                         [BaseModel convertNull:self.mile],
-                         [BaseModel convertNull:self.secondCarReport]
-                         ];
-        cell.rightStr = ary[indexPath.row];
-        cell.type = MenuShowType;
-        
-    }else
-    {
-        NSArray *ary = @[[BaseModel convertNull:self.saleUserId],
-                         [BaseModel convertNull:self.loanBankCode],
-                         [BaseModel convertNull:self.region],
-                         [BaseModel convertNull:self.shopCarGarage],
-                         [BaseModel convertNull:self.bizType],
-                         [BaseModel convertNull:self.carBrand],
-                         [BaseModel convertNull:self.carSeries],
-                         [BaseModel convertNull:self.carModel]
+                         
                          ];
         cell.rightStr = ary[indexPath.row];
         NSArray *nameArray = [MenuModel new].menuSecondgHandArray1;
         cell.leftStr = nameArray[indexPath.row];
         cell.type = MenuShowType;
-    }
+//    }
     return cell;
 }
 

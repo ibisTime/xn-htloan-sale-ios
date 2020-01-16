@@ -90,9 +90,9 @@
         [datepicker show];
     }
     if (indexPath.row == 6) {
-        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
+        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
             
-            NSString *date = [selectDate stringWithFormat:@"yyyy-MM"];
+            NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
             self.startDate = date;
             //                    self.tableView1.regDate = date;
             //                    [self.tableView1 reloadData];
@@ -104,21 +104,21 @@
         datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
         [datepicker show];
     }
-    if (indexPath.row == 7) {
-        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
-            
-            NSString *date = [selectDate stringWithFormat:@"yyyy-MM"];
-            self.statdate = date;
-            //                    self.tableView1.regDate = date;
-            //                    [self.tableView1 reloadData];
-            self.tableView.statdate = date;
-            [self.tableView reloadData];
-        }];
-        datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
-        datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
-        datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
-        [datepicker show];
-    }
+//    if (indexPath.row == 7) {
+//        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
+//
+//            NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+//            self.statdate = date;
+//            //                    self.tableView1.regDate = date;
+//            //                    [self.tableView1 reloadData];
+//            self.tableView.statdate = date;
+//            [self.tableView reloadData];
+//        }];
+//        datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
+//        datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+//        datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
+//        [datepicker show];
+//    }
 }
 
 /*

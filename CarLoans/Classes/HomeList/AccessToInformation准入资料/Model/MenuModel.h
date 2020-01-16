@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)NSArray *menuArray4;
 @property (nonatomic , strong)NSArray *menuArray5;
 @property (nonatomic , strong)NSArray *menuArray6;
+@property (nonatomic , strong)NSArray *usedCarMenuArray6;
 @property (nonatomic , strong)NSArray *menuArray7;
 @property (nonatomic , strong)NSArray *menuArray8;
 @property (nonatomic , strong)NSArray *menuArray9;

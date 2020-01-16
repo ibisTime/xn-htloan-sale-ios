@@ -52,7 +52,7 @@
                      self.startDate,
                      self.statdate,
                      self.idNo];
-    if (indexPath.row == 3 || indexPath.row == 6 || indexPath.row == 7) {
+    if (indexPath.row == 3 || indexPath.row == 6) {
         cell.rightStr = ary[indexPath.row];
         if (self.isDetails == YES) {
             cell.type = MenuShowType;

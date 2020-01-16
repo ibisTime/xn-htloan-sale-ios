@@ -60,7 +60,7 @@
         NSString *rebateRate = bankLoan[@"rebateRate"];
 //        银行利率
         NSString *bankRate = bankLoan[@"bankRate"];
-        carFunds3 = [NSString stringWithFormat:@"%.2f",([totalRate floatValue] - [rebateRate floatValue] - [bankRate floatValue]) * [loanAmount floatValue]];
+        carFunds3 = [NSString stringWithFormat:@"%.2f",([rebateRate floatValue] - [bankRate floatValue]) * [loanAmount floatValue]];
     }
     else
     {

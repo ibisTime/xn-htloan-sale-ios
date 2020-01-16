@@ -114,7 +114,8 @@
         [SVProgressHUD show];
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     }
-    if (self.isShowMsg) {
+    
+    if (self.isShowMsg == NO) {
         [SVProgressHUD dismiss];
     }
     
@@ -224,11 +225,14 @@
               }];
               return;
           }
-          if ([responseObject[@"errorInfo"] isEqualToString:@""]) {
-              [TLAlert alertWithInfo:@"操作失败"];
+          if (_isShowMsg) {
+              if ([responseObject[@"errorInfo"] isEqualToString:@""]) {
+                  [TLAlert alertWithInfo:@"操作失败"];
+              }
+              else
+                  [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
           }
-          else
-              [TLAlert alertWithInfo:responseObject[@"errorInfo"]];
+          
       }
       
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

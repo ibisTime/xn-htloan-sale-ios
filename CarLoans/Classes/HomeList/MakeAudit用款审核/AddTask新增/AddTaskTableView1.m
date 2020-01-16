@@ -46,7 +46,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *nameArray = @[@"任务名称",@"任务时效(小时)",@"执行人"];
     if (indexPath.row == 2) {
-        cell.type = MenuChooseType;
+        cell.type = MenuPushType;
         cell.rightStr = self.realName;
     }else
     {

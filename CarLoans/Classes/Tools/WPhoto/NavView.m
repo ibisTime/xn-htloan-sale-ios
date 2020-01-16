@@ -25,14 +25,14 @@
     nav.backgroundColor = WPhoto_TopView_Color;
     [self addSubview:nav];
     
-    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, 80, navView_H-20)];
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2 - 80, kStatusBarHeight, 160, 44)];
     titleLab.text = title;
     titleLab.font = [UIFont systemFontOfSize:36/2];
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.textColor = WPhoto_TopText_Color;
     [nav addSubview:titleLab];
     
-    titleLab.center = CGPointMake(nav.center.x, (navView_H-20)/2+20);
+//    titleLab.center = CGPointMake(nav.center.x, (navView_H-20)/2+20);
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     btn.frame= CGRectMake(10, 0, 25, 25);

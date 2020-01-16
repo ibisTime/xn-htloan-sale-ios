@@ -73,6 +73,11 @@
                      [BaseModel convertNull:[[BaseModel user] setParentKey:@"permanent_type" setDkey:self.permanentType]]
                      ];
     if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 9 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 || indexPath.row == 16 ) {
+        
+        
+        
+        
+        
         if (self.isDetails == YES) {
             cell.type = MenuShowType;
         }else
@@ -94,11 +99,111 @@
             cell.placStr = [NSString stringWithFormat:@"请输入%@",nameArray[indexPath.row]];
         }
     }
+    
+    if (indexPath.row == 15) {
+        if (![[BaseModel convertNull:self.workDatetime] isEqualToString:@""]) {
+            NSString *start = [self getCurrentTimes];
+            
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//            [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//            [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+//            NSDate *date = [formatter dateFromString:@"%@-00 00:00:00"];
+            
+            NSString *end = self.workDatetime;
+            
+//            NSString *end = [NSString stringWithFormat:@"%@-00 00:00:00",self.workDatetime];
+            
+            NSInteger time = [self dateTimeDifferenceWithStartTime:end endTime:start];
+//            NSString *years = [NSString stringWithFormat:@"%ld",time/3600/24/365];
+            cell.rightStr = [NSString stringWithFormat:@"%ld",time];
+        }
+    }
+    
+    
     cell.rightLbl.tag = 1000 + indexPath.row;
     cell.rightTF.tag = 1000 + indexPath.row;
     
     return cell;
 }
+
+
+-(NSString*)getCurrentTimes{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    [formatter setDateFormat:@"YYYY-MM"];
+    
+    //现在时间,你可以输出来看下是什么格式
+    
+    NSDate *datenow = [NSDate date];
+    
+    //----------将nsdate按formatter格式转成nsstring
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    
+    NSLog(@"currentTimeString =  %@",currentTimeString);
+    
+    return currentTimeString;
+    
+}
+
+//计算日期
+-(NSInteger)dateTimeDifferenceWithStartTime:(NSString *)startTime endTime:(NSString *)endTime
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM"];
+    
+    
+    NSDate *startDate =[formatter dateFromString:startTime];
+    NSDate *endData = [formatter dateFromString:endTime];
+    
+    
+    // 2.创建日历
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendarUnit type = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    // 3.利用日历对象比较两个时间的差值
+    NSDateComponents *cmps = [calendar components:type fromDate:startDate toDate:endData options:0];
+    // 4.输出结果
+    NSLog(@"两个时间相差%ld年%ld月%ld日%ld小时%ld分钟%ld秒", cmps.year, cmps.month, cmps.day, cmps.hour, cmps.minute, cmps.second);
+    return cmps.year;
+}
+
+
+//    [formatter setDateStyle:NSDateFormatterMediumStyle];
+//    [formatter setTimeStyle:NSDateFormatterShortStyle];
+//    [formatter setDateFormat:@"YYYY-MM"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+//
+//    [formatter setDateFormat:@"YYYY"];
+    
+    
+    
+//    NSString *year =
+    
+    
+    //设置时区,这个对于时间的处理有时很重要
+//    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+//    [formatter setTimeZone:timeZone];
+//
+//    NSTimeInterval start = [startDate timeIntervalSince1970]*1;
+//    NSTimeInterval end = [endData timeIntervalSince1970]*1;
+//
+//
+//    //    NSDate *date = [NSDate date];
+//    //    NSTimeInterval end = [nowDate timeIntervalSince1970]*1;
+//    NSTimeInterval value = end - start;
+//
+//    int second = (int)value %60;//秒
+//    int minute = ((int)value %3600)/60;
+//    int house = (int)value / 3600;
+//    int years = (int)value / 3600 / 30 / 365;
+//    NSInteger time;//剩余时间为多少分钟
+////    time = house*60*60 + minute*60 + second;
+//    return years;
+//}
+
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

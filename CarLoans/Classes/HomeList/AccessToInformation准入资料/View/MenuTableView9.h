@@ -15,7 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) ReturnPhotoAryBlock returnAryBlock;
 @property (nonatomic , strong)NSArray *carHead;
 @property (nonatomic , strong)NSArray *carRegisterCertificateFirst;
+@property (nonatomic , strong)NSArray *policy;
+@property (nonatomic , strong)NSArray *carInvoice;
+
 @property (nonatomic , assign)BOOL isDetails;
+
 @end
 
 NS_ASSUME_NONNULL_END

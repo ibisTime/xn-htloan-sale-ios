@@ -129,7 +129,6 @@
     cell.iconImg.image= kImage(nameAry[indexPath.row]);
     cell.nameLbl.text = nameAry[indexPath.row];
     kViewBorderRadius(cell, 0, 1, kBackgroundColor);
-//    cell.nameLbl mas_makeConstraints:<#^(MASConstraintMaker *make)block#>
     return cell;
 }
 
@@ -191,65 +190,75 @@
             break;
         case 2:
         {
-            vc.curNodeCodeList = @[@"b1"];
+            vc.curNodeCodeList = @[@"h1"];
         }
             break;
         case 3:
         {
-            vc.curNodeCodeList = @[@"b3"];
+            vc.curNodeCodeList = @[@"h2"];
         }
             break;
         case 4:
         {
-            vc.curNodeCodeList = @[@"b4"];
+            vc.curNodeCodeList = @[@"b1"];
         }
             break;
         case 5:
         {
-            vc.curNodeCodeList = @[@"b5"];
+            vc.curNodeCodeList = @[@"b3"];
         }
             break;
         case 6:
         {
-            vc.curNodeCodeList = @[@"c1"];
+            vc.curNodeCodeList = @[@"b4"];
         }
             break;
         case 7:
         {
-            vc.curNodeCodeList = @[@"c2"];
+            vc.curNodeCodeList = @[@"b5"];
         }
             break;
         case 8:
         {
-            vc.curNodeCodeList = @[@"d1"];
+            vc.curNodeCodeList = @[@"c1"];
         }
             break;
         case 9:
         {
-            vc.curNodeCodeList = @[@"d2"];
+            vc.curNodeCodeList = @[@"c2"];
         }
             break;
         case 10:
         {
-            vc.curNodeCodeList = @[@"d3"];
+            vc.curNodeCodeList = @[@"d1"];
         }
             break;
         case 11:
         {
-            vc.curNodeCodeList = @[@"d4"];
+            vc.curNodeCodeList = @[@"d2"];
         }
             break;
         case 12:
         {
-            vc.curNodeCodeList = @[@"e1"];
+            vc.curNodeCodeList = @[@"d3"];
         }
             break;
         case 13:
         {
-            vc.curNodeCodeList = @[@"e2"];
+            vc.curNodeCodeList = @[@"d4"];
         }
             break;
         case 14:
+        {
+            vc.curNodeCodeList = @[@"e1"];
+        }
+            break;
+        case 15:
+        {
+            vc.curNodeCodeList = @[@"e2"];
+        }
+            break;
+        case 16:
         {
             vc.curNodeCodeList = @[@"f1"];
         }

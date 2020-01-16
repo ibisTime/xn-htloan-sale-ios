@@ -144,7 +144,7 @@
         [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         
-        _ado_collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, navView_H, SelfView_W, SelfView_H - TabBar_H - navView_H) collectionViewLayout:layout];
+        _ado_collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, SelfView_W, SelfView_H - TabBar_H - kNavigationBarHeight) collectionViewLayout:layout];
         _ado_collectionView.backgroundColor = [UIColor whiteColor];
         _ado_collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _ado_collectionView.dataSource = self;

@@ -1,20 +1,19 @@
 //
-//  ChooseCarVC.m
-//  MinicarsLife
+//  GPSSearchVC.m
+//  CarLoans
 //
-//  Created by 梅敏杰 on 2019/3/15.
-//  Copyright © 2019年 QinBao Zheng. All rights reserved.
+//  Created by 郑勤宝 on 2020/1/16.
+//  Copyright © 2020 QinBao Zheng. All rights reserved.
 //
 
-#import "ChooseCarVC.h"
-#import "ClassifyCarVC.h"
-@interface ChooseCarVC ()<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
-@property (nonatomic,strong) NSMutableArray<SurveyModel *> * carmodels;
+#import "GPSSearchVC.h"
+
+@interface GPSSearchVC ()<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
+@property (nonatomic,strong) NSMutableArray<SurveyModel *> * model;
 @property (nonatomic,strong) TLTableView * tableview;
 @end
 
-@implementation ChooseCarVC
-
+@implementation GPSSearchVC
 
 
 -(TLTableView *)tableview{
@@ -31,10 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"选择品牌";
     
     UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(15, 15, SCREEN_WIDTH - 30, 40)];
-//    [headView theme_setBackgroundColorIdentifier:@"searchviewbackviewcolor" moduleName:ColorName];
+
     headView.backgroundColor = kHexColor(@"#F0F0F0");
     kViewRadius(headView, 2);
     [self.view addSubview:headView];
@@ -42,10 +40,10 @@
     
     
     UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(14 + 15, 0 + 15, SCREEN_WIDTH - 30 - 28, 40)];
-    textField.placeholder = @"请输入品牌";
+    textField.placeholder = @"请输入GPS号";
     [textField setValue:Font(14) forKeyPath:@"_placeholderLabel.font"];
     textField.font = Font(14);
-//    textField.keyboardType = UIKeyboardTypeEmailAddress;
+    //    textField.keyboardType = UIKeyboardTypeEmailAddress;
     kViewRadius(textField, 2);
     [self.view addSubview:textField];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(leftNumberTfDidChangeOneCI:) name:UITextFieldTextDidChangeNotification
@@ -70,7 +68,7 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.carmodels.count;
+    return self.model.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -84,6 +82,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     return nil;
 }
 
@@ -92,9 +91,10 @@
     return nil;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ClassifyCarVC * vc = [ClassifyCarVC new];
-    vc.brandCode = self.carmodels[indexPath.row].code;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    self.returnAryBlock(self.model[indexPath.row]);
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -114,7 +114,7 @@
         [cell addSubview:v1];
     }
     
-    cell.textLabel.text = self.carmodels[indexPath.row].name;
+    cell.textLabel.text = self.model[indexPath.row].gpsDevNo;
     
     return cell;
     
@@ -126,17 +126,16 @@
 -(void)getBrand:(NSString *)name{
     CarLoansWeakSelf;
     TLPageDataHelper * help = [[TLPageDataHelper alloc]init];
-    help.code = @"630405";
-    help.parameters[@"status"] = @"1";
-    help.parameters[@"type"] = @"1";
-    help.parameters[@"name"] = name;
+    help.code = @"632705";
+    help.parameters[@"gpsDevNo"] = name;
+    help.parameters[@"applyUser"] = self.saleUserId;
+    help.parameters[@"useStatus"] = @"1";
     [help modelClass:[SurveyModel class]];
     help.tableView = self.tableview;
     help.isCurrency = YES;
     
-    
     [help refresh:^(NSMutableArray *objs, BOOL stillHave) {
-        weakSelf.carmodels = objs;
+        weakSelf.model = objs;
         [weakSelf.tableview reloadData];
         [weakSelf.tableview endRefreshHeader];
     } failure:^(NSError *error) {
@@ -145,13 +144,24 @@
     
     [self.tableview addLoadMoreAction:^{
         [help loadMore:^(NSMutableArray *objs, BOOL stillHave) {
-            weakSelf.carmodels = objs;
+            weakSelf.model = objs;
             [weakSelf.tableview reloadData];
             [weakSelf.tableview endRefreshFooter];
         } failure:^(NSError *error) {
             [weakSelf.tableview endRefreshFooter];
         }];
     }];
-
+    
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
 @end

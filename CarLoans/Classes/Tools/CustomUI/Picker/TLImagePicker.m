@@ -9,6 +9,9 @@
 #import "TLImagePicker.h"
 
 @interface TLImagePicker ()
+{
+    WPhotoViewController *WphotoVC;
+}
 
 @property (nonatomic,strong) UIViewController *vc;
 
@@ -25,6 +28,12 @@
     }
     return self;
 
+}
+
+-(void)setCount:(NSInteger)count
+{
+    _count = count;
+    
 }
 
 - (void)picker {
@@ -47,9 +56,9 @@
         
         if ([self.type isEqualToString:@"many"]) {
             pickCtrl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            WPhotoViewController *WphotoVC = [[WPhotoViewController alloc] init];
+            WphotoVC = [[WPhotoViewController alloc] init];
             //选择图片的最大数
-            WphotoVC.selectPhotoOfMax = self.count;
+            WphotoVC.selectPhotoOfMax = _count;
             [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
                 if (weakSelf.ManyPick) {
                     weakSelf.ManyPick(phostsArr);

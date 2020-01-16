@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^ReturnPhotoAryBlock1)(NSString *idFront,NSDictionary *idFrontDic,NSString *idReverse,NSDictionary *idReverseDic,NSString *holdIdCardPdf);
 
 @interface NewLenderCell : UITableViewCell
-
+@property (nonatomic , strong)UILabel *leftLbl;
 @property (nonatomic , strong)TLImagePicker *imagePicker;
 @property (nonatomic, copy) ReturnPhotoAryBlock1 returnAryBlock1;
 @property (nonatomic , strong)NSString *idFront;

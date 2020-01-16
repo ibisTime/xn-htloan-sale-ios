@@ -29,6 +29,8 @@ typedef void (^ReturnPhotoAryBlock)(NSArray *imgAry,NSString *name,NSInteger sec
 
 @property (nonatomic,strong)TLImagePicker *imagePicker;
 
+@property (nonatomic , assign)BOOL isSingle;
+
 @property (nonatomic , assign)NSInteger selectSection;
 //图片数组
 @property (nonatomic,strong)NSArray *collectDataArray;

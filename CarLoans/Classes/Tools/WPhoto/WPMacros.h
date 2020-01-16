@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger,XFImageType){
     XFImageTypeOfThumb         //缩略图
 };
 
-#define navView_H 64
+#define navView_H (kDevice_Is_iPhoneX == YES ? 88: 64)
 
 #define TabBar_H 49
 

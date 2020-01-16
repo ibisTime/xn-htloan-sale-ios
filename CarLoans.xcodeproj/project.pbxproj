@@ -17,6 +17,13 @@
 		1F00AE872271978200A8E15D /* CreditResultsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE862271978200A8E15D /* CreditResultsTableView.m */; };
 		1F00AE8B2271BD9B00A8E15D /* FaceSignAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE8A2271BD9B00A8E15D /* FaceSignAuditVC.m */; };
 		1F00AE8E2271BDAC00A8E15D /* FaceSignAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AE8D2271BDAC00A8E15D /* FaceSignAuditTableView.m */; };
+		1F03D09523D03843009A348A /* ReceiveEvaluationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F03D09423D03843009A348A /* ReceiveEvaluationVC.m */; };
+		1F03D09823D03853009A348A /* ReceiveEvaluationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F03D09723D03853009A348A /* ReceiveEvaluationTableView.m */; };
+		1F03D09B23D03864009A348A /* ConfirmEvaluationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F03D09A23D03864009A348A /* ConfirmEvaluationVC.m */; };
+		1F03D09E23D03872009A348A /* ConfirmEvaluationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F03D09D23D03872009A348A /* ConfirmEvaluationTableView.m */; };
+		1F03D0A123D061D2009A348A /* DealerSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F03D0A023D061D2009A348A /* DealerSearchVC.m */; };
+		1F03D0A423D08163009A348A /* GPSSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F03D0A323D08163009A348A /* GPSSearchVC.m */; };
+		1F03D0A723D0856A009A348A /* AddTaskExecutorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F03D0A623D0856A009A348A /* AddTaskExecutorVC.m */; };
 		1F072F4323B5E1F30094E99A /* MakingCircuitsVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F072F4223B5E1F30094E99A /* MakingCircuitsVc.m */; };
 		1F072F4623B5E2090094E99A /* MakingCircuitsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F072F4523B5E2090094E99A /* MakingCircuitsTableView.m */; };
 		1F072F4A23B5E3D30094E99A /* MatEndowmentRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F072F4923B5E3D30094E99A /* MatEndowmentRecordVC.m */; };
@@ -694,6 +701,20 @@
 		1F00AE8A2271BD9B00A8E15D /* FaceSignAuditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceSignAuditVC.m; sourceTree = "<group>"; };
 		1F00AE8C2271BDAC00A8E15D /* FaceSignAuditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceSignAuditTableView.h; sourceTree = "<group>"; };
 		1F00AE8D2271BDAC00A8E15D /* FaceSignAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceSignAuditTableView.m; sourceTree = "<group>"; };
+		1F03D09323D03843009A348A /* ReceiveEvaluationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveEvaluationVC.h; sourceTree = "<group>"; };
+		1F03D09423D03843009A348A /* ReceiveEvaluationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveEvaluationVC.m; sourceTree = "<group>"; };
+		1F03D09623D03853009A348A /* ReceiveEvaluationTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveEvaluationTableView.h; sourceTree = "<group>"; };
+		1F03D09723D03853009A348A /* ReceiveEvaluationTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveEvaluationTableView.m; sourceTree = "<group>"; };
+		1F03D09923D03864009A348A /* ConfirmEvaluationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmEvaluationVC.h; sourceTree = "<group>"; };
+		1F03D09A23D03864009A348A /* ConfirmEvaluationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmEvaluationVC.m; sourceTree = "<group>"; };
+		1F03D09C23D03872009A348A /* ConfirmEvaluationTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmEvaluationTableView.h; sourceTree = "<group>"; };
+		1F03D09D23D03872009A348A /* ConfirmEvaluationTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmEvaluationTableView.m; sourceTree = "<group>"; };
+		1F03D09F23D061D2009A348A /* DealerSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DealerSearchVC.h; sourceTree = "<group>"; };
+		1F03D0A023D061D2009A348A /* DealerSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DealerSearchVC.m; sourceTree = "<group>"; };
+		1F03D0A223D08163009A348A /* GPSSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSSearchVC.h; sourceTree = "<group>"; };
+		1F03D0A323D08163009A348A /* GPSSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSSearchVC.m; sourceTree = "<group>"; };
+		1F03D0A523D0856A009A348A /* AddTaskExecutorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskExecutorVC.h; sourceTree = "<group>"; };
+		1F03D0A623D0856A009A348A /* AddTaskExecutorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskExecutorVC.m; sourceTree = "<group>"; };
 		1F072F4123B5E1F30094E99A /* MakingCircuitsVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakingCircuitsVc.h; sourceTree = "<group>"; };
 		1F072F4223B5E1F30094E99A /* MakingCircuitsVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakingCircuitsVc.m; sourceTree = "<group>"; };
 		1F072F4423B5E2090094E99A /* MakingCircuitsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakingCircuitsTableView.h; sourceTree = "<group>"; };
@@ -2053,6 +2074,28 @@
 			name = "FaceSignAudit面签审核";
 			sourceTree = "<group>";
 		};
+		1F03D09123D03709009A348A /* ReceiveEvaluation接收评估 */ = {
+			isa = PBXGroup;
+			children = (
+				1F03D09323D03843009A348A /* ReceiveEvaluationVC.h */,
+				1F03D09423D03843009A348A /* ReceiveEvaluationVC.m */,
+				1F03D09623D03853009A348A /* ReceiveEvaluationTableView.h */,
+				1F03D09723D03853009A348A /* ReceiveEvaluationTableView.m */,
+			);
+			path = "ReceiveEvaluation接收评估";
+			sourceTree = "<group>";
+		};
+		1F03D09223D0371A009A348A /* ConfirmEvaluation确认评估 */ = {
+			isa = PBXGroup;
+			children = (
+				1F03D09923D03864009A348A /* ConfirmEvaluationVC.h */,
+				1F03D09A23D03864009A348A /* ConfirmEvaluationVC.m */,
+				1F03D09C23D03872009A348A /* ConfirmEvaluationTableView.h */,
+				1F03D09D23D03872009A348A /* ConfirmEvaluationTableView.m */,
+			);
+			path = "ConfirmEvaluation确认评估";
+			sourceTree = "<group>";
+		};
 		1F072F4723B5E3A30094E99A /* MatEndowmentRecord垫资回录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3128,6 +3171,8 @@
 		1F8851F523B35EFD00D033A2 /* HomeList */ = {
 			isa = PBXGroup;
 			children = (
+				1F03D09223D0371A009A348A /* ConfirmEvaluation确认评估 */,
+				1F03D09123D03709009A348A /* ReceiveEvaluation接收评估 */,
 				1F072F7A23B5F7240094E99A /* CheckDetails查看详情 */,
 				1F072F7023B5F1D30094E99A /* IntoFile入档 */,
 				1F072F6923B5EE6F0094E99A /* Mortgage发送抵押，确认抵押 */,
@@ -3222,6 +3267,10 @@
 			children = (
 				1FB5AA5F23B3901E004DB157 /* AccessToInformationVC.h */,
 				1FB5AA6023B3901E004DB157 /* AccessToInformationVC.m */,
+				1F03D09F23D061D2009A348A /* DealerSearchVC.h */,
+				1F03D0A023D061D2009A348A /* DealerSearchVC.m */,
+				1F03D0A223D08163009A348A /* GPSSearchVC.h */,
+				1F03D0A323D08163009A348A /* GPSSearchVC.m */,
 				1F072F8E23B89E930094E99A /* WebVC.h */,
 				1F072F8F23B89E940094E99A /* WebVC.m */,
 			);
@@ -3346,6 +3395,8 @@
 			children = (
 				1FB5AADB23B5DE4C004DB157 /* AddTaskVC1.h */,
 				1FB5AADC23B5DE4C004DB157 /* AddTaskVC1.m */,
+				1F03D0A523D0856A009A348A /* AddTaskExecutorVC.h */,
+				1F03D0A623D0856A009A348A /* AddTaskExecutorVC.m */,
 				1FB5AADE23B5DE5D004DB157 /* AddTaskTableView1.h */,
 				1FB5AADF23B5DE5D004DB157 /* AddTaskTableView1.m */,
 			);
@@ -6193,6 +6244,7 @@
 				36E6FF292286CAA200CD2744 /* FileModel.m in Sources */,
 				1F1EF29F2265CD6F00EADA25 /* CollectionCell1.m in Sources */,
 				1F1EF1F222647AC900EADA25 /* AnnouncementVC.m in Sources */,
+				1F03D0A723D0856A009A348A /* AddTaskExecutorVC.m in Sources */,
 				B82ED84821D248960019AAE0 /* CLTextFiled.m in Sources */,
 				1FB5AA8223B45BE1004DB157 /* MenuInputCell.m in Sources */,
 				36932BAC22819AF800FE0431 /* InputLendingDetailsTableView.m in Sources */,
@@ -6304,6 +6356,7 @@
 				1F1EF3272269ACBE00EADA25 /* ReferenceInputVC.m in Sources */,
 				B8F5C1A9219929AB002A00B6 /* HomeCarVC.m in Sources */,
 				1F1EF1E022646D4F00EADA25 /* CustomerCell.m in Sources */,
+				1F03D09E23D03872009A348A /* ConfirmEvaluationTableView.m in Sources */,
 				1F651A362275AF5000EFB78B /* ToApplyForVCTableView.m in Sources */,
 				1F1EF2FD22670B2C00EADA25 /* LocalUploadVC.m in Sources */,
 				7AB29E6A20FD8EB30014FCB3 /* MJPropertyType.m in Sources */,
@@ -6333,6 +6386,7 @@
 				7AB29E7120FD8EB30014FCB3 /* TFHppleElement.m in Sources */,
 				7A0592AF20FDD98300075FE8 /* ChooseCell.m in Sources */,
 				7A13AE21210F26A100B8F785 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				1F03D09B23D03864009A348A /* ConfirmEvaluationVC.m in Sources */,
 				36E52D122289158300C18806 /* MultiSelectView.m in Sources */,
 				1F072F5E23B5EBCD0094E99A /* BankContractVC.m in Sources */,
 				7A0F8E8F211A91D100BA8358 /* ReceivesAuditTableView.m in Sources */,
@@ -6370,6 +6424,7 @@
 				1F151A9A2272AB14002B7EDA /* ApplyTableView4.m in Sources */,
 				7AB29E7920FD8EB30014FCB3 /* OpenPushView.m in Sources */,
 				1F1EF1E622647A2B00EADA25 /* AllMessageVC.m in Sources */,
+				1F03D09523D03843009A348A /* ReceiveEvaluationVC.m in Sources */,
 				1FB5AAD323B5DBE6004DB157 /* TaskManagementVC.m in Sources */,
 				7A35825821119B16006FB5B5 /* CustomerInvalidCell.m in Sources */,
 				7A13AEB021104E4300B8F785 /* QNNetworkInfo.m in Sources */,
@@ -6396,6 +6451,7 @@
 				1F151A422272A522002B7EDA /* AccessApplyVC.m in Sources */,
 				7AB29E8C20FD8EB30014FCB3 /* DeviceUtil.m in Sources */,
 				1F151A8B2272AB14002B7EDA /* DetailsTableView7.m in Sources */,
+				1F03D09823D03853009A348A /* ReceiveEvaluationTableView.m in Sources */,
 				1F1EF31D2268736400EADA25 /* CreditDetailsPeopleIDCardCell.m in Sources */,
 				7A0592AC20FDCD0E00075FE8 /* SurveyACreditVC.m in Sources */,
 				36CFB5DE229BE21000D4305A /* ChooseGPSTableView.m in Sources */,
@@ -6549,6 +6605,7 @@
 				7AB29E7820FD8EB30014FCB3 /* FontSizeView.m in Sources */,
 				1FB5AA7323B45A66004DB157 /* MenuTableView5.m in Sources */,
 				1F651A97227AD28800EFB78B /* CreditSingleTableView.m in Sources */,
+				1F03D0A423D08163009A348A /* GPSSearchVC.m in Sources */,
 				36E6FF1A2286B12B00CD2744 /* InputVC.m in Sources */,
 				1FB5AADD23B5DE4C004DB157 /* AddTaskVC1.m in Sources */,
 				7A13AED92110584D00B8F785 /* SurvuyPeopleModel.m in Sources */,
@@ -6613,6 +6670,7 @@
 				1F072F6523B5ED860094E99A /* ConfirmReceiptVC.m in Sources */,
 				1F151A902272AB14002B7EDA /* ApplyTableView5.m in Sources */,
 				1F651A76227A9FE400EFB78B /* NewWaterVC.m in Sources */,
+				1F03D0A123D061D2009A348A /* DealerSearchVC.m in Sources */,
 				7A13AEB321104E4300B8F785 /* QNDnspodFree.m in Sources */,
 				1F151A972272AB14002B7EDA /* ApplyTableView3.m in Sources */,
 				36B28A78227EBE5800A8C07D /* ProductUsInputVC.m in Sources */,
@@ -6997,7 +7055,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.car;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.wallet6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7092,7 +7150,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.car;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.wallet6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
