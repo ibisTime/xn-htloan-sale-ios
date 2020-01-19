@@ -144,6 +144,7 @@
 		1F1EF3362269BC1C00EADA25 /* ReferenceInputDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EF3352269BC1C00EADA25 /* ReferenceInputDetailsTableView.m */; };
 		1F24FA9323BCEEC700BA4ABE /* MasterLenderInformationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F24FA9223BCEEC700BA4ABE /* MasterLenderInformationTableView.m */; };
 		1F24FA9623BCEEE200BA4ABE /* MasterLenderInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F24FA9523BCEEE200BA4ABE /* MasterLenderInformationVC.m */; };
+		1F5C596123D1E88900F0EBD5 /* VehicleLicenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C596023D1E88800F0EBD5 /* VehicleLicenseCell.m */; };
 		1F651A332275AF2D00EFB78B /* ToApplyForVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651A322275AF2D00EFB78B /* ToApplyForVC.m */; };
 		1F651A362275AF5000EFB78B /* ToApplyForVCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651A352275AF5000EFB78B /* ToApplyForVCTableView.m */; };
 		1F651A392275B14700EFB78B /* ToApplyForRightTableView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651A382275B14700EFB78B /* ToApplyForRightTableView1.m */; };
@@ -955,6 +956,8 @@
 		1F24FA9223BCEEC700BA4ABE /* MasterLenderInformationTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterLenderInformationTableView.m; sourceTree = "<group>"; };
 		1F24FA9423BCEEE200BA4ABE /* MasterLenderInformationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterLenderInformationVC.h; sourceTree = "<group>"; };
 		1F24FA9523BCEEE200BA4ABE /* MasterLenderInformationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterLenderInformationVC.m; sourceTree = "<group>"; };
+		1F5C595F23D1E88800F0EBD5 /* VehicleLicenseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleLicenseCell.h; sourceTree = "<group>"; };
+		1F5C596023D1E88800F0EBD5 /* VehicleLicenseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleLicenseCell.m; sourceTree = "<group>"; };
 		1F651A312275AF2D00EFB78B /* ToApplyForVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToApplyForVC.h; sourceTree = "<group>"; };
 		1F651A322275AF2D00EFB78B /* ToApplyForVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToApplyForVC.m; sourceTree = "<group>"; };
 		1F651A342275AF5000EFB78B /* ToApplyForVCTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToApplyForVCTableView.h; sourceTree = "<group>"; };
@@ -3258,6 +3261,8 @@
 				1FB5AAAD23B4E8DD004DB157 /* PhotoCollCell.m */,
 				1FB5AAB523B5A565004DB157 /* MaterialsUploadedCell.h */,
 				1FB5AAB623B5A565004DB157 /* MaterialsUploadedCell.m */,
+				1F5C595F23D1E88800F0EBD5 /* VehicleLicenseCell.h */,
+				1F5C596023D1E88800F0EBD5 /* VehicleLicenseCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6397,6 +6402,7 @@
 				7A3582932113F678006FB5B5 /* GPSInstallationTableView.m in Sources */,
 				1F1EF2352265CD0200EADA25 /* ProtectUsTableView.m in Sources */,
 				36294E5422856325004C4479 /* ToApplyForRightTableView9.m in Sources */,
+				1F5C596123D1E88900F0EBD5 /* VehicleLicenseCell.m in Sources */,
 				1F651A3C2275B14D00EFB78B /* ToApplyForRightTableView2.m in Sources */,
 				1FB5AAA823B4A17E004DB157 /* IdInformationTableView.m in Sources */,
 				36615AC422BB652900196436 /* RegisteredView.m in Sources */,
@@ -7055,7 +7061,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.wallet6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.car;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7150,7 +7156,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.wallet6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.car;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -229,6 +229,11 @@
         } manager:^(UIImage *result) {
             // Hide the progress view now the request has completed.
 
+            
+//            NSData *data = UIImageJPEGRepresentation(progress, 0.3);
+//            result = [UIImage imageWithData:data];
+            
+            
             cell.progressView.hidden = YES;
             
             // Check if the request was successful.

@@ -64,7 +64,7 @@
             }else
             {
                 UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
-                NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+                NSData *imgData = UIImageJPEGRepresentation(image, 1.0);
                 TLUploadManager *manager = [TLUploadManager manager];
                 manager.imgData = imgData;
                 manager.image = image;
@@ -274,7 +274,7 @@
 {
     CarLoansWeakSelf;
     UIImage *image = _phostsArr[self.count][@"image"];
-    NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+    NSData *imgData = UIImageJPEGRepresentation(image, 1.0);
     //进行上传
     TLUploadManager *manager = [TLUploadManager manager];
     manager.imgData = imgData;
@@ -409,7 +409,7 @@
         }else
         {
             UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
-            NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+            NSData *imgData = UIImageJPEGRepresentation(image, 1.0);
             TLUploadManager *manager = [TLUploadManager manager];
             manager.imgData = imgData;
             manager.image = image;
@@ -421,6 +421,7 @@
             }];
         }
     };
+    
     if ([_name containsString:@"视频"] == NO) {
         _imagePicker.ManyPick = ^(NSMutableArray *info) {
             _phostsArr = info;
@@ -437,6 +438,7 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor whiteColor];
+        
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         
         layout.minimumInteritemSpacing = 7.5;

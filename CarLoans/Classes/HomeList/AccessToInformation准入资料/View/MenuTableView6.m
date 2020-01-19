@@ -9,6 +9,7 @@
 #import "MenuTableView6.h"
 #import "MenuInputCell.h"
 #import "UploadMultiplePicturesCell.h"
+#import "VehicleLicenseCell.h"
 @interface MenuTableView6 ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     UploadMultiplePicturesCell *_cell;
@@ -68,20 +69,18 @@
         if ([self.bizType isEqualToString:@"1"]) {
             if (indexPath.row == 2) {
                 NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
-                UploadMultiplePicturesCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                VehicleLicenseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                 if (!cell) {
-                    cell = [[UploadMultiplePicturesCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                    cell = [[VehicleLicenseCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
-                cell.isSingle = YES;
-                cell.name = @"行驶证";
                 cell.isDetails = self.isDetails;
                 cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name, NSInteger section) {
                     self.returnAryBlock(imgAry, name, section);
                 };
                 cell.collectDataArray = self.driveLicense;
-                _cell = cell;
+//                _cell = cell;
                 return cell;
             }
         }
@@ -289,7 +288,7 @@
     cell.isDetails = self.isDetails;
     MJWeakSelf;
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name, NSInteger section) {
-        self.returnAryBlock(imgAry, name, section);
+//        self.returnAryBlock(imgAry, name, section);
         [weakSelf.gpsPhotoAry replaceObjectAtIndex:section withObject:imgAry];
         [weakSelf reloadData];
     };
@@ -434,7 +433,7 @@
     if (indexPath.section == 0) {
         if ([self.bizType isEqualToString:@"1"]) {
             if (indexPath.row == 2) {
-                return _cell.collectionView.yy;
+                return 41 + 82.5 + 10;
             }
         }
     }

@@ -23,6 +23,7 @@
 //录入发报合
 #import "ProductUsInputVC.h"
 //审核发报合
+#import "ConfirmEvaluationVC.h"
 #import "CheckProtextUs.h"
 //安装GPS
 #import "GPSInstallationDetailsVC.h"
@@ -37,6 +38,7 @@
 //
 #import "InputLendingDetailsVC.h"
 //
+#import "ReceiveEvaluationVC.h"
 #import "ConfirmLendingVC.h"
 //申请车辆抵押
 #import "InputInformationMortgageVC.h"
@@ -184,8 +186,30 @@
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
-        if ([node isEqualToString:@"b1"]) {
+        
+        
+        if ([node isEqualToString:@"h1"]) {
             selectRow = 2;
+            
+            ConfirmEvaluationVC *vc = [ConfirmEvaluationVC new];
+            vc.title = [MenuModel new].homeArray[selectRow];
+            vc.model = self.model;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+        if ([node isEqualToString:@"h2"]) {
+            selectRow = 3;
+            ReceiveEvaluationVC *vc = [ReceiveEvaluationVC new];
+            vc.title = [MenuModel new].homeArray[selectRow];
+            vc.model = self.model;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+        
+        if ([node isEqualToString:@"b1"]) {
+            selectRow = 4;
             WithLoanVC *vc = [WithLoanVC new];
             vc.title = [MenuModel new].homeArray[selectRow];
             vc.model = self.model;
@@ -193,7 +217,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
         if ([node isEqualToString:@"b3"]) {
-            selectRow = 3;
+            selectRow =5;
             MakeAuditVC *vc = [MakeAuditVC new];
             vc.title = [MenuModel new].homeArray[selectRow];
             vc.model = self.model;
@@ -201,7 +225,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
         if ([node isEqualToString:@"b4"]) {
-            selectRow = 4;
+            selectRow = 6;
             MakingCircuitsVc *vc = [MakingCircuitsVc new];
             vc.title = [MenuModel new].homeArray[selectRow];
             vc.model = self.model;
@@ -209,7 +233,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
         if ([node isEqualToString:@"b5"]) {
-            selectRow = 5;
+            selectRow = 7;
             MatEndowmentRecordVC *vc = [MatEndowmentRecordVC new];
             vc.title = [MenuModel new].homeArray[selectRow];
             vc.model = self.model;
@@ -240,11 +264,11 @@
             vc.right = rightAry[selectRow];
             vc.selectRow = selectRow;
             vc.hidesBottomBarWhenPushed = YES;
-            vc.title = [MenuModel new].homeArray[selectRow + 6];
+            vc.title = [MenuModel new].homeArray[selectRow + 8];
             [self.navigationController pushViewController:vc animated:YES];
         }
         if ([node isEqualToString:@"d3"]) {
-            selectRow = 10;
+            selectRow = 12;
             IntoTheLoanVC *vc = [IntoTheLoanVC new];
             vc.title = [MenuModel new].homeArray[selectRow];
             vc.model = self.model;
@@ -252,7 +276,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
         if ([node isEqualToString:@"d4"]) {
-            selectRow = 11;
+            selectRow = 13;
             ConfirmReceiptVC *vc = [ConfirmReceiptVC new];
             vc.title = [MenuModel new].homeArray[selectRow];
             vc.model = self.model;
@@ -261,10 +285,10 @@
         }
         if ([node isEqualToString:@"e1"] || [node isEqualToString:@"e2"]) {
             if ([node isEqualToString:@"e1"]) {
-                selectRow = 12;
+                selectRow = 14;
             }else
             {
-                selectRow = 13;
+                selectRow = 15;
             }
             MortgageVC *vc = [MortgageVC new];
             vc.hidesBottomBarWhenPushed = YES;
@@ -273,7 +297,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
         if ([node isEqualToString:@"f1"]) {
-            selectRow = 14;
+            selectRow = 16;
             IntoFileVC *vc = [IntoFileVC new];
             vc.hidesBottomBarWhenPushed = YES;
             vc.title = [MenuModel new].homeArray[selectRow];

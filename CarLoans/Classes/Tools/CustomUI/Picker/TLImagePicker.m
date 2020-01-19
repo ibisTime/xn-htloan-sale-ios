@@ -36,6 +36,14 @@
     
 }
 
+- (void)extracted:(TLImagePicker *const __weak)weakSelf {
+    [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
+        if (weakSelf.ManyPick) {
+            weakSelf.ManyPick(phostsArr);
+        }
+    }];
+}
+
 - (void)picker {
     CarLoansWeakSelf;
     UIImagePickerController *pickCtrl = [[UIImagePickerController alloc] init];
@@ -59,11 +67,7 @@
             WphotoVC = [[WPhotoViewController alloc] init];
             //选择图片的最大数
             WphotoVC.selectPhotoOfMax = _count;
-            [WphotoVC setSelectPhotosBack:^(NSMutableArray *phostsArr) {
-                if (weakSelf.ManyPick) {
-                    weakSelf.ManyPick(phostsArr);
-                }
-            }];
+            [self extracted:weakSelf];
             [self.vc presentViewController:WphotoVC animated:YES completion:nil];
         }
         else{

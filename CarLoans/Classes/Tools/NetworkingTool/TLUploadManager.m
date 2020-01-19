@@ -60,7 +60,7 @@
     [getUploadToken postWithSuccess:^(id responseObject) {
      //获取token
 
-        NSData *data = UIImageJPEGRepresentation(image, 1);
+        NSData *data = UIImageJPEGRepresentation(image, 1.0);
         NSString *imageName = [[self class] imageNameByImage:image];
         [self.qnUploadManager putData:data key:imageName token:@"" complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
 
