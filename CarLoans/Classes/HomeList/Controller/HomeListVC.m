@@ -229,6 +229,7 @@
         vc.model = self.models[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    
 }
 
 /*

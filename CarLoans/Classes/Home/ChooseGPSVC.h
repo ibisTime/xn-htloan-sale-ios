@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChooseGPSVC : BaseViewController
 
+@property (nonatomic , strong)NSArray *gpsArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

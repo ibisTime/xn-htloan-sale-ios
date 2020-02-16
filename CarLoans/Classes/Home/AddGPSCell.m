@@ -50,6 +50,7 @@
     }
     return self;
 }
+
 -(void)setTaskDic:(NSDictionary *)taskDic{
     for (int i = 0; i < 2; i ++) {
         UILabel *label1 = [self viewWithTag:100 + i];

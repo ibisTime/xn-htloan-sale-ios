@@ -44,27 +44,12 @@
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 1)];
         lineView.backgroundColor = LineBackColor;
         [self addSubview:lineView];
-        for (int i = 0; i < 3; i ++) {
-            _nameLabel = [UILabel labelWithFrame:CGRectMake(15 , 70 + i % 3 * 35, 100, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:GaryTextColor];
-            //            _nameLabel.text = nameArray[i];
+        for (int i = 0; i < 5; i ++) {
+            _nameLabel = [UILabel labelWithFrame:CGRectMake(15 , 70 + i % 5 * 25, SCREEN_WIDTH - 30, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(12) textColor:GaryTextColor];
             _nameLabel.tag = 100000 + i;
             [self addSubview:_nameLabel];
 
-            _InformationLabel = [UILabel labelWithFrame:CGRectMake(115 , 70 + i % 3 * 35, SCREEN_WIDTH - 130, 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
-            _InformationLabel.tag = 1000000 + i;
-            [self addSubview:_InformationLabel];
         }
-
-        UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 164, SCREEN_WIDTH, 1)];
-        lineView2.backgroundColor = LineBackColor;
-        [self addSubview:lineView2];
-
-        _button = [UIButton buttonWithTitle:@"审核" titleColor:MainColor backgroundColor:kClearColor titleFont:15];
-        _button.frame = CGRectMake(SCREEN_WIDTH - 115, 170, 100, 30);
-
-        kViewBorderRadius(_button, 5, 1, MainColor);
-        [self addSubview:_button];
-        _button.hidden = YES;
 
     }
     return self;
@@ -79,7 +64,7 @@
 
 -(void)setGpsclaimsModel:(GPSClaimsModel *)gpsclaimsModel
 {
-    _codeLabel.text = [NSString stringWithFormat:@"%@",gpsclaimsModel.code];
+    _codeLabel.text = [NSString stringWithFormat:@"%@",gpsclaimsModel.companyName];
 //0 待审核 1 审核通过,待发货 2 审核不通过 3 已发货,待收货 4 已收货
     if (gpsclaimsModel.status == 0) {
         _stateLabel.text = @"待审核";
@@ -103,16 +88,21 @@
                            @"所属公司",
                            @"申领个数",
                            @"申领时间",
+                           @"",
+                           @""
                            ];
     NSArray *InformationArray = @[
-                                  [NSString stringWithFormat:@"%@",gpsclaimsModel.companyName],
-                                  [NSString stringWithFormat:@"%.@",gpsclaimsModel.applyCount],
-                                  [NSString stringWithFormat:@"%@",[gpsclaimsModel.applyDatetime convertToDetailDate]]];
+                                  [NSString stringWithFormat:@"申请人：%@",[BaseModel convertNull:gpsclaimsModel.applyUserName]],
+                                  [NSString stringWithFormat:@"所属团队：%@",[BaseModel convertNull:gpsclaimsModel.teamName]],
+                                  [NSString stringWithFormat:@"申请时间：%@",[gpsclaimsModel.applyDatetime convertToDetailDate]],
+                                  [NSString stringWithFormat:@"申请个数：%ld",[gpsclaimsModel.applyCount integerValue]],
+                                  [NSString stringWithFormat:@"备注：%@",[BaseModel convertNull:gpsclaimsModel.applyReason]]
+                                  ];
 
     for (int i = 0; i < nameArray.count; i ++ ) {
-        UILabel *nameLabel = [self viewWithTag:100000 + i];
-        nameLabel.text = nameArray[i];
-        UILabel *InformationLabel = [self viewWithTag:1000000 + i];
+//        UILabel *nameLabel = [self viewWithTag:100000 + i];
+//        nameLabel.text = nameArray[i];
+        UILabel *InformationLabel = [self viewWithTag:100000 + i];
         InformationLabel.text = [BaseModel convertNull:InformationArray[i]];
     }
 }

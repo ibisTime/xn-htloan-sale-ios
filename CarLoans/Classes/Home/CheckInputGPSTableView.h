@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckInputGPSTableView : TLTableView<UITableViewDelegate,UITableViewDataSource,GPSDelegate>
 @property (nonatomic , strong)GPSClaimsModel *model;
-@property (nonatomic,strong) NSMutableArray * gpsArray;
+@property (nonatomic,strong) NSArray * gpsArray;
 
 @end
 

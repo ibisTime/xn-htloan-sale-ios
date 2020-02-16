@@ -514,7 +514,8 @@
                     _ascriptionAry = responseObject[@"data"];
                     NSMutableArray *array = [NSMutableArray array];
                     for (int i = 0; i < _ascriptionAry.count; i ++) {
-                        [array addObject:_ascriptionAry[i][@"fullName"]];
+                        
+                        [array addObject:[BaseModel convertNull:_ascriptionAry[i][@"fullName"]]];
                     }
                     [_baseModel CustomBouncedView:array setState:@"100"];
                 } failure:^(NSError *error) {

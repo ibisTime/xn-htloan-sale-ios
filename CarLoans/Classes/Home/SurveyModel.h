@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface SurveyModel : NSObject
+
+@property (nonatomic , assign)BOOL isChoose;
+
 @property (nonatomic , copy)NSString *userId;
 @property (nonatomic , copy)NSString *realName;
 @property (nonatomic , copy)NSString *fullName;

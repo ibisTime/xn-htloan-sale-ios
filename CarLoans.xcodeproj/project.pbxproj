@@ -179,6 +179,7 @@
 		1F651ABB227D7A0B00EFB78B /* AccessAuditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABA227D7A0900EFB78B /* AccessAuditVC.m */; };
 		1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */; };
 		1F8E2DE52287E8BF0045D62B /* GPSSentitemsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */; };
+		1FA89C1B23F968A000540BAB /* DeleteGPSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA89C1A23F968A000540BAB /* DeleteGPSCell.m */; };
 		1FB5AA5523B35FFE004DB157 /* HomeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5AA5423B35FFE004DB157 /* HomeListVC.m */; };
 		1FB5AA5823B36020004DB157 /* HomeListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5AA5723B36020004DB157 /* HomeListTableView.m */; };
 		1FB5AA5B23B36031004DB157 /* HomeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5AA5A23B36031004DB157 /* HomeListCell.m */; };
@@ -1025,6 +1026,8 @@
 		1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessAuditTableView.m; sourceTree = "<group>"; };
 		1F8E2DE32287E8BF0045D62B /* GPSSentitemsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPSSentitemsVC.h; sourceTree = "<group>"; };
 		1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSSentitemsVC.m; sourceTree = "<group>"; };
+		1FA89C1923F968A000540BAB /* DeleteGPSCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleteGPSCell.h; sourceTree = "<group>"; };
+		1FA89C1A23F968A000540BAB /* DeleteGPSCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteGPSCell.m; sourceTree = "<group>"; };
 		1FB5AA5323B35FFE004DB157 /* HomeListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeListVC.h; sourceTree = "<group>"; };
 		1FB5AA5423B35FFE004DB157 /* HomeListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeListVC.m; sourceTree = "<group>"; };
 		1FB5AA5623B36020004DB157 /* HomeListTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeListTableView.h; sourceTree = "<group>"; };
@@ -3214,6 +3217,13 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1FA89C1823F957A300540BAB /* ChooseGPS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ChooseGPS;
+			sourceTree = "<group>";
+		};
 		1FB5AA5C23B38FAF004DB157 /* AccessToInformation准入资料 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5082,6 +5092,7 @@
 		7A94555B210EFF1600BDFD33 /* GPSClaimsGPS申领 */ = {
 			isa = PBXGroup;
 			children = (
+				1FA89C1823F957A300540BAB /* ChooseGPS */,
 				7A13ADE0210F156200B8F785 /* Claims申领 */,
 				7A94555E210EFF3F00BDFD33 /* Controller */,
 				7A94555D210EFF3D00BDFD33 /* Model */,
@@ -5103,6 +5114,8 @@
 				36D0716D2296BF0D00812532 /* GPSCell.m */,
 				36CFB5D3229BCBCA00D4305A /* CheckInputGPSTableView.h */,
 				36CFB5D4229BCBCA00D4305A /* CheckInputGPSTableView.m */,
+				1FA89C1923F968A000540BAB /* DeleteGPSCell.h */,
+				1FA89C1A23F968A000540BAB /* DeleteGPSCell.m */,
 				36CFB5D6229BCE2E00D4305A /* AddGPSCell.h */,
 				36CFB5D7229BCE2E00D4305A /* AddGPSCell.m */,
 				36CFB5DC229BE21000D4305A /* ChooseGPSTableView.h */,
@@ -6668,6 +6681,7 @@
 				36D2EC8522B5F361002E3466 /* ForwardCheckVC.m in Sources */,
 				36D0716E2296BF0D00812532 /* GPSCell.m in Sources */,
 				7A3582872113EF3D006FB5B5 /* FaceSignTableView.m in Sources */,
+				1FA89C1B23F968A000540BAB /* DeleteGPSCell.m in Sources */,
 				1F00AE6F226EBB9600A8E15D /* NSDictionary+Extension.m in Sources */,
 				7A0592B820FDE99B00075FE8 /* TextFieldCell.m in Sources */,
 				1F1EF2C42265D99B00EADA25 /* AdmissionInformationCell.m in Sources */,

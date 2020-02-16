@@ -13,7 +13,8 @@ typedef NS_ENUM(NSUInteger, MenuType) {
     MenuChooseType,
     MenuShowType,
     MenuCheckDetailsType,
-    MenuCheckDetailsType1
+    MenuCheckDetailsType1,
+    
 };
 
 NS_ASSUME_NONNULL_BEGIN

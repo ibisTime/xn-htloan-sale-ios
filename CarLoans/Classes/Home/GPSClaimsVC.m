@@ -49,10 +49,19 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GPSClaimsDetailsVC *vc = [GPSClaimsDetailsVC new];
-    vc.model = self.model[indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.model[indexPath.row].status == 0) {
+        CheckInputGPS *vc = [CheckInputGPS new];
+        vc.model = self.model[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else
+    {
+        GPSClaimsDetailsVC *vc = [GPSClaimsDetailsVC new];
+        vc.model = self.model[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
+
+
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
     CheckInputGPS * vc = [CheckInputGPS new];
     vc.model = self.model[index];
@@ -61,11 +70,11 @@
 -(void)navigativeView
 {
     self.title = @"GPS申领";
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -10;
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-    [self.RightButton setTitle:@"申领" forState:(UIControlStateNormal)];
-    [self.RightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = -10;
+//    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+//    [self.RightButton setTitle:@"申领" forState:(UIControlStateNormal)];
+//    [self.RightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
 }
 
 -(void)rightButtonClick

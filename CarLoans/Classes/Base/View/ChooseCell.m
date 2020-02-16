@@ -21,8 +21,8 @@
 -(UIImageView *)xiaImage
 {
     if (!_xiaImage) {
-        _xiaImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 15 - 7, 19, 7, 12)];
-        _xiaImage.image = HGImage(@"下拉");
+//        _xiaImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 15 - 7, 19, 7, 12)];
+//        _xiaImage.image = HGImage(@"下拉");
     }
     return _xiaImage;
 }

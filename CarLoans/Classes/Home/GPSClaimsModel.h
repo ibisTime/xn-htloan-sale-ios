@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface GPSClaimsModel : NSObject
-
+@property (nonatomic , strong)NSString *applyCount;
 @property (nonatomic , assign)NSInteger status;
 @property (nonatomic , strong)NSString *applyUserName;
 @property (nonatomic , strong)NSString *applyReason;
 @property (nonatomic , strong)NSString *code;
 @property (nonatomic , strong)NSString *companyCode;
 @property (nonatomic , strong)NSString *applyUser;
-@property (nonatomic , strong)NSString *applyCount;
+//@property (nonatomic , strong)NSString *applyCount;
 @property (nonatomic , strong)NSString *type;
 @property (nonatomic , strong)NSString *companyName;
 @property (nonatomic , strong)NSString *applyDatetime;

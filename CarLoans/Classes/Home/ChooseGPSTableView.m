@@ -25,24 +25,63 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.model.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *rid=@"cell";
-    ChooseCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-    if(cell==nil){
-        cell=[[ChooseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    ChooseCell *cell=[tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
+//    if(cell==nil){
+//        cell=[[ChooseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+//    }
+//
+//
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
+    
+    if (!cell)
+    {
+        cell = [[ChooseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];
+    }
+    if (self.model[indexPath.row].isChoose == YES)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray * arr = @[@"*GPS类型",@"*GPS设备号"];
-    cell.name = arr[indexPath.row];
+    
+    cell.name = self.model[indexPath.row].gpsDevNo;
     cell.detailsLabel.tag = 1000 + indexPath.row;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
 }
+
+#pragma mark -- 区头高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
+#pragma mark -- 区尾高度
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return nil;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return nil;
+}
+
 @end

@@ -10,6 +10,7 @@
 #import "TextFieldCell.h"
 #define TextField @"TextFieldCell"
 #import "GPSCell.h"
+#import "MenuInputCell.h"
 @interface GPSClaimsDetailsTableView ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -49,21 +50,30 @@
         }
     }
     else
-        if (self.model.gpsList.count == 0) {
-            return 7;
-        }
-        return 8;
+//        if (self.model.gpsList.count == 0) {
+//            return 7;
+//        }
+        return 5;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+        MenuInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"状态",@"客户姓名",@"业务团队",@"申请个数",@"有线个数",@"无线个数",@"申领原因",@"GPS列表"];
-        cell.name = nameArray[indexPath.row];
-        cell.isInput = @"0";
+        
+        cell.type = MenuShowType;
+        
+        
+        
+        NSArray *nameArray = @[@"状态",@"客户姓名",@"业务团队",@"申请个数",@"申领原因"];
+        cell.leftStr = nameArray[indexPath.row];
+//        cell.isInput = @"0";
         NSString *state;
         if (_model.status == 0) {
             state = @"待审核";
@@ -87,34 +97,35 @@
                                   [NSString stringWithFormat:@"%@-%@",_model.applyUserName,_model.roleName],
                                   [NSString stringWithFormat:@"%@",_model.teamName],
                                   [NSString stringWithFormat:@"%@个",_model.applyCount],
-                                  [NSString stringWithFormat:@"%@个",_model.applyWiredCount],
-                                  [NSString stringWithFormat:@"%@个",_model.applyWirelessCount],
-                                  [BaseModel convertNull:_model.applyReason],
-                                  @""
+                                  [BaseModel convertNull:_model.applyReason]
                                   ];
-        cell.TextFidStr = textFidArray[indexPath.row];
+        cell.rightStr = textFidArray[indexPath.row];
         return cell;
     }
     
     if (indexPath.row == 0) {
         static NSString *rid=@"cell";
-        GPSCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-        if(cell==nil){
-            cell=[[GPSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+        MenuInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
-        cell.rightarray = @[@"GPS类型",@"GPS设备号"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.type = MenuShowType;
+        cell.leftStr = @"GPS设备号";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    static NSString *rid=@"cell1";
-    GPSCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-    if(cell==nil){
-        cell=[[GPSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    static NSString *rid=@"cell";
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+    MenuInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    cell.rightarray = @[
-                        [[BaseModel convertNull:self.model.gpsList[indexPath.row - 1][@"gpsType"]]isEqualToString:@"1"]?@"有线":@"无线",
-                        [BaseModel convertNull:self.model.gpsList[indexPath.row - 1][@"gpsDevNo"]]
-                        ];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.leftStr = [BaseModel convertNull:self.model.gpsList[indexPath.row - 1][@"gpsDevNo"]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     

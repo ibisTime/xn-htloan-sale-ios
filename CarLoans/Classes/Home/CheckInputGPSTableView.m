@@ -13,6 +13,8 @@
 #define AddPeople @"AddPeopleCell"
 #import "InputBoxCell.h"
 #define InputBox @"InputBoxCell"
+#import "MenuInputCell.h"
+#import "DeleteGPSCell.h"
 @implementation CheckInputGPSTableView
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
@@ -31,22 +33,19 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 6;
+        return 5;
     }
-    if (section == 1) {
+    if (section == 2) {
         return self.gpsArray.count;
     }
     return 1;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        return 70;
-    }
-    if ( indexPath.section == 2) {
-        return 150;
-    }
+
     return 50;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.01;
 }
@@ -55,11 +54,17 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
+        static NSString *rid=@"cell";
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+        MenuInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"状态",@"客户姓名",@"业务团队",@"申请个数",@"有线个数",@"无线个数",@"申领原因"];
-        cell.name = nameArray[indexPath.row];
-        cell.isInput = @"0";
+        
+        cell.type = MenuShowType;
+        NSArray *nameArray = @[@"状态",@"客户姓名",@"业务团队",@"申请个数",@"申领原因"];
+        cell.leftStr = nameArray[indexPath.row];
         NSString *state;
         if (_model.status == 0) {
             state = @"待审核";
@@ -83,48 +88,54 @@
                                   [NSString stringWithFormat:@"%@-%@",_model.applyUserName,_model.roleName],
                                   [NSString stringWithFormat:@"%@",_model.teamName],
                                   [NSString stringWithFormat:@"%@个",_model.applyCount],
-                                  [NSString stringWithFormat:@"%@个",_model.applyWiredCount],
-                                  [NSString stringWithFormat:@"%@个",_model.applyWirelessCount],
                                   [BaseModel convertNull:_model.applyReason]
                                   ];
-        cell.TextFidStr = textFidArray[indexPath.row];
+        cell.rightStr = textFidArray[indexPath.row];
         return cell;
     }
-    else if (indexPath.section == 1){
-        static NSString *rid=@"addgps";
-        AddGPSCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
-        if(cell==nil){
-            cell=[[AddGPSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rid];
+    if (indexPath.section == 1) {
+        static NSString *rid=@"cell";
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+        MenuInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.name = @"任务";
-        cell.delegate = self;
-        cell.photoBtn.tag = indexPath.row;
-        [cell.photoBtn addTarget:self action:@selector(SurveyTaskSelectButton:) forControlEvents:(UIControlEventTouchUpInside)];
-        if (self.gpsArray.count > 0) {
-            cell.taskDic = self.gpsArray[indexPath.row];
-        }
-        cell.selectButton.tag = indexPath.row;
-        [cell.selectButton addTarget:self action:@selector(deleteButton:) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        cell.type = MenuPushType;
+        cell.leftStr = @"*GPS编号";
         return cell;
     }
+    
     if (indexPath.section == 2) {
-        AddPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:AddPeople forIndexPath:indexPath];
+        static NSString *rid=@"cell";
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+        DeleteGPSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[DeleteGPSCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        [cell.photoBtn setTitle:@"添加GPS" forState:(UIControlStateNormal)];
+        cell.nameLabel.text = self.gpsArray[indexPath.row];
+        [cell.selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.selectButton.tag = indexPath.row;
         return cell;
     }
-    InputBoxCell * cell = [tableView dequeueReusableCellWithIdentifier:InputBox forIndexPath:indexPath];
+    
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+    MenuInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = @"审核意见";
-    cell.nameText = @"请输入审核意见";
-    cell.symbolLabel.hidden = YES;
-    cell.nameTextField.tag = 400;
+    
+    cell.type = MenuInputType;
+    cell.leftStr = @"*审核意见";
+    cell.placStr = @"请输入审核意见";
+    cell.rightTF.tag = 400;
     return cell;
     
 }
--(void)photoBtnClick:(UIButton *)sender
+-(void)selectButtonClick:(UIButton *)sender
 {
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableViewButtonClick:button:selectRowAtIndex:)]) {
         

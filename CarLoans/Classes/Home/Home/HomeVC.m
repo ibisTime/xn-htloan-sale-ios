@@ -80,6 +80,8 @@
 #import "HistoryVC.h"
 #import "HomeListVC.h"
 #import "CheckDetailsVC.h"
+
+#import "ClaimsVC.h"
 @interface HomeVC ()<RefreshDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSDictionary *dataDic;
@@ -170,104 +172,120 @@
 {
     
     
-    HomeListVC *vc = [HomeListVC new];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.title = nameAry[indexPath.row];
-    vc.selectRow = indexPath.row;
-    
-    
-    
-    switch (indexPath.row) {
-        case 0:
-        {
-            vc.curNodeCodeList = @[@"a1",@"a1x"];
+    if (indexPath.row >= 0 && indexPath.row <= 16) {
+        HomeListVC *vc = [HomeListVC new];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.title = nameAry[indexPath.row];
+        vc.selectRow = indexPath.row;
+        
+        
+        
+        switch (indexPath.row) {
+            case 0:
+            {
+                vc.curNodeCodeList = @[@"a1",@"a1x"];
+            }
+                break;
+            case 1:
+            {
+                vc.curNodeCodeList = @[@"a2"];
+            }
+                break;
+            case 2:
+            {
+                vc.curNodeCodeList = @[@"h1"];
+            }
+                break;
+            case 3:
+            {
+                vc.curNodeCodeList = @[@"h2"];
+            }
+                break;
+            case 4:
+            {
+                vc.curNodeCodeList = @[@"b1"];
+            }
+                break;
+            case 5:
+            {
+                vc.curNodeCodeList = @[@"b3"];
+            }
+                break;
+            case 6:
+            {
+                vc.curNodeCodeList = @[@"b4"];
+            }
+                break;
+            case 7:
+            {
+                vc.curNodeCodeList = @[@"b5"];
+            }
+                break;
+            case 8:
+            {
+                vc.curNodeCodeList = @[@"c1"];
+            }
+                break;
+            case 9:
+            {
+                vc.curNodeCodeList = @[@"c2"];
+            }
+                break;
+            case 10:
+            {
+                vc.curNodeCodeList = @[@"d1"];
+            }
+                break;
+            case 11:
+            {
+                vc.curNodeCodeList = @[@"d2"];
+            }
+                break;
+            case 12:
+            {
+                vc.curNodeCodeList = @[@"d3"];
+            }
+                break;
+            case 13:
+            {
+                vc.curNodeCodeList = @[@"d4"];
+            }
+                break;
+            case 14:
+            {
+                vc.curNodeCodeList = @[@"e1"];
+            }
+                break;
+            case 15:
+            {
+                vc.curNodeCodeList = @[@"e2"];
+            }
+                break;
+            case 16:
+            {
+                vc.curNodeCodeList = @[@"f1"];
+            }
+                break;
+                
+            default:
+                break;
         }
-            break;
-        case 1:
-        {
-            vc.curNodeCodeList = @[@"a2"];
-        }
-            break;
-        case 2:
-        {
-            vc.curNodeCodeList = @[@"h1"];
-        }
-            break;
-        case 3:
-        {
-            vc.curNodeCodeList = @[@"h2"];
-        }
-            break;
-        case 4:
-        {
-            vc.curNodeCodeList = @[@"b1"];
-        }
-            break;
-        case 5:
-        {
-            vc.curNodeCodeList = @[@"b3"];
-        }
-            break;
-        case 6:
-        {
-            vc.curNodeCodeList = @[@"b4"];
-        }
-            break;
-        case 7:
-        {
-            vc.curNodeCodeList = @[@"b5"];
-        }
-            break;
-        case 8:
-        {
-            vc.curNodeCodeList = @[@"c1"];
-        }
-            break;
-        case 9:
-        {
-            vc.curNodeCodeList = @[@"c2"];
-        }
-            break;
-        case 10:
-        {
-            vc.curNodeCodeList = @[@"d1"];
-        }
-            break;
-        case 11:
-        {
-            vc.curNodeCodeList = @[@"d2"];
-        }
-            break;
-        case 12:
-        {
-            vc.curNodeCodeList = @[@"d3"];
-        }
-            break;
-        case 13:
-        {
-            vc.curNodeCodeList = @[@"d4"];
-        }
-            break;
-        case 14:
-        {
-            vc.curNodeCodeList = @[@"e1"];
-        }
-            break;
-        case 15:
-        {
-            vc.curNodeCodeList = @[@"e2"];
-        }
-            break;
-        case 16:
-        {
-            vc.curNodeCodeList = @[@"f1"];
-        }
-            break;
-            
-        default:
-            break;
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    if (indexPath.row == 17) {
+        ClaimsVC *vc = [ClaimsVC new];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (indexPath.row == 18) {
+        GPSClaimsVC *vc = [GPSClaimsVC new];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section

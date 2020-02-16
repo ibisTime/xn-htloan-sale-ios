@@ -43,22 +43,20 @@
 - (void)InfoNotificationAction:(NSNotification *)notification
 {
     NSDictionary *dic = notification.userInfo;
-    if (selectRow > 1000) {
-        [GPSArray replaceObjectAtIndex:selectRow - 1234 withObject:dic];
-    }else
-    {
-        for (int i = 0; i < GPSArray.count; i ++) {
-            if ([dic[@"code"] isEqualToString:GPSArray[i][@"code"] ]) {
-                return;
-            }
-        }
-        
-        [GPSArray addObject:dic];
-        
-        
-    }
-    self.tableView.gpsArray = GPSArray;
+    GPSArray = dic[@"ary"];
+    self.tableView.gpsArray = dic[@"ary"];
     [self.tableView reloadData];
+}
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            ChooseGPSVC *vc = [ChooseGPSVC new];
+            vc.gpsArray = GPSArray;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 #pragma mark -- 删除通知
@@ -74,57 +72,81 @@
     [self.view addSubview:self.tableView];
 }
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
-    ChooseGPSVC * vc = [ChooseGPSVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+    [GPSArray removeObjectAtIndex:index];
+    self.tableView.gpsArray = GPSArray;
+    [self.tableView reloadData];
 }
--(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
-    if ([state isEqualToString:@"delete"]) {
-        [GPSArray removeObjectAtIndex:index];
-        self.tableView.gpsArray = GPSArray;
-        [self.tableView reloadData];
-    }
-}
+
+
+//-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index selectRowState:(NSString *)state{
+//    if ([state isEqualToString:@"delete"]) {
+//        [GPSArray removeObjectAtIndex:index];
+//        self.tableView.gpsArray = GPSArray;
+//        [self.tableView reloadData];
+//    }
+//}
 
 -(void)Confirm:(UIButton *)sender{
     NSMutableArray * array = [NSMutableArray array];
     
-    for (int i = 0; i < GPSArray.count; i++) {
-        NSMutableDictionary * dic = [NSMutableDictionary dictionary];
-        [dic setObject:GPSArray[i][@"code"] forKey:@"code"];
-        [dic setObject:GPSArray[i][@"gpsType"] forKey:@"gpsType"];
-        [dic setObject:GPSArray[i][@"updater"] forKey:@"updater"];
-        
-        [array addObject:dic];
-    }
-    
     UITextField * textfield = [self.view viewWithTag:400];
-    TLNetworking * http = [[TLNetworking alloc]init];
-    if (sender.tag == 1001) {
-        if (array.count == 0) {
-            [TLAlert alertWithInfo:@"请选择GPS"];
-            return;
-        }
-        http.code = @"632711";
-        http.parameters[@"gpsList"] = array;
-    }
-    else{
-        if (textfield.text.length == 0) {
-            [TLAlert alertWithInfo:@"请输入审核意见"];
-            return;
-        }
-        http.code = @"632712";
+    if (textfield.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入审核意见"];
+        return;
     }
     
+    TLNetworking * http1 = [[TLNetworking alloc]init];
+    http1.code = @"632708";
+    http1.showView = self.view;
+    http1.parameters[@"useStatus"] = @"0";
+    [http1 postWithSuccess:^(id responseObject) {
+        NSArray *ary = responseObject[@"data"];
     
-    http.parameters[@"code"] = self.model.code;
-    http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"remark"] = textfield.text;
-    [http postWithSuccess:^(id responseObject) {
-        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
-        [self.navigationController popViewControllerAnimated:YES];
+        for (int i = 0; i < ary.count; i ++) {
+            for (int j = 0; j < GPSArray.count; j ++) {
+                if ([ary[i][@"gpsDevNo"] isEqualToString:GPSArray[j]]) {
+                    NSDictionary *dic = @{@"code":ary[i][@"code"]};
+                    [array addObject:dic];
+                }
+            }
+        }
+        
+        
+        TLNetworking * http = [[TLNetworking alloc]init];
+        if (sender.tag == 1001) {
+            if (array.count == 0) {
+                [TLAlert alertWithInfo:@"请选择GPS"];
+                return;
+            }
+            http.code = @"632711";
+            http.parameters[@"gpsList"] = array;
+        }
+        else{
+            
+            http.code = @"632712";
+        }
+        
+        
+        http.parameters[@"code"] = self.model.code;
+        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+        http.parameters[@"remark"] = textfield.text;
+        [http postWithSuccess:^(id responseObject) {
+            NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        
     } failure:^(NSError *error) {
         
     }];
+
+    
+    
+    
+    
+    
 }
 @end

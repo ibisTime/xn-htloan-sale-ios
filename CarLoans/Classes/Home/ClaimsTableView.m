@@ -11,7 +11,7 @@
 #import "ChooseCell.h"
 #define TextField @"TextFieldCell"
 #define TextFiel @"ChooseCell"
-
+#import "MenuInputCell.h"
 @interface ClaimsTableView ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic ,strong) UILabel * nameLabel;
@@ -45,124 +45,47 @@
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (section ==0) {
-//        return 1;
-//
-//    }
-    return 3;
-//    else{
-//        if (self.teamStr) {
-//            return 4;
-//
-//        }else{
-//            return 3;
-//
-//        }
-//
-//    }
+
+    return 4;
+
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section ==0) {
-//        ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:TextFiel forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.name = @"申领类型";
-//        cell.details = self.teamStr;
-//        cell.xiaImage.image = HGImage(@"you");
-//        cell.xiaImage.frame = CGRectMake(SCREEN_WIDTH - 25, 17.5, 7.5, 15);
-//        return cell;
-//    }
-//    else{
-//        if (self.teamStr) {
-//            if (indexPath.row == 0) {
-//                ChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:TextFiel forIndexPath:indexPath];
-//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//                if ([self.teamStr isEqualToString:@"本部"]) {
-//                    cell.name = @"匹配客户";
-//                    cell.details = self.teamname;
-//
-//                }else{
-//                    cell.name = @"匹配团队";
-//                    cell.details = self.teamname;
-//
-//                    self.isList = NO;
-//                    self.carLabel.hidden = YES;
-//                    self.nameLabel.hidden = YES;
-//                    self.numberLabel.hidden = YES;
-//                    self.car.hidden = YES;
-//                    self.number.hidden = YES;
-//                    self.name.hidden = YES;
-//                }
-//                cell.xiaImage.image = HGImage(@"you");
-//                cell.details = self.teamname;
-//                cell.xiaImage.frame = CGRectMake(SCREEN_WIDTH - 25, 17.5, 7.5, 15);
-//                if (self.isList == YES) {
-//                    self.carLabel.hidden = YES;
-//                    self.nameLabel.hidden = YES;
-//                    self.numberLabel.hidden = YES;
-//                    self.car.hidden = YES;
-//                    self.number.hidden = YES;
-//                    self.name.hidden = YES;
-//
-//                    UILabel * nameLabel = [UILabel labelWithFrame:CGRectMake(15, 50, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-//                    self.nameLabel = nameLabel;
-//                    UILabel * carLabel = [UILabel labelWithFrame:CGRectMake(15, 90, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-//                    self.carLabel = carLabel;
-//
-//                    UILabel * numberLabel = [UILabel labelWithFrame:CGRectMake(15, 130, 100, 40) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-//                    self.numberLabel = numberLabel;
-//
-//                    UILabel * name = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 50, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-//                    UILabel * car = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 90, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-//                    UILabel * number = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH-150, 130, 130, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(13) textColor:[UIColor blackColor]];
-//                    self.name = name;
-//                    self.number = number;
-//                    self.car = car;
-//
-//
-//
-//                    nameLabel.text = @"客户姓名";
-//                    carLabel.text = @"客户手机号";
-//                    numberLabel.text = @"车架号";
-//                    name.text = self.model.applyUserName;
-//                    car.text = self.model.mobile;
-//                    number.text = self.model.carFrameNo;
-//                    [cell addSubview:nameLabel];
-//                    [cell addSubview:carLabel];
-//                    [cell addSubview:numberLabel];
-//                    [cell addSubview:name];
-//                    [cell addSubview:car];
-//                    [cell addSubview:number];
-//
-//                }
-//                return cell;
-//            }
-//        }
-        TextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextField forIndexPath:indexPath];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray;
-        NSArray *nameTextArray;
-//        if (self.teamStr) {
-//            nameArray = @[@"",@"申领有线个数",@"申领无线个数",@"申领说明"];
-//            nameTextArray = @[@"",@"请输入申领个数",@"申领无线个数",@"请输入申领说明"];
-//
-//        }else{
-//            nameArray = @[@"申领有线个数",@"申领无线个数",@"申领说明"];
-//            nameTextArray = @[@"请输入申领个数",@"申领无线个数",@"请输入申领说明"];
-//        }
-    nameArray = @[@"申领有线个数",@"申领无线个数",@"申领说明"];
-    nameTextArray = @[@"请输入申领个数",@"申领无线个数",@"请输入申领说明"];
-        cell.nameTextField.tag = 100 + indexPath.row;
-        cell.name = nameArray[indexPath.row];
-        cell.nameText = nameTextArray[indexPath.row];
-        
-        return cell;
-        
-//    }
     
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+    MenuInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    if (indexPath.row == 2 || indexPath.row == 3) {
+        cell.type = MenuInputType;
+    }else
+    {
+        cell.type = MenuShowType;
+    }
+//    cell.rightStr = ary[indexPath.row];
+    //        }
+    
+    NSDictionary *dataDic = [USERDEFAULTS objectForKey:USERDATA];
+//    _companyLbl.text = [NSString stringWithFormat:@"%@-%@-%@",[BaseModel convertNull: dataDic[@"companyName"]],[BaseModel convertNull:dataDic[@"departmentName"]],[BaseModel convertNull:dataDic[@"postName"]]];
+    
+    NSArray *ary = @[[BaseModel convertNull: dataDic[@"companyName"]],[NSString stringWithFormat:@"%@-%@-%@",[BaseModel convertNull: dataDic[@"companyName"]],[BaseModel convertNull:dataDic[@"departmentName"]],[BaseModel convertNull:dataDic[@"postName"]]],@"",@""];
+    cell.rightStr = ary[indexPath.row];
+    
+    
+    
+    NSArray *nameArray = @[@"所在团队",@"申请人",@"*申领个数",@"*申领原因"];
+    cell.leftStr = nameArray[indexPath.row];
+    NSArray *placAry = @[@"",@"",@"请填写申领个数",@"请填写申领原因"];
+    //    }
+    cell.placStr = placAry[indexPath.row];
+    cell.rightLbl.tag = 10000 + indexPath.row;
+    cell.rightTF.tag = 10000 + indexPath.row;
+    return cell;
 }
 
 
@@ -221,7 +144,7 @@
         
         UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
         confirmButton.frame = CGRectMake(20, 30, SCREEN_WIDTH - 40, 50);
-        [confirmButton setTitle:@"确认" forState:(UIControlStateNormal)];
+        [confirmButton setTitle:@"确定" forState:(UIControlStateNormal)];
         confirmButton.backgroundColor = MainColor;
         kViewRadius(confirmButton, 5);
         confirmButton.titleLabel.font = HGfont(18);

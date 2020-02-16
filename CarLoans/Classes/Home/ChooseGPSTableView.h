@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChooseGPSTableView : TLTableView<UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic,strong) NSMutableArray <SurveyModel *>* model;
+
+@property (nonatomic,strong) NSArray * chooseArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -117,40 +117,31 @@
 {
     
     NSLog(@"%ld",index);
-    UITextField *textFid1 = [self.view viewWithTag:100];
-    UITextField *textFid2 = [self.view viewWithTag:101];
-    UITextField *textFid3 = [self.view viewWithTag:102];
+    UITextField *textFid1 = [self.view viewWithTag:10002];
+    UITextField *textFid2 = [self.view viewWithTag:10003];
+//    UITextField *textFid3 = [self.view viewWithTag:102];
 
     if ([textFid1.text isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请输入申领个数"];
         return;
     }
+    if ([textFid2.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入申领原因"];
+        return;
+    }
+    
     TLNetworking *http = [TLNetworking new];
     http.code = @"632710";
     http.showView = self.view;
-    http.parameters[@"applyWiredCount"] = textFid1.text;
-    http.parameters[@"applyWirelessCount"] = textFid2.text;
-//    http.parameters[@"customerName"] =self.model.applyUserName;
-//    if ([self.tableView.teamStr isEqualToString:@"本部"]) {
-//        http.parameters[@"applyUsername"] = self.model.applyUserName;
-//
-//        http.parameters[@"applyType"] =@"1";
-//
-//    }else{
-//        http.parameters[@"applyType"] =@"2";
-//        http.parameters[@"teamCode"] =self.teamCode;
-//
-//    }
-//
-//    http.parameters[@"budgetOrderCode"] = self.model.code;
-    http.parameters[@"applyReason"] = textFid3.text;
+    http.parameters[@"applyCount"] = textFid1.text;
+    http.parameters[@"applyReason"] = textFid2.text;
     http.parameters[@"applyUser"] = [USERDEFAULTS objectForKey:USER_ID];
-    http.parameters[@"type"] = [str isEqualToString:@"有线"]?@"1":@"2";
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"申领成功"];
-        NSNotification *notification =[NSNotification notificationWithName:LOADDATAPAGE object:nil userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
-        [self.navigationController popViewControllerAnimated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
         
     } failure:^(NSError *error) {
         WGLog(@"%@",error);
