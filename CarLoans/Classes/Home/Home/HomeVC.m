@@ -86,6 +86,7 @@
 {
     NSDictionary *dataDic;
     NSArray *nameAry;
+    NSArray *dataAry;
 }
 @property (nonatomic , strong)UICollectionView *collectionView;
 @end
@@ -110,7 +111,24 @@
     return _collectionView;
 }
 
-
+-(void)isGpsShow
+{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630025";
+    http.parameters[@"start"] = @"1";
+    http.parameters[@"limit"] = @"1000";
+    http.parameters[@"parentCode"] = @"SM201904231247451139996";
+    http.parameters[@"type"] = @"2";
+    http.parameters[@"roleCode"] = http.parameters[@"roleCode"] = [USERDEFAULTS objectForKey:ROLECODE];
+    [http postWithSuccess:^(id responseObject) {
+        
+        dataAry = responseObject[@"data"];
+        [self.collectionView reloadData];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -121,7 +139,12 @@
 #pragma mark------CollectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [MenuModel new].homeArray.count;
+    for (int i = 0; i < dataAry.count; i ++) {
+        if ([dataAry[i][@"code"] isEqualToString:@"SM201904231326152699024"]) {
+            return [MenuModel new].homeArray.count;
+        }
+    }
+    return [MenuModel new].homeArray.count - 1;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -163,8 +186,6 @@
 {
    
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView1" forIndexPath:indexPath];
-    
-    
     return headerView;
 }
 
@@ -318,7 +339,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
+    [self isGpsShow];
     [self updateUserInfoWithNotification];
 }
 

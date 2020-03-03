@@ -13,4 +13,6 @@
 
 @property (nonatomic , strong)NSMutableArray <GPSClaimsModel *>*model;
 
+@property (nonatomic , strong)NSArray *dataAry;
+
 @end

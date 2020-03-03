@@ -65,24 +65,14 @@
         cell.type = MenuShowType;
         NSArray *nameArray = @[@"状态",@"客户姓名",@"业务团队",@"申请个数",@"申领原因"];
         cell.leftStr = nameArray[indexPath.row];
-        NSString *state;
-        if (_model.status == 0) {
-            state = @"待审核";
-        }else if (_model.status == 1)
-        {
-            state = @"审核通过,待发货";
+ 
+        NSString *state = @"";
+        for (int i = 0; i < _dataAry.count; i ++) {
+            if ([_dataAry[i][@"dkey"] integerValue] == _model.status) {
+                state = _dataAry[i][@"dvalue"];
+            }
         }
-        else if (_model.status == 2)
-        {
-            state = @"审核不通过";
-        }
-        else if (_model.status == 3)
-        {
-            state = @"已发货,待收货";
-        }else
-        {
-            state = @"已收货";
-        }
+        
         NSArray *textFidArray = @[
                                   state,
                                   [NSString stringWithFormat:@"%@-%@",_model.applyUserName,_model.roleName],

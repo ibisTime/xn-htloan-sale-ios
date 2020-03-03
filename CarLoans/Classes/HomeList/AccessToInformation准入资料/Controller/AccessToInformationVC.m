@@ -252,6 +252,7 @@
             weakSelf.carModel = responseObject[@"data"][@"carModel"];
             weakSelf.tableView6.carModel = responseObject[@"data"][@"modelName"];
             
+            weakSelf.tableView6.modelNumber = responseObject[@"data"][@"modelNumber"];
             
             weakSelf.evalPrice = responseObject[@"data"][@"evalPrice"];
             weakSelf.tableView6.evalPrice = responseObject[@"data"][@"evalPrice"];

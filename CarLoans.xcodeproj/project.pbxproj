@@ -180,6 +180,8 @@
 		1F651ABE227D7A1D00EFB78B /* AccessAuditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F651ABD227D7A1D00EFB78B /* AccessAuditTableView.m */; };
 		1F8E2DE52287E8BF0045D62B /* GPSSentitemsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */; };
 		1FA89C1B23F968A000540BAB /* DeleteGPSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA89C1A23F968A000540BAB /* DeleteGPSCell.m */; };
+		1FA89C2023F974A100540BAB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA89C1F23F974A100540BAB /* UserNotifications.framework */; };
+		1FA89C2223F974B600540BAB /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA89C2123F974B600540BAB /* libsqlite3.0.tbd */; };
 		1FB5AA5523B35FFE004DB157 /* HomeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5AA5423B35FFE004DB157 /* HomeListVC.m */; };
 		1FB5AA5823B36020004DB157 /* HomeListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5AA5723B36020004DB157 /* HomeListTableView.m */; };
 		1FB5AA5B23B36031004DB157 /* HomeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5AA5A23B36031004DB157 /* HomeListCell.m */; };
@@ -229,6 +231,7 @@
 		1FBAECEA23BB8E1300832A3C /* DetailsMenuTableView14.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBAECE923BB8E1300832A3C /* DetailsMenuTableView14.m */; };
 		1FBAECED23BB8E3D00832A3C /* DetailsMenuTableView15.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBAECEC23BB8E3D00832A3C /* DetailsMenuTableView15.m */; };
 		1FBAECF023BC9E6700832A3C /* ImageBrowsingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBAECEE23BC9E6600832A3C /* ImageBrowsingVC.m */; };
+		1FFF95E823FA37FC0074D7EA /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFF95E723FA37FB0074D7EA /* libXG-SDK.a */; };
 		3600B2342297D0BF002C4C18 /* YeWuCheckVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600B2332297D0BF002C4C18 /* YeWuCheckVC.m */; };
 		3600B2372297D107002C4C18 /* YeWuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600B2362297D107002C4C18 /* YeWuTableView.m */; };
 		3600B23A2297F170002C4C18 /* SettlementAuditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600B2392297F170002C4C18 /* SettlementAuditCell.m */; };
@@ -1028,6 +1031,9 @@
 		1F8E2DE42287E8BF0045D62B /* GPSSentitemsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPSSentitemsVC.m; sourceTree = "<group>"; };
 		1FA89C1923F968A000540BAB /* DeleteGPSCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleteGPSCell.h; sourceTree = "<group>"; };
 		1FA89C1A23F968A000540BAB /* DeleteGPSCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteGPSCell.m; sourceTree = "<group>"; };
+		1FA89C1F23F974A100540BAB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		1FA89C2123F974B600540BAB /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		1FA89C2323F974E000540BAB /* CarLoans.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CarLoans.entitlements; sourceTree = "<group>"; };
 		1FB5AA5323B35FFE004DB157 /* HomeListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeListVC.h; sourceTree = "<group>"; };
 		1FB5AA5423B35FFE004DB157 /* HomeListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeListVC.m; sourceTree = "<group>"; };
 		1FB5AA5623B36020004DB157 /* HomeListTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeListTableView.h; sourceTree = "<group>"; };
@@ -1126,6 +1132,8 @@
 		1FBAECEC23BB8E3D00832A3C /* DetailsMenuTableView15.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsMenuTableView15.m; sourceTree = "<group>"; };
 		1FBAECEE23BC9E6600832A3C /* ImageBrowsingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowsingVC.m; sourceTree = "<group>"; };
 		1FBAECEF23BC9E6700832A3C /* ImageBrowsingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBrowsingVC.h; sourceTree = "<group>"; };
+		1FFF95E623FA37FB0074D7EA /* XGPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGPush.h; sourceTree = "<group>"; };
+		1FFF95E723FA37FB0074D7EA /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libXG-SDK.a"; sourceTree = "<group>"; };
 		3600B2322297D0BF002C4C18 /* YeWuCheckVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YeWuCheckVC.h; sourceTree = "<group>"; };
 		3600B2332297D0BF002C4C18 /* YeWuCheckVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YeWuCheckVC.m; sourceTree = "<group>"; };
 		3600B2352297D107002C4C18 /* YeWuTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YeWuTableView.h; sourceTree = "<group>"; };
@@ -1992,6 +2000,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA89C2223F974B600540BAB /* libsqlite3.0.tbd in Frameworks */,
+				1FA89C2023F974A100540BAB /* UserNotifications.framework in Frameworks */,
+				7A3583FC21196BDD006FB5B5 /* CoreTelephony.framework in Frameworks */,
 				361923E522B9FF9C00876C64 /* libstdc++.6.0.9.tbd in Frameworks */,
 				7A35841E21196C5F006FB5B5 /* libz.tbd in Frameworks */,
 				7A35841C21196C58006FB5B5 /* libstdc++.tbd in Frameworks */,
@@ -2010,7 +2021,6 @@
 				7A35840221196BF2006FB5B5 /* JavaScriptCore.framework in Frameworks */,
 				7A35840021196BEC006FB5B5 /* ImageIO.framework in Frameworks */,
 				7A3583FE21196BE3006FB5B5 /* CoreVideo.framework in Frameworks */,
-				7A3583FC21196BDD006FB5B5 /* CoreTelephony.framework in Frameworks */,
 				7A3583FA21196BD7006FB5B5 /* CoreMedia.framework in Frameworks */,
 				7A3583F821196BCE006FB5B5 /* CoreGraphics.framework in Frameworks */,
 				7A358312211847D4006FB5B5 /* AVFoundation.framework in Frameworks */,
@@ -2018,6 +2028,7 @@
 				7A3583F421196BAE006FB5B5 /* Accelerate.framework in Frameworks */,
 				7AB29E9E20FD90E30014FCB3 /* libxml2.2.tbd in Frameworks */,
 				5F4B98A33D181725064D3D42 /* libPods-CarLoans.a in Frameworks */,
+				1FFF95E823FA37FC0074D7EA /* libXG-SDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5319,6 +5330,7 @@
 		7AB29D9220FD85680014FCB3 /* CarLoans */ = {
 			isa = PBXGroup;
 			children = (
+				1FA89C2323F974E000540BAB /* CarLoans.entitlements */,
 				7AB29DC620FD85980014FCB3 /* Classes */,
 				7AB29DC520FD85950014FCB3 /* Resource */,
 			);
@@ -5358,6 +5370,8 @@
 		7AB29DC620FD85980014FCB3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1FFF95E723FA37FB0074D7EA /* libXG-SDK.a */,
+				1FFF95E623FA37FB0074D7EA /* XGPush.h */,
 				7AB29DC720FD868F0014FCB3 /* AppDelegate */,
 				7AB29DCA20FD8B240014FCB3 /* Base */,
 				7AB29DC920FD8B0F0014FCB3 /* Macro */,
@@ -5985,6 +5999,8 @@
 		D73FDE365E592AB5CDB3FA63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FA89C2123F974B600540BAB /* libsqlite3.0.tbd */,
+				1FA89C1F23F974A100540BAB /* UserNotifications.framework */,
 				361923E422B9FF9C00876C64 /* libstdc++.6.0.9.tbd */,
 				366A2AB322895E9B00FF8366 /* libAWDProtobufGCK.tbd */,
 				366A2AB122895E9300FF8366 /* libAWDProtobufFacetimeiMessage.tbd */,
@@ -6097,6 +6113,14 @@
 				TargetAttributes = {
 					7AB29D8F20FD85680014FCB3 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					7AB29DA720FD85710014FCB3 = {
 						CreatedOnToolsVersion = 9.3;
@@ -7002,6 +7026,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CODE_SIGN_ENTITLEMENTS = CarLoans/CarLoans.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M8KD7B9X5;
@@ -7050,6 +7075,7 @@
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK\\ 6/BeautySDK",
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK\\ 6/BeautySDK/Pitu",
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK\\ 6/BeautySDK/Pitu",
+					"$(PROJECT_DIR)/CarLoans/Classes",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -7096,6 +7122,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CODE_SIGN_ENTITLEMENTS = CarLoans/CarLoans.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M8KD7B9X5;
@@ -7144,6 +7171,7 @@
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK\\ 6/BeautySDK",
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK\\ 6/BeautySDK/Pitu",
 					"$(PROJECT_DIR)/CarLoans/ILiveSDK\\ 6/BeautySDK/Pitu",
+					"$(PROJECT_DIR)/CarLoans/Classes",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

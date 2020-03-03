@@ -62,27 +62,24 @@
     
 }
 
+-(void)setDataAry:(NSArray *)dataAry
+{
+    _dataAry = dataAry;
+}
+
 -(void)setGpsclaimsModel:(GPSClaimsModel *)gpsclaimsModel
 {
     _codeLabel.text = [NSString stringWithFormat:@"%@",gpsclaimsModel.companyName];
 //0 待审核 1 审核通过,待发货 2 审核不通过 3 已发货,待收货 4 已收货
-    if (gpsclaimsModel.status == 0) {
-        _stateLabel.text = @"待审核";
-    }else if (gpsclaimsModel.status == 1)
-    {
-        _stateLabel.text = @"审核通过,待发货";
+    
+    
+    for (int i = 0; i < _dataAry.count; i ++) {
+        if ([_dataAry[i][@"dkey"] integerValue] == gpsclaimsModel.status) {
+            _stateLabel.text = _dataAry[i][@"dvalue"];
+        }
     }
-    else if (gpsclaimsModel.status == 2)
-    {
-        _stateLabel.text = @"审核不通过";
-    }
-    else if (gpsclaimsModel.status == 3)
-    {
-        _stateLabel.text = @"已发货,待收货";
-    }else
-    {
-        _stateLabel.text = @"已收货";
-    }
+    
+    
 
     NSArray *nameArray = @[
                            @"所属公司",

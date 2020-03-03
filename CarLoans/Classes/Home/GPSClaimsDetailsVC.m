@@ -22,7 +22,24 @@
     // Do any additional setup after loading the view.
     self.title = @"详情";
     [self initTableView];
+    [self gps_apply_statusLoadData];
 }
+
+-(void)gps_apply_statusLoadData
+{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630036";
+    http.parameters[@"parentKey"] = @"gps_apply_status";
+    [http postWithSuccess:^(id responseObject) {
+        
+        self.tableView.dataAry = responseObject[@"data"];
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 
 - (void)initTableView {
     self.tableView = [[GPSClaimsDetailsTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];

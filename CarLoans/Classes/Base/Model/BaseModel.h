@@ -20,7 +20,7 @@
 
 @property (nonatomic, assign) id <BaseModelDelegate> ModelDelegate;
 
-
++(void)QueriesNumberOfUnreadMessageBars;
 
 + (NSString *)getCurrentTime;
 

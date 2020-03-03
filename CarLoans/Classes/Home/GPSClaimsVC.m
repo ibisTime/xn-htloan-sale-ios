@@ -40,6 +40,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LOADDATAPAGE object:nil];
 }
 
+
+
 - (void)initTableView {
     self.tableView = [[GPSClaimsTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
@@ -69,12 +71,8 @@
 }
 -(void)navigativeView
 {
-    self.title = @"GPS申领";
-//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    negativeSpacer.width = -10;
-//    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-//    [self.RightButton setTitle:@"申领" forState:(UIControlStateNormal)];
-//    [self.RightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+    self.title = @"GPS审核";
+
 }
 
 -(void)rightButtonClick
@@ -83,15 +81,26 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
+-(void)gps_apply_statusLoadData
+{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630036";
+    http.parameters[@"parentKey"] = @"gps_apply_status";
+    [http postWithSuccess:^(id responseObject) {
+        
+        self.tableView.dataAry = responseObject[@"data"];
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 -(void)LoadData
 {
     CarLoansWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632715";
-//    helper.parameters[@"applyUser"] = [USERDEFAULTS objectForKey:USER_ID];
-//    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
@@ -99,6 +108,8 @@
 
     [self.tableView addRefreshAction:^{
 
+        [weakSelf gps_apply_statusLoadData];
+        
         [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
 
             //去除没有的币种

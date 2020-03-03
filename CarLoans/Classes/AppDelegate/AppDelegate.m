@@ -11,8 +11,12 @@
 #import "LoginVC.h"
 #import "TLTabBarController.h"
 #import "CheckDetailsVC.h"
-@interface AppDelegate ()
-
+#import "CheckDetailsVC.h"
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+#import <UserNotifications/UserNotifications.h>
+#endif
+@interface AppDelegate ()<XGPushDelegate,UNUserNotificationCenterDelegate>
+@property (nonatomic , assign)BOOL isLaunchedByNotification;
 @end
 
 @implementation AppDelegate
@@ -21,22 +25,223 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
+    [application registerForRemoteNotifications];
     
-
+    [BaseModel QueriesNumberOfUnreadMessageBars];
+    [self XGPushSetUp];
+    [[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
+    
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    if (launchOptions) {
+        self.isLaunchedByNotification = YES;
+    }else{
+        self.isLaunchedByNotification = NO;
+    }
+    
     if([BaseModel user].isLogin == NO) {
         LoginVC *VC = [[LoginVC alloc]init];
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
         self.window.rootViewController = nav;
-    }else
+    }
+    else
     {
         TLTabBarController *TabBarVC = [[TLTabBarController alloc]init];
         self.window.rootViewController = TabBarVC;
     }
     
+    
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+
+-(void)XGPushSetUp
+{
+    
+    //    信鸽推送
+    [[XGPush defaultManager] setEnableDebug:YES];
+    [[XGPush defaultManager] startXGWithAppID:2200353277 appKey:@"IYHP7973DV3G"  delegate:self];
+    //角标设置
+    //    [[XGPush defaultManager] setXgApplicationBadgeNumber:4];
+    
+    //    在通知消息中创建一个可以点击的事件行为
+    XGNotificationAction *action1 = [XGNotificationAction actionWithIdentifier:@"xgaction001" title:@"xgAction1" options:XGNotificationActionOptionNone];
+    XGNotificationAction *action2 = [XGNotificationAction actionWithIdentifier:@"xgaction002" title:@"xgAction2" options:XGNotificationActionOptionNone];
+    
+    
+    XGNotificationCategory *category = [XGNotificationCategory categoryWithIdentifier:@"xgCategory" actions:@[action1, action2] intentIdentifiers:@[] options:XGNotificationCategoryOptionNone];
+    XGNotificationConfigure *configure = [XGNotificationConfigure configureNotificationWithCategories:[NSSet setWithObject:category] types:XGUserNotificationTypeAlert|XGUserNotificationTypeBadge|XGUserNotificationTypeSound];
+    
+    [[XGPush defaultManager] setNotificationConfigure:configure];
+    
+    //    上报角标s
+//    NSInteger number;
+//    if ([USERDEFAULTS objectForKey:USER_ID]) {
+//        //        [[XGPush defaultManager] setXgApplicationBadgeNumber:[ integerValue]]
+//        number = [[USERDEFAULTS objectForKey:@"unreadnumber"] integerValue];
+//    }else
+//    {
+//        number = 0;
+//    }
+//    [[XGPush defaultManager] setBadge:number];
+}
+
+
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    //将来需要将此Token上传给后台服务器
+    NSString *XGPushtokenStr = [[XGPushTokenManager defaultTokenManager] deviceTokenString];
+    NSLog(@"XGPushtokenStr===>%@",XGPushtokenStr);
+    [USERDEFAULTS setObject:XGPushtokenStr forKey:@"deviceToken1"];
+    if([BaseModel user].isLogin == YES) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"805085";
+        http.parameters[@"deviceToken"] = XGPushtokenStr;
+        http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+        [http postWithSuccess:^(id responseObject) {
+            [USERDEFAULTS setObject:XGPushtokenStr forKey:@"deviceToken"];
+        } failure:^(NSError *error) {
+
+        }];
+    }
+}
+
+
+
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSLog(@"%s======》",__func__);
+    
+    NSString *zero =[[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] objectForKey:@"body"];
+    if (application.applicationState == UIApplicationStateActive) {
+        //        [self showAlertViewWithTitle:@"新消息提示" Message:zero ConfirmTitle:@"确定" CancelTitle:nil];
+    }
+    //    [self receiveRemoteNotificationWithUserInfo:userInfo];
+    
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"%s",__func__);
+    
+    NSLog(@"[XGDemo] receive slient Notification");
+    NSLog(@"[XGDemo] userinfo %@", userInfo);
+    
+    if (self.isLaunchedByNotification == NO) {
+        if (application.applicationState == UIApplicationStateActive) {
+            //iOS10之前，在前台时用自定义AlertView展示消息
+            [self receiveRemoteNotificationWithUserInfo:userInfo];
+        }else {
+            [self receiveRemoteNotificationWithUserInfo:userInfo];
+        }
+    }else{
+        self.isLaunchedByNotification = NO;
+    }
+    
+    //iOS 9.x 及以前，需要在 UIApplicationDelegate 的回调方法(如下)中调用上报数据的接口
+    [[XGPush defaultManager] reportXGNotificationInfo:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+    
+}
+
+
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+
+- (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    [[XGPush defaultManager] reportXGNotificationInfo:notification.request.content.userInfo];
+    //可设置是否在应用内弹出通知
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+}
+
+
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+- (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    NSLog(@"%s",__func__);
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    NSLog(@"Userinfo %@",response.notification.request.content.userInfo);
+    //处理接收到的消息
+    
+    [self receiveRemoteNotificationWithUserInfo:response.notification.request.content.userInfo];
+    [[XGPush defaultManager] reportXGNotificationResponse:response];
+    completionHandler();
+}
+
+-(void)receiveRemoteNotificationWithUserInfo:(NSDictionary *)dic
+{
+    
+    UITabBarController *tbc = (UITabBarController *)self.window.rootViewController;
+    UINavigationController *nav = tbc.viewControllers[tbc.selectedIndex];
+    
+    
+    if ([dic[@"custom"][@"key1"] isEqualToString:@"1"] || [dic[@"custom"][@"key1"] isEqualToString:@"2"]) {
+        TLNetworking *http = [TLNetworking new];
+        http.code = @"632516";
+//        http.showView = self.view;
+        http.parameters[@"code"] = dic[@"custom"][@"key2"];
+        [http postWithSuccess:^(id responseObject) {
+            
+            
+            [tbc setSelectedIndex:1];
+            
+//            CheckDetailsVC * vc = [CheckDetailsVC new];
+//            vc.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
+//            vc.hidesBottomBarWhenPushed = YES;
+//            [nav pushViewController:vc animated:YES];
+        
+        } failure:^(NSError *error) {
+
+        }];
+    }
+
+}
+
+
+
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler
+{
+    NSLog(@"userActivity : %@",userActivity.webpageURL.description);
+    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+        NSURL *webpageURL = userActivity.webpageURL;
+        NSString *host = webpageURL.host;
+        //        if ([host isEqualToString:@"yohunl.com"]) {
+        //            //进行我们需要的处理
+        //        }
+        //        else {
+        //            [[UIApplication sharedApplication]openURL:webpageURL];
+        //        }
+    }
+    
+    return YES;
+    
+}
+
+//推送token传给服务器
+- (void)xgPushDidRegisteredDeviceToken:(nullable NSString *)deviceToken error:(nullable NSError *)error;
+{
+    [USERDEFAULTS setObject:deviceToken forKey:@"deviceToken1"];
+    if([BaseModel user].isLogin == YES) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"805085";
+        http.parameters[@"deviceToken"] = deviceToken;
+        http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+        [http postWithSuccess:^(id responseObject) {
+            [USERDEFAULTS setObject:deviceToken forKey:@"deviceToken"];
+        } failure:^(NSError *error) {
+
+        }];
+    }
+}
+
+
+
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

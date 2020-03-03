@@ -37,6 +37,7 @@ typedef void (^ReturnPhotoAryBlock)(NSArray *imgAry,NSString *name,NSInteger sec
 @property (nonatomic , strong)NSString *isPublicCard;
 @property (nonatomic , assign)BOOL isDetails;
 @property (nonatomic , copy)NSString *bizType;
+@property (nonatomic , strong)NSString *modelNumber;
 @property (nonatomic , strong)SurveyModel *model;
 @end
 

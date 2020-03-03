@@ -14,6 +14,12 @@
 
 @implementation BaseViewController
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [BaseModel QueriesNumberOfUnreadMessageBars];
+}
+
 -(UIButton *)LeftBackbButton
 {
     if (!_LeftBackbButton) {

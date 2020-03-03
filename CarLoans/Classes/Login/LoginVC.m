@@ -124,6 +124,18 @@
         window.rootViewController = vc;
         [self setUserInfoWithDict:responseObject[@"data"]];
 
+        
+        TLNetworking * http1 = [[TLNetworking alloc]init];
+        http1.code = @"805085";
+        http1.parameters[@"deviceToken"] = [USERDEFAULTS objectForKey:@"deviceToken1"];
+        http1.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+        [http1 postWithSuccess:^(id responseObject) {
+            //                    [USERDEFAULTS setObject:deviceToken forKey:@"deviceToken"];
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        
     } failure:^(NSError *error) {
 
     }];
@@ -164,7 +176,7 @@
             self.cvalue = responseObject[@"data"][@"cvalue"];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                if ([self.cvalue isEqualToString:@"1"]) {
+                if ([self.cvalue isEqualToString:@"3"]) {
                     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
                     [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
                     self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];

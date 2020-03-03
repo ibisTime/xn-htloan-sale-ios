@@ -11,6 +11,7 @@
 #define CarLoansPCH_pch
 
 #import <UIKit/UIKit.h>
+#import "XGPush.h"
 #import "CategoryPCH.pch"
 #import "CustomUIPHC.pch"
 #import "APICodeMacro.h"

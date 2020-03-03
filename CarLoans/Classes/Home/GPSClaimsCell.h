@@ -23,5 +23,5 @@
 @property (nonatomic , strong)UILabel *nameLabel;
 
 @property (nonatomic , strong)UILabel *InformationLabel;
-
+@property (nonatomic , strong)NSArray *dataAry;
 @end

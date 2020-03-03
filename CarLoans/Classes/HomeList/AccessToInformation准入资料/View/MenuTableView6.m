@@ -361,13 +361,24 @@
 {
     if ([_model.bizType isEqualToString:@"1"]) {
         [_writeArray replaceObjectAtIndex:9 withObject:evalPrice];
-    }else
+    }
+    else
     {
         [_writeArray replaceObjectAtIndex:5 withObject:evalPrice];
     }
     [self reloadData];
 }
 
+-(void)setModelNumber:(NSString *)modelNumber
+{
+    if ([_model.bizType isEqualToString:@"1"]) {
+        [_writeArray replaceObjectAtIndex:4 withObject:modelNumber];
+    }else
+    {
+        [_writeArray replaceObjectAtIndex:0 withObject:modelNumber];
+    }
+    [self reloadData];
+}
 
 -(void)setModel:(SurveyModel *)model
 {

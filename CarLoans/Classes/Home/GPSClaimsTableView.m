@@ -45,7 +45,9 @@
 {
     GPSClaimsCell *cell = [tableView dequeueReusableCellWithIdentifier:GPSClaims forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.dataAry = _dataAry;
     cell.gpsclaimsModel = self.model[indexPath.row];
+    
     return cell;
 }
 

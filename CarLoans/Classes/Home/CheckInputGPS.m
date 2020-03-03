@@ -38,6 +38,23 @@
     self.UnpassBtn.frame = CGRectMake(SCREEN_WIDTH / 2 + 10, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH / 2 - 20, 50);
     [self.UnpassBtn addTarget:self action:@selector(Confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.UnpassBtn];
+    
+    [self gps_apply_statusLoadData];
+}
+
+-(void)gps_apply_statusLoadData
+{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630036";
+    http.parameters[@"parentKey"] = @"gps_apply_status";
+    [http postWithSuccess:^(id responseObject) {
+        
+        self.tableView.dataAry = responseObject[@"data"];
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)InfoNotificationAction:(NSNotification *)notification
