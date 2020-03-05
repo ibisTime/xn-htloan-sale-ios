@@ -117,6 +117,7 @@
                              [BaseModel convertNull:self.shopCarGarage],
                              [BaseModel convertNull:self.ascription],
                              [BaseModel convertNull:self.bizType]
+                             
                              ];
     
             cell.rightStr = ary[indexPath.row];

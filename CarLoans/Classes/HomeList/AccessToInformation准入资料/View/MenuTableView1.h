@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *shopCarGarage;
 @property (nonatomic , copy)NSString *saleUserId;
 @property (nonatomic , copy)NSString *ascription;
+@property (nonatomic , copy)NSString *cardPostAddress;
 
 @end
 

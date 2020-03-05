@@ -77,7 +77,7 @@
                              [BaseModel convertNull:self.model.loanBankName],
                              bizType,
                              [BaseModel Chu1000:self.model.loanAmount],
-                             [[BaseModel user]note:self.model.curNodeCode],
+                             [[BaseModel user]note:self.model.materialNodeCode],
                              [self.model.applyDatetime convertToDetailDate],
                              [NSString stringWithFormat:@"%@（%@）",self.model.saleUserName,self.model.teamName]
                              ];

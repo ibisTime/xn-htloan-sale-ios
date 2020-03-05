@@ -70,14 +70,11 @@
                      [BaseModel convertNull:[[BaseModel user] setParentKey:@"work_profession" setDkey:self.position]],
                      [BaseModel Chu1000:self.yearIncome],
                      [BaseModel convertNull:self.presentJobYears],
-                     [BaseModel convertNull:[[BaseModel user] setParentKey:@"permanent_type" setDkey:self.permanentType]]
+                     [BaseModel convertNull:[[BaseModel user] setParentKey:@"permanent_type" setDkey:self.permanentType]],
+                     [BaseModel convertNull:[[BaseModel user] setParentKey:@"jk_address" setDkey:self.cardPostAddress]],
                      ];
-    if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 9 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 || indexPath.row == 16 ) {
-        
-        
-        
-        
-        
+    if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 9 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13 || indexPath.row == 16|| indexPath.row == 17 ) {
+
         if (self.isDetails == YES) {
             cell.type = MenuShowType;
         }else

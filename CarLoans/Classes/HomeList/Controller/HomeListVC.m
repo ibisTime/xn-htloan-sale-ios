@@ -87,6 +87,10 @@
     //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
 //    helper.parameters[@"isMy"] = @"1";
+    if ([self.curNodeCodeList[0] isEqualToString:@"h1"] || [self.curNodeCodeList[0] isEqualToString:@"h2"]) {
+        helper.parameters[@"materialNodeCodeList"]  =self.curNodeCodeList;
+        self.tableView.pledgeNodeCode = self.curNodeCodeList[0];
+    }else
     if ([self.curNodeCodeList[0] isEqualToString:@"e1"] || [self.curNodeCodeList[0] isEqualToString:@"e2"]) {
         helper.parameters[@"pledgeNodeCodeList"]  =self.curNodeCodeList;
         self.tableView.pledgeNodeCode = self.curNodeCodeList[0];

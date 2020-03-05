@@ -9,10 +9,12 @@
 #import "ImproveInformationVC.h"
 #import "ImproveInformationTableView.h"
 #import "JHAddressPickView.h"
+
 @interface ImproveInformationVC ()<RefreshDelegate,BaseModelDelegate>
 {
     NSInteger selectRow;
 }
+@property (nonatomic , strong)NSString *cardPostAddress;
 @property(nonatomic , strong)ImproveInformationTableView *tableView;
 @property(nonatomic , strong)BaseModel *baseModel;
 @property(nonatomic , strong)JHAddressPickView *pickView;
@@ -99,6 +101,13 @@
     if (selectRow == 16) {
         self.permanentType = dic[@"dkey"];
         self.tableView.permanentType = self.permanentType;
+    }
+//    if (selectRow == 17) {
+//        [_baseModel ReturnsParentKeyAnArray:@"jk_address"];
+//    }
+    if (selectRow == 17) {
+        _tableView.cardPostAddress = dic[@"dkey"];
+        _cardPostAddress = dic[@"dkey"];
     }
     [self.tableView reloadData];
 }
@@ -220,6 +229,9 @@
                 self.permanentType = creditUser[@"permanentType"];;
                 self.tableView.permanentType = creditUser[@"permanentType"];
                 
+                self.cardPostAddress = creditUser[@"cardPostAddress"];
+                self.tableView.cardPostAddress = creditUser[@"cardPostAddress"];
+                
                 [self.tableView reloadData];
             }
         }
@@ -287,6 +299,7 @@
                                   @"yearIncome":[BaseModel Cheng1000:tf5.text],
                                   @"presentJobYears":tf6.text,
                                   @"permanentType":[BaseModel convertNull:_permanentType],
+                                  @"cardPostAddress":[BaseModel convertNull:_cardPostAddress]
                                   }];
     
     http.parameters[@"creditUserList"] = creditUserList;
@@ -363,6 +376,10 @@
     if (indexPath.row == 16) {
         [_baseModel ReturnsParentKeyAnArray:@"permanent_type"];
     }
+    if (indexPath.row == 17) {
+        [_baseModel ReturnsParentKeyAnArray:@"jk_address"];
+    }
+    
 }
 
 

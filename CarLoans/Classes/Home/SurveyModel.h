@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SurveyModel : NSObject
-
+@property (nonatomic , copy)NSString *materialNodeCode;
 @property (nonatomic , assign)BOOL isChoose;
 
 @property (nonatomic , copy)NSString *userId;

@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)NSArray *detailsInfoArray;
 
 @property (nonatomic , strong)NSArray *detailsMenuArray;
-
+@property (nonatomic , strong)NSArray *menuArray4usedCar;
 @end
 
 NS_ASSUME_NONNULL_END

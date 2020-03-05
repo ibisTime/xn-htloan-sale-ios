@@ -33,6 +33,9 @@
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([self.model.bizType isEqualToString:@"1"]) {
+        return [MenuModel new].menuArray4usedCar.count;
+    }
     return [MenuModel new].menuArray4.count;
 }
 #pragma mark -- tableView
@@ -47,7 +50,9 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *nameArray = [MenuModel new].menuArray4;
-    
+    if ([self.model.bizType isEqualToString:@"1"]) {
+        nameArray = [MenuModel new].menuArray4usedCar;
+    }
     cell.leftStr = nameArray[indexPath.row];
     cell.rightTF.tag = 4000 + indexPath.row;
     
@@ -70,7 +75,6 @@
                 cell.rightStr = @"";
             }
         }
-        
         if (indexPath.row == 5) {
             NSString *str;
             if ([self.isAdvanceFund isEqualToString:@"1"]) {
@@ -172,21 +176,18 @@
         loanRatio = [NSString stringWithFormat:@"%.2f",[[BaseModel Chu1000:bankLoan[@"loanAmount"]] floatValue]/[[BaseModel Chu1000:self.model.carInfo[@"invoicePrice"]] floatValue]];
     }
     
-    NSString *rebateRate;
+    
+    
+    
     NSDictionary *carInfo = self.model.carInfo;
-    if ([[BaseModel Cheng100:bankLoan[@"rebateRate"]] floatValue] == 0) {
-        rebateRate = [BaseModel Cheng100:carInfo[@"shopCarGarageRate"]];
-    }else
-    {
-        rebateRate = [BaseModel Cheng100:bankLoan[@"rebateRate"]];
-    }
+    
     
     
     _writeArray = [NSMutableArray arrayWithArray:@[[BaseModel Chu1000:bankLoan[@"loanAmount"]],
                                                    @"",
                                                    [BaseModel Cheng100:self.bankRate],
                                                    [BaseModel Cheng100:bankLoan[@"totalRate"]],
-                                                   rebateRate,
+                                                   @"",
                                                    @"",
                                                    [BaseModel Chu1000:bankLoan[@"monthAmount"]],
                                                    [BaseModel Chu1000:bankLoan[@"repayFirstMonthAmount"]],
@@ -207,6 +208,31 @@
                                                    [BaseModel convertNull:bankLoan[@"notes"]]
                                                    ]];
     [self reloadData];
+    
+
+    
+    
+    TLNetworking *http = [TLNetworking new];
+    http.isShowMsg = YES;
+    http.code = @"630047";
+    http.parameters[@"key"] = @"rebate_rate";
+    http.showView = self;
+    [http postWithSuccess:^(id responseObject) {
+        
+        NSString *rebateRate;
+        if ([[BaseModel Cheng100:bankLoan[@"rebateRate"]] floatValue] == 0) {
+            rebateRate = [BaseModel Cheng100:responseObject[@"data"][@"cvalue"]];
+        }else
+        {
+            rebateRate = [BaseModel Cheng100:bankLoan[@"rebateRate"]];
+        }
+        
+        [_writeArray replaceObjectAtIndex:4 withObject:rebateRate];
+    } failure:^(NSError *error) {
+        
+    }];
+        
+    
 }
 
 

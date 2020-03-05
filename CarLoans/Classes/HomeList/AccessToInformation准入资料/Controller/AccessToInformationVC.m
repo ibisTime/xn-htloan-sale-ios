@@ -53,7 +53,7 @@
 
 @property (nonatomic , strong)UIButton *bottomBtn;
 
-
+@property (nonatomic , copy)NSString *cardPostAddress;
 @property (nonatomic , copy)NSString *loanBankCode;
 @property (nonatomic , copy)NSString *code;
 @property (nonatomic , copy)NSString *region;
@@ -500,11 +500,7 @@
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
-            case 5:
-            {
-                [_baseModel CustomBouncedView:[NSMutableArray arrayWithArray:@[@"新车",@"二手车"]] setState:@"100"];
-            }
-                break;
+            
             case 4:
             {
                 TLNetworking *http = [TLNetworking new];
@@ -524,6 +520,12 @@
                 }];
             }
                 break;
+            case 5:
+            {
+                [_baseModel CustomBouncedView:[NSMutableArray arrayWithArray:@[@"新车",@"二手车"]] setState:@"100"];
+            }
+                break;
+            
 //            case 8:
 //            {
 //                WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
@@ -570,6 +572,9 @@
         _SelectTag = indexPath.row + 40000;
         if (indexPath.row == 1) {
             [_baseModel ReturnsParentKeyAnArray:@"loan_period"];
+        }
+        if (indexPath.row == 4) {
+            
         }
         if (indexPath.row == 5) {
             [_baseModel CustomBouncedView:[NSMutableArray arrayWithArray:@[@"是",@"否"]] setState:@"100"];
@@ -791,8 +796,8 @@
         _tableView1.bizType = Str;
         _bizType = [NSString stringWithFormat:@"%ld",sid];
         _tableView6.bizType = _bizType;
-        
     }
+    
     if (_SelectTag < 20000) {
         [self.tableView1 reloadData];
     }
@@ -1120,8 +1125,8 @@
             self.tableView1.bizType = @"二手车";
         }
         
-        
-        
+        self.tableView1.cardPostAddress = self.model.creditUser[@"cardPostAddress"];
+        _cardPostAddress = self.model.creditUser[@"cardPostAddress"];
         
         [self.tableView1 reloadData];
         
@@ -1335,6 +1340,30 @@
     }
 }
 
+- (BOOL) isValidPhone:(NSString*)str{
+    
+    //新匹配166，199，198开头手机号码
+    
+    NSError *error = NULL;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^(((13[0-9])|(14[579])|(15([0-3]|[5-9]))|(16[6])|(17[0135678])|(18[0-9])|(19[89]))\\d{8})$" options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    NSTextCheckingResult *result = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    
+    
+    
+    
+    
+    if (result) {
+        
+        return YES;
+        
+    }
+    
+    return NO;
+    
+}
+
 -(void)bottomBtnClick
 {
     NSString *name;
@@ -1371,6 +1400,7 @@
         
         http.parameters[@"shopCarGarage"] = self.shopCarGarage;
         http.parameters[@"saleUserId"] = self.saleUserId;
+        http.parameters[@"cardPostAddress"] = self.cardPostAddress;
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -1398,6 +1428,10 @@
             [TLAlert alertWithInfo:@"请输入紧急联系人1的手机号"];
             return;
         }
+        if ([self isValidPhone:tf2.text] == NO) {
+            [TLAlert alertWithInfo:@"紧急联系人1手机号格式错误"];
+            return;
+        }
         if ([tf3.text isEqualToString:@""]) {
             [TLAlert alertWithInfo:@"请输入紧急联系人2的姓名"];
             return;
@@ -1408,6 +1442,10 @@
         }
         if ([tf4.text isEqualToString:@""]) {
             [TLAlert alertWithInfo:@"请输入紧急联系人2的手机号"];
+            return;
+        }
+        if ([self isValidPhone:tf4.text] == NO) {
+            [TLAlert alertWithInfo:@"紧急联系人2手机号格式错误"];
             return;
         }
         TLNetworking *http = [TLNetworking new];

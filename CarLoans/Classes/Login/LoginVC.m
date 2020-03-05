@@ -176,7 +176,7 @@
             self.cvalue = responseObject[@"data"][@"cvalue"];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                if ([self.cvalue isEqualToString:@"3"]) {
+                if ([self.cvalue isEqualToString:@"4"]) {
                     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
                     [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
                     self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];

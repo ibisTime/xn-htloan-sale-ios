@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)NSString *nowAddressCity;
 @property (nonatomic , strong)NSString *nowAddressArea;
 @property (nonatomic , strong)NSString *nowAddress;
-
+@property (nonatomic , strong)NSString *cardPostAddress;
 @property (nonatomic , strong)NSString *nowAddressMobile;
 
 @property (nonatomic , strong)NSString *nowAddressDate;

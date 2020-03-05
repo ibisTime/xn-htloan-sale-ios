@@ -101,7 +101,9 @@
 -(void)setModel:(SurveyModel *)model
 {
     _model = model;
-    if ([_pledgeNodeCode isEqualToString:@"e1"] || [_pledgeNodeCode isEqualToString:@"e2"]) {
+    if ([_pledgeNodeCode isEqualToString:@"h1"] || [_pledgeNodeCode isEqualToString:@"h2"]) {
+        stateLbl.text = [[BaseModel user]note:model.materialNodeCode];
+    }else if ([_pledgeNodeCode isEqualToString:@"e1"] || [_pledgeNodeCode isEqualToString:@"e2"]) {
         stateLbl.text = [[BaseModel user]note:model.pledgeNodeCode];
     }else
     {

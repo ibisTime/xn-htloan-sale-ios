@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)NSString *openCardAmount;
 @property (nonatomic , strong)NSString *notes;
 
+
 @property (nonatomic , assign)BOOL isLoadData;
 
 @property (nonatomic , assign)BOOL isDetails;

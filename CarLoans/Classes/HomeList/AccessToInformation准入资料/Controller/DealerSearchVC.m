@@ -129,6 +129,7 @@
     TLPageDataHelper * help = [[TLPageDataHelper alloc]init];
     help.code = @"632065";
     help.parameters[@"fullName"] = name;
+    help.parameters[@"agreementStatus"] = @"1";
     [help modelClass:[SurveyModel class]];
     help.tableView = self.tableview;
     help.isCurrency = YES;
