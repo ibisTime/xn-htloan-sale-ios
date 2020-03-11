@@ -88,15 +88,25 @@
 }
 
 + (BOOL) isBlankString:(NSString *)string {
-    if (string == nil || string == NULL )
+    if ([string isEqual:[NSNull null]]) {
+        return YES;
+    }
+    else if ([string isEqualToString:@""])
     {
         return YES;
     }
-    if ([string isKindOfClass:[NSNull class]])
+    else if ([string isKindOfClass:[NSNull class]])
     {
         return YES;
     }
-
+    else if ([string isEqualToString:@"(null)"])
+    {
+        return YES;
+    }
+    else if (string==nil){
+        return YES;
+    }
+    
     return NO;
 }
 
@@ -380,35 +390,118 @@
 
 +(NSString *)Cheng1000:(NSString *)num
 {
-    if ([num floatValue] == 0) {
+    NSString *num1 = [NSString stringWithFormat:@"%@",num];
+    if ([num1 floatValue] == 0) {
         return @"0";
     }
-    return [NSString stringWithFormat:@"%.0f",[num floatValue] * 1000];
+    return [BaseModel CHENGmult1:num1 mult2:@"1000" scale:0];
+//    [NSString stringWithFormat:@"%.0f",[num floatValue] * 1000];
 }
 
 +(NSString *)Chu1000:(NSString *)num
 {
-    if ([num floatValue] == 0) {
+    NSString *num1 = [NSString stringWithFormat:@"%@",num];
+    if ([num1 floatValue] == 0) {
         return @"";
     }
-    return [NSString stringWithFormat:@"%.2f",[num floatValue] / 1000];
+    return [BaseModel CHUmult1:num1 mult2:@"1000" scale:2];
+//    [NSString stringWithFormat:@"%.2f",[num floatValue] / 1000];
 }
+
+
 
 +(NSString *)Cheng100:(NSString *)num
 {
-    if ([num floatValue] == 0) {
+    NSString *num1 = [NSString stringWithFormat:@"%@",num];
+    if ([num1 floatValue] == 0) {
         return @"";
     }
-    return [NSString stringWithFormat:@"%.4f",[num floatValue] * 100];
+    return [BaseModel CHENGmult1:num1 mult2:@"100" scale:4];
 }
 
 +(NSString *)Chu100:(NSString *)num
 {
-    if ([num floatValue] == 0) {
+    NSString *num1 = [NSString stringWithFormat:@"%@",num];
+    if ([num1 floatValue] == 0) {
         return @"0";
     }
-    return [NSString stringWithFormat:@"%.6f",[num floatValue] / 100];
+//[NSString stringWithFormat:@"%.6f",[num floatValue] / 100]
+    return [BaseModel CHUmult1:num1 mult2:@"100" scale:4];
 }
+
+
++ (NSString *)CHENGmult1:(NSString *)mult1 mult2:(NSString *)mult2 scale:(NSUInteger)scale{
+    if ([mult1 isEqualToString:@""] || [mult2 isEqualToString:@""]) {
+        return @"0";
+    }
+    NSDecimalNumber *mult1Num = [[NSDecimalNumber alloc] initWithString:mult1];
+    NSDecimalNumber *mult2Num = [[NSDecimalNumber alloc] initWithString:mult2];
+    NSDecimalNumber *result = [mult1Num decimalNumberByMultiplyingBy:mult2Num];
+    NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler  decimalNumberHandlerWithRoundingMode:NSRoundDown
+                                                                                              scale:scale
+                                                                                   raiseOnExactness:NO
+                                                                                    raiseOnOverflow:NO
+                                                                                   raiseOnUnderflow:NO
+                                                                                raiseOnDivideByZero:YES];
+    
+    return [[result decimalNumberByRoundingAccordingToBehavior:roundUp] stringValue];
+    
+}
+
++ (NSString *)CHUmult1:(NSString *)mult1 mult2:(NSString *)mult2 scale:(NSUInteger)scale{
+    if ([mult1 floatValue] == 0 || [mult2 floatValue]  == 0) {
+        return @"0";
+    }
+    NSDecimalNumber *mult1Num = [[NSDecimalNumber alloc] initWithString:mult1];
+    NSDecimalNumber *mult2Num = [[NSDecimalNumber alloc] initWithString:mult2];
+    NSDecimalNumber *result = [mult1Num decimalNumberByDividingBy:mult2Num];
+    NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler  decimalNumberHandlerWithRoundingMode:NSRoundDown
+                                                                                              scale:scale
+                                                                                   raiseOnExactness:NO
+                                                                                    raiseOnOverflow:NO
+                                                                                   raiseOnUnderflow:NO
+                                                                                raiseOnDivideByZero:YES];
+    
+    return [[result decimalNumberByRoundingAccordingToBehavior:roundUp] stringValue];
+    
+}
+
++ (NSString *)JIANGmult1:(NSString *)mult1 mult2:(NSString *)mult2 scale:(NSUInteger)scale{
+    if ([mult1 isEqualToString:@""] || [mult2 isEqualToString:@""]) {
+        return @"0";
+    }
+    NSDecimalNumber *mult1Num = [[NSDecimalNumber alloc] initWithString:mult1];
+    NSDecimalNumber *mult2Num = [[NSDecimalNumber alloc] initWithString:mult2];
+    NSDecimalNumber *result = [mult1Num decimalNumberBySubtracting:mult2Num];
+    NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler  decimalNumberHandlerWithRoundingMode:NSRoundDown
+                                                                                              scale:scale
+                                                                                   raiseOnExactness:NO
+                                                                                    raiseOnOverflow:NO
+                                                                                   raiseOnUnderflow:NO
+                                                                                raiseOnDivideByZero:YES];
+    
+    return [[result decimalNumberByRoundingAccordingToBehavior:roundUp] stringValue];
+    
+}
+
++ (NSString *)JIAmult1:(NSString *)mult1 mult2:(NSString *)mult2 scale:(NSUInteger)scale{
+    if ([mult1 isEqualToString:@""] || [mult2 isEqualToString:@""]) {
+        return @"0";
+    }
+    NSDecimalNumber *mult1Num = [[NSDecimalNumber alloc] initWithString:mult1];
+    NSDecimalNumber *mult2Num = [[NSDecimalNumber alloc] initWithString:mult2];
+    NSDecimalNumber *result = [mult1Num decimalNumberByAdding:mult2Num];
+    NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler  decimalNumberHandlerWithRoundingMode:NSRoundDown
+                                                                                              scale:scale
+                                                                                   raiseOnExactness:NO
+                                                                                    raiseOnOverflow:NO
+                                                                                   raiseOnUnderflow:NO
+                                                                                raiseOnDivideByZero:YES];
+    return [[result decimalNumberByRoundingAccordingToBehavior:roundUp] stringValue];
+}
+
+
+
 
 -(NSString *)setParentKey:(NSString *)parentKey setDvalue:(NSString *)dvalue
 {

@@ -92,8 +92,26 @@
     UITextField *tf2 = [self.view viewWithTag:1002];
     UITextField *tf3 = [self.view viewWithTag:1003];
     //    单位地址
-
-    
+    if ([tf1.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入工作单位"];
+        return;
+    }
+    if ([BaseModel isBlankString:_position] == YES) {
+        [TLAlert alertWithInfo:@"请选择职业"];
+        return;
+    }
+    if ([tf2.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入现住地址"];
+        return;
+    }
+    if ([tf3.text isEqualToString:@""]) {
+        [TLAlert alertWithInfo:@"请输入单位地址"];
+        return;
+    }
+    if ([BaseModel isBlankString:_relation] == YES) {
+        [TLAlert alertWithInfo:@"请选择与主贷人关系"];
+        return;
+    }
 //    @property (nonatomic , strong)NSString *companyName;
 //    @property (nonatomic , strong)NSString *position;
 //    @property (nonatomic , strong)NSString *nowAddress;

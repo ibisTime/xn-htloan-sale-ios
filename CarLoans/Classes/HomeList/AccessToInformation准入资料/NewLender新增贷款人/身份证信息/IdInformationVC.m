@@ -32,6 +32,7 @@
     self.tableView.gender = self.gender;
     self.tableView.customerBirth = self.customerBirth;
     self.tableView.idNo = self.idNo;
+    
     self.tableView.birthAddress = self.birthAddress;
     self.tableView.authref = self.authref;
     self.tableView.statdate = self.statdate;

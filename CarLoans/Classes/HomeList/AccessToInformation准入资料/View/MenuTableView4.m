@@ -173,7 +173,8 @@
     NSDictionary *bankLoan = self.model.bankLoan;
     NSString *loanRatio = @"";
     if ([bankLoan[@"loanAmount"] floatValue] != 0 && [self.model.carInfo[@"invoicePrice"] floatValue] != 0) {
-        loanRatio = [NSString stringWithFormat:@"%.2f",[[BaseModel Chu1000:bankLoan[@"loanAmount"]] floatValue]/[[BaseModel Chu1000:self.model.carInfo[@"invoicePrice"]] floatValue]];
+        
+        loanRatio = [NSString stringWithFormat:@"%@",[BaseModel CHUmult1:[BaseModel Chu1000:bankLoan[@"loanAmount"]] mult2:[BaseModel Chu1000:self.model.carInfo[@"invoicePrice"]] scale:2]];
     }
     
     
@@ -231,7 +232,7 @@
     } failure:^(NSError *error) {
         
     }];
-        
+    
     
 }
 
@@ -265,7 +266,7 @@
     //    费用总额=贷款本金+服务费
     UITextField *tf18 = [self viewWithTag:4018];
     
-    tf18.text = [NSString stringWithFormat:@"%.2f",[textField4000.text floatValue]+[textField4015.text floatValue]];
+    tf18.text = [NSString stringWithFormat:@"%@",[BaseModel JIAmult1:textField4000.text mult2:textField4015.text scale:2]];
     [_writeArray replaceObjectAtIndex:18 withObject:[NSString stringWithFormat:@"%@",tf18.text]];
 }
 
@@ -274,7 +275,8 @@
     UITextField *textField4000 = [self viewWithTag:4000];
     UITextField *textField4011 = [self viewWithTag:4011];
     UITextField *textField4012 = [self viewWithTag:4012];
-    textField4012.text = [NSString stringWithFormat:@"%.2f",[textField4000.text floatValue]/[textField4011.text floatValue]];
+    
+    textField4012.text = [NSString stringWithFormat:@"%@",[BaseModel CHUmult1:textField4000.text mult2:textField4011.text scale:2]];
     [_writeArray replaceObjectAtIndex:12 withObject:[NSString stringWithFormat:@"%@",textField4012.text]];
 }
 
@@ -333,8 +335,8 @@
             [_writeArray replaceObjectAtIndex:7 withObject:[NSString stringWithFormat:@"%@",tf1.text]];
             [_writeArray replaceObjectAtIndex:8 withObject:[NSString stringWithFormat:@"%@",tf3.text]];
             [_writeArray replaceObjectAtIndex:15 withObject:[NSString stringWithFormat:@"%@",tf4.text]];
-            
-            tf18.text = [NSString stringWithFormat:@"%.2f",[textField4000.text floatValue]+[textField4015.text floatValue]];
+            ;
+            tf18.text = [NSString stringWithFormat:@"%@",[BaseModel JIAmult1:textField4000.text mult2:textField4015.text scale:2]];
             [_writeArray replaceObjectAtIndex:18 withObject:[NSString stringWithFormat:@"%@",tf18.text]];
         } failure:^(NSError *error) {
             

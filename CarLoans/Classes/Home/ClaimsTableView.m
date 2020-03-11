@@ -73,7 +73,7 @@
     NSDictionary *dataDic = [USERDEFAULTS objectForKey:USERDATA];
 //    _companyLbl.text = [NSString stringWithFormat:@"%@-%@-%@",[BaseModel convertNull: dataDic[@"companyName"]],[BaseModel convertNull:dataDic[@"departmentName"]],[BaseModel convertNull:dataDic[@"postName"]]];
     
-    NSArray *ary = @[[BaseModel convertNull: dataDic[@"companyName"]],[NSString stringWithFormat:@"%@-%@-%@",[BaseModel convertNull: dataDic[@"companyName"]],[BaseModel convertNull:dataDic[@"departmentName"]],[BaseModel convertNull:dataDic[@"postName"]]],@"",@""];
+    NSArray *ary = @[[BaseModel convertNull: dataDic[@"teamName"]],[NSString stringWithFormat:@"%@-%@-%@",[BaseModel convertNull: dataDic[@"companyName"]],[BaseModel convertNull:dataDic[@"departmentName"]],[BaseModel convertNull:dataDic[@"postName"]]],@"",@""];
     cell.rightStr = ary[indexPath.row];
     
     

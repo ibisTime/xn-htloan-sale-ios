@@ -40,7 +40,7 @@
         
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"工作单位",@"职业",@"现住地址",@"单位地址",@"与主贷人关系"];
+    NSArray *nameArray = @[@"*工作单位",@"*职业",@"*现住地址",@"*单位地址",@"*与主贷人关系"];
     cell.leftStr = nameArray[indexPath.row];
 
     NSArray *ary = @[[BaseModel convertNull:self.companyName],

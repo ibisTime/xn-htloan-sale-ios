@@ -12,6 +12,9 @@
 #import "CheckDetailsVC.h"
 #import "AdmissionDetailsVC.h"
 @interface CustomerVC ()<RefreshDelegate>
+{
+    UITextField *titleTF;
+}
 @property (nonatomic , strong)CustomerTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <SurveyModel *>*models;
 
@@ -29,6 +32,32 @@
 
 - (void)viewDidLoad {
     self.title = @"客户";
+    
+    
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 57)];
+    backView.backgroundColor = kAppCustomMainColor;
+    [self.view addSubview:backView];
+    
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 58 - 15, 37)];
+    titleView.backgroundColor = kHexColor(@"#ffffff");
+    kViewRadius(titleView, 37/2);
+    [self.view addSubview:titleView];
+    
+    UIImageView *iconImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 11, 15, 15)];
+    iconImg.image = kImage(@"sousuo-4");
+    [titleView addSubview:iconImg];
+    
+    titleTF= [[UITextField alloc]initWithFrame:CGRectMake(34 + 4, 0, titleView.width - 38 - 15, 37)];
+    [titleTF setValue:Font(13) forKeyPath:@"_placeholderLabel.font"];
+    titleTF.font = Font(13);
+    titleTF.placeholder = @"请输入客户姓名，手机号，身份证号";
+    [titleView addSubview:titleTF];
+    
+    UIButton *searchBth = [UIButton buttonWithTitle:@"搜索" titleColor:kWhiteColor backgroundColor:kClearColor titleFont:16];
+    searchBth.frame = CGRectMake(SCREEN_WIDTH - 38 - 10, 10, 38, 37);
+    [searchBth addTarget:self action:@selector(searchBthClcik) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:searchBth];
+    
     [self initTableView];
     [self initNavigationController];
     
@@ -39,6 +68,12 @@
         
     }];
     [self.tableView beginRefreshing];
+}
+
+-(void)searchBthClcik
+{
+    [self.view endEditing:YES];
+    [self loadData];
 }
 
 -(void)cdbiz_statusLoadData
@@ -57,7 +92,7 @@
 
 -(void)initTableView
 {
-    self.tableView = [[CustomerTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - kTabBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView = [[CustomerTableView alloc] initWithFrame:CGRectMake(0, 57, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - kTabBarHeight - 57) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];
@@ -79,6 +114,7 @@
 //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
     helper.parameters[@"isMy"] = @"1";
+    helper.parameters[@"keyword"] = titleTF.text;
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

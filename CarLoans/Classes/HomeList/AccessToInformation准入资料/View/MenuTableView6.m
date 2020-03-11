@@ -315,10 +315,10 @@
 -(void)setOriginalPrice:(NSString *)originalPrice
 {
     if ([_model.bizType isEqualToString:@"1"]) {
-        [_writeArray replaceObjectAtIndex:5 withObject:originalPrice];
+        [_writeArray replaceObjectAtIndex:5 withObject:[BaseModel Chu1000:originalPrice]];
     }else
     {
-        [_writeArray replaceObjectAtIndex:1 withObject:originalPrice];
+        [_writeArray replaceObjectAtIndex:1 withObject:[BaseModel Chu1000:originalPrice]];
     }
     [self reloadData];
 }
@@ -360,11 +360,11 @@
 -(void)setEvalPrice:(NSString *)evalPrice
 {
     if ([_model.bizType isEqualToString:@"1"]) {
-        [_writeArray replaceObjectAtIndex:9 withObject:evalPrice];
+        [_writeArray replaceObjectAtIndex:9 withObject:[BaseModel Chu1000:evalPrice]];
     }
     else
     {
-        [_writeArray replaceObjectAtIndex:5 withObject:evalPrice];
+        [_writeArray replaceObjectAtIndex:5 withObject:[BaseModel Chu1000:evalPrice]];
     }
     [self reloadData];
 }
@@ -393,20 +393,20 @@
                          @"",
                          @"",
                          [BaseModel convertNull:self.model.carInfo[@"model"]],
-                         [BaseModel convertNull:self.model.carInfo[@"carPrice"]],
+                         [BaseModel Chu1000:self.model.carInfo[@"carPrice"]],
                          [BaseModel convertNull:self.model.carInfo[@"carFrameNo"]],
                          [BaseModel convertNull:self.model.carInfo[@"carEngineNo"]],
                          [BaseModel convertNull:self.model.carInfo[@"carNumber"]],
-                         [BaseModel convertNull:self.model.carInfo[@"evalPrice"]]
+                         [BaseModel Chu1000:self.model.carInfo[@"evalPrice"]]
                          ]];
     }else{
         _writeArray = [NSMutableArray arrayWithArray:
                        @[[BaseModel convertNull:self.model.carInfo[@"model"]],
-                         [BaseModel convertNull:self.model.carInfo[@"carPrice"]],
+                         [BaseModel Chu1000:self.model.carInfo[@"carPrice"]],
                          [BaseModel convertNull:self.model.carInfo[@"carFrameNo"]],
                          [BaseModel convertNull:self.model.carInfo[@"carEngineNo"]],
                          [BaseModel convertNull:self.model.carInfo[@"carNumber"]],
-                         [BaseModel convertNull:self.model.carInfo[@"evalPrice"]]
+                         [BaseModel Chu1000:self.model.carInfo[@"evalPrice"]]
                          ]];
     }
     

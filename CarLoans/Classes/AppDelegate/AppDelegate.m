@@ -51,12 +51,62 @@
         self.window.rootViewController = TabBarVC;
     }
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self upgrade];
+    });
     
     
     [self.window makeKeyAndVisible];
     return YES;
 }
 
+- (NSString *)version {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
+-(void)upgrade
+{
+    TLNetworking *http2 = [[TLNetworking alloc] init];
+    http2.code = @"630048";
+    http2.parameters[@"type"] = @"ios";
+    http2.parameters[@"start"] = @"1";
+    http2.parameters[@"limit"] = @"10";
+//    http2.isLocal = YES;
+    [http2 postWithSuccess:^(id responseObject) {
+        
+        NSDictionary *update = responseObject[@"data"];
+        //获取当前版本号
+        NSString *currentVersion = [self version];
+        if ([currentVersion integerValue] < [update[@"version"] integerValue]) {
+            if ([update[@"forceUpdate"] isEqualToString:@"0"]) {
+                //不强制
+                [TLAlert alertWithTitle:@"更新提示" msg:update[@"note"] confirmMsg:@"立即升级" cancleMsg:@"稍后提醒" cancle:^(UIAlertAction *action) {
+                    
+                } confirm:^(UIAlertAction *action) {
+                    [self goBcoinWeb];
+                }];
+            } else {
+                //强制
+                [TLAlert alertWithTitle:@"更新提醒" message:update[@"note"] confirmMsg:@"立即升级" confirmAction:^{
+                    [self goBcoinWeb];
+                }];
+            }
+        } else {
+            
+//            [self configurationLoadData];
+            
+        }
+        
+    } failure:^(NSError *error) {
+
+    }];
+}
+
+
+- (void)goBcoinWeb{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/m-help/id1449227379?mt=8"]];
+    [[UIApplication sharedApplication]openURL:url];
+}
 
 -(void)XGPushSetUp
 {

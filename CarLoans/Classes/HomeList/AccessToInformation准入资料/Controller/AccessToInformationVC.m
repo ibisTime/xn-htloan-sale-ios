@@ -1189,8 +1189,15 @@
         self.isAzGps = [BaseModel convertNull:self.model.carInfo[@"isAzGps"]];
         self.tableView6.isAzGps = self.isAzGps;
         
-        self.isPublicCard = [BaseModel convertNull:self.model.carInfo[@"isPublicCard"]];
-        self.tableView6.isPublicCard = self.isPublicCard;
+        if ([BaseModel isBlankString:self.model.carInfo[@"isPublicCard"]] == YES) {
+            self.isPublicCard = @"0";
+            self.tableView6.isPublicCard = self.isPublicCard;
+        }else
+        {
+            self.isPublicCard = [BaseModel convertNull:self.model.carInfo[@"isPublicCard"]];
+            self.tableView6.isPublicCard = self.isPublicCard;
+        }
+        
         
         self.tableView6.model = self.model;
         
@@ -1626,11 +1633,11 @@
             
             
             http.parameters[@"model"] = tf4.text;
-            http.parameters[@"carPrice"] = tf5.text;
+            http.parameters[@"carPrice"] = [BaseModel Cheng1000:tf5.text];
             http.parameters[@"carFrameNo"] = tf6.text;
             http.parameters[@"carEngineNo"] = tf7.text;
             http.parameters[@"carNumber"] = tf8.text;
-            http.parameters[@"evalPrice"] = tf9.text;
+            http.parameters[@"evalPrice"] = [BaseModel Cheng1000:tf9.text];
             http.parameters[@"isAzGps"] = self.isAzGps;
             http.parameters[@"isPublicCard"] = self.isPublicCard;
             http.parameters[@"region"] = self.region;
@@ -1638,11 +1645,11 @@
         else
         {
             http.parameters[@"model"] = tf0.text;
-            http.parameters[@"carPrice"] = tf1.text;
+            http.parameters[@"carPrice"] = [BaseModel Cheng1000:tf1.text];
             http.parameters[@"carFrameNo"] = tf2.text;
             http.parameters[@"carEngineNo"] = tf3.text;
             http.parameters[@"carNumber"] = tf4.text;
-            http.parameters[@"evalPrice"] = tf5.text;
+            http.parameters[@"evalPrice"] = [BaseModel Cheng1000:tf5.text];
             http.parameters[@"isAzGps"] = self.isAzGps;
             http.parameters[@"isPublicCard"] = self.isPublicCard;
             http.parameters[@"region"] = self.region;

@@ -75,4 +75,13 @@
 +(NSString *)GetImgAccordingKeyAttachments:(NSArray *)attachments kname:(NSString *)kname;
 
 
++ (NSString *)CHENGmult1:(NSString *)mult1 mult2:(NSString *)mult2 scale:(NSUInteger)scale;
+
++ (NSString *)CHUmult1:(NSString *)mult1 mult2:(NSString *)mult2 scale:(NSUInteger)scale;
+
++ (NSString *)JIANGmult1:(NSString *)mult1 mult2:(NSString *)mult2 scale:(NSUInteger)scale;
+
++ (NSString *)JIAmult1:(NSString *)mult1 mult2:(NSString *)mult2 scale:(NSUInteger)scale;
+
+
 @end

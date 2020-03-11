@@ -33,6 +33,8 @@
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.model = self.model;
+    self.tableView.repayBankDate = @"25";
+    repayBankDate = @"25";
     [self.view addSubview:self.tableView];
     
     UIButton *throughBtn = [UIButton buttonWithTitle:@"返回" titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16 cornerRadius:2];
@@ -59,7 +61,7 @@
         if (indexPath.row == 2 || indexPath.row == 3) {
             selectRow = indexPath.row;
             NSMutableArray *array = [NSMutableArray array];
-            for (int i = 0; i < 31; i ++) {
+            for (int i = 1; i < 31; i ++) {
                 [array addObject:[NSString stringWithFormat:@"%ld",i]];
             }
             BaseModel *baseModel = [BaseModel user];

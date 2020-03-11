@@ -70,7 +70,7 @@
                          
                          ];
         cell.rightStr = ary[indexPath.row];
-        NSArray *nameArray = [MenuModel new].menuSecondgHandArray1;
+        NSArray *nameArray = [MenuModel new].menuArray1;
         cell.leftStr = nameArray[indexPath.row];
         cell.type = MenuShowType;
 //    }

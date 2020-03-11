@@ -231,6 +231,7 @@
 		1FBAECEA23BB8E1300832A3C /* DetailsMenuTableView14.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBAECE923BB8E1300832A3C /* DetailsMenuTableView14.m */; };
 		1FBAECED23BB8E3D00832A3C /* DetailsMenuTableView15.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBAECEC23BB8E3D00832A3C /* DetailsMenuTableView15.m */; };
 		1FBAECF023BC9E6700832A3C /* ImageBrowsingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBAECEE23BC9E6600832A3C /* ImageBrowsingVC.m */; };
+		1FDC92252417712500736D21 /* InsuranceFormulaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC92242417712500736D21 /* InsuranceFormulaVC.m */; };
 		1FFF95E823FA37FC0074D7EA /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFF95E723FA37FB0074D7EA /* libXG-SDK.a */; };
 		3600B2342297D0BF002C4C18 /* YeWuCheckVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600B2332297D0BF002C4C18 /* YeWuCheckVC.m */; };
 		3600B2372297D107002C4C18 /* YeWuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600B2362297D107002C4C18 /* YeWuTableView.m */; };
@@ -1132,6 +1133,8 @@
 		1FBAECEC23BB8E3D00832A3C /* DetailsMenuTableView15.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsMenuTableView15.m; sourceTree = "<group>"; };
 		1FBAECEE23BC9E6600832A3C /* ImageBrowsingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowsingVC.m; sourceTree = "<group>"; };
 		1FBAECEF23BC9E6700832A3C /* ImageBrowsingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBrowsingVC.h; sourceTree = "<group>"; };
+		1FDC92232417712500736D21 /* InsuranceFormulaVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsuranceFormulaVC.h; sourceTree = "<group>"; };
+		1FDC92242417712500736D21 /* InsuranceFormulaVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsuranceFormulaVC.m; sourceTree = "<group>"; };
 		1FFF95E623FA37FB0074D7EA /* XGPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGPush.h; sourceTree = "<group>"; };
 		1FFF95E723FA37FB0074D7EA /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libXG-SDK.a"; sourceTree = "<group>"; };
 		3600B2322297D0BF002C4C18 /* YeWuCheckVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YeWuCheckVC.h; sourceTree = "<group>"; };
@@ -2179,6 +2182,8 @@
 				1F072F7223B5F2010094E99A /* IntoFileVC.m */,
 				1F072F7423B5F2130094E99A /* IntoFileTableView.h */,
 				1F072F7523B5F2130094E99A /* IntoFileTableView.m */,
+				1FDC92232417712500736D21 /* InsuranceFormulaVC.h */,
+				1FDC92242417712500736D21 /* InsuranceFormulaVC.m */,
 			);
 			path = "IntoFile入档";
 			sourceTree = "<group>";
@@ -6725,6 +6730,7 @@
 				7A13AECA21104E4400B8F785 /* QNUrlSafeBase64.m in Sources */,
 				366201BB2292D1740010C78A /* SignTableView.m in Sources */,
 				7A13AED121104E4400B8F785 /* QNResumeUpload.m in Sources */,
+				1FDC92252417712500736D21 /* InsuranceFormulaVC.m in Sources */,
 				1F072F5B23B5EA260094E99A /* IntoTheLoanTableView.m in Sources */,
 				7A3582BF2117EB50006FB5B5 /* BankLendingVC.m in Sources */,
 				1F00AE8122718A3F00A8E15D /* CreditReviewTableView.m in Sources */,

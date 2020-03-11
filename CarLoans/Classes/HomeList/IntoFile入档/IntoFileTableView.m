@@ -93,6 +93,9 @@
         cell.leftStr = nameArray[indexPath.row];
         if (indexPath.row == 0) {
             cell.type = MenuShowType;
+        }else if(indexPath.row == 2)
+        {
+            cell.type = MenuPushType;
         }else
         {
             cell.type = MenuChooseType;

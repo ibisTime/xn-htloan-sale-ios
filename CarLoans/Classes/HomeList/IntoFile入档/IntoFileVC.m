@@ -8,6 +8,7 @@
 
 #import "IntoFileVC.h"
 #import "IntoFileTableView.h"
+#import "InsuranceFormulaVC.h"
 @interface IntoFileVC ()<RefreshDelegate,BaseModelDelegate>
 {
     NSString *syxDateStart;
@@ -121,23 +122,31 @@
         if (indexPath.row == 2) {
             selectRow = indexPath.row;
             
-            TLNetworking *http = [TLNetworking new];
-            http.isShowMsg = YES;
-            http.code = @"632046";
-            http.showView = self.view;
-            [http postWithSuccess:^(id responseObject) {
-                NSArray *ary = responseObject[@"data"];
-                insuranceCompanyArray = responseObject[@"data"];
-                NSMutableArray *array = [NSMutableArray array];
-                for (int i = 0; i < ary.count; i ++) {
-                    [array addObject:ary[i][@"name"]];
-                }
-                BaseModel *baseModel = [BaseModel new];
-                baseModel.ModelDelegate = self;
-                [baseModel CustomBouncedView:array setState:@"100"];
-            } failure:^(NSError *error) {
-                
-            }];
+//            TLNetworking *http = [TLNetworking new];
+//            http.isShowMsg = YES;
+//            http.code = @"632046";
+//            http.showView = self.view;
+//            [http postWithSuccess:^(id responseObject) {
+//                NSArray *ary = responseObject[@"data"];
+//                insuranceCompanyArray = responseObject[@"data"];
+//                NSMutableArray *array = [NSMutableArray array];
+//                for (int i = 0; i < ary.count; i ++) {
+//                    [array addObject:ary[i][@"name"]];
+//                }
+//                BaseModel *baseModel = [BaseModel new];
+//                baseModel.ModelDelegate = self;
+//                [baseModel CustomBouncedView:array setState:@"100"];
+//            } failure:^(NSError *error) {
+//
+//            }];
+            CarLoansWeakSelf;
+            InsuranceFormulaVC *vc = [InsuranceFormulaVC new];
+            vc.returnAryBlock = ^(SurveyModel *model) {
+                insuranceCompany = model.code;
+                weakSelf.tableView.insuranceCompany = model.name;
+                [weakSelf.tableView reloadData];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
         }
         if (indexPath.row == 3 || indexPath.row == 4) {
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
@@ -167,10 +176,9 @@
         enterLocation = enterLocationArray[sid][@"code"];
         self.tableView.enterLocation = enterLocationArray[sid][@"name"];
     }
-    if (selectRow == 2) {
-        insuranceCompany = insuranceCompanyArray[sid][@"code"];
-        self.tableView.insuranceCompany = insuranceCompanyArray[sid][@"name"];
-    }
+//    if (selectRow == 2) {
+//
+//    }
     [self.tableView reloadData];
 }
 
@@ -217,10 +225,10 @@
         [TLAlert alertWithInfo:@"请上传抵押合同"];
         return;
     }
-    if (enterOtherPdf.count == 0) {
-        [TLAlert alertWithInfo:@"请上传其他材料"];
-        return;
-    }
+//    if (enterOtherPdf.count == 0) {
+//        [TLAlert alertWithInfo:@"请上传其他材料"];
+//        return;
+//    }
     
     
     TLNetworking *http = [TLNetworking new];

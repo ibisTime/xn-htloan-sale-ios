@@ -16,6 +16,7 @@ typedef void (^ReturnPhotoAryBlock)(NSString *idFront,NSDictionary *idFrontDic,N
 @property (nonatomic, copy) ReturnPhotoAryBlock returnAryBlock;
 @property (nonatomic , strong)NSString *idFront;
 @property (nonatomic , strong)NSString *idReverse;
+@property (nonatomic , strong)NSString *idNo;
 @property (nonatomic , strong)NSDictionary *idFrontDic;
 @property (nonatomic , strong)NSDictionary *idReverseDic;
 @property (nonatomic , strong)NSString *holdIdCardPdf;

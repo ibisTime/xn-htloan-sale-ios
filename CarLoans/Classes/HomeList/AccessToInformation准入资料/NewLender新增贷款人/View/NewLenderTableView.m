@@ -44,9 +44,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.isDetails = self.isDetails;
         cell.idFrontDic = self.idFrontDic;
-        cell.idReverse = self.idReverse;
-        cell.idFront = self.idFront;
-        cell.holdIdCardPdf = self.holdIdCardPdf;
+        cell.idReverse = [BaseModel convertNull:self.idReverse];
+        cell.idFront = [BaseModel convertNull:self.idFront];
+        cell.holdIdCardPdf = [BaseModel convertNull:self.holdIdCardPdf];
         cell.idReverseDic = self.idReverseDic;
         
         cell.returnAryBlock1 = ^(NSString * _Nonnull idFront, NSDictionary * _Nonnull idFrontDic, NSString * _Nonnull idReverse, NSDictionary * _Nonnull idReverseDic, NSString * _Nonnull holdIdCardPdf) {
@@ -78,6 +78,12 @@
             cell.type = MenuShowType;
             cell.rightStr = _dataDic[@"dvalue"];
             
+        }else if (indexPath.row == 2) {
+//            身份证信息
+            cell.type = MenuPushType;
+            
+            cell.rightStr = _idNo;
+            
         }else if (indexPath.row == 4) {
             if (self.isDetails == YES) {
                 cell.type = MenuShowType;
@@ -95,7 +101,7 @@
                 }
             }
             
-        }else if (indexPath.row == 2 || indexPath.row == 6) {
+        }else if (indexPath.row == 6) {
             cell.type = MenuPushType;
         }else
         {

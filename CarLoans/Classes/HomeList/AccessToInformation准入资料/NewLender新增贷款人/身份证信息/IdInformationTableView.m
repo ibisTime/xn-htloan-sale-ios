@@ -43,15 +43,15 @@
     
     cell.leftStr = nameArray[indexPath.row];
     
-    NSArray *ary = @[self.userName,
-                     self.gender,
-                     self.nation,
-                     self.customerBirth,
-                     self.authref,
-                     self.birthAddress,
-                     self.startDate,
-                     self.statdate,
-                     self.idNo];
+    NSArray *ary = @[[BaseModel convertNull:self.userName],
+                     [BaseModel convertNull:self.gender],
+                     [BaseModel convertNull:self.nation],
+                     [BaseModel convertNull:self.customerBirth],
+                     [BaseModel convertNull:self.authref],
+                     [BaseModel convertNull:self.birthAddress],
+                     [BaseModel convertNull:self.startDate],
+                     [BaseModel convertNull:self.statdate],
+                     [BaseModel convertNull:self.idNo]];
     if (indexPath.row == 3 || indexPath.row == 6) {
         cell.rightStr = ary[indexPath.row];
         if (self.isDetails == YES) {

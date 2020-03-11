@@ -138,34 +138,72 @@
     self.companyLbl = companyLbl;
     [backView addSubview:companyLbl];
     
-    NSArray *array = @[@"登录名",@"手机号",@"修改登录密码"];
-    for (int i = 0 ; i < 3; i ++) {
+    NSArray *array = @[@"登录名",@"手机号",@"修改登录密码",@"当前版本"];
+    for (int i = 0 ; i < 4; i ++) {
         
         
         UIButton *backBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        backBtn.frame = CGRectMake(15, backView.yy + 15 + i %3 * 50, SCREEN_WIDTH - 30, 50);
+        backBtn.frame = CGRectMake(15, backView.yy + 15 + i %4 * 50, SCREEN_WIDTH - 30, 50);
         [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         backBtn.tag = i + 1000;
         [self.view addSubview:backBtn];
         
         
-        UILabel *theTitleLbl = [UILabel labelWithFrame:CGRectMake(15, backView.yy + 15 + i %3 * 50, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kHexColor(@"#333333")];
+        UILabel *theTitleLbl = [UILabel labelWithFrame:CGRectMake(15, backView.yy + 15 + i %4 * 50, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kHexColor(@"#333333")];
         theTitleLbl.text = array[i];
         [self.view addSubview:theTitleLbl];
         
         
-        UILabel *rightLbl = [UILabel labelWithFrame:CGRectMake(15, backView.yy + 15 + i %3 * 50, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#999999")];
+        UILabel *rightLbl = [UILabel labelWithFrame:CGRectMake(15, backView.yy + 15 + i %4 * 50, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#999999")];
         
         rightLbl.tag = 100 + i;
         
         if (i == 0) {
-            rightLbl.frame = CGRectMake(15, backView.yy + 15 + i %3 * 50, SCREEN_WIDTH - 30, 50);
+            rightLbl.frame = CGRectMake(15, backView.yy + 15 + i %4 * 50, SCREEN_WIDTH - 30, 50);
             rightLbl.text = @"";
+        }else if (i == 3) {
+            TLNetworking *http2 = [[TLNetworking alloc] init];
+            
+            http2.code = @"630048";
+            http2.parameters[@"type"] = @"ios";
+            http2.parameters[@"start"] = @"1";
+            http2.parameters[@"limit"] = @"10";
+            //    http2.isLocal = YES;
+            [http2 postWithSuccess:^(id responseObject) {
+                
+                
+                
+                NSDictionary *update = responseObject[@"data"];
+                //获取当前版本号
+                NSString *currentVersion = [self version];
+                if ([currentVersion integerValue] < [update[@"version"] integerValue]) {
+                    
+//                    rightLbl.frame = CGRectMake(15, backView.yy + 15 + i %4 * 50, SCREEN_WIDTH - 30, 50);
+                    rightLbl.text = [NSString stringWithFormat:@"%@（有新版本可更新）",[NSString appVersionString]];
+                    
+                    
+                    rightLbl.frame = CGRectMake(15, backView.yy + 15 + i %4 * 50, SCREEN_WIDTH - 30 - 14, 50);
+                    
+                    UIImageView *youImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 24.5,backView.yy + 15 + i %4 * 50  + 19, 7, 12)];
+                    youImg.image = kImage(@"跳转");
+                    [self.view addSubview:youImg];
+                    
+                } else {
+                    
+                    //            [self configurationLoadData];
+                    rightLbl.frame = CGRectMake(15, backView.yy + 15 + i %4 * 50, SCREEN_WIDTH - 30, 50);
+                    rightLbl.text = [NSString stringWithFormat:@"%@（当前最新版本）",[NSString appVersionString]];
+                }
+                
+            } failure:^(NSError *error) {
+                
+            }];
+            
         }else
         {
-            rightLbl.frame = CGRectMake(15, backView.yy + 15 + i %3 * 50, SCREEN_WIDTH - 30 - 14, 50);
+            rightLbl.frame = CGRectMake(15, backView.yy + 15 + i %4 * 50, SCREEN_WIDTH - 30 - 14, 50);
             
-            UIImageView *youImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 24.5,backView.yy + 15 + i %3 * 50  + 19, 7, 12)];
+            UIImageView *youImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 24.5,backView.yy + 15 + i %4 * 50  + 19, 7, 12)];
             youImg.image = kImage(@"跳转");
             [self.view addSubview:youImg];
             
@@ -181,10 +219,15 @@
     
     UIButton *switchAccountBtn = [UIButton buttonWithTitle:@"切换账号" titleColor:kAppCustomMainColor backgroundColor:kClearColor titleFont:14];
     kViewBorderRadius(switchAccountBtn, 2, 1, kAppCustomMainColor);
-    switchAccountBtn.frame = CGRectMake(15, backView.yy + 15 + 150 + 40, SCREEN_WIDTH - 30, 45);
+    switchAccountBtn.frame = CGRectMake(15, backView.yy + 15 + 200 + 40, SCREEN_WIDTH - 30, 45);
     [switchAccountBtn addTarget:self action:@selector(switchAccountBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:switchAccountBtn];
     
+}
+
+- (NSString *)version {
+    
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 }
 
 -(void)switchAccountBtnClick
@@ -223,11 +266,64 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+        case 3:
+        {
+            [self upgrade];
+        }
+            break;
             
         default:
             break;
     }
 }
 
+-(void)upgrade
+{
+    TLNetworking *http2 = [[TLNetworking alloc] init];
+    
+    http2.code = @"630048";
+    http2.parameters[@"type"] = @"ios";
+    http2.parameters[@"start"] = @"1";
+    http2.parameters[@"limit"] = @"10";
+    //    http2.isLocal = YES;
+    [http2 postWithSuccess:^(id responseObject) {
+        
+        
+        
+        NSDictionary *update = responseObject[@"data"];
+        //获取当前版本号
+        NSString *currentVersion = [self version];
+        if ([currentVersion integerValue] < [update[@"version"] integerValue]) {
+            if ([update[@"forceUpdate"] isEqualToString:@"0"]) {
+                //不强制
+                [TLAlert alertWithTitle:@"更新提示" msg:update[@"note"] confirmMsg:@"立即升级" cancleMsg:@"稍后提醒" cancle:^(UIAlertAction *action) {
+                    
+                    //                    [self configurationLoadData];
+                    
+                } confirm:^(UIAlertAction *action) {
+                    [self goBcoinWeb];
+                }];
+            } else {
+                //强制
+                [TLAlert alertWithTitle:@"更新提醒" message:update[@"note"] confirmMsg:@"立即升级" confirmAction:^{
+                    [self goBcoinWeb];
+                }];
+            }
+        } else {
+            
+            //            [self configurationLoadData];
+            
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+
+- (void)goBcoinWeb{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/m-help/id1449227379?mt=8"]];
+    [[UIApplication sharedApplication]openURL:url];
+}
 
 @end
