@@ -102,9 +102,6 @@
 {
     UITextField *textField3 = [self.view viewWithTag:203];
     UITextField *textField5 = [self.view viewWithTag:205];
-    
-    
-    
     if ([BaseModel isBlankString:self.idReverse] == YES || [BaseModel isBlankString:self.idFront] == YES) {
         [TLAlert alertWithInfo:@"请先上传身份证信息"];
         return;
@@ -118,8 +115,8 @@
         [TLAlert alertWithInfo:@"请选择征信结果"];
         return;
     }
-    
-    
+
+
     if ([[BaseModel convertNull:self.userName] isEqualToString:@""]) {
         [TLAlert alertWithInfo:@"请输入客户姓名"];
         return;
@@ -129,11 +126,11 @@
         [TLAlert alertWithInfo:@"请输入征信说明"];
         return;
     }
-    
-    if (self.model.creditUserList.count == 0) {
-        [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
-        return;
-    }
+
+//    if (self.model.creditUserList.count == 0) {
+//        [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
+//        return;
+//    }
     
 //    if (![self.dataDic[@"dkey"] isEqualToString:@"1"]) {
 //        TLNetworking * http1 = [[TLNetworking alloc]init];
@@ -179,87 +176,72 @@
         [http postWithSuccess:^(id responseObject) {
             self.model = [SurveyModel mj_objectWithKeyValues:responseObject[@"data"]];
             
+            TLNetworking * http1 = [[TLNetworking alloc]init];
+            http1.code = @"632530";
+            http1.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+            http1.parameters[@"code"] = self.code;
+            http1.parameters[@"type"] = @"ios";
+            http1.showView = self.view;
+            NSArray *creditUserList = @[@{@"loanRole":[BaseModel convertNull:_dataDic[@"dkey"]],
+                                          @"idFront":[BaseModel convertNull:self.idFront],
+                                          @"idReverse":[BaseModel convertNull:self.idReverse],
+                                          @"holdIdCardPdf":[BaseModel convertNull:self.holdIdCardPdf],
+                                          @"userName":[BaseModel convertNull:self.userName],
+                                          @"startDate":[BaseModel convertNull:self.startDate],
+                                          @"nation":[BaseModel convertNull:self.nation],
+                                          @"gender":[BaseModel convertNull:self.gender],
+                                          @"customerBirth":[BaseModel convertNull:self.customerBirth],
+                                          @"idNo":[BaseModel convertNull:self.idNo],
+                                          @"birthAddress":[BaseModel convertNull:self.birthAddress],
+                                          @"authref":[BaseModel convertNull:self.authref],
+                                          @"statdate":[BaseModel convertNull:self.statdate],
+                                          @"bankCreditResult":[BaseModel convertNull:_bankCreditResult],
+                                          @"mobile":textField3.text,
+                                          @"bankCreditResultRemark":textField5.text,
+                                          }];
             
-            BOOL isCreate = false;
-            for (int i = 0; i < self.model.creditUserList.count; i ++) {
-                if ([self.dataDic[@"dkey"] isEqualToString:self.model.creditUserList[i][@"loanRole"]]) {
-                    NSDictionary *creditUser = self.model.creditUserList[i];
-                    
-                    NSString *education = creditUser[@"education"];
-                    isCreate = YES;
-                    if ([self.dataDic[@"dkey"] isEqualToString:@"1"]) {
-                        if ([BaseModel isBlankString:education] == YES) {
-                            [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
-                            return;
-                        }
-                    }else
-                    {
-                        if ([BaseModel isBlankString:creditUser[@"companyName"]] == YES) {
-                            [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
-                            return;
-                        }
-                    }
-                    
-                    
-                    TLNetworking * http1 = [[TLNetworking alloc]init];
-                    http1.code = @"632530";
-                    http1.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
-                    http1.parameters[@"code"] = self.code;
-                    http1.showView = self.view;
-                    NSArray *creditUserList = @[@{@"loanRole":[BaseModel convertNull:_dataDic[@"dkey"]],
-                                                  @"idFront":[BaseModel convertNull:self.idFront],
-                                                  @"idReverse":[BaseModel convertNull:self.idReverse],
-                                                  @"holdIdCardPdf":[BaseModel convertNull:self.holdIdCardPdf],
-                                                  @"userName":[BaseModel convertNull:self.userName],
-                                                  @"startDate":[BaseModel convertNull:self.startDate],
-                                                  @"nation":[BaseModel convertNull:self.nation],
-                                                  @"gender":[BaseModel convertNull:self.gender],
-                                                  @"customerBirth":[BaseModel convertNull:self.customerBirth],
-                                                  @"idNo":[BaseModel convertNull:self.idNo],
-                                                  @"birthAddress":[BaseModel convertNull:self.birthAddress],
-                                                  @"authref":[BaseModel convertNull:self.authref],
-                                                  @"statdate":[BaseModel convertNull:self.statdate],
-                                                  @"bankCreditResult":[BaseModel convertNull:_bankCreditResult],
-                                                  @"mobile":textField3.text,
-                                                  @"bankCreditResultRemark":textField5.text,
-                                                  }];
-                    
-                    http1.parameters[@"creditUserList"] = creditUserList;
-                    [http1 postWithSuccess:^(id responseObject) {
-                        
-                        [TLAlert alertWithSucces:@"保存成功"];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [self.navigationController popViewControllerAnimated:YES];
-                        });
-                        
-                    } failure:^(NSError *error) {
-                        
-                    }];
-                    
-                    
-                }
+            http1.parameters[@"creditUserList"] = creditUserList;
+            [http1 postWithSuccess:^(id responseObject) {
                 
+                [TLAlert alertWithSucces:@"保存成功"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
                 
-            }
-            
-            if (isCreate == NO) {
-                [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
-                return;
-            }
-            
+            } failure:^(NSError *error) {
+                
+            }];
+//            BOOL isCreate = NO;
+//            for (int i = 0; i < self.model.creditUserList.count; i ++) {
+//                if ([self.dataDic[@"dkey"] isEqualToString:self.model.creditUserList[i][@"loanRole"]]) {
+////                    NSDictionary *creditUser = self.model.creditUserList[i];
+//
+////                    NSString *education = creditUser[@"education"];
+////                    isCreate = YES;
+////                    if ([self.dataDic[@"dkey"] isEqualToString:@"1"]) {
+////                        if ([BaseModel isBlankString:education] == YES) {
+////                            [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
+////                            return;
+////                        }
+////                    }else
+////                    {
+////                        if ([BaseModel isBlankString:creditUser[@"companyName"]] == YES) {
+////                            [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
+////                            return;
+////                        }
+////                    }
+//
+//
+//
+//                }
+//            }
+//            if (isCreate == NO) {
+//                [TLAlert alertWithInfo:[NSString stringWithFormat:@"请完善%@信息",_dataDic[@"dvalue"]]];
+//                return;
+//            }
         } failure:^(NSError *error) {
             
         }];
-
-    
-    
-        
-    
-    
-    
-    
-    
-    
 }
 
 -(void)loadData

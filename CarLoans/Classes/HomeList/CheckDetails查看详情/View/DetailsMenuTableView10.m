@@ -61,7 +61,7 @@
                              [BaseModel convertNull:self.dataDic[@"accountNo"]],
                              [BaseModel convertNull:self.dataDic[@"bankName"]],
                              [BaseModel convertNull:self.dataDic[@"subbranch"]],
-                             [NSString stringWithFormat:@"%@  %@（用款2）",[BaseModel convertNull:self.model.teamName],self.model.repointAmount]
+                             [NSString stringWithFormat:@"%@  %@（用款2）",[BaseModel convertNull:self.model.teamName],[BaseModel Chu1000:self.model.repointAmount]]
                              ];
             cell.rightStr = ary[indexPath.row];
         }

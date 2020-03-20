@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MakeAuditTableView : TLTableView
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic , strong)NSString *isContinueAdvance;
+@property (nonatomic , strong)NSString *isPay;
 @end
 
 NS_ASSUME_NONNULL_END

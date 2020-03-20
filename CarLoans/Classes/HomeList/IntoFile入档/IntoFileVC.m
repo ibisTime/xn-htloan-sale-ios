@@ -155,7 +155,8 @@
                 if (indexPath.row == 3) {
                     syxDateStart = date;
                     self.tableView.syxDateStart = date;
-                }else
+                }
+                else
                 {
                     syxDateEnd = date;
                     self.tableView.syxDateEnd = date;

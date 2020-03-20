@@ -127,6 +127,7 @@
         
         TLNetworking * http1 = [[TLNetworking alloc]init];
         http1.code = @"805085";
+        http.isToken = NO;
         http1.parameters[@"deviceToken"] = [USERDEFAULTS objectForKey:@"deviceToken1"];
         http1.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
         [http1 postWithSuccess:^(id responseObject) {

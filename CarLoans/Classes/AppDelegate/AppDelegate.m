@@ -152,6 +152,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"805085";
         http.parameters[@"deviceToken"] = XGPushtokenStr;
+        http.isToken = NO;
         http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
         [http postWithSuccess:^(id responseObject) {
             [USERDEFAULTS setObject:XGPushtokenStr forKey:@"deviceToken"];
@@ -279,6 +280,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([BaseModel user].isLogin == YES) {
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"805085";
+        http.isToken = NO;
         http.parameters[@"deviceToken"] = deviceToken;
         http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
         [http postWithSuccess:^(id responseObject) {

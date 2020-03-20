@@ -509,6 +509,7 @@
         http.parameters[@"code"] = self.model.code;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"dealType"] = @(1);
+        http.parameters[@"type"] = @"ios";
         //    ===================  贷款信息  ===================
         //   贷款期限
         if ([NSString isPureNumWithString:right1Label1.text]) {

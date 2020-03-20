@@ -98,6 +98,7 @@
     }
     
     if (indexPath.row == 15) {
+        cell.type = MenuShowType;
         if (![[BaseModel convertNull:self.workDatetime] isEqualToString:@""]) {
             NSString *start = [self getCurrentTimes];
             

@@ -32,7 +32,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 1) {
-        return 3;
+        return 6;
     }
     return [MenuModel new].detailsInfoArray.count;
 }
@@ -83,21 +83,31 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"收款账号选择",@"收款账号户名",@"收款账号"];
-    if (indexPath.row == 0) {
+    NSArray *nameArray = @[@"车款1",@"车款2",@"支付合计",@"收款账号选择",@"收款账号户名",@"收款账号"];
+    NSArray *ary = @[
+                     [BaseModel Chu1000:self.model.loanAmount],
+                     [BaseModel Chu1000:self.model.repointAmount],
+                     [BaseModel JIAmult1:[BaseModel Chu1000:self.model.loanAmount] mult2:[BaseModel Chu1000:self.model.repointAmount] scale:2]];
+    if (indexPath.row < 3) {
+        cell.rightStr = ary[indexPath.row];
+    }
+    if (indexPath.row == 3) {
         cell.type = MenuChooseType;
     }else
     {
         cell.type = MenuShowType;
 //        cell.rightTF.tag = 100 + indexPath.row;
     }
-    if ([BaseModel isBlankString:_advanceCardCodeDic[@"code"]] == NO) {
-        NSArray *ary = @[[NSString stringWithFormat:@"%@-%@",_advanceCardCodeDic[@"companyName"],_advanceCardCodeDic[@"bankName"]],
-                         [BaseModel convertNull:_advanceCardCodeDic[@"realName"]],
-                         [BaseModel convertNull:_advanceCardCodeDic[@"bankcardNumber"]]];
-        cell.rightStr = ary[indexPath.row];
+    if (indexPath.row >= 3) {
+        if ([BaseModel isBlankString:_advanceCardCodeDic[@"code"]] == NO) {
+            NSArray *ary = @[[NSString stringWithFormat:@"%@-%@",_advanceCardCodeDic[@"companyName"],_advanceCardCodeDic[@"bankName"]],
+                             [BaseModel convertNull:_advanceCardCodeDic[@"realName"]],
+                             [BaseModel convertNull:_advanceCardCodeDic[@"bankcardNumber"]]];
+            cell.rightStr = ary[indexPath.row - 3];
+        }
     }
     cell.leftStr = nameArray[indexPath.row];
+    
     return cell;
 }
 

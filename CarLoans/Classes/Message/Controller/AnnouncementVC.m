@@ -39,6 +39,7 @@
     self.tableView = [[MessageTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50 - kTabBarHeight) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.index = 1;
     [self.view addSubview:self.tableView];
     [self loadData];
 }
@@ -48,6 +49,7 @@
     MessageDetailsVC *vc = [MessageDetailsVC new];
     vc.hidesBottomBarWhenPushed = YES;
     vc.model = self.models[indexPath.row];
+    vc.index = 1;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -57,7 +59,6 @@
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     helper.code = @"632725";
     helper.parameters[@"status"] = @"1";
-    helper.parameters[@"publishDepartmentCode"] = [USERDEFAULTS objectForKey:DEPARTMENTCODE];
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;

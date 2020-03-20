@@ -13,6 +13,8 @@
 {
     
     NSString *isContinueAdvance;
+    NSString *isPay;
+    NSInteger selectRow;
 }
 @property (nonatomic , strong)MakeAuditTableView *tableView;
 @property (nonatomic , strong)NSArray *missionArray;
@@ -48,7 +50,7 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 3) {
             TaskManagementVC *vc = [TaskManagementVC new];
             CarLoansWeakSelf;
             vc.returnAryBlock1 = ^(NSArray * _Nonnull missionArray) {
@@ -58,7 +60,8 @@
             [self.navigationController pushViewController:vc animated:YES];
             
         }
-        if (indexPath.row == 1) {
+        if (indexPath.row == 4 || indexPath.row == 5) {
+            selectRow = indexPath.row;
             NSMutableArray *ary = [NSMutableArray array];
             [ary addObjectsFromArray:@[@"是",@"否"]];
             BaseModel *baseModel = [BaseModel user];
@@ -70,14 +73,32 @@
 
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
 {
-    self.tableView.isContinueAdvance = Str;
-    [self.tableView reloadData];
     if ([Str isEqualToString:@"是"]) {
-        isContinueAdvance = @"1";
+        if (selectRow == 4) {
+            isContinueAdvance = @"1";
+        }else
+        {
+            isPay = @"1";
+        }
+        
     }else
     {
-        isContinueAdvance = @"0";
+        if (selectRow == 4) {
+            isContinueAdvance = @"0";
+        }else
+        {
+            isPay = @"0";
+        }
     }
+    if (selectRow == 4) {
+        self.tableView.isContinueAdvance = Str;
+    }else
+    {
+        self.tableView.isPay = Str;
+    }
+    
+    
+    [self.tableView reloadData];
         
 }
 
@@ -98,6 +119,10 @@
         [TLAlert alertWithInfo:@"请选择是否继续垫资"];
         return;
     }
+    if ([BaseModel isBlankString:isPay] == YES) {
+        [TLAlert alertWithInfo:@"是否同时支付车款2"];
+        return;
+    }
     TLNetworking *http = [TLNetworking new];
     http.isShowMsg = YES;
     http.code = @"632552";
@@ -106,13 +131,13 @@
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"approveNote"] = textView.text;
     http.parameters[@"missionList"] = self.missionArray;
+    http.parameters[@"isPay"] = isPay;
     http.parameters[@"isContinueAdvance"] = isContinueAdvance;
     http.showView = self.view;
     [http postWithSuccess:^(id responseObject) {
         
         if ([approveResult isEqualToString:@"1"]) {
             [TLAlert alertWithSucces:@"审核通过"];
-            
         }else
         {
             [TLAlert alertWithSucces:@"审核不通过"];

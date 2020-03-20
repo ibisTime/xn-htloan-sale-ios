@@ -97,6 +97,7 @@
     
        _manager = [[self class] HTTPSessionManager];
         _isShowMsg = YES;
+        _isToken = YES;
         self.parameters = [NSMutableDictionary dictionary];
         
     }
@@ -130,11 +131,13 @@
             
 //            self.parameters[@"systemCode"] = [[self class] systemCode];
         }
-        
-        if ([USERDEFAULTS objectForKey:TOKEN_ID]) {
-
-            self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
+        if (_isToken == YES) {
+            if ([USERDEFAULTS objectForKey:TOKEN_ID]) {
+                
+                self.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];
+            }
         }
+        
 //
 //        self.parameters[@"companyCode"] = [[self class] companyCode];
 
@@ -214,15 +217,34 @@
           
           if ([responseObject[@"errorCode"] isEqual:@"4"]) {
               //token错误  4
-              
-              [TLAlert alertWithTitle:@"提示" message:@"登录失效,请重新登录" confirmAction:^{
+              if ([BaseModel isBlankString:[USERDEFAULTS objectForKey:USER_ID]] == NO) {
+                  TLNetworking * http = [[TLNetworking alloc]init];
+                  http.code = @"805085";
+                  http.parameters[@"deviceToken"] = @"";
+                  http.isToken = NO;
+                  http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+                  [http postWithSuccess:^(id responseObject) {
+                      //                      [USERDEFAULTS setObject:XGPushtokenStr forKey:@"deviceToken"];
+                      LoginVC *vc = [[LoginVC alloc]init];
+                      UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                      UINavigationController *vcC = [[UINavigationController alloc]initWithRootViewController:vc];
+                      [USERDEFAULTS removeObjectForKey:USER_ID];
+                      [USERDEFAULTS removeObjectForKey:TOKEN_ID];
+                      window.rootViewController = vcC;
+                      
+                  } failure:^(NSError *error) {
+                      
+                  }];
+              }else
+              {
                   LoginVC *vc = [[LoginVC alloc]init];
                   UIWindow *window = [[UIApplication sharedApplication] keyWindow];
                   UINavigationController *vcC = [[UINavigationController alloc]initWithRootViewController:vc];
                   [USERDEFAULTS removeObjectForKey:USER_ID];
                   [USERDEFAULTS removeObjectForKey:TOKEN_ID];
                   window.rootViewController = vcC;
-              }];
+              }
+              
               return;
           }
           if (_isShowMsg) {

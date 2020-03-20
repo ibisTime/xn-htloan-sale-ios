@@ -35,7 +35,7 @@
         return 1;
     }
     if (section == 1) {
-        return 2;
+        return 6;
     }
     return [MenuModel new].detailsInfoArray.count;
 }
@@ -87,16 +87,38 @@
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"添加任务",@"是否继续垫资"];
-        if (indexPath.row == 1) {
+        NSArray *nameArray = @[@"车款1",@"车款2",@"支付合计",@"添加任务",@"是否继续垫资",@"是否同时支付车款2"];
+        if (indexPath.row == 4 || indexPath.row == 5) {
             cell.type = MenuChooseType;
-        }else
+        }else if(indexPath.row == 3)
         {
             cell.type = MenuPushType;
+        }else
+        {
+            cell.type = MenuShowType;
         }
-        if (indexPath.row == 1) {
+        
+        NSArray *ary = @[
+                         [BaseModel Chu1000:self.model.loanAmount],
+                         [BaseModel Chu1000:self.model.repointAmount],
+                         [BaseModel JIAmult1:[BaseModel Chu1000:self.model.loanAmount] mult2:[BaseModel Chu1000:self.model.repointAmount] scale:2]];
+        if (indexPath.row < 3) {
+            cell.rightStr = ary[indexPath.row];
+        }
+        
+        
+        if (indexPath.row == 4) {
             cell.rightStr = self.isContinueAdvance;
         }
+        if (indexPath.row == 5) {
+            cell.rightStr = self.isPay;
+            [cell.rightLbl mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(150);
+            }];
+
+        }
+        
+        
         cell.leftStr = nameArray[indexPath.row];
         cell.placStr = [NSString stringWithFormat:@"请输入%@",nameArray[indexPath.row]];
         return cell;

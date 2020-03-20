@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageDetailsVC : BaseViewController
 @property (nonatomic , strong)TodoModel *model;
+@property (nonatomic , assign)NSInteger index;
 @end
 
 NS_ASSUME_NONNULL_END

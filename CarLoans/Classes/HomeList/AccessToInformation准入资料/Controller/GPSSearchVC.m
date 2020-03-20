@@ -125,32 +125,49 @@
 
 -(void)getBrand:(NSString *)name{
     CarLoansWeakSelf;
-    TLPageDataHelper * help = [[TLPageDataHelper alloc]init];
-    help.code = @"632705";
-    help.parameters[@"gpsDevNo"] = name;
-    help.parameters[@"applyUser"] = self.saleUserId;
-    help.parameters[@"useStatus"] = @"1";
-    [help modelClass:[SurveyModel class]];
-    help.tableView = self.tableview;
-    help.isCurrency = YES;
     
-    [help refresh:^(NSMutableArray *objs, BOOL stillHave) {
-        weakSelf.model = objs;
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"632708";
+//    http.showView = self.view;
+    http.parameters[@"gpsDevNo"] = name;
+    http.parameters[@"applyUser"] = self.saleUserId;
+    http.parameters[@"useStatus"] = @"1";
+    [http postWithSuccess:^(id responseObject) {
+        weakSelf.model = [SurveyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         [weakSelf.tableview reloadData];
         [weakSelf.tableview endRefreshHeader];
+
     } failure:^(NSError *error) {
-        [weakSelf.tableview endRefreshHeader];
+        
     }];
+
     
-    [self.tableview addLoadMoreAction:^{
-        [help loadMore:^(NSMutableArray *objs, BOOL stillHave) {
-            weakSelf.model = objs;
-            [weakSelf.tableview reloadData];
-            [weakSelf.tableview endRefreshFooter];
-        } failure:^(NSError *error) {
-            [weakSelf.tableview endRefreshFooter];
-        }];
-    }];
+//    TLPageDataHelper * help = [[TLPageDataHelper alloc]init];
+//    help.code = @"632705";
+//    help.parameters[@"gpsDevNo"] = name;
+//    help.parameters[@"applyUser"] = self.saleUserId;
+//    help.parameters[@"useStatus"] = @"1";
+//    [help modelClass:[SurveyModel class]];
+//    help.tableView = self.tableview;
+//    help.isCurrency = YES;
+//
+//    [help refresh:^(NSMutableArray *objs, BOOL stillHave) {
+//        weakSelf.model = objs;
+//        [weakSelf.tableview reloadData];
+//        [weakSelf.tableview endRefreshHeader];
+//    } failure:^(NSError *error) {
+//        [weakSelf.tableview endRefreshHeader];
+//    }];
+//
+//    [self.tableview addLoadMoreAction:^{
+//        [help loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+//            weakSelf.model = objs;
+//            [weakSelf.tableview reloadData];
+//            [weakSelf.tableview endRefreshFooter];
+//        } failure:^(NSError *error) {
+//            [weakSelf.tableview endRefreshFooter];
+//        }];
+//    }];
     
 }
 

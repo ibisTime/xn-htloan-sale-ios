@@ -85,6 +85,7 @@
     http.code = @"632530";
     http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
     http.parameters[@"code"] = self.code;
+    http.parameters[@"type"] = @"ios";
     http.showView = self.view;
     
     UITextField *tf1 = [self.view viewWithTag:1000];

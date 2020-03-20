@@ -21,7 +21,7 @@
     if (self) {
         
         nameLbl = [UILabel labelWithFrame:CGRectMake(15, 15, SCREEN_WIDTH - 30, 20) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kHexColor(@"#333333")];
-        nameLbl.text = @"车贷B端系统正式上线";
+//        nameLbl.text = @"车贷B端系统正式上线";
         [self addSubview:nameLbl];
         
 //        stateLbl = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH/2, 15, SCREEN_WIDTH/2 - 15, 20) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:Font(13) textColor:kHexColor(@"#333333")];
@@ -44,20 +44,41 @@
     return self;
 }
 
+-(void)setIndex:(NSInteger)index
+{
+    _index = index;
+}
+
 -(void)setModels:(TodoModel *)models
 {
     if ([BaseModel isBlankString:models.title] == NO) {
         nameLbl.text = models.title;
         timeLbl.text= [models.updateDatetime convertToDetailDate];
-        typeLbl.text = @"系统公告";
+        if (_index == 0) {
+            typeLbl.text = @"消息";
+            if ([models.content hasPrefix:@"<p>"]) {
+                NSRange startRange = [models.content rangeOfString:@"<p>"];
+                NSRange endRange = [models.content rangeOfString:@"</p>"];
+                NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
+                NSString * con = [models.content substringWithRange:range];
+                nameLbl.text = con;
+            }else
+            {
+                nameLbl.text = models.content;
+            }
+        }else
+        {
+            typeLbl.text = @"系统公告";
+            nameLbl.text = models.title;
+        }
+        
     }else
     {
         
-        nameLbl.text = [NSString stringWithFormat:@"%@-%@",models.content,[BaseModel convertNull:models.userName]];
+        nameLbl.text = models.content;
         timeLbl.text= [models.createDatetime convertToDetailDate];
         typeLbl.text = models.bizCode;
     }
-    
 }
 
 @end

@@ -192,6 +192,16 @@
             make.right.mas_equalTo(-15);
         }];
     }
+    if (type == MenuInputNotEnterType) {
+        _rightTF.hidden = NO;
+        _rightTF.enabled = NO;
+        [_rightTF mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-15);
+        }];
+        [_rightLbl mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-15);
+        }];
+    }
     if (type == MenuShowType) {
         
         _rightLbl.hidden = NO;

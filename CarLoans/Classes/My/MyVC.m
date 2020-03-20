@@ -233,6 +233,20 @@
 -(void)switchAccountBtnClick
 {
     [TLAlert alertWithTitle:@"提示" msg:@"是否退出登录" confirmMsg:@"取消" cancleMsg:@"确认" cancle:^(UIAlertAction *action) {
+        
+        
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"805085";
+        http.isToken = NO;
+        http.parameters[@"deviceToken"] = @"";
+        http.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+        [http postWithSuccess:^(id responseObject) {
+    
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
         LoginVC *vc = [[LoginVC alloc]init];
         UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];

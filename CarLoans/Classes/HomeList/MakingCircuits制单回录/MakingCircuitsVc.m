@@ -47,7 +47,7 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 3) {
             TLNetworking *http = [TLNetworking new];
             http.isShowMsg = YES;
             http.code = @"632007";

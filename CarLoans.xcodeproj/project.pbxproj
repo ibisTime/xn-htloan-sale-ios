@@ -2485,10 +2485,10 @@
 			children = (
 				1F1EF1D2226454A900EADA25 /* MessageVC.h */,
 				1F1EF1D3226454A900EADA25 /* MessageVC.m */,
-				1F1EF1E422647A2B00EADA25 /* AllMessageVC.h */,
-				1F1EF1E522647A2B00EADA25 /* AllMessageVC.m */,
 				1F1EF1ED22647AA700EADA25 /* TodoViewController.h */,
 				1F1EF1EE22647AA700EADA25 /* TodoViewController.m */,
+				1F1EF1E422647A2B00EADA25 /* AllMessageVC.h */,
+				1F1EF1E522647A2B00EADA25 /* AllMessageVC.m */,
 				1F1EF1F022647AC900EADA25 /* AnnouncementVC.h */,
 				1F1EF1F122647AC900EADA25 /* AnnouncementVC.m */,
 			);
@@ -7035,7 +7035,7 @@
 				CODE_SIGN_ENTITLEMENTS = CarLoans/CarLoans.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7107,7 +7107,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.car;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.tha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7131,7 +7131,7 @@
 				CODE_SIGN_ENTITLEMENTS = CarLoans/CarLoans.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7204,7 +7204,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.car;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.tha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

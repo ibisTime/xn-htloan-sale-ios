@@ -24,11 +24,16 @@
     [self.view addSubview:nameLbl];
     
     UILabel *timeLbl = [UILabel labelWithFrame:CGRectMake(15, 64, 200, 16.5) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#999999")];
-    timeLbl.text = [self.model.createDatetime convertToDetailDate];
+    timeLbl.text = [self.model.updateDatetime convertToDetailDate];
     [self.view addSubview:timeLbl];
     
     UILabel *typeLbl = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 165, 64, 150, 16.5) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#999999")];
-    typeLbl.text = @"系统公告";
+    if (_index == 0) {
+        typeLbl.text = @"消息";
+    }else
+    {
+        typeLbl.text = @"系统公告";
+    }
     [self.view addSubview:typeLbl];
     
     
@@ -38,8 +43,8 @@
     
     UILabel *detailsLbl = [UILabel labelWithFrame:CGRectMake(15, 111, SCREEN_WIDTH - 30, SCREEN_HEIGHT - 111 - kNavigationBarHeight) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:Font(14) textColor:kHexColor(@"#333333")];
     detailsLbl.numberOfLines = 0;
-    detailsLbl.text = @"车贷B端系统正式上线，赶紧去体验，如有问题请及时联系我们。";
-    [detailsLbl sizeToFit];
+//    detailsLbl.text = @"车贷B端系统正式上线，赶紧去体验，如有问题请及时联系我们。";
+    
     [self.view addSubview:detailsLbl];
     
     if ([self.model.content hasPrefix:@"<p>"]) {
@@ -52,6 +57,7 @@
     {
         detailsLbl.text = self.model.content;
     }
+    [detailsLbl sizeToFit];
 }
 
 /*

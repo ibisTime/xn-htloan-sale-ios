@@ -59,7 +59,7 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 3) {
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
                 
                 NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
@@ -83,7 +83,7 @@
 -(void)noThroughBtnClick
 {
     
-    UITextField *textTf = [self.view viewWithTag:101];
+    UITextField *textTf = [self.view viewWithTag:104];
     UITextView *textView = [self.view viewWithTag:1000];
 //    UITextView
     if ([BaseModel isBlankString:advanceFundDatetime] == YES) {

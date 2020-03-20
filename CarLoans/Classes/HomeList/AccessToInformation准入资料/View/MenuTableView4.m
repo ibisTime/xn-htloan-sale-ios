@@ -55,7 +55,7 @@
     }
     cell.leftStr = nameArray[indexPath.row];
     cell.rightTF.tag = 4000 + indexPath.row;
-    
+    cell.rightLbl.tag = 4000 + indexPath.row;
     NSDictionary *bankLoan = self.model.bankLoan;
 
     if (indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 13 || indexPath.row == 14 || indexPath.row == 16) {
@@ -124,27 +124,32 @@
         cell.placStr = [NSString stringWithFormat:@"请输入%@",nameArray[indexPath.row]];
         if (self.isDetails == YES) {
             if (_writeArray.count > 0) {
-                cell.rightLbl.text = _writeArray[indexPath.row];
+                cell.rightStr = _writeArray[indexPath.row];
             }
             cell.type = MenuShowType;
         }else
         {
-            cell.type = MenuInputType;
+            if (indexPath.row == 2 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 || indexPath.row == 12 || indexPath.row == 15 || indexPath.row == 18) {
+                cell.type = MenuInputNotEnterType;
+            }else
+            {
+                cell.type = MenuInputType;
+            }
+            
 //            if ([cell.rightTF.text isEqualToString:@""]) {
 //                cell.rightTF.text = _writeArray[indexPath.row];
 //            }
             if (_writeArray.count > 0) {
-                cell.rightTF.text = _writeArray[indexPath.row];
+                cell.rightStr = _writeArray[indexPath.row];
             }
-            
         }
         cell.rightTF.delegate = self;
         
         
     }
-//    if (indexPath.row == 2) {
-//        cell.rightStr = [BaseModel Cheng100:self.bankRate];
-//    }
+    if (indexPath.row == 2) {
+        cell.rightStr = [BaseModel Cheng100:self.bankRate];
+    }
     
     if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 11) {
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(rightNumberTfDidChangeOneCI:) name:UITextFieldTextDidChangeNotification object:cell.rightTF];
@@ -165,6 +170,7 @@
 {
     _bankRate = bankRate;
     [_writeArray replaceObjectAtIndex:2 withObject:[NSString stringWithFormat:@"%.4f",[[BaseModel Cheng100:self.bankRate] floatValue]]];
+    [self reloadData];
 }
 
 -(void)setModel:(SurveyModel *)model
@@ -180,7 +186,7 @@
     
     
     
-    NSDictionary *carInfo = self.model.carInfo;
+//    NSDictionary *carInfo = self.model.carInfo;
     
     
     
@@ -229,6 +235,7 @@
         }
         
         [_writeArray replaceObjectAtIndex:4 withObject:rebateRate];
+        [self reloadData];
     } failure:^(NSError *error) {
         
     }];
@@ -299,7 +306,8 @@
     UITextField *textField4015 = [self viewWithTag:4015];
     //    费用总额=贷款本金+服务费
     UITextField *tf18 = [self viewWithTag:4018];
-
+    
+    
     
     
     if (![textField4000.text isEqualToString:@""] && ![textField4001.text isEqualToString:@""] && ![textField4002.text isEqualToString:@""] && ![textField4003.text isEqualToString:@""]) {
@@ -335,7 +343,7 @@
             [_writeArray replaceObjectAtIndex:7 withObject:[NSString stringWithFormat:@"%@",tf1.text]];
             [_writeArray replaceObjectAtIndex:8 withObject:[NSString stringWithFormat:@"%@",tf3.text]];
             [_writeArray replaceObjectAtIndex:15 withObject:[NSString stringWithFormat:@"%@",tf4.text]];
-            ;
+            
             tf18.text = [NSString stringWithFormat:@"%@",[BaseModel JIAmult1:textField4000.text mult2:textField4015.text scale:2]];
             [_writeArray replaceObjectAtIndex:18 withObject:[NSString stringWithFormat:@"%@",tf18.text]];
         } failure:^(NSError *error) {

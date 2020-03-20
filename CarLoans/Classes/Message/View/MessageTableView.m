@@ -42,7 +42,9 @@
 {
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomerCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.index = _index;
     cell.models = self.models[indexPath.row];
+
     return cell;
 }
 

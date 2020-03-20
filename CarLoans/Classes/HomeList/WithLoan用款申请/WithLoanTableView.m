@@ -35,7 +35,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 1) {
-        return 4;
+        return 7;
     }
     return [MenuModel new].detailsInfoArray.count;
 }
@@ -84,11 +84,13 @@
     if (!cell) {
         cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"团队账号",@"收款银行名",@"收款支行名",@"返点信息"];
+    NSArray *nameArray = @[@"车款1",@"车款2",@"支付合计",@"团队账号",@"收款银行名",@"收款支行名",@"返点信息"];
     
     NSArray *ary = @[
+                     [BaseModel Chu1000:self.model.loanAmount],
+                     [BaseModel Chu1000:self.model.repointAmount],
+                     [BaseModel JIAmult1:[BaseModel Chu1000:self.model.loanAmount] mult2:[BaseModel Chu1000:self.model.repointAmount] scale:2],
                      [BaseModel convertNull:self.dataDic[@"accountNo"]],
                      [BaseModel convertNull:self.dataDic[@"bankName"]],
                      [BaseModel convertNull:self.dataDic[@"subbranch"]],

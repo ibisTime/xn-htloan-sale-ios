@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MessageTableView : TLTableView
 
 @property (nonatomic , strong)NSMutableArray <TodoModel *>*models;
+@property (nonatomic , assign)NSInteger index;
 @end
 
 NS_ASSUME_NONNULL_END

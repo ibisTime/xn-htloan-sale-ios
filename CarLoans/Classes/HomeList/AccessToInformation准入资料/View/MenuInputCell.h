@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, MenuType) {
     MenuShowType,
     MenuCheckDetailsType,
     MenuCheckDetailsType1,
+    MenuInputNotEnterType,
     
 };
 
