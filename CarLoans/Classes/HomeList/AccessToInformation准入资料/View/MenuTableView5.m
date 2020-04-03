@@ -51,13 +51,7 @@
     
     
     NSString *carFunds3;
-//    if ([self.model.carFunds3 floatValue] == 0) {
-//
-//    }
-//    else
-//    {
-//        carFunds3 = [BaseModel Chu1000:self.model.carFunds3];
-//    }
+
     NSDictionary *bankLoan = self.model.bankLoan;
     
     NSString *totalRate = bankLoan[@"totalRate"];
@@ -71,19 +65,6 @@
     
     NSString *repointAmount;
     repointAmount = [NSString stringWithFormat:@"%.2f",([totalRate floatValue] - [rebateRate floatValue]) * [loanAmount floatValue]];
-//    if ([self.model.repointAmount floatValue] == 0) {
-//        NSDictionary *bankLoan = self.model.bankLoan;
-//        NSString *loanAmount = [BaseModel Chu1000:bankLoan[@"loanAmount"]];
-//        NSString *bankRate = bankLoan[@"rebateRate"];
-//        NSString *totalRate = bankLoan[@"totalRate"];
-//        NSString *rebateRate = bankLoan[@"rebateRate"];
-//        repointAmount = [NSString stringWithFormat:@"%.2f",([totalRate floatValue] - [rebateRate floatValue]) * [loanAmount floatValue]];
-//    }
-//    else
-//    {
-//        repointAmount = [BaseModel Chu1000:self.model.repointAmount];
-//    }
-    
     NSArray *ary = @[[BaseModel Chu1000:self.model.gpsFee],
                      [BaseModel Chu1000:self.model.fxAmount],
                      [BaseModel Chu1000:self.model.lyDeposit],

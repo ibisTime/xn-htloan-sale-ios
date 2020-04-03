@@ -85,10 +85,10 @@
         [TLAlert alertWithInfo:@"请选择放款时间"];
         return;
     }
-    if ([textView.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入收款备注"];
-        return;
-    }
+//    if ([textView.text isEqualToString:@""]) {
+//        [TLAlert alertWithInfo:@"请输入收款备注"];
+//        return;
+//    }
     
     TLNetworking *http = [TLNetworking new];
     http.isShowMsg = YES;

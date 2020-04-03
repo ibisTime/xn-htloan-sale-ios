@@ -86,7 +86,7 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.type = MenuChooseType;
-        cell.leftStr = self.left;
+        cell.leftStr = [NSString stringWithFormat:@"*%@",self.left];
         cell.rightStr = self.Datetime;
         return cell;
     }

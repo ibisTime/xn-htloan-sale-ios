@@ -35,6 +35,16 @@
         return 1;
     }
     if (section == 1) {
+        if ([BaseModel isBlankString:self.isPay] == YES) {
+            return 3;
+        }else if ([self.isPay isEqualToString:@"是"])
+        {
+            return 7;
+        }else
+        {
+            return 5;
+        }
+        
         return 6;
     }
     return [MenuModel new].detailsInfoArray.count;
@@ -87,35 +97,87 @@
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"车款1",@"车款2",@"支付合计",@"添加任务",@"是否继续垫资",@"是否同时支付车款2"];
-        if (indexPath.row == 4 || indexPath.row == 5) {
-            cell.type = MenuChooseType;
-        }else if(indexPath.row == 3)
+        NSArray *nameArray = @[@"*是否同时支付车款2",@"添加任务",@"*是否继续垫资"];
+        
+        
+        if ([BaseModel isBlankString:self.isPay] == YES) {
+            nameArray = @[@"*是否同时支付车款2",@"添加任务",@"*是否继续垫资"];
+            
+            
+            if (indexPath.row == 0 || indexPath.row == 2) {
+                cell.type = MenuChooseType;
+            }else if(indexPath.row == 1)
+            {
+                cell.type = MenuPushType;
+            }
+        
+            if (indexPath.row == 0 || indexPath.row == 2) {
+                cell.type = MenuChooseType;
+            }else if(indexPath.row == 1)
+            {
+                cell.type = MenuPushType;
+            }
+            
+            NSArray *ary = @[
+                             [BaseModel convertNull:self.isPay],
+                             @"",
+                             [BaseModel convertNull:self.isContinueAdvance]];
+            cell.rightStr = ary[indexPath.row];
+            
+            
+        }else if ([self.isPay isEqualToString:@"是"])
         {
-            cell.type = MenuPushType;
+            nameArray = @[@"*是否同时支付车款2",@"车款1",@"车款2",@"GPS费用",@"支付合计",@"添加任务",@"*是否继续垫资"];
+    
+            if (indexPath.row == 0 || indexPath.row == 6) {
+                cell.type = MenuChooseType;
+                
+            }else if(indexPath.row == 5)
+            {
+                cell.type = MenuPushType;
+            }else
+            {
+                cell.type = MenuShowType;
+            }
+            
+            NSArray *ary = @[
+                             [BaseModel convertNull:self.isPay],
+                             [BaseModel Chu1000:self.model.loanAmount],
+                             [BaseModel Chu1000:self.model.repointAmount],
+                             [BaseModel Chu1000:self.model.gpsFee],
+                             [BaseModel JIANGmult1:[BaseModel JIAmult1:[BaseModel Chu1000:self.model.loanAmount] mult2:[BaseModel Chu1000:self.model.repointAmount] scale:2] mult2:[BaseModel Chu1000:self.model.gpsFee] scale:2],
+                             @"",
+                             [BaseModel convertNull:self.isContinueAdvance]];
+            cell.rightStr = ary[indexPath.row];
+            
         }else
         {
-            cell.type = MenuShowType;
-        }
-        
-        NSArray *ary = @[
-                         [BaseModel Chu1000:self.model.loanAmount],
-                         [BaseModel Chu1000:self.model.repointAmount],
-                         [BaseModel JIAmult1:[BaseModel Chu1000:self.model.loanAmount] mult2:[BaseModel Chu1000:self.model.repointAmount] scale:2]];
-        if (indexPath.row < 3) {
+            nameArray = @[@"*是否同时支付车款2",@"车款1",@"支付合计",@"添加任务",@"*是否继续垫资"];
+            if (indexPath.row == 0 || indexPath.row == 5) {
+                cell.type = MenuChooseType;
+            }else if(indexPath.row == 4)
+            {
+                cell.type = MenuPushType;
+            }else
+            {
+                cell.type = MenuShowType;
+            }
+            
+            NSArray *ary = @[
+                             [BaseModel convertNull:self.isPay],
+                             [BaseModel Chu1000:self.model.loanAmount],
+                             [BaseModel Chu1000:self.model.loanAmount],
+                             @"",
+                             [BaseModel convertNull:self.isContinueAdvance]];
             cell.rightStr = ary[indexPath.row];
         }
         
-        
-        if (indexPath.row == 4) {
-            cell.rightStr = self.isContinueAdvance;
-        }
-        if (indexPath.row == 5) {
-            cell.rightStr = self.isPay;
+        if (indexPath.row == 0) {
+//            cell.rightStr = self.isPay;
             [cell.rightLbl mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(150);
             }];
-
+            
         }
         
         

@@ -10,8 +10,10 @@
 
 @interface SurveyModel : NSObject
 @property (nonatomic , copy)NSString *materialNodeCode;
+@property (nonatomic , copy)NSString *isPay;
 @property (nonatomic , assign)BOOL isChoose;
-
+@property (nonatomic , copy)NSString *advanceFundDatetime;
+@property (nonatomic , copy)NSString *bankFkDatetime;
 @property (nonatomic , copy)NSString *userId;
 @property (nonatomic , copy)NSString *realName;
 @property (nonatomic , copy)NSString *fullName;

@@ -59,19 +59,28 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        if (indexPath.row == 3) {
-            WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
-                
-                NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
-                advanceFundDatetime = date;
-                self.tableView.advanceFundDatetime = date;
-                [self.tableView reloadData];
-            }];
-            datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
-            datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
-            datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
-            [datepicker show];
+        if ([self.model.isPay isEqualToString:@"1"]) {
+            if (indexPath.row != 4) {
+                return;
+            }
+        }else
+        {
+            if (indexPath.row != 2) {
+                return;
+            }
+
         }
+        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+            
+            NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd"];
+            advanceFundDatetime = date;
+            self.tableView.advanceFundDatetime = date;
+            [self.tableView reloadData];
+        }];
+        datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
+        datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
+        datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
+        [datepicker show];
     }
 }
 
@@ -83,7 +92,14 @@
 -(void)noThroughBtnClick
 {
     
-    UITextField *textTf = [self.view viewWithTag:104];
+    UITextField *textTf;
+    if ([self.model.isPay isEqualToString:@"1"]) {
+        textTf = [self.view viewWithTag:105];
+    }else
+    {
+        textTf = [self.view viewWithTag:102];
+    }
+        
     UITextView *textView = [self.view viewWithTag:1000];
 //    UITextView
     if ([BaseModel isBlankString:advanceFundDatetime] == YES) {

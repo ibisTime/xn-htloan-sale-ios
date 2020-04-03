@@ -35,23 +35,34 @@
         
         NSArray *ary = [MenuModel new].menuArray;
         for (int i = 0; i < ary.count; i ++) {
-            UIButton *menuBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-            menuBtn.titleLabel.font = Font(12);
-//            UIButton *menuBtn = [UIButton buttonWithTitle:ary[i] titleColor:kHexColor(@"#999999") backgroundColor:kHexColor(@"#F5F5F5") titleFont:12];
-            [menuBtn setTitle:ary[i] forState:(UIControlStateNormal)];
-            menuBtn.frame = CGRectMake(15 + i % 4 *((SCREEN_WIDTH - 75)/4 + 15), 25 + i / 4 * 47, (SCREEN_WIDTH - 75)/4, 32);
-            [menuBtn setTitleColor:kHexColor(@"#999999") forState:(UIControlStateNormal)];
-//            [menuBtn setBackgroundColor:kHexColor(@"#F5F5F5") forState:(UIControlStateNormal)];
-            menuBtn.backgroundColor = kHexColor(@"#F5F5F5");
-            [menuBtn setTitleColor:kWhiteColor forState:(UIControlStateSelected)];
-            if (i == 0) {
-                menuBtn.selected = YES;
-                selectBtn = menuBtn;
-                menuBtn.backgroundColor = kHexColor(@"#028EFF");
+            
+            if (i == 4) {
+                
+            }else
+            {
+                UIButton *menuBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+                menuBtn.titleLabel.font = Font(12);
+                //            UIButton *menuBtn = [UIButton buttonWithTitle:ary[i] titleColor:kHexColor(@"#999999") backgroundColor:kHexColor(@"#F5F5F5") titleFont:12];
+                [menuBtn setTitle:ary[i] forState:(UIControlStateNormal)];
+                if (i > 4) {
+                    menuBtn.frame = CGRectMake(15 + (i - 1) % 4 *((SCREEN_WIDTH - 75)/4 + 15), 25 + (i - 1) / 4 * 47, (SCREEN_WIDTH - 75)/4, 32);
+                }else
+                {
+                    menuBtn.frame = CGRectMake(15 + i % 4 *((SCREEN_WIDTH - 75)/4 + 15), 25 + i / 4 * 47, (SCREEN_WIDTH - 75)/4, 32);
+                }
+                [menuBtn setTitleColor:kHexColor(@"#999999") forState:(UIControlStateNormal)];
+                //            [menuBtn setBackgroundColor:kHexColor(@"#F5F5F5") forState:(UIControlStateNormal)];
+                menuBtn.backgroundColor = kHexColor(@"#F5F5F5");
+                [menuBtn setTitleColor:kWhiteColor forState:(UIControlStateSelected)];
+                if (i == 0) {
+                    menuBtn.selected = YES;
+                    selectBtn = menuBtn;
+                    menuBtn.backgroundColor = kHexColor(@"#028EFF");
+                }
+                [menuBtn addTarget:self action:@selector(menuBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+                menuBtn.tag = i;
+                [self addSubview:menuBtn];
             }
-            [menuBtn addTarget:self action:@selector(menuBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-            menuBtn.tag = i;
-            [self addSubview:menuBtn];
         }
     }
     return self;

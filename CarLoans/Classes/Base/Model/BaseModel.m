@@ -133,7 +133,7 @@
         return @"";
     }
     else if ([object isEqualToString:@"0.00"]){
-        return @"";
+        return @"0";
     }
     
     return object;
@@ -392,7 +392,7 @@
 {
     NSString *num1 = [NSString stringWithFormat:@"%@",num];
     if ([num1 floatValue] == 0) {
-        return @"0";
+        return [self convertNull:num1];
     }
     return [BaseModel CHENGmult1:num1 mult2:@"1000" scale:0];
 //    [NSString stringWithFormat:@"%.0f",[num floatValue] * 1000];
@@ -402,7 +402,7 @@
 {
     NSString *num1 = [NSString stringWithFormat:@"%@",num];
     if ([num1 floatValue] == 0) {
-        return @"";
+        return [self convertNull:num1];
     }
     return [BaseModel CHUmult1:num1 mult2:@"1000" scale:2];
 //    [NSString stringWithFormat:@"%.2f",[num floatValue] / 1000];
@@ -414,7 +414,7 @@
 {
     NSString *num1 = [NSString stringWithFormat:@"%@",num];
     if ([num1 floatValue] == 0) {
-        return @"";
+        return [self convertNull:num1];
     }
     return [BaseModel CHENGmult1:num1 mult2:@"100" scale:4];
 }
@@ -423,7 +423,7 @@
 {
     NSString *num1 = [NSString stringWithFormat:@"%@",num];
     if ([num1 floatValue] == 0) {
-        return @"0";
+        return [self convertNull:num1];
     }
 //[NSString stringWithFormat:@"%.6f",[num floatValue] / 100]
     return [BaseModel CHUmult1:num1 mult2:@"100" scale:4];

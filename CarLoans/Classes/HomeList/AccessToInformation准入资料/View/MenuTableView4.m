@@ -14,6 +14,7 @@
     NSString *code;
     NSMutableArray *_writeArray;
     NSInteger lastIndex;
+    NSString *rebateRate;
 }
 @end
 @implementation MenuTableView4
@@ -41,6 +42,17 @@
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.row == 9 || indexPath.row == 10 || indexPath.row == 16 || indexPath.row == 17 || indexPath.row == 19 || indexPath.row == 20) {
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        return cell;
+    }
+    
     NSString *CellIdentifier = [NSString stringWithFormat:@"cell1%ld%ld",indexPath.section,indexPath.row];
     MenuInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
@@ -58,6 +70,74 @@
     cell.rightLbl.tag = 4000 + indexPath.row;
     NSDictionary *bankLoan = self.model.bankLoan;
 
+//    @"*贷款本金",0
+//    @"*贷款期数",1
+//    @"*银行利率",2
+//    @"*总利率%",3
+//    @"*返存利率%",4
+//    @"*是否垫资",5
+//    @"*月供",6
+//    @"*首月还款额",7
+//    @"*开卡金额",8
+//    //                        @"贴息利率%",9
+//    //                        @"贴息金额",10
+//    @"*发票价格",11
+//    @"贷款成数",12
+//    @"开票日期",13
+//    @"*利率类型",14
+//    @"*服务费",15
+//    //                        @"是否贴息",16
+//    //                        @"高抛金额",
+//    @"费用总额",17
+//    //                        @"客户承担利率%",
+//    //                        @"附加费费率%",
+//    @"附加费",20
+//    @"备注事项",
+//    @"*GPS费",
+//    @"担保风险金",
+//    @"履约押金",
+//    @"其他费用",
+//    @"车款1",
+//    @"车款2",
+//    @"车款3",
+//    @"车款4",
+//    @"车款5"
+    
+    
+//    @[@"*贷款本金",
+//      @"*贷款期数",
+//      @"*银行利率",
+//      @"*总利率%",
+//      @"*返存利率%",
+//      @"*是否垫资",
+//      @"*月供",
+//      @"*首月还款额",
+//      @"*开卡金额",
+//      @"贴息利率%",
+//      @"贴息金额",
+//      @"*发票价格",
+//      @"贷款成数",
+//      @"开票日期",
+//      @"*利率类型",
+//      @"*服务费",
+//      @"是否贴息",
+//      @"高抛金额",
+//      @"费用总额",
+//      @"客户承担利率%",
+//      @"附加费费率%",
+//      @"附加费",
+//      @"备注事项",
+//      @"*GPS费",
+//      @"担保风险金",
+//      @"履约押金",
+//      @"其他费用",
+//      @"车款1",
+//      @"车款2",
+//      @"车款3",
+//      @"车款4",
+//      @"车款5"
+//      ]
+    
     if (indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 13 || indexPath.row == 14 || indexPath.row == 16) {
         if (self.isDetails == YES) {
             cell.type = MenuShowType;
@@ -129,7 +209,7 @@
             cell.type = MenuShowType;
         }else
         {
-            if (indexPath.row == 2 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 || indexPath.row == 12 || indexPath.row == 15 || indexPath.row == 18) {
+            if (indexPath.row == 2 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 || indexPath.row == 12 || indexPath.row == 15 || indexPath.row == 18 || indexPath.row == 27 || indexPath.row == 28 || indexPath.row == 29) {
                 cell.type = MenuInputNotEnterType;
             }else
             {
@@ -188,7 +268,21 @@
     
 //    NSDictionary *carInfo = self.model.carInfo;
     
+    NSString *carFunds3;
     
+//    NSDictionary *bankLoan = self.model.bankLoan;
+    
+    NSString *totalRate = bankLoan[@"totalRate"];
+    NSString *loanAmount = [BaseModel Chu1000:bankLoan[@"loanAmount"]];
+    
+    rebateRate = bankLoan[@"rebateRate"];
+    //        银行利率
+    NSString *bankRate = bankLoan[@"bankRate"];
+    carFunds3 = [NSString stringWithFormat:@"%.2f",([rebateRate floatValue] - [bankRate floatValue]) * [loanAmount floatValue]];
+    
+    
+    NSString *repointAmount;
+    repointAmount = [NSString stringWithFormat:@"%.2f",([totalRate floatValue] - [rebateRate floatValue]) * [loanAmount floatValue]];
     
     _writeArray = [NSMutableArray arrayWithArray:@[[BaseModel Chu1000:bankLoan[@"loanAmount"]],
                                                    @"",
@@ -212,7 +306,16 @@
                                                    [BaseModel Cheng100:bankLoan[@"customerBearRate"]],
                                                    [BaseModel Cheng100:bankLoan[@"surchargeRate"]],
                                                    [BaseModel Chu1000:bankLoan[@"surchargeAmount"]],
-                                                   [BaseModel convertNull:bankLoan[@"notes"]]
+                                                   [BaseModel convertNull:bankLoan[@"notes"]],
+                                                   [BaseModel Chu1000:self.model.gpsFee],
+                                                   [BaseModel Chu1000:self.model.fxAmount],
+                                                   [BaseModel Chu1000:self.model.lyDeposit],
+                                                   [BaseModel Chu1000:self.model.otherFee],
+                                                   [BaseModel Chu1000:self.model.loanAmount],
+                                                   repointAmount,
+                                                   carFunds3,
+                                                   [BaseModel Chu1000:self.model.carFunds4],
+                                                   [BaseModel Chu1000:self.model.carFunds5]
                                                    ]];
     [self reloadData];
     
@@ -226,7 +329,7 @@
     http.showView = self;
     [http postWithSuccess:^(id responseObject) {
         
-        NSString *rebateRate;
+        
         if ([[BaseModel Cheng100:bankLoan[@"rebateRate"]] floatValue] == 0) {
             rebateRate = [BaseModel Cheng100:responseObject[@"data"][@"cvalue"]];
         }else
@@ -246,6 +349,11 @@
 
 //3.对输入的文本插入到数组中
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField.tag == 4000) {
+        [_writeArray replaceObjectAtIndex:27 withObject:textField.text];
+        UITextField *textField4026 = [self viewWithTag:4027];
+        textField4026.text = textField.text;
+    }
     [_writeArray replaceObjectAtIndex:textField.tag - 4000 withObject:textField.text];
 }
 
@@ -258,6 +366,7 @@
 -(void)rightNumberTfDidChangeOneCI:(NSNotification *)notification
 {
 //    UITextField *textfield=[notification object];
+    
     [self notification];
     
 }
@@ -301,6 +410,7 @@
     UITextField *textField4001 = [self viewWithTag:4001];
     UITextField *textField4002 = [self viewWithTag:4002];
     UITextField *textField4003 = [self viewWithTag:4003];
+    UITextField *textField4004 = [self viewWithTag:4004];
     UITextField *textField4011 = [self viewWithTag:4011];
     UITextField *textField4012 = [self viewWithTag:4012];
     UITextField *textField4015 = [self viewWithTag:4015];
@@ -308,9 +418,26 @@
     UITextField *tf18 = [self viewWithTag:4018];
     
     
+    if (![textField4004.text isEqualToString:@""] && ![textField4000.text isEqualToString:@""] && ![textField4003.text isEqualToString:@""]) {
+        NSString *repointAmount;
+        repointAmount = [NSString stringWithFormat:@"%.2f",([textField4003.text floatValue] - [textField4004.text floatValue]) * [textField4000.text floatValue]/100];
+        UITextField *tf27 = [self viewWithTag:4028];
+        tf27.text = repointAmount;
+        [_writeArray replaceObjectAtIndex:28 withObject:repointAmount];
+    }
+    if (![textField4004.text isEqualToString:@""] && ![textField4000.text isEqualToString:@""] && ![textField4002.text isEqualToString:@""]) {
+        NSString *carFunds3 = [NSString stringWithFormat:@"%.2f",([textField4004.text floatValue] - [textField4002.text floatValue]) * [textField4000.text floatValue]/100];
+        UITextField *tf28 = [self viewWithTag:4029];
+        tf28.text = carFunds3;
+        [_writeArray replaceObjectAtIndex:29 withObject:carFunds3];
+    }
     
     
     if (![textField4000.text isEqualToString:@""] && ![textField4001.text isEqualToString:@""] && ![textField4002.text isEqualToString:@""] && ![textField4003.text isEqualToString:@""]) {
+        
+        
+        
+        
         
         TLNetworking *http = [TLNetworking new];
         http.isShowMsg = YES;
@@ -346,12 +473,11 @@
             
             tf18.text = [NSString stringWithFormat:@"%@",[BaseModel JIAmult1:textField4000.text mult2:textField4015.text scale:2]];
             [_writeArray replaceObjectAtIndex:18 withObject:[NSString stringWithFormat:@"%@",tf18.text]];
+            
+            
         } failure:^(NSError *error) {
             
         }];
-        
-        
-        
     }
 }
     
@@ -361,10 +487,13 @@
         [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
     }
 }
+
 #pragma mark -- 行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.row == 9 || indexPath.row == 10 || indexPath.row == 16 || indexPath.row == 17 || indexPath.row == 19 || indexPath.row == 20) {
+        return 0.01;
+    }
     return 55;
 }
 

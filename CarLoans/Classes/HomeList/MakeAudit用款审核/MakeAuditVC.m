@@ -50,24 +50,95 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        if (indexPath.row == 3) {
-            TaskManagementVC *vc = [TaskManagementVC new];
-            CarLoansWeakSelf;
-            vc.returnAryBlock1 = ^(NSArray * _Nonnull missionArray) {
-                weakSelf.missionArray = missionArray;
-            };
-            vc.missionList = weakSelf.missionArray;
-            [self.navigationController pushViewController:vc animated:YES];
-            
+        if ([BaseModel isBlankString:isPay] == YES) {
+            if (indexPath.row == 1) {
+                
+                TaskManagementVC *vc = [TaskManagementVC new];
+                CarLoansWeakSelf;
+                vc.returnAryBlock1 = ^(NSArray * _Nonnull missionArray) {
+                    weakSelf.missionArray = missionArray;
+                };
+                vc.missionList = weakSelf.missionArray;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }
+            if (indexPath.row == 0 || indexPath.row == 2) {
+                if (indexPath.row == 0) {
+                    selectRow = 5;
+                }else
+                {
+                    selectRow = 4;
+                }
+                NSMutableArray *ary = [NSMutableArray array];
+                [ary addObjectsFromArray:@[@"是",@"否"]];
+                BaseModel *baseModel = [BaseModel user];
+                baseModel.ModelDelegate = self;
+                [baseModel CustomBouncedView:ary setState:@"100"];
+                
+            }
+        }else if ([isPay isEqualToString:@"1"]) {
+            if (indexPath.row == 5) {
+                
+                TaskManagementVC *vc = [TaskManagementVC new];
+                CarLoansWeakSelf;
+                vc.returnAryBlock1 = ^(NSArray * _Nonnull missionArray) {
+                    weakSelf.missionArray = missionArray;
+                };
+                vc.missionList = weakSelf.missionArray;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }
+            if (indexPath.row == 0 || indexPath.row == 6) {
+                if (indexPath.row == 0) {
+                    selectRow = 5;
+                }else
+                {
+                    selectRow = 4;
+                }
+                NSMutableArray *ary = [NSMutableArray array];
+                [ary addObjectsFromArray:@[@"是",@"否"]];
+                BaseModel *baseModel = [BaseModel user];
+                baseModel.ModelDelegate = self;
+                [baseModel CustomBouncedView:ary setState:@"100"];
+                
+            }
+        }else
+        {
+            if (indexPath.row == 3) {
+                
+                TaskManagementVC *vc = [TaskManagementVC new];
+                CarLoansWeakSelf;
+                vc.returnAryBlock1 = ^(NSArray * _Nonnull missionArray) {
+                    weakSelf.missionArray = missionArray;
+                };
+                vc.missionList = weakSelf.missionArray;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }
+            if (indexPath.row == 0 || indexPath.row == 4) {
+                if (indexPath.row == 0) {
+                    selectRow = 5;
+                }else
+                {
+                    selectRow = 4;
+                }
+                NSMutableArray *ary = [NSMutableArray array];
+                [ary addObjectsFromArray:@[@"是",@"否"]];
+                BaseModel *baseModel = [BaseModel user];
+                baseModel.ModelDelegate = self;
+                [baseModel CustomBouncedView:ary setState:@"100"];
+                
+            }
         }
-        if (indexPath.row == 4 || indexPath.row == 5) {
-            selectRow = indexPath.row;
-            NSMutableArray *ary = [NSMutableArray array];
-            [ary addObjectsFromArray:@[@"是",@"否"]];
-            BaseModel *baseModel = [BaseModel user];
-            baseModel.ModelDelegate = self;
-            [baseModel CustomBouncedView:ary setState:@"100"];
-        }
+        
+//        if (indexPath.row == 4 || indexPath.row == 5) {
+//            selectRow = indexPath.row;
+//            NSMutableArray *ary = [NSMutableArray array];
+//            [ary addObjectsFromArray:@[@"是",@"否"]];
+//            BaseModel *baseModel = [BaseModel user];
+//            baseModel.ModelDelegate = self;
+//            [baseModel CustomBouncedView:ary setState:@"100"];
+//        }
     }
 }
 

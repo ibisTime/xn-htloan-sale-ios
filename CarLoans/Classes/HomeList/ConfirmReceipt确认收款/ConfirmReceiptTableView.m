@@ -84,7 +84,7 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"放款日期",@"备注"];
+    NSArray *nameArray = @[@"*放款日期",@"备注"];
     cell.leftStr = nameArray[indexPath.row];
     if(indexPath.row == 0)
     {

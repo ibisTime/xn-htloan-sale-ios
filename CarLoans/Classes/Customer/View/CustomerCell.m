@@ -17,6 +17,8 @@
     UILabel *priceLbl;
     UILabel *bankLbl;
     UILabel *timeLbl;
+    UILabel *advanceLbl;
+    UILabel *bankFkLbl;
 }
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -41,10 +43,7 @@
         
         
         carNameLbl = [UILabel labelWithFrame:CGRectMake(nameLbl.xx + 5, 52.5, 0, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kHexColor(@"#FF9D4D") font:Font(10) textColor:kWhiteColor];
-//        carNameLbl.text = @"新车";
-        
         kViewRadius(carNameLbl, 2);
-        
         [self addSubview:carNameLbl];
         
         
@@ -62,6 +61,17 @@
 //        timeLbl.text = @"开始时间：2019-10-10 20:00:00";
         [self addSubview:timeLbl];
         
+        
+        advanceLbl = [UILabel labelWithFrame:CGRectMake(15, 80, SCREEN_WIDTH - 30, 16.5) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#666666")];
+        //        bankLbl.text = @"经办银行：中国工商银行";
+        [self addSubview:advanceLbl];
+        
+        
+        bankFkLbl = [UILabel labelWithFrame:CGRectMake(15, 103.5, SCREEN_WIDTH - 30, 16.5) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#666666")];
+        //        bankLbl.text = @"经办银行：中国工商银行";
+        [self addSubview:bankFkLbl];
+        
+        
         UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 135, SCREEN_WIDTH, 10)];
         bottomView.backgroundColor = kBackgroundColor;
         [self addSubview:bottomView];
@@ -76,6 +86,19 @@
     _model = model;
     stateLbl.text = [[BaseModel user]note:model.curNodeCode];
     codeLbl.text = model.code;
+    
+    if ([BaseModel isBlankString:model.advanceFundDatetime] == YES) {
+        advanceLbl.text = @"";
+    }else
+    {
+        advanceLbl.text = @"已垫资";
+    }
+    if ([BaseModel isBlankString:model.bankFkDatetime] == YES) {
+        bankFkLbl.text = @"";
+    }else
+    {
+        bankFkLbl.text = @"已放款";
+    }
     
     nameLbl.text = model.creditUser[@"userName"];
     nameLbl.frame = CGRectMake(15, 50, 0, 20);

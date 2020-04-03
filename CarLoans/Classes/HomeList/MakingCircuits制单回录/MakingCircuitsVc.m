@@ -47,28 +47,38 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        if (indexPath.row == 3) {
-            TLNetworking *http = [TLNetworking new];
-            http.isShowMsg = YES;
-            http.code = @"632007";
-            http.parameters[@"type"] = @"4";
-            http.showView = self.view;
-            [http postWithSuccess:^(id responseObject) {
-                advanceCardCodeAry = responseObject[@"data"];
-                NSMutableArray *array = [NSMutableArray array];
-                for (int i = 0; i < advanceCardCodeAry.count; i ++) {
-                    [array addObject:[NSString stringWithFormat:@"%@-%@",advanceCardCodeAry[i][@"companyName"],advanceCardCodeAry[i][@"bankName"]]];
-                }
-//                _advanceCardCodeDic[@"companyName"],_advanceCardCodeDic[@"bankName"]
-                BaseModel *baseModel = [BaseModel user];
-                baseModel.ModelDelegate = self;
-                [baseModel CustomBouncedView:array setState:@"100"];
-                
-                
-            } failure:^(NSError *error) {
-                
-            }];
+        if ([self.model.isPay isEqualToString:@"1"]) {
+            if (indexPath.row != 4) {
+                return;
+            }
+        }else
+        {
+            if (indexPath.row != 2) {
+                return;
+            }
         }
+        
+        
+        TLNetworking *http = [TLNetworking new];
+        http.isShowMsg = YES;
+        http.code = @"632007";
+        http.parameters[@"type"] = @"4";
+        http.showView = self.view;
+        [http postWithSuccess:^(id responseObject) {
+            advanceCardCodeAry = responseObject[@"data"];
+            NSMutableArray *array = [NSMutableArray array];
+            for (int i = 0; i < advanceCardCodeAry.count; i ++) {
+                [array addObject:[NSString stringWithFormat:@"%@-%@",advanceCardCodeAry[i][@"companyName"],advanceCardCodeAry[i][@"bankName"]]];
+            }
+            //                _advanceCardCodeDic[@"companyName"],_advanceCardCodeDic[@"bankName"]
+            BaseModel *baseModel = [BaseModel user];
+            baseModel.ModelDelegate = self;
+            [baseModel CustomBouncedView:array setState:@"100"];
+            
+            
+        } failure:^(NSError *error) {
+            
+        }];
     }
 }
 

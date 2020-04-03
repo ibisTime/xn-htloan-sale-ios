@@ -1504,6 +1504,15 @@
         UITextField *tf20 = [self.view viewWithTag:4020];
         UITextField *tf21 = [self.view viewWithTag:4021];
         UITextField *tf22 = [self.view viewWithTag:4022];
+        
+        UITextField *tf23 = [self.view viewWithTag:4023];
+        UITextField *tf24 = [self.view viewWithTag:4024];
+        UITextField *tf25 = [self.view viewWithTag:4025];
+        UITextField *tf26 = [self.view viewWithTag:4026];
+        UITextField *tf28 = [self.view viewWithTag:4028];
+        UITextField *tf29 = [self.view viewWithTag:4029];
+        UITextField *tf30 = [self.view viewWithTag:4030];
+        UITextField *tf31 = [self.view viewWithTag:4031];
         TLNetworking *http = [TLNetworking new];
         http.code = @"632532";
         http.showView = self.view;
@@ -1537,6 +1546,15 @@
         http.parameters[@"surchargeAmount"] = [BaseModel Cheng1000:tf21.text];
         http.parameters[@"notes"] = tf22.text;
         
+        http.parameters[@"gpsFee"] = [BaseModel Cheng1000:tf23.text];
+        http.parameters[@"fxAmount"] = [BaseModel Cheng1000:tf24.text];
+        http.parameters[@"lyDeposit"] = [BaseModel Cheng1000:tf25.text];
+        http.parameters[@"otherFee"] = [BaseModel Cheng1000:tf26.text];
+        
+        http.parameters[@"repointAmount"] = [BaseModel Cheng1000:tf28.text];
+        http.parameters[@"carFunds3"] = [BaseModel Cheng1000:tf29.text];
+        http.parameters[@"carFunds4"] = [BaseModel Cheng1000:tf30.text];
+        http.parameters[@"carFunds5"] = [BaseModel Cheng1000:tf31.text];
         
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"保存成功"];
@@ -1572,6 +1590,7 @@
         http.parameters[@"fxAmount"] = [BaseModel Cheng1000:tf1.text];
         http.parameters[@"lyDeposit"] = [BaseModel Cheng1000:tf2.text];
         http.parameters[@"otherFee"] = [BaseModel Cheng1000:tf3.text];
+        
         http.parameters[@"repointAmount"] = [BaseModel Cheng1000:tf5.text];
         http.parameters[@"carFunds3"] = [BaseModel Cheng1000:tf6.text];
         http.parameters[@"carFunds4"] = [BaseModel Cheng1000:tf7.text];

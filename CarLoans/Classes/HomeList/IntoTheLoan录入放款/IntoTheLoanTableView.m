@@ -84,7 +84,7 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"银行合同匹配",@"贷款编号",@"银行还款日",@"账单日",@"卡号",@"备注"];
+    NSArray *nameArray = @[@"银行合同匹配",@"贷款编号",@"*银行还款日",@"*账单日",@"*卡号",@"备注"];
     cell.leftStr = nameArray[indexPath.row];
     if (indexPath.row == 0) {
         cell.type = MenuPushType;

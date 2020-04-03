@@ -89,7 +89,7 @@
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSArray *nameArray = @[@"档案编号",@"档案存放位置",@"保险公司",@"商业险开始",@"商业险结束"];
+        NSArray *nameArray = @[@"*档案编号",@"*档案存放位置",@"*保险公司",@"*商业险开始",@"*商业险结束"];
         cell.leftStr = nameArray[indexPath.row];
         if (indexPath.row == 0) {
             cell.type = MenuShowType;
@@ -126,7 +126,7 @@
         cell = [[UploadMultiplePicturesCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"垫资合同（多选）",@"担保和反担保合同（多选）",@"抵押合同（多选）",@"其他材料（多选）"];
+    NSArray *nameArray = @[@"*垫资合同（多选）",@"*担保和反担保合同（多选）",@"*抵押合同（多选）",@"其他材料（多选）"];
     cell.name = nameArray[indexPath.row];
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name, NSInteger section) {
         [self reloadData];

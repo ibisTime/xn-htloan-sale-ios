@@ -85,10 +85,10 @@
         [TLAlert alertWithInfo:@"请选择时间"];
         return;
     }
-    if ([textView.text isEqualToString:@""]) {
-        [TLAlert alertWithInfo:@"请输入说明"];
-        return;
-    }
+//    if ([textView.text isEqualToString:@""]) {
+//        [TLAlert alertWithInfo:@"请输入说明"];
+//        return;
+//    }
     
     TLNetworking *http = [TLNetworking new];
     http.isShowMsg = YES;
