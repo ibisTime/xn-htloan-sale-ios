@@ -50,7 +50,7 @@
 @property (nonatomic , strong)DetailsMenuTableView15 *tableView15;
 @property (nonatomic , strong)RepaymentPlanHeadView *headView;
 
-@property (nonatomic , strong)NSString *driveCard;
+@property (nonatomic , strong)NSArray *driveCard;
 @property (nonatomic , strong)NSString *marryPdf;
 @property (nonatomic , strong)NSString *divorcePdf;
 @property (nonatomic , strong)NSString *singleProve;
@@ -113,6 +113,7 @@
     self.tableView2.refreshDelegate = self;
     self.tableView2.backgroundColor = kWhiteColor;
     self.tableView2.tag = 20101;
+    self.tableView2.isDetails = YES;
     [self.view addSubview:self.tableView2];
     
     self.tableView3 = [[MenuTableView3 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10000) style:(UITableViewStyleGrouped)];
@@ -330,7 +331,7 @@
         
         
         
-        self.driveCard = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"drive_card"];
+        self.driveCard = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"drive_card"] componentsSeparatedByString:@"||"];
         self.marryPdf = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"marry_pdf"];
         self.divorcePdf = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"divorce_pdf"];
         self.singleProve = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"single_prove"];

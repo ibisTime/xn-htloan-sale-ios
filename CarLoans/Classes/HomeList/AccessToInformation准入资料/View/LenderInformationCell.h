@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LenderInformationCell : UITableViewCell
 @property (nonatomic , strong)NSDictionary *dataDic;
 @property (nonatomic , strong)NSArray *creditUserList;
+@property (nonatomic , strong)UIButton *clearBtn;
+@property (nonatomic , assign)BOOL isDetails;
 @end
 
 NS_ASSUME_NONNULL_END

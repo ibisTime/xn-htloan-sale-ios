@@ -43,7 +43,15 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.dataDic = self.credit_user_loan_roleArray[indexPath.row];
     cell.creditUserList = self.creditUserList;
+    [cell.clearBtn addTarget:self action:@selector(clearBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    cell.clearBtn.tag = indexPath.row;
     return cell;
+}
+
+-(void)clearBtnClick:(UIButton *)sender
+{
+    
+    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:sender.tag selectRowState:@"clear"];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -18,7 +18,8 @@ typedef void (^ReturnPhotoAryBlock)(NSArray *imgAry,NSString *name,NSInteger sec
 
 @property (nonatomic, copy) ReturnPhotoAryBlock returnAryBlock;
 @property (nonatomic , assign)BOOL isDetails;
-@property (nonatomic , strong)NSString *driveCard;
+
+
 @property (nonatomic , strong)NSString *marryPdf;
 @property (nonatomic , strong)NSString *divorcePdf;
 @property (nonatomic , strong)NSString *singleProve;
@@ -26,6 +27,7 @@ typedef void (^ReturnPhotoAryBlock)(NSArray *imgAry,NSString *name,NSInteger sec
 @property (nonatomic , strong)NSString *liveProvePdf;
 @property (nonatomic , strong)NSString *housePropertyCardPdf;
 
+@property (nonatomic , strong)NSArray *driveCard;
 @property (nonatomic , strong)NSArray *hkBookFirstPage;
 @property (nonatomic , strong)NSArray *bankJourFirstPage;
 @property (nonatomic , strong)NSArray *zfbJour;

@@ -44,89 +44,22 @@
         cell = [[MenuInputCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-//    if ([self.bizType isEqualToString:@"二手车"]) {
-//        NSArray *nameArray = [MenuModel new].menuSecondgHandArray1;
-//        cell.leftStr = nameArray[indexPath.row];
-//        if (indexPath.row == 5) {
-//            cell.type = MenuPushType;
-//            cell.rightStr = [BaseModel convertNull:self.carBrand];
-//        }else if (indexPath.row == 9) {
-//            cell.rightTF.tag = 1000 + indexPath.row;
-//            if ([cell.rightTF.text isEqualToString:@""]) {
-//                cell.rightStr = [BaseModel convertNull:self.mile];
-//            }
-//            cell.type = MenuInputType;
-//        }else if (indexPath.row == 10 || indexPath.row == 6 || indexPath.row == 7) {
-//            if (indexPath.row == 10) {
-//                cell.rightLbl.textColor = kAppCustomMainColor;
-//            }else
-//            {
-//                cell.rightLbl.textColor = kHexColor(@"#333333");
-//            }
-//            cell.type = MenuShowType;
-//            if (indexPath.row == 6 || indexPath.row == 7) {
-//                NSArray *ary = @[[BaseModel convertNull:self.carSeries],
-//                                 [BaseModel convertNull:self.carModel]];
-//                cell.rightStr = ary[indexPath.row - 6];
-//            }
-//            else
-//            {
-    
-    
-//            }
-//        }else
-//        {
-//            NSArray *ary = @[[BaseModel convertNull:self.saleUserId],
-//                             [BaseModel convertNull:self.loanBankCode],
-//                             [BaseModel convertNull:self.region],
-//                             [BaseModel convertNull:self.shopCarGarage],
-//                             [BaseModel convertNull:self.bizType],
-//                             @"",
-//                             @"",
-//                             @"",
-//                             [BaseModel convertNull:self.regDate]
-//                             ];
-//            cell.rightStr = ary[indexPath.row];
-//            cell.type = MenuChooseType;
-    
-//        }
-//    }else
-//    {
-//        if (indexPath.row == 5) {
-//            cell.type = MenuPushType;
-//            cell.rightStr = [BaseModel convertNull:self.carBrand];
-//        }else if (indexPath.row == 6 || indexPath.row == 7) {
-//            cell.type = MenuShowType;
-//            NSArray *ary = @[[BaseModel convertNull:self.carSeries],
-//                             [BaseModel convertNull:self.carModel]];
-//            cell.rightStr = ary[indexPath.row - 6];
-//        }else
-//        {
     if (indexPath.row == 3) {
         cell.type = MenuPushType;
     }else
     {
         cell.type = MenuChooseType;
     }
-    
-    
-            NSArray *ary = @[[BaseModel convertNull:self.saleUserId],
-                             [BaseModel convertNull:self.loanBankCode],
-                             [BaseModel convertNull:self.region],
-                             [BaseModel convertNull:self.shopCarGarage],
-                             [BaseModel convertNull:self.ascription],
-                             [BaseModel convertNull:self.bizType]
-                             
-                             ];
-    
-            cell.rightStr = ary[indexPath.row];
-//        }
-    
-        NSArray *nameArray = [MenuModel new].menuArray1;
-        cell.leftStr = nameArray[indexPath.row];
-        
-//    }
+    NSArray *ary = @[[BaseModel convertNull:self.saleUserId],
+                     [BaseModel convertNull:self.loanBankCode],
+                     [BaseModel convertNull:self.region],
+                     [BaseModel convertNull:self.shopCarGarage],
+                     [BaseModel convertNull:self.ascription],
+                     [BaseModel convertNull:self.bizType]
+                     ];
+    cell.rightStr = ary[indexPath.row];
+    NSArray *nameArray = [MenuModel new].menuArray1;
+    cell.leftStr = nameArray[indexPath.row];
     cell.rightLbl.tag = 10000 + indexPath.row;
     cell.rightTF.tag = 10000 + indexPath.row;
     return cell;

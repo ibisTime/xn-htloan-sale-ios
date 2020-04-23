@@ -69,7 +69,7 @@
     
     
     
-    UIButton *throughBtn = [UIButton buttonWithTitle:@"返回" titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16 cornerRadius:2];
+    UIButton *throughBtn = [UIButton buttonWithTitle:@"退回" titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16 cornerRadius:2];
     throughBtn.frame = CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, (SCREEN_WIDTH - 45)/2, 45);
     [throughBtn addTarget:self action:@selector(throughBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:throughBtn];
@@ -83,7 +83,30 @@
 
 -(void)throughBtnClick
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [TLAlert alertWithTitle:@"提示" msg:@"是否退回上一节点" confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
+        
+    } confirm:^(UIAlertAction *action) {
+        
+        TLNetworking *http = [TLNetworking new];
+        http.isShowMsg = YES;
+        http.code = @"632544";
+        http.parameters[@"code"] = self.model.code;
+        http.parameters[@"approveResult"] = @"0";
+        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+        http.showView = self.view;
+        [http postWithSuccess:^(id responseObject) {
+            
+            [TLAlert alertWithSucces:@"退回成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        
+    }];
 }
 
 -(void)noThroughBtnClick
@@ -95,6 +118,7 @@
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"code"] = self.model.code;
         http.showView = self.view;
+    http.parameters[@"approveResult"] = @"1";
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"接收评估成功"];
     

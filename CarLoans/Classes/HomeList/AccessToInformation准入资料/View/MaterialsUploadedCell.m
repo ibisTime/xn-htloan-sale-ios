@@ -177,9 +177,10 @@
         }];
         
         NSArray *ary = @[@"驾驶证",@"结婚证",@"离婚证",@"单身证明",@"收入证明",@"居住证",@"产权证内容页"];
-        for (int i = 0; i < 7; i ++) {
+        for (int i = 1; i < 7; i ++) {
+            
             UIButton *photoBtn = [UIButton buttonWithImageName:@"资料上传"];
-            photoBtn.frame = CGRectMake(15 + i % 3 * ((SCREEN_WIDTH - 45)/3 + 7.5), 41 + i / 3 * 121, (SCREEN_WIDTH - 45)/3, 82.5);
+            photoBtn.frame = CGRectMake(15 + (i - 1) % 3 * ((SCREEN_WIDTH - 45)/3 + 7.5), 41 + (i - 1) / 3 * 121, (SCREEN_WIDTH - 45)/3, 82.5);
             photoBtn.tag = 100 + i;
             [photoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
             [self addSubview:photoBtn];
@@ -218,16 +219,7 @@
 {
     if (_isDetails == YES) {
         
-        
-//        @property (nonatomic , strong)NSString *driveCard;
-//        @property (nonatomic , strong)NSString *marryPdf;
-//        @property (nonatomic , strong)NSString *divorcePdf;
-//        @property (nonatomic , strong)NSString *singleProve;
-//        @property (nonatomic , strong)NSString *incomeProve;
-//
-//        @property (nonatomic , strong)NSString *liveProvePdf;
-//        @property (nonatomic , strong)NSString *housePropertyCardPdf;
-//
+
         if (sender.tag == 100) {
             if ([BaseModel isBlankString:_driveCard] == YES) {
                 return;

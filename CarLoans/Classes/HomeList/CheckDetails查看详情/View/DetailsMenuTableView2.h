@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong)SurveyModel *model;
 @property (nonatomic , strong)NSArray *credit_user_loan_roleArray;
 @property (nonatomic , strong)NSArray *creditUserList;
+@property (nonatomic , assign)BOOL isDetails;
 @end
 
 NS_ASSUME_NONNULL_END

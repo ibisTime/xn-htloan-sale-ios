@@ -39,7 +39,7 @@
     if (section == 0) {
         return 1;
     }
-    return 6;
+    return 7;
 }
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,7 +58,7 @@
             self.dataUploadBlock(driveCard, marryPdf, divorcePdf, singleProve, incomeProve, liveProvePdf, housePropertyCardPdf);
         };
         cell.isDetails = self.isDetails;
-        cell.driveCard = self.driveCard;
+//        cell.driveCard = self.driveCard;
         cell.marryPdf = self.marryPdf;
         cell.divorcePdf = self.divorcePdf;
         cell.singleProve = self.singleProve;
@@ -74,29 +74,33 @@
         cell = [[UploadMultiplePicturesCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *nameArray = @[@"户口本（多选）",@"银行流水（多选）",@"支付宝流水（多选）",@"微信流水（多选）",@"其他（多选）",@"合同签约视频"];
+    NSArray *nameArray = @[@"驾驶证（多选）",@"户口本（多选）",@"银行流水（多选）",@"支付宝流水（多选）",@"微信流水（多选）",@"其他（多选）",@"合同签约视频"];
     cell.name = nameArray[indexPath.row];
     
     cell.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name, NSInteger section) {
         self.returnAryBlock(imgAry, name, section);
     };
     cell.isDetails = self.isDetails;
+    
     if (indexPath.row == 0) {
-        cell.collectDataArray = self.hkBookFirstPage;
+        cell.collectDataArray = self.driveCard;
     }
     if (indexPath.row == 1) {
-        cell.collectDataArray = self.bankJourFirstPage;
+        cell.collectDataArray = self.hkBookFirstPage;
     }
     if (indexPath.row == 2) {
-        cell.collectDataArray = self.zfbJour;
+        cell.collectDataArray = self.bankJourFirstPage;
     }
     if (indexPath.row == 3) {
-        cell.collectDataArray = self.wxJour;
+        cell.collectDataArray = self.zfbJour;
     }
     if (indexPath.row == 4) {
-        cell.collectDataArray = self.otherPdf;
+        cell.collectDataArray = self.wxJour;
     }
     if (indexPath.row == 5) {
+        cell.collectDataArray = self.otherPdf;
+    }
+    if (indexPath.row == 6) {
         cell.collectDataArray = self.contractAwardVideo;
     }
     _cell = cell;
@@ -115,7 +119,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 410;
+        return 283;
     }
     return _cell.collectionView.yy;
 }

@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , strong)NSArray *credit_user_loan_roleArray;
 @property (nonatomic , strong)NSArray *creditUserList;
+@property (nonatomic , strong)UIButton *clearBtn;
+
+
 
 @end
 

@@ -74,6 +74,30 @@
 
 -(void)throughBtnClick
 {
+//    [TLAlert alertWithTitle:@"提示" msg:@"是否退回上一节点" confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
+//
+//    } confirm:^(UIAlertAction *action) {
+//
+//        TLNetworking *http = [TLNetworking new];
+//        http.isShowMsg = YES;
+//        http.code = @"632573";
+//        http.parameters[@"code"] = self.model.code;
+//        http.parameters[@"approveResult"] = @"0";
+//        http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+//        http.showView = self.view;
+//        [http postWithSuccess:^(id responseObject) {
+//
+//            [TLAlert alertWithSucces:@"退回成功"];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [self.navigationController popViewControllerAnimated:YES];
+//            });
+//
+//        } failure:^(NSError *error) {
+//
+//        }];
+//
+//
+//    }];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -42,6 +42,7 @@
         cell = [[LenderInformationCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.isDetails = self.isDetails;
     cell.dataDic = self.credit_user_loan_roleArray[indexPath.row];
     cell.creditUserList = self.creditUserList;
     return cell;

@@ -61,10 +61,10 @@
                 NSRange endRange = [models.content rangeOfString:@"</p>"];
                 NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
                 NSString * con = [models.content substringWithRange:range];
-                nameLbl.text = con;
+                nameLbl.text = [NSString stringWithFormat:@"%@-%@",con,models.userName];
             }else
             {
-                nameLbl.text = models.content;
+                nameLbl.text = [NSString stringWithFormat:@"%@-%@",models.content,models.userName];
             }
         }else
         {
@@ -75,9 +75,10 @@
     }else
     {
         
-        nameLbl.text = models.content;
+//        nameLbl.text = models.content;
         timeLbl.text= [models.createDatetime convertToDetailDate];
         typeLbl.text = models.bizCode;
+        nameLbl.text = [NSString stringWithFormat:@"%@-%@",models.content,models.userName];
     }
 }
 

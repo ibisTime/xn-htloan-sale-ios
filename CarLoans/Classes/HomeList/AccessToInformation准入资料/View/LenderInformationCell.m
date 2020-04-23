@@ -29,12 +29,18 @@
         [self addSubview:identityLbl];
         
         statusLbl = [UILabel labelWithFrame:CGRectZero textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:Font(12) textColor:kHexColor(@"#0AB86C")];
-        
         [self addSubview:statusLbl];
         [statusLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-31);
+            make.right.mas_equalTo(-50);
             make.bottom.top.mas_equalTo(0);
         }];
+        
+        UIButton *clearBtn = [UIButton buttonWithImageName:@"X"];
+        clearBtn.frame = CGRectMake(SCREEN_WIDTH - 20 - 30, 0, 30, 75);
+        _clearBtn = clearBtn;
+        [self addSubview:clearBtn];
+        
+        
         
         UIImageView *youImg = [[UIImageView alloc]init];
         youImg.contentMode = UIViewContentModeScaleAspectFit;
@@ -60,12 +66,31 @@
     return self;
 }
 
+-(void)setIsDetails:(BOOL)isDetails
+{
+    _isDetails = isDetails;
+}
+
 -(void)setCreditUserList:(NSArray *)creditUserList
 {
     nameLbl.text = [NSString stringWithFormat:@"未录入%@信息",_dataDic[@"dvalue"]];
     statusLbl.text = @"";
+    _clearBtn.hidden = YES;
     for (int i = 0 ; i < creditUserList.count; i ++) {
         if ([creditUserList[i][@"loanRole"] isEqualToString:_dataDic[@"dkey"]]) {
+            if ([creditUserList[i][@"loanRole"] isEqualToString:@"1"]) {
+                _clearBtn.hidden = YES;
+            }else
+            {
+                if (_isDetails == YES) {
+                    _clearBtn.hidden = YES;
+                }else
+                {
+                    _clearBtn.hidden = NO;
+                }
+                
+            }
+            
             nameLbl.text = [NSString stringWithFormat:@"%@（%@）",[BaseModel convertNull:creditUserList[i][@"userName"]],[BaseModel convertNull:creditUserList[i][@"mobile"]]];
             if ([creditUserList[i][@"bankCreditResult"] isEqualToString:@"1"]) {
                 statusLbl.text = @"通过";

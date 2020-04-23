@@ -37,6 +37,7 @@
         numberToRound = (array.count + 1.0)/3.0;
         result = (int)ceilf(numberToRound);
         NSLog(@"roundf(%.2f) = %d", numberToRound, result);
+        
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH - 20, result * ((SCREEN_WIDTH - 50)/3 + 10)) collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor redColor];
         _collectionView.delegate = self;

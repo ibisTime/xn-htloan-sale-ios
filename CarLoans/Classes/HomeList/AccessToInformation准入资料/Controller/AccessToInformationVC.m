@@ -110,7 +110,7 @@
 @property (nonatomic , copy)NSString *carFrameNo;
 @property (nonatomic , copy)NSString *carEngineNo;
 
-@property (nonatomic , strong)NSString *driveCard;
+@property (nonatomic , strong)NSArray *driveCard;
 @property (nonatomic , strong)NSString *marryPdf;
 @property (nonatomic , strong)NSString *divorcePdf;
 @property (nonatomic , strong)NSString *singleProve;
@@ -286,14 +286,14 @@
     self.tableView7.tag = 20106;
     
     self.tableView7.dataUploadBlock = ^(NSString * _Nonnull driveCard, NSString * _Nonnull marryPdf, NSString * _Nonnull divorcePdf, NSString * _Nonnull singleProve, NSString * _Nonnull incomeProve, NSString * _Nonnull liveProvePdf, NSString * _Nonnull housePropertyCardPdf) {
-        weakSelf.driveCard = driveCard;
+//        weakSelf.driveCard = driveCard;
         weakSelf.marryPdf = marryPdf;
         weakSelf.divorcePdf = divorcePdf;
         weakSelf.singleProve = singleProve;
         weakSelf.incomeProve = incomeProve;
         weakSelf.liveProvePdf = liveProvePdf;
         weakSelf.housePropertyCardPdf = housePropertyCardPdf;
-        weakSelf.tableView7.driveCard = driveCard;
+//        weakSelf.tableView7.driveCard = driveCard;
         weakSelf.tableView7.marryPdf = marryPdf;
         weakSelf.tableView7.divorcePdf = divorcePdf;
         weakSelf.tableView7.singleProve = singleProve;
@@ -305,6 +305,10 @@
     
     self.tableView7.returnAryBlock = ^(NSArray * _Nonnull imgAry, NSString * _Nonnull name, NSInteger section) {
 //        @[@"户口本（多选）",@"银行流水（多选）",@"支付宝流水（多选）",@"微信流水（多选）",@"其他（多选）"]
+        if ([name isEqualToString:@"驾驶证（多选）"]) {
+            weakSelf.driveCard = imgAry;
+            weakSelf.tableView7.driveCard = imgAry;
+        }
         if ([name isEqualToString:@"户口本（多选）"]) {
             weakSelf.hkBookFirstPage = imgAry;
             weakSelf.tableView7.hkBookFirstPage = imgAry;
@@ -525,25 +529,7 @@
                 [_baseModel CustomBouncedView:[NSMutableArray arrayWithArray:@[@"新车",@"二手车"]] setState:@"100"];
             }
                 break;
-            
-//            case 8:
-//            {
-//                WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
-//
-//                    NSString *date = [selectDate stringWithFormat:@"yyyy-MM"];
-//                    self.regDate = date;
-//                    self.tableView6.regDate = date;
-//                    [self.tableView6 reloadData];
-//
-//                }];
-//                datepicker.dateLabelColor = kAppCustomMainColor;//年-月-日-时-分 颜色
-//                datepicker.datePickerColor = [UIColor blackColor];//滚轮日期颜色
-//                datepicker.doneButtonColor = kAppCustomMainColor;//确定按钮的颜色
-//                [datepicker show];
-//            }
-//                break;
-            
-            
+
             default:
                 break;
         }
@@ -764,6 +750,10 @@
         }
     }
 }
+
+
+
+
 
 //弹框代理方法
 -(void)TheReturnValueStr:(NSString *)Str selectDic:(NSDictionary *)dic selectSid:(NSInteger)sid
@@ -1220,14 +1210,19 @@
         [self.tableView6 reloadData];
         
         
-        self.driveCard = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"drive_card"];
+        
         self.marryPdf = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"marry_pdf"];
         self.divorcePdf = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"divorce_pdf"];
         self.singleProve = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"single_prove"];
         self.incomeProve = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"income_prove"];
         self.liveProvePdf = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"live_prove_pdf"];
         
+        
+        
         self.housePropertyCardPdf = [BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"single_prove"];
+        
+        self.driveCard = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"drive_card"] componentsSeparatedByString:@"||"];
+        
         self.hkBookFirstPage = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"hk_book_first_page"] componentsSeparatedByString:@"||"];
         self.bankJourFirstPage = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"bank_jour_first_page"] componentsSeparatedByString:@"||"];
         self.zfbJour = [[BaseModel GetImgAccordingKeyAttachments:self.model.attachments kname:@"zfb_jour"] componentsSeparatedByString:@"||"];
@@ -1344,6 +1339,42 @@
         } failure:^(NSError *error) {
             
         }];
+    }
+    
+    if ([state isEqualToString:@"clear"]) {
+        
+        
+        [TLAlert alertWithTitle:@"提示" msg:[NSString stringWithFormat:@"是否清除%@信息",self.credit_user_loan_roleArray[index][@"dvalue"]] confirmMsg:@"确认" cancleMsg:@"取消" maker:self cancle:^(UIAlertAction *action) {
+            
+        } confirm:^(UIAlertAction *action) {
+            
+            NSMutableArray *creditUserList = [NSMutableArray array];
+            for (int i = 0; i < self.model.creditUserList.count; i ++) {
+                if (![self.model.creditUserList[i][@"loanRole"] isEqualToString:self.credit_user_loan_roleArray[index][@"dkey"]]) {
+                    [creditUserList addObject:self.model.creditUserList[i]];
+                }
+            }
+            
+            TLNetworking * http1 = [[TLNetworking alloc]init];
+            http1.code = @"632530";
+            http1.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
+            http1.parameters[@"code"] = self.model.code;
+            http1.parameters[@"type"] = @"ios";
+            http1.showView = self.view;
+            
+            
+            http1.parameters[@"creditUserList"] = creditUserList;
+            [http1 postWithSuccess:^(id responseObject) {
+                
+                [self detailsLoadData:self.model.code];
+                
+            } failure:^(NSError *error) {
+                
+            }];
+            
+        }];
+        
+        
     }
 }
 
@@ -1736,13 +1767,16 @@
         http.showView = self.view;
         http.parameters[@"operator"] = [USERDEFAULTS objectForKey:USER_ID];
         http.parameters[@"code"] = self.model.code;
-        http.parameters[@"driveCard"] = self.driveCard;
+        
         http.parameters[@"marryPdf"] = self.marryPdf;
         http.parameters[@"divorcePdf"] = self.divorcePdf;
         http.parameters[@"singleProve"] = self.singleProve;
         http.parameters[@"incomeProve"] = self.incomeProve;
         http.parameters[@"housePropertyCardPdf"] = self.housePropertyCardPdf;
         http.parameters[@"liveProvePdf"] = self.liveProvePdf;
+        if (self.driveCard.count > 0) {
+            http.parameters[@"driveCard"] = [self.driveCard componentsJoinedByString:@"||"];
+        }
         if (self.hkBookFirstPage.count > 0) {
             http.parameters[@"hkBookFirstPage"] = [self.hkBookFirstPage componentsJoinedByString:@"||"];
         }

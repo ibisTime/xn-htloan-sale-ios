@@ -22,7 +22,9 @@
 #import "ReceiveEvaluationVC.h"
 #import "ConfirmEvaluationVC.h"
 @interface HomeListVC ()<RefreshDelegate>
-
+{
+    UITextField *titleTF;
+}
 @property (nonatomic , strong)HomeListTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <SurveyModel *>*models;
 @end
@@ -71,6 +73,36 @@
         
     }];
     [self.tableView beginRefreshing];
+    
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 57)];
+    backView.backgroundColor = kAppCustomMainColor;
+    [self.view addSubview:backView];
+    
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 58 - 15, 37)];
+    titleView.backgroundColor = kHexColor(@"#ffffff");
+    kViewRadius(titleView, 37/2);
+    [self.view addSubview:titleView];
+    
+    UIImageView *iconImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 11, 15, 15)];
+    iconImg.image = kImage(@"sousuo-4");
+    [titleView addSubview:iconImg];
+    
+    titleTF= [[UITextField alloc]initWithFrame:CGRectMake(34 + 4, 0, titleView.width - 38 - 15, 37)];
+    [titleTF setValue:Font(13) forKeyPath:@"_placeholderLabel.font"];
+    titleTF.font = Font(13);
+    titleTF.placeholder = @"请输入客户姓名，手机号，身份证号";
+    [titleView addSubview:titleTF];
+    
+    UIButton *searchBth = [UIButton buttonWithTitle:@"搜索" titleColor:kWhiteColor backgroundColor:kClearColor titleFont:16];
+    searchBth.frame = CGRectMake(SCREEN_WIDTH - 38 - 10, 10, 38, 37);
+    [searchBth addTarget:self action:@selector(searchBthClcik) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:searchBth];
+    
+}
+
+-(void)searchBthClcik
+{
+    [self loadData];
 }
 
 
@@ -86,6 +118,7 @@
     helper.code = @"632515";
     //    helper.parameters[@"teamCode"] = [USERDEFAULTS objectForKey:TEAMCODE];
     helper.parameters[@"userId"] = [USERDEFAULTS objectForKey:USER_ID];
+    
 //    helper.parameters[@"isMy"] = @"1";
     if ([self.curNodeCodeList[0] isEqualToString:@"h1"] || [self.curNodeCodeList[0] isEqualToString:@"h2"]) {
         helper.parameters[@"materialNodeCodeList"]  =self.curNodeCodeList;
@@ -98,7 +131,7 @@
     {
         helper.parameters[@"curNodeCodeList"]  =self.curNodeCodeList;
     }
-    
+    helper.parameters[@"keyword"] = titleTF.text;
     helper.isList = NO;
     helper.isCurrency = YES;
     helper.tableView = self.tableView;
@@ -140,7 +173,7 @@
 
 -(void)initTableView
 {
-    self.tableView = [[HomeListTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight) style:(UITableViewStyleGrouped)];
+    self.tableView = [[HomeListTableView alloc] initWithFrame:CGRectMake(0, 57, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 57) style:(UITableViewStyleGrouped)];
     self.tableView.refreshDelegate = self;
     self.tableView.backgroundColor = kBackgroundColor;
     [self.view addSubview:self.tableView];
