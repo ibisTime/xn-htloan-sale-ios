@@ -182,23 +182,33 @@
             http1.parameters[@"code"] = self.code;
             http1.parameters[@"type"] = @"ios";
             http1.showView = self.view;
-            NSArray *creditUserList = @[@{@"loanRole":[BaseModel convertNull:_dataDic[@"dkey"]],
-                                          @"idFront":[BaseModel convertNull:self.idFront],
-                                          @"idReverse":[BaseModel convertNull:self.idReverse],
-                                          @"holdIdCardPdf":[BaseModel convertNull:self.holdIdCardPdf],
-                                          @"userName":[BaseModel convertNull:self.userName],
-                                          @"startDate":[BaseModel convertNull:self.startDate],
-                                          @"nation":[BaseModel convertNull:self.nation],
-                                          @"gender":[BaseModel convertNull:self.gender],
-                                          @"customerBirth":[BaseModel convertNull:self.customerBirth],
-                                          @"idNo":[BaseModel convertNull:self.idNo],
-                                          @"birthAddress":[BaseModel convertNull:self.birthAddress],
-                                          @"authref":[BaseModel convertNull:self.authref],
-                                          @"statdate":[BaseModel convertNull:self.statdate],
-                                          @"bankCreditResult":[BaseModel convertNull:_bankCreditResult],
-                                          @"mobile":textField3.text,
-                                          @"bankCreditResultRemark":textField5.text,
-                                          }];
+            
+            NSArray *creditUserDic = @{@"loanRole":[BaseModel convertNull:_dataDic[@"dkey"]],
+                                       @"idFront":[BaseModel convertNull:self.idFront],
+                                       @"idReverse":[BaseModel convertNull:self.idReverse],
+                                       @"holdIdCardPdf":[BaseModel convertNull:self.holdIdCardPdf],
+                                       @"userName":[BaseModel convertNull:self.userName],
+                                       @"startDate":[BaseModel convertNull:self.startDate],
+                                       @"nation":[BaseModel convertNull:self.nation],
+                                       @"gender":[BaseModel convertNull:self.gender],
+                                       @"customerBirth":[BaseModel convertNull:self.customerBirth],
+                                       @"idNo":[BaseModel convertNull:self.idNo],
+                                       @"birthAddress":[BaseModel convertNull:self.birthAddress],
+                                       @"authref":[BaseModel convertNull:self.authref],
+                                       @"statdate":[BaseModel convertNull:self.statdate],
+                                       @"bankCreditResult":[BaseModel convertNull:_bankCreditResult],
+                                       @"mobile":textField3.text,
+                                       @"bankCreditResultRemark":textField5.text,
+                                       };
+            
+            NSMutableArray *creditUserList = [NSMutableArray array];
+            for (int i = 0; i < self.model.creditUserList.count; i ++) {
+                if (![self.model.creditUserList[i][@"loanRole"] isEqualToString:self.dataDic[@"dkey"]]) {
+                    [creditUserList addObject:self.model.creditUserList[i]];
+                }
+            }
+            
+            [creditUserList addObject:creditUserDic];
             
             http1.parameters[@"creditUserList"] = creditUserList;
             [http1 postWithSuccess:^(id responseObject) {
