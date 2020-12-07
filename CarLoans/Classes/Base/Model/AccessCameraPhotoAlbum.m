@@ -73,20 +73,7 @@
 //    CarLoansWeakSelf;
     //获取到的图片
     UIImage * image = [info valueForKey:UIImagePickerControllerEditedImage];
-//    NSData *imgData = UIImageJPEGRepresentation(image, 0.1);
     [_PhotoDelegate AccessCameraPhotoAlbumImage:image typeStr:@""];
-    //进行上传
-//    TLUploadManager *manager = [TLUploadManager manager];
-//    manager.imgData = imgData;
-//    manager.image = image;
-//    [manager getTokenShowView:weakSelf.view succes:^(NSString *key) {
-//
-//        [weakSelf changeHeadIconWithKey:key imgData:imgData];
-//
-//    } failure:^(NSError *error) {
-//
-//    }];
-
 
 }
 

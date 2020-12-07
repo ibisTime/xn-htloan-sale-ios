@@ -13,9 +13,10 @@
 //研发
 //#define APPURL @"http://47.99.80.106:2401/forward-service/api"
 //测试
-//#define APPURL @"http://112.124.25.207:2401/forward-service/api"
+//#define APPURL @"http://m.wzcddev.hichengdai.com/api"
 //正式
 #define APPURL @"http://47.110.249.120:2401/forward-service/api"
+
 
 
 //测试

@@ -7,11 +7,11 @@
 //
 
 #import "BaseViewController.h"
-
+#import <WebKit/WebKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SecondReportVC : BaseViewController
-@property (nonatomic,strong) UIWebView * detail;
+@property (nonatomic,strong) WKWebView * detail;
 @property (nonatomic,strong) NSString * web;
 @property (nonatomic,strong) UIScrollView * scrollview;
 @property (nonatomic,strong) NSString * IntroduceTitle;

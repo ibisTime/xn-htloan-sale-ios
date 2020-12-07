@@ -18,12 +18,12 @@
     WPFunctionView *WPFunc = [[WPFunctionView alloc] init];
     
     if ([phoneVersion integerValue]>=8) {
-        
+
         for (NSInteger i = 0; i<_chooseArray.count; i++) {
-            
+
             UIImage *image = _chooseArray[i];
             image = image.fixOrientation;
-            
+
             [myChoosePhotoArr addObject:[WPFunc createDicImage:image]];
             if (myChoosePhotoArr.count == _chooseArray.count) {
                 //传往上一页
@@ -33,7 +33,7 @@
         }
     }
     else {
-        
+    
         for (NSInteger i = 0; i<_chooseArray.count; i++) {
             
             NSURL *url = _chooseArray[i];
@@ -157,9 +157,12 @@
 
 {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.synchronous = true;
+    options.synchronous = YES;
+    options.version = PHImageRequestOptionsVersionOriginal;
     options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    options.resizeMode = PHImageRequestOptionsResizeModeNone;
     options.networkAccessAllowed = YES;
+    
     options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
         /*
          Progress callbacks may not be on the main thread. Since we're updating

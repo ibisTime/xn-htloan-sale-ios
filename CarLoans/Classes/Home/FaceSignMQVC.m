@@ -158,7 +158,7 @@
             }else
             {
                 UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
-                NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+                NSData *imgData =UIImageJPEGRepresentation(image, 1.0);
                 [SVProgressHUD showWithStatus:@"上传中"];
                 //进行上传
                 TLUploadManager *manager = [TLUploadManager manager];
@@ -218,7 +218,7 @@
 {
     CarLoansWeakSelf;
     UIImage *image = _phostsArr[self.count][@"image"];
-    NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+    NSData *imgData =UIImageJPEGRepresentation(image, 1.0);
     //进行上传
     TLUploadManager *manager = [TLUploadManager manager];
     manager.imgData = imgData;
@@ -239,7 +239,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
     CarLoansWeakSelf;
     UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
-    NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
+    NSData *imgData =UIImageJPEGRepresentation(image, 1.0);
     
     //进行上传
     TLUploadManager *manager = [TLUploadManager manager];

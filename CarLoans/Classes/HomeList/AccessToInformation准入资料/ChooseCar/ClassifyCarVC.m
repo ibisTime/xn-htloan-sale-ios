@@ -37,7 +37,6 @@
     [self.view addSubview:headView];
     UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(14 + 15, 0 + 15, SCREEN_WIDTH - 30 - 28, 40)];
     textField.placeholder = @"请输入车系";
-    [textField setValue:Font(14) forKeyPath:@"_placeholderLabel.font"];
     textField.font = Font(14);
 //    textField.keyboardType = UIKeyboardTypeEmailAddress;
     kViewRadius(textField, 2);

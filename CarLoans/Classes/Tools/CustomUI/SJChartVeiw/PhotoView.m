@@ -23,28 +23,39 @@
 -(id)initWithFrame:(CGRect)frame withPhotoUrl:(NSString *)photoUrl{
     self = [super initWithFrame:frame];
     if (self) {
-        //添加图片
-        SDWebImageManager *manager = [SDWebImageManager sharedManager];
-         [manager cachedImageExistsForURL:[NSURL URLWithString:photoUrl] completion:^(BOOL isInCache) {
-             if (!isInCache) {//没有缓存
-//                 HUD = [MBProgressHUD showHUDAddedTo:self animated:YES];
-//                 HUD.mode = MBProgressHUDModeDeterminate;
-                 [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:[UIImage imageNamed:@""]  options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-//                     HUD.progress = ((float)receivedSize)/expectedSize;
-                 } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                     self.imageView.frame=[self caculateOriginImageSizeWith:image];
-                     NSLog(@"图片加载完成");
-                     if (!isInCache) {
-//                         [HUD hide:YES];
-                     }
-                 }];
-             }else{//直接取出缓存的图片，减少流量消耗
-                 UIImage *cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photoUrl];
-                 self.imageView.frame=[self caculateOriginImageSizeWith:cachedImage];
-                 self.imageView.image=cachedImage;
-             }
-             
+        
+        
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:[UIImage imageNamed:@""]  options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            //                     HUD.progress = ((float)receivedSize)/expectedSize;
+        } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            self.imageView.frame=[self caculateOriginImageSizeWith:image];
+            NSLog(@"图片加载完成");
+
         }];
+        
+//        [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoUrl]];
+        //添加图片
+//        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+//         [manager cachedImageExistsForURL:[NSURL URLWithString:photoUrl] completion:^(BOOL isInCache) {
+////             if (!isInCache) {//没有缓存
+////                 HUD = [MBProgressHUD showHUDAddedTo:self animated:YES];
+////                 HUD.mode = MBProgressHUDModeDeterminate;
+//                 [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:[UIImage imageNamed:@""]  options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+////                     HUD.progress = ((float)receivedSize)/expectedSize;
+//                 } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//                     self.imageView.frame=[self caculateOriginImageSizeWith:image];
+//                     NSLog(@"图片加载完成");
+//                     if (!isInCache) {
+////                         [HUD hide:YES];
+//                     }
+//                 }];
+////             }else{//直接取出缓存的图片，减少流量消耗
+////                 UIImage *cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photoUrl];
+////                 self.imageView.frame=[self caculateOriginImageSizeWith:cachedImage];
+////                 self.imageView.image=cachedImage;
+////             }
+//
+//        }];
 
     }
     return self;

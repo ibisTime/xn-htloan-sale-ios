@@ -24,7 +24,6 @@
     if (!_nameTextField) {
         _nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(110, 0, SCREEN_WIDTH - 230, 60)];
         _nameTextField.font = HGfont(14);
-        [_nameTextField setValue:[UIFont systemFontOfSize:14.0] forKeyPath:@"_placeholderLabel.font"];
     }
     return _nameTextField;
 }

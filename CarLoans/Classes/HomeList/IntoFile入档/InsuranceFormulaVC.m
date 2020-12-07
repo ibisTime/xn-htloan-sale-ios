@@ -50,7 +50,6 @@
     [titleView addSubview:iconImg];
     
     UITextField *titleTF= [[UITextField alloc]initWithFrame:CGRectMake(34 + 4, 0, titleView.width - 38 - 15, 37)];
-    [titleTF setValue:Font(13) forKeyPath:@"_placeholderLabel.font"];
     titleTF.font = Font(13);
     titleTF.placeholder = @"请输入保险公司";
     [titleView addSubview:titleTF];

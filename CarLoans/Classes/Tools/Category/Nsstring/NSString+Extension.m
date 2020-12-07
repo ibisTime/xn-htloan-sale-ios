@@ -158,8 +158,8 @@
     } else {
         
         //        return [[@"http:/7xnuu2.com1.z0.glb.clouddn.com/" add:self] add:@"?imageMogr2/auto-orient/strip/quality/50!"];
-        NSString *imageUrl = [[NSString stringWithFormat:@"%@%@?/%ld!",QINIUURL,self,scale] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        
+        NSString *imageUrl = [[NSString stringWithFormat:@"%@%@",QINIUURL,self] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSLog(@"imageUrl=== %@",imageUrl);
         return imageUrl;
     }
     

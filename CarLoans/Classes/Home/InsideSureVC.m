@@ -35,7 +35,7 @@
         _imagePicker.pickFinish = ^(NSDictionary *info){
             
             UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
-            NSData *imgData = UIImageJPEGRepresentation(image, 0.7);
+            NSData *imgData =UIImageJPEGRepresentation(image, 1.0);
             [SVProgressHUD showWithStatus:@"上传中"];
             //进行上传
             TLUploadManager *manager = [TLUploadManager manager];

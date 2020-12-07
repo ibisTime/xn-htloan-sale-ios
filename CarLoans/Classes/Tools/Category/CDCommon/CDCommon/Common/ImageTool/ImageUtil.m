@@ -107,7 +107,7 @@
     
     
     CGFloat H_W = oldImg.size.height/oldImg.size.width;
-    if (H_W < 0.3333 || UIImageJPEGRepresentation(oldImg, 1).length < 0.5*1024*1024 ) {
+    if (H_W < 0.3333 || UIImagePNGRepresentation(oldImg).length < 0.5*1024*1024 ) {
         //宽图，暂不压缩
         //小于0.5M,暂不压缩
         
@@ -154,7 +154,7 @@
     UIGraphicsEndImageContext();
     
     //*****2.图片压操作*******//
-    UIImage *lastImg = [UIImage imageWithData:UIImageJPEGRepresentation(newImg, 0.7)];
+    UIImage *lastImg = [UIImage imageWithData:UIImagePNGRepresentation(newImg)];
     
     if (endHandler) {
         endHandler(lastImg);

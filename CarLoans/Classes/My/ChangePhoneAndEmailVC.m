@@ -25,7 +25,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    if (@available(iOS 13.0, *)) {[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDarkContent;} else {[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;}
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -53,7 +53,6 @@
     for (int i = 0 ; i < 4; i ++) {
         UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(15, 20 + i% 4 * 60, SCREEN_WIDTH - 30, 50)];
         textField.placeholder = array[i];
-        [textField setValue:Font(16) forKeyPath:@"_placeholderLabel.font"];
         textField.font = Font(16);
         //        self.pwdTf = textField;
         [self.view addSubview:textField];

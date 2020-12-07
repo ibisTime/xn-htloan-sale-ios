@@ -9,7 +9,7 @@
 #import "TLTableView.h"
 #import "AccessSingleModel.h"
 #import "UploadIdCardCell.h"
-@protocol SelectButtonDelegate <NSObject>
+@protocol SelectButtonDelegate1 <NSObject>
 
 -(void)selectButtonClick:(UIButton *)sender;
 
@@ -40,7 +40,7 @@
 
 @property (nonatomic , strong)AccessSingleModel *model;
 
-@property (nonatomic,weak) id<SelectButtonDelegate> AgentDelegate;
+@property (nonatomic,weak) id<SelectButtonDelegate1> AgentDelegate;
 //    身份证正面
 @property (nonatomic , copy)NSString *idNoFront;
 //    身份证反面

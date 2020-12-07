@@ -31,7 +31,6 @@
         rightTF.font = HGfont(12);
 //        rightTF.backgroundColor = [UIColor redColor];
         rightTF.textAlignment = NSTextAlignmentLeft;
-        [rightTF setValue:HGfont(12) forKeyPath:@"_placeholderLabel.font"];
         _rightTF = rightTF;
         rightTF.hidden = YES;
         [self addSubview:rightTF];

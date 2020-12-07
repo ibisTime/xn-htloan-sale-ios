@@ -436,7 +436,7 @@ didReceiveResponse:(NSURLResponse *)response
                         if (self.options & SDWebImageDownloaderScaleDownLargeImages) {
 #if SD_UIKIT || SD_WATCH
                             image = [UIImage decodedAndScaledDownImageWithImage:image];
-                            [self.imageData setData:UIImagePNGRepresentation(image)];
+                            [self.imageData setData:UIImageJPEGRepresentation(image, 1.0)];
 #endif
                         } else {
                             image = [UIImage decodedImageWithImage:image];

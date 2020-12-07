@@ -8,7 +8,7 @@
 
 #import "SecondReportVC.h"
 
-@interface SecondReportVC ()<UIWebViewDelegate,UIScrollViewDelegate>
+@interface SecondReportVC ()<UIScrollViewDelegate>
 {
     int height;
 }
@@ -22,8 +22,16 @@
     [super viewDidLoad];
     self.title = @"二手车评估报告";
     
-    self.detail = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.detail.delegate = self;
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    //注入
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    [wkUController addUserScript:wkUScript];
+    //配置对象
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    wkWebConfig.userContentController = wkUController;
+            
+    self.detail = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:wkWebConfig];
     self.detail.scrollView.delegate = self;
     self.detail.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
 //    [self.detail loadHTMLString:self.web baseURL:nil];

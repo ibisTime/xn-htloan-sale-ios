@@ -204,8 +204,6 @@
     _mobileTextFd.font = HGfont(16);
 //    _mobileTextFd.delegate = self;
     _mobileTextFd.placeholder = @"请输入账号";
-    [_mobileTextFd setValue:HGfont(16) forKeyPath:@"_placeholderLabel.font"];
-//    [_mobileTextFd setValue:GaryTextColor forKeyPath:@"_placeholderLabel.color"];
     [self.view addSubview:_mobileTextFd];
 
     _passWordTextFd = [[UITextField alloc]initWithFrame:CGRectMake(15, 55, SCREEN_WIDTH - 30, 55)];
@@ -214,8 +212,6 @@
 
     _passWordTextFd.placeholder = @"请输入密码";
     _passWordTextFd.secureTextEntry = YES;
-    [_passWordTextFd setValue:HGfont(16) forKeyPath:@"_placeholderLabel.font"];
-//    [_passWordTextFd setValue:GaryTextColor forKeyPath:@"_placeholderLabel.color"];
     [self.view addSubview:_passWordTextFd];
 
 

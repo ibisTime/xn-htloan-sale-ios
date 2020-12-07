@@ -60,25 +60,16 @@
     [getUploadToken postWithSuccess:^(id responseObject) {
      //获取token
 
-        NSData *data = UIImageJPEGRepresentation(image, 1.0);
+        NSData *data =UIImageJPEGRepresentation(image, 1.0);
         NSString *imageName = [[self class] imageNameByImage:image];
         [self.qnUploadManager putData:data key:imageName token:@"" complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-
             if (1) {
-
-
-
             } else {
-
                 if (failure) {
                     failure();
                 }
-
             }
-
         } option:nil];
-
-
 
     } failure:^(NSError *error) {
 
@@ -96,10 +87,7 @@
 
     [SVProgressHUD show];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    
-    
     TLNetworking *getUploadToken = [TLNetworking new];
-
     getUploadToken.showView = showView;
     getUploadToken.code = IMG_UPLOAD_CODE;
 //    getUploadToken.parameters[@"token"] = [USERDEFAULTS objectForKey:TOKEN_ID];

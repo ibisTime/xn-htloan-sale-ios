@@ -40,6 +40,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initTableView];
+    
     if ([self.title isEqualToString:@"准入资料"]) {
         
         TLNetworking *http = [TLNetworking new];
@@ -88,7 +89,6 @@
     [titleView addSubview:iconImg];
     
     titleTF= [[UITextField alloc]initWithFrame:CGRectMake(34 + 4, 0, titleView.width - 38 - 15, 37)];
-    [titleTF setValue:Font(13) forKeyPath:@"_placeholderLabel.font"];
     titleTF.font = Font(13);
     titleTF.placeholder = @"请输入客户姓名，手机号，身份证号";
     [titleView addSubview:titleTF];

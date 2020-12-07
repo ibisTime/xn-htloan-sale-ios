@@ -26,7 +26,6 @@
         _code_TextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 210, 50)];
         _code_TextField.font = HGfont(16);
         _code_TextField.placeholder = @"请输入验证码";
-        [_code_TextField setValue:HGfont(16) forKeyPath:@"_placeholderLabel.font"];
     }
     return _code_TextField;
 }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol TaskDelegate <NSObject>
+@protocol TaskDelegate1 <NSObject>
 
 -(void)SurveyTaskSelectButton:(UIButton *)sender;
 
@@ -17,7 +17,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FileCell : UITableViewCell
-@property (nonatomic, assign) id <TaskDelegate> delegate;
+@property (nonatomic, assign) id <TaskDelegate1> delegate;
 
 
 @property (nonatomic , strong)UIButton *deleteBtn;

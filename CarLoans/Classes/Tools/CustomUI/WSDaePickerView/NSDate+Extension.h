@@ -32,6 +32,7 @@
 // Short string utilities
 - (NSString *) stringWithDateStyle: (NSDateFormatterStyle) dateStyle timeStyle: (NSDateFormatterStyle) timeStyle;
 - (NSString *) stringWithFormat: (NSString *) format;
+
 @property (nonatomic, readonly) NSString *shortString;
 @property (nonatomic, readonly) NSString *shortDateString;
 @property (nonatomic, readonly) NSString *shortTimeString;
@@ -110,6 +111,11 @@
 @property (readonly) NSInteger weekday;
 @property (readonly) NSInteger nthWeekday; // e.g. 2nd Tuesday of the month == 2
 @property (readonly) NSInteger year;
+
+
+
+
+
 
 - (NSDate *)dateWithYMD;
 - (NSDate *)dateWithFormatter:(NSString *)formatter;

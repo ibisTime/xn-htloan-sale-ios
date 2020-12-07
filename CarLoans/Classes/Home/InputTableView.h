@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface InputTableView : TLTableView<UITableViewDataSource,UITableViewDelegate,TaskDelegate>
+@interface InputTableView : TLTableView<UITableViewDataSource,UITableViewDelegate,TaskDelegate1>
 @property (nonatomic,strong) AccessSingleModel * model;
 @property (nonatomic,strong) NSMutableArray * FileArray;
 @property (nonatomic,strong) NSString * filelocation;

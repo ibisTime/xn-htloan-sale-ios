@@ -330,6 +330,12 @@
     [self.view addSubview:self.collectionView];
     [self loadData];
     
+    
+    
+//    UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//    [img sd_setImageWithURL:[NSURL URLWithString:@"http://img.wzhaoyuan.com/IOS_1606982963117105_4032_3024.jpg"]];
+//    img.contentMode = UIViewContentModeScaleAspectFit;
+//    [self.view addSubview:img];
 //    CheckDetailsVC *vc = [CheckDetailsVC new];
 //    vc.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:vc animated:YES];

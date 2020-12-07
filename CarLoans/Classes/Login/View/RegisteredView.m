@@ -26,7 +26,6 @@
     if (!_Registered_TextField) {
         _Registered_TextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 0, SCREEN_WIDTH - 120, 50)];
         _Registered_TextField.font = HGfont(16);
-        [_Registered_TextField setValue:HGfont(16) forKeyPath:@"_placeholderLabel.font"];
     }
     return _Registered_TextField;
 }

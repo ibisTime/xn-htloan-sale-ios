@@ -31,7 +31,6 @@
         UITextField *textFid = [[UITextField alloc]initWithFrame:CGRectMake(15, 39, SCREEN_WIDTH - 30, 14)];
         textFid.placeholder = @"请输入";
         textFid.font = HGfont(12);
-        [textFid setValue:HGfont(12) forKeyPath:@"_placeholderLabel.font"];
         self.inputTextField = textFid;
         [self addSubview:textFid];
         

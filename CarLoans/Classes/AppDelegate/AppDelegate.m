@@ -24,7 +24,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-
+    
+    if(@available(iOS 13.0,*)){
+        self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
+    
     [application registerForRemoteNotifications];
     
     [BaseModel QueriesNumberOfUnreadMessageBars];

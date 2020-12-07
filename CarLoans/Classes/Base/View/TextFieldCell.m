@@ -25,7 +25,6 @@
         _nameTextField.font = HGfont(14);
         _nameTextField.textAlignment = NSTextAlignmentRight;
 //        _nameTextField.backgroundColor = [UIColor redColor];
-        [_nameTextField setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
     }
     return _nameTextField;
 }
@@ -38,8 +37,7 @@
         _nameTextLabel.textAlignment = NSTextAlignmentRight;
         _nameTextLabel.numberOfLines = 0;
         _nameTextLabel.hidden = YES;
-//        _nameLabel.font = Font(14);
-//        [_nameLabel setValue:HGfont(14) forKeyPath:@"_placeholderLabel.font"];
+
     }
     return _nameTextLabel;
 }
