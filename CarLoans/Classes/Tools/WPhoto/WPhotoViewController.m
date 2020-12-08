@@ -48,7 +48,13 @@
     self.view.backgroundColor = UIColorFromRGB(0xffffff);
     
     [self.view addSubview:[self finishButton]];
-    
+    [self.finishButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_offset(-15);
+    //        make.top.mas_offset(15.5);
+            make.bottom.mas_offset(-5.5);
+            make.width.mas_offset(97);
+            make.height.mas_offset(32);
+        }];
     [self.view addSubview:[self ado_collectionView]];
     
     [self getAllPhotos];
@@ -307,7 +313,7 @@
 {
     if (!_finishBtn) {
         UIButton *finishBut = [UIButton buttonWithType:UIButtonTypeCustom];
-        finishBut.frame = CGRectMake(0, SelfView_H-TabBar_H, SelfView_W, TabBar_H);
+//        finishBut.frame = CGRectMake(0, SelfView_H-TabBar_H, SelfView_W, TabBar_H);
         finishBut.backgroundColor = UIColorFromRGB(0xf9f9f9);
         finishBut.layer.borderWidth = 0.5;
         finishBut.layer.borderColor = UIColorFromRGB(0xe8e8e8).CGColor;
